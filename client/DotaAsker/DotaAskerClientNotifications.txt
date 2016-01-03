@@ -1,0 +1,5 @@
+													DotaAskerClientNotifications
+
+Client --> SignInViewController:
+1)"signin succeed"
+2)"sigin failed" :JSONDictionary
