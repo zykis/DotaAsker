@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     serviceLayer = [[ServiceLayer alloc] init];
-    
     // Do any additional setup after loading the view.
 }
 
@@ -41,10 +40,11 @@
 - (IBAction)onButton {
     UserAnswer *ua = [[serviceLayer userAnswerService] obtain:1];
     if (ua) {
-        [[self label] setText:[NSString stringWithFormat:@"%ld", [ua ID]]];
+        [[self label] setText:[NSString stringWithFormat:@"%ld", (long)[ua ID]]];
     }
     else {
         [[self label] setText:@"UserAnswer wasn't obtain"];
     }
+    
 }
 @end

@@ -15,7 +15,7 @@
 @synthesize cache;
 @synthesize transport;
 
--(id)init {
+- (id)init {
     self = [super init];
     if(self) {
         parser = [[UserAnswerParser alloc] init];
@@ -25,15 +25,31 @@
     return self;
 }
 
--(UserAnswer*)obtain:(NSInteger)ID {
-    NSData* JSONData = [transport obtain:ID];
-    UserAnswer* userAnswer = [UserAnswerParser parse:JSONData];
+- (UserAnswer*)obtain:(NSInteger)ID {
+    UserAnswer* userAnswer = [cache obtain:ID];
+    if (userAnswer == nil) {
+        NSData* JSONData = [transport obtain:ID];
+        userAnswer = [UserAnswerParser parse:JSONData];
+        if (userAnswer != nil) {
+            [cache append:userAnswer];
+        }
+    }
     return userAnswer;
 }
 
--(NSArray*)obtainAll {
-    NSArray *userAnswers = [[NSArray alloc] init];
-    return userAnswers;
+- (NSArray*)obtainAll {
+    NSArray* array = [transport obtainAll];
+    return array;
+}
+
+- (void)update:(UserAnswer *)userAnswer {
+    [cache update:userAnswer];
+    [transport update:userAnswer];
+}
+
+- (void)remove:(NSInteger)entityID {
+    [cache remove:entityID];
+    [transport remove:entityID];
 }
 
 @end

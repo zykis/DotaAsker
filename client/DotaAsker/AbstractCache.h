@@ -10,7 +10,7 @@
 
 @interface AbstractCache : NSObject
 
-@property (strong, nonatomic) NSArray* entities;
+@property (strong, nonatomic) NSMutableArray* entities;
 
 - (NSArray*)allEntities;
 - (void)appendEntities: (NSArray*)entities;

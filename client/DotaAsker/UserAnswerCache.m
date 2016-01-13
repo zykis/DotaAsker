@@ -11,18 +11,53 @@
 
 @implementation UserAnswerCache
 
-- (BOOL)equal:(id)rightEntity to:(id)leftEntity {
-    if (!([rightEntity isMemberOfClass:[UserAnswer class]] || [leftEntity isMemberOfClass:[UserAnswer class]])) {
-        NSLog(@"entity is not a member of class \"UserAnswer\"");
-        return NO;
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.entities = [[NSMutableArray alloc] init];
     }
-    UserAnswer* right = rightEntity;
-    UserAnswer* left = leftEntity;
-    if (right.ID == left.ID) {
-        return YES;
+    return self;
+}
+
+- (void)appendEntities:(NSArray *)entities {
+    for (int i = 0; i < [entities count]; i++) {
+        if (![self.entities containsObject:[entities objectAtIndex:i]]) {
+            [self.entities addObject:[entities objectAtIndex:i]];
+        }
     }
-    else {
-        return NO;
+}
+
+- (NSArray*)obtainAll {
+    return self.entities;
+}
+
+- (UserAnswer*)obtain:(NSInteger)anID {
+    for (int i = 0; i < [[self entities] count]; i++) {
+        if([[[self entities] objectAtIndex:i] ID] == anID) {
+            return [[self entities] objectAtIndex:i];
+        }
+    }
+    return nil;
+}
+
+- (void)append:(UserAnswer *)userAnswer {
+    [self appendEntities: [NSArray arrayWithObject:userAnswer]];
+}
+
+- (UserAnswer*)update:(UserAnswer *)userAnswer {
+    if([[self entities] containsObject:userAnswer]) {
+        NSInteger ind = [[self entities] indexOfObject:userAnswer];
+        [[self entities] replaceObjectAtIndex:ind withObject:userAnswer];
+    }
+    return userAnswer;
+}
+
+- (void)remove:(NSInteger)anID {
+    for (int i = 0; i < [[self entities] count]; i++) {
+        if([[[self entities] objectAtIndex:i] ID] == anID) {
+            [[self entities] removeObjectAtIndex:i];
+            return;
+        }
     }
 }
 

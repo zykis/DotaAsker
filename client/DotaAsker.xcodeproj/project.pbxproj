@@ -29,7 +29,6 @@
 		AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC62E52A1BF4BBDC00805285 /* dota_icon_40x40@3x.png */; };
 		AC73520A1B239A1B00FFF356 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7352091B239A1B00FFF356 /* main.m */; };
 		AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC73520C1B239A1B00FFF356 /* AppDelegate.m */; };
-		AC7352131B239A1B00FFF356 /* __Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC7352111B239A1B00FFF356 /* __Main2.storyboard */; };
 		AC7352151B239A1B00FFF356 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC7352141B239A1B00FFF356 /* Images.xcassets */; };
 		AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7352161B239A1B00FFF356 /* LaunchScreen.xib */; };
 		AC7352241B239A1B00FFF356 /* DotaAskerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7352231B239A1B00FFF356 /* DotaAskerTests.m */; };
@@ -54,7 +53,6 @@
 		AC80437C1C36B0880063CD67 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437B1C36B0880063CD67 /* UserService.m */; };
 		AC80437F1C36B0A90063CD67 /* PlayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437E1C36B0A90063CD67 /* PlayerService.m */; };
 		AC80438B1C36C0CA0063CD67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80438A1C36C0CA0063CD67 /* Main.storyboard */; };
-		AC80438E1C36C21B0063CD67 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80438D1C36C21B0063CD67 /* TestViewController.m */; };
 		AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC850B751B3C85A00050954C /* Trajan Bold.ttf */; };
 		AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC850B771B3C8EB90050954C /* wallpaper_default.jpg */; };
 		AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */; };
@@ -64,6 +62,7 @@
 		AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BC1B2EFB9C006212D2 /* Round.m */; };
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
+		AC95F7EC1C4624DA00FE4EE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */; };
 		ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A10C1B9F29DC0083EE17 /* avatar_axe.png */; };
 		ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A10E1B9F2A830083EE17 /* avatar_tinker.png */; };
 		ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A1101B9F2C180083EE17 /* avatar_bounty.png */; };
@@ -151,7 +150,6 @@
 		AC7352091B239A1B00FFF356 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC73520B1B239A1B00FFF356 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AC73520C1B239A1B00FFF356 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		AC7352121B239A1B00FFF356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/__Main2.storyboard; sourceTree = "<group>"; };
 		AC7352141B239A1B00FFF356 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AC7352171B239A1B00FFF356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AC73521D1B239A1B00FFF356 /* DotaAskerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DotaAskerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,8 +185,6 @@
 		AC80437D1C36B0A90063CD67 /* PlayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerService.h; sourceTree = "<group>"; };
 		AC80437E1C36B0A90063CD67 /* PlayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerService.m; sourceTree = "<group>"; };
 		AC80438A1C36C0CA0063CD67 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		AC80438C1C36C21B0063CD67 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		AC80438D1C36C21B0063CD67 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		AC850B751B3C85A00050954C /* Trajan Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trajan Bold.ttf"; path = "resources/Trajan Bold.ttf"; sourceTree = "<group>"; };
 		AC850B771B3C8EB90050954C /* wallpaper_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wallpaper_default.jpg; path = resources/wallpaper_default.jpg; sourceTree = "<group>"; };
 		AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_backbutton_44@2x.png"; path = "resources/icon_backbutton_44@2x.png"; sourceTree = "<group>"; };
@@ -203,6 +199,7 @@
 		AC8841BF1B2EFC6B006212D2 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		AC8841C11B2EFCF9006212D2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		ACB3A10C1B9F29DC0083EE17 /* avatar_axe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_axe.png; path = resources/avatar_axe.png; sourceTree = "<group>"; };
 		ACB3A10E1B9F2A830083EE17 /* avatar_tinker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_tinker.png; path = resources/avatar_tinker.png; sourceTree = "<group>"; };
 		ACB3A1101B9F2C180083EE17 /* avatar_bounty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_bounty.png; path = resources/avatar_bounty.png; sourceTree = "<group>"; };
@@ -294,6 +291,7 @@
 		AC7352061B239A1B00FFF356 /* DotaAsker */ = {
 			isa = PBXGroup;
 			children = (
+				AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */,
 				ACFDF2D61BFB40D300B89838 /* Service */,
 				ACFDF2D51BFB40B600B89838 /* Entity */,
 				ACFDF2D41BFB40AD00B89838 /* Transport */,
@@ -302,7 +300,6 @@
 				ACBD29DD1B5BB5D7005AB718 /* Categories */,
 				ACF41C031B3BE8B20096598C /* CustomViews */,
 				AC9BBE151B32A83900E59DE2 /* ViewControllers */,
-				AC7352111B239A1B00FFF356 /* __Main2.storyboard */,
 				AC80438A1C36C0CA0063CD67 /* Main.storyboard */,
 				AC7352141B239A1B00FFF356 /* Images.xcassets */,
 				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
@@ -386,8 +383,6 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC80438C1C36C21B0063CD67 /* TestViewController.h */,
-				AC80438D1C36C21B0063CD67 /* TestViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -670,7 +665,6 @@
 				ACE8AF101B4197B9009C3A08 /* wallpaper_chaos_knight_1.jpg in Resources */,
 				ACE8AF0F1B4197B9009C3A08 /* wallpaper_bloodseeker_1.jpg in Resources */,
 				ACE8AF171B4197B9009C3A08 /* wallpaper_kent_vs_naga.jpg in Resources */,
-				AC7352131B239A1B00FFF356 /* __Main2.storyboard in Resources */,
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
 				AC62E5201BF4B96900805285 /* dota_icon_60x60.png in Resources */,
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
@@ -687,6 +681,7 @@
 				ACE8AF161B4197B9009C3A08 /* wallpaper_juggernaut_2.jpg in Resources */,
 				AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */,
 				ACE8AF111B4197B9009C3A08 /* wallpaper_doom_1.jpg in Resources */,
+				AC95F7EC1C4624DA00FE4EE2 /* Main.storyboard in Resources */,
 				ACB3A1161B9F2C180083EE17 /* avatar_bristle.png in Resources */,
 				AC62E5261BF4BB2100805285 /* dota_icon_40x40.png in Resources */,
 				ACE8AF151B4197B9009C3A08 /* wallpaper_juggernaut_1.jpg in Resources */,
@@ -735,7 +730,6 @@
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				ACF41C001B3BD3E60096598C /* Player.m in Sources */,
-				AC80438E1C36C21B0063CD67 /* TestViewController.m in Sources */,
 				AC6091781BFF523E00D728B6 /* UserAnswerCache.m in Sources */,
 				AC8043731C36B05F0063CD67 /* ThemeService.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
@@ -788,14 +782,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		AC7352111B239A1B00FFF356 /* __Main2.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AC7352121B239A1B00FFF356 /* Base */,
-			);
-			name = __Main2.storyboard;
-			sourceTree = "<group>";
-		};
 		AC7352161B239A1B00FFF356 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

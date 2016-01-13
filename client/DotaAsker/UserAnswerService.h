@@ -19,7 +19,9 @@
 @property (strong, nonatomic) UserAnswerTransport* transport;
 
 
--(UserAnswer*)obtain:(NSInteger)ID;
--(NSArray*)obtainAll;
+- (UserAnswer*)obtain:(NSInteger)ID;
+- (void)update:(UserAnswer*)userAnswer;
+- (void)remove:(NSInteger)entityID;
+- (void)create:(UserAnswer*)userAnswer;
 
 @end

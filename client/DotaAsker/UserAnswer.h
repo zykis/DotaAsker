@@ -11,7 +11,6 @@
 @interface UserAnswer: NSObject
 
 @property (assign, nonatomic) NSInteger ID;
-@property (assign, nonatomic) NSInteger userID;
 @property (assign, nonatomic) NSInteger relatedQuestionID;
 @property (assign, nonatomic) NSInteger relatedAnswerID;
 @property (assign, nonatomic) NSInteger relatedRoundID;

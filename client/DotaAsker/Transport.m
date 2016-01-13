@@ -14,9 +14,10 @@
 
 /* {api}/{model}/{id}/{property} */
 // {api} = CREATE / GET / UPDATE / DELETE
-// {model} = UserAnswer / Answer / Question / Theme / Round / Match / User / Player
+// {model} = USERANSWER / ANSWER / QUESTION / THEME / ROUND / MATCH / USER / PLAYER
 
 @synthesize transportCompletionBlockData;
+@synthesize transportCompletionBlockMessage;
 @synthesize messageToSend;
 
 - (id)init {
@@ -33,36 +34,70 @@
                    });
 }
 
-- (void)sendMessage:(NSString*)message WithComplition:(TransportCompletionBlockData)aCompletionBlock {
-    self.transportCompletionBlockData = aCompletionBlock;
+- (void)websocket:(JFRWebSocket *)socket didReceiveMessage:(NSString *)string {
+    dispatch_async(dispatch_get_global_queue(0, 0),
+                   ^{
+                       NSLog(@"Message recieved: %@", string);
+                       transportCompletionBlockMessage(string);
+                   });
+}
+
+- (void)sendMessage:(NSString*)message WithComplition:(TransportCompletionBlockMessage)aCompletionBlock {
+    NSInteger connectionTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Connection timeout (sec)"] integerValue];
+    if(!connectionTimeoutSeconds)
+        connectionTimeoutSeconds = 2;//default value
+    
+    self.transportCompletionBlockMessage = aCompletionBlock;
     //устанавливаем соединение
     JFRWebSocket* sock = [[JFRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:1536"] protocols:@[@"data"]];
     self.sock = sock;
     self.sock.delegate = self;
-    [self.sock connect];
-    
-    //отправляем запрос
-    [self.sock writeString:message];
+    if([self.sock waitForConnection:connectionTimeoutSeconds] == 0) {
+        //отправляем запрос
+        [self.sock writeString:message];
+    }
+    else {
+        //нет соединения
+        self.transportCompletionBlockMessage = ^(NSString* str){};
+    }
 }
 
-- (NSData*)obtainDataWithMessage:(NSString *)message {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    NSData __block *data = nil;
-    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, TIMEOUT_SECONDS * 10^9);
+- (void)sendMessage:(NSString*)message {
+    NSInteger connectionTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Connection timeout (sec)"] integerValue];
+    if(!connectionTimeoutSeconds)
+        connectionTimeoutSeconds = 2;//default value
     
-    [self sendMessage:message WithComplition:^(NSData *receivedData) {
-                 data = receivedData;
+    //устанавливаем соединение
+    JFRWebSocket* sock = [[JFRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:1536"] protocols:@[@"data"]];
+    self.sock = sock;
+    self.sock.delegate = self;
+    if([self.sock waitForConnection:connectionTimeoutSeconds] == 0) {
+        //отправляем запрос
+        [self.sock writeString:message];
+    }
+}
+
+- (NSString*)obtainMessageWithMessage:(NSString *)message {
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    NSString __block *msg = nil;
+    NSInteger messageTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Message timeout (sec)"] integerValue];
+    if(!messageTimeoutSeconds)
+        messageTimeoutSeconds = 5;
+    
+    [self sendMessage:message WithComplition:^(NSString *receivedMessage) {
+                 msg = receivedMessage;
                  dispatch_semaphore_signal(semaphore);
              }];
     
-    
-    if(dispatch_semaphore_wait(semaphore, timeoutTime) != 0) {
-        NSLog(@"timed out");
+    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, messageTimeoutSeconds * pow(10,9));
+    if(dispatch_semaphore_wait(semaphore, timeoutTime)) {
+        NSLog(@"Message timed out");
+        self.transportCompletionBlockMessage = ^(NSString* str){};
     }
     
     //отсоединяемся
     [self.sock disconnect];
-    return data;
+    return msg;
 }
 
 

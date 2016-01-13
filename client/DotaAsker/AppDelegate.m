@@ -32,10 +32,10 @@
 -(void)reachabilityChanged:(EPPZReachability*) reachability
 {
     if ([reachability reachable]) {
-        NSLog(@"Server is reachable");
+//        NSLog(@"Server is reachable");
     }
     else {
-        NSLog(@"Server is unreacable");
+//        NSLog(@"Server is unreacable");
     }
 }
 

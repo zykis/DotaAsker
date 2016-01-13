@@ -136,6 +136,26 @@ static const size_t  JFRMaxFrameSize        = 32;
         weakSelf.isCreated = NO;
     });
 }
+
+/////////////////////////////////////////////////////////////////////////////
+- (BOOL)waitForConnection:(float)seconds {
+    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, seconds * pow(10,9));
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    self.queue = dispatch_get_global_queue(0, 0);
+    self.onConnect = ^{
+        dispatch_semaphore_signal(sem);
+    };
+    [self connect];
+    
+    if(dispatch_semaphore_wait(sem, timeoutTime)) {
+//        NSLog(@"Timeout during connection");
+        return YES;
+    }
+    else {
+//        NSLog(@"Connected");
+        return NO;
+    }
+}
 /////////////////////////////////////////////////////////////////////////////
 - (void)disconnect {
     [self writeError:JFRCloseCodeNormal];

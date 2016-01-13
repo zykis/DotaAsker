@@ -355,9 +355,10 @@ round_questions_table = Table('round_questions', Base.metadata,
 
 class Database:
     def __init__(self):
-        # self.create_and_upgrade(engine=myDBEngine, metadata=Base.metadata)
-        Base.metadata.drop_all(myDBEngine)
-        Base.metadata.create_all(myDBEngine)
+        self.create_and_upgrade(engine=myDBEngine, metadata=Base.metadata)
+        # Base.metadata.drop_all(myDBEngine)
+        # Base.metadata.create_all(myDBEngine)
+        # self.initTestData()
 
     def getUserAnswer(self, id):
         answer = session.query(UserAnswer).filter(UserAnswer.id == id)
@@ -579,7 +580,7 @@ class Database:
 
     def initTestData(self):
         ############################################## setup connection
-        database = Database()
+        # database = Database()
 
         # ############################################# making themes
         lore_theme = Theme(name=u'lore',
@@ -606,7 +607,7 @@ class Database:
         session.commit()
 
         # upload questions
-        database.uploadQuestionFromPath(__questions_folder__)
+        self.uploadQuestionFromPath(__questions_folder__)
 
         # create some questions
         lore_questions_list = session.query(Question).filter(Question.theme == lore_theme).all()

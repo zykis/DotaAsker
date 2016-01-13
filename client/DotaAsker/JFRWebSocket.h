@@ -12,6 +12,7 @@
 
 @class JFRWebSocket;
 
+
 /**
  It is important to note that all the delegate methods are put back on the main thread.
  This means if you want to do some major process of the data, you need to create a background thread.
@@ -64,6 +65,14 @@
  connect to the host.
  */
 - (void)connect;
+
+/**
+ synchronius
+ connection to host
+ YES - timed out
+ NO - connected
+ */
+- (BOOL)waitForConnection:(float)seconds;
 
 /**
  disconnect to the host. This sends the close Connection opcode to terminate cleanly.

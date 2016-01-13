@@ -10,10 +10,12 @@
 #import "JFRWebSocket.h"
 
 typedef void(^TransportCompletionBlockData)(NSData*);
+typedef void(^TransportCompletionBlockMessage)(NSString*);
 
 @interface Transport : NSObject <JFRWebSocketDelegate>
 
 @property (assign, nonatomic) TransportCompletionBlockData transportCompletionBlockData;
+@property (assign, nonatomic) TransportCompletionBlockMessage transportCompletionBlockMessage;
 @property (strong, nonatomic) NSString* messageToSend;
 @property (strong, nonatomic) NSData* data;
 @property (strong, nonatomic) JFRWebSocket* sock;
@@ -21,7 +23,10 @@ typedef void(^TransportCompletionBlockData)(NSData*);
 - (NSArray*)obtainAll;
 - (NSData*)obtain:(NSInteger) entityID;
 - (id)update:(id) entity;
+- (void)remove:(NSInteger) entityID;
+- (void)create:(id) entity;
 
-- (NSData*)obtainDataWithMessage:(NSString*)message;
+- (void)sendMessage:(NSString*)message;
+- (NSString*)obtainMessageWithMessage:(NSString*)message;
 
 @end

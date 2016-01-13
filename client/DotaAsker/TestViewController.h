@@ -13,5 +13,6 @@
 @property (strong, nonatomic) ServiceLayer* serviceLayer;
 - (IBAction)onButton;
 @property (strong, nonatomic) IBOutlet UILabel *label;
+@property (strong, nonatomic) IBOutlet UIView *mainView;
 
 @end
