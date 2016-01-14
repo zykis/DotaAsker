@@ -7,8 +7,7 @@
 //
 
 #import "SignInViewController.h"
-#import "Client.h"
-#import "Player.h"
+#import "ServiceLayer.h"
 
 @interface SignInViewController ()
 
@@ -22,8 +21,9 @@
 - (void)viewDidLoad {
     _authorized = NO;
     [super viewDidLoad];
-    [self initNotifications];
-    [self loadBackgroundImage];
+    UIImage* wallpapers;
+    wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
+    [self loadBackgroundImage: wallpapers];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -37,7 +37,7 @@
         if ([[NSUserDefaults standardUserDefaults] valueForKey:@"password"] != nil) {
             [_username setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
             [_password setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
-//            [self signIn];
+            [self signIn];
         }
     }
 }
@@ -45,29 +45,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)initNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotificationRecievedSignInSucceed) name:@"signin succeed" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onNotificationRecievedSignInFailed:) name:@"signin failed" object:nil];
-}
-
-- (void)onNotificationRecievedSignInSucceed {
-    _authorized = YES;
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:[_username text]]) {
-        [[NSUserDefaults standardUserDefaults] setObject:[_username text]  forKey:@"username"];
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isEqualToString:[_password text]]) {
-            [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
-        }
-    }
-    //Filling up Player's data:
-    [[Client instance] sendMessageGetPlayerInfo:[_username text]];
-    //Moving forward
-    [self performSegueWithIdentifier:@"signin" sender:self];
-}
-
-- (void)onNotificationRecievedSignInFailed: (NSNotification*)aNotification {
-    [self presentAlertControllerWithTitle:@"Signing in" andMessage:[NSString stringWithFormat:@"Failed: %@",[aNotification.userInfo objectForKey:@"reason"]]];
 }
 
 - (IBAction)signIn {
@@ -81,20 +58,25 @@
         [self presentAlertControllerWithTitle:@"Password" andMessage:@"shouldn't be empty"];
         return;
     }
-    [[Client instance] sendMessageSignInWithUsername:strUsername andPassword:strPassword];
+    NSString* errorString;
+    _authorized = [[[ServiceLayer instance] authorizationService] authWithLogin:strUsername andPassword:strPassword errorString:&errorString];
+    
+    if (_authorized) {
+        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:[_username text]]) {
+            [[NSUserDefaults standardUserDefaults] setObject:[_username text]  forKey:@"username"];
+            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isEqualToString:[_password text]]) {
+                [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
+            }
+        }
+        [self performSegueWithIdentifier:@"signin" sender:self];
+    }
+    else {
+        [self presentAlertControllerWithTitle:@"Signing in" andMessage:[NSString stringWithFormat:@"Failed: %@", errorString]];
+    }
 }
 
 - (IBAction)backButtonPressed {
     [[self navigationController] popViewControllerAnimated:YES];
-}
-
-- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"signin"]) {
-        if (_authorized) {
-            return YES;
-        }
-    }
-    return NO;
 }
 
 @end

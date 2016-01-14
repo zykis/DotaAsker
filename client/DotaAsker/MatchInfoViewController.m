@@ -7,16 +7,10 @@
 //
 
 #import "MatchInfoViewController.h"
-#import "Player.h"
-#import "Round.h"
-#import "RoundView.h"
-#import "UserAnswer.h"
-#import "Question.h"
-#import "UserAnswer.h"
 #import "TableViewCell.h"
 #import "ThemeSelectedViewController.h"
 #import "ThemeSelectionViewController.h"
-#import "Answer.h"
+#import "ServiceLayer.h"
 
 #define SECTION_MATCH_INFO 0
 #define SECTION_ROUNDS 1
@@ -67,7 +61,7 @@
 - (IBAction)midleButtonPushed:(id)sender {
     if ([_match state] == MATCH_RUNNING) {
         //Play button
-        Round *currentRound = [_match currentRound];
+        Round *currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
         if ([currentRound round_state] == ROUND_PLAYER_REPLYING) {
             [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
         }
@@ -101,9 +95,8 @@
     switch (section) {
         case SECTION_MATCH_INFO:
             return 1;
-        case SECTION_ROUNDS: {
-            return [[_match rounds] count];
-        }
+        case SECTION_ROUNDS:
+            return ROUNDS_IN_MATCH;
         case SECTION_ACTIONS:
             return 1;
         default:
@@ -123,20 +116,23 @@
             
             //filling 1st player data
             UIImageView *firstPlayerImageView = (UIImageView*)[cell viewWithTag:100];
-            [firstPlayerImageView setImage:[[Player instance] avatar]];
+            User* firstUser = [[[ServiceLayer instance] userService] obtain:[_match playerID]];
+            [firstPlayerImageView setImage:[[[ServiceLayer instance] userService] avatarForUser:firstUser]];
+            
             UILabel *firstPlayerNameLabel = (UILabel*)[cell viewWithTag:101];
-            [firstPlayerNameLabel setText:[[Player instance] name]];
+            [firstPlayerNameLabel setText:[firstUser name]];
             
             //filling 2nd player data
+            User* secondUser = [[[ServiceLayer instance] userService] obtain:[_match opponentID]];
             UIImageView *secondPlayerImageView = (UIImageView*)[cell viewWithTag:102];
-            [secondPlayerImageView setImage:[[_match opponent] avatar]];
+            [secondPlayerImageView setImage:[[[ServiceLayer instance] userService] avatarForUser:secondUser]];
             UILabel *secondPlayerNameLabel = (UILabel*)[cell viewWithTag:103];
-            [secondPlayerNameLabel setText:[[_match opponent] name]];
+            [secondPlayerNameLabel setText:[secondUser name]];
             
             //filling score
             UILabel *scoreLabel = (UILabel*)[cell viewWithTag:104];
             NSString *scoreText = [NSString stringWithFormat:@"%ld   -   %ld",
-                                   (long)[_match scorePlayer], [_match scoreOpponent]];
+                                   (long)[_match scorePlayer], (long)[_match scoreOpponent]];
             [scoreLabel setText:scoreText];
             break;
         }
@@ -144,12 +140,12 @@
         case SECTION_ROUNDS: {
             cell = [tableView dequeueReusableCellWithIdentifier:roundCellIdentifier];
 
-            Round *round = [[_match rounds] objectAtIndex:[indexPath row]];
+            Round *round = [[[ServiceLayer instance] roundService] obtain:[[[_match roundsIDs] objectAtIndex:[indexPath row]] integerValue]];
             RoundView *roundView = (RoundView*)[cell viewWithTag:100];
             roundView.delegate = self;
             UILabel *roundNumber = (UILabel*)[cell viewWithTag:107];
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
-            [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",[indexPath row]+1]];
+            [roundNumber setText:[NSString stringWithFormat:@"Round # %d",[indexPath row]+1]];
             UILabel *roundStatus = (UILabel*)[cell viewWithTag:108];
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
             
@@ -159,15 +155,19 @@
                         AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101+i];
                         answerItemView.delegate = roundView;
                         [answerItemView setHidden:NO];
-                        UserAnswer * answer = (UserAnswer*)[[round answersPlayer] objectAtIndex:i];
-                        [answerItemView setAnswerState:[[answer relatedAnswer] isCorrect]];
+                        
+                        UserAnswer * answer = [[[ServiceLayer instance] userAnswerService] obtain:[[[round answersPlayerIDs] objectAtIndex:i] integerValue]];
+                        Answer* ans = [[[ServiceLayer instance] answerService] obtain:[answer relatedAnswerID]];
+                        [answerItemView setAnswerState:[ans isCorrect]];
                     }
                     for (int i = 0; i < 3; i++) {
                         AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:104+i];
                         answerItemView.delegate = roundView;
                         [answerItemView setHidden:NO];
-                        UserAnswer * answer = (UserAnswer*)[[round answersOpponent] objectAtIndex:i];
-                        [answerItemView setAnswerState:[[answer relatedAnswer] isCorrect]];
+                        
+                        UserAnswer * answer = [[[ServiceLayer instance] userAnswerService] obtain:[[[round answersOpponentIDs] objectAtIndex:i] integerValue]];
+                        Answer* ans = [[[ServiceLayer instance] answerService] obtain:[answer relatedAnswerID]];
+                        [answerItemView setAnswerState:[ans isCorrect]];
                     }
                     [roundStatus setText:@"Round finished"];
                     break;
@@ -243,12 +243,13 @@
                     for (int i = 0; i < 3; i++) {
                         AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101+i];
                         [answerItemView setHidden:NO];
-                        if ([[round answersPlayer] count] < 3) {
+                        if ([[round answersPlayerIDs] count] < 3) {
                             NSLog(@"Player answers count < 3 in round with state = ROUND_OPPONENT_REPLYING");
                             return nil;
                         }
-                        UserAnswer* answer = (UserAnswer*)[[round answersPlayer] objectAtIndex:i];
-                        [answerItemView setAnswerState:[[answer relatedAnswer] isCorrect]];
+                        UserAnswer* userAnswer = [[[ServiceLayer instance] userAnswerService] obtain:[[[round answersPlayerIDs] objectAtIndex:i] integerValue]];
+                        Answer* answer = [[[ServiceLayer instance]  answerService] obtain:[userAnswer relatedAnswerID]];
+                        [answerItemView setAnswerState:[answer isCorrect]];
                         
                     }
                     for (int i = 0; i < 3; i++) {
@@ -273,7 +274,7 @@
             //в зависимости от состояния текущего раунда выставляем соотвутствующие кнопки
             //конец матча - это когда текущий раунд в состоянии Finished
             //и текущий раунд - последний
-            Round *currentRound = [_match currentRound];
+            Round *currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
 
             if (([currentRound round_state] == ROUND_TIME_ELAPSED) ||
                 ([currentRound round_state] == ROUND_FINISHED)) {
@@ -357,25 +358,23 @@
     if(!path)
         return;
     
-    Round *selectedRound = [_match.rounds objectAtIndex:[path row]];
-    Question *selectedQuestion = [selectedRound.questions objectAtIndex:index];
-    NSString *title = [NSString stringWithFormat:@"Question %ld:", index + 1];
+    Round *selectedRound = [[[ServiceLayer instance] roundService] roundAtIndex:[path row] inMatch:_match];
+    Question *selectedQuestion = [[[ServiceLayer instance] questionService] questionAtIndex:index ofRound:selectedRound];
+    NSString *title = [NSString stringWithFormat:@"Question %d:", index + 1];
     NSString *text;
     
     switch ([selectedRound round_state]) {
         case ROUND_FINISHED: {
-            NSString *answeredTextFirstPlayer = (NSString*)
-            [[[selectedRound.answersPlayer objectAtIndex: index] relatedAnswer] text];
+            User* player = [[[ServiceLayer instance] userService] playerForMatch:_match];
+            User* opponent = [[[ServiceLayer instance] userService] opponentForMatch:_match];
             
-            NSString *answeredTextSecondPlayer = (NSString*)
-            [[[selectedRound.answersOpponent objectAtIndex: index] relatedAnswer] text];
+            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:player ofRound:selectedRound];
+            NSString *answeredTextFirstPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua1];
             
-            Answer *correctAnswer;
-            for (Answer *ans in selectedQuestion.answers) {
-                if ([ans isCorrect]) {
-                    correctAnswer = ans;
-                }
-            }
+            UserAnswer* ua2 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:opponent ofRound:selectedRound];
+            NSString *answeredTextSecondPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua2];
+            
+            Answer *correctAnswer = [[[ServiceLayer instance] answerService] correctAnswerForQuestion:selectedQuestion];
             
             if (correctAnswer) {
                 text = [NSString stringWithFormat:
@@ -384,9 +383,9 @@
                         "%@: %@\n"
                         "Right: %@"
                         , selectedQuestion.text,
-                        [[Player instance] name],
+                        [player name],
                         answeredTextFirstPlayer,
-                        _match.opponent.name,
+                        [opponent name],
                         answeredTextSecondPlayer,
                         [correctAnswer text]
                         ];
@@ -394,15 +393,12 @@
         }
         break;
         case ROUND_OPPONENT_REPLYING: {
-            NSString *answeredTextFirstPlayer = (NSString*)
-            [[[selectedRound.answersPlayer objectAtIndex: index] relatedAnswer] text];
+            User* player = [[[ServiceLayer instance] userService] playerForMatch:_match];
             
-            Answer *correctAnswer;
-            for (Answer *ans in selectedQuestion.answers) {
-                if ([ans isCorrect]) {
-                    correctAnswer = ans;
-                }
-            }
+            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:player ofRound:selectedRound];
+            NSString *answeredTextFirstPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua1];
+            
+            Answer *correctAnswer = [[[ServiceLayer instance] answerService] correctAnswerForQuestion:selectedQuestion];
             
             if (correctAnswer) {
                 text = [NSString stringWithFormat:
@@ -410,7 +406,7 @@
                         "%@: %@\n"
                         "Right: %@"
                         , selectedQuestion.text,
-                        [[Player instance] name],
+                        [player name],
                         answeredTextFirstPlayer,
                         [correctAnswer text]
                         ];

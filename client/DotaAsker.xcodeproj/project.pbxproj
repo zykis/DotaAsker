@@ -62,7 +62,18 @@
 		AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BC1B2EFB9C006212D2 /* Round.m */; };
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
-		AC95F7EC1C4624DA00FE4EE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */; };
+		AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */; };
+		AC95F8061C46258000FE4EE2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7F01C46258000FE4EE2 /* MainViewController.m */; };
+		AC95F8071C46258000FE4EE2 /* MatchInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7F21C46258000FE4EE2 /* MatchInfoViewController.m */; };
+		AC95F8081C46258000FE4EE2 /* QuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7F41C46258000FE4EE2 /* QuestionViewController.m */; };
+		AC95F8091C46258000FE4EE2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7F61C46258000FE4EE2 /* SettingViewController.m */; };
+		AC95F80A1C46258000FE4EE2 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7F81C46258000FE4EE2 /* SignInViewController.m */; };
+		AC95F80B1C46258000FE4EE2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7FA1C46258000FE4EE2 /* SignUpViewController.m */; };
+		AC95F80C1C46258000FE4EE2 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7FC1C46258000FE4EE2 /* StatisticsViewController.m */; };
+		AC95F80D1C46258000FE4EE2 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7FE1C46258000FE4EE2 /* TestViewController.m */; };
+		AC95F80E1C46258000FE4EE2 /* ThemeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F8001C46258000FE4EE2 /* ThemeSelectedViewController.m */; };
+		AC95F80F1C46258000FE4EE2 /* ThemeSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F8021C46258000FE4EE2 /* ThemeSelectionViewController.m */; };
+		AC95F8101C46258000FE4EE2 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F8041C46258000FE4EE2 /* UIViewController+Utils.m */; };
 		ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A10C1B9F29DC0083EE17 /* avatar_axe.png */; };
 		ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A10E1B9F2A830083EE17 /* avatar_tinker.png */; };
 		ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A1101B9F2C180083EE17 /* avatar_bounty.png */; };
@@ -200,6 +211,30 @@
 		AC8841C11B2EFCF9006212D2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
+		AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
+		AC95F7EF1C46258000FE4EE2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		AC95F7F01C46258000FE4EE2 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		AC95F7F11C46258000FE4EE2 /* MatchInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchInfoViewController.h; sourceTree = "<group>"; };
+		AC95F7F21C46258000FE4EE2 /* MatchInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchInfoViewController.m; sourceTree = "<group>"; };
+		AC95F7F31C46258000FE4EE2 /* QuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionViewController.h; sourceTree = "<group>"; };
+		AC95F7F41C46258000FE4EE2 /* QuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionViewController.m; sourceTree = "<group>"; };
+		AC95F7F51C46258000FE4EE2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		AC95F7F61C46258000FE4EE2 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		AC95F7F71C46258000FE4EE2 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		AC95F7F81C46258000FE4EE2 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		AC95F7F91C46258000FE4EE2 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		AC95F7FA1C46258000FE4EE2 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		AC95F7FB1C46258000FE4EE2 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		AC95F7FC1C46258000FE4EE2 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AC95F7FD1C46258000FE4EE2 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		AC95F7FE1C46258000FE4EE2 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		AC95F7FF1C46258000FE4EE2 /* ThemeSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeSelectedViewController.h; sourceTree = "<group>"; };
+		AC95F8001C46258000FE4EE2 /* ThemeSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeSelectedViewController.m; sourceTree = "<group>"; };
+		AC95F8011C46258000FE4EE2 /* ThemeSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeSelectionViewController.h; sourceTree = "<group>"; };
+		AC95F8021C46258000FE4EE2 /* ThemeSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeSelectionViewController.m; sourceTree = "<group>"; };
+		AC95F8031C46258000FE4EE2 /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		AC95F8041C46258000FE4EE2 /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
 		ACB3A10C1B9F29DC0083EE17 /* avatar_axe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_axe.png; path = resources/avatar_axe.png; sourceTree = "<group>"; };
 		ACB3A10E1B9F2A830083EE17 /* avatar_tinker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_tinker.png; path = resources/avatar_tinker.png; sourceTree = "<group>"; };
 		ACB3A1101B9F2C180083EE17 /* avatar_bounty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar_bounty.png; path = resources/avatar_bounty.png; sourceTree = "<group>"; };
@@ -383,6 +418,30 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */,
+				AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */,
+				AC95F7EF1C46258000FE4EE2 /* MainViewController.h */,
+				AC95F7F01C46258000FE4EE2 /* MainViewController.m */,
+				AC95F7F11C46258000FE4EE2 /* MatchInfoViewController.h */,
+				AC95F7F21C46258000FE4EE2 /* MatchInfoViewController.m */,
+				AC95F7F31C46258000FE4EE2 /* QuestionViewController.h */,
+				AC95F7F41C46258000FE4EE2 /* QuestionViewController.m */,
+				AC95F7F51C46258000FE4EE2 /* SettingViewController.h */,
+				AC95F7F61C46258000FE4EE2 /* SettingViewController.m */,
+				AC95F7F71C46258000FE4EE2 /* SignInViewController.h */,
+				AC95F7F81C46258000FE4EE2 /* SignInViewController.m */,
+				AC95F7F91C46258000FE4EE2 /* SignUpViewController.h */,
+				AC95F7FA1C46258000FE4EE2 /* SignUpViewController.m */,
+				AC95F7FB1C46258000FE4EE2 /* StatisticsViewController.h */,
+				AC95F7FC1C46258000FE4EE2 /* StatisticsViewController.m */,
+				AC95F7FD1C46258000FE4EE2 /* TestViewController.h */,
+				AC95F7FE1C46258000FE4EE2 /* TestViewController.m */,
+				AC95F7FF1C46258000FE4EE2 /* ThemeSelectedViewController.h */,
+				AC95F8001C46258000FE4EE2 /* ThemeSelectedViewController.m */,
+				AC95F8011C46258000FE4EE2 /* ThemeSelectionViewController.h */,
+				AC95F8021C46258000FE4EE2 /* ThemeSelectionViewController.m */,
+				AC95F8031C46258000FE4EE2 /* UIViewController+Utils.h */,
+				AC95F8041C46258000FE4EE2 /* UIViewController+Utils.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -612,7 +671,7 @@
 		AC7351FC1B239A1B00FFF356 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Artem;
 				TargetAttributes = {
 					AC7352031B239A1B00FFF356 = {
@@ -681,7 +740,6 @@
 				ACE8AF161B4197B9009C3A08 /* wallpaper_juggernaut_2.jpg in Resources */,
 				AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */,
 				ACE8AF111B4197B9009C3A08 /* wallpaper_doom_1.jpg in Resources */,
-				AC95F7EC1C4624DA00FE4EE2 /* Main.storyboard in Resources */,
 				ACB3A1161B9F2C180083EE17 /* avatar_bristle.png in Resources */,
 				AC62E5261BF4BB2100805285 /* dota_icon_40x40.png in Resources */,
 				ACE8AF151B4197B9009C3A08 /* wallpaper_juggernaut_1.jpg in Resources */,
@@ -725,8 +783,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
+				AC95F8061C46258000FE4EE2 /* MainViewController.m in Sources */,
 				AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
+				AC95F8071C46258000FE4EE2 /* MatchInfoViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				ACF41C001B3BD3E60096598C /* Player.m in Sources */,
@@ -740,6 +800,10 @@
 				ACFDF2DC1BFB42A000B89838 /* UserAnswerTransport.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
 				AC80436D1C36B03D0063CD67 /* AnswerService.m in Sources */,
+				AC95F80D1C46258000FE4EE2 /* TestViewController.m in Sources */,
+				AC95F8101C46258000FE4EE2 /* UIViewController+Utils.m in Sources */,
+				AC95F80F1C46258000FE4EE2 /* ThemeSelectionViewController.m in Sources */,
+				AC95F80A1C46258000FE4EE2 /* SignInViewController.m in Sources */,
 				AC60916F1BFF4A7F00D728B6 /* AbstractParser.m in Sources */,
 				AC6091691BFF15CA00D728B6 /* JFRWebSocket.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
@@ -747,6 +811,8 @@
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
+				AC95F80B1C46258000FE4EE2 /* SignUpViewController.m in Sources */,
+				AC95F80C1C46258000FE4EE2 /* StatisticsViewController.m in Sources */,
 				AC8043761C36B06B0063CD67 /* RoundService.m in Sources */,
 				AC60916C1BFF3B0300D728B6 /* JFRSecurity.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
@@ -756,9 +822,13 @@
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
 				AC8043791C36B0770063CD67 /* MatchService.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
+				AC95F80E1C46258000FE4EE2 /* ThemeSelectedViewController.m in Sources */,
+				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
 				AC80437C1C36B0880063CD67 /* UserService.m in Sources */,
 				AC8043701C36B04E0063CD67 /* QuestionService.m in Sources */,
+				AC95F8081C46258000FE4EE2 /* QuestionViewController.m in Sources */,
+				AC95F8091C46258000FE4EE2 /* SettingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "RoundService.h"
+#import "Round.h"
 
 @implementation RoundService
 

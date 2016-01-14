@@ -16,7 +16,10 @@
 @property (strong, nonatomic) AbstractParser* parser;
 @property (strong, nonatomic) AbstractCache* cache;
 @property (strong, nonatomic) Transport* transport;
-- (void)obtain:(NSInteger) entityID;
-- (void)obtainAll;
+- (id)obtain:(NSInteger) entityID;
+- (NSArray*)obtainAll;
+- (void)remove:(NSInteger) entityID;
+- (id)update:(id) entity;
+- (id)create:(id) entity;
 
 @end

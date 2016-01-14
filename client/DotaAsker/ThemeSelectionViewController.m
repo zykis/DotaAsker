@@ -8,7 +8,7 @@
 
 #import "ThemeSelectionViewController.h"
 #import "ThemeSelectedViewController.h"
-#import "Match.h"
+#import "ServiceLayer.h"
 
 @interface ThemeSelectionViewController ()
 
@@ -23,19 +23,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
+    UIImage* wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
+    [self loadBackgroundImage:wallpapers];
     
-    Theme *theme1 = [[Theme getAllThemes] objectAtIndex:0];
-    Theme *theme2 = [[Theme getAllThemes] objectAtIndex:1];
-    Theme *theme3 = [[Theme getAllThemes] objectAtIndex:2];
+    Theme *theme1 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:0];
+    Theme *theme2 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:1];
+    Theme *theme3 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:2];
     
-    [_imagedButton1 setImage:[theme1 image] forState:UIControlStateNormal];
+    [_imagedButton1 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme1] forState:UIControlStateNormal];
     [[_imagedButton1 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
-    [_imagedButton2 setImage:[theme2 image] forState:UIControlStateNormal];
+    [_imagedButton2 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme2] forState:UIControlStateNormal];
     [[_imagedButton2 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
-    [_imagedButton3 setImage:[theme3 image] forState:UIControlStateNormal];
+    [_imagedButton3 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme3] forState:UIControlStateNormal];
     [[_imagedButton3 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
     // Do any additional setup after loading the view.
@@ -48,20 +49,23 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"themeSelected"]) {
+        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
         if ([sender isEqual:_imagedButton1]) {
-            [[_match currentRound] setTheme:[[Theme getAllThemes] objectAtIndex:0]];
+            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:1] ID];
         }
         else if([sender isEqual:_imagedButton2]) {
-            [[_match currentRound] setTheme:[[Theme getAllThemes] objectAtIndex:1]];
+            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:2] ID];
         }
         else if([sender isEqual:_imagedButton3]) {
-            [[_match currentRound] setTheme:[[Theme getAllThemes] objectAtIndex:2]];
+            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:3] ID];
         }
         else {
             NSLog(@"Can't identify theme pressed");
             return;
         }
+        
+        [[[ServiceLayer instance] roundService] update:currentRound];
         
         [destVC setMatch:[self match]];
     }

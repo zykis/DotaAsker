@@ -13,6 +13,15 @@
 
 @synthesize userAnswerService;
 
++ (ServiceLayer*)instance {
+    static ServiceLayer *serviceLayer = nil;
+    @synchronized(self) {
+        if(serviceLayer == nil)
+            serviceLayer = [[self alloc] init];
+    }
+    return serviceLayer;
+}
+
 -(id)init {
     self = [super init];
     if(self) {

@@ -7,7 +7,11 @@
 //
 
 #import "AbstractService.h"
+#import "Theme.h"
+@import UIKit;
 
 @interface ThemeService : AbstractService
+
+- (UIImage*)imageForTheme:(Theme*)theme;
 
 @end

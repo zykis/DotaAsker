@@ -13,8 +13,8 @@
 
 @interface QuestionViewController : UIViewController
 
-@property (weak, nonatomic) Match *match;
-@property (weak, nonatomic) Round *round;
+@property (strong, nonatomic) Match *match;
+@property (strong, nonatomic) Round *round;
 @property (strong, nonatomic) IBOutlet UIImageView *questionImageView;
 @property (strong, nonatomic) IBOutlet UITextView *questionText;
 @property (strong, nonatomic) IBOutlet UIButton *answer1Button;

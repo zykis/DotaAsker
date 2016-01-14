@@ -7,7 +7,7 @@
 //
 
 #import "SettingViewController.h"
-#import "Player.h"
+#import "ServiceLayer.h"
 
 @interface SettingViewController ()
 
@@ -17,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
+    UIImage* wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
+    [self loadBackgroundImage:wallpapers];
     // Do any additional setup after loading the view.
 }
 

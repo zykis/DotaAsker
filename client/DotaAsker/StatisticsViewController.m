@@ -7,7 +7,7 @@
 //
 
 #import "StatisticsViewController.h"
-#import "Player.h"
+#import "ServiceLayer.h"
 
 @interface StatisticsViewController ()
 
@@ -17,7 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
+    UIImage* wallpapers = [[[ServiceLayer instance] playerService] wallpapersDefault];
+    [self loadBackgroundImage:wallpapers];
     // Do any additional setup after loading the view.
 }
 

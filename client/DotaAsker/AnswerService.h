@@ -7,7 +7,13 @@
 //
 
 #import "AbstractService.h"
+#import "Answer.h"
+#import "Question.h"
 
 @interface AnswerService : AbstractService
+
+- (Answer*)answerAtIndex:(NSInteger)index ofQuestion:(Question*)question;
+- (Answer*)correctAnswerForQuestion:(Question*)question;
+- (NSArray*)answersForQuestion:(Question*)question;
 
 @end

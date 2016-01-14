@@ -7,7 +7,7 @@
 //
 
 #import "AuthorizationViewController.h"
-#import "Player.h"
+#import "ServiceLayer.h"
 
 @interface AuthorizationViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES];
-    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] != nil) {
         if ([[NSUserDefaults standardUserDefaults] objectForKey:@"password"] != nil) {
             [self performSegueWithIdentifier:@"signin" sender:self];

@@ -16,8 +16,8 @@
 @property (assign, nonatomic) float KDA;//Отношение правильно отвеченных вопросов на неправильно отвеченные.
 @property (assign, nonatomic) float GPM;//Насколько быстро вы отвечаете на вопросы
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *avatarImagePath;
-@property (strong, nonatomic) NSString *wallpapersImagePath;
+@property (strong, nonatomic) NSString *avatarImageName;
+@property (strong, nonatomic) NSString *wallpapersImageName;
 @property (assign, nonatomic) NSInteger matchPlayed;
 @property (assign, nonatomic) NSInteger totalCorrectAnswers;
 @property (assign, nonatomic) NSInteger totalIncorrectAnswers;

@@ -25,7 +25,7 @@
     return self;
 }
 
-- (UserAnswer*)obtain:(NSInteger)ID {
+- (id)obtain:(NSInteger)ID {
     UserAnswer* userAnswer = [cache obtain:ID];
     if (userAnswer == nil) {
         NSData* JSONData = [transport obtain:ID];

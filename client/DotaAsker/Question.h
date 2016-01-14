@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Question : NSObject <NSCoding>
+@interface Question : NSObject
 
 @property (assign, nonatomic) NSInteger ID;
 @property (assign, nonatomic) NSInteger *themeID;

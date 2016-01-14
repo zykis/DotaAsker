@@ -11,9 +11,8 @@
 
 @implementation UIViewController (BackgroundImage)
 
-- (void)loadBackgroundImage {
+- (void)loadBackgroundImage: (UIImage*)backgroundImage {
     UIGraphicsBeginImageContext(self.view.frame.size);
-    UIImage *backgroundImage = [[Player instance] wallpapers];
     [backgroundImage drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

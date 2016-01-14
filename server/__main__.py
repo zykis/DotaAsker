@@ -52,7 +52,6 @@ class MyServerProtocol(WebSocketServerProtocol):
                 elif(dict['COMMAND'] == 'UPDATE'):
 
                 elif(dict['COMMAND'] == 'REMOVE'):
-                elif(dict['COMMAND'] == 'CREATE'):
 
             time.sleep(4)
             self.sendMessage(reply.encode('utf8'), False)

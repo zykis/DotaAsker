@@ -7,7 +7,15 @@
 //
 
 #import "AbstractService.h"
+#import "Question.h"
+#import "Theme.h"
+#import "Answer.h"
+#import "Round.h"
 
 @interface QuestionService : AbstractService
+
+- (NSArray*)generateQuestionsOnTheme:(Theme*)theme;
+- (UIImage*)imageOfQuestion:(Question*)question;
+- (Question*)questionAtIndex:(NSInteger)index ofRound:(Round*)round;
 
 @end

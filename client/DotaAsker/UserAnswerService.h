@@ -12,16 +12,16 @@
 #import "UserAnswerParser.h"
 #import "UserAnswerCache.h"
 
+#import "Round.h"
+#import "User.h"
+
 @interface UserAnswerService : AbstractService
+
+- (UserAnswer*)userAnswerAtIndex:(NSInteger)index ofUser:(User*)user ofRound:(Round*)round;
+- (NSString*)textForUserAnswer:(UserAnswer*)userAnswer;
 
 @property (strong, nonatomic) UserAnswerParser* parser;
 @property (strong, nonatomic) UserAnswerCache* cache;
 @property (strong, nonatomic) UserAnswerTransport* transport;
-
-
-- (UserAnswer*)obtain:(NSInteger)ID;
-- (void)update:(UserAnswer*)userAnswer;
-- (void)remove:(NSInteger)entityID;
-- (void)create:(UserAnswer*)userAnswer;
 
 @end

@@ -8,12 +8,7 @@
 
 #import "QuestionViewController.h"
 #import "MatchInfoViewController.h"
-#import "Round.h"
-#import "Question.h"
-#import "UserAnswer.h"
-#import "Player.h"
-#import "Answer.h"
-#import "Client.h"
+#import "ServiceLayer.h"
 
 @interface QuestionViewController ()
 
@@ -33,65 +28,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[[ServiceLayer instance] playerService] wallpapersForDefaultPlayer]];
     if (_round) {
-        if ([[_round questions] count] == 0) {
+        if ([[_round questionsIDs] count] == 0) {
             NSLog(@"No questions in Round");
             [[self navigationController] popViewControllerAnimated:YES];
             return;
         }
-        Question *firstQuestion = [[_round questions] objectAtIndex:0];
         _currentQuestionIndex = 0;
-        [_questionImageView setImage:[firstQuestion image]];
-        [_questionText setText:[firstQuestion text]];
-        
-        Answer *answer1;
-        Answer *answer2;
-        Answer *answer3;
-        Answer *answer4;
-        
-        NSInteger count = [[firstQuestion answers] count];
-        if (count > 0) {
-            answer1 = [[firstQuestion answers] objectAtIndex:0];
-            if (count > 1) {
-                answer2 = [[firstQuestion answers] objectAtIndex:1];
-                if (count > 2) {
-                    answer3 = [[firstQuestion answers] objectAtIndex:2];
-                    if (count > 3) {
-                        answer4 = [[firstQuestion answers] objectAtIndex:3];
-                    }
-                }
-            }
-        }
-
-        if (answer1) {
-            [_answer1Button setTitle:[answer1 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer1Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
-        if (answer2) {
-            [_answer2Button setTitle:[answer2 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer2Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
-        if (answer3) {
-            [_answer3Button setTitle:[answer3 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer3Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
-        if (answer4) {
-            [_answer4Button setTitle:[answer4 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer4Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
+        [self showNextQuestion];
     }
 }
 
@@ -101,7 +46,7 @@
 }
 
 - (IBAction)answerPushed:(id)sender {
-    Question *q = (Question*)[[_round questions] objectAtIndex:_currentQuestionIndex];
+    Question *q = [[[ServiceLayer instance] questionService] questionAtIndex:_currentQuestionIndex ofRound:_round];
     NSInteger answerIndex;
     if (sender == _answer1Button)
         answerIndex = 0;
@@ -115,32 +60,42 @@
         NSLog(@"What button was tapped?");
     }
 
-    if (answerIndex > [[q answers] count] - 1) {
+    if (answerIndex > [[q answersIDs] count] - 1) {
         return;
     }
     
-    UserAnswer *userAnswer = [[UserAnswer alloc] initAnswerRelatedToQuestion:q
-                                    answer:[[q answers] objectAtIndex:answerIndex]
-                                    andRound:_round];
-    [userAnswer setUserID:[[Player instance] ID]];
+    Round* relatedRound = _round;
+    Question* relatedQuestion = q;
+    Answer* relatedAnswer = [[[ServiceLayer instance] answerService] answerAtIndex:answerIndex ofQuestion:q];
+    User* relatedUser = [[[ServiceLayer instance] userService] obtain:[_match playerID]];
     
-    if ([[userAnswer relatedAnswer] isCorrect]) {
+    UserAnswer *userAnswer = [[UserAnswer alloc] init];
+    userAnswer.relatedRoundID = relatedRound.ID;
+    userAnswer.relatedQuestionID = relatedQuestion.ID;
+    userAnswer.relatedAnswerID = relatedAnswer.ID;
+    userAnswer.relatedUserID = relatedUser.ID;
+    userAnswer = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+    
+    
+    if ([[[[ServiceLayer instance] answerService] obtain:[userAnswer relatedAnswerID]] isCorrect]) {
         //correct
         _match.scorePlayer++;
+        relatedUser.totalCorrectAnswers++;
     }
     else {
+        relatedUser.totalIncorrectAnswers++;
         //wrong
     }
-    _round.answersPlayer = [[_round.answersPlayer arrayByAddingObject:userAnswer] mutableCopy];
-    [[Client instance] sendMessagePostUserAnswer:userAnswer];
+    
+    [_round.answersPlayerIDs addObject:[NSNumber numberWithLong:userAnswer.ID]];
+    [[[ServiceLayer instance] userService] update:relatedUser];
     [self showNextQuestion];
 }
 
 - (void)showNextQuestion {
-    _currentQuestionIndex++;
-    if (_currentQuestionIndex < [[_round questions] count]) {
-        Question *currentQuestion = [[_round questions] objectAtIndex:_currentQuestionIndex];
-        [_questionImageView setImage:[currentQuestion image]];
+    if (_currentQuestionIndex < [[_round questionsIDs] count]) {
+        Question *currentQuestion = [[[ServiceLayer instance] questionService] questionAtIndex:_currentQuestionIndex ofRound:_round];
+        [_questionImageView setImage:[[[ServiceLayer instance] questionService] imageOfQuestion:currentQuestion]];
         [_questionText setText:[currentQuestion text]];
         
         Answer *answer1;
@@ -148,15 +103,15 @@
         Answer *answer3;
         Answer *answer4;
         
-        NSInteger count = [[currentQuestion answers] count];
+        NSInteger count = [[currentQuestion answersIDs] count];
         if (count > 0) {
-            answer1 = [[currentQuestion answers] objectAtIndex:0];
+            answer1 = [[[ServiceLayer instance] answerService] answerAtIndex:0 ofQuestion:currentQuestion];
             if (count > 1) {
-                answer2 = [[currentQuestion answers] objectAtIndex:1];
+                answer2 = [[[ServiceLayer instance] answerService] answerAtIndex:1 ofQuestion:currentQuestion];
                 if (count > 2) {
-                    answer3 = [[currentQuestion answers] objectAtIndex:2];
+                    answer3 = [[[ServiceLayer instance] answerService] answerAtIndex:2 ofQuestion:currentQuestion];
                     if (count > 3) {
-                        answer4 = [[currentQuestion answers] objectAtIndex:3];
+                        answer4 = [[[ServiceLayer instance] answerService] answerAtIndex:3 ofQuestion:currentQuestion];
                     }
                 }
             }
@@ -189,7 +144,7 @@
         else {
             [_answer4Button setTitle:@"" forState:UIControlStateNormal];
         }
-        
+        _currentQuestionIndex++;
     }
     
     //на все вопросы ответили
@@ -227,15 +182,8 @@
             return;
         }
         
-        [[Player instance] saveToSettings];
-        [[Client instance] sendMessageUpdateRound:_round];
-        if ([[[_match rounds] lastObject] isEqual:_round]) {
-            //last round finished. need to send update request for match to server
-            [[Client instance] sendMessageUpdateMatch:_match];
-            //also update users
-            [[Client instance] sendMessageUpdateUser:(User*)[Player instance]];
-            [[Client instance] sendMessageUpdateUser:[_match opponent]];
-        }
+        _round = [[[ServiceLayer instance] roundService] update:_round];
+        _match = [[[ServiceLayer instance] matchService] update:_match];
         [[self navigationController] popToViewController:destVC animated:YES];
     }
 }

@@ -7,7 +7,15 @@
 //
 
 #import "AbstractService.h"
+#import "Question.h"
+#import "Round.h"
+#import "User.h"
+#import "Match.h"
 
 @interface RoundService : AbstractService
+
+- (void)setQuestions:(NSArray*)questions forRound:(Round*)round;
+- (Round*)currentRoundforMatch:(Match*)match;
+- (Round*)roundAtIndex:(NSInteger)index inMatch:(Match*)match;
 
 @end

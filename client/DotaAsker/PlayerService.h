@@ -6,8 +6,12 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import "AbstractService.h"
+#import "UserService.h"
+#import "Player.h"
+@import UIKit;
 
-@interface PlayerService : AbstractService
+@interface PlayerService : UserService
+
+- (UIImage*)wallpapersForDefaultPlayer;
 
 @end

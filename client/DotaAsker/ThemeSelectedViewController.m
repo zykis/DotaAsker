@@ -7,9 +7,8 @@
 //
 
 #import "ThemeSelectedViewController.h"
-#import "Match.h"
 #import "QuestionViewController.h"
-#import "Database.h"
+#import "ServiceLayer.h"
 
 @interface ThemeSelectedViewController ()
 
@@ -22,13 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
     [_themeImageView addGestureRecognizer:tapGesture];
     
     if (_match) {
-        Theme *theme = [[_match currentRound] theme];
-        [_themeImageView setImage:[theme image]];
+        UIImage* themeImage = [[[ServiceLayer instance] matchService] currentRoundThemeImageForMatch:_match];
+        [_themeImageView setImage:themeImage];
         [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
     }
     else {
@@ -58,17 +57,19 @@
             destVC = (QuestionViewController*)destID;
         }
         
-        Round* currentRound = [_match currentRound];
+        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
         
         //GENERATING QUESTIONS
         if (([currentRound round_state] == ROUND_PLAYER_ASWERING)) {
-            [currentRound setQuestions:[[Database instance] generateQuestionsOnTheme:[currentRound theme]]];
+            Theme* theme = [[[ServiceLayer instance] themeService] obtain:[currentRound themeID]];
+            NSArray* questions = [[[ServiceLayer instance]  questionService] generateQuestionsOnTheme:theme];
+            [[[ServiceLayer instance] roundService] setQuestions:questions forRound:currentRound];
+            [[[ServiceLayer instance] roundService] update:currentRound];
         }
         
         //send RoundQuestions message!!!
         
-        
-        [destVC setRound:[_match currentRound]];
+        [destVC setRound:currentRound];
         [destVC setMatch:_match];
     }
 }

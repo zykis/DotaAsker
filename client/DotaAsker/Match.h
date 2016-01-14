@@ -17,7 +17,8 @@ typedef enum {MATCH_NOT_STARTED = 0, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_E
 
 @property (assign, nonatomic) NSInteger ID;
 @property (assign, nonatomic) NSInteger winnerID;
-@property (assign, nonatomic) NSInteger *opponentID;
+@property (assign, nonatomic) NSInteger playerID;
+@property (assign, nonatomic) NSInteger opponentID;
 @property (assign, nonatomic) MatchState state;
 @property (assign, nonatomic) NSInteger scorePlayer;
 @property (assign, nonatomic) NSInteger scoreOpponent;

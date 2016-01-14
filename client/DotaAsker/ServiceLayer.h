@@ -7,17 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-@class AuthorizationService;
+#import "AuthorizationService.h"
 #import "UserAnswerService.h"
-@class AnswerService;
-@class QuestionService;
-@class ThemeService;
-@class RoundService;
-@class MatchService;
-@class UserService;
-@class PlayerService;
+#import "AnswerService.h"
+#import "QuestionService.h"
+#import "ThemeService.h"
+#import "RoundService.h"
+#import "MatchService.h"
+#import "UserService.h"
+#import "PlayerService.h"
 
 @interface ServiceLayer : NSObject
+
++ (ServiceLayer*)instance;
 
 @property (strong, nonatomic) AuthorizationService* authorizationService;
 @property (strong, nonatomic) UserAnswerService* userAnswerService;

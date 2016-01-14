@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import UIKit;
 
-@interface Theme : NSObject <NSCoding>
+@interface Theme : NSObject 
 
 @property (assign, nonatomic) NSInteger ID;
 @property (strong, nonatomic) NSString *name;

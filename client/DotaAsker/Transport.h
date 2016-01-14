@@ -24,7 +24,6 @@ typedef void(^TransportCompletionBlockMessage)(NSString*);
 - (NSData*)obtain:(NSInteger) entityID;
 - (id)update:(id) entity;
 - (void)remove:(NSInteger) entityID;
-- (void)create:(id) entity;
 
 - (void)sendMessage:(NSString*)message;
 - (NSString*)obtainMessageWithMessage:(NSString*)message;

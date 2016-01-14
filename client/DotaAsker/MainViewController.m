@@ -7,13 +7,8 @@
 //
 
 #import "MainViewController.h"
-#import "Player.h"
-#import "Match.h"
 #import "MatchInfoViewController.h"
-#import "TestData.h"
-#import "Player.h"
-#import "Client.h"
-#import "Database.h"
+#import "ServiceLayer.h"
 
 #define SECTION_TOOLBAR 0
 #define SECTION_PLAYER_INFO 1
@@ -28,6 +23,8 @@
 
 @implementation MainViewController
 
+@synthesize player = _player;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -40,9 +37,8 @@
 }
 
 - (void)refreshControllDragged {
-    NSLog(@"refreshControllDragged");
     [self.tableView reloadData];
-    [[Client instance] sendMessageGetPlayerInfo:[[Player instance] name]];
+//    [[Client instance] sendMessageGetPlayerInfo:[[Player instance] name]];
     //отправляем и принимаем все сообщения
     //с сервера и обратно
     [self.refreshControl endRefreshing];
@@ -62,7 +58,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [[Database instance] loadQuestions];
+//    [[Database instance] loadQuestions];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -77,11 +73,11 @@
     }
     //current matches
     else if (section == SECTION_CURRENT_MATCHES) {
-        return [[[Player instance] currentMatches] count];
+        return [[[[ServiceLayer instance] matchService] currentMatchesOfPlayer:_player] count];
     }
     //recent matches
     else if (section == SECTION_RECENT_MATCHES) {
-        return [[[Player instance] recentMatches] count];
+        return [[[[ServiceLayer instance] matchService] recentMatchesOfPlayer:_player] count];
     }
     else return 0;
 }
@@ -106,19 +102,18 @@
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
     }
     else if ([indexPath section] == SECTION_PLAYER_INFO) {
-        Player *player = [Player instance];
         cell = [self.tableView dequeueReusableCellWithIdentifier:PlayerInfoCellIdentifier];
         UIImageView *playerImageView = (UIImageView*)[cell viewWithTag:200];
-        [playerImageView setImage:[player avatar]];
+        [playerImageView setImage:[[[ServiceLayer instance] userService] avatarForUser:_player]];
         UILabel* playerNameLabel = (UILabel*)[cell viewWithTag:201];
-        [playerNameLabel setText:[player name]];
+        [playerNameLabel setText:[_player name]];
         [playerNameLabel setAdjustsFontSizeToFitWidth:YES];
         UILabel *mmrLabel = (UILabel*)[cell viewWithTag:202];
-        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[player MMR]]];
+        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[_player MMR]]];
         UILabel *KDALabel = (UILabel*)[cell viewWithTag:203];
-        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[player KDA]]];
+        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[_player KDA]]];
         UILabel *GPMLabel = (UILabel*)[cell viewWithTag:204];
-        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[player GPM]]];
+        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[_player GPM]]];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
@@ -138,7 +133,7 @@
         if([indexPath section] == SECTION_CURRENT_MATCHES) {
             //opponent avatar
             UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
-            Match *currentMatch = [[[Player instance] currentMatches] objectAtIndex:[indexPath row]];
+            Match *currentMatch = [[[[ServiceLayer instance] matchService] currentMatchesOfPlayer:_player] objectAtIndex:[indexPath row]];
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
             switch ([currentMatch state]) {
                 case MATCH_RUNNING:
@@ -155,17 +150,17 @@
                     [matchStateLabel setText:@"Default"];
                     break;
             }
-            UIImage *avatar = [[currentMatch opponent] avatar];
+            UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:[[[ServiceLayer instance] userService] obtain:[currentMatch  opponentID]]];
             [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[[currentMatch opponent] name]];
+            [nameLabel setText:[[[[ServiceLayer instance] userService] opponentForMatch:currentMatch] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
         else if([indexPath section] == SECTION_RECENT_MATCHES) {
             //opponent avatar
             UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
-            Match *recentMatch = [[[Player instance] recentMatches] objectAtIndex:[indexPath row]];
+            Match *recentMatch = [[[[ServiceLayer instance] matchService] recentMatchesOfPlayer:_player] objectAtIndex:[indexPath row]];
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
             switch ([recentMatch state]) {
                 case MATCH_FINISHED:
@@ -179,11 +174,12 @@
                     [matchStateLabel setText:@"Default"];
                     break;
             }
-            UIImage *avatar = [[recentMatch opponent] avatar];
+            User* opponent = [[[ServiceLayer instance] userService] playerForMatch:recentMatch];
+            UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:opponent];
             [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[[recentMatch opponent] name]];
+            [nameLabel setText:[[[[ServiceLayer instance] userService] opponentForMatch:recentMatch] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
     }
@@ -278,10 +274,10 @@
         MatchInfoViewController *destVC = (MatchInfoViewController*)[segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         if ([indexPath section] == SECTION_CURRENT_MATCHES) {
-            destVC.match = [[[Player instance] currentMatches] objectAtIndex:[indexPath row]];
+            destVC.match = [[[[ServiceLayer instance] matchService] currentMatchesOfPlayer:_player] objectAtIndex:[indexPath row]];
         }
         else if ([indexPath section] == SECTION_RECENT_MATCHES) {
-            destVC.match = [[[Player instance] recentMatches] objectAtIndex:[indexPath row]];
+            destVC.match = [[[[ServiceLayer instance] matchService] recentMatchesOfPlayer:_player] objectAtIndex:[indexPath row]];
         }
     }
 }
@@ -314,10 +310,7 @@
     [self.tableView reloadData];
      */
     //Connecting to server
-    if (![[Client instance] connected]) {
-        [[Client instance] connect];
-    }
-    [[Client instance] sendMessageFindMatch];
+    Match* newMatch = [[[ServiceLayer instance] matchService] findMatch];
 }
 
 - (IBAction)logout {
