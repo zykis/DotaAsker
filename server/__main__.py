@@ -28,7 +28,7 @@ from autobahn.twisted.websocket import WebSocketServerProtocol, \
     WebSocketServerFactory
 import time
 import json
-import database
+from database import *
 from UserAnswerParser import *
 
 class MyServerProtocol(WebSocketServerProtocol):
@@ -40,21 +40,80 @@ class MyServerProtocol(WebSocketServerProtocol):
         print("WebSocket connection open.")
 
     def onMessage(self, payload, isBinary):
-        if isBinary:
-            print("Binary message received: {0} bytes".format(len(payload)))
-        else:
-            print("Text message received: {0}".format(payload.decode('utf8')))
-            dict = json.loads(payload.decode('utf8'))
-            if(dict['ENTITY'] == 'USERANSWER'):
-                if(dict['COMMAND'] == 'GET'):
-                    ua = db.getUserAnswer(dict['ID'])
-                    reply = json.dumps(UserAnswerParser.toJSON(ua, dict['ID']))
+        try:
+            if isBinary:
+                print("Binary message received: {0} bytes".format(len(payload)))
+            else:
+                print("Text message received: {0}".format(payload.decode('utf8')))
+                dict = json.loads(payload.decode('utf8'))
+
+                #################### SIGNIN ######################
+                if(dict['COMMAND'] == 'SIGNIN'):
+                    user = db.getUserByName(dict['USERNAME'])
+                    if (user == None):
+                        jsonData = json.dumps({"COMMAND": "SIGNIN", "RESULT": "FAILED", "REASON": "user doesn't exist"},
+                                              sort_keys=False)
+                        reply = jsonData
+                    else:
+                        if (dict['PASSWORD'] == user.password):
+                            jsonData = json.dumps({"COMMAND": "SIGNIN", "RESULT": "SUCCEED"}, sort_keys=False)
+                        else:
+                            jsonData = json.dumps({"COMMAND": "SIGNIN", "RESULT": "FAILED", "REASON": "wrong password"},
+                                                  sort_keys=False)
+                        reply = jsonData
+
+                #################### SINGUP ######################
+                elif(dict['COMMAND'] == 'SIGNUP'):
+                    user = db.getUserByName(dict['USERNAME'])
+                    if (user == None):
+                        new_user = User(username=dict['USERNAME'], password=dict['PASSWORD'],
+                                        email=dict['EMAIL'],
+                                        rating=4000, wallpaper_image_name='wallpaper_default',
+                                        avatar_image_name='avatar_default')
+                        b_success = self.myDB.addUser(new_user)
+                        # now we need to know, if new_user will be added to database and send a corresponding answer to client
+                        if (b_success == True):
+                            jsonData = json.dumps({"COMMAND": "SIGNUP", "RESULT": "SUCCEED"}, sort_keys=True)
+                            self.writeJSONToClient(jsonData)
+                        else:
+                            jsonData = json.dumps(
+                                {"COMMAND": "SIGNUP", "RESULT": "FAILED", "REASON": "failed to add user to DB"},
+                                sort_keys=True)
+                            self.writeJSONToClient(jsonData)
+                    else:
+                        jsonData = json.dumps(
+                            {"COMMAND": "SIGNUP", "RESULT": "FAILED", "REASON": "user already registered"}, sort_keys=True)
+                        self.writeJSONToClient(jsonData)
+
+                elif(dict['COMMAND'] == 'GET'):
+                    if(dict['ENTITY'] == 'USERANSWER'):
+                        ua = db.getUserAnswer(dict['ID'])
+                        reply = json.dumps(UserAnswerParser.toJSON(ua, dict['ID']))
+                    else:
+                        reply = json.dumps(
+                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
+                                sort_keys=True)
                 elif(dict['COMMAND'] == 'UPDATE'):
-
+                    if(dict['ENTITY'] == 'USERANSWER'):
+                        reply = payload
+                    else:
+                        reply = json.dumps(
+                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
+                                sort_keys=True)
                 elif(dict['COMMAND'] == 'REMOVE'):
-
-            time.sleep(4)
-            self.sendMessage(reply.encode('utf8'), False)
+                    if(dict['ENTITY'] == 'USERANSWER'):
+                        reply = payload
+                    else:
+                        reply = json.dumps(
+                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
+                                sort_keys=True)
+                else:
+                    reply = json.dumps(
+                                {"COMMAND": "ERROR", "REASON": "NO SUCH COMMAND: {0}".format(dict['COMMAND'])},
+                                sort_keys=True)
+                self.sendMessage(reply.encode('utf8'), False)
+        except ValueError as e:
+            print e.args[0]
 
     def onClose(self, wasClean, code, reason):
         print("WebSocket connection closed: {0}".format(reason))
@@ -72,6 +131,6 @@ if __name__ == '__main__':
     factory = WebSocketServerFactory(u"ws://127.0.0.1:1536", debug=False)
     factory.protocol = MyServerProtocol
     # factory.setProtocolOptions(maxConnections=2)
-    db = database.Database()
+    db = Database()
     reactor.listenTCP(1536, factory)
     reactor.run()

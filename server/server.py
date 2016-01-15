@@ -70,43 +70,10 @@ class DotaProtocol(Protocol):
 
             # SIGNING UP
             elif (parsed_json['command'] == 'signup'):
-                user = self.myDB.getUserByName(parsed_json['username'])
-                if (user == None):
-                    new_user = User(username=parsed_json['username'], password=parsed_json['password'],
-                                    email=parsed_json['email'],
-                                    rating=4000, wallpaper_image_name='wallpaper_default',
-                                    avatar_image_name='avatar_default')
-                    b_success = self.myDB.addUser(new_user)
-                    # now we need to know, if new_user will be added to database and send a corresponding answer to client
-                    if (b_success == True):
-                        jsonData = json.dumps({"command": "signup", "result": "succeed"}, sort_keys=False)
-                        self.writeJSONToClient(jsonData)
-                    else:
-                        jsonData = json.dumps(
-                            {"command": "signup", "result": "failed", "reason": "failed to add user to DB"},
-                            sort_keys=False)
-                        self.writeJSONToClient(jsonData)
-                else:
-                    jsonData = json.dumps(
-                        {"command": "signup", "result": "failed", "reason": "user already registered"}, sort_keys=False)
-                    self.writeJSONToClient(jsonData)
+
 
             # SIGNING IN
             elif (parsed_json['command'] == 'signin'):
-                user = self.myDB.getUserByName(parsed_json['username'])
-                if (user == None):
-                    jsonData = json.dumps({"command": "signin", "result": "failed", "reason": "user doesn't exist"},
-                                          sort_keys=False)
-                    self.writeJSONToClient(jsonData)
-                else:
-                    if (parsed_json['password'] == user.password):
-                        jsonData = json.dumps({"command": "signin", "result": "succeed"}, sort_keys=False)
-                        self.writeJSONToClient(jsonData)
-                        print(jsonData)
-                    else:
-                        jsonData = json.dumps({"command": "signin", "result": "failed", "reason": "wrong password"},
-                                              sort_keys=False)
-                        self.writeJSONToClient(jsonData)
 
             # SYNCHRONIZE QUESTIONS
             elif parsed_json['command'] == 'synchronize_questions':

@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
 
-@class Match;
+@class Round;
 
 @interface ThemeSelectionViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIButton *imagedButton1;
 @property (strong, nonatomic) IBOutlet UIButton *imagedButton2;
 @property (strong, nonatomic) IBOutlet UIButton *imagedButton3;
-@property (weak, nonatomic) Match* match;
+@property (weak, nonatomic) Round* round;
 - (IBAction)button1Pressed:(id)sender;
 - (IBAction)button2Pressed:(id)sender;
 - (IBAction)button3Pressed:(id)sender;

@@ -10,10 +10,10 @@
 
 @interface UserAnswer: NSObject
 
-@property (assign, nonatomic) NSInteger ID;
-@property (assign, nonatomic) NSInteger relatedQuestionID;
-@property (assign, nonatomic) NSInteger relatedAnswerID;
-@property (assign, nonatomic) NSInteger relatedRoundID;
-@property (assign, nonatomic) NSInteger relatedUserID;
+@property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) unsigned long long relatedQuestionID;
+@property (assign, nonatomic) unsigned long long relatedAnswerID;
+@property (assign, nonatomic) unsigned long long relatedRoundID;
+@property (assign, nonatomic) unsigned long long relatedUserID;
     
 @end

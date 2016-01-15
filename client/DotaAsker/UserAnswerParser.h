@@ -11,7 +11,4 @@
 
 @interface UserAnswerParser : AbstractParser
 
-+ (UserAnswer*)parse:(NSData*) JSONData;
-+ (NSData*)encode:(UserAnswer*) userAnswer;
-
 @end

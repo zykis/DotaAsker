@@ -7,6 +7,7 @@
 //
 
 #import "UserAnswerService.h"
+#import "AnswerService.h"
 #import "UserAnswer.h"
 
 @implementation UserAnswerService
@@ -15,41 +16,28 @@
 @synthesize cache;
 @synthesize transport;
 
++ (UserAnswerService*)instance {
+    static UserAnswerService *userAnswerService = nil;
+    @synchronized(self) {
+        if(userAnswerService == nil)
+            userAnswerService = [[self alloc] init];
+    }
+    return userAnswerService;
+}
+
 - (id)init {
     self = [super init];
     if(self) {
         parser = [[UserAnswerParser alloc] init];
-        cache = [[UserAnswerCache alloc] init];
-        transport = [[UserAnswerTransport alloc] init];
+        cache = [[AbstractCache alloc] init];
+        transport = [[Transport alloc] init];
     }
     return self;
 }
 
-- (id)obtain:(NSInteger)ID {
-    UserAnswer* userAnswer = [cache obtain:ID];
-    if (userAnswer == nil) {
-        NSData* JSONData = [transport obtain:ID];
-        userAnswer = [UserAnswerParser parse:JSONData];
-        if (userAnswer != nil) {
-            [cache append:userAnswer];
-        }
-    }
-    return userAnswer;
-}
-
-- (NSArray*)obtainAll {
-    NSArray* array = [transport obtainAll];
-    return array;
-}
-
-- (void)update:(UserAnswer *)userAnswer {
-    [cache update:userAnswer];
-    [transport update:userAnswer];
-}
-
-- (void)remove:(NSInteger)entityID {
-    [cache remove:entityID];
-    [transport remove:entityID];
+- (NSString*)textForUserAnswer:(UserAnswer *)userAnswer {
+    Answer* ans = [[AnswerService instance] obtain:[userAnswer relatedAnswerID]];
+    return [ans text];
 }
 
 @end

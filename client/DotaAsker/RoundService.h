@@ -13,6 +13,7 @@
 #import "Match.h"
 
 @interface RoundService : AbstractService
++ (RoundService*)instance;
 
 - (void)setQuestions:(NSArray*)questions forRound:(Round*)round;
 - (Round*)currentRoundforMatch:(Match*)match;

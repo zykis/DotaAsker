@@ -50,11 +50,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showThemeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-        [destVC setMatch:_match];
+        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:_match]];
     }
     else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];
-        [destVC setMatch:_match];
+        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:_match]];
     }
 }
 
@@ -368,10 +368,12 @@
             User* player = [[[ServiceLayer instance] userService] playerForMatch:_match];
             User* opponent = [[[ServiceLayer instance] userService] opponentForMatch:_match];
             
-            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:player ofRound:selectedRound];
+            NSInteger plAnswID = [[[selectedRound answersPlayerIDs] objectAtIndex:index] integerValue];
+            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] obtain:plAnswID];
             NSString *answeredTextFirstPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua1];
             
-            UserAnswer* ua2 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:opponent ofRound:selectedRound];
+            NSInteger opAnswID = [[[selectedRound answersOpponentIDs] objectAtIndex:index] integerValue];
+            UserAnswer* ua2 = [[[ServiceLayer instance] userAnswerService] obtain:opAnswID];
             NSString *answeredTextSecondPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua2];
             
             Answer *correctAnswer = [[[ServiceLayer instance] answerService] correctAnswerForQuestion:selectedQuestion];
@@ -394,8 +396,8 @@
         break;
         case ROUND_OPPONENT_REPLYING: {
             User* player = [[[ServiceLayer instance] userService] playerForMatch:_match];
-            
-            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] userAnswerAtIndex:index ofUser:player ofRound:selectedRound];
+            NSInteger plAnswID = [[[selectedRound answersPlayerIDs] objectAtIndex:index] integerValue];
+            UserAnswer* ua1 = [[[ServiceLayer instance] userAnswerService] obtain:plAnswID];
             NSString *answeredTextFirstPlayer = [[[ServiceLayer instance] userAnswerService] textForUserAnswer:ua1];
             
             Answer *correctAnswer = [[[ServiceLayer instance] answerService] correctAnswerForQuestion:selectedQuestion];

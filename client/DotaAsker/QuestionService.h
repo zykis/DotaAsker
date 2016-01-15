@@ -13,8 +13,10 @@
 #import "Round.h"
 
 @interface QuestionService : AbstractService
++ (QuestionService*)instance;
 
 - (NSArray*)generateQuestionsOnTheme:(Theme*)theme;
+- (NSArray*)allQuestionsOnTheme:(Theme*)theme;
 - (UIImage*)imageOfQuestion:(Question*)question;
 - (Question*)questionAtIndex:(NSInteger)index ofRound:(Round*)round;
 

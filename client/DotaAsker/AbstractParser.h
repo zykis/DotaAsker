@@ -10,6 +10,8 @@
 
 @interface AbstractParser : NSObject
 
-+ (NSArray*)parseAll:(NSData*) data;
+- (NSArray*)parseAll:(NSDictionary*) JSONDict;
+- (id)parse:(NSDictionary*) JSONDict;
+- (NSDictionary*)encode:(id) entity;
 
 @end

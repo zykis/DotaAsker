@@ -13,7 +13,6 @@
 
 @interface QuestionViewController : UIViewController
 
-@property (strong, nonatomic) Match *match;
 @property (strong, nonatomic) Round *round;
 @property (strong, nonatomic) IBOutlet UIImageView *questionImageView;
 @property (strong, nonatomic) IBOutlet UITextView *questionText;

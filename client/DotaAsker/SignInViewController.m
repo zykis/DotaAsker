@@ -8,6 +8,7 @@
 
 #import "SignInViewController.h"
 #import "ServiceLayer.h"
+#import "MainViewController.h"
 
 @interface SignInViewController ()
 
@@ -17,6 +18,7 @@
 
 @synthesize authorized = _authorized;
 @synthesize navigationBar = _navigationBar;
+@synthesize player = _player;
 
 - (void)viewDidLoad {
     _authorized = NO;
@@ -33,8 +35,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] != nil) {
-        if ([[NSUserDefaults standardUserDefaults] valueForKey:@"password"] != nil) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:@""]) {
+        if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"password"] isEqualToString:@""]) {
             [_username setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
             [_password setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
             [self signIn];
@@ -50,15 +52,12 @@
 - (IBAction)signIn {
     NSString *strUsername = [_username text];
     NSString *strPassword = [_password text];
-    if ([[_username text] length] <= 3) {
-        [self presentAlertControllerWithTitle:@"Username is incorrect" andMessage:@"should be 3 symblos at least"];
-        return;
-    }
-    else if ([[_password text] isEqualToString:@""]) {
-        [self presentAlertControllerWithTitle:@"Password" andMessage:@"shouldn't be empty"];
-        return;
-    }
     NSString* errorString;
+    if (![[[ServiceLayer instance] authorizationService] fitsUsername:strUsername andPassword:strPassword error:&errorString]) {
+        [self presentAlertControllerWithTitle:@"Incorrect fields" andMessage:errorString];
+        return;
+    }
+    
     _authorized = [[[ServiceLayer instance] authorizationService] authWithLogin:strUsername andPassword:strPassword errorString:&errorString];
     
     if (_authorized) {
@@ -68,15 +67,39 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
             }
         }
-        [self performSegueWithIdentifier:@"signin" sender:self];
+        _player = [[[ServiceLayer instance] playerService] obtainPlayerWithUsername:[_username text]];
+        if (_player) {
+            [self performSegueWithIdentifier:@"signin" sender:self];
+        }
+        else {
+            [self presentAlertControllerWithTitle:@"Signing in failed" andMessage:[NSString stringWithFormat:@"Server error"]];
+        }
     }
     else {
-        [self presentAlertControllerWithTitle:@"Signing in" andMessage:[NSString stringWithFormat:@"Failed: %@", errorString]];
+        [self presentAlertControllerWithTitle:@"Signing in failed" andMessage:[NSString stringWithFormat:@"%@", errorString]];
     }
 }
 
 - (IBAction)backButtonPressed {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (_player) {
+        MainViewController* destVC = (MainViewController*)[segue destinationViewController];
+        [destVC setPlayer:_player];
+    }
+    else {
+        return;
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"signin"])
+        if (_authorized)
+            if (_player)
+                return YES;
+    return NO;
 }
 
 @end

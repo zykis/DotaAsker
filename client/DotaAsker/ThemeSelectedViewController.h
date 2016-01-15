@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
-@class Match;
+@class Round;
 
 @interface ThemeSelectedViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *themeImageView;
-@property (weak, nonatomic) Match* match;
+@property (strong, nonatomic) Round* round;
 - (void)showQuestions;
 
 @end

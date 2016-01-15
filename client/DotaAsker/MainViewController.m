@@ -311,6 +311,7 @@
      */
     //Connecting to server
     Match* newMatch = [[[ServiceLayer instance] matchService] findMatch];
+    [[[ServiceLayer instance] matchService] create:newMatch];
 }
 
 - (IBAction)logout {

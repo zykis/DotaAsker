@@ -7,18 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
-@class AbstractCache;
-@class AbstractParser;
-@class Transport;
+#import "AbstractCache.h"
+#import "AbstractParser.h"
+#import "Transport.h"
 
 @interface AbstractService : NSObject
 
 @property (strong, nonatomic) AbstractParser* parser;
 @property (strong, nonatomic) AbstractCache* cache;
 @property (strong, nonatomic) Transport* transport;
-- (id)obtain:(NSInteger) entityID;
+
+- (id)obtain:(unsigned long long) entityID;
 - (NSArray*)obtainAll;
-- (void)remove:(NSInteger) entityID;
+- (void)remove:(unsigned long long) entityID;
 - (id)update:(id) entity;
 - (id)create:(id) entity;
 

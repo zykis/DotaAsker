@@ -16,7 +16,6 @@
 
 @implementation QuestionViewController
 
-@synthesize match = _match;
 @synthesize round = _round;
 @synthesize questionImageView = _questionImageView;
 @synthesize questionText = _questionText;
@@ -28,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[[[ServiceLayer instance] playerService] wallpapersForDefaultPlayer]];
+    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
     if (_round) {
         if ([[_round questionsIDs] count] == 0) {
             NSLog(@"No questions in Round");
@@ -67,7 +66,7 @@
     Round* relatedRound = _round;
     Question* relatedQuestion = q;
     Answer* relatedAnswer = [[[ServiceLayer instance] answerService] answerAtIndex:answerIndex ofQuestion:q];
-    User* relatedUser = [[[ServiceLayer instance] userService] obtain:[_match playerID]];
+    User* relatedUser = [[[ServiceLayer instance] userService] playerForRound:_round];
     
     UserAnswer *userAnswer = [[UserAnswer alloc] init];
     userAnswer.relatedRoundID = relatedRound.ID;
@@ -79,7 +78,9 @@
     
     if ([[[[ServiceLayer instance] answerService] obtain:[userAnswer relatedAnswerID]] isCorrect]) {
         //correct
-        _match.scorePlayer++;
+        Match* match = [[[ServiceLayer instance] matchService] matchForRound:_round];
+        match.scorePlayer++;
+        [[[ServiceLayer instance] matchService] update:match];
         relatedUser.totalCorrectAnswers++;
     }
     else {
@@ -87,7 +88,7 @@
         //wrong
     }
     
-    [_round.answersPlayerIDs addObject:[NSNumber numberWithLong:userAnswer.ID]];
+    [_round.answersPlayerIDs addObject:[NSNumber numberWithUnsignedLongLong:userAnswer.ID]];
     [[[ServiceLayer instance] userService] update:relatedUser];
     [self showNextQuestion];
 }
@@ -183,7 +184,6 @@
         }
         
         _round = [[[ServiceLayer instance] roundService] update:_round];
-        _match = [[[ServiceLayer instance] matchService] update:_match];
         [[self navigationController] popToViewController:destVC animated:YES];
     }
 }

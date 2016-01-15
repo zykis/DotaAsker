@@ -11,50 +11,37 @@
 
 @implementation UserAnswerParser
 
-+ (UserAnswer*)parse:(NSData *)JSONData {
-    NSError *error;
-    if(!JSONData)
-        return nil;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:&error];
-    if (error) {
++ (UserAnswer*)parse:(NSDictionary *)JSONDict {
+    if (!([JSONDict objectForKey:@"ID"] &&
+          [JSONDict objectForKey:@"ROUND_ID"] &&
+          [JSONDict objectForKey:@"USER_ID"] &&
+          [JSONDict objectForKey:@"ANSWER_ID"] &&
+          [JSONDict objectForKey:@"QUESTION_ID"]
+          )) {
+        NSLog(@"Parsing error: can't retrieve a field");
         return nil;
     }
-    else {
-        if ([[dict objectForKey:@"COMMAND"] isEqual: @"ERROR"]) {
-            NSLog(@"Parsing error: %@", [dict objectForKey:@"REASON"]);
-            return nil;
-        }
-        UserAnswer* userAnswer = [[UserAnswer alloc] init];
-        if (!([dict objectForKey:@"id"] && [dict objectForKey:@"round_id"] && [dict objectForKey:@"question_id"] &&
-              [dict objectForKey:@"user_id"] && [dict objectForKey:@"answer_id"])) {
-            NSLog(@"Parsing error: can't retrieve a field");
-            return nil;
-        }
-        userAnswer.ID = [[dict objectForKey:@"id"] longValue];
-        userAnswer.relatedRoundID = [[dict objectForKey:@"round_id"] longValue];
-        userAnswer.relatedUserID = [[dict objectForKey:@"user_id"] longValue];
-        userAnswer.relatedAnswerID = [[dict objectForKey:@"answer_id"] longValue];
-        userAnswer.relatedQuestionID = [[dict objectForKey:@"question_id"] longValue];
-        return userAnswer;
-    }
+    
+    UserAnswer* userAnswer = [[UserAnswer alloc] init];
+    userAnswer.ID = [[JSONDict objectForKey:@"id"] longValue];
+    userAnswer.relatedRoundID = [[JSONDict objectForKey:@"round_id"] longValue];
+    userAnswer.relatedUserID = [[JSONDict objectForKey:@"user_id"] longValue];
+    userAnswer.relatedAnswerID = [[JSONDict objectForKey:@"answer_id"] longValue];
+    userAnswer.relatedQuestionID = [[JSONDict objectForKey:@"question_id"] longValue];
+    return userAnswer;
 }
 
-+ (NSData*)encode:(UserAnswer*)userAnswer {
++ (NSDictionary*)encode:(UserAnswer*)userAnswer {
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
                           @"COMMAND", @"REMOVE",
                           @"ENTITY", @"USERANSWER",
-                          @"id", [userAnswer ID],
-                          @"round_id", [userAnswer relatedRoundID],
-                          @"question_id", [userAnswer relatedQuestionID],
-                          @"user_id", [userAnswer relatedUserID],
-                          @"answer_id", [userAnswer relatedAnswerID],
+                          @"ID", [userAnswer ID],
+                          @"ROUND_ID", [userAnswer relatedRoundID],
+                          @"QUESTION_ID", [userAnswer relatedQuestionID],
+                          @"USER_ID", [userAnswer relatedUserID],
+                          @"ANSWER_ID", [userAnswer relatedAnswerID],
                           nil];
-    NSError* err;
-    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:&err];
-    if(err) {
-        data = nil;
-    }
-    return data;
+    return dict;
 }
 
 @end

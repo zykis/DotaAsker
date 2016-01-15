@@ -17,7 +17,7 @@
 @implementation ThemeSelectedViewController
 
 @synthesize themeImageView = _themeImageView;
-@synthesize match = _match;
+@synthesize round = _round;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,8 +25,9 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
     [_themeImageView addGestureRecognizer:tapGesture];
     
-    if (_match) {
-        UIImage* themeImage = [[[ServiceLayer instance] matchService] currentRoundThemeImageForMatch:_match];
+    if (_round) {
+        Theme *theme = [[[ServiceLayer instance] themeService] themeForRound:_round];
+        UIImage* themeImage = [[[ServiceLayer instance] themeService] imageForTheme:theme];
         [_themeImageView setImage:themeImage];
         [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
     }
@@ -57,20 +58,16 @@
             destVC = (QuestionViewController*)destID;
         }
         
-        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
-        
         //GENERATING QUESTIONS
-        if (([currentRound round_state] == ROUND_PLAYER_ASWERING)) {
-            Theme* theme = [[[ServiceLayer instance] themeService] obtain:[currentRound themeID]];
+        if (([_round round_state] == ROUND_PLAYER_ASWERING)) {
+            Theme* theme = [[[ServiceLayer instance] themeService] themeForRound:_round];
             NSArray* questions = [[[ServiceLayer instance]  questionService] generateQuestionsOnTheme:theme];
-            [[[ServiceLayer instance] roundService] setQuestions:questions forRound:currentRound];
-            [[[ServiceLayer instance] roundService] update:currentRound];
+            [[[ServiceLayer instance] roundService] setQuestions:questions forRound:_round];
+            _round = [[[ServiceLayer instance] roundService] update:_round];
         }
         
         //send RoundQuestions message!!!
-        
-        [destVC setRound:currentRound];
-        [destVC setMatch:_match];
+        [destVC setRound:_round];
     }
 }
 

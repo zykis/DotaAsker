@@ -10,10 +10,10 @@
 
 @interface Question : NSObject
 
-@property (assign, nonatomic) NSInteger ID;
-@property (assign, nonatomic) NSInteger *themeID;
+@property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) unsigned long long themeID;
 @property (strong, nonatomic) NSString *text;
-@property (strong, nonatomic) NSString *imagePath;
+@property (strong, nonatomic) NSString *imageName;
 @property (strong, nonatomic) NSMutableArray *answersIDs;
 
 @end

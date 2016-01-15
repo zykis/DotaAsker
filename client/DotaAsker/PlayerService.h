@@ -11,7 +11,8 @@
 @import UIKit;
 
 @interface PlayerService : UserService
++ (PlayerService*)instance;
 
-- (UIImage*)wallpapersForDefaultPlayer;
+- (Player*)obtainPlayerWithUsername:(NSString*)username;
 
 @end

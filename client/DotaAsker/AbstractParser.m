@@ -10,4 +10,16 @@
 
 @implementation AbstractParser
 
+- (id)parse:(NSData *)JSONData {
+    @throw [NSException exceptionWithName:@"invocation of pure method" reason:nil userInfo:nil];
+}
+
+- (NSArray*)parseAll:(NSData *)data {
+    @throw [NSException exceptionWithName:@"invocation of pure method" reason:nil userInfo:nil];
+}
+
+- (NSData*)encode:(id)entity {
+    @throw [NSException exceptionWithName:@"invocation of pure method" reason:nil userInfo:nil];
+}
+
 @end

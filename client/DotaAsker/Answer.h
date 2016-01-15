@@ -10,7 +10,7 @@
 
 @interface Answer : NSObject
 
-@property (assign, nonatomic) NSInteger ID;
+@property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString* text;
 @property (assign, nonatomic) BOOL isCorrect;
 

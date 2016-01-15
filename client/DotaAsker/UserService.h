@@ -9,14 +9,18 @@
 #import "AbstractService.h"
 #import "User.h"
 #import "Match.h"
+#import "Round.h"
 @import UIKit;
 
 @interface UserService : AbstractService
++ (UserService*)instance;
 
 - (UIImage*)wallpapersDefault;
 - (UIImage*)avatarForUser:(User*)user;
-- (User*)obtainWithUsername:(NSString*)username;
+- (User*)obtainUserWithUsername:(NSString*)username;
 - (User*)opponentForMatch:(Match*)match;
 - (User*)playerForMatch:(Match*)match;
+- (User*)playerForRound:(Round*)round;
+- (User*)opponentForRound:(Round*)round;
 
 @end

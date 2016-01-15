@@ -14,11 +14,11 @@
 @import UIKit;
 
 @interface MatchService : AbstractService
++ (MatchService*)instance;
 
-
-- (UIImage*)currentRoundThemeImageForMatch:(Match*)match;
 - (NSArray*)currentMatchesOfPlayer:(Player*)player;
 - (NSArray*)recentMatchesOfPlayer:(Player*)player;
 - (Match*)findMatch;
+- (Match*)matchForRound:(Round*)round;
 
 @end

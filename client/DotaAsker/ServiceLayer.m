@@ -11,7 +11,15 @@
 
 @implementation ServiceLayer
 
+@synthesize authorizationService;
 @synthesize userAnswerService;
+@synthesize answerService;
+@synthesize questionService;
+@synthesize themeService;
+@synthesize roundService;
+@synthesize matchService;
+@synthesize userService;
+@synthesize playerService;
 
 + (ServiceLayer*)instance {
     static ServiceLayer *serviceLayer = nil;
@@ -25,7 +33,15 @@
 -(id)init {
     self = [super init];
     if(self) {
-        userAnswerService = [[UserAnswerService alloc] init];
+        authorizationService = [AuthorizationService instance];
+        userAnswerService = [UserAnswerService instance];
+        answerService = [AnswerService instance];
+        questionService = [QuestionService instance];
+        themeService = [ThemeService instance];
+        roundService = [RoundService instance];
+        matchService = [MatchService instance];
+        userService = [UserService instance];
+        playerService = [PlayerService instance];
     }
     return self;
 }

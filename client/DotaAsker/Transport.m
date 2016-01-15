@@ -19,10 +19,14 @@
 @synthesize transportCompletionBlockData;
 @synthesize transportCompletionBlockMessage;
 @synthesize messageToSend;
+@synthesize entityName;
 
 - (id)init {
     self = [super init];
     if (self) {
+        NSString *entityStr = [NSStringFromClass([self class]) uppercaseString];
+        entityStr = [entityStr substringToIndex:[entityStr length] - strlen("transport")];
+        [self setEntityName:entityStr];
     }
     return self;
 }
@@ -100,13 +104,34 @@
     return msg;
 }
 
+- (NSData*)obtain:(unsigned long long)entityID {
+    NSString *message = [NSString stringWithFormat:@"{\"COMMAND\":\"GET\", \"ENTITY\":\"%@\", \"ID\":%llu}", entityName, entityID];
+    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+    return JSONData;
+}
 
+- (NSData*)obtainAll {
+    NSString *message = [NSString stringWithFormat:@"{\"COMMAND\":\"GET\", \"ENTITY\":\"%@\"}", entityName];
+    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+    return JSONData;
+}
 
+- (NSData*)update:(NSData*)entity {
+    NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"UPDATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, entity];
+    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+    return JSONData;
+}
 
+- (NSData*)create:(NSData *)entity {
+    NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"CREATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, entity];
+    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+    return JSONData;
+}
 
-
-
-
+- (void)remove:(unsigned long long)entityID {
+    NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"REMOVE\", \"ENTITY\":\"%@\", \"ID\":%llu}", entityName, entityID];
+    [self sendMessage:message];
+}
 
 
 

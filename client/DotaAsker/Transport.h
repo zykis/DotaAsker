@@ -19,11 +19,13 @@ typedef void(^TransportCompletionBlockMessage)(NSString*);
 @property (strong, nonatomic) NSString* messageToSend;
 @property (strong, nonatomic) NSData* data;
 @property (strong, nonatomic) JFRWebSocket* sock;
+@property (strong, nonatomic) NSString* entityName;
 
-- (NSArray*)obtainAll;
-- (NSData*)obtain:(NSInteger) entityID;
-- (id)update:(id) entity;
-- (void)remove:(NSInteger) entityID;
+- (NSData*)obtain:(unsigned long long) entityID;
+- (NSData*)obtainAll;
+- (NSData*)update:(NSData*) entity;
+- (NSData*)create:(NSData*) entity;
+- (void)remove:(unsigned long long) entityID;
 
 - (void)sendMessage:(NSString*)message;
 - (NSString*)obtainMessageWithMessage:(NSString*)message;

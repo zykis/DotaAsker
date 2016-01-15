@@ -11,8 +11,8 @@
 
 @interface Theme : NSObject 
 
-@property (assign, nonatomic) NSInteger ID;
+@property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *imagePath;
+@property (strong, nonatomic) NSString *imageName;
 
 @end

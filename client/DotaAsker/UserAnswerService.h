@@ -14,14 +14,12 @@
 
 #import "Round.h"
 #import "User.h"
+#import "Question.h"
+#import "Answer.h"
 
 @interface UserAnswerService : AbstractService
++ (UserAnswerService*)instance;
 
-- (UserAnswer*)userAnswerAtIndex:(NSInteger)index ofUser:(User*)user ofRound:(Round*)round;
 - (NSString*)textForUserAnswer:(UserAnswer*)userAnswer;
-
-@property (strong, nonatomic) UserAnswerParser* parser;
-@property (strong, nonatomic) UserAnswerCache* cache;
-@property (strong, nonatomic) UserAnswerTransport* transport;
 
 @end

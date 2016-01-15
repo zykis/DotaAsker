@@ -11,6 +11,7 @@
 #import "Question.h"
 
 @interface AnswerService : AbstractService
++ (AnswerService*)instance;
 
 - (Answer*)answerAtIndex:(NSInteger)index ofQuestion:(Question*)question;
 - (Answer*)correctAnswerForQuestion:(Question*)question;

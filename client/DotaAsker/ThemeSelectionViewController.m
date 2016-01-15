@@ -19,7 +19,7 @@
 @synthesize imagedButton1 = _imagedButton1;
 @synthesize imagedButton2 = _imagedButton2;
 @synthesize imagedButton3 = _imagedButton3;
-@synthesize match = _match;
+@synthesize round = _round;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -49,25 +49,23 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"themeSelected"]) {
-        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
         if ([sender isEqual:_imagedButton1]) {
-            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:1] ID];
+            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:1] ID];
         }
         else if([sender isEqual:_imagedButton2]) {
-            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:2] ID];
+            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:2] ID];
         }
         else if([sender isEqual:_imagedButton3]) {
-            currentRound.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:3] ID];
+            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:3] ID];
         }
         else {
             NSLog(@"Can't identify theme pressed");
             return;
         }
         
-        [[[ServiceLayer instance] roundService] update:currentRound];
-        
-        [destVC setMatch:[self match]];
+        _round = [[[ServiceLayer instance] roundService] update:_round];
+        [destVC setRound:_round];
     }
 }
 

@@ -27,9 +27,9 @@ typedef enum {ROUND_NOT_STARTED = 0, ROUND_FINISHED, ROUND_TIME_ELAPSED, ROUND_P
 
 @interface Round : NSObject
 
-@property (assign, nonatomic) NSInteger ID;
+@property (assign, nonatomic) unsigned long long ID;
 @property (assign, nonatomic) Round_State round_state;//текущее состояние раунда
-@property (assign, nonatomic) NSInteger themeID;//выбранная тема
+@property (assign, nonatomic) unsigned long long themeID;//выбранная тема
 @property (assign, nonatomic) NSMutableArray *questionsIDs;//список вопросов
 @property (assign, nonatomic) NSMutableArray *answersPlayerIDs;//список ответов игрока
 @property (assign, nonatomic) NSMutableArray *answersOpponentIDs;//список ответов оппонента

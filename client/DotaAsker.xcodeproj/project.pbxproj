@@ -8,12 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
+		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
+		AC5ADC011C48DE5400A73F97 /* UserAnswerTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC001C48DE5400A73F97 /* UserAnswerTransport.m */; };
+		AC5ADC041C48DE6D00A73F97 /* AnswerTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC031C48DE6D00A73F97 /* AnswerTransport.m */; };
+		AC5ADC071C48DE7D00A73F97 /* QuestionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC061C48DE7D00A73F97 /* QuestionTransport.m */; };
+		AC5ADC0A1C48DE8700A73F97 /* ThemeTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC091C48DE8700A73F97 /* ThemeTransport.m */; };
+		AC5ADC0D1C48DE9400A73F97 /* RoundTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC0C1C48DE9400A73F97 /* RoundTransport.m */; };
+		AC5ADC101C48DEA100A73F97 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */; };
+		AC5ADC141C48DEB200A73F97 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC131C48DEB200A73F97 /* UserTransport.m */; };
+		AC5ADC171C48DEBC00A73F97 /* PlayerTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */; };
+		AC5ADC1A1C48DF5E00A73F97 /* AnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC191C48DF5E00A73F97 /* AnswerParser.m */; };
+		AC5ADC1D1C48DF6C00A73F97 /* QuestionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC1C1C48DF6C00A73F97 /* QuestionParser.m */; };
+		AC5ADC201C48DF7500A73F97 /* ThemeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC1F1C48DF7500A73F97 /* ThemeParser.m */; };
+		AC5ADC231C48DF7F00A73F97 /* RoundParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC221C48DF7F00A73F97 /* RoundParser.m */; };
+		AC5ADC261C48DF8800A73F97 /* MatchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC251C48DF8800A73F97 /* MatchParser.m */; };
+		AC5ADC291C48DF9100A73F97 /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC281C48DF9100A73F97 /* UserParser.m */; };
+		AC5ADC2C1C48DF9D00A73F97 /* PlayerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */; };
 		AC6091691BFF15CA00D728B6 /* JFRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091681BFF15CA00D728B6 /* JFRWebSocket.m */; };
 		AC60916C1BFF3B0300D728B6 /* JFRSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60916B1BFF3B0300D728B6 /* JFRSecurity.m */; };
 		AC60916F1BFF4A7F00D728B6 /* AbstractParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60916E1BFF4A7F00D728B6 /* AbstractParser.m */; };
 		AC6091721BFF4AEC00D728B6 /* UserAnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091711BFF4AEC00D728B6 /* UserAnswerParser.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
-		AC6091781BFF523E00D728B6 /* UserAnswerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091771BFF523E00D728B6 /* UserAnswerCache.m */; };
 		AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917A1BFF5B9600D728B6 /* AbstractService.m */; };
 		AC60917E1BFF5CAD00D728B6 /* UserAnswerService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917D1BFF5CAD00D728B6 /* UserAnswerService.m */; };
 		AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091801C00623200D728B6 /* AuthorizationService.m */; };
@@ -52,7 +67,6 @@
 		AC8043791C36B0770063CD67 /* MatchService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8043781C36B0770063CD67 /* MatchService.m */; };
 		AC80437C1C36B0880063CD67 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437B1C36B0880063CD67 /* UserService.m */; };
 		AC80437F1C36B0A90063CD67 /* PlayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437E1C36B0A90063CD67 /* PlayerService.m */; };
-		AC80438B1C36C0CA0063CD67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC80438A1C36C0CA0063CD67 /* Main.storyboard */; };
 		AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC850B751B3C85A00050954C /* Trajan Bold.ttf */; };
 		AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC850B771B3C8EB90050954C /* wallpaper_default.jpg */; };
 		AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */; };
@@ -112,7 +126,6 @@
 		ACF41C001B3BD3E60096598C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF41BFF1B3BD3E60096598C /* Player.m */; };
 		ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41C071B3C0F950096598C /* versus_image_48x48.png */; };
 		ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDF2D81BFB41F500B89838 /* Transport.m */; };
-		ACFDF2DC1BFB42A000B89838 /* UserAnswerTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDF2DB1BFB42A000B89838 /* UserAnswerTransport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +140,37 @@
 
 /* Begin PBXFileReference section */
 		AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theme_tournaments.png; path = resources/theme_tournaments.png; sourceTree = "<group>"; };
+		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AC5ADBFF1C48DE5400A73F97 /* UserAnswerTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswerTransport.h; sourceTree = "<group>"; };
+		AC5ADC001C48DE5400A73F97 /* UserAnswerTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerTransport.m; sourceTree = "<group>"; };
+		AC5ADC021C48DE6D00A73F97 /* AnswerTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerTransport.h; sourceTree = "<group>"; };
+		AC5ADC031C48DE6D00A73F97 /* AnswerTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerTransport.m; sourceTree = "<group>"; };
+		AC5ADC051C48DE7D00A73F97 /* QuestionTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTransport.h; sourceTree = "<group>"; };
+		AC5ADC061C48DE7D00A73F97 /* QuestionTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTransport.m; sourceTree = "<group>"; };
+		AC5ADC081C48DE8700A73F97 /* ThemeTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeTransport.h; sourceTree = "<group>"; };
+		AC5ADC091C48DE8700A73F97 /* ThemeTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeTransport.m; sourceTree = "<group>"; };
+		AC5ADC0B1C48DE9400A73F97 /* RoundTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundTransport.h; sourceTree = "<group>"; };
+		AC5ADC0C1C48DE9400A73F97 /* RoundTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundTransport.m; sourceTree = "<group>"; };
+		AC5ADC0E1C48DEA100A73F97 /* MatchTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTransport.h; sourceTree = "<group>"; };
+		AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTransport.m; sourceTree = "<group>"; };
+		AC5ADC121C48DEB200A73F97 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
+		AC5ADC131C48DEB200A73F97 /* UserTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTransport.m; sourceTree = "<group>"; };
+		AC5ADC151C48DEBC00A73F97 /* PlayerTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTransport.h; sourceTree = "<group>"; };
+		AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTransport.m; sourceTree = "<group>"; };
+		AC5ADC181C48DF5E00A73F97 /* AnswerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerParser.h; sourceTree = "<group>"; };
+		AC5ADC191C48DF5E00A73F97 /* AnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerParser.m; sourceTree = "<group>"; };
+		AC5ADC1B1C48DF6C00A73F97 /* QuestionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionParser.h; sourceTree = "<group>"; };
+		AC5ADC1C1C48DF6C00A73F97 /* QuestionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionParser.m; sourceTree = "<group>"; };
+		AC5ADC1E1C48DF7500A73F97 /* ThemeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeParser.h; sourceTree = "<group>"; };
+		AC5ADC1F1C48DF7500A73F97 /* ThemeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeParser.m; sourceTree = "<group>"; };
+		AC5ADC211C48DF7F00A73F97 /* RoundParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundParser.h; sourceTree = "<group>"; };
+		AC5ADC221C48DF7F00A73F97 /* RoundParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundParser.m; sourceTree = "<group>"; };
+		AC5ADC241C48DF8800A73F97 /* MatchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParser.h; sourceTree = "<group>"; };
+		AC5ADC251C48DF8800A73F97 /* MatchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParser.m; sourceTree = "<group>"; };
+		AC5ADC271C48DF9100A73F97 /* UserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserParser.h; sourceTree = "<group>"; };
+		AC5ADC281C48DF9100A73F97 /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
+		AC5ADC2A1C48DF9D00A73F97 /* PlayerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerParser.h; sourceTree = "<group>"; };
+		AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerParser.m; sourceTree = "<group>"; };
 		AC6091671BFF15CA00D728B6 /* JFRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRWebSocket.h; sourceTree = "<group>"; };
 		AC6091681BFF15CA00D728B6 /* JFRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRWebSocket.m; sourceTree = "<group>"; };
 		AC60916A1BFF3B0300D728B6 /* JFRSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRSecurity.h; sourceTree = "<group>"; };
@@ -137,8 +181,6 @@
 		AC6091711BFF4AEC00D728B6 /* UserAnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerParser.m; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		AC6091741BFF516B00D728B6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
-		AC6091761BFF523E00D728B6 /* UserAnswerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswerCache.h; sourceTree = "<group>"; };
-		AC6091771BFF523E00D728B6 /* UserAnswerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerCache.m; sourceTree = "<group>"; };
 		AC6091791BFF5B9600D728B6 /* AbstractService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractService.h; sourceTree = "<group>"; };
 		AC60917A1BFF5B9600D728B6 /* AbstractService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractService.m; sourceTree = "<group>"; };
 		AC60917C1BFF5CAD00D728B6 /* UserAnswerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswerService.h; sourceTree = "<group>"; };
@@ -180,7 +222,7 @@
 		AC75C2E41BA3339A0036B113 /* EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPPZReachability.m; path = ../EPPZReachability.m; sourceTree = "<group>"; };
 		AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EPPZReachability.h"; sourceTree = "<group>"; };
 		AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EPPZReachability.m"; sourceTree = "<group>"; };
-		AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerServiceTest.m; sourceTree = "<group>"; };
+		AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAnswerServiceTest.m; path = ../UserAnswerServiceTest.m; sourceTree = "<group>"; };
 		AC80436B1C36B03D0063CD67 /* AnswerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerService.h; sourceTree = "<group>"; };
 		AC80436C1C36B03D0063CD67 /* AnswerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerService.m; sourceTree = "<group>"; };
 		AC80436E1C36B04E0063CD67 /* QuestionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionService.h; sourceTree = "<group>"; };
@@ -195,7 +237,6 @@
 		AC80437B1C36B0880063CD67 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
 		AC80437D1C36B0A90063CD67 /* PlayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerService.h; sourceTree = "<group>"; };
 		AC80437E1C36B0A90063CD67 /* PlayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerService.m; sourceTree = "<group>"; };
-		AC80438A1C36C0CA0063CD67 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC850B751B3C85A00050954C /* Trajan Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trajan Bold.ttf"; path = "resources/Trajan Bold.ttf"; sourceTree = "<group>"; };
 		AC850B771B3C8EB90050954C /* wallpaper_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wallpaper_default.jpg; path = resources/wallpaper_default.jpg; sourceTree = "<group>"; };
 		AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_backbutton_44@2x.png"; path = "resources/icon_backbutton_44@2x.png"; sourceTree = "<group>"; };
@@ -210,7 +251,6 @@
 		AC8841BF1B2EFC6B006212D2 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		AC8841C11B2EFCF9006212D2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
-		AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
 		AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
 		AC95F7EF1C46258000FE4EE2 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -281,8 +321,6 @@
 		ACF41C071B3C0F950096598C /* versus_image_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = versus_image_48x48.png; path = resources/versus_image_48x48.png; sourceTree = "<group>"; };
 		ACFDF2D71BFB41F500B89838 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
 		ACFDF2D81BFB41F500B89838 /* Transport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transport.m; sourceTree = "<group>"; };
-		ACFDF2DA1BFB42A000B89838 /* UserAnswerTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswerTransport.h; sourceTree = "<group>"; };
-		ACFDF2DB1BFB42A000B89838 /* UserAnswerTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerTransport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,7 +344,6 @@
 		AC7351FB1B239A1B00FFF356 = {
 			isa = PBXGroup;
 			children = (
-				AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */,
 				AC7352061B239A1B00FFF356 /* DotaAsker */,
 				ACF41BF91B3BABCA0096598C /* resources */,
 				AC7352201B239A1B00FFF356 /* DotaAskerTests */,
@@ -326,23 +363,20 @@
 		AC7352061B239A1B00FFF356 /* DotaAsker */ = {
 			isa = PBXGroup;
 			children = (
-				AC95F7EB1C4624DA00FE4EE2 /* Main.storyboard */,
 				ACFDF2D61BFB40D300B89838 /* Service */,
-				ACFDF2D51BFB40B600B89838 /* Entity */,
 				ACFDF2D41BFB40AD00B89838 /* Transport */,
 				ACFDF2D31BFB40A100B89838 /* Cache */,
+				ACFDF2D51BFB40B600B89838 /* Entity */,
 				ACFDF2D21BFB409100B89838 /* Parsers */,
 				ACBD29DD1B5BB5D7005AB718 /* Categories */,
 				ACF41C031B3BE8B20096598C /* CustomViews */,
 				AC9BBE151B32A83900E59DE2 /* ViewControllers */,
-				AC80438A1C36C0CA0063CD67 /* Main.storyboard */,
-				AC7352141B239A1B00FFF356 /* Images.xcassets */,
-				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
 				AC7352071B239A1B00FFF356 /* Supporting Files */,
+				AC7352141B239A1B00FFF356 /* Images.xcassets */,
+				AC5ADBFD1C47A34400A73F97 /* Main.storyboard */,
+				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
 				AC73520B1B239A1B00FFF356 /* AppDelegate.h */,
 				AC73520C1B239A1B00FFF356 /* AppDelegate.m */,
-				AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */,
-				AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */,
 				AC75C2E31BA3339A0036B113 /* EPPZReachability.h */,
 				AC75C2E41BA3339A0036B113 /* EPPZReachability.m */,
 				AC6091821C006F1E00D728B6 /* ServiceLayer.h */,
@@ -365,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				AC7352231B239A1B00FFF356 /* DotaAskerTests.m */,
+				AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */,
 				AC7352211B239A1B00FFF356 /* Supporting Files */,
 			);
 			path = DotaAskerTests;
@@ -440,8 +475,6 @@
 				AC95F8001C46258000FE4EE2 /* ThemeSelectedViewController.m */,
 				AC95F8011C46258000FE4EE2 /* ThemeSelectionViewController.h */,
 				AC95F8021C46258000FE4EE2 /* ThemeSelectionViewController.m */,
-				AC95F8031C46258000FE4EE2 /* UIViewController+Utils.h */,
-				AC95F8041C46258000FE4EE2 /* UIViewController+Utils.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -449,6 +482,10 @@
 		ACBD29DD1B5BB5D7005AB718 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				AC95F8031C46258000FE4EE2 /* UIViewController+Utils.h */,
+				AC95F8041C46258000FE4EE2 /* UIViewController+Utils.m */,
+				AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */,
+				AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -547,6 +584,20 @@
 				AC60916E1BFF4A7F00D728B6 /* AbstractParser.m */,
 				AC6091701BFF4AEC00D728B6 /* UserAnswerParser.h */,
 				AC6091711BFF4AEC00D728B6 /* UserAnswerParser.m */,
+				AC5ADC181C48DF5E00A73F97 /* AnswerParser.h */,
+				AC5ADC191C48DF5E00A73F97 /* AnswerParser.m */,
+				AC5ADC1B1C48DF6C00A73F97 /* QuestionParser.h */,
+				AC5ADC1C1C48DF6C00A73F97 /* QuestionParser.m */,
+				AC5ADC1E1C48DF7500A73F97 /* ThemeParser.h */,
+				AC5ADC1F1C48DF7500A73F97 /* ThemeParser.m */,
+				AC5ADC211C48DF7F00A73F97 /* RoundParser.h */,
+				AC5ADC221C48DF7F00A73F97 /* RoundParser.m */,
+				AC5ADC241C48DF8800A73F97 /* MatchParser.h */,
+				AC5ADC251C48DF8800A73F97 /* MatchParser.m */,
+				AC5ADC271C48DF9100A73F97 /* UserParser.h */,
+				AC5ADC281C48DF9100A73F97 /* UserParser.m */,
+				AC5ADC2A1C48DF9D00A73F97 /* PlayerParser.h */,
+				AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -556,8 +607,6 @@
 			children = (
 				AC6091731BFF516B00D728B6 /* AbstractCache.h */,
 				AC6091741BFF516B00D728B6 /* AbstractCache.m */,
-				AC6091761BFF523E00D728B6 /* UserAnswerCache.h */,
-				AC6091771BFF523E00D728B6 /* UserAnswerCache.m */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -571,8 +620,22 @@
 				AC6091681BFF15CA00D728B6 /* JFRWebSocket.m */,
 				ACFDF2D71BFB41F500B89838 /* Transport.h */,
 				ACFDF2D81BFB41F500B89838 /* Transport.m */,
-				ACFDF2DA1BFB42A000B89838 /* UserAnswerTransport.h */,
-				ACFDF2DB1BFB42A000B89838 /* UserAnswerTransport.m */,
+				AC5ADBFF1C48DE5400A73F97 /* UserAnswerTransport.h */,
+				AC5ADC001C48DE5400A73F97 /* UserAnswerTransport.m */,
+				AC5ADC021C48DE6D00A73F97 /* AnswerTransport.h */,
+				AC5ADC031C48DE6D00A73F97 /* AnswerTransport.m */,
+				AC5ADC051C48DE7D00A73F97 /* QuestionTransport.h */,
+				AC5ADC061C48DE7D00A73F97 /* QuestionTransport.m */,
+				AC5ADC081C48DE8700A73F97 /* ThemeTransport.h */,
+				AC5ADC091C48DE8700A73F97 /* ThemeTransport.m */,
+				AC5ADC0B1C48DE9400A73F97 /* RoundTransport.h */,
+				AC5ADC0C1C48DE9400A73F97 /* RoundTransport.m */,
+				AC5ADC0E1C48DEA100A73F97 /* MatchTransport.h */,
+				AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */,
+				AC5ADC121C48DEB200A73F97 /* UserTransport.h */,
+				AC5ADC131C48DEB200A73F97 /* UserTransport.m */,
+				AC5ADC151C48DEBC00A73F97 /* PlayerTransport.h */,
+				AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */,
 			);
 			name = Transport;
 			sourceTree = "<group>";
@@ -727,7 +790,6 @@
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
 				AC62E5201BF4B96900805285 /* dota_icon_60x60.png in Resources */,
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
-				AC80438B1C36C0CA0063CD67 /* Main.storyboard in Resources */,
 				AC75ABFC1BAFEBC5007BA59D /* avatar_default.png in Resources */,
 				AC62E5221BF4B96900805285 /* dota_icon_60x60@3x.png in Resources */,
 				AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */,
@@ -745,6 +807,7 @@
 				ACE8AF151B4197B9009C3A08 /* wallpaper_juggernaut_1.jpg in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
 				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
+				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
 				ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */,
 				AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */,
 				AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */,
@@ -786,21 +849,23 @@
 				AC95F8061C46258000FE4EE2 /* MainViewController.m in Sources */,
 				AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
+				AC5ADC011C48DE5400A73F97 /* UserAnswerTransport.m in Sources */,
 				AC95F8071C46258000FE4EE2 /* MatchInfoViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				ACF41C001B3BD3E60096598C /* Player.m in Sources */,
-				AC6091781BFF523E00D728B6 /* UserAnswerCache.m in Sources */,
 				AC8043731C36B05F0063CD67 /* ThemeService.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */,
 				ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */,
+				AC5ADC1D1C48DF6C00A73F97 /* QuestionParser.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				ACD52F871BB15C300006D50A /* Answer.m in Sources */,
-				ACFDF2DC1BFB42A000B89838 /* UserAnswerTransport.m in Sources */,
+				AC5ADC201C48DF7500A73F97 /* ThemeParser.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
 				AC80436D1C36B03D0063CD67 /* AnswerService.m in Sources */,
 				AC95F80D1C46258000FE4EE2 /* TestViewController.m in Sources */,
+				AC5ADC101C48DEA100A73F97 /* MatchTransport.m in Sources */,
 				AC95F8101C46258000FE4EE2 /* UIViewController+Utils.m in Sources */,
 				AC95F80F1C46258000FE4EE2 /* ThemeSelectionViewController.m in Sources */,
 				AC95F80A1C46258000FE4EE2 /* SignInViewController.m in Sources */,
@@ -808,23 +873,34 @@
 				AC6091691BFF15CA00D728B6 /* JFRWebSocket.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
 				AC80437F1C36B0A90063CD67 /* PlayerService.m in Sources */,
+				AC5ADC141C48DEB200A73F97 /* UserTransport.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
+				AC5ADC291C48DF9100A73F97 /* UserParser.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
+				AC5ADC171C48DEBC00A73F97 /* PlayerTransport.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
 				AC95F80B1C46258000FE4EE2 /* SignUpViewController.m in Sources */,
 				AC95F80C1C46258000FE4EE2 /* StatisticsViewController.m in Sources */,
 				AC8043761C36B06B0063CD67 /* RoundService.m in Sources */,
+				AC5ADC231C48DF7F00A73F97 /* RoundParser.m in Sources */,
 				AC60916C1BFF3B0300D728B6 /* JFRSecurity.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				AC6091721BFF4AEC00D728B6 /* UserAnswerParser.m in Sources */,
+				AC5ADC071C48DE7D00A73F97 /* QuestionTransport.m in Sources */,
 				AC60917E1BFF5CAD00D728B6 /* UserAnswerService.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
+				AC5ADC0D1C48DE9400A73F97 /* RoundTransport.m in Sources */,
+				AC5ADC0A1C48DE8700A73F97 /* ThemeTransport.m in Sources */,
+				AC5ADC261C48DF8800A73F97 /* MatchParser.m in Sources */,
 				AC8043791C36B0770063CD67 /* MatchService.m in Sources */,
+				AC5ADC041C48DE6D00A73F97 /* AnswerTransport.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
+				AC5ADC1A1C48DF5E00A73F97 /* AnswerParser.m in Sources */,
 				AC95F80E1C46258000FE4EE2 /* ThemeSelectedViewController.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
+				AC5ADC2C1C48DF9D00A73F97 /* PlayerParser.m in Sources */,
 				AC80437C1C36B0880063CD67 /* UserService.m in Sources */,
 				AC8043701C36B04E0063CD67 /* QuestionService.m in Sources */,
 				AC95F8081C46258000FE4EE2 /* QuestionViewController.m in Sources */,

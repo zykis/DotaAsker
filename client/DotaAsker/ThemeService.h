@@ -8,10 +8,13 @@
 
 #import "AbstractService.h"
 #import "Theme.h"
+#import "Round.h"
 @import UIKit;
 
 @interface ThemeService : AbstractService
++ (ThemeService*)instance;
 
 - (UIImage*)imageForTheme:(Theme*)theme;
+- (Theme*)themeForRound:(Round*)round;
 
 @end
