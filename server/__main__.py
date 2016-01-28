@@ -26,7 +26,6 @@
 
 from autobahn.twisted.websocket import WebSocketServerFactory
 from autobahn.twisted.websocket import WebSocketServerProtocol
-
 from parsers.parser import *
 
 get_class = lambda x: globals()[x]
@@ -49,7 +48,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
                 #################### SIGNIN ######################
                 if(dict['COMMAND'] == 'SIGNIN'):
-                    user = db.getUserByName(dict['USERNAME'])
+                    user = Database.getUserByName(dict['USERNAME'])
                     if (user == None):
                         jsonData = json.dumps({"COMMAND": "SIGNIN", "RESULT": "FAILED", "REASON": "user doesn't exist"},
                                               sort_keys=False)
@@ -64,7 +63,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
                 #################### SINGUP ######################
                 elif(dict['COMMAND'] == 'SIGNUP'):
-                    user = db.getUserByName(dict['USERNAME'])
+                    user = Database.getUserByName(dict['USERNAME'])
                     if (user == None):
                         new_user = User(username=dict['USERNAME'], password=dict['PASSWORD'],
                                         email=dict['EMAIL'],
@@ -88,17 +87,17 @@ class MyServerProtocol(WebSocketServerProtocol):
                 ###################### FIND MATCH ##################################
                 elif (dict['COMMAND'] == 'FIND_MATCH'):
                         username = dict['PLAYER_NAME']
-                        user = db.getUserByName(username)
+                        user = Database.getUserByName(username)
                         if user is not None:
                             # unique, not started matches with distinct initiator
-                            count = db.notStartedMatchesCountWithUniqueInitiator(user)
+                            count = Database.notStartedMatchesCountWithUniqueInitiator(user)
                             print("count = " + str(count))
                             if count >= MATCHES_MAX_COUNT:
                                 # finding closest rating match
-                                m = db.findMatchForUser(user)
+                                m = Database.findMatchForUser(user)
                             else:
                                 # creating new match
-                                m = db.createNewMatchWithUser(user)
+                                m = Database.createNewMatchWithUser(user)
                             reply = json.dumps(m.tojson())
 
                         else:
@@ -106,7 +105,7 @@ class MyServerProtocol(WebSocketServerProtocol):
 
                 ##################### GET_USER_BY_USERNAME ########################
                 elif (dict['COMMAND'] == 'GET_USER_BY_USERNAME'):
-                    user = db.getUserByName(dict['USERNAME'])
+                    user = Database.getUserByName(dict['USERNAME'])
                     if user is not None:
                         reply = json.dumps(user.tojson())
                     else:
@@ -120,9 +119,9 @@ class MyServerProtocol(WebSocketServerProtocol):
                     cls = get_class(className)
 
                     if dict['ID'] is not None:
-                        entity = db.get(cls, dict['ID'])
+                        entity = Database.get(cls, dict['ID'])
                     else:
-                        entity = db.get(cls, None)
+                        entity = Database.get(cls, None)
 
                     if isinstance(entity, list):
                         entityList = list()
@@ -143,7 +142,7 @@ class MyServerProtocol(WebSocketServerProtocol):
                     cls = get_class(className)
                     obj = Parser.fromJSON(dict['OBJECT'], cls)
                     #update in DB, return, encode and send
-                    obj = db.update(obj)
+                    obj = Database.update(obj)
                     encoded = Parser.toJSON(obj, cls)
                     reply = encoded
 

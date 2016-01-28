@@ -1,34 +1,32 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
+
+
 MATCHES_MAX_COUNT = 2
+from entities.entity import *
+from entities.theme import Theme
+from entities.user_answer import Useranswer
+from entities.answer import Answer
+from entities.question import *
+from entities.round import Round
+from entities.match import Match
+from entities.user import User
 
-
-from sqlalchemy import Table, Column, Integer, String, Unicode, Binary, Float, Boolean, BINARY, DateTime
-from sqlalchemy import ForeignKey
+from sqlalchemy import Table
 from sqlalchemy import update, delete
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import inspect
-from sqlalchemy.orm import relationship
-from sqlalchemy.orm import backref
-import sqlalchemy_imageattach.stores.fs
-from sqlalchemy_imageattach.entity import Image, image_attachment, ImageSet
-from sqlalchemy_imageattach.context import store_context
-from sqlalchemy.orm.exc import NoResultFound
-
 from sqlalchemy import MetaData, exc
+
 import logging
 import sqlalchemy
 import re
-
-import datetime
-import random
 import json
 import random
-import os
-from string import uppercase
 
+import sqlalchemy_imageattach.stores.fs
 # __project_folder__ = '/home/zykis/DAServer/src/' # ubuntu server
 __project_folder__ = '/Users/artem/projects/DotaAsker/server/' # local machine
 __questions_folder__ = os.path.join(__project_folder__, 'questions')
@@ -41,60 +39,9 @@ fs_store = sqlalchemy_imageattach.stores.fs.FileSystemStore(
 _new_sa_ddl = sqlalchemy.__version__.startswith('0.7')
 myDBEngine = create_engine('sqlite:///./mydb.db', echo=False)
 # myDBEngine = create_engine("mysql://dotaAsker:stranger@localhost/dotaAsker"
-                            # encoding='utf-8', echo=True)
+                    # encoding='utf-8', echo=True)
 Session = sessionmaker(bind=myDBEngine)
 session = Session()
-
-
-
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    username = Column(Unicode(50), unique=True, nullable=False)
-    password = Column(String(50), nullable=False)
-    email = Column(String(50), unique=False, nullable=True)
-    rating = Column(Integer, nullable=False, default=4000)
-    kda = Column(Float, nullable=True, default=1.0)
-    gpm = Column(Integer, nullable=True, default=300)
-    wallpapers_image_name = Column(String(50), nullable=False, default='wallpaper_default.jpg')
-    avatar_image_name = Column(String(50), nullable=False, default='avatar_default.png')
-    total_correct_answers = Column(Integer, nullable=True, default=0)
-    total_incorrect_answers = Column(Integer, nullable=True, default=0)
-    # relations
-    matches = relationship('Match', secondary='users_matches')
-    # friends = relationship('User', secondary='friends')
-    # income_friend_requests = relationship('User', secondary = 'friends_requests')
-
-    # def sendFriendRequest(self, user):
-    #     query = session.query(User).filter(User.id == user.id)
-    #     isExists = session.query(query.exists())
-    #     if isExists:
-    #         #sending request
-
-    def columnitems(self):
-            clitemsDict = super(User, self).columnitems()
-            listOfCurrentMatches = []
-            listOfRecentMatches = []
-            currentMatchesDict = dict()
-            recentMatchesDict = dict()
-            session.commit()
-            for match in self.matches:
-                # here we convert our Match server representation to client Representation
-                # need to change state of the rounds and Matches appropriately
-                if match.state == 2 or match.state == 3:
-                    listOfRecentMatches.append(match.id)
-                else:
-                    listOfCurrentMatches.append(match.id)
-
-            currentMatchesDict = {"CURRENT_MATCHES_IDS": listOfCurrentMatches}
-            recentMatchesDict = {"RECENT_MATCHES_IDS": listOfRecentMatches}
-            clitemsDict = dict(clitemsDict, **currentMatchesDict)
-            clitemsDict = dict(clitemsDict, **recentMatchesDict)
-            session.rollback()
-            return clitemsDict
-
-    def __repr__(self):
-        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.rating)
 
 friends_table = Table('friends', Base.metadata,
                             Column('user_1_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
@@ -106,197 +53,11 @@ friends_requests_table = Table('friends_requests', Base.metadata,
                             Column('user_to_id', Integer, ForeignKey('users.id', ondelete='CASCADE'))
                             )
 
-class Match(Base):
-    __tablename__ = 'matches'
-    id = Column(Integer, primary_key=True)
-    # (0 - not started, 1 - match running, 2 - match finished, 3 - time elapsed)
-    state = Column(Integer, nullable=True, default=0)
-    initiator_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    next_move_user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
-    winner_id = Column(Integer, ForeignKey('users.id'), default=0)
-    # relations
-    users = relationship('User', secondary='users_matches')
-    rounds = relationship('Round')
-    initiator = relationship('User', foreign_keys=[next_move_user_id])
-    next_move_user = relationship('User', foreign_keys=[next_move_user_id])
-    winner = relationship('User', foreign_keys=[winner_id])
-
-    def __init__(self, user_initiator):
-        # need to find out, if user exists already
-        self.state = 0 #state = NOT_STARTED
-        self.creation_time = datetime.datetime.now()
-        self.initiator_id = user_initiator.id
-        self.next_move_user_id = self.initiator_id
-        self.winner_id = 0
-        self.users.append(user_initiator)
-        for i in range(0, 6):
-            round_tmp = Round()
-            self.rounds.append(round_tmp)
-        self.rounds[0].state = 3 # answering
-
-    def __repr__(self):
-        return "Match(id=%d, state=%d, initiator=%r, creation time=%s)" % (self.id, self.state, self.initiator, self.creation_time)
-
-    def columnitems(self):
-        clmnItemsDict = super(Match, self).columnitems()
-        # rounds
-        listRounds = list()
-        for round in self.rounds:
-            listRounds.append(round.id)
-        roundsDict = {'ROUNDS_IDS': listRounds}
-        # users
-        users_list = list()
-        for u in self.users:
-            users_list.append(u.id)
-        users_dict = {"USERS_IDS": users_list}
-        # common
-        clmnItemsDict = dict(clmnItemsDict.items() + users_dict.items())
-        clmnItemsDict = dict(clmnItemsDict.items() + roundsDict.items())
-
-        return clmnItemsDict
-
-
 users_matches_table = Table('users_matches', Base.metadata,
                             Column('user_id', Integer, ForeignKey('users.id')),
                             Column('match_id', Integer, ForeignKey('matches.id'))
                             )
 
-
-class Round(Base):
-    __tablename__ = 'rounds'
-    id = Column(Integer, primary_key=True)
-    # SERVER (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-ASWERING, 4-REPLYING)
-    # CLIENT (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-PLAYER_ASWERING, 4-OPPONENT_ANSWERING, 5-PLAYER_REPLYING, 6-OPPONENT_REPLYING)
-    state = Column(Integer, nullable=False, default=0)
-    match_id = Column(Integer, ForeignKey('matches.id'))
-    theme_id = Column(Integer, ForeignKey('themes.id'), nullable=True)
-    # relations
-    match = relationship('Match')
-    theme = relationship('Theme')
-
-    questions = relationship('Question', secondary='round_questions')
-    user_answers = relationship('Useranswer', cascade='all, delete-orphan')
-
-    def __init__(self):
-        self.state = 0
-        self.theme_id = random.randrange(1, 3)
-
-    def columnitems(self):
-        # parent
-        clmnItemsDict = super(Round, self).columnitems()
-        # next move user id
-        next_move_user_dict = {"NEXT_MOVE_USER_ID": self.match.next_move_user.id}
-
-        # questions
-        questions_list = list()
-        for q in self.questions:
-            questions_list.append(q.id)
-        questions_dict = {'QUESTIONS_IDS': questions_list}
-        # answers
-        answers_list = list()
-        for a in self.user_answers:
-            answers_list.append(a.id)
-        answers_dict = {"ANSWERS_IDS": answers_list}
-        # common
-        clmnItemsDict = dict(clmnItemsDict, **next_move_user_dict)
-        clmnItemsDict = dict(clmnItemsDict, **questions_dict)
-        clmnItemsDict = dict(clmnItemsDict, **answers_dict)
-        return clmnItemsDict
-
-
-class Theme(Base):
-    __tablename__ = 'themes'
-    id = Column(Integer, primary_key=True)
-    name = Column(String(50), nullable=False)
-    image_name = Column(String(50), nullable=True)
-
-
-class Question(Base):
-    __tablename__ = 'questions'
-    id = Column(Integer, primary_key=True)
-    theme_id = Column(Integer, ForeignKey('themes.id'))
-    image_name = Column(String(50), nullable=True)
-    text = Column(String(50), nullable=False)
-    approved = Column(Boolean, default=1)
-    # relations
-    theme = relationship('Theme', foreign_keys=[theme_id])
-    image = image_attachment('QuestionPicture')
-    answers = relationship('Answer', cascade='all, delete-orphan')
-
-    def addAnswer(self, answerText):
-        answer = Answer()
-        answer.question_id = self.id
-        answer.text = answerText
-
-    def setCorrectAnswer(self, correctAnswerText):
-        for ans in self.answers:
-            for txt in ans.text:
-                if (txt == correctAnswerText):
-                    self.correct_answer_id = ans.id
-                    return
-        answer = Answer()
-        answer.question_id = self.id
-        answer.text = correctAnswerText
-        self.correct_answer_id = answer.id
-
-    def columnitems(self):
-        clmnItemsDict = super(Question, self).columnitems()
-        # answers
-        if len(self.answers) != 0:
-            answer_list = list()
-            for ans in self.answers:
-                answer_list.append(ans.id)
-            answers_dict = {"ANSWERS_IDS": answer_list}
-            clmnItemsDict = dict(clmnItemsDict, **answers_dict)
-        return clmnItemsDict
-
-    def get_thumbnail(self, width=None, height=None):
-        # image
-        thumbnail = self.find_or_create_thumbnail(width=width, height=height)
-        session.commit()
-        blob = thumbnail.make_blob(store=fs_store)
-        print('sizeof %s = ' % self.id + str(blob.__sizeof__()))
-        return blob
-
-    def find_or_create_thumbnail(self, width=None, height=None):
-        assert width is not None or height is not None
-        try:
-            image = self.image.find_thumbnail(width=width, height=height)
-        except NoResultFound:
-            image = self.image.generate_thumbnail(width=width, height=height, store=fs_store)
-        return image
-
-
-class QuestionPicture(Base, Image):
-    __tablename__ = 'question_picture'
-    question_id = Column(Integer, ForeignKey('questions.id'), primary_key=True)
-    question = relationship('Question')
-
-class Answer(Base):
-    __tablename__ = 'answers'
-    id = Column(Integer, primary_key=True)
-    question_id = Column(Integer, ForeignKey('questions.id'))
-    text = Column(String(50))
-    is_correct = Column(Boolean)
-    # relations
-    question = relationship('Question', foreign_keys=[question_id])
-
-
-class Useranswer(Base):
-    __tablename__ = 'user_answers'
-    id = Column(Integer, primary_key=True)
-    answer_id = Column(Integer, ForeignKey('answers.id'))
-    # relations
-    round_id = Column(Integer, ForeignKey('rounds.id'))
-    round = relationship('Round', foreign_keys=[round_id])
-
-    user_id = Column(Integer, ForeignKey('users.id'))
-    user = relationship('User', foreign_keys=[user_id])
-
-    question_id = Column(Integer, ForeignKey('questions.id'))
-    question = relationship('Question', foreign_keys=[question_id])
-
-# asossiated table in many-to-many relashionships (Round <--> Question)
 round_questions_table = Table('round_questions', Base.metadata,
                               Column('round_id', Integer, ForeignKey('rounds.id')),
                               Column('question_id', Integer, ForeignKey('questions.id'))
@@ -308,6 +69,8 @@ class Database:
         # Base.metadata.drop_all(myDBEngine)
         # Base.metadata.create_all(myDBEngine)
         # self.initTestData()
+
+    @classmethod
     def get(self, className, id):
         if id is None:
             entity = session.query(className)
@@ -321,6 +84,7 @@ class Database:
             else:
                 return entity.one()
 
+    @classmethod
     def update(self, entity):
         if entity is None:
             return None
@@ -329,6 +93,7 @@ class Database:
             entity = session.query(entity).filter(entity.id)
             return entity
 
+    @classmethod
     def delete(self, className, id):
         if id is None:
             entity = session.query(className)
@@ -342,6 +107,7 @@ class Database:
             else:
                 return entity.one()
 
+    @classmethod
     def create_and_upgrade(self, engine, metadata):
         db_metadata = MetaData()
         db_metadata.bind = engine
@@ -410,12 +176,13 @@ class Database:
                     model_column = getattr(db_table.c, c)
                     logging.warning('Column %s.%s in the database is not in the model' % (model_table.name, model_column.name))
 
-
+    @classmethod
     def notStartedMatchesCountWithUniqueInitiator(self, finderUser):
         count = len(session.query(Match).filter(Match.state == 0, Match.initiator != finderUser).distinct(Match.initiator).all())
         print('notStartedMatchesCountWithUniqueInitiator = ' + str(count))
         return count
 
+    @classmethod
     def findMatchForUser(self, user):
         # finding not started matches
         users_in_matches_list = list()
@@ -458,12 +225,14 @@ class Database:
         # return the oldest match
         return proper_matches[0]
 
+    @classmethod
     def createNewMatchWithUser(self, user):
         m = Match(user)
         session.add(m)
         session.commit()
         return m
 
+    @classmethod
     def getUserByName(self, username):
         users = session.query(User).filter(User.username == username)
         if users.count() == 0:
@@ -471,6 +240,7 @@ class Database:
         else:
             return users.one()
 
+    @classmethod
     def addUser(self, new_user):
         session.add(new_user)
         session.commit()
@@ -480,10 +250,12 @@ class Database:
         else:
             return False
 
+    @classmethod
     def addUserAnswer(self, userAnswer):
         session.add(userAnswer)
         session.commit()
 
+    @classmethod
     def questionsIDsToRemove(self, client_questions_IDs):
         quesitons_IDs_to_remove = list()
         for qID in client_questions_IDs:
@@ -492,6 +264,7 @@ class Database:
                 quesitons_IDs_to_remove.append(qID)
         return quesitons_IDs_to_remove
 
+    @classmethod
     def questionsToAdd(self, client_questions_IDs):
         questions_to_add = list()
         db_questions = session.query(Question).filter(Question.approved == True).all()
@@ -504,6 +277,7 @@ class Database:
                 questions_to_add.append(q)
         return questions_to_add
 
+    @classmethod
     def uploadQuestionFromPath(self, questionsPath):
         with open(questionsPath + u'/questions.txt') as questionsLoreFile:
             print(u'\nQuestions:')
@@ -543,6 +317,7 @@ class Database:
                 session.add(question_obj)
         session.commit()
 
+    @classmethod
     def initTestData(self):
         ############################################## setup connection
         # database = Database()
