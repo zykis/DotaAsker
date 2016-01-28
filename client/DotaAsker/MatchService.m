@@ -35,8 +35,8 @@
     return matchService;
 }
 
-- (NSArray*)currentMatchesOfPlayer:(Player *)player {
-    NSArray* matchesIDs = [player currentMatchesIDs];
+- (NSMutableArray*)currentMatchesOfUser:(User *)user {
+    NSArray* matchesIDs = [user currentMatchesIDs];
     NSMutableArray* currentMatches = [[NSMutableArray alloc] init];
     for (NSNumber *num in matchesIDs) {
         Match* m = [self obtain:[num integerValue]];
@@ -47,8 +47,8 @@
     return currentMatches;
 }
 
-- (NSArray*)recentMatchesOfPlayer:(Player *)player {
-    NSArray* matchesIDs = [player recentMatchesIDs];
+- (NSMutableArray*)recentMatchesOfUser:(User *)user {
+    NSArray* matchesIDs = [user recentMatchesIDs];
     NSMutableArray* recentMatches = [[NSMutableArray alloc] init];
     for (NSNumber *num in matchesIDs) {
         Match* m = [self obtain:[num integerValue]];
@@ -60,7 +60,20 @@
 }
 
 - (Match*)findMatch {
-    Match* m = [self obtain:0];
+    SEL findMatch = NSSelectorFromString(@"findMatch");
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    NSData* jsonData = [transport performSelector:findMatch];
+#pragma clang diagnostic pop
+    if (!jsonData) {
+        return nil;
+    }
+    NSError *error;
+    NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+    Match* m;
+    if (!error) {
+        m = [parser parse:dict];
+    }
     return m;
 }
 

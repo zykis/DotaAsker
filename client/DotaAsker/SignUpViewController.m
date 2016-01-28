@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     _authorized = NO;
     [super viewDidLoad];
-    UIImage* walpapers = [[[ServiceLayer instance] playerService] wallpapersDefault];
+    UIImage* walpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
     [self loadBackgroundImage:walpapers];
 }
 

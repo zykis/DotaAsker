@@ -16,6 +16,7 @@
 @synthesize transport;
 @synthesize parser;
 @synthesize cache;
+@synthesize player = _player;
 
 - (id)init {
     self = [super init];
@@ -50,8 +51,11 @@
     SEL obtainUserWithUsername = NSSelectorFromString(@"obtainUserWithUsername:");
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    NSData* data = [self performSelector:obtainUserWithUsername withObject:username];
+    NSData* data = [transport performSelector:obtainUserWithUsername withObject:username];
 #pragma clang diagnostic pop
+    if (!data) {
+        return nil;
+    }
     NSError* error;
     NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (!error) {

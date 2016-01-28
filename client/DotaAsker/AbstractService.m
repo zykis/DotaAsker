@@ -15,15 +15,18 @@
 @synthesize parser;
 
 - (id)obtain:(unsigned long long)entityID {
-    id entity = [cache obtain:entityID];
+    id entity = [self.cache obtain:entityID];
     if (entity == nil) {
-        NSData* JSONData = [transport obtain:entityID];
+        NSData* JSONData = [self.transport obtain:entityID];
+        if (!JSONData) {
+            return nil;
+        }
         NSError* error;
         NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:&error];
         if (!error) {
-            entity = [parser parse:jsonDict];
+            entity = [self.parser parse:jsonDict];
             if (entity != nil) {
-                [cache append:entity];
+                [self.cache append:entity];
             }
             return entity;
         }
@@ -37,12 +40,15 @@
 }
 
 - (NSArray*)obtainAll {
-    NSData* data = [transport obtainAll];
+    NSData* data = [self.transport obtainAll];
+    if (!data) {
+        return nil;
+    }
     NSError* error;
     NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (!error) {
-        NSArray* array = [parser parseAll:jsonDict];
-        [cache appendEntities:array];
+        NSArray* array = [self.parser parseAll:jsonDict];
+        [self.cache appendEntities:array];
         return array;
     }
     else {
@@ -52,15 +58,21 @@
 }
 
 - (id)update:(id)entity {
-    NSDictionary* jsonDict = [parser encode:entity];
+    NSDictionary* jsonDict = [self.parser encode:entity];
+    if (!jsonDict) {
+        return nil;
+    }
     NSError* error;
     NSData* entityData = [NSJSONSerialization dataWithJSONObject:jsonDict options:kNilOptions error:&error];
     if (!error) {
-        NSData* data = [transport update:entityData];
+        NSData* data = [self.transport update:entityData];
+        if (!data) {
+            return nil;
+        }
         jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (!error) {
-            id updated = [parser parse:jsonDict];
-            [cache update:updated];
+            id updated = [self.parser parse:jsonDict];
+            [self.cache update:updated];
             return updated;
         }
         else {
@@ -73,15 +85,21 @@
 }
 
 - (id)create:(id)entity {
-    NSDictionary* jsonDict = [parser encode:entity];
+    NSDictionary* jsonDict = [self.parser encode:entity];
+    if (!jsonDict) {
+        return nil;
+    }
     NSError* error;
     NSData* entityData = [NSJSONSerialization dataWithJSONObject:jsonDict options:kNilOptions error:&error];
     if (!error) {
-        NSData* data = [transport create:entityData];
+        NSData* data = [self.transport create:entityData];
+        if (!data) {
+            return nil;
+        }
         jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (!error) {
-            id created = [parser parse:jsonDict];
-            [cache append:created];
+            id created = [self.parser parse:jsonDict];
+            [self.cache append:created];
             return created;
         }
         else {
@@ -94,8 +112,8 @@
 }
 
 - (void)remove:(unsigned long long)entityID {
-    [cache remove:entityID];
-    [transport remove:entityID];
+    [self.cache remove:entityID];
+    [self.transport remove:entityID];
 }
 
 @end

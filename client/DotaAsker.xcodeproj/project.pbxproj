@@ -16,14 +16,12 @@
 		AC5ADC0D1C48DE9400A73F97 /* RoundTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC0C1C48DE9400A73F97 /* RoundTransport.m */; };
 		AC5ADC101C48DEA100A73F97 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */; };
 		AC5ADC141C48DEB200A73F97 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC131C48DEB200A73F97 /* UserTransport.m */; };
-		AC5ADC171C48DEBC00A73F97 /* PlayerTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */; };
 		AC5ADC1A1C48DF5E00A73F97 /* AnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC191C48DF5E00A73F97 /* AnswerParser.m */; };
 		AC5ADC1D1C48DF6C00A73F97 /* QuestionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC1C1C48DF6C00A73F97 /* QuestionParser.m */; };
 		AC5ADC201C48DF7500A73F97 /* ThemeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC1F1C48DF7500A73F97 /* ThemeParser.m */; };
 		AC5ADC231C48DF7F00A73F97 /* RoundParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC221C48DF7F00A73F97 /* RoundParser.m */; };
 		AC5ADC261C48DF8800A73F97 /* MatchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC251C48DF8800A73F97 /* MatchParser.m */; };
 		AC5ADC291C48DF9100A73F97 /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC281C48DF9100A73F97 /* UserParser.m */; };
-		AC5ADC2C1C48DF9D00A73F97 /* PlayerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */; };
 		AC6091691BFF15CA00D728B6 /* JFRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091681BFF15CA00D728B6 /* JFRWebSocket.m */; };
 		AC60916C1BFF3B0300D728B6 /* JFRSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60916B1BFF3B0300D728B6 /* JFRSecurity.m */; };
 		AC60916F1BFF4A7F00D728B6 /* AbstractParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60916E1BFF4A7F00D728B6 /* AbstractParser.m */; };
@@ -66,7 +64,6 @@
 		AC8043761C36B06B0063CD67 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8043751C36B06B0063CD67 /* RoundService.m */; };
 		AC8043791C36B0770063CD67 /* MatchService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8043781C36B0770063CD67 /* MatchService.m */; };
 		AC80437C1C36B0880063CD67 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437B1C36B0880063CD67 /* UserService.m */; };
-		AC80437F1C36B0A90063CD67 /* PlayerService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC80437E1C36B0A90063CD67 /* PlayerService.m */; };
 		AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC850B751B3C85A00050954C /* Trajan Bold.ttf */; };
 		AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC850B771B3C8EB90050954C /* wallpaper_default.jpg */; };
 		AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */; };
@@ -123,7 +120,6 @@
 		ACEADA191BA051740057CD13 /* icon_logout_44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEADA181BA051740057CD13 /* icon_logout_44@2x.png */; };
 		ACF41BFB1B3BABE00096598C /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */; };
 		ACF41BFD1B3BC3720096598C /* settings_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */; };
-		ACF41C001B3BD3E60096598C /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF41BFF1B3BD3E60096598C /* Player.m */; };
 		ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41C071B3C0F950096598C /* versus_image_48x48.png */; };
 		ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDF2D81BFB41F500B89838 /* Transport.m */; };
 /* End PBXBuildFile section */
@@ -155,8 +151,6 @@
 		AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTransport.m; sourceTree = "<group>"; };
 		AC5ADC121C48DEB200A73F97 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
 		AC5ADC131C48DEB200A73F97 /* UserTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTransport.m; sourceTree = "<group>"; };
-		AC5ADC151C48DEBC00A73F97 /* PlayerTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTransport.h; sourceTree = "<group>"; };
-		AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTransport.m; sourceTree = "<group>"; };
 		AC5ADC181C48DF5E00A73F97 /* AnswerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerParser.h; sourceTree = "<group>"; };
 		AC5ADC191C48DF5E00A73F97 /* AnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerParser.m; sourceTree = "<group>"; };
 		AC5ADC1B1C48DF6C00A73F97 /* QuestionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionParser.h; sourceTree = "<group>"; };
@@ -169,8 +163,6 @@
 		AC5ADC251C48DF8800A73F97 /* MatchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParser.m; sourceTree = "<group>"; };
 		AC5ADC271C48DF9100A73F97 /* UserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserParser.h; sourceTree = "<group>"; };
 		AC5ADC281C48DF9100A73F97 /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
-		AC5ADC2A1C48DF9D00A73F97 /* PlayerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerParser.h; sourceTree = "<group>"; };
-		AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerParser.m; sourceTree = "<group>"; };
 		AC6091671BFF15CA00D728B6 /* JFRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRWebSocket.h; sourceTree = "<group>"; };
 		AC6091681BFF15CA00D728B6 /* JFRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFRWebSocket.m; sourceTree = "<group>"; };
 		AC60916A1BFF3B0300D728B6 /* JFRSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFRSecurity.h; sourceTree = "<group>"; };
@@ -235,8 +227,6 @@
 		AC8043781C36B0770063CD67 /* MatchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchService.m; sourceTree = "<group>"; };
 		AC80437A1C36B0880063CD67 /* UserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserService.h; sourceTree = "<group>"; };
 		AC80437B1C36B0880063CD67 /* UserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserService.m; sourceTree = "<group>"; };
-		AC80437D1C36B0A90063CD67 /* PlayerService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerService.h; sourceTree = "<group>"; };
-		AC80437E1C36B0A90063CD67 /* PlayerService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerService.m; sourceTree = "<group>"; };
 		AC850B751B3C85A00050954C /* Trajan Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trajan Bold.ttf"; path = "resources/Trajan Bold.ttf"; sourceTree = "<group>"; };
 		AC850B771B3C8EB90050954C /* wallpaper_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wallpaper_default.jpg; path = resources/wallpaper_default.jpg; sourceTree = "<group>"; };
 		AC850B831B3D92F40050954C /* icon_backbutton_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_backbutton_44@2x.png"; path = "resources/icon_backbutton_44@2x.png"; sourceTree = "<group>"; };
@@ -316,8 +306,6 @@
 		ACEADA181BA051740057CD13 /* icon_logout_44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_logout_44@2x.png"; path = "resources/icon_logout_44@2x.png"; sourceTree = "<group>"; };
 		ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@2x.png"; path = "resources/settings_icon@2x.png"; sourceTree = "<group>"; };
 		ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@3x.png"; path = "resources/settings_icon@3x.png"; sourceTree = "<group>"; };
-		ACF41BFE1B3BD3E60096598C /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		ACF41BFF1B3BD3E60096598C /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		ACF41C071B3C0F950096598C /* versus_image_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = versus_image_48x48.png; path = resources/versus_image_48x48.png; sourceTree = "<group>"; };
 		ACFDF2D71BFB41F500B89838 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
 		ACFDF2D81BFB41F500B89838 /* Transport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transport.m; sourceTree = "<group>"; };
@@ -596,8 +584,6 @@
 				AC5ADC251C48DF8800A73F97 /* MatchParser.m */,
 				AC5ADC271C48DF9100A73F97 /* UserParser.h */,
 				AC5ADC281C48DF9100A73F97 /* UserParser.m */,
-				AC5ADC2A1C48DF9D00A73F97 /* PlayerParser.h */,
-				AC5ADC2B1C48DF9D00A73F97 /* PlayerParser.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -634,8 +620,6 @@
 				AC5ADC0F1C48DEA100A73F97 /* MatchTransport.m */,
 				AC5ADC121C48DEB200A73F97 /* UserTransport.h */,
 				AC5ADC131C48DEB200A73F97 /* UserTransport.m */,
-				AC5ADC151C48DEBC00A73F97 /* PlayerTransport.h */,
-				AC5ADC161C48DEBC00A73F97 /* PlayerTransport.m */,
 			);
 			name = Transport;
 			sourceTree = "<group>";
@@ -643,8 +627,6 @@
 		ACFDF2D51BFB40B600B89838 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				ACF41BFE1B3BD3E60096598C /* Player.h */,
-				ACF41BFF1B3BD3E60096598C /* Player.m */,
 				AC8841B51B2E5DAA006212D2 /* User.h */,
 				AC8841B61B2E5DAA006212D2 /* User.m */,
 				AC8841B81B2E650B006212D2 /* Match.h */,
@@ -684,8 +666,6 @@
 				AC8043781C36B0770063CD67 /* MatchService.m */,
 				AC80437A1C36B0880063CD67 /* UserService.h */,
 				AC80437B1C36B0880063CD67 /* UserService.m */,
-				AC80437D1C36B0A90063CD67 /* PlayerService.h */,
-				AC80437E1C36B0A90063CD67 /* PlayerService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -853,7 +833,6 @@
 				AC95F8071C46258000FE4EE2 /* MatchInfoViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
-				ACF41C001B3BD3E60096598C /* Player.m in Sources */,
 				AC8043731C36B05F0063CD67 /* ThemeService.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */,
@@ -872,12 +851,10 @@
 				AC60916F1BFF4A7F00D728B6 /* AbstractParser.m in Sources */,
 				AC6091691BFF15CA00D728B6 /* JFRWebSocket.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
-				AC80437F1C36B0A90063CD67 /* PlayerService.m in Sources */,
 				AC5ADC141C48DEB200A73F97 /* UserTransport.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC5ADC291C48DF9100A73F97 /* UserParser.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
-				AC5ADC171C48DEBC00A73F97 /* PlayerTransport.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
 				AC95F80B1C46258000FE4EE2 /* SignUpViewController.m in Sources */,
 				AC95F80C1C46258000FE4EE2 /* StatisticsViewController.m in Sources */,
@@ -900,7 +877,6 @@
 				AC95F80E1C46258000FE4EE2 /* ThemeSelectedViewController.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
-				AC5ADC2C1C48DF9D00A73F97 /* PlayerParser.m in Sources */,
 				AC80437C1C36B0880063CD67 /* UserService.m in Sources */,
 				AC8043701C36B04E0063CD67 /* QuestionService.m in Sources */,
 				AC95F8081C46258000FE4EE2 /* QuestionViewController.m in Sources */,

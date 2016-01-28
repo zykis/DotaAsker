@@ -42,4 +42,16 @@
     return question;
 }
 
+- (NSDictionary*)encode:(Question*)question {
+    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedLongLong: question.ID], @"ID",
+                              [NSNumber numberWithUnsignedLongLong: question.themeID], @"THEME_ID",
+                              question.text, @"TEXT",
+                              question.imageName, @"IMAGE_NAME",
+                              question.answersIDs, @"ANSWERS_IDS",
+                              nil];
+    return jsonDict;
+}
+
+
 @end

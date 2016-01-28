@@ -33,4 +33,14 @@
 
     return answer;
 }
+
+- (NSDictionary*)encode:(Answer*)a {
+    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                     [NSNumber numberWithUnsignedLongLong: a.ID], @"ID",
+                                     a.text, @"TEXT",
+                                     [NSNumber numberWithBool:a.isCorrect], @"IS_CORRECT",
+                                     nil];
+    return jsonDict;
+}
+
 @end

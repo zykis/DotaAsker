@@ -1,9 +1,12 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from sqlalchemy.ext.declarative import declarative_base as real_declarative_base
+MATCHES_MAX_COUNT = 2
+
+
 from sqlalchemy import Table, Column, Integer, String, Unicode, Binary, Float, Boolean, BINARY, DateTime
 from sqlalchemy import ForeignKey
+from sqlalchemy import update, delete
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import inspect
@@ -24,12 +27,12 @@ import random
 import json
 import random
 import os
+from string import uppercase
 
 # __project_folder__ = '/home/zykis/DAServer/src/' # ubuntu server
 __project_folder__ = '/Users/artem/projects/DotaAsker/server/' # local machine
 __questions_folder__ = os.path.join(__project_folder__, 'questions')
-# Let's make this a class decorator
-declarative_base = lambda cls: real_declarative_base(cls=cls)
+
 fs_store = sqlalchemy_imageattach.stores.fs.FileSystemStore(
             path=u'./question_images',
             base_url=u'http://localhost/'
@@ -42,16 +45,7 @@ myDBEngine = create_engine('sqlite:///./mydb.db', echo=False)
 Session = sessionmaker(bind=myDBEngine)
 session = Session()
 
-@declarative_base
-class Base(object):
-    def columns(self):
-        return [c.name for c in self.__table__.columns]
 
-    def columnitems(self):
-        return dict([(c, getattr(self, c)) for c in self.columns()])
-
-    def tojson(self):
-        return self.columnitems()
 
 class User(Base):
     __tablename__ = 'users'
@@ -62,32 +56,55 @@ class User(Base):
     rating = Column(Integer, nullable=False, default=4000)
     kda = Column(Float, nullable=True, default=1.0)
     gpm = Column(Integer, nullable=True, default=300)
-    wallpaper_image_name = Column(String(50), nullable=False, default='wallpaper_default.jpg')
+    wallpapers_image_name = Column(String(50), nullable=False, default='wallpaper_default.jpg')
     avatar_image_name = Column(String(50), nullable=False, default='avatar_default.png')
+    total_correct_answers = Column(Integer, nullable=True, default=0)
+    total_incorrect_answers = Column(Integer, nullable=True, default=0)
     # relations
     matches = relationship('Match', secondary='users_matches')
+    # friends = relationship('User', secondary='friends')
+    # income_friend_requests = relationship('User', secondary = 'friends_requests')
 
-    def __repr__(self):
-        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.rating)
+    # def sendFriendRequest(self, user):
+    #     query = session.query(User).filter(User.id == user.id)
+    #     isExists = session.query(query.exists())
+    #     if isExists:
+    #         #sending request
 
-class Player(User):
-        def columnitems(self):
-            clitemsDict = super(Player, self).columnitems()
-            listOfMatches = []
-            matchesDict = dict()
+    def columnitems(self):
+            clitemsDict = super(User, self).columnitems()
+            listOfCurrentMatches = []
+            listOfRecentMatches = []
+            currentMatchesDict = dict()
+            recentMatchesDict = dict()
             session.commit()
             for match in self.matches:
                 # here we convert our Match server representation to client Representation
                 # need to change state of the rounds and Matches appropriately
-                if match.initiator.id == self.id:
-                    listOfMatches.append(match.toInitiator().columnitems())
+                if match.state == 2 or match.state == 3:
+                    listOfRecentMatches.append(match.id)
                 else:
-                    listOfMatches.append(match.toNotInitiator().columnitems())
+                    listOfCurrentMatches.append(match.id)
 
-            matchesDict = {"matches": listOfMatches}
-            clitemsDict = dict(clitemsDict, **matchesDict)
+            currentMatchesDict = {"CURRENT_MATCHES_IDS": listOfCurrentMatches}
+            recentMatchesDict = {"RECENT_MATCHES_IDS": listOfRecentMatches}
+            clitemsDict = dict(clitemsDict, **currentMatchesDict)
+            clitemsDict = dict(clitemsDict, **recentMatchesDict)
             session.rollback()
             return clitemsDict
+
+    def __repr__(self):
+        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.rating)
+
+friends_table = Table('friends', Base.metadata,
+                            Column('user_1_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
+                            Column('user_2_id', Integer, ForeignKey('users.id', ondelete='CASCADE'))
+                            )
+
+friends_requests_table = Table('friends_requests', Base.metadata,
+                            Column('user_from_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
+                            Column('user_to_id', Integer, ForeignKey('users.id', ondelete='CASCADE'))
+                            )
 
 class Match(Base):
     __tablename__ = 'matches'
@@ -95,19 +112,21 @@ class Match(Base):
     # (0 - not started, 1 - match running, 2 - match finished, 3 - time elapsed)
     state = Column(Integer, nullable=True, default=0)
     initiator_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    next_move_user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
     winner_id = Column(Integer, ForeignKey('users.id'), default=0)
-    creation_time = Column(DateTime)
     # relations
     users = relationship('User', secondary='users_matches')
     rounds = relationship('Round')
-    initiator = relationship('User', foreign_keys=[initiator_id])
-    winner = relationship('User', foreign_keys=[initiator_id])
+    initiator = relationship('User', foreign_keys=[next_move_user_id])
+    next_move_user = relationship('User', foreign_keys=[next_move_user_id])
+    winner = relationship('User', foreign_keys=[winner_id])
 
     def __init__(self, user_initiator):
         # need to find out, if user exists already
         self.state = 0 #state = NOT_STARTED
         self.creation_time = datetime.datetime.now()
-        self.initiator = user_initiator
+        self.initiator_id = user_initiator.id
+        self.next_move_user_id = self.initiator_id
         self.winner_id = 0
         self.users.append(user_initiator)
         for i in range(0, 6):
@@ -118,69 +137,20 @@ class Match(Base):
     def __repr__(self):
         return "Match(id=%d, state=%d, initiator=%r, creation time=%s)" % (self.id, self.state, self.initiator, self.creation_time)
 
-    def toInitiator(self):
-        # server states: (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-ASWERING, 4-REPLYING)
-        # client states: (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-PLAYER_ASWERING, 4-OPPONENT_ANSWERING, 5-PLAYER_REPLYING, 6-OPPONENT_REPLYING)
-        bRoundNumberOdd = True # номер раунда - нечётный? (1,2,3,4,5,6)
-        newMatch = self
-        for round in newMatch.rounds:
-            if round.state == 3:
-                if bRoundNumberOdd == True:
-                    round.state = 3
-                else:
-                    round.state = 4
-            elif round.state == 4:
-                if bRoundNumberOdd == True:
-                    round.state = 6
-                else:
-                    round.state = 5
-            bRoundNumberOdd = not bRoundNumberOdd
-        return newMatch
-
-    def toNotInitiator(self):
-        # server states: (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-ASWERING, 4-REPLYING)
-        # client states: (0-NOT_STARTED, 1-FINISHED, 2-TIME_ELAPSED, 3-PLAYER_ASWERING, 4-OPPONENT_ANSWERING, 5-PLAYER_REPLYING, 6-OPPONENT_REPLYING)
-        bRoundNumberOdd = True # номер раунда - нечётный? (1,2,3,4,5,6)
-        newMatch = self
-        for round in newMatch.rounds:
-            if round.state == 3:
-                if bRoundNumberOdd == True:
-                    round.state = 4
-                else:
-                    round.state = 3
-            elif round.state == 4:
-                if bRoundNumberOdd == True:
-                    round.state = 5
-                else:
-                    round.state = 6
-            bRoundNumberOdd = not bRoundNumberOdd
-        return newMatch
-
     def columnitems(self):
-        winner_dict = {"winnerID": self.winner_id}
-        state_dict = {"state": self.state}
+        clmnItemsDict = super(Match, self).columnitems()
         # rounds
         listRounds = list()
         for round in self.rounds:
-            listRounds.append(round.columnitems())
-        roundsDict = {'rounds': listRounds}
+            listRounds.append(round.id)
+        roundsDict = {'ROUNDS_IDS': listRounds}
         # users
         users_list = list()
         for u in self.users:
-            users_list.append(u.columnitems())
-        users_dict = {"users": users_list}
-        # game_initiator
-        initiator = User()
-        for u in self.users:
-            if u.id == self.initiator_id:
-                initiator = u
-        initiator_dict = {"initiator": initiator.username}
+            users_list.append(u.id)
+        users_dict = {"USERS_IDS": users_list}
         # common
-        clmnItemsDict = dict()
-        clmnItemsDict = dict(clmnItemsDict.items() + winner_dict.items())
-        clmnItemsDict = dict(clmnItemsDict.items() + state_dict.items())
         clmnItemsDict = dict(clmnItemsDict.items() + users_dict.items())
-        clmnItemsDict = dict(clmnItemsDict.items() + initiator_dict.items())
         clmnItemsDict = dict(clmnItemsDict.items() + roundsDict.items())
 
         return clmnItemsDict
@@ -205,33 +175,30 @@ class Round(Base):
     theme = relationship('Theme')
 
     questions = relationship('Question', secondary='round_questions')
-    user_answers = relationship('UserAnswer', cascade='all, delete-orphan')
+    user_answers = relationship('Useranswer', cascade='all, delete-orphan')
 
     def __init__(self):
         self.state = 0
         self.theme_id = random.randrange(1, 3)
 
     def columnitems(self):
-        # id
-        id_dict = {"id": self.id}
-        # state
-        state_dict = {"state": self.state}
-        # theme
-        theme_dict = {"theme": self.theme.name}
+        # parent
+        clmnItemsDict = super(Round, self).columnitems()
+        # next move user id
+        next_move_user_dict = {"NEXT_MOVE_USER_ID": self.match.next_move_user.id}
+
         # questions
         questions_list = list()
         for q in self.questions:
-            questions_list.append(q.columnitems())
-        questions_dict = {'questions': questions_list}
+            questions_list.append(q.id)
+        questions_dict = {'QUESTIONS_IDS': questions_list}
         # answers
         answers_list = list()
         for a in self.user_answers:
-            answers_list.append(a.columnitems())
-        answers_dict = {"answers": answers_list}
+            answers_list.append(a.id)
+        answers_dict = {"ANSWERS_IDS": answers_list}
         # common
-        clmnItemsDict = dict(id_dict)
-        clmnItemsDict = dict(clmnItemsDict, **state_dict)
-        clmnItemsDict = dict(clmnItemsDict, **theme_dict)
+        clmnItemsDict = dict(clmnItemsDict, **next_move_user_dict)
         clmnItemsDict = dict(clmnItemsDict, **questions_dict)
         clmnItemsDict = dict(clmnItemsDict, **answers_dict)
         return clmnItemsDict
@@ -247,8 +214,9 @@ class Theme(Base):
 class Question(Base):
     __tablename__ = 'questions'
     id = Column(Integer, primary_key=True)
-    text = Column(String(50), nullable=False)
     theme_id = Column(Integer, ForeignKey('themes.id'))
+    image_name = Column(String(50), nullable=True)
+    text = Column(String(50), nullable=False)
     approved = Column(Boolean, default=1)
     # relations
     theme = relationship('Theme', foreign_keys=[theme_id])
@@ -272,32 +240,23 @@ class Question(Base):
         self.correct_answer_id = answer.id
 
     def columnitems(self):
-        clmnitems_dict = {"id": self.id}
-        return clmnitems_dict
-
-    def full_columnitems(self, width=None, height=None):
-        clmnitems_dict = {"id": self.id, "text": self.text, "theme": self.theme.name}
-
+        clmnItemsDict = super(Question, self).columnitems()
         # answers
         if len(self.answers) != 0:
             answer_list = list()
             for ans in self.answers:
-                answer_list.append(ans.columnitems())
-            answers_dict = {"answers": answer_list}
-            clmnitems_dict = dict(clmnitems_dict, **answers_dict)
+                answer_list.append(ans.id)
+            answers_dict = {"ANSWERS_IDS": answer_list}
+            clmnItemsDict = dict(clmnItemsDict, **answers_dict)
+        return clmnItemsDict
 
+    def get_thumbnail(self, width=None, height=None):
         # image
         thumbnail = self.find_or_create_thumbnail(width=width, height=height)
         session.commit()
-
         blob = thumbnail.make_blob(store=fs_store)
         print('sizeof %s = ' % self.id + str(blob.__sizeof__()))
-        blob = bytearray(source=blob)
-        blob = list(blob)
-        print('sizeof blob = ' + str(blob.__sizeof__()))
-        image_dict = {"image": blob}
-        clmnitems_dict = dict(clmnitems_dict, **image_dict)
-        return clmnitems_dict
+        return blob
 
     def find_or_create_thumbnail(self, width=None, height=None):
         assert width is not None or height is not None
@@ -318,12 +277,12 @@ class Answer(Base):
     id = Column(Integer, primary_key=True)
     question_id = Column(Integer, ForeignKey('questions.id'))
     text = Column(String(50))
-    isCorrect = Column(Boolean)
+    is_correct = Column(Boolean)
     # relations
     question = relationship('Question', foreign_keys=[question_id])
 
 
-class UserAnswer(Base):
+class Useranswer(Base):
     __tablename__ = 'user_answers'
     id = Column(Integer, primary_key=True)
     answer_id = Column(Integer, ForeignKey('answers.id'))
@@ -337,16 +296,6 @@ class UserAnswer(Base):
     question_id = Column(Integer, ForeignKey('questions.id'))
     question = relationship('Question', foreign_keys=[question_id])
 
-    def fromJSON(self, jsonDict):
-        ID = jsonDict["ID"]
-        self.user_id = jsonDict["userID"]
-        self.question_id = jsonDict["questionID"]
-        self.answer_id = jsonDict["answerID"]
-        self.round_id = jsonDict["roundID"]
-        if(ID != -1):
-            self.id = ID
-        return self
-
 # asossiated table in many-to-many relashionships (Round <--> Question)
 round_questions_table = Table('round_questions', Base.metadata,
                               Column('round_id', Integer, ForeignKey('rounds.id')),
@@ -359,16 +308,39 @@ class Database:
         # Base.metadata.drop_all(myDBEngine)
         # Base.metadata.create_all(myDBEngine)
         # self.initTestData()
-
-    def getUserAnswer(self, id):
-        answer = session.query(UserAnswer).filter(UserAnswer.id == id)
-        if answer.count() == 0:
+    def get(self, className, id):
+        if id is None:
+            entity = session.query(className)
+        else:
+            entity = session.query(className).filter(className.id == id)
+        if entity.count() == 0:
             return None
         else:
-            return answer.one()
+            if id is None:
+                return entity.all()
+            else:
+                return entity.one()
 
-    def updateUserAnswer(self, userAnswer):
-        return userAnswer
+    def update(self, entity):
+        if entity is None:
+            return None
+        else:
+            update(entity)
+            entity = session.query(entity).filter(entity.id)
+            return entity
+
+    def delete(self, className, id):
+        if id is None:
+            entity = session.query(className)
+        else:
+            entity = session.query(className).filter(className.id == id)
+        if entity.count() == 0:
+            return None
+        else:
+            if id is None:
+                return entity.all()
+            else:
+                return entity.one()
 
     def create_and_upgrade(self, engine, metadata):
         db_metadata = MetaData()
@@ -499,13 +471,6 @@ class Database:
         else:
             return users.one()
 
-    def getPlayerByName(self, username):
-        players = session.query(Player).filter(Player.username == username)
-        if players.count() == 0:
-            return None
-        else:
-            return players.one()
-
     def addUser(self, new_user):
         session.add(new_user)
         session.commit()
@@ -564,9 +529,9 @@ class Database:
                 for ans in q['answers']:
                     answ = Answer(question_id=question_obj.id, text=ans)
                     if i == q['correct_answer_index']:
-                        answ.isCorrect = True
+                        answ.is_correct = True
                     else:
-                        answ.isCorrect = False
+                        answ.is_correct = False
                     i += 1
                     session.add(answ)
                     question_obj.answers.append(answ)
@@ -596,9 +561,9 @@ class Database:
         session.commit()
 
         ############################################# create Users
-        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpaper_image_name='wallpaper_antimage_1.jpg', rating=4125)
-        peter_user = User(username=u'Peter', password=u'1', avatar_image_name='avatar_nature_prophet.png', wallpaper_image_name='wallpaper_bloodseeker_1.jpg', rating=3940)
-        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpaper_image_name='wallpaper_bloodseeker_1.jpg', rating=3870)
+        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', rating=4125)
+        peter_user = User(username=u'Peter', password=u'1', avatar_image_name='avatar_nature_prophet.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', rating=3940)
+        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', rating=3870)
 
         # add Users to session
         session.add(john_user)
@@ -636,14 +601,14 @@ class Database:
                 r.theme = lore_theme
 
             for quest in r.questions:
-                    user_answer = UserAnswer()
+                    user_answer = Useranswer()
                     user_answer.round = r
                     user_answer.user = first_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
                     session.add(user_answer)
 
-                    user2_answer = UserAnswer()
+                    user2_answer = Useranswer()
                     user2_answer.round = r
                     user2_answer.user = first_match.users[1]
                     user2_answer.question = quest
@@ -664,14 +629,14 @@ class Database:
                 r.theme = lore_theme
 
             for quest in r.questions:
-                        user_answer = UserAnswer()
+                        user_answer = Useranswer()
                         user_answer.round = r
                         user_answer.user = second_match.users[0]
                         user_answer.question = quest
                         user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
                         session.add(user_answer)
 
-                        user2_answer = UserAnswer()
+                        user2_answer = Useranswer()
                         user2_answer.round = r
                         user2_answer.user = second_match.users[1]
                         user2_answer.question = quest
@@ -680,8 +645,8 @@ class Database:
             r.state = 1
         session.commit()
 
-        first_match.state = 2
-        second_match.state = 2
+        first_match.state = 1
+        second_match.state = 1
 
         third_match = Match(peter_user)
         fourth_match = Match(peter_user)

@@ -8,6 +8,7 @@
 
 #import "UserParser.h"
 #import "User.h"
+#import "MatchService.h"
 
 @implementation UserParser
 
@@ -18,9 +19,11 @@
           [JSONDict objectForKey:@"GPM"] &&
           [JSONDict objectForKey:@"KDA"] &&
           [JSONDict objectForKey:@"AVATAR_IMAGE_NAME"] &&
-          [JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"]
+          [JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"] &&
+          [JSONDict objectForKey:@"CURRENT_MATCHES_IDS"] &&
+          [JSONDict objectForKey:@"RECENT_MATCHES_IDS"]
           )) {
-        NSLog(@"Parsing error: can't retrieve a field");
+        NSLog(@"Parsing error: can't retrieve a field in UserParser");
         return nil;
     }
     
@@ -32,7 +35,27 @@
     [user setKDA:[[JSONDict objectForKey:@"KDA"] floatValue]];
     [user setAvatarImageName:[JSONDict objectForKey:@"AVATAR_IMAGE_NAME"]];
     [user setWallpapersImageName:[JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"]];
+    NSArray* currentMatchesIDs = [[JSONDict objectForKey:@"CURRENT_MATCHES_IDS"] mutableCopy];
+    NSArray* recentMatchesIDs = [[JSONDict objectForKey:@"RECENT_MATCHES_IDS"] mutableCopy];
+    [[user currentMatchesIDs] addObjectsFromArray:currentMatchesIDs];
+    [[user recentMatchesIDs] addObjectsFromArray:recentMatchesIDs];
+    
     return user;
+}
+
+- (NSDictionary*)encode:(User*)user {
+    NSArray* matchesIDs = [user.currentMatchesIDs arrayByAddingObjectsFromArray:user.recentMatchesIDs];
+    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedLongLong:user.ID], @"ID",
+                              user.name, @"USERNAME",
+                              [NSNumber numberWithInt:user.MMR], @"RATING",
+                              [NSNumber numberWithInt:user.GPM], @"GPM",
+                              [NSNumber numberWithFloat:user.KDA], @"KDA",
+                              user.avatarImageName, @"AVATAR_IMAGE_NAME",
+                              user.wallpapersImageName, @"WALLPAPERS_IMAGE_NAME",
+                              matchesIDs, @"MATCHES_IDS",
+                              nil];
+    return jsonDict;
 }
 
 @end

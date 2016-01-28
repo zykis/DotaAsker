@@ -7,7 +7,14 @@
 //
 
 #import "MatchTransport.h"
+#import "UserService.h"
 
 @implementation MatchTransport
+
+- (NSData*)findMatch {
+    NSString *message = [NSString stringWithFormat: @"{\"COMMAND\":\"FIND_MATCH\", \"PLAYER_NAME\":\"%@\"}", [[[UserService instance] player] name]];
+    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+    return JSONData;
+}
 
 @end

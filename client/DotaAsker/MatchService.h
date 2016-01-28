@@ -16,8 +16,8 @@
 @interface MatchService : AbstractService
 + (MatchService*)instance;
 
-- (NSArray*)currentMatchesOfPlayer:(Player*)player;
-- (NSArray*)recentMatchesOfPlayer:(Player*)player;
+- (NSArray*)currentMatchesOfUser:(User*)user;
+- (NSArray*)recentMatchesOfUser:(User*)user;
 - (Match*)findMatch;
 - (Match*)matchForRound:(Round*)round;
 

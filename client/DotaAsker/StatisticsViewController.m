@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage* wallpapers = [[[ServiceLayer instance] playerService] wallpapersDefault];
+    UIImage* wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
     [self loadBackgroundImage:wallpapers];
     // Do any additional setup after loading the view.
 }

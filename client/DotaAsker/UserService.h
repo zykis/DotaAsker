@@ -13,6 +13,7 @@
 @import UIKit;
 
 @interface UserService : AbstractService
+@property (strong, nonatomic) User* player;
 + (UserService*)instance;
 
 - (UIImage*)wallpapersDefault;

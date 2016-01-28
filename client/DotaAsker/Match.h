@@ -16,12 +16,11 @@ typedef enum {MATCH_NOT_STARTED = 0, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_E
 @interface Match : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (assign, nonatomic) unsigned long long winnerID;
+@property (assign, nonatomic) MatchState state;
 @property (assign, nonatomic) unsigned long long playerID;
 @property (assign, nonatomic) unsigned long long opponentID;
-@property (assign, nonatomic) MatchState state;
-@property (assign, nonatomic) NSInteger scorePlayer;
-@property (assign, nonatomic) NSInteger scoreOpponent;
+@property (assign, nonatomic) NSInteger scorePlayer;//считается на клиенте
+@property (assign, nonatomic) NSInteger scoreOpponent;//считается на клиенте
 @property (strong, nonatomic) NSMutableArray *roundsIDs;
 
 @end

@@ -10,4 +10,12 @@
 
 @implementation Theme
 
+- (BOOL)isEqual:(id)object {
+    Theme* t = object;
+    if (t.ID == self.ID) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

@@ -30,7 +30,7 @@
     if(self) {
         parser = [[UserAnswerParser alloc] init];
         cache = [[AbstractCache alloc] init];
-        transport = [[Transport alloc] init];
+        transport = [[UserAnswerTransport alloc] init];
     }
     return self;
 }
@@ -38,6 +38,11 @@
 - (NSString*)textForUserAnswer:(UserAnswer *)userAnswer {
     Answer* ans = [[AnswerService instance] obtain:[userAnswer relatedAnswerID]];
     return [ans text];
+}
+
+- (BOOL)isCorrect:(UserAnswer *)userAnswer {
+    Answer* a = [[AnswerService instance] obtain:userAnswer.relatedAnswerID];
+    return [a isCorrect];
 }
 
 @end

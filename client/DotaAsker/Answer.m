@@ -10,4 +10,12 @@
 
 @implementation Answer
 
+- (BOOL)isEqual:(id)object {
+    Answer* a = object;
+    if (a.ID == self.ID) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

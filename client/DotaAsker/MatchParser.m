@@ -12,50 +12,98 @@
 #import "Match.h"
 #import "Round.h"
 #import "User.h"
+#import "UserService.h"
+#import "RoundService.h"
+#import "AnswerService.h"
+#import "UserAnswerService.h"
 
 @implementation MatchParser
 
 - (Match*)parse:(NSDictionary *)JSONDict {
     if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"WINNER_ID"] &&
-          [JSONDict objectForKey:@"PLAYER_ID"] &&
-          [JSONDict objectForKey:@"OPPONENT_ID"] &&
+          [JSONDict objectForKey:@"USERS_IDS"] &&
           [JSONDict objectForKey:@"STATE"] &&
-          [JSONDict objectForKey:@"SCORE_PLAYER"] &&
-          [JSONDict objectForKey:@"SCORE_OPPONENT"] &&
           [JSONDict objectForKey:@"ROUNDS_IDS"]
           )) {
-        NSLog(@"Parsing error: can't retrieve a field");
+        NSLog(@"Parsing error: can't retrieve a field in MatchParser");
         return nil;
     }
     
     Match* match = [[Match alloc] init];
+    NSInteger scorePlayer = 0;
+    NSInteger scoreOpponent = 0;
+    
     //ID
     unsigned long long matchID = [[JSONDict objectForKey:@"ID"] unsignedLongLongValue];
     [match setID:matchID];
-    //winnerID
-    unsigned long long winnerID = [[JSONDict objectForKey:@"WINNER_ID"] unsignedLongLongValue];
-    [match setWinnerID:winnerID];
     //playerID
-    unsigned long long playerID = [[JSONDict objectForKey:@"PLAYER_ID"] unsignedLongLongValue];
-    [match setPlayerID:playerID];
-    //opponentID
-    unsigned long long opponentID = [[JSONDict objectForKey:@"OPPONENT_ID"] unsignedLongLongValue];
-    [match setOpponentID:opponentID];
+    NSArray* usersIDs = [JSONDict objectForKey:@"USERS_IDS"];
+    for (int i = 0; i < [usersIDs count]; i++) {
+        unsigned long long anID = [[usersIDs objectAtIndex:i] unsignedLongLongValue];
+        if (anID == [[[UserService instance] player] ID]) {
+            [match setPlayerID:anID];
+        }
+        else {
+            [match setOpponentID:anID];
+        }
+    }
     //matchState
     MatchState state = (MatchState)[[JSONDict objectForKey:@"STATE"] integerValue];
     [match setState:state];
-    //scorePlayer
-    NSInteger scorePlayer = [[JSONDict objectForKey:@"SCORE_PLAYER"] integerValue];
-    [match setScorePlayer: scorePlayer];
-    //scoreOpponent
-    NSInteger scoreOpponent = [[JSONDict objectForKey:@"SCORE_OPPONENT"] integerValue];
-    [match setScoreOpponent: scoreOpponent];
-    //round IDs
+
+    //round IDs and score
     NSMutableArray* roundsIDs = [JSONDict objectForKey:@"ROUNDS_IDS"];
     [match setRoundsIDs:roundsIDs];
+    for (int i = 0 ; i < [roundsIDs count]; i++) {
+        unsigned long long rID = [[roundsIDs objectAtIndex:i] unsignedLongLongValue];
+        Round* r = [[RoundService instance] obtain:rID];
+        for (int j = 0; j < [r.answersPlayerIDs count]; j++) {
+            unsigned long long uaID = [[r.answersPlayerIDs objectAtIndex:j] unsignedLongLongValue];
+            UserAnswer* ua = [[UserAnswerService instance] obtain:uaID];
+            if ([[UserAnswerService instance] isCorrect:ua]) {
+                scorePlayer++;
+            }
+        }
+        for (int j = 0; j < [r.answersOpponentIDs count]; j++) {
+            unsigned long long uaID = [[r.answersOpponentIDs objectAtIndex:j] unsignedLongLongValue];
+            UserAnswer* ua = [[UserAnswerService instance] obtain:uaID];
+            if ([[UserAnswerService instance] isCorrect:ua]) {
+                scoreOpponent++;
+            }
+        }
+    }
+
+    [match setScorePlayer: scorePlayer];
+    [match setScoreOpponent:scoreOpponent];
     
     return match;
+}
+
+- (NSDictionary*)encode:(Match*)match {
+    /*
+     id = Column(Integer, primary_key=True)
+     # (0 - not started, 1 - match running, 2 - match finished, 3 - time elapsed)
+     state = Column(Integer, nullable=True, default=0)
+     initiator_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+     next_move_user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
+     winner_id = Column(Integer, ForeignKey('users.id'), default=0)
+     # relations
+     users = relationship('User', secondary='users_matches')
+     rounds = relationship('Round')
+     initiator = relationship('User', foreign_keys=[next_move_user_id])
+     next_move_user = relationship('User', foreign_keys=[next_move_user_id])
+     winner = relationship('User', foreign_keys=[winner_id])
+     */
+    NSArray* users = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedLongLong:match.playerID],
+                      [NSNumber numberWithUnsignedLongLong:match.opponentID],
+                      nil];
+    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedLongLong: match.ID], @"ID",
+                              [NSNumber numberWithInt: (int)match.state], @"STATE",
+                              users, @"USERS_IDS",
+                              match.roundsIDs, @"ROUNDS_IDS",
+                              nil];
+    return jsonDict;
 }
 
 @end

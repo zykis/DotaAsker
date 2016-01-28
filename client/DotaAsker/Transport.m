@@ -117,15 +117,27 @@
 }
 
 - (NSData*)update:(NSData*)entity {
-    NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"UPDATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, entity];
-    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
-    return JSONData;
+    NSString *encoded = [[NSString alloc] initWithData:entity encoding:NSUTF8StringEncoding];
+    if (!encoded) {
+        return nil;
+    }
+    else {
+        NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"UPDATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, encoded];
+        NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+        return JSONData;
+    }
 }
 
 - (NSData*)create:(NSData *)entity {
-    NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"CREATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, entity];
-    NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
-    return JSONData;
+    NSString *encoded = [[NSString alloc] initWithData:entity encoding:NSUTF8StringEncoding];
+    if (!encoded) {
+        return nil;
+    }
+    else {
+        NSString* message = [NSString stringWithFormat:@"{\"COMMAND\":\"CREATE\", \"ENTITY\":\"%@\", \"OBJECT\":%@}", entityName, encoded];
+        NSData* JSONData = [[self obtainMessageWithMessage:message] dataUsingEncoding:NSUTF8StringEncoding];
+        return JSONData;
+    }
 }
 
 - (void)remove:(unsigned long long)entityID {

@@ -10,4 +10,22 @@
 
 @implementation Round
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.questionsIDs = [[NSMutableArray alloc] init];
+        self.answersPlayerIDs = [[NSMutableArray alloc] init];
+        self.answersOpponentIDs = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    Round* r = object;
+    if (r.ID == self.ID) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

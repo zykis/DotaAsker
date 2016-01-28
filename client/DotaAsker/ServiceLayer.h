@@ -15,7 +15,6 @@
 #import "RoundService.h"
 #import "MatchService.h"
 #import "UserService.h"
-#import "PlayerService.h"
 
 @interface ServiceLayer : NSObject
 
@@ -29,7 +28,6 @@
 @property (strong, nonatomic) RoundService* roundService;
 @property (strong, nonatomic) MatchService* matchService;
 @property (strong, nonatomic) UserService* userService;
-@property (strong, nonatomic) PlayerService* playerService;
 
 
 @end

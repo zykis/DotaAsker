@@ -9,6 +9,7 @@
 #import "AuthorizationService.h"
 #import "AbstractParser.h"
 #import "AbstractCache.h"
+#import "UserService.h"
 
 @implementation AuthorizationService
 
@@ -46,6 +47,8 @@
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[res dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&err];
     if (!err) {
         if ([[dict objectForKey:@"RESULT"] isEqualToString: @"SUCCEED"]) {
+            User* user = [[UserService instance] obtainUserWithUsername:login];
+            [[UserService instance] setPlayer:user];
             return YES;
         }
         else {

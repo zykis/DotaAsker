@@ -10,4 +10,14 @@
 
 @implementation Player
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.currentMatchesIDs = [[NSMutableArray alloc] init];
+        self.recentMatchesIDs = [[NSMutableArray alloc] init];
+        self.friendsIDs = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end

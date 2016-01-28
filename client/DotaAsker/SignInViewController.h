@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
-#import "Player.h"
+#import "User.h"
 
 @interface SignInViewController : UIViewController
-@property (strong, nonatomic) Player* player;
+@property (strong, nonatomic) User* user;
 @property (assign, nonatomic) BOOL authorized;
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;

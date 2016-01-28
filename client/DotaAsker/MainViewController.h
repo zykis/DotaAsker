@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Player;
+@class User;
 
 @interface MainViewController : UITableViewController
 
-@property (strong, nonatomic) Player* player;
+@property (strong, nonatomic) User* user;
 - (IBAction)findMatchPressed;
 - (IBAction)logout;
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;

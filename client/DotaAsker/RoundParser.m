@@ -7,6 +7,9 @@
 //
 
 #import "RoundParser.h"
+#import "UserAnswerService.h"
+#import "UserService.h"
+#import "MatchService.h"
 #import "Round.h"
 
 @implementation RoundParser
@@ -16,10 +19,9 @@
           [JSONDict objectForKey:@"STATE"] &&
           [JSONDict objectForKey:@"THEME_ID"] &&
           [JSONDict objectForKey:@"QUESTIONS_IDS"] &&
-          [JSONDict objectForKey:@"ANSWERS_PLAYER_IDS"] &&
-          [JSONDict objectForKey:@"ANSWERS_OPPONENT_IDS"]
+          [JSONDict objectForKey:@"ANSWERS_IDS"]
           )) {
-        NSLog(@"Parsing error: can't retrieve a field");
+        NSLog(@"Parsing error: can't retrieve a field in RoundParser");
         return nil;
     }
     
@@ -36,13 +38,34 @@
     NSMutableArray* questionsIDs = [JSONDict objectForKey:@"QUESTIONS_IDS"];
     [round setQuestionsIDs:questionsIDs];
     //answersPlayerIDs
-    NSMutableArray* answersPlayerIDs = [JSONDict objectForKey:@"ANSWERS_PLAYER_IDS"];
-    [round setAnswersPlayerIDs:answersPlayerIDs];
-    //answersOpponentIDs
-    NSMutableArray* answersOpponentIDs = [JSONDict objectForKey:@"ANSWERS_OPPONENT_IDS"];
-    [round setAnswersOpponentIDs:answersOpponentIDs];
+    
+    NSMutableArray* answersIDs = [JSONDict objectForKey:@"ANSWERS_IDS"];
+    for (int i = 0; i < [answersIDs count]; i++) {
+        unsigned long long uaID = [[answersIDs objectAtIndex:i] unsignedLongLongValue];
+        UserAnswer* ua = [[UserAnswerService instance] obtain:uaID];
+        if (ua.relatedUserID == [[[UserService instance] player] ID]) {
+            [[round answersPlayerIDs] addObject:[NSNumber numberWithUnsignedLongLong:uaID]];
+        }
+        else {
+            [[round answersOpponentIDs] addObject:[NSNumber numberWithUnsignedLongLong:uaID]];
+        }
+    }
 
     return round;
+}
+
+- (NSDictionary*)encode:(Round*)round {
+    Match* m = [[MatchService instance] matchForRound:round];
+    NSArray* answers = [round.answersOpponentIDs arrayByAddingObjectsFromArray:round.answersPlayerIDs];
+    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedLongLong: round.ID], @"ID",
+                              [NSNumber numberWithInt: (int)round.round_state], @"STATE",
+                              [NSNumber numberWithUnsignedLongLong: round.themeID], @"THEME_ID",
+                              [NSNumber numberWithUnsignedLongLong: m.ID], @"MATCH_ID",
+                              round.questionsIDs, @"QUESTIONS_IDS",
+                              answers, @"ANSWERS_IDS",
+                              nil];
+    return jsonDict;
 }
 
 @end

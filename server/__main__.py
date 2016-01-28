@@ -24,12 +24,12 @@
 #
 ###############################################################################
 
-from autobahn.twisted.websocket import WebSocketServerProtocol, \
-    WebSocketServerFactory
-import time
-import json
-from database import *
-from UserAnswerParser import *
+from autobahn.twisted.websocket import WebSocketServerFactory
+from autobahn.twisted.websocket import WebSocketServerProtocol
+
+from parsers.parser import *
+
+get_class = lambda x: globals()[x]
 
 class MyServerProtocol(WebSocketServerProtocol):
 
@@ -79,38 +79,74 @@ class MyServerProtocol(WebSocketServerProtocol):
                             jsonData = json.dumps(
                                 {"COMMAND": "SIGNUP", "RESULT": "FAILED", "REASON": "failed to add user to DB"},
                                 sort_keys=True)
-                            self.writeJSONToClient(jsonData)
+                            reply = jsonData
                     else:
                         jsonData = json.dumps(
                             {"COMMAND": "SIGNUP", "RESULT": "FAILED", "REASON": "user already registered"}, sort_keys=True)
-                        self.writeJSONToClient(jsonData)
+                        reply = jsonData
 
+                ###################### FIND MATCH ##################################
+                elif (dict['COMMAND'] == 'FIND_MATCH'):
+                        username = dict['PLAYER_NAME']
+                        user = db.getUserByName(username)
+                        if user is not None:
+                            # unique, not started matches with distinct initiator
+                            count = db.notStartedMatchesCountWithUniqueInitiator(user)
+                            print("count = " + str(count))
+                            if count >= MATCHES_MAX_COUNT:
+                                # finding closest rating match
+                                m = db.findMatchForUser(user)
+                            else:
+                                # creating new match
+                                m = db.createNewMatchWithUser(user)
+                            reply = json.dumps(m.tojson())
+
+                        else:
+                            reply = json.dumps({"COMMAND":"ERROR", "REASON":"NO MATCH FOUND"})
+
+                ##################### GET_USER_BY_USERNAME ########################
+                elif (dict['COMMAND'] == 'GET_USER_BY_USERNAME'):
+                    user = db.getUserByName(dict['USERNAME'])
+                    if user is not None:
+                        reply = json.dumps(user.tojson())
+                    else:
+                        reply = json.dumps({"COMMAND":"ERROR", "REASON":"NO USER WITH USERNAME = {0}".format(dict['USERNAME'])})
+
+                ##################### GET ########################
                 elif(dict['COMMAND'] == 'GET'):
-                    if(dict['ENTITY'] == 'USERANSWER'):
-                        ua = db.getUserAnswer(dict['ID'])
-                        reply = json.dumps(UserAnswerParser.toJSON(ua, dict['ID']))
+                    className = dict['ENTITY']
+                    className = className.lower()
+                    className = className.title()
+                    cls = get_class(className)
+
+                    if dict['ID'] is not None:
+                        entity = db.get(cls, dict['ID'])
                     else:
-                        reply = json.dumps(
-                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
-                                sort_keys=True)
+                        entity = db.get(cls, None)
+
+                    if isinstance(entity, list):
+                        entityList = list()
+                        for e in entity:
+                            entityList.append(e.tojson())
+                        reply = json.dumps(entityList)
+                    else:
+                        if entity is not None:
+                            reply = json.dumps(entity.tojson())
+                        else:
+                            reply = json.dumps("NO SUCH ENTITY")
+
+                ##################### UPDATE ########################
                 elif(dict['COMMAND'] == 'UPDATE'):
-                    if(dict['ENTITY'] == 'USERANSWER'):
-                        reply = payload
-                    else:
-                        reply = json.dumps(
-                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
-                                sort_keys=True)
-                elif(dict['COMMAND'] == 'REMOVE'):
-                    if(dict['ENTITY'] == 'USERANSWER'):
-                        reply = payload
-                    else:
-                        reply = json.dumps(
-                                {"COMMAND": "ERROR", "REASON": "NO SUCH ENTITY: {0}".format(dict['ENTITY'])},
-                                sort_keys=True)
-                else:
-                    reply = json.dumps(
-                                {"COMMAND": "ERROR", "REASON": "NO SUCH COMMAND: {0}".format(dict['COMMAND'])},
-                                sort_keys=True)
+                    className = dict['ENTITY']
+                    className = className.lower()
+                    className = className.title()
+                    cls = get_class(className)
+                    obj = Parser.fromJSON(dict['OBJECT'], cls)
+                    #update in DB, return, encode and send
+                    obj = db.update(obj)
+                    encoded = Parser.toJSON(obj, cls)
+                    reply = encoded
+
                 self.sendMessage(reply.encode('utf8'), False)
         except ValueError as e:
             print e.args[0]

@@ -36,7 +36,7 @@
 }
 
 - (id)obtain:(unsigned long long)anID {
-    SEL selector = NSSelectorFromString(@"getID");
+    SEL selector = NSSelectorFromString(@"ID");
     for (int i = 0; i < [[self entities] count]; i++) {
         id entity = [[self entities] objectAtIndex:i];
         if ([entity respondsToSelector:selector]) {

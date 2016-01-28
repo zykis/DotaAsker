@@ -7,7 +7,10 @@
 //
 
 #import "Transport.h"
+#import "Match.h"
 
 @interface MatchTransport : Transport
+
+- (NSData*)findMatch;
 
 @end

@@ -4,7 +4,7 @@ from twisted.internet import reactor
 import json
 from database import *
 
-MATCHES_MAX_COUNT = 2
+
 
 
 class FailedFormatException(Exception):
@@ -28,25 +28,6 @@ class DotaProtocol(Protocol):
         print ("client disconnected: %s" % reason)
         self.factory.clients.remove(self)
 
-    def writeJSONToClient(self, jsonData):
-        # print 'writing to client:', data
-        self.transport.write(jsonData + 'ENDMSG')
-
-    def writeBinaryToClient(self, binaryData):
-        self.transport.write(binaryData + 'ENDBINARY')
-
-    def sendPlayerInfo(self, playerName):
-        player = self.myDB.getPlayerByName(playerName)
-        if player == None:
-            strJSON = json.dumps(
-                {'command': 'getPlayerInfo', 'result': 'failed', "reason": "no such user in database"},
-                sort_keys=False)
-        else:
-            strJSON = json.dumps({"command": "getPlayerInfo", "result": "succeed", "player": player.tojson()},
-                                 sort_keys=False)
-        print(strJSON)
-        self.writeJSONToClient(strJSON)
-
     # parsing data from JSON and accessing to Database and sending answers to Client
     def dataReceived(self, data):
         print(data)
@@ -54,29 +35,8 @@ class DotaProtocol(Protocol):
             parsed_json = json.loads(data)
             print parsed_json
 
-            #########USERANSWER
-            #GET
-            if(parsed_json['ENTITY'] == 'USERANSWER'):
-                if(parsed_json['COMMAND'] == 'GET'):
-                    id = parsed_json['ID']
-                    if(id is None):
-                        return
-                        #get all userAnswers
-                    else:
-                        #get userAnswer with id
-                        ua = self.myDB.getUserAnswer(id)
-                        self.writeJSONToClient(ua.tojson())
 
-
-            # SIGNING UP
-            elif (parsed_json['command'] == 'signup'):
-
-
-            # SIGNING IN
-            elif (parsed_json['command'] == 'signin'):
-
-            # SYNCHRONIZE QUESTIONS
-            elif parsed_json['command'] == 'synchronize_questions':
+            if parsed_json['command'] == 'synchronize_questions':
                 width = parsed_json['question_image_width']
                 questions_IDs = parsed_json['questions_IDs']
                 remove_questions_IDs = self.myDB.questionsIDsToRemove(questions_IDs)
@@ -89,24 +49,7 @@ class DotaProtocol(Protocol):
                 jsonData = json.dumps({"command": "synchronize_questions", "questions": dictQuestions})
                 self.writeJSONToClient(jsonData)
 
-            # FIND MATCH
-            elif parsed_json["command"] == 'find_match':
-                username = parsed_json['player_name']
-                user = self.myDB.getUserByName(username)
-                if None != user:
-                    # unique, not started matches with distinct initiator
-                    count = self.myDB.notStartedMatchesCountWithUniqueInitiator(user)
-                    print("count = " + str(count))
-                    if count >= MATCHES_MAX_COUNT:
-                        # finding closest rating match
-                        m = self.myDB.findMatchForUser(user)
-                    else:
-                        # creating new match
-                        m = self.myDB.createNewMatchWithUser(user)
-                    session.commit()
 
-                else:
-                    print('no such user: ' + username)
 
 
             # # GET USER INFO

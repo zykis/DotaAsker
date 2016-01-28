@@ -21,5 +21,6 @@
 + (UserAnswerService*)instance;
 
 - (NSString*)textForUserAnswer:(UserAnswer*)userAnswer;
+- (BOOL)isCorrect:(UserAnswer*)userAnswer;
 
 @end

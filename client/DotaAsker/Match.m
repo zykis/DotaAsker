@@ -10,4 +10,20 @@
 
 @implementation Match
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.roundsIDs = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    Match* m = object;
+    if (m.ID == self.ID) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

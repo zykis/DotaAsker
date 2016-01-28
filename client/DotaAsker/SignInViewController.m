@@ -18,7 +18,7 @@
 
 @synthesize authorized = _authorized;
 @synthesize navigationBar = _navigationBar;
-@synthesize player = _player;
+@synthesize user = _user;
 
 - (void)viewDidLoad {
     _authorized = NO;
@@ -67,8 +67,8 @@
                 [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
             }
         }
-        _player = [[[ServiceLayer instance] playerService] obtainPlayerWithUsername:[_username text]];
-        if (_player) {
+        _user = [[[ServiceLayer instance] userService] obtainUserWithUsername:[_username text]];
+        if (_user) {
             [self performSegueWithIdentifier:@"signin" sender:self];
         }
         else {
@@ -85,9 +85,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (_player) {
+    if (_user) {
         MainViewController* destVC = (MainViewController*)[segue destinationViewController];
-        [destVC setPlayer:_player];
+        [destVC setUser:_user];
     }
     else {
         return;
@@ -97,7 +97,7 @@
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     if ([identifier isEqualToString:@"signin"])
         if (_authorized)
-            if (_player)
+            if (_user)
                 return YES;
     return NO;
 }

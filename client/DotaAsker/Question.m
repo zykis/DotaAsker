@@ -10,4 +10,20 @@
 
 @implementation Question
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.answersIDs = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
+- (BOOL)isEqual:(id)object {
+    Question* q = object;
+    if (q.ID == self.ID) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

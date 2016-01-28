@@ -19,7 +19,6 @@
 @synthesize roundService;
 @synthesize matchService;
 @synthesize userService;
-@synthesize playerService;
 
 + (ServiceLayer*)instance {
     static ServiceLayer *serviceLayer = nil;
@@ -41,7 +40,6 @@
         roundService = [RoundService instance];
         matchService = [MatchService instance];
         userService = [UserService instance];
-        playerService = [PlayerService instance];
     }
     return self;
 }
