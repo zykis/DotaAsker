@@ -21,7 +21,9 @@
           [JSONDict objectForKey:@"AVATAR_IMAGE_NAME"] &&
           [JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"] &&
           [JSONDict objectForKey:@"CURRENT_MATCHES_IDS"] &&
-          [JSONDict objectForKey:@"RECENT_MATCHES_IDS"]
+          [JSONDict objectForKey:@"RECENT_MATCHES_IDS"] &&
+          [JSONDict objectForKey:@"TOTAL_CORRECT_ANSWERS"] &&
+          [JSONDict objectForKey:@"TOTAL_INCORRECT_ANSWERS"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in UserParser");
         return nil;
@@ -39,6 +41,8 @@
     NSArray* recentMatchesIDs = [[JSONDict objectForKey:@"RECENT_MATCHES_IDS"] mutableCopy];
     [[user currentMatchesIDs] addObjectsFromArray:currentMatchesIDs];
     [[user recentMatchesIDs] addObjectsFromArray:recentMatchesIDs];
+    [user setTotalCorrectAnswers: [[JSONDict objectForKey:@"TOTAL_CORRECT_ANSWERS"] integerValue]];
+    [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"TOTAL_INCORRECT_ANSWERS"] integerValue]];
     
     return user;
 }
@@ -54,6 +58,8 @@
                               user.avatarImageName, @"AVATAR_IMAGE_NAME",
                               user.wallpapersImageName, @"WALLPAPERS_IMAGE_NAME",
                               matchesIDs, @"MATCHES_IDS",
+                              [NSNumber numberWithInt:user.totalCorrectAnswers], @"TOTAL_CORRECT_ANSWERS",
+                              [NSNumber numberWithInt:user.totalIncorrectAnswers], @"TOTAL_INCORRECT_ANSWERS",
                               nil];
     return jsonDict;
 }

@@ -13,6 +13,8 @@ class MatchParser:
         m = Match()
         m.id = matchDict['ID']
         m.state = matchDict['STATE']
+        m.winner_id = matchDict['WINNER_ID']
         users = dict()
         for u in matchDict['USERS_ID']:
             m.users.append(Database.get('User'))
+        return m

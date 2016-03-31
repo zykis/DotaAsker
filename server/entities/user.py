@@ -6,7 +6,7 @@ class User(Base):
     username = Column(Unicode(50), unique=True, nullable=False)
     password = Column(String(50), nullable=False)
     email = Column(String(50), unique=False, nullable=True)
-    rating = Column(Integer, nullable=False, default=4000)
+    mmr = Column(Integer, nullable=False, default=4000)
     kda = Column(Float, nullable=True, default=1.0)
     gpm = Column(Integer, nullable=True, default=300)
     wallpapers_image_name = Column(String(50), nullable=False, default='wallpaper_default.jpg')
@@ -15,7 +15,7 @@ class User(Base):
     total_incorrect_answers = Column(Integer, nullable=True, default=0)
     # relations
     matches = relationship('Match', secondary='users_matches')
-    # friends = relationship('User', secondary='friends')
+    friends = relationship('User', secondary='friends')
     # income_friend_requests = relationship('User', secondary = 'friends_requests')
 
     # def sendFriendRequest(self, user):
@@ -47,4 +47,4 @@ class User(Base):
             return clitemsDict
 
     def __repr__(self):
-        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.rating)
+        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.mmr)

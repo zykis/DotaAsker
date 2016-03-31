@@ -6,14 +6,10 @@ class Match(Base):
     id = Column(Integer, primary_key=True)
     # (0 - not started, 1 - match running, 2 - match finished, 3 - time elapsed)
     state = Column(Integer, nullable=True, default=0)
-    initiator_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-    next_move_user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
     winner_id = Column(Integer, ForeignKey('users.id'), default=0)
     # relations
     users = relationship('User', secondary='users_matches')
     rounds = relationship('Round')
-    initiator = relationship('User', foreign_keys=[next_move_user_id])
-    next_move_user = relationship('User', foreign_keys=[next_move_user_id])
     winner = relationship('User', foreign_keys=[winner_id])
 
     def __init__(self, user_initiator):

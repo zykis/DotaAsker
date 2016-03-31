@@ -1,6 +1,7 @@
-from UserAnswerParser import *
-from UserParser import *
+from user_answer_parser import *
+from user_parser import *
 from database import *
+import json
 
 class Parser:
     @classmethod
@@ -17,4 +18,5 @@ class Parser:
             obj = UserAnswerParser.toJSON(obj)
         elif isinstance(obj, User):
             obj = UserParser.toJSON(obj)
+        json.dumps(obj)
         return obj

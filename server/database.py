@@ -65,10 +65,10 @@ round_questions_table = Table('round_questions', Base.metadata,
 
 class Database:
     def __init__(self):
-        self.create_and_upgrade(engine=myDBEngine, metadata=Base.metadata)
-        # Base.metadata.drop_all(myDBEngine)
-        # Base.metadata.create_all(myDBEngine)
-        # self.initTestData()
+        # self.create_and_upgrade(engine=myDBEngine, metadata=Base.metadata)
+        Base.metadata.drop_all(myDBEngine)
+        Base.metadata.create_all(myDBEngine)
+        self.initTestData()
 
     @classmethod
     def get(self, className, id):
@@ -89,8 +89,13 @@ class Database:
         if entity is None:
             return None
         else:
-            update(entity)
-            entity = session.query(entity).filter(entity.id)
+            if isinstance(entity, User):
+                cls = User
+            elif isinstance(entity, Match):
+                cls = Match
+
+            update(cls).where(cls.id == entity.id)
+            entity = session.query(cls).filter(cls.id == entity.id).one()
             return entity
 
     @classmethod
@@ -186,7 +191,7 @@ class Database:
     def findMatchForUser(self, user):
         # finding not started matches
         users_in_matches_list = list()
-        not_started_matches = session.query(Match).filter(Match.state == 0, Match.initiator != user).all()
+        not_started_matches = session.query(Match).filter(Match.state == 0, user not in Match.users).all()
         # get users in this matches
         print("not started matches: " + str(not_started_matches))
         for m in not_started_matches:

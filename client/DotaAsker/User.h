@@ -11,9 +11,6 @@
 
 @interface User : NSObject
 
-@property (strong, nonatomic) NSMutableArray *currentMatchesIDs;
-@property (strong, nonatomic) NSMutableArray *recentMatchesIDs;
-@property (strong, nonatomic) NSMutableArray *friendsIDs;
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *password;
@@ -25,5 +22,8 @@
 @property (strong, nonatomic) NSString *avatarImageName;
 @property (assign, nonatomic) NSInteger totalCorrectAnswers;
 @property (assign, nonatomic) NSInteger totalIncorrectAnswers;
+@property (strong, nonatomic) NSMutableArray *currentMatchesIDs;
+@property (strong, nonatomic) NSMutableArray *recentMatchesIDs;
+@property (strong, nonatomic) NSMutableArray *friendsIDs;
 
 @end

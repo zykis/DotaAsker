@@ -13,9 +13,11 @@ class UserParser:
         user = User()
         user.id = userDict['ID']
         user.username = userDict['USERNAME']
-        user.rating = userDict['RATING']
+        user.mmr = userDict['RATING']
         user.gpm = userDict['GPM']
         user.kda = userDict['KDA']
-        user.avatar_image_name = userDict['AVATART_IMAGE_NAME']
-        user.wallpapers_image_name = user['WALLPAPERS_IMAGE_NAME']
+        user.avatar_image_name = userDict['AVATAR_IMAGE_NAME']
+        user.wallpapers_image_name = userDict['WALLPAPERS_IMAGE_NAME']
+        user.total_correct_answers = userDict['TOTAL_CORRECT_ANSWERS']
+        user.total_incorrect_answers = userDict['TOTAL_INCORRECT_ANSWERS']
         return user
