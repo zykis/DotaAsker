@@ -43,15 +43,7 @@ myDBEngine = create_engine('sqlite:///./mydb.db', echo=False)
 Session = sessionmaker(bind=myDBEngine)
 session = Session()
 
-friends_table = Table('friends', Base.metadata,
-                            Column('user_1_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
-                            Column('user_2_id', Integer, ForeignKey('users.id', ondelete='CASCADE'))
-                            )
 
-friends_requests_table = Table('friends_requests', Base.metadata,
-                            Column('user_from_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
-                            Column('user_to_id', Integer, ForeignKey('users.id', ondelete='CASCADE'))
-                            )
 
 users_matches_table = Table('users_matches', Base.metadata,
                             Column('user_id', Integer, ForeignKey('users.id')),
@@ -341,14 +333,23 @@ class Database:
         session.commit()
 
         ############################################# create Users
-        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', rating=4125)
-        peter_user = User(username=u'Peter', password=u'1', avatar_image_name='avatar_nature_prophet.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', rating=3940)
-        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', rating=3870)
+        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', mmr=4125)
+        peter_user = User(username=u'Peter', password=u'1', avatar_image_name='avatar_nature_prophet.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3940)
+        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3870)
 
         # add Users to session
         session.add(john_user)
         session.add(peter_user)
         session.add(jack_user)
+        session.commit()
+
+        john_user.sendRequest(peter_user)
+
+        ispending = peter_user.isPending(john_user)
+        print ('%s pending %s: %s' % (peter_user, john_user, ispending))
+        ispending = john_user.isPending(peter_user)
+        print ('%s pending %s: %s' % (john_user, peter_user, ispending))
+
         session.commit()
 
         # upload questions

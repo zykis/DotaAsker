@@ -1,4 +1,13 @@
 from entity import *
+from sqlalchemy import Table
+from sqlalchemy import and_ ,or_
+from sqlalchemy.orm import backref
+
+friends_table = Table('friends_t', Base.metadata,
+                            Column('from_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
+                            Column('to_id', Integer, ForeignKey('users.id', ondelete='CASCADE')),
+                            Column('confirmed', Boolean, default=False)
+                            )
 
 class User(Base):
     __tablename__ = 'users'
@@ -15,21 +24,31 @@ class User(Base):
     total_incorrect_answers = Column(Integer, nullable=True, default=0)
     # relations
     matches = relationship('Match', secondary='users_matches')
-    friends = relationship('User', secondary='friends')
-    # income_friend_requests = relationship('User', secondary = 'friends_requests')
+    outcome_friends_requests = relationship('User', secondary='friends_t',
+                           primaryjoin= and_(friends_table.c.from_id==id, friends_table.c.confirmed == False),
+                           secondaryjoin= friends_table.c.to_id==id,
+                           backref=backref('income_friends_requests', lazy='dynamic'),
+                           lazy='dynamic'
+                           )
 
-    # def sendFriendRequest(self, user):
-    #     query = session.query(User).filter(User.id == user.id)
-    #     isExists = session.query(query.exists())
-    #     if isExists:
-    #         #sending request
+    def sendRequest(self, aUser):
+        if not self.isPending(aUser):
+            self.outcome_friends_requests.append(aUser)
+        return self
+
+    def isPending(self, aUser):
+        return self.outcome_friends_requests.filter(friends_table.c.from_id == self.id, friends_table.c.to_id == aUser.id, friends_table.c.confirmed == False).count() > 0
+
+    def acceptRequest(self, aUser):
+        return self
+
+    def removeFriend(self):
+        return self
 
     def columnitems(self):
             clitemsDict = super(User, self).columnitems()
             listOfCurrentMatches = []
             listOfRecentMatches = []
-            currentMatchesDict = dict()
-            recentMatchesDict = dict()
             # session.commit()
             for match in self.matches:
                 # here we convert our Match server representation to client Representation
