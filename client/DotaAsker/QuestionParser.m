@@ -16,7 +16,8 @@
           [JSONDict objectForKey:@"THEME_ID"] &&
           [JSONDict objectForKey:@"TEXT"] &&
           [JSONDict objectForKey:@"IMAGE_NAME"] &&
-          [JSONDict objectForKey:@"ANSWERS_IDS"]
+          [JSONDict objectForKey:@"ANSWERS_IDS"] &&
+          [JSONDict objectForKey:@"APPROVED"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -38,6 +39,9 @@
     //answersIDs
     NSMutableArray* answersIDs = [JSONDict objectForKey:@"ANSWERS_IDS"];
     [question setAnswersIDs:answersIDs];
+    //approved
+    BOOL approved = [JSONDict[@"APPROVED"] boolValue];
+    [question setApproved:approved];
 
     return question;
 }

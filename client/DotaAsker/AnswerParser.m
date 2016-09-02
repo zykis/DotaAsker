@@ -14,7 +14,8 @@
 - (Answer*)parse:(NSDictionary *)JSONDict {
     if (!([JSONDict objectForKey:@"ID"] &&
           [JSONDict objectForKey:@"TEXT"] &&
-          [JSONDict objectForKey:@"IS_CORRECT"]
+          [JSONDict objectForKey:@"IS_CORRECT"] &&
+          [JSONDict objectForKey:@"QUESTION_ID"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -30,6 +31,9 @@
     //isCorrect
     BOOL isCorrect = [[JSONDict objectForKey:@"IS_CORRECT"] boolValue];
     [answer setIsCorrect:isCorrect];
+    //question_id
+    unsigned long long question_id = [JSONDict[@"QUESTION_ID"] unsignedLongLongValue];
+    [answer setRelatedQuestionID:question_id];
 
     return answer;
 }

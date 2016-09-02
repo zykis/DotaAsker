@@ -45,7 +45,7 @@
 }
 
 - (Round*)currentRoundforMatch:(Match *)match {
-    for (int i = [[match roundsIDs] count] - 1; i >= 0 ; i--) {
+    for (unsigned long i = [[match roundsIDs] count] - 1; ; i--) {
         Round *r = [self obtain:[[[match roundsIDs] objectAtIndex:i] integerValue]];
         if ([r round_state] != ROUND_NOT_STARTED) {
             return r;

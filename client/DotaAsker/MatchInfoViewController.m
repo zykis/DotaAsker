@@ -145,7 +145,7 @@
             roundView.delegate = self;
             UILabel *roundNumber = (UILabel*)[cell viewWithTag:107];
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
-            [roundNumber setText:[NSString stringWithFormat:@"Round # %d",[indexPath row]+1]];
+            [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",[indexPath row]+1]];
             UILabel *roundStatus = (UILabel*)[cell viewWithTag:108];
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
             
@@ -360,7 +360,7 @@
     
     Round *selectedRound = [[[ServiceLayer instance] roundService] roundAtIndex:[path row] inMatch:_match];
     Question *selectedQuestion = [[[ServiceLayer instance] questionService] questionAtIndex:index ofRound:selectedRound];
-    NSString *title = [NSString stringWithFormat:@"Question %d:", index + 1];
+    NSString *title = [NSString stringWithFormat:@"Question %ld:", index + 1];
     NSString *text;
     
     switch ([selectedRound round_state]) {

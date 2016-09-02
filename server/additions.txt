@@ -1,3 +1,0 @@
-$ pip install SQLAlchemy-ImageAttach
-$ pip install alembic
-$ brew install freetype imagemagick

@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSString *imageName;
 @property (strong, nonatomic) NSMutableArray *answersIDs;
+@property (assign, nonatomic) BOOL approved;
 
 @end

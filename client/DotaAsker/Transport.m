@@ -8,7 +8,8 @@
 
 #import "Transport.h"
 
-#define TIMEOUT_SECONDS 5
+#define CONNECTION_TIMEOUT_SECONDS 0.2
+#define MESSAGE_TIMEOUT_SECONDS 0.2
 
 @implementation Transport
 
@@ -47,16 +48,12 @@
 }
 
 - (void)sendMessage:(NSString*)message WithComplition:(TransportCompletionBlockMessage)aCompletionBlock {
-    NSInteger connectionTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Connection timeout (sec)"] integerValue];
-    if(!connectionTimeoutSeconds)
-        connectionTimeoutSeconds = 2;//default value
-    
     self.transportCompletionBlockMessage = aCompletionBlock;
     //устанавливаем соединение
     JFRWebSocket* sock = [[JFRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:1536"] protocols:@[@"data"]];
     self.sock = sock;
     self.sock.delegate = self;
-    if([self.sock waitForConnection:connectionTimeoutSeconds] == 0) {
+    if([self.sock waitForConnection:CONNECTION_TIMEOUT_SECONDS] == 0) {
         //отправляем запрос
         [self.sock writeString:message];
     }
@@ -67,15 +64,11 @@
 }
 
 - (void)sendMessage:(NSString*)message {
-    NSInteger connectionTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Connection timeout (sec)"] integerValue];
-    if(!connectionTimeoutSeconds)
-        connectionTimeoutSeconds = 2;//default value
-    
     //устанавливаем соединение
     JFRWebSocket* sock = [[JFRWebSocket alloc] initWithURL:[NSURL URLWithString:@"ws://localhost:1536"] protocols:@[@"data"]];
     self.sock = sock;
     self.sock.delegate = self;
-    if([self.sock waitForConnection:connectionTimeoutSeconds] == 0) {
+    if([self.sock waitForConnection:CONNECTION_TIMEOUT_SECONDS] == 0) {
         //отправляем запрос
         [self.sock writeString:message];
     }
@@ -84,18 +77,14 @@
 - (NSString*)obtainMessageWithMessage:(NSString *)message {
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
     NSString __block *msg = nil;
-    NSInteger messageTimeoutSeconds = [[[[NSBundle mainBundle] infoDictionary] objectForKey:@"Message timeout (sec)"] integerValue];
-    if(!messageTimeoutSeconds)
-        messageTimeoutSeconds = 5;
-    
     [self sendMessage:message WithComplition:^(NSString *receivedMessage) {
                  msg = receivedMessage;
                  dispatch_semaphore_signal(semaphore);
              }];
     
-    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, messageTimeoutSeconds * pow(10,9));
+    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, MESSAGE_TIMEOUT_SECONDS * pow(10,9));
     if(dispatch_semaphore_wait(semaphore, timeoutTime)) {
-        NSLog(@"Message timed out");
+        NSLog(@"Message: %@ timed out", message);
         self.transportCompletionBlockMessage = ^(NSString* str){};
     }
     

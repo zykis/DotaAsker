@@ -5,7 +5,7 @@
 	<key>Connection timeout (sec)</key>
 	<integer>2</integer>
 	<key>Message timeout (sec)</key>
-	<integer>5</integer>
+	<real>0.2</real>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @import UIKit;
-
+typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 @interface User : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *avatarImageName;
 @property (assign, nonatomic) NSInteger totalCorrectAnswers;
 @property (assign, nonatomic) NSInteger totalIncorrectAnswers;
+@property (assign, nonatomic) ROLE role;
 @property (strong, nonatomic) NSMutableArray *currentMatchesIDs;
 @property (strong, nonatomic) NSMutableArray *recentMatchesIDs;
 @property (strong, nonatomic) NSMutableArray *friendsIDs;
