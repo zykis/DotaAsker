@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIViewController+Utils.h"
+#import <UIKit/UIViewController.h>
 
 @interface SignUpViewController : UIViewController
-@property (assign, nonatomic) BOOL authorized;
-@property (strong, nonatomic) IBOutlet UITextField *username;
-@property (strong, nonatomic) IBOutlet UITextField *password;
-@property (strong, nonatomic) IBOutlet UITextField *email;
-- (IBAction)signUp;
-- (IBAction)backButtonPressed;
+
+@property (strong, nonatomic) IBOutlet UITextField *textFieldUsername;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldPassword;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldEmail;
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
+
 @end

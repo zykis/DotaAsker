@@ -7,19 +7,19 @@
 //
 
 #import "AbstractService.h"
-#import "Transport.h"
-#import "User.h"
+
+@class User;
+@class RACReplaySubject;
 
 @interface AuthorizationService : AbstractService
 + (AuthorizationService*)instance;
 
-@property (strong, nonatomic) Transport *transport;
 @property (strong, nonatomic) NSString* accessToken;
-@property (assign, nonatomic) NSInteger sessionID;
 @property (strong, nonatomic) User* user;
 
-- (BOOL)authWithLogin:(NSString*)login andPassword:(NSString*)password errorString:(NSString**)errorStr;
-- (BOOL)signUpWithLogin:(NSString*)login andPassword:(NSString*)password email:(NSString*)email errorString:(NSString**)errorStr;
-- (BOOL)fitsUsername:(NSString*)username andPassword:(NSString*)password error:(NSString**)error;
+- (BOOL)signInWithLogin:(NSString*)login andPassword:(NSString*)password errorString:(NSString**)errorStr;
+- (RACReplaySubject*)signUpWithLogin:(NSString*)login andPassword:(NSString*)password email:(NSString*)email;
+- (RACReplaySubject*)getTokenForUsername:(NSString*)username andPassword:(NSString*)password;
+- (BOOL)signInWithToken:(NSString*)token;
 
 @end

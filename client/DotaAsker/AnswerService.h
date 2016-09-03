@@ -13,8 +13,4 @@
 @interface AnswerService : AbstractService
 + (AnswerService*)instance;
 
-- (Answer*)answerAtIndex:(NSInteger)index ofQuestion:(Question*)question;
-- (Answer*)correctAnswerForQuestion:(Question*)question;
-- (NSArray*)answersForQuestion:(Question*)question;
-
 @end

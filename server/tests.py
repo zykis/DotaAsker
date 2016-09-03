@@ -276,12 +276,6 @@ class TestCase(unittest.TestCase):
         assert json.loads(response.data)['reason'] == 'no such user'
         app.logger.debug('testLogin - OK')
 
-    def testGlobalUser(self):
-        self.app.post('/login', data=dict(username='John', password='1'))
-        rv = self.app.post('/login', data=dict(username='Peter', password='123'))
-        app.logger.debug(rv.data)
-        app.logger.debug('current user: ' + g.user.__repr__())
-
 
 if __name__ == '__main__':
     unittest.main()

@@ -10,6 +10,4 @@
 
 @interface UserTransport : Transport
 
-- (NSData*)obtainUserWithUsername:(NSString*)username;
-
 @end

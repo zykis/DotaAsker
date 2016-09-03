@@ -5,93 +5,111 @@
 //  Created by Artem on 21/11/15.
 //  Copyright © 2015 Artem. All rights reserved.
 //
+#define ENDPOINT_A @"http://127.0.0.1:5000/users"
+#define ENDPOINT_B @"http://127.0.0.1:5000/token"
 
 #import "AuthorizationService.h"
-#import "AbstractParser.h"
-#import "AbstractCache.h"
-#import "UserService.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <AFNetworking/AFNetworking/AFNetworking.h>
 
 @implementation AuthorizationService
 
-@synthesize transport;
-@synthesize parser;
-@synthesize cache;
-
-- (id)init {
+- (id)init
+{
     self = [super init];
-    if(self) {
-        parser = [[AbstractParser alloc] init];
-        cache = [[AbstractCache alloc] init];
-        transport = [[Transport alloc] init];
-    }
     return self;
 }
 
 + (AuthorizationService*)instance {
     static AuthorizationService *authorizationService = nil;
-    @synchronized(self) {
+    @synchronized(self)
+    {
         if(authorizationService == nil)
+        {
             authorizationService = [[self alloc] init];
+        }
     }
     return authorizationService;
 }
 
-- (BOOL)authWithLogin:(NSString *)login andPassword:(NSString *)password errorString:(NSString**)errorStr {
-    NSString* authMessage = [NSString stringWithFormat:@"{\"COMMAND\":\"SIGNIN\", \"USERNAME\":\"%@\", \"PASSWORD\":\"%@\"}", login, password];
-    NSString* res = [transport obtainMessageWithMessage:authMessage];
-    if (!res) {
-        *errorStr = [NSString stringWithFormat:@"Server not answering"];
-        return NO;
-    }
-    NSError* err;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[res dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&err];
-    if (!err) {
-        if ([[dict objectForKey:@"RESULT"] isEqualToString: @"SUCCEED"]) {
-            User* user = [[UserService instance] obtainUserWithUsername:login];
-            [[UserService instance] setPlayer:user];
-            return YES;
-        }
-        else {
-            *errorStr = [dict objectForKey:@"REASON"];
-            return NO;
-        }
-    }
-    else {
-        *errorStr = [dict objectForKey:@"REASON"];
-        return NO;
-    }
+- (BOOL)signInWithToken:(NSString *)token
+{
+    return NO;
 }
 
-- (BOOL)signUpWithLogin:(NSString *)login andPassword:(NSString *)password email:(NSString *)email errorString:(NSString *__autoreleasing *)errorStr {
-    NSString* authMessage = [NSString stringWithFormat:@"{\"COMMAND\":\"SIGNUP\", \"USERNAME\":\"%@\", \"PASSWORD\":\"%@\", \"EMAIL\":\"%@\"}", login, password, email];
-    NSString* res = [transport obtainMessageWithMessage:authMessage];
-    NSError* err;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:[res dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&err];
-    if (!err) {
-        if ([[dict objectForKey:@"RESULT"] isEqualToString: @"SUCCEED"]) {
-            return YES;
-        }
-        else {
-            *errorStr = [dict objectForKey:@"REASON"];
-            return NO;
-        }
-    }
-    else {
-        *errorStr = [dict objectForKey:@"REASON"];
-        return NO;
-    }
+- (BOOL)signInWithLogin:(NSString *)login andPassword:(NSString *)password errorString:(NSString**)errorStr
+{
+    return NO;
 }
 
-- (BOOL)fitsUsername:(NSString *)username andPassword:(NSString *)password error:(NSString *__autoreleasing *)error {
-    if ([username length] <= 3) {
-        *error = [NSString stringWithFormat:@"Username is incorrect. Should be 3 symblos at least."];
-        return NO;
+- (RACSubject*)signUpWithLogin:(NSString *)login andPassword:(NSString *)password email:(NSString *)email
+{
+    RACReplaySubject *subject = [RACReplaySubject subject];
+
+    NSMutableURLRequest* request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_A parameters:nil error:nil] mutableCopy];
+    
+    NSMutableDictionary* dict = [[NSDictionary dictionaryWithObjectsAndKeys:login, @"username", password, @"password", nil] mutableCopy];
+    if (![email isEqualToString:@""]) {
+        [dict setValue:email forKey:@"email"];
     }
-    else if ([password isEqualToString:@""]) {
-        *error = [NSString stringWithFormat:@"Password is incorrect. Shouldn't be empty."];
-        return NO;
-    }
-    return YES;
+    
+    NSData* jsonData= [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    
+    NSString* jsonString = [NSString stringWithUTF8String:[jsonData bytes]];
+    NSString* lengthStr = [NSString stringWithFormat:@"%ld", [jsonString length]];
+
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];
+    
+    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:responseObject];
+            [subject sendError:err];
+        } else {
+            [subject sendNext:responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    return subject;
+}
+
+- (RACReplaySubject*)getTokenForUsername:(NSString *)username andPassword:(NSString *)password
+{
+    RACReplaySubject* subject;
+    NSMutableURLRequest* request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_B parameters:nil error:nil] mutableCopy];
+    
+//    NSMutableDictionary* dict = [[NSDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password", nil] mutableCopy];
+//    
+//    NSData* jsonData= [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+//    
+//    NSString* jsonString = [NSString stringWithUTF8String:[jsonData bytes]];
+//    NSString* lengthStr = [NSString stringWithFormat:@"%ld", [jsonString length]];
+//    
+//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+//    [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];
+//    
+//    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+//    
+//    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//        if (error) {
+//            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:responseObject];
+//            [subject sendError:err];
+//        } else {
+//            [subject sendNext:responseObject];
+//            [subject sendCompleted];
+//        }
+//    }];
+//    [dataTask resume];
+    return subject;
 }
 
 @end

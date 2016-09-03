@@ -7,7 +7,9 @@
 //
 
 #import "SignUpViewController.h"
-#import "ServiceLayer.h"
+#import "AuthorizationService.h"
+
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @interface SignUpViewController ()
 
@@ -15,13 +17,13 @@
 
 @implementation SignUpViewController
 
-@synthesize authorized = _authorized;
-
 - (void)viewDidLoad {
-    _authorized = NO;
     [super viewDidLoad];
-    UIImage* walpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
-    [self loadBackgroundImage:walpapers];
+    RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
+        return @([value length] > 2);
+    }];
+    
+    RAC(self.signUpButton, enabled) = validUsername;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -34,38 +36,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)onNotificationRecievedSignUpFailed: (NSNotification*)aNotification {
-    [self presentAlertControllerWithTitle:@"Signing up" andMessage:[NSString stringWithFormat:@"Failed: %@",[aNotification.userInfo objectForKey:@"reason"]]];
-}
-
-- (void)onNotificationRecievedSignInSucceed {
-    [self performSegueWithIdentifier:@"signup" sender:self];
-}
-
 - (IBAction)signUp {
-    NSString *strUsername = [_username text];
-    NSString *strPassword = [_password text];
-    NSString *strEmail = [_email text];
-    NSString *errorString;
-    if ([[_username text] length] <= 3) {
-        [self presentAlertControllerWithTitle:@"Username incorrect:" andMessage:[NSString stringWithFormat:@"should be 3 symbols at least"]];
-        return;
-    }
-    else if ([[_password text] isEqualToString:@""]) {
-        [self presentAlertControllerWithTitle:@"Password" andMessage:[NSString stringWithFormat:@"shouldn't be empty"]];
-        return;
-    }
-    BOOL bSignedUp = [[[ServiceLayer instance] authorizationService] signUpWithLogin:strUsername andPassword:strPassword email:strEmail errorString:&errorString];
-    if (bSignedUp) {
-        _authorized = YES;
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:[_username text]]) {
-            [[NSUserDefaults standardUserDefaults] setObject:[_username text]  forKey:@"username"];
-            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isEqualToString:[_password text]]) {
-                [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
-            }
-        }
+    RACSignal* authorizationSignal = [[AuthorizationService instance] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
+    [authorizationSignal subscribeError:^(NSError *error) {
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                       message:[[error userInfo] valueForKey:@"message"]
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    } completed:^{
         [self performSegueWithIdentifier:@"signup" sender:self];
-    }
+    }];
+    
 }
 
 - (IBAction)backButtonPressed {

@@ -33,13 +33,6 @@
     self = [super init];
     if(self) {
         authorizationService = [AuthorizationService instance];
-        userAnswerService = [UserAnswerService instance];
-        answerService = [AnswerService instance];
-        questionService = [QuestionService instance];
-        themeService = [ThemeService instance];
-        roundService = [RoundService instance];
-        matchService = [MatchService instance];
-        userService = [UserService instance];
     }
     return self;
 }

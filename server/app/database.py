@@ -307,9 +307,8 @@ class Database:
                     session.add(answ)
                     question_obj.answers.append(answ)
 
-                with store_context(fs_store):
-                    with open(questionsPath + '/question_images/' + q['image']) as imageFile:
-                        question_obj.image.from_file(imageFile, fs_store)
+                with open(questionsPath + '/question_images/' + q['image']) as imageFile:
+                    question_obj.image.from_file(imageFile, fs_store)
 
                 session.add(question_obj)
         session.commit()

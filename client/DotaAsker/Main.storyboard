@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ytL-e4-7GM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ytL-e4-7GM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -700,7 +700,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signUp" destination="z0A-tC-GO0" eventType="touchUpInside" id="gwa-Ey-P8C"/>
-                                    <segue destination="WZ8-r2-WIq" kind="show" identifier="signup" id="C6M-6m-DQU"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UR6-8o-QB9">
@@ -740,9 +739,11 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="email" destination="kc7-Oa-fuf" id="tFk-M0-RpT"/>
-                        <outlet property="password" destination="6Ff-dR-Dya" id="v2U-Wc-67a"/>
-                        <outlet property="username" destination="kMT-3B-I4b" id="gVu-GD-Sf1"/>
+                        <outlet property="signUpButton" destination="2ag-u0-4Ea" id="hAV-HQ-f6w"/>
+                        <outlet property="textFieldEmail" destination="kc7-Oa-fuf" id="1GE-VK-a3L"/>
+                        <outlet property="textFieldPassword" destination="6Ff-dR-Dya" id="NhL-dn-ARD"/>
+                        <outlet property="textFieldUsername" destination="kMT-3B-I4b" id="HB3-Yr-GCd"/>
+                        <segue destination="WZ8-r2-WIq" kind="show" identifier="signup" id="CGe-k9-iUa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xZM-Jk-dul" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1139,7 +1140,7 @@
         <image name="versus_image_48x48.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="C6M-6m-DQU"/>
+        <segue reference="CGe-k9-iUa"/>
         <segue reference="ut3-yq-Aji"/>
     </inferredMetricsTieBreakers>
 </document>

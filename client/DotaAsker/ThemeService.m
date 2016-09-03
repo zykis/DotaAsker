@@ -12,17 +12,8 @@
 
 @implementation ThemeService
 
-@synthesize transport;
-@synthesize parser;
-@synthesize cache;
-
 - (id)init {
     self = [super init];
-    if(self) {
-        parser = [[ThemeParser alloc] init];
-        cache = [[AbstractCache alloc] init];
-        transport = [[ThemeTransport alloc] init];
-    }
     return self;
 }
 

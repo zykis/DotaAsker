@@ -11,6 +11,4 @@
 
 @interface MatchTransport : Transport
 
-- (NSData*)findMatch;
-
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIViewController+Utils.h"
+#import <UIKit/UIViewController.h>
 
 @interface AuthorizationViewController : UIViewController
 

@@ -53,12 +53,7 @@
     NSString *strUsername = [_username text];
     NSString *strPassword = [_password text];
     NSString* errorString;
-    if (![[[ServiceLayer instance] authorizationService] fitsUsername:strUsername andPassword:strPassword error:&errorString]) {
-        [self presentAlertControllerWithTitle:@"Incorrect fields" andMessage:errorString];
-        return;
-    }
-    
-    _authorized = [[[ServiceLayer instance] authorizationService] authWithLogin:strUsername andPassword:strPassword errorString:&errorString];
+    _authorized = [[[ServiceLayer instance] authorizationService] signInWithLogin:strUsername andPassword:strPassword errorString:&errorString];
     
     if (_authorized) {
         if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:[_username text]]) {

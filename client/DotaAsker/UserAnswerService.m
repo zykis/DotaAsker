@@ -12,10 +12,6 @@
 
 @implementation UserAnswerService
 
-@synthesize parser;
-@synthesize cache;
-@synthesize transport;
-
 + (UserAnswerService*)instance {
     static UserAnswerService *userAnswerService = nil;
     @synchronized(self) {
@@ -23,26 +19,6 @@
             userAnswerService = [[self alloc] init];
     }
     return userAnswerService;
-}
-
-- (id)init {
-    self = [super init];
-    if(self) {
-        parser = [[UserAnswerParser alloc] init];
-        cache = [[AbstractCache alloc] init];
-        transport = [[UserAnswerTransport alloc] init];
-    }
-    return self;
-}
-
-- (NSString*)textForUserAnswer:(UserAnswer *)userAnswer {
-    Answer* ans = [[AnswerService instance] obtain:[userAnswer relatedAnswerID]];
-    return [ans text];
-}
-
-- (BOOL)isCorrect:(UserAnswer *)userAnswer {
-    Answer* a = [[AnswerService instance] obtain:userAnswer.relatedAnswerID];
-    return [a isCorrect];
 }
 
 @end

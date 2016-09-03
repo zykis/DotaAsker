@@ -18,12 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self navigationController] setNavigationBarHidden:YES];
-    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"username"] != nil) {
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:@"password"] != nil) {
-            [self performSegueWithIdentifier:@"signin" sender:self];
-        }
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
