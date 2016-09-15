@@ -14,6 +14,6 @@ static UIAlertController *alertController;
 - (void)loadBackgroundImage:(UIImage*)backgroundImage;
 //+ (void)presentLoadingViewAndCompleteWith:(void (^)(void))aBlock;
 //+ (void)dismissLoadingView;
--(void) presentAlertControllerWithTitle: (NSString*)title andMessage:(NSString*)message;
-+(UIViewController*) currentViewController;
+- (void) presentAlertControllerWithTitle: (NSString*)title andMessage:(NSString*)message;
+//+ (UIViewController*) currentViewController;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "SignInViewController.h"
 #import "AuthorizationService.h"
 
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
@@ -19,11 +20,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
+    NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
+    
+    __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
+    __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
+    
     RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
-        return @([value length] > 2);
+        return @([usernameRegexp numberOfMatchesInString:value options:0
+                                                              range:NSMakeRange(0, [value length])] == 1);
+    }];
+    RACSignal* validPassword = [self.textFieldPassword.rac_textSignal map:^id(NSString* value) {
+        return @([passwordRegexp numberOfMatchesInString:value options:0
+                                                              range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RAC(self.signUpButton, enabled) = validUsername;
+    RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -38,19 +50,20 @@
 
 - (IBAction)signUp {
     RACSignal* authorizationSignal = [[AuthorizationService instance] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
-    [authorizationSignal subscribeError:^(NSError *error) {
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
-                                                                       message:[[error userInfo] valueForKey:@"message"]
-                                                                preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
-        [alert addAction:defaultAction];
-        [self presentViewController:alert animated:YES completion:nil];
-    } completed:^{
-        [self performSegueWithIdentifier:@"signup" sender:self];
-    }];
     
+    [authorizationSignal subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+    } completed:^{
+        [self performSegueWithIdentifier:@"signin" sender:self];
+    }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"signin"]) {
+        SignInViewController* destVC = [segue destinationViewController];
+        destVC.strUsername = [_textFieldUsername text];
+        destVC.strPassword = [_textFieldPassword text];
+    }
 }
 
 - (IBAction)backButtonPressed {

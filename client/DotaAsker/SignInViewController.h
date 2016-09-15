@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
-#import "User.h"
 
 @interface SignInViewController : UIViewController
-@property (strong, nonatomic) User* user;
-@property (assign, nonatomic) BOOL authorized;
-@property (strong, nonatomic) IBOutlet UITextField *username;
-@property (strong, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldUsername;
+@property (strong, nonatomic) IBOutlet UITextField *textFieldPassword;
+@property (strong, nonatomic) IBOutlet UIButton *signInButton;
+@property (strong, nonatomic) NSString* strUsername;
+@property (strong, nonatomic) NSString* strPassword;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 - (IBAction)signIn;
 - (IBAction)backButtonPressed;

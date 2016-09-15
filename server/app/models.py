@@ -129,13 +129,22 @@ class User(Base):
     # relations
     matches = db.relationship('Match', secondary='users_matches')
 
+    def __init__(self, username = None, password = None, avatar_image_name = 'default_avatar', wallpapers_image_name = 'default_wallpapers', mmr = 4000):
+        if username is not None:
+            self.username = username
+        if password is not None:
+            self.hash_password(password)
+        self.avatar_image_name = avatar_image_name
+        self.wallpapers_image_name = wallpapers_image_name
+        self.mmr = mmr
+
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
 
     def verify_password(self, password):
         return pwd_context.verify(password, self.password_hash)
 
-    def generate_auth_token(self, expiration = 600):
+    def generate_auth_token(self):
         s = Serializer(app.config['SECRET_KEY'])
         return s.dumps({ 'id': self.id })
 
@@ -182,9 +191,9 @@ class User(Base):
     def friends(self):
         friend_list = list()
         for friend in self.out_requests.filter(Friends.confirmed==True).all():
-            friend_list.append(friend)
+            friend_list.append(User.query.get(friend.to_id))
         for friend in self.in_requests.filter(Friends.confirmed==True).all():
-            friend_list.append(friend)
+            friend_list.append(User.query.get(friend.from_id))
         return friend_list
 
     def columnitems(self):

@@ -7,6 +7,7 @@
 //
 #define ENDPOINT_A @"http://127.0.0.1:5000/users"
 #define ENDPOINT_B @"http://127.0.0.1:5000/token"
+#define ENDPOINT_C @"http://127.0.0.1:5000/login"
 
 #import "AuthorizationService.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
@@ -30,16 +31,6 @@
         }
     }
     return authorizationService;
-}
-
-- (BOOL)signInWithToken:(NSString *)token
-{
-    return NO;
-}
-
-- (BOOL)signInWithLogin:(NSString *)login andPassword:(NSString *)password errorString:(NSString**)errorStr
-{
-    return NO;
 }
 
 - (RACSubject*)signUpWithLogin:(NSString *)login andPassword:(NSString *)password email:(NSString *)email
@@ -68,7 +59,11 @@
 
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
-            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:responseObject];
+            NSMutableDictionary* errDict = [(NSDictionary*)responseObject mutableCopy];
+            NSString* errorDescription = [errDict valueForKey:@"message"];
+            [errDict setObject:errorDescription forKey:NSLocalizedDescriptionKey];
+            
+            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:errDict];
             [subject sendError:err];
         } else {
             [subject sendNext:responseObject];
@@ -81,34 +76,42 @@
 
 - (RACReplaySubject*)getTokenForUsername:(NSString *)username andPassword:(NSString *)password
 {
-    RACReplaySubject* subject;
+    RACReplaySubject* subject = [RACReplaySubject subject];
     NSMutableURLRequest* request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_B parameters:nil error:nil] mutableCopy];
     
-//    NSMutableDictionary* dict = [[NSDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password", nil] mutableCopy];
-//    
-//    NSData* jsonData= [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
-//    
-//    NSString* jsonString = [NSString stringWithUTF8String:[jsonData bytes]];
-//    NSString* lengthStr = [NSString stringWithFormat:@"%ld", [jsonString length]];
-//    
-//    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-//    [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];
-//    
-//    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-//    
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    
-//    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:responseObject];
-//            [subject sendError:err];
-//        } else {
-//            [subject sendNext:responseObject];
-//            [subject sendCompleted];
-//        }
-//    }];
-//    [dataTask resume];
+    // Forming string with credentials 'myusername:mypassword'
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", username, password];
+    // Getting data from it
+    NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
+    // Encoding data with base64 and converting back to NSString
+    NSString* authStrData = [[NSString alloc] initWithData:[authData base64EncodedDataWithOptions:NSDataBase64Encoding76CharacterLineLength] encoding:NSASCIIStringEncoding];
+    // Forming Basic Authorization string Header
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
+    NSLog(@"AuthValue: %@", authValue);
+    // Assigning it to request
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
+                                                completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSMutableDictionary* errDict = [(NSDictionary*)responseObject mutableCopy];
+            NSString* errorDescription = [errDict valueForKey:@"message"];
+            [errDict setObject:errorDescription forKey:NSLocalizedDescriptionKey];
+            
+            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:errDict];
+            [subject sendError:err];
+        } else {
+            NSDictionary* rv = (NSDictionary*)responseObject;
+            NSString* token = [rv valueForKey:@"token"];
+            
+            [subject sendNext:token];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
     return subject;
 }
 

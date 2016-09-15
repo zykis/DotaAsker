@@ -15,11 +15,8 @@
 + (AuthorizationService*)instance;
 
 @property (strong, nonatomic) NSString* accessToken;
-@property (strong, nonatomic) User* user;
 
-- (BOOL)signInWithLogin:(NSString*)login andPassword:(NSString*)password errorString:(NSString**)errorStr;
 - (RACReplaySubject*)signUpWithLogin:(NSString*)login andPassword:(NSString*)password email:(NSString*)email;
 - (RACReplaySubject*)getTokenForUsername:(NSString*)username andPassword:(NSString*)password;
-- (BOOL)signInWithToken:(NSString*)token;
 
 @end

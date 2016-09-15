@@ -37,7 +37,7 @@
 
 - (void)refreshControllDragged {
     [self.tableView reloadData];
-    _user = [[[ServiceLayer instance] userService] obtain:[_user ID]];
+    //_user = [[[ServiceLayer instance] userService] obtain:[_user ID]];
     //отправляем и принимаем все сообщения
     //с сервера и обратно
     [self.refreshControl endRefreshing];
@@ -149,8 +149,8 @@
                     [matchStateLabel setText:@"Default"];
                     break;
             }
-            UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:[[[ServiceLayer instance] userService] obtain:[currentMatch  opponentID]]];
-            [avatarView setImage:avatar];
+            //UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:[[[ServiceLayer instance] userService] obtain:[currentMatch  opponentID]]];
+            //[avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
             [nameLabel setText:[[[[ServiceLayer instance] userService] opponentForMatch:currentMatch] name]];
@@ -285,7 +285,7 @@
     Match* newMatch = [[[ServiceLayer instance] matchService] findMatch];
     [[_user currentMatchesIDs] addObject:[NSNumber numberWithUnsignedLongLong:[newMatch ID]]];
     if (newMatch) {
-        _user = [[[ServiceLayer instance] userService] update:_user];
+        //_user = [[[ServiceLayer instance] userService] update:_user];
     }
     [[self tableView] reloadData];
 }

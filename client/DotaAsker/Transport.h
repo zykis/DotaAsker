@@ -12,6 +12,10 @@
 
 @interface Transport : NSObject
 
-
+- (NSData*)obtain:(unsigned long long) entityID;
+- (NSData*)obtainAll;
+- (NSData*)update:(NSData*) entity;
+- (NSData*)create:(NSData*) entity;
+- (void)remove:(unsigned long long) entityID;
 
 @end

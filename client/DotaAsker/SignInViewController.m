@@ -7,8 +7,9 @@
 //
 
 #import "SignInViewController.h"
-#import "ServiceLayer.h"
 #import "MainViewController.h"
+#import "AuthorizationService.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @interface SignInViewController ()
 
@@ -16,16 +17,30 @@
 
 @implementation SignInViewController
 
-@synthesize authorized = _authorized;
 @synthesize navigationBar = _navigationBar;
-@synthesize user = _user;
+@synthesize textFieldUsername = _textFieldUsername;
+@synthesize textFieldPassword = _textFieldPassword;
+@synthesize strUsername = _strUsername;
+@synthesize strPassword = _strPassword;
 
 - (void)viewDidLoad {
-    _authorized = NO;
     [super viewDidLoad];
-    UIImage* wallpapers;
-    wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
-    [self loadBackgroundImage: wallpapers];
+    NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
+    NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
+    
+    __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
+    __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
+    
+    RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
+        return @([usernameRegexp numberOfMatchesInString:value options:0
+                                                   range:NSMakeRange(0, [value length])] == 1);
+    }];
+    RACSignal* validPassword = [self.textFieldPassword.rac_textSignal map:^id(NSString* value) {
+        return @([passwordRegexp numberOfMatchesInString:value options:0
+                                                   range:NSMakeRange(0, [value length])] == 1);
+    }];
+    
+    RAC(self.signInButton, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -35,12 +50,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:@""]) {
-        if (![[[NSUserDefaults standardUserDefaults] valueForKey:@"password"] isEqualToString:@""]) {
-            [_username setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"username"]];
-            [_password setText:[[NSUserDefaults standardUserDefaults] valueForKey:@"password"]];
-            [self signIn];
-        }
+    if (![_strUsername isEqualToString:@""])
+        [_textFieldUsername setText:_strUsername];
+    if (![_strPassword isEqualToString:@""])
+        [_textFieldPassword setText:_strPassword];
+    
+    if (![[_textFieldUsername text] isEqualToString:@""] && ![[_textFieldPassword text] isEqualToString:@""]) {
+        [self signIn];
     }
 }
 
@@ -50,51 +66,24 @@
 }
 
 - (IBAction)signIn {
-    NSString *strUsername = [_username text];
-    NSString *strPassword = [_password text];
-    NSString* errorString;
-    _authorized = [[[ServiceLayer instance] authorizationService] signInWithLogin:strUsername andPassword:strPassword errorString:&errorString];
+    NSString *username = [_textFieldUsername text];
+    NSString *password = [_textFieldPassword text];
     
-    if (_authorized) {
-        if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"username"] isEqualToString:[_username text]]) {
-            [[NSUserDefaults standardUserDefaults] setObject:[_username text]  forKey:@"username"];
-            if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"password"] isEqualToString:[_password text]]) {
-                [[NSUserDefaults standardUserDefaults] setObject:[_password text]  forKey:@"password"];
-            }
-        }
-        _user = [[[ServiceLayer instance] userService] obtainUserWithUsername:[_username text]];
-        if (_user) {
-            [self performSegueWithIdentifier:@"signin" sender:self];
-        }
-        else {
-            [self presentAlertControllerWithTitle:@"Signing in failed" andMessage:[NSString stringWithFormat:@"Server error"]];
-        }
-    }
-    else {
-        [self presentAlertControllerWithTitle:@"Signing in failed" andMessage:[NSString stringWithFormat:@"%@", errorString]];
-    }
+    RACSignal *signal = [[AuthorizationService instance] getTokenForUsername:username andPassword:password];
+    
+    [signal subscribeNext:^(NSString* _token) {
+        [[AuthorizationService instance] setAccessToken:_token];
+    } error:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+    } completed:^{
+        NSLog(@"Signed in. Congratulations!");
+        NSLog(@"Token is: %@", [[AuthorizationService instance] accessToken]);
+        // TODO: perform segue to MainViewContoller
+    }];
 }
 
 - (IBAction)backButtonPressed {
     [[self navigationController] popViewControllerAnimated:YES];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if (_user) {
-        MainViewController* destVC = (MainViewController*)[segue destinationViewController];
-        [destVC setUser:_user];
-    }
-    else {
-        return;
-    }
-}
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    if ([identifier isEqualToString:@"signin"])
-        if (_authorized)
-            if (_user)
-                return YES;
-    return NO;
 }
 
 @end
