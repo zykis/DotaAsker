@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'F9EC09F9ED193DEB81539EEE'
+               BlueprintIdentifier = '406B802385533AEC8C881CBE'
                BlueprintName = 'Pods-DotaAsker'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_DotaAsker.framework'>

@@ -16,7 +16,7 @@
             startingLineNumber = "74"
             endingLineNumber = "74"
             landmarkName = "-signUpWithLogin:andPassword:email:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,7 +32,7 @@
             startingLineNumber = "63"
             endingLineNumber = "63"
             landmarkName = "-signUpWithLogin:andPassword:email:"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
