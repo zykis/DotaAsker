@@ -22,22 +22,26 @@ def generate_test_data():
 @app.route('/MainViewController/<int:id>')
 def get_main_view_controller(id):
     user = User.query.get(int(id))
+    userDict = user.tojson()
     friends = []
     matches = []
     for u in user.friends():
         friends.append(u.tojson())
-    user.friends = friends
+    userDict['friends'] = friends
     for m in user.matches:
         players = m.users
         for p in players:
             if(p.id != user.id):
                 opponent = p
-                app.logger.critical('No opponent found for match: %s' % m.__repr__())
-                assert opponent is not None
-        m.opponent = opponent
-        matches.append(m)
-    user.matches = matches
-    return jsonify(user = user.tojson())
+        if opponent is None:
+            app.logger.critical('No opponent found for match: %s' % m.__repr__())
+            assert opponent is not None
+        else:
+            matchDict = m.tojson()
+            matchDict['opponent'] = opponent.tojson()
+        matches.append(matchDict)
+    userDict['matches'] = matches
+    return jsonify(user = userDict)
 
 
 @app.route('/users', methods = ['POST'])
