@@ -1,4 +1,5 @@
 from app.database import User
+from marshmallow import Schema, fields
 
 class UserParser:
     @classmethod
