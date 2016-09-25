@@ -4,6 +4,8 @@ from app.models import User
 from flask import abort, request, g, jsonify, url_for
 from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
+from app.entities.parsers.user_schema import UserSchema
+from app.models import MATCH_FINISHED, MATCH_TIME_ELAPSED
 
 auth = HTTPBasicAuth()
 
@@ -12,36 +14,39 @@ def get_user(id):
     user = User.query.get(id)
     if not user:
         abort(400)
-    return jsonify({'user': user.tojson()})
+    schema = UserSchema(exclude=('current_matches', 'recent_matches', 'friends'))
+    res = schema.dumps(user)
+    if not res.errors:
+        return jsonify({'user' : res.data})
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
 
 @app.route('/generateTestData')
 def generate_test_data():
     Database_queries.createTestData()
     return 'ok'
 
-@app.route('/MainViewController/<int:id>')
-def get_main_view_controller(id):
-    user = User.query.get(int(id))
-    userDict = user.tojson()
-    friends = []
-    matches = []
-    for u in user.friends():
-        friends.append(u.tojson())
-    userDict['friends'] = friends
+
+@app.route('/MainViewController')
+@auth.login_required
+def get_main_view_controller():
+    user = g.user
+    user.current_matches = []
+    user.recent_matches = []
     for m in user.matches:
-        players = m.users
-        for p in players:
-            if(p.id != user.id):
-                opponent = p
-        if opponent is None:
-            app.logger.critical('No opponent found for match: %s' % m.__repr__())
-            assert opponent is not None
+        if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
+            user.recent_matches.append(m)
         else:
-            matchDict = m.tojson()
-            matchDict['opponent'] = opponent.tojson()
-        matches.append(matchDict)
-    userDict['matches'] = matches
-    return jsonify(user = userDict)
+            user.current_matches.append(m)
+    schema = UserSchema()
+    res = schema.dumps(user)
+    if not res.errors:
+        return jsonify({"user" : res.data})
+    else:
+        return jsonify(res.errors)
+
+
 
 
 @app.route('/users', methods = ['POST'])

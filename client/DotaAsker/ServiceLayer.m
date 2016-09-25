@@ -17,7 +17,7 @@
 @synthesize questionService;
 @synthesize themeService;
 @synthesize roundService;
-@synthesize matchService;
+//@synthesize matchService;
 @synthesize userService;
 
 + (ServiceLayer*)instance {

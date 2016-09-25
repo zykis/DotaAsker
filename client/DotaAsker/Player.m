@@ -20,4 +20,16 @@
     return self;
 }
 
++ (Player*)instance {
+    static Player *player = nil;
+    @synchronized(self)
+    {
+        if(player == nil)
+        {
+            player = [[self alloc] init];
+        }
+    }
+    return player;
+}
+
 @end

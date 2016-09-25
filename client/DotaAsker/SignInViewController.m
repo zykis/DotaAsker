@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import "AuthorizationService.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import "APIHelper.h"
 
 @interface SignInViewController ()
 
@@ -66,6 +67,7 @@
 }
 
 - (IBAction)signIn {
+    NSLog(@"sign in pressed");
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
@@ -79,6 +81,7 @@
         NSLog(@"Signed in. Congratulations!");
         NSLog(@"Token is: %@", [[AuthorizationService instance] accessToken]);
         // TODO: perform segue to MainViewContoller
+        [[APIHelper shared] getPlayerWithToken:[[AuthorizationService instance] accessToken]];
     }];
 }
 

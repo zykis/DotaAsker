@@ -145,9 +145,9 @@ class Database_queries:
         db.drop_all()
         db.create_all()
         ############################################# create Users
-        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', mmr=4125)
+        john_user = User(username=u'John', password=u'123', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', mmr=4125)
         peter_user = User(username=u'Peter', password=u'123', avatar_image_name='avatar_nature_prophet.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3940)
-        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3870)
+        jack_user = User(username=u'Jack', password=u'123', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3870)
 
         # add Users to session
         db.session.add(john_user)
@@ -184,6 +184,7 @@ class Database_queries:
         first_match.users.append(peter_user)
         second_match.users.append(john_user)
         third_match = Match(peter_user)
+        third_match.users.append(john_user)
         fourth_match = Match(peter_user)
         fifth_match = Match(jack_user)
 
@@ -191,7 +192,7 @@ class Database_queries:
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
         # add questions to match's rounds
         for r in first_match.rounds:
-            r.theme = themes[random.randrange(0, len(themes))]
+            r.theme = random.choice(themes)
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
             for quest in r.questions:
                     user_answer = Useranswer()
@@ -205,7 +206,7 @@ class Database_queries:
                     user2_answer.round = r
                     user2_answer.user = first_match.users[1]
                     user2_answer.question = quest
-                    user2_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
+                    user2_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user2_answer)
             r.state = ROUND_FINISHED
         first_match.state = MATCH_RUNNING
@@ -216,7 +217,7 @@ class Database_queries:
         # [2] FINISHED
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
         for r in second_match.rounds:
-            r.theme = themes[random.randrange(0, len(themes))]
+            r.theme = random.choice(themes)
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
             for quest in r.questions:
@@ -224,14 +225,14 @@ class Database_queries:
                         user_answer.round = r
                         user_answer.user = second_match.users[0]
                         user_answer.question = quest
-                        user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
+                        user_answer.answer_id = random.choice(quest.answers).id
                         db.session.add(user_answer)
 
                         user2_answer = Useranswer()
                         user2_answer.round = r
                         user2_answer.user = second_match.users[1]
                         user2_answer.question = quest
-                        user2_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
+                        user2_answer.answer_id = random.choice(quest.answers).id
                         db.session.add(user2_answer)
             r.state = ROUND_FINISHED
         second_match.state = MATCH_RUNNING
@@ -241,8 +242,8 @@ class Database_queries:
 
         # [3] TIME_ELAPSED
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
-        r = second_match.rounds[0]
-        r.theme = themes[random.randrange(0, len(themes))]
+        r = third_match.rounds[0]
+        r.theme = random.choice(themes)
         r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
         for quest in r.questions[0:2]:
@@ -250,14 +251,14 @@ class Database_queries:
                     user_answer.round = r
                     user_answer.user = second_match.users[0]
                     user_answer.question = quest
-                    user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
+                    user_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user_answer)
 
                     user2_answer = Useranswer()
                     user2_answer.round = r
                     user2_answer.user = second_match.users[1]
                     user2_answer.question = quest
-                    user2_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
+                    user2_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user2_answer)
         r.state = ROUND_ANSWERING
         second_match.state = MATCH_TIME_ELAPSED

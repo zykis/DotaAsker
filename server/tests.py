@@ -10,6 +10,8 @@ from app.db_querys import Database_queries
 from app.models import ROUND_FINISHED, ROUND_ANSWERING
 from app.models import MATCH_RUNNING, MATCH_TIME_ELAPSED, MATCH_FINISHED, MATCH_NOT_STARTED
 from flask import json, g
+from app.entities.parsers.user_schema import UserSchema
+from marshmallow import pprint
 
 class TestCase(unittest.TestCase):
     def setUp(self):
@@ -24,9 +26,9 @@ class TestCase(unittest.TestCase):
 
 
         ############################################# create Users
-        john_user = User(username=u'John', password=u'1', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', mmr=4125)
+        john_user = User(username=u'John', password=u'123', avatar_image_name='avatar_axe.png', wallpapers_image_name='wallpaper_antimage_1.jpg', mmr=4125)
         peter_user = User(username=u'Peter', password=u'123', avatar_image_name='avatar_nature_prophet.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3940)
-        jack_user = User(username=u'Jack', password=u'1', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3870)
+        jack_user = User(username=u'Jack', password=u'123', avatar_image_name='avatar_tinker.png', wallpapers_image_name='wallpaper_bloodseeker_1.jpg', mmr=3870)
 
         # add Users to session
         db.session.add(john_user)
@@ -260,22 +262,22 @@ class TestCase(unittest.TestCase):
     def testFinishMatch(self):
         app.logger.debug('testFinishMatch - OK')
 
-    def testIndex(self):
-        rv = self.app.get('/')
-        assert "Hello, World!" in rv.data
-        app.logger.debug('testIndex - OK')
+    def testSerializeDeserialize(self):
+        john = User.query.get(1) # getting John
+        jack = User.query.get(3)
+        john.sendRequest(jack)
+        jack.acceptRequest(john)
 
-    def testLogin(self):
-        response = self.app.post('/login', data=dict(username='John', password='1'))
-        assert json.loads(response.data)['result'] == 'success'
-        response = self.app.post('/login', data=dict(username='John', password='2'))
-        assert json.loads(response.data)['result'] == 'fail'
-        assert json.loads(response.data)['reason'] == 'wrong password for user: John'
-        response = self.app.post('/login', data=dict(username='JunnyJoe', password='1'))
-        assert json.loads(response.data)['result'] == 'fail'
-        assert json.loads(response.data)['reason'] == 'no such user'
-        app.logger.debug('testLogin - OK')
-
+        john.recent_matches = []
+        john.current_matches = []
+        for m in john.matches:
+            if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
+                john.recent_matches.append(m)
+            else:
+                john.current_matches.append(m)
+        userSchema = UserSchema()
+        dumped_john = userSchema.dumps(john)
+        pprint(dumped_john.data)
 
 if __name__ == '__main__':
     unittest.main()

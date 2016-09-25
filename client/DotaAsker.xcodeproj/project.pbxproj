@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C091D9485FD0023EFF3 /* Player.m */; };
+		AC138C0D1D948BC40023EFF3 /* EndpointParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0C1D948BC40023EFF3 /* EndpointParser.m */; };
+		AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* APIHelper.m */; };
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
@@ -104,6 +107,12 @@
 
 /* Begin PBXFileReference section */
 		8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC138C081D9485FD0023EFF3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		AC138C091D9485FD0023EFF3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		AC138C0B1D948BC40023EFF3 /* EndpointParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndpointParser.h; sourceTree = "<group>"; };
+		AC138C0C1D948BC40023EFF3 /* EndpointParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndpointParser.m; sourceTree = "<group>"; };
+		AC138C0E1D948EC30023EFF3 /* APIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHelper.h; sourceTree = "<group>"; };
+		AC138C0F1D948EC30023EFF3 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelper.m; sourceTree = "<group>"; };
 		AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theme_tournaments.png; path = resources/theme_tournaments.png; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
@@ -475,6 +484,8 @@
 		ACFDF2D21BFB409100B89838 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				AC138C0B1D948BC40023EFF3 /* EndpointParser.h */,
+				AC138C0C1D948BC40023EFF3 /* EndpointParser.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -500,6 +511,8 @@
 		ACFDF2D51BFB40B600B89838 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				AC138C081D9485FD0023EFF3 /* Player.h */,
+				AC138C091D9485FD0023EFF3 /* Player.m */,
 				AC8841B51B2E5DAA006212D2 /* User.h */,
 				AC8841B61B2E5DAA006212D2 /* User.m */,
 				AC8841B81B2E650B006212D2 /* Match.h */,
@@ -525,6 +538,8 @@
 				AC60917A1BFF5B9600D728B6 /* AbstractService.m */,
 				AC60917F1C00623200D728B6 /* AuthorizationService.h */,
 				AC6091801C00623200D728B6 /* AuthorizationService.m */,
+				AC138C0E1D948EC30023EFF3 /* APIHelper.h */,
+				AC138C0F1D948EC30023EFF3 /* APIHelper.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -749,13 +764,16 @@
 				ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
+				AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
+				AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
+				AC138C0D1D948BC40023EFF3 /* EndpointParser.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
 			);
@@ -829,7 +847,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -866,7 +884,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -882,6 +900,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -899,6 +918,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

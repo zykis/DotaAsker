@@ -23,21 +23,7 @@ class Base(db.Model):
     __abstract__ = True
     created_on = db.Column(db.DateTime, default=db.func.now())
     updated_on = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
-    def columns(self):
-        return [c.name for c in self.__table__.columns]
 
-    def columnitems(self):
-        columnsDict = dict()
-        for c in self.columns():
-            inst = getattr(self, c)
-            if isinstance(inst, datetime.datetime):
-                columnsDict = dict (dict([(c.upper(), inst.strftime('%Y-%m-%d %H:%M:%S.%f'))]), **columnsDict)
-            else:
-                columnsDict = dict (dict([(c.upper(), getattr(self, c))]), **columnsDict)
-        return columnsDict
-
-    def tojson(self):
-        return self.columnitems()
 
 class Answer(Base):
     __tablename__ = 'answers'
@@ -47,6 +33,7 @@ class Answer(Base):
     is_correct = db.Column(db.Boolean)
     # relations
     question = db.relationship('Question', foreign_keys=[question_id])
+
 
 class Question(Base):
     __tablename__ = 'questions'
@@ -75,16 +62,6 @@ class Question(Base):
         answer.text = correctAnswerText
         self.correct_answer_id = answer.id
 
-    def columnitems(self):
-        clmnItemsDict = super(Question, self).columnitems()
-        # answers
-        if len(self.answers) != 0:
-            answer_list = list()
-            for ans in self.answers:
-                answer_list.append(ans.id)
-            answers_dict = {"ANSWERS_IDS": answer_list}
-            clmnItemsDict = dict(clmnItemsDict, **answers_dict)
-        return clmnItemsDict
 
 class Useranswer(Base):
     __tablename__ = 'user_answers'
@@ -103,6 +80,7 @@ class Useranswer(Base):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id', ondelete='CASCADE', onupdate='CASCADE'))
     question = db.relationship('Question', foreign_keys=[question_id])
 
+
 class Friends(Base):
     __tablename__ = 'friends_t'
     from_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'), primary_key=True)
@@ -111,6 +89,7 @@ class Friends(Base):
 
     from_user = db.relationship('User', backref=db.backref('out_requests', lazy='dynamic'), primaryjoin='User.id == Friends.from_id')
     to_user = db.relationship('User', backref=db.backref('in_requests', lazy='dynamic'), primaryjoin='User.id == Friends.to_id')
+
 
 class User(Base):
     __tablename__ = 'users'
@@ -127,6 +106,7 @@ class User(Base):
     total_incorrect_answers = db.Column(db.Integer, nullable=True, default=0)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     # relations
+    # TODO: divide matches onto: current_matches & recent_matches
     matches = db.relationship('Match', secondary='users_matches')
 
     def __init__(self, username = None, password = None, avatar_image_name = 'default_avatar', wallpapers_image_name = 'default_wallpapers', mmr = 4000):
@@ -196,24 +176,6 @@ class User(Base):
             friend_list.append(User.query.get(friend.from_id))
         return friend_list
 
-    def columnitems(self):
-            clitemsDict = super(User, self).columnitems()
-            listOfCurrentMatches = []
-            listOfRecentMatches = []
-            for match in self.matches:
-                # here we convert our Match server representation to client Representation
-                # need to change state of the rounds and Matches appropriately
-                if match.state == 2 or match.state == 3:
-                    listOfRecentMatches.append(match.id)
-                else:
-                    listOfCurrentMatches.append(match.id)
-
-            currentMatchesDict = {"CURRENT_MATCHES_IDS": listOfCurrentMatches}
-            recentMatchesDict = {"RECENT_MATCHES_IDS": listOfRecentMatches}
-            clitemsDict = dict(clitemsDict, **currentMatchesDict)
-            clitemsDict = dict(clitemsDict, **recentMatchesDict)
-            return clitemsDict
-
     def __repr__(self):
         return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.mmr)
 
@@ -236,6 +198,7 @@ class User(Base):
         str = unicode(self.id)
         return str
 
+
 class Theme(Base):
     __tablename__ = 'themes'
     id = db.Column(db.Integer, primary_key=True)
@@ -256,37 +219,17 @@ class Round(Base):
     questions = db.relationship('Question', secondary='round_questions')
     user_answers = db.relationship('Useranswer', cascade='all, delete-orphan')
 
-    def columnitems(self):
-        # parent
-        clmnItemsDict = super(Round, self).columnitems()
-        # next move user id
-        next_move_user_dict = {"NEXT_MOVE_USER_ID": self.match.next_move_user_id}
-
-        # questions
-        questions_list = list()
-        for q in self.questions:
-            questions_list.append(q.id)
-        questions_dict = {'QUESTIONS_IDS': questions_list}
-        # answers
-        answers_list = list()
-        for a in self.user_answers:
-            answers_list.append(a.id)
-        answers_dict = {"ANSWERS_IDS": answers_list}
-        # common
-        clmnItemsDict = dict(clmnItemsDict, **next_move_user_dict)
-        clmnItemsDict = dict(clmnItemsDict, **questions_dict)
-        clmnItemsDict = dict(clmnItemsDict, **answers_dict)
-        return clmnItemsDict
 
 class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, nullable=True, default=MATCH_NOT_STARTED)
     winner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True, default=0)
-    next_move_user_id = db.Column(db.Integer, default=0)
+    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True, default=0)
     # relations
     users = db.relationship('User', secondary='users_matches')
     winner = db.relationship('User', foreign_keys=[winner_id])
+    next_move_user = db.relationship('User', foreign_keys=[next_move_user_id])
 
     def __init__(self, initiator):
         # need to find out, if user exists already
@@ -300,24 +243,6 @@ class Match(Base):
 
     def __repr__(self):
         return "Match(id=%d, state=%d, next_move_user_id=%r, creation time=%s)" % (self.id, self.state, self.next_move_user_id, self.created_on)
-
-    def columnitems(self):
-        clmnItemsDict = super(Match, self).columnitems()
-        # rounds
-        listRounds = list()
-        for round in self.rounds:
-            listRounds.append(round.id)
-        roundsDict = {'ROUNDS_IDS': listRounds}
-        # users
-        users_list = list()
-        for u in self.users:
-            users_list.append(u.id)
-        users_dict = {"USERS_IDS": users_list}
-        # common
-        clmnItemsDict = dict(clmnItemsDict.items() + users_dict.items())
-        clmnItemsDict = dict(clmnItemsDict.items() + roundsDict.items())
-
-        return clmnItemsDict
 
     def finish(self, winner):
         pass
