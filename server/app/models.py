@@ -217,7 +217,7 @@ class Round(Base):
     theme = db.relationship('Theme')
 
     questions = db.relationship('Question', secondary='round_questions')
-    user_answers = db.relationship('Useranswer', cascade='all, delete-orphan')
+    user_answers = db.relationship('UserAnswer', cascade='all, delete-orphan')
 
 
 class Match(Base):

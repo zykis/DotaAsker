@@ -14,8 +14,7 @@
     self = [super init];
     if (self) {
         self.questions = [[NSMutableArray alloc] init];
-        self.answersPlayer = [[NSMutableArray alloc] init];
-        self.answersOpponent = [[NSMutableArray alloc] init];
+        self.userAnswers = [[NSMutableArray alloc] init];
     }
     return self;
 }

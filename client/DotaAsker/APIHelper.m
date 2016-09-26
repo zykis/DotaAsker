@@ -67,12 +67,12 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
             [subject sendError:error];
         } else {
             //parse result
-            User* player = [UserParser parse:responseObject andChildren:@YES];
+            User* player = [UserParser parse:responseObject andChildren:YES];
             if(player) {
                 [subject sendNext: player];
                 [subject sendCompleted];
@@ -82,6 +82,7 @@
             }
         }
     }];
+        
     [dataTask resume];
     
     return subject;

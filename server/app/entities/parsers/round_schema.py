@@ -4,6 +4,7 @@ from app.entities.parsers.question_schema import QuestionSchema
 from app.entities.parsers.user_answer_schema import UserAnswerSchema
 
 class RoundSchema(Schema):
+    id = fields.Int()
     state = fields.Int()
     theme = fields.Nested(ThemeSchema)
     questions = fields.Nested(QuestionSchema, many=True)

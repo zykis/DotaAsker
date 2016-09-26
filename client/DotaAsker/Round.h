@@ -32,7 +32,6 @@ typedef enum {ROUND_NOT_STARTED = 0, ROUND_FINISHED, ROUND_TIME_ELAPSED, ROUND_P
 @property (assign, nonatomic) Round_State round_state;//текущее состояние раунда
 @property (strong, nonatomic) Theme* theme;//выбранная тема
 @property (strong, nonatomic) NSMutableArray* questions;//список вопросов
-@property (strong, nonatomic) NSMutableArray* answersPlayer;//список ответов игрока
-@property (strong, nonatomic) NSMutableArray* answersOpponent;//список ответов оппонента
+@property (strong, nonatomic) NSMutableArray* userAnswers;//список ответов
 
 @end

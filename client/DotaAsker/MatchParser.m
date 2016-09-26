@@ -12,7 +12,7 @@
 #import "Match.h"
 #import "Round.h"
 #import "User.h"
-#import "Player.h"
+//#import "Player.h"
 
 @implementation MatchParser
 
@@ -33,10 +33,8 @@
     //users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
     for (NSDictionary* userDict in usersDict) {
-        User* u = [UserParser parse:userDict andChildren:@NO];
-        if (![u isEqual:[Player instance]]) {
-            [match setOpponent:u];
-        }
+        User* u = [UserParser parse:userDict andChildren:NO];
+        [[match users] addObject:u];
     }
     //matchState
     MatchState state = (MatchState)[[JSONDict objectForKey:@"state"] integerValue];
@@ -52,7 +50,7 @@
         NSUInteger playerScore = 0;
         NSUInteger opponentScore = 0;
         for (NSDictionary* roundDict in roundsDict) {
-            Round* r = [RoundParser parse:roundDict andChildren:@YES];
+            Round* r = [RoundParser parse:roundDict andChildren:YES];
             [[match rounds] addObject:r];
             
             //! TODO: score

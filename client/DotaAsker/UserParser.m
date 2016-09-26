@@ -48,19 +48,19 @@
             return nil;
         }
         
-        NSArray* currentMatchesDict = [[JSONDict objectForKey:@"current_matches"] mutableCopy];
-        NSArray* recentMatchesDict = [[JSONDict objectForKey:@"recent_matches"] mutableCopy];
-        NSArray* friendsDict = [[JSONDict objectForKey:@"friends"] mutableCopy];
+        NSArray* currentMatchesDict = [JSONDict objectForKey:@"current_matches"];
+        NSArray* recentMatchesDict = [JSONDict objectForKey:@"recent_matches"];
+        NSArray* friendsDict = [JSONDict objectForKey:@"friends"];
         for (NSDictionary* matchDict in currentMatchesDict) {
-            Match* m = [MatchParser parse:matchDict andChildren:@YES];
+            Match* m = [MatchParser parse:matchDict andChildren:YES];
             [[user currentMatches] addObject:m];
         }
         for (NSDictionary* matchDict in recentMatchesDict) {
-            Match* m = [MatchParser parse:matchDict andChildren:@YES];
+            Match* m = [MatchParser parse:matchDict andChildren:YES];
             [[user recentMatches] addObject:m];
         }
         for (NSDictionary* friendDict in friendsDict) {
-            User* friend = [UserParser parse:friendDict andChildren:@NO];
+            User* friend = [UserParser parse:friendDict andChildren:NO];
             [[user friends] addObject:friend];
         }
     }

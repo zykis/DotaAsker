@@ -35,7 +35,7 @@
     Round_State state = (Round_State)[[JSONDict objectForKey:@"state"] integerValue];
     [round setRound_state:state];
     
-    if (bParseChildren) {
+    if (state != ROUND_NOT_STARTED) {
         //theme
         NSDictionary* themeDict = [JSONDict objectForKey:@"theme"];
         Theme* theme = [ThemeParser parse:themeDict];
@@ -52,12 +52,7 @@
         NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
         for (NSDictionary* uaDict in user_answersDict) {
             UserAnswer* ua = [UserAnswerParser parse:uaDict];
-            if ([ua relatedUserID] == [[Player instance] ID]) {
-                [[round answersPlayer] addObject:ua];
-            }
-            else {
-                [[round answersOpponent] addObject:ua];
-            }
+            [[round userAnswers] addObject:ua];
         }
     }
     return round;

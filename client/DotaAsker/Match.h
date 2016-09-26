@@ -18,7 +18,7 @@ typedef enum {MATCH_NOT_STARTED = 0, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_E
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (assign, nonatomic) MatchState state;
-@property (strong, nonatomic) User* opponent;
+@property (strong, nonatomic) NSMutableArray *users;
 @property (assign, nonatomic) NSUInteger scorePlayer;
 @property (assign, nonatomic) NSUInteger scoreOpponent;
 @property (strong, nonatomic) NSMutableArray *rounds;

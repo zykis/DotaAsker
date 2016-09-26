@@ -1,7 +1,7 @@
 from app import app
 from app import db
 from app.models import User
-from flask import abort, request, g, jsonify, url_for
+from flask import abort, request, g, jsonify, url_for, make_response
 from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
 from app.entities.parsers.user_schema import UserSchema
@@ -42,7 +42,9 @@ def get_main_view_controller():
     schema = UserSchema()
     res = schema.dumps(user)
     if not res.errors:
-        return jsonify({"user" : res.data})
+        resp = make_response(res.data)
+        resp.mimetype = 'application/json'
+        return resp
     else:
         return jsonify(res.errors)
 
