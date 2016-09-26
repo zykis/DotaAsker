@@ -17,6 +17,7 @@
 #import "ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h"
 #import "AuthorizationService.h"
 #import "Player.h"
+#import "UserParser.h"
 
 @implementation APIHelper
 
@@ -71,7 +72,7 @@
             [subject sendError:error];
         } else {
             //parse result
-            Player* player = [EndpointParser parsePlayerEndpoint:responseObject];
+            User* player = [UserParser parse:responseObject andChildren:@YES];
             if(player) {
                 [subject sendNext: player];
                 [subject sendCompleted];

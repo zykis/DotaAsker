@@ -8,6 +8,10 @@
 
 #import "AbstractParser.h"
 
-@interface AnswerParser : AbstractParser
+@class Answer;
+
+@interface AnswerParser : NSObject
+
++ (Answer*)parse: (NSDictionary*) JSONDict;
 
 @end

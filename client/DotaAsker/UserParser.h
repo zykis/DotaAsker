@@ -8,6 +8,10 @@
 
 #import "AbstractParser.h"
 
-@interface UserParser : AbstractParser
+@class User;
+
+@interface UserParser: NSObject
+
++ (User*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren;
 
 @end

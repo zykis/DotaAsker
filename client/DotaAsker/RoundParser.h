@@ -8,6 +8,10 @@
 
 #import "AbstractParser.h"
 
-@interface RoundParser : AbstractParser
+@class Round;
+
+@interface RoundParser : NSObject
+
++ (Round*)parse: (NSDictionary*)JSONDict andChildren:(BOOL)bParseChildren;
 
 @end

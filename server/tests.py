@@ -4,7 +4,7 @@ import unittest
 
 from config import basedir, questiondir, QUESTIONS_IN_ROUND, ROUNDS_IN_MATCH, THEMES_COUNT
 from app import app, db, models
-from app.models import User, Theme, Match, Question, Useranswer
+from app.models import User, Theme, Match, Question, UserAnswer
 import random
 from app.db_querys import Database_queries
 from app.models import ROUND_FINISHED, ROUND_ANSWERING
@@ -70,14 +70,14 @@ class TestCase(unittest.TestCase):
             r.theme = themes[random.randrange(0, len(themes))]
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
             for quest in r.questions:
-                    user_answer = Useranswer()
+                    user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = first_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
                     db.session.add(user_answer)
 
-                    user2_answer = Useranswer()
+                    user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = first_match.users[1]
                     user2_answer.question = quest
@@ -96,14 +96,14 @@ class TestCase(unittest.TestCase):
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
             for quest in r.questions:
-                        user_answer = Useranswer()
+                        user_answer = UserAnswer()
                         user_answer.round = r
                         user_answer.user = second_match.users[0]
                         user_answer.question = quest
                         user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
                         db.session.add(user_answer)
 
-                        user2_answer = Useranswer()
+                        user2_answer = UserAnswer()
                         user2_answer.round = r
                         user2_answer.user = second_match.users[1]
                         user2_answer.question = quest
@@ -122,14 +122,14 @@ class TestCase(unittest.TestCase):
         r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
         for quest in r.questions[0:2]:
-                    user_answer = Useranswer()
+                    user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = second_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.randrange(quest.answers[0].id, quest.answers[len(quest.answers) - 1].id)
                     db.session.add(user_answer)
 
-                    user2_answer = Useranswer()
+                    user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = second_match.users[1]
                     user2_answer.question = quest

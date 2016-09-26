@@ -12,15 +12,15 @@
 #define MAX_MMR_PRICE 35
 
 typedef enum {MATCH_NOT_STARTED = 0, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED} MatchState;
+@class User;
 
 @interface Match : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (assign, nonatomic) MatchState state;
-@property (assign, nonatomic) unsigned long long playerID;
-@property (assign, nonatomic) unsigned long long opponentID;
-@property (assign, nonatomic) NSInteger scorePlayer;//считается на клиенте
-@property (assign, nonatomic) NSInteger scoreOpponent;//считается на клиенте
-@property (strong, nonatomic) NSMutableArray *roundsIDs;
+@property (strong, nonatomic) User* opponent;
+@property (assign, nonatomic) NSUInteger scorePlayer;
+@property (assign, nonatomic) NSUInteger scoreOpponent;
+@property (strong, nonatomic) NSMutableArray *rounds;
 
 @end

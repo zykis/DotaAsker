@@ -11,10 +11,10 @@
 
 @implementation ThemeParser
 
-- (Theme*)parse:(NSDictionary *)JSONDict {
-    if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"NAME"] &&
-          [JSONDict objectForKey:@"IMAGE_NAME"]
++ (Theme*)parse:(NSDictionary *)JSONDict {
+    if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"name"] &&
+          [JSONDict objectForKey:@"image_name"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -22,13 +22,13 @@
     
     Theme* theme = [[Theme alloc] init];
     //ID
-    unsigned long long themeID = [[JSONDict objectForKey:@"ID"] unsignedLongLongValue];
+    unsigned long long themeID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [theme setID:themeID];
     //name
-    NSString* name = [JSONDict objectForKey:@"NAME"];
+    NSString* name = [JSONDict objectForKey:@"name"];
     [theme setName:name];
     //imageName
-    NSString* imageName = [JSONDict objectForKey:@"IMAGE_NAME"];
+    NSString* imageName = [JSONDict objectForKey:@"image_name"];
     [theme setImageName:imageName];
     
     return theme;

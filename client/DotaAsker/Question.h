@@ -11,10 +11,9 @@
 @interface Question : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (assign, nonatomic) unsigned long long themeID;
 @property (strong, nonatomic) NSString *text;
 @property (strong, nonatomic) NSString *imageName;
-@property (strong, nonatomic) NSMutableArray *answersIDs;
+@property (strong, nonatomic) NSMutableArray *answers;
 @property (assign, nonatomic) BOOL approved;
 
 @end

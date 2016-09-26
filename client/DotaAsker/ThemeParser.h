@@ -8,6 +8,10 @@
 
 #import "AbstractParser.h"
 
+@class Theme;
+
 @interface ThemeParser : AbstractParser
+
++ (Theme*)parse: (NSDictionary*)JSONDict;
 
 @end

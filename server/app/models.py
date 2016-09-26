@@ -63,7 +63,7 @@ class Question(Base):
         self.correct_answer_id = answer.id
 
 
-class Useranswer(Base):
+class UserAnswer(Base):
     __tablename__ = 'user_answers'
     id = db.Column(db.Integer, primary_key=True)
 

@@ -13,9 +13,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.questionsIDs = [[NSMutableArray alloc] init];
-        self.answersPlayerIDs = [[NSMutableArray alloc] init];
-        self.answersOpponentIDs = [[NSMutableArray alloc] init];
+        self.questions = [[NSMutableArray alloc] init];
+        self.answersPlayer = [[NSMutableArray alloc] init];
+        self.answersOpponent = [[NSMutableArray alloc] init];
     }
     return self;
 }

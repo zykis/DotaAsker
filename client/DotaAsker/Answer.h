@@ -11,7 +11,6 @@
 @interface Answer : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (assign, nonatomic) unsigned long long relatedQuestionID;
 @property (strong, nonatomic) NSString* text;
 @property (assign, nonatomic) BOOL isCorrect;
 

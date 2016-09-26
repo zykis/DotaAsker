@@ -8,6 +8,10 @@
 
 #import "AbstractParser.h"
 
-@interface MatchParser : AbstractParser
+@class Match;
+
+@interface MatchParser : NSObject
+
++ (Match*)parse: (NSDictionary*)JSONDict andChildren:(BOOL)bParseChildren;
 
 @end

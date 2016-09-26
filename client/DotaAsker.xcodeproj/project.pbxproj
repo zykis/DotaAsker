@@ -53,6 +53,14 @@
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
 		AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */; };
+		AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A195D1D9869DD00B66AAE /* AbstractParser.m */; };
+		AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A195F1D9869DD00B66AAE /* AnswerParser.m */; };
+		AC9A19701D9869DD00B66AAE /* MatchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19611D9869DD00B66AAE /* MatchParser.m */; };
+		AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19651D9869DD00B66AAE /* QuestionParser.m */; };
+		AC9A19731D9869DD00B66AAE /* RoundParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19671D9869DD00B66AAE /* RoundParser.m */; };
+		AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19691D9869DD00B66AAE /* ThemeParser.m */; };
+		AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */; };
+		AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196D1D9869DD00B66AAE /* UserParser.m */; };
 		ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */; };
 		ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEBA01D7A2A9400C6A61E /* SignUpViewController.m */; };
 		ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */ = {isa = PBXBuildFile; fileRef = ACB3A10C1B9F29DC0083EE17 /* avatar_axe.png */; };
@@ -91,7 +99,6 @@
 		ACF41BFB1B3BABE00096598C /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */; };
 		ACF41BFD1B3BC3720096598C /* settings_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */; };
 		ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41C071B3C0F950096598C /* versus_image_48x48.png */; };
-		ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFDF2D81BFB41F500B89838 /* Transport.m */; };
 		F099BF0D2646182908BDA5F7 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +180,22 @@
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
 		AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
+		AC9A195C1D9869DD00B66AAE /* AbstractParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractParser.h; sourceTree = "<group>"; };
+		AC9A195D1D9869DD00B66AAE /* AbstractParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractParser.m; sourceTree = "<group>"; };
+		AC9A195E1D9869DD00B66AAE /* AnswerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerParser.h; sourceTree = "<group>"; };
+		AC9A195F1D9869DD00B66AAE /* AnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerParser.m; sourceTree = "<group>"; };
+		AC9A19601D9869DD00B66AAE /* MatchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchParser.h; sourceTree = "<group>"; };
+		AC9A19611D9869DD00B66AAE /* MatchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchParser.m; sourceTree = "<group>"; };
+		AC9A19641D9869DD00B66AAE /* QuestionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionParser.h; sourceTree = "<group>"; };
+		AC9A19651D9869DD00B66AAE /* QuestionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionParser.m; sourceTree = "<group>"; };
+		AC9A19661D9869DD00B66AAE /* RoundParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundParser.h; sourceTree = "<group>"; };
+		AC9A19671D9869DD00B66AAE /* RoundParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundParser.m; sourceTree = "<group>"; };
+		AC9A19681D9869DD00B66AAE /* ThemeParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeParser.h; sourceTree = "<group>"; };
+		AC9A19691D9869DD00B66AAE /* ThemeParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeParser.m; sourceTree = "<group>"; };
+		AC9A196A1D9869DD00B66AAE /* UserAnswerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswerParser.h; sourceTree = "<group>"; };
+		AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerParser.m; sourceTree = "<group>"; };
+		AC9A196C1D9869DD00B66AAE /* UserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserParser.h; sourceTree = "<group>"; };
+		AC9A196D1D9869DD00B66AAE /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
 		ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		ACACEB9F1D7A2A9400C6A61E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -219,8 +242,6 @@
 		ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@2x.png"; path = "resources/settings_icon@2x.png"; sourceTree = "<group>"; };
 		ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@3x.png"; path = "resources/settings_icon@3x.png"; sourceTree = "<group>"; };
 		ACF41C071B3C0F950096598C /* versus_image_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = versus_image_48x48.png; path = resources/versus_image_48x48.png; sourceTree = "<group>"; };
-		ACFDF2D71BFB41F500B89838 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
-		ACFDF2D81BFB41F500B89838 /* Transport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transport.m; sourceTree = "<group>"; };
 		E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
 		F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -484,6 +505,22 @@
 		ACFDF2D21BFB409100B89838 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				AC9A195C1D9869DD00B66AAE /* AbstractParser.h */,
+				AC9A195D1D9869DD00B66AAE /* AbstractParser.m */,
+				AC9A195E1D9869DD00B66AAE /* AnswerParser.h */,
+				AC9A195F1D9869DD00B66AAE /* AnswerParser.m */,
+				AC9A19601D9869DD00B66AAE /* MatchParser.h */,
+				AC9A19611D9869DD00B66AAE /* MatchParser.m */,
+				AC9A19641D9869DD00B66AAE /* QuestionParser.h */,
+				AC9A19651D9869DD00B66AAE /* QuestionParser.m */,
+				AC9A19661D9869DD00B66AAE /* RoundParser.h */,
+				AC9A19671D9869DD00B66AAE /* RoundParser.m */,
+				AC9A19681D9869DD00B66AAE /* ThemeParser.h */,
+				AC9A19691D9869DD00B66AAE /* ThemeParser.m */,
+				AC9A196A1D9869DD00B66AAE /* UserAnswerParser.h */,
+				AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */,
+				AC9A196C1D9869DD00B66AAE /* UserParser.h */,
+				AC9A196D1D9869DD00B66AAE /* UserParser.m */,
 				AC138C0B1D948BC40023EFF3 /* EndpointParser.h */,
 				AC138C0C1D948BC40023EFF3 /* EndpointParser.m */,
 			);
@@ -502,8 +539,6 @@
 		ACFDF2D41BFB40AD00B89838 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
-				ACFDF2D71BFB41F500B89838 /* Transport.h */,
-				ACFDF2D81BFB41F500B89838 /* Transport.m */,
 			);
 			name = Transport;
 			sourceTree = "<group>";
@@ -755,17 +790,21 @@
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
+				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
-				ACFDF2D91BFB41F500B89838 /* Transport.m in Sources */,
 				ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				ACD52F871BB15C300006D50A /* Answer.m in Sources */,
+				AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
 				ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
+				AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */,
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
 				AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
+				AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */,
+				AC9A19701D9869DD00B66AAE /* MatchParser.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
 				AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
@@ -773,7 +812,10 @@
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
+				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,
+				AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */,
 				AC138C0D1D948BC40023EFF3 /* EndpointParser.m in Sources */,
+				AC9A19731D9869DD00B66AAE /* RoundParser.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
 			);

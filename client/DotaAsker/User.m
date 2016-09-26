@@ -13,9 +13,9 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.currentMatchesIDs = [[NSMutableArray alloc] init];
-        self.recentMatchesIDs = [[NSMutableArray alloc] init];
-        self.friendsIDs = [[NSMutableArray alloc] init];
+        self.currentMatches = [[NSMutableArray alloc] init];
+        self.recentMatches = [[NSMutableArray alloc] init];
+        self.friends = [[NSMutableArray alloc] init];
     }
     return self;
 }

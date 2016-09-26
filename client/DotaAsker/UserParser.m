@@ -7,50 +7,69 @@
 //
 
 #import "UserParser.h"
+#import "MatchParser.h"
 #import "User.h"
-#import "MatchService.h"
 
 @implementation UserParser
 
-- (User*)parse:(NSDictionary *)JSONDict {
-    if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"USERNAME"] &&
-          [JSONDict objectForKey:@"MMR"] &&
-          [JSONDict objectForKey:@"GPM"] &&
-          [JSONDict objectForKey:@"KDA"] &&
-          [JSONDict objectForKey:@"AVATAR_IMAGE_NAME"] &&
-          [JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"] &&
-          [JSONDict objectForKey:@"ROLE"] &&
-          [JSONDict objectForKey:@"CURRENT_MATCHES_IDS"] &&
-          [JSONDict objectForKey:@"RECENT_MATCHES_IDS"] &&
-          [JSONDict objectForKey:@"TOTAL_CORRECT_ANSWERS"] &&
-          [JSONDict objectForKey:@"TOTAL_INCORRECT_ANSWERS"]
++ (User*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
+    if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"username"] &&
+          [JSONDict objectForKey:@"mmr"] &&
+          [JSONDict objectForKey:@"gpm"] &&
+          [JSONDict objectForKey:@"kda"] &&
+          [JSONDict objectForKey:@"avatar_image_name"] &&
+          [JSONDict objectForKey:@"wallpapers_image_name"] &&
+          [JSONDict objectForKey:@"role"] &&
+          [JSONDict objectForKey:@"total_correct_answers"] &&
+          [JSONDict objectForKey:@"total_incorrect_answers"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in UserParser");
         return nil;
     }
     
     User* user = [[User alloc] init];
-    [user setID:[[JSONDict objectForKey:@"ID"] unsignedLongLongValue]];
-    [user setName:[JSONDict objectForKey:@"USERNAME"]];
-    [user setMMR:[[JSONDict objectForKey:@"MMR"] integerValue]];
-    [user setGPM:[[JSONDict objectForKey:@"GPM"] integerValue]];
-    [user setKDA:[[JSONDict objectForKey:@"KDA"] floatValue]];
-    [user setAvatarImageName:[JSONDict objectForKey:@"AVATAR_IMAGE_NAME"]];
-    [user setWallpapersImageName:[JSONDict objectForKey:@"WALLPAPERS_IMAGE_NAME"]];
-    [user setRole:(ROLE)[JSONDict[@"ROLE"] integerValue]];
-    NSArray* currentMatchesIDs = [[JSONDict objectForKey:@"CURRENT_MATCHES_IDS"] mutableCopy];
-    NSArray* recentMatchesIDs = [[JSONDict objectForKey:@"RECENT_MATCHES_IDS"] mutableCopy];
-    [[user currentMatchesIDs] addObjectsFromArray:currentMatchesIDs];
-    [[user recentMatchesIDs] addObjectsFromArray:recentMatchesIDs];
-    [user setTotalCorrectAnswers: [[JSONDict objectForKey:@"TOTAL_CORRECT_ANSWERS"] integerValue]];
-    [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"TOTAL_INCORRECT_ANSWERS"] integerValue]];
+    [user setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
+    [user setName:[JSONDict objectForKey:@"username"]];
+    [user setMMR:[[JSONDict objectForKey:@"mmr"] integerValue]];
+    [user setGPM:[[JSONDict objectForKey:@"gpm"] integerValue]];
+    [user setKDA:[[JSONDict objectForKey:@"kda"] floatValue]];
+    [user setAvatarImageName:[JSONDict objectForKey:@"avatar_image_name"]];
+    [user setWallpapersImageName:[JSONDict objectForKey:@"wallpapers_image_name"]];
+    [user setRole:(ROLE)[JSONDict[@"role"] integerValue]];
+    [user setTotalCorrectAnswers: [[JSONDict objectForKey:@"total_correct_answers"] integerValue]];
+    [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"total_incorrect_answers"] integerValue]];
+    if (bParseChildren) {
+        if (!([JSONDict objectForKey:@"current_matches"] &&
+              [JSONDict objectForKey:@"recent_matches"] &&
+              [JSONDict objectForKey:@"friends"]
+              )) {
+            NSLog(@"Parsing error: can't retrieve a field in UserParser");
+            return nil;
+        }
+        
+        NSArray* currentMatchesDict = [[JSONDict objectForKey:@"current_matches"] mutableCopy];
+        NSArray* recentMatchesDict = [[JSONDict objectForKey:@"recent_matches"] mutableCopy];
+        NSArray* friendsDict = [[JSONDict objectForKey:@"friends"] mutableCopy];
+        for (NSDictionary* matchDict in currentMatchesDict) {
+            Match* m = [MatchParser parse:matchDict andChildren:@YES];
+            [[user currentMatches] addObject:m];
+        }
+        for (NSDictionary* matchDict in recentMatchesDict) {
+            Match* m = [MatchParser parse:matchDict andChildren:@YES];
+            [[user recentMatches] addObject:m];
+        }
+        for (NSDictionary* friendDict in friendsDict) {
+            User* friend = [UserParser parse:friendDict andChildren:@NO];
+            [[user friends] addObject:friend];
+        }
+    }
     
     return user;
 }
 
 - (NSDictionary*)encode:(User*)user {
-    NSArray* matchesIDs = [user.currentMatchesIDs arrayByAddingObjectsFromArray:user.recentMatchesIDs];
+    NSArray* matchesIDs = [user.currentMatches arrayByAddingObjectsFromArray:user.recentMatches];
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedLongLong:user.ID], @"ID",
                               user.name, @"USERNAME",

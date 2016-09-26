@@ -8,16 +8,16 @@
 
 #import "QuestionParser.h"
 #import "Question.h"
+#import "AnswerParser.h"
 
 @implementation QuestionParser
 
-- (Question*)parse:(NSDictionary *)JSONDict {
-    if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"THEME_ID"] &&
-          [JSONDict objectForKey:@"TEXT"] &&
-          [JSONDict objectForKey:@"IMAGE_NAME"] &&
-          [JSONDict objectForKey:@"ANSWERS_IDS"] &&
-          [JSONDict objectForKey:@"APPROVED"]
++ (Question*)parse:(NSDictionary *)JSONDict {
+    if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"text"] &&
+          [JSONDict objectForKey:@"image_name"] &&
+          [JSONDict objectForKey:@"answers"] &&
+          [JSONDict objectForKey:@"approved"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -25,23 +25,23 @@
     
     Question* question = [[Question alloc] init];
     //ID
-    unsigned long long questionID = [[JSONDict objectForKey:@"ID"] unsignedLongLongValue];
+    unsigned long long questionID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [question setID:questionID];
-    //themeID
-    unsigned long long themeID = [[JSONDict objectForKey:@"THEME_ID"] unsignedLongLongValue];
-    [question setThemeID:themeID];
     //text
-    NSString* text = [JSONDict objectForKey:@"TEXT"];
+    NSString* text = [JSONDict objectForKey:@"text"];
     [question setText:text];
     //imageName
-    NSString* imageName = [JSONDict objectForKey:@"IMAGE_NAME"];
+    NSString* imageName = [JSONDict objectForKey:@"image_name"];
     [question setImageName:imageName];
-    //answersIDs
-    NSMutableArray* answersIDs = [JSONDict objectForKey:@"ANSWERS_IDS"];
-    [question setAnswersIDs:answersIDs];
     //approved
-    BOOL approved = [JSONDict[@"APPROVED"] boolValue];
+    BOOL approved = [JSONDict[@"approved"] boolValue];
     [question setApproved:approved];
+    //answers
+    NSArray* answersDict = [JSONDict objectForKey:@"answers"];
+    for (NSDictionary* answerDict in answersDict) {
+        Answer *a = [AnswerParser parse:answerDict];
+        [[question answers] addObject:a];
+    }
 
     return question;
 }
@@ -49,10 +49,9 @@
 - (NSDictionary*)encode:(Question*)question {
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedLongLong: question.ID], @"ID",
-                              [NSNumber numberWithUnsignedLongLong: question.themeID], @"THEME_ID",
                               question.text, @"TEXT",
                               question.imageName, @"IMAGE_NAME",
-                              question.answersIDs, @"ANSWERS_IDS",
+                              question.answers, @"ANSWERS_IDS",
                               nil];
     return jsonDict;
 }

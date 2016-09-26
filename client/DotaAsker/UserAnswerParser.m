@@ -11,23 +11,23 @@
 
 @implementation UserAnswerParser
 
-- (UserAnswer*)parse:(NSDictionary *)JSONDict {
-    if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"ROUND_ID"] &&
-          [JSONDict objectForKey:@"USER_ID"] &&
-          [JSONDict objectForKey:@"ANSWER_ID"] &&
-          [JSONDict objectForKey:@"QUESTION_ID"]
++ (UserAnswer*)parse:(NSDictionary *)JSONDict {
+    if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"round_id"] &&
+          [JSONDict objectForKey:@"user_id"] &&
+          [JSONDict objectForKey:@"answer_id"] &&
+          [JSONDict objectForKey:@"question_id"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
     }
     
     UserAnswer* userAnswer = [[UserAnswer alloc] init];
-    userAnswer.ID = [[JSONDict objectForKey:@"ID"] longValue];
-    userAnswer.relatedRoundID = [[JSONDict objectForKey:@"ROUND_ID"] longValue];
-    userAnswer.relatedUserID = [[JSONDict objectForKey:@"USER_ID"] longValue];
-    userAnswer.relatedAnswerID = [[JSONDict objectForKey:@"ANSWER_ID"] longValue];
-    userAnswer.relatedQuestionID = [[JSONDict objectForKey:@"QUESTION_ID"] longValue];
+    userAnswer.ID = [[JSONDict objectForKey:@"id"] longValue];
+    userAnswer.relatedRoundID = [[JSONDict objectForKey:@"round_id"] longValue];
+    userAnswer.relatedUserID = [[JSONDict objectForKey:@"user_id"] longValue];
+    userAnswer.relatedAnswerID = [[JSONDict objectForKey:@"answer_id"] longValue];
+    userAnswer.relatedQuestionID = [[JSONDict objectForKey:@"question_id"] longValue];
     return userAnswer;
 }
 

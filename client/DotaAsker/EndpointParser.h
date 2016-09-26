@@ -11,5 +11,5 @@
 @class Player;
 
 @interface EndpointParser : NSObject
-+ (Player*)parsePlayerEndpoint: (NSDictionary*)playerDictionary;
+
 @end

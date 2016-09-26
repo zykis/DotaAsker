@@ -23,8 +23,8 @@ typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 @property (assign, nonatomic) NSInteger totalCorrectAnswers;
 @property (assign, nonatomic) NSInteger totalIncorrectAnswers;
 @property (assign, nonatomic) ROLE role;
-@property (strong, nonatomic) NSMutableArray *currentMatchesIDs;
-@property (strong, nonatomic) NSMutableArray *recentMatchesIDs;
-@property (strong, nonatomic) NSMutableArray *friendsIDs;
+@property (strong, nonatomic) NSMutableArray *currentMatches;
+@property (strong, nonatomic) NSMutableArray *recentMatches;
+@property (strong, nonatomic) NSMutableArray *friends;
 
 @end

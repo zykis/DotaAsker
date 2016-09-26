@@ -13,7 +13,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.answersIDs = [[NSMutableArray alloc] init];
+        self.answers = [[NSMutableArray alloc] init];
     }
     return self;
 }

@@ -11,11 +11,10 @@
 
 @implementation AnswerParser
 
-- (Answer*)parse:(NSDictionary *)JSONDict {
-    if (!([JSONDict objectForKey:@"ID"] &&
-          [JSONDict objectForKey:@"TEXT"] &&
-          [JSONDict objectForKey:@"IS_CORRECT"] &&
-          [JSONDict objectForKey:@"QUESTION_ID"]
++ (Answer*)parse:(NSDictionary *)JSONDict {
+    if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"text"] &&
+          [JSONDict objectForKey:@"is_correct"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -23,17 +22,14 @@
     
     Answer* answer = [[Answer alloc] init];
     //ID
-    unsigned long long answerID = [[JSONDict objectForKey:@"ID"] unsignedLongLongValue];
+    unsigned long long answerID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [answer setID:answerID];
     //text
-    NSString* text = [JSONDict objectForKey:@"TEXT"];
+    NSString* text = [JSONDict objectForKey:@"text"];
     [answer setText:text];
     //isCorrect
-    BOOL isCorrect = [[JSONDict objectForKey:@"IS_CORRECT"] boolValue];
+    BOOL isCorrect = [[JSONDict objectForKey:@"is_correct"] boolValue];
     [answer setIsCorrect:isCorrect];
-    //question_id
-    unsigned long long question_id = [JSONDict[@"QUESTION_ID"] unsignedLongLongValue];
-    [answer setRelatedQuestionID:question_id];
 
     return answer;
 }

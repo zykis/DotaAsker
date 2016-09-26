@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Match, Question, Theme, Answer, Useranswer
+from app.models import User, Match, Question, Theme, Answer, UserAnswer
 from app import models
 import json
 import random
@@ -195,14 +195,14 @@ class Database_queries:
             r.theme = random.choice(themes)
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
             for quest in r.questions:
-                    user_answer = Useranswer()
+                    user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = first_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user_answer)
 
-                    user2_answer = Useranswer()
+                    user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = first_match.users[1]
                     user2_answer.question = quest
@@ -221,14 +221,14 @@ class Database_queries:
             r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
             for quest in r.questions:
-                        user_answer = Useranswer()
+                        user_answer = UserAnswer()
                         user_answer.round = r
                         user_answer.user = second_match.users[0]
                         user_answer.question = quest
                         user_answer.answer_id = random.choice(quest.answers).id
                         db.session.add(user_answer)
 
-                        user2_answer = Useranswer()
+                        user2_answer = UserAnswer()
                         user2_answer.round = r
                         user2_answer.user = second_match.users[1]
                         user2_answer.question = quest
@@ -247,14 +247,14 @@ class Database_queries:
         r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
 
         for quest in r.questions[0:2]:
-                    user_answer = Useranswer()
+                    user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = second_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user_answer)
 
-                    user2_answer = Useranswer()
+                    user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = second_match.users[1]
                     user2_answer.question = quest
