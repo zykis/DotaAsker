@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class User;
+
+@class MainViewModel;
 
 @interface MainViewController : UITableViewController
 
-@property (strong, nonatomic) User* user;
+@property (strong, nonatomic) MainViewModel* viewModel;
 - (IBAction)findMatchPressed;
 - (IBAction)logout;
 //@property (strong, nonatomic) IBOutlet UITableView *tableView;

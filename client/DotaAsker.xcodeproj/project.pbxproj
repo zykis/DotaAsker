@@ -99,6 +99,8 @@
 		ACF41BFB1B3BABE00096598C /* settings_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */; };
 		ACF41BFD1B3BC3720096598C /* settings_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */; };
 		ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41C071B3C0F950096598C /* versus_image_48x48.png */; };
+		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
+		ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37B1D9A40300060EA56 /* MainViewModel.m */; };
 		F099BF0D2646182908BDA5F7 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */; };
 /* End PBXBuildFile section */
 
@@ -242,6 +244,10 @@
 		ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@2x.png"; path = "resources/settings_icon@2x.png"; sourceTree = "<group>"; };
 		ACF41BFC1B3BC3720096598C /* settings_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "settings_icon@3x.png"; path = "resources/settings_icon@3x.png"; sourceTree = "<group>"; };
 		ACF41C071B3C0F950096598C /* versus_image_48x48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = versus_image_48x48.png; path = resources/versus_image_48x48.png; sourceTree = "<group>"; };
+		ACF5F3761D99E1080060EA56 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		ACF5F3771D99E1080060EA56 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		ACF5F37A1D9A40300060EA56 /* MainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewModel.h; sourceTree = "<group>"; };
+		ACF5F37B1D9A40300060EA56 /* MainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewModel.m; sourceTree = "<group>"; };
 		E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
 		F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -313,6 +319,7 @@
 				ACFDF2D21BFB409100B89838 /* Parsers */,
 				ACBD29DD1B5BB5D7005AB718 /* Categories */,
 				ACF41C031B3BE8B20096598C /* CustomViews */,
+				ACF5F3791D9A40070060EA56 /* ViewModels */,
 				AC9BBE151B32A83900E59DE2 /* ViewControllers */,
 				AC7352071B239A1B00FFF356 /* Supporting Files */,
 				AC7352141B239A1B00FFF356 /* Images.xcassets */,
@@ -396,6 +403,8 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
+				ACF5F3771D99E1080060EA56 /* MainViewController.m */,
 				ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */,
 				ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */,
 				ACACEB9F1D7A2A9400C6A61E /* SignUpViewController.h */,
@@ -500,6 +509,15 @@
 				ACF41BFA1B3BABE00096598C /* settings_icon@2x.png */,
 			);
 			name = icons;
+			sourceTree = "<group>";
+		};
+		ACF5F3791D9A40070060EA56 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				ACF5F37A1D9A40300060EA56 /* MainViewModel.h */,
+				ACF5F37B1D9A40300060EA56 /* MainViewModel.m */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 		ACFDF2D21BFB409100B89838 /* Parsers */ = {
@@ -792,6 +810,7 @@
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
+				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,
 				ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				ACD52F871BB15C300006D50A /* Answer.m in Sources */,
@@ -807,6 +826,7 @@
 				AC9A19701D9869DD00B66AAE /* MatchParser.m in Sources */,
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
 				AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */,
+				ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */,
 				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,

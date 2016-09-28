@@ -13,7 +13,6 @@ typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *email;
 @property (assign, nonatomic) NSInteger MMR;//Текущий рейтинг среди всех игроков
 @property (assign, nonatomic) float KDA;//Отношение правильно отвеченных вопросов на неправильно отвеченные.

@@ -18,7 +18,7 @@
         <scene sceneID="CxO-IC-Sg9">
             <objects>
                 <navigationController id="ytL-e4-7GM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DC5-9K-Ypn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DC5-9K-Ypn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -674,7 +674,6 @@
                         <outlet property="textFieldEmail" destination="kc7-Oa-fuf" id="1GE-VK-a3L"/>
                         <outlet property="textFieldPassword" destination="6Ff-dR-Dya" id="NhL-dn-ARD"/>
                         <outlet property="textFieldUsername" destination="kMT-3B-I4b" id="HB3-Yr-GCd"/>
-                        <segue destination="WZ8-r2-WIq" kind="show" identifier="signup" id="CGe-k9-iUa"/>
                         <segue destination="4wa-4b-EdD" kind="show" identifier="signin" id="wHg-3X-Li2"/>
                     </connections>
                 </viewController>
@@ -1050,8 +1049,7 @@
         <image name="versus_image_48x48.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AUo-9G-fYr"/>
-        <segue reference="CGe-k9-iUa"/>
         <segue reference="wHg-3X-Li2"/>
+        <segue reference="AUo-9G-fYr"/>
     </inferredMetricsTieBreakers>
 </document>

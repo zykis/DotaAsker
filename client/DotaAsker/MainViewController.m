@@ -8,7 +8,7 @@
 
 #import "MainViewController.h"
 #import "MatchInfoViewController.h"
-#import "ServiceLayer.h"
+#import "MainViewModel.h"
 
 #define SECTION_TOOLBAR 0
 #define SECTION_PLAYER_INFO 1
@@ -23,12 +23,12 @@
 
 @implementation MainViewController
 
-@synthesize user = _user;
+@synthesize viewModel = _viewModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _viewModel = [[MainViewModel alloc] init];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self setTableBackgroundImage:[UIImage imageNamed:@"pattern_640x1136.png"]];
     //add refresher controll
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl setTintColor:[UIColor whiteColor]];
@@ -37,9 +37,6 @@
 
 - (void)refreshControllDragged {
     [self.tableView reloadData];
-    //_user = [[[ServiceLayer instance] userService] obtain:[_user ID]];
-    //отправляем и принимаем все сообщения
-    //с сервера и обратно
     [self.refreshControl endRefreshing];
 }
 
@@ -56,8 +53,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
-//    [[Database instance] loadQuestions];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -72,11 +67,11 @@
     }
     //current matches
     else if (section == SECTION_CURRENT_MATCHES) {
-        return [[[[ServiceLayer instance] matchService] currentMatchesOfUser:_user] count];
+        return [_viewModel currentMatchesCount];
     }
     //recent matches
     else if (section == SECTION_RECENT_MATCHES) {
-        return [[[[ServiceLayer instance] matchService] recentMatchesOfUser:_user] count];
+        return [_viewModel recentMatchesCount];
     }
     else return 0;
 }
@@ -103,16 +98,16 @@
     else if ([indexPath section] == SECTION_PLAYER_INFO) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:PlayerInfoCellIdentifier];
         UIImageView *playerImageView = (UIImageView*)[cell viewWithTag:200];
-        [playerImageView setImage:[[[ServiceLayer instance] userService] avatarForUser:_user]];
+        [playerImageView setImage: [UIImage imageNamed:[_viewModel playerImagePath]]];
         UILabel* playerNameLabel = (UILabel*)[cell viewWithTag:201];
-        [playerNameLabel setText:[_user name]];
+        [playerNameLabel setText: [_viewModel playerName]];
         [playerNameLabel setAdjustsFontSizeToFitWidth:YES];
         UILabel *mmrLabel = (UILabel*)[cell viewWithTag:202];
-        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[_user MMR]]];
+        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[_viewModel playerMMR]]];
         UILabel *KDALabel = (UILabel*)[cell viewWithTag:203];
-        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[_user KDA]]];
+        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[_viewModel playerKDA]]];
         UILabel *GPMLabel = (UILabel*)[cell viewWithTag:204];
-        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[_user GPM]]];
+        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[_viewModel playerGPM]]];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
@@ -132,53 +127,26 @@
         if([indexPath section] == SECTION_CURRENT_MATCHES) {
             //opponent avatar
             UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
-            Match *currentMatch = [[[[ServiceLayer instance] matchService] currentMatchesOfUser:_user] objectAtIndex:[indexPath row]];
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
-            switch ([currentMatch state]) {
-                case MATCH_RUNNING:
-                    [matchStateLabel setText:@"Running"];
-                    break;
-                case MATCH_NOT_STARTED:
-                    [matchStateLabel setText:@"Not started"];
-                    break;
-                case MATCH_TIME_ELAPSED:
-                    [matchStateLabel setText:@"Time elapsed"];
-                    break;
-                
-                default:
-                    [matchStateLabel setText:@"Default"];
-                    break;
-            }
-            //UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:[[[ServiceLayer instance] userService] obtain:[currentMatch  opponentID]]];
-            //[avatarView setImage:avatar];
+            [matchStateLabel setText:[_viewModel matchStateTextForCurrentMatch:[indexPath row]]];
+            UIImage *avatar = [UIImage imageNamed:[_viewModel opponentImagePathForCurrentMatch:[indexPath row]]];
+            [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[[[[ServiceLayer instance] userService] opponentForMatch:currentMatch] name]];
+            [nameLabel setText:[_viewModel opponentNameForCurrentMatch:[indexPath row]]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
         else if([indexPath section] == SECTION_RECENT_MATCHES) {
             //opponent avatar
             UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
-            Match *recentMatch = [[[[ServiceLayer instance] matchService] recentMatchesOfUser:_user] objectAtIndex:[indexPath row]];
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
-            switch ([recentMatch state]) {
-                case MATCH_FINISHED:
-                    [matchStateLabel setText:@"Finished"];
-                    break;
-                case MATCH_TIME_ELAPSED:
-                    [matchStateLabel setText:@"Time elapsed"];
-                    break;
-                    
-                default:
-                    [matchStateLabel setText:@"Default"];
-                    break;
-            }
-            User* opponent = [[[ServiceLayer instance] userService] playerForMatch:recentMatch];
-            UIImage *avatar = [[[ServiceLayer instance] userService] avatarForUser:opponent];
+            [matchStateLabel setText:[_viewModel matchStateTextForRecentMatch:[indexPath row]]];
+            
+            UIImage *avatar = [UIImage imageNamed:[_viewModel opponentImagePathForRecentMatch:[indexPath row]]];
             [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[[[[ServiceLayer instance] userService] opponentForMatch:recentMatch] name]];
+            [nameLabel setText:[_viewModel opponentNameForRecentMatch:[indexPath row]]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
     }
@@ -273,26 +241,19 @@
         MatchInfoViewController *destVC = (MatchInfoViewController*)[segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         if ([indexPath section] == SECTION_CURRENT_MATCHES) {
-            destVC.match = [[[[ServiceLayer instance] matchService] currentMatchesOfUser:_user] objectAtIndex:[indexPath row]];
+            destVC.match = [_viewModel currentMatchAtRow:[indexPath row]];
         }
         else if ([indexPath section] == SECTION_RECENT_MATCHES) {
-            destVC.match = [[[[ServiceLayer instance] matchService] recentMatchesOfUser:_user] objectAtIndex:[indexPath row]];
+            destVC.match = [_viewModel recentMatchAtRow:[indexPath row]];
         }
     }
 }
 
 - (IBAction)findMatchPressed {
-    Match* newMatch = [[[ServiceLayer instance] matchService] findMatch];
-    [[_user currentMatchesIDs] addObject:[NSNumber numberWithUnsignedLongLong:[newMatch ID]]];
-    if (newMatch) {
-        //_user = [[[ServiceLayer instance] userService] update:_user];
-    }
     [[self tableView] reloadData];
 }
 
 - (IBAction)logout {
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"username"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:@"password"];
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
