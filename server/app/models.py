@@ -211,10 +211,10 @@ class Round(Base):
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, default=ROUND_NOT_STARTED)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
-    theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'), nullable=True)
+    selected_theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'), nullable=True)
     # relations
     match = db.relationship('Match', backref='rounds')
-    theme = db.relationship('Theme')
+    selected_theme = db.relationship('Theme')
 
     questions = db.relationship('Question', secondary='round_questions')
     user_answers = db.relationship('UserAnswer', cascade='all, delete-orphan')
@@ -234,8 +234,8 @@ class Match(Base):
     def __init__(self, initiator):
         # need to find out, if user exists already
         self.next_move_user_id = initiator.id
-        initiator.matches.append(self)
-        # self.users.append(initiator)
+        # initiator.matches.append(self)
+        self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
             round_tmp = Round()
             self.rounds.append(round_tmp)

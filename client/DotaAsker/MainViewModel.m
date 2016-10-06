@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "Match.h"
 #import "User.h"
+#import "Round.h"
 
 @implementation MainViewModel
 
@@ -28,10 +29,12 @@
 - (NSString*)opponentImagePathForCurrentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     for (User* u in m.users) {
-        if (u != (User*)[Player instance]) {
+        if (![u isEqual: [Player instance]]) {
             return [u avatarImageName];
         }
     }
+    if([m state] == MATCH_NOT_STARTED)
+        return @"avatar_default.png";
     NSLog(@"No avatar found for user in MainViewModel");
     return nil;
 }
@@ -39,10 +42,12 @@
 - (NSString*)opponentImagePathForRecentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     for (User* u in m.users) {
-        if (u != (User*)[Player instance]) {
+        if (![u isEqual: [Player instance]]) {
             return [u avatarImageName];
         }
     }
+    if([m state] == MATCH_NOT_STARTED)
+        return @"avatar_default.png";
     NSLog(@"No avatar found for user in MainViewModel");
     return nil;
 }
@@ -67,7 +72,7 @@
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     switch ([m state]) {
         case MATCH_NOT_STARTED:
-            return @"Running";
+            return @"Not started";
         case MATCH_RUNNING:
             return @"Running";
         case MATCH_FINISHED:
@@ -84,7 +89,7 @@
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     switch ([m state]) {
         case MATCH_NOT_STARTED:
-            return @"Running";
+            return @"Not started";
         case MATCH_RUNNING:
             return @"Running";
         case MATCH_FINISHED:
@@ -100,10 +105,12 @@
 - (NSString*)opponentNameForCurrentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     for (User* u in m.users) {
-        if (u != (User*)[Player instance]) {
+        if (![u isEqual: [Player instance]]) {
             return [u name];
         }
     }
+    if([m state] == MATCH_NOT_STARTED)
+        return @"Player";
     NSLog(@"Undefined name for user in MainViewModel");
     return nil;
 }
@@ -111,20 +118,22 @@
 - (NSString*)opponentNameForRecentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     for (User* u in m.users) {
-        if (u != (User*)[Player instance]) {
+        if (![u isEqual: [Player instance]]) {
             return [u name];
         }
     }
+    if([m state] == MATCH_NOT_STARTED)
+        return @"Player";
     NSLog(@"Undefined name for user in MainViewModel");
     return nil;
 }
 
 - (Match*)currentMatchAtRow: (NSUInteger)row {
-    Match* m;
+    Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     return m;
 }
 - (Match*)recentMatchAtRow: (NSUInteger)row {
-    Match* m;
+    Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     return m;
 }
 @end

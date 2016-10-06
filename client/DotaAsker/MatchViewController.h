@@ -10,10 +10,13 @@
 #import "Match.h"
 #import "RoundView.h"
 
-@interface MatchInfoViewController : UIViewController
+@class MatchViewModel;
+
+@interface MatchViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, RoundViewDelegate>
 
-@property (strong, nonatomic) Match *match;
+@property (assign, nonatomic) NSUInteger matchID;
+@property (strong, nonatomic) MatchViewModel *matchViewModel;
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
 
 #pragma mark - Navigation

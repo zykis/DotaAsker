@@ -68,7 +68,6 @@
 }
 
 - (IBAction)signIn {
-    NSLog(@"sign in pressed");
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
@@ -79,14 +78,11 @@
     } error:^(NSError *error) {
         [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
     } completed:^{
-        NSLog(@"Signed in. Congratulations!");
-        NSLog(@"Token is: %@", [[AuthorizationService instance] accessToken]);
-        // TODO: perform segue to MainViewContoller
-        [[[APIHelper shared] getPlayerWithToken:[[AuthorizationService instance] accessToken]] subscribeNext:^(id x) {
-            [[Player instance] setPlayer:(User *)x];
+        [[[APIHelper shared] getPlayerWithToken:[[AuthorizationService instance] accessToken]] subscribeNext:^(User* u) {
+            [Player setPlayer:u];
             [self performSegueWithIdentifier:@"signin" sender:self];
         } error:^(NSError *error) {
-            NSLog(@"%@", [error userInfo]);
+            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
         }];
     }];
 }

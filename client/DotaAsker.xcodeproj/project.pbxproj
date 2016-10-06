@@ -101,6 +101,9 @@
 		ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */ = {isa = PBXBuildFile; fileRef = ACF41C071B3C0F950096598C /* versus_image_48x48.png */; };
 		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
 		ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37B1D9A40300060EA56 /* MainViewModel.m */; };
+		ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */; };
+		ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3811D9F15550060EA56 /* MatchViewController.m */; };
+		ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */; };
 		F099BF0D2646182908BDA5F7 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +251,12 @@
 		ACF5F3771D99E1080060EA56 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		ACF5F37A1D9A40300060EA56 /* MainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewModel.h; sourceTree = "<group>"; };
 		ACF5F37B1D9A40300060EA56 /* MainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewModel.m; sourceTree = "<group>"; };
+		ACF5F37D1D9E492E0060EA56 /* UIViewController+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Utils.h"; sourceTree = "<group>"; };
+		ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Utils.m"; sourceTree = "<group>"; };
+		ACF5F3801D9F15550060EA56 /* MatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewController.h; sourceTree = "<group>"; };
+		ACF5F3811D9F15550060EA56 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
+		ACF5F3831D9F16BF0060EA56 /* MatchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewModel.h; sourceTree = "<group>"; };
+		ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewModel.m; sourceTree = "<group>"; };
 		E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
 		F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -403,6 +412,8 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				ACF5F3801D9F15550060EA56 /* MatchViewController.h */,
+				ACF5F3811D9F15550060EA56 /* MatchViewController.m */,
 				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
 				ACF5F3771D99E1080060EA56 /* MainViewController.m */,
 				ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */,
@@ -418,6 +429,8 @@
 		ACBD29DD1B5BB5D7005AB718 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				ACF5F37D1D9E492E0060EA56 /* UIViewController+Utils.h */,
+				ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */,
 				AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */,
 				AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */,
 			);
@@ -516,6 +529,8 @@
 			children = (
 				ACF5F37A1D9A40300060EA56 /* MainViewModel.h */,
 				ACF5F37B1D9A40300060EA56 /* MainViewModel.m */,
+				ACF5F3831D9F16BF0060EA56 /* MatchViewModel.h */,
+				ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -804,12 +819,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
+				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
 				AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
+				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
 				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,
 				ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
@@ -831,6 +848,7 @@
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
+				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,
 				AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */,

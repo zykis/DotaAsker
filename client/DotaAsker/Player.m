@@ -15,33 +15,33 @@
     return self;
 }
 
-+ (Player*)instance {
-    static Player *player = nil;
++ (User*)instance {
+    static User *user = nil;
     @synchronized(self)
     {
-        if(player == nil)
+        if(user == nil)
         {
-            player = [[self alloc] init];
+            user = [[User alloc] init];
         }
     }
-    return player;
+    return user;
 }
 
-- (void)setPlayer:(User *)player {
-    [self setID:player.ID];
-    [self setName:player.name];
-    [self setEmail:player.email];
-    [self setMMR:player.MMR];
-    [self setKDA:player.KDA];
-    [self setGPM:player.GPM];
-    [self setWallpapersImageName:player.wallpapersImageName];
-    [self setAvatarImageName:player.avatarImageName];
-    [self setTotalCorrectAnswers:player.totalCorrectAnswers];
-    [self setTotalIncorrectAnswers:player.totalIncorrectAnswers];
-    [self setRole:player.role];
-    [self setCurrentMatches:player.currentMatches];
-    [self setRecentMatches:player.recentMatches];
-    [self setFriends:player.friends];
++ (void)setPlayer:(User *)player {
+    [[self instance] setID:player.ID];
+    [[self instance] setName:player.name];
+    [[self instance] setEmail:player.email];
+    [[self instance] setMMR:player.MMR];
+    [[self instance] setKDA:player.KDA];
+    [[self instance] setGPM:player.GPM];
+    [[self instance] setWallpapersImageName:player.wallpapersImageName];
+    [[self instance] setAvatarImageName:player.avatarImageName];
+    [[self instance] setTotalCorrectAnswers:player.totalCorrectAnswers];
+    [[self instance] setTotalIncorrectAnswers:player.totalIncorrectAnswers];
+    [[self instance] setRole:player.role];
+    [[self instance] setCurrentMatches:player.currentMatches];
+    [[self instance] setRecentMatches:player.recentMatches];
+    [[self instance] setFriends:player.friends];
 }
 
 @end

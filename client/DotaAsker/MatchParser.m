@@ -13,6 +13,7 @@
 #import "Round.h"
 #import "User.h"
 //#import "Player.h"
+#import "UserAnswer.h"
 
 @implementation MatchParser
 
@@ -30,6 +31,11 @@
     //ID
     unsigned long long matchID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [match setID:matchID];
+    
+    //Next Move user ID
+    NSUInteger nextMoveUserID = [[JSONDict objectForKey:@"next_move_user"] unsignedLongLongValue];
+    [match setNextMoveUserID:nextMoveUserID];
+    
     //users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
     for (NSDictionary* userDict in usersDict) {
@@ -51,6 +57,13 @@
         NSUInteger opponentScore = 0;
         for (NSDictionary* roundDict in roundsDict) {
             Round* r = [RoundParser parse:roundDict andChildren:YES];
+            for (User* u in [match users]) {
+                for (UserAnswer* ua in [r userAnswers]) {
+                    if (ua.relatedUserID == u.ID) {
+                        [ua setRelatedUser:u];
+                    }
+                }
+            }
             [[match rounds] addObject:r];
             
             //! TODO: score

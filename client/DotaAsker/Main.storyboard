@@ -18,7 +18,7 @@
         <scene sceneID="CxO-IC-Sg9">
             <objects>
                 <navigationController id="ytL-e4-7GM" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DC5-9K-Ypn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DC5-9K-Ypn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="2621" y="248"/>
         </scene>
-        <!--Match Info View Controller-->
+        <!--Match View Controller-->
         <scene sceneID="M2Z-0o-EDi">
             <objects>
-                <viewController id="G7c-Er-EWf" customClass="MatchInfoViewController" sceneMemberID="viewController">
+                <viewController id="G7c-Er-EWf" customClass="MatchViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1Gx-AB-GZP"/>
                         <viewControllerLayoutGuide type="bottom" id="aRq-aS-yDK"/>
@@ -1050,6 +1050,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wHg-3X-Li2"/>
-        <segue reference="AUo-9G-fYr"/>
+        <segue reference="ut3-yq-Aji"/>
     </inferredMetricsTieBreakers>
 </document>

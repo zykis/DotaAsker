@@ -3,7 +3,7 @@ from app.models import User, Match, Question, Theme, Answer, UserAnswer
 from app import models
 import json
 import random
-from models import MATCH_NOT_STARTED, MATCH_RUNNING, MATCH_TIME_ELAPSED, MATCH_FINISHED, ROUNDS_IN_MATCH, ROUND_ANSWERING, ROUND_FINISHED
+from models import MATCH_NOT_STARTED, MATCH_RUNNING, MATCH_TIME_ELAPSED, MATCH_FINISHED, ROUNDS_IN_MATCH, ROUND_ANSWERING, ROUND_FINISHED, ROUND_TIME_ELAPSED
 from config import QUESTIONS_IN_ROUND, THEMES_COUNT, questiondir
 
 class Database_queries:
@@ -129,7 +129,7 @@ class Database_queries:
 
     @classmethod
     def generateQuestionsOnTheme(cls, theme, count = 3):
-        questions = list()
+        questions = []
         allQuestionOnTheme = models.Question.query.filter(theme == theme).all()
         if len(allQuestionOnTheme) < count:
             count = len(allQuestionOnTheme)
@@ -183,17 +183,17 @@ class Database_queries:
         # add users to match
         first_match.users.append(peter_user)
         second_match.users.append(john_user)
-        third_match = Match(peter_user)
+        third_match = Match(initiator=peter_user)
         third_match.users.append(john_user)
-        fourth_match = Match(peter_user)
-        fifth_match = Match(jack_user)
+        fourth_match = Match(initiator=john_user)
+
 
         # [1] FINISHED
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
         # add questions to match's rounds
         for r in first_match.rounds:
-            r.theme = random.choice(themes)
-            r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
+            r.selected_theme = random.choice(themes)
+            r.questions = Database_queries.generateQuestionsOnTheme(theme=r.selected_theme, count=QUESTIONS_IN_ROUND)
             for quest in r.questions:
                     user_answer = UserAnswer()
                     user_answer.round = r
@@ -209,16 +209,16 @@ class Database_queries:
                     user2_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user2_answer)
             r.state = ROUND_FINISHED
-        first_match.state = MATCH_RUNNING
+        first_match.state = MATCH_FINISHED
         # [!1]
 
         # sleep(1)
 
-        # [2] FINISHED
+        # [2] RUNNING
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
-        for r in second_match.rounds:
-            r.theme = random.choice(themes)
-            r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
+        for r in second_match.rounds[0:2]:
+            r.selected_theme = random.choice(themes)
+            r.questions = Database_queries.generateQuestionsOnTheme(theme=r.selected_theme, count=QUESTIONS_IN_ROUND)
 
             for quest in r.questions:
                         user_answer = UserAnswer()
@@ -243,31 +243,41 @@ class Database_queries:
         # [3] TIME_ELAPSED
         themes = Database_queries.generateThemes(count=THEMES_COUNT)
         r = third_match.rounds[0]
-        r.theme = random.choice(themes)
-        r.questions = Database_queries.generateQuestionsOnTheme(theme=r.theme, count=QUESTIONS_IN_ROUND)
+        r.selected_theme = random.choice(themes)
+        r.questions = Database_queries.generateQuestionsOnTheme(theme=r.selected_theme, count=QUESTIONS_IN_ROUND)
 
         for quest in r.questions[0:2]:
                     user_answer = UserAnswer()
                     user_answer.round = r
-                    user_answer.user = second_match.users[0]
+                    user_answer.user = third_match.users[0]
                     user_answer.question = quest
                     user_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user_answer)
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
-                    user2_answer.user = second_match.users[1]
+                    user2_answer.user = third_match.users[1]
                     user2_answer.question = quest
                     user2_answer.answer_id = random.choice(quest.answers).id
                     db.session.add(user2_answer)
-        r.state = ROUND_ANSWERING
-        second_match.state = MATCH_TIME_ELAPSED
+        r.state = ROUND_TIME_ELAPSED
+        for r in third_match.rounds[1:]:
+            r.state = ROUND_TIME_ELAPSED
+        third_match.state = MATCH_TIME_ELAPSED
         # [!3]
+
+        # [4] NOT_STARTED
+        for r in fourth_match.rounds:
+            r_questions = []
+            for t in themes:
+                t_questions = Database_queries.generateQuestionsOnTheme(t, 3)
+                r_questions.extend(t_questions)
+            r.questions.extend(r_questions)
+
 
         # add match to session
         db.session.add(first_match)
         db.session.add(second_match)
         db.session.add(third_match)
         db.session.add(fourth_match)
-        db.session.add(fifth_match)
         db.session.commit()

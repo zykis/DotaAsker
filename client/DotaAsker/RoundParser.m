@@ -14,13 +14,14 @@
 #import "UserAnswerParser.h"
 #import "UserAnswer.h"
 #import "Player.h"
+#import "Question.h"
+#import "Answer.h"
 
 @implementation RoundParser
 
 + (Round*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"state"] &&
-          [JSONDict objectForKey:@"theme"] &&
           [JSONDict objectForKey:@"questions"] &&
           [JSONDict objectForKey:@"user_answers"]
           )) {
@@ -37,9 +38,11 @@
     
     if (state != ROUND_NOT_STARTED) {
         //theme
-        NSDictionary* themeDict = [JSONDict objectForKey:@"theme"];
-        Theme* theme = [ThemeParser parse:themeDict];
-        [round setTheme:theme];
+        NSDictionary* themeDict = [JSONDict objectForKey:@"selected_theme"];
+        if (themeDict != (NSDictionary*)[NSNull null]) {
+            Theme* theme = [ThemeParser parse:themeDict];
+            [round setSelectedTheme:theme];
+        }
         
         //questions
         NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
@@ -52,6 +55,16 @@
         NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
         for (NSDictionary* uaDict in user_answersDict) {
             UserAnswer* ua = [UserAnswerParser parse:uaDict];
+            ua.relatedRound = round;
+            for (Question* q in [round questions]) {
+                if (q.ID == ua.relatedQuestionID) {
+                    ua.relatedQuestion = q;
+                    for (Answer* a in q.answers) {
+                        if(a.ID == ua.relatedAnswerID)
+                            ua.relatedAnswer = a;
+                    }
+                }
+            }
             [[round userAnswers] addObject:ua];
         }
     }

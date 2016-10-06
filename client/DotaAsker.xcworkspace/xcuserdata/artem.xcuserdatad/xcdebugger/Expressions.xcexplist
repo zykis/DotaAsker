@@ -3,7 +3,24 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "+[RoundParser parse:andChildren:]:RoundParser.m">
+         contextName = "__32-[APIHelper getPlayerWithToken:]_block_invoke:APIHelper.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MainViewController prepareForSegue:sender:]:MainViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MatchViewController tableView:cellForRowAtIndexPath:]:MatchViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[Player instance]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MatchViewModel textForUserAnswerForRoundInRow:andUserAnswerIndex:]:MatchViewModel.m">
+      </ContextState>
+      <ContextState
+         contextName = "+[MatchParser parse:andChildren:]:MatchParser.m">
       </ContextState>
       <ContextState
          contextName = "-[MainViewController tableView:numberOfRowsInSection:]:MainViewController.m">
@@ -14,7 +31,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "__32-[APIHelper getPlayerWithToken:]_block_invoke:APIHelper.m">
+         contextName = "-[MatchViewController viewDidLoad]:MatchViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[Player instance]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MatchViewModel answerStateforRoundInRow:andAnswerIndex:]:MatchViewModel.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[MainViewModel recentMatchesCount]:MainViewModel.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[Player instance]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "+[RoundParser parse:andChildren:]:RoundParser.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

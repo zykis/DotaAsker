@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "MatchInfoViewController.h"
+#import "MatchViewController.h"
 #import "MainViewModel.h"
 
 #define SECTION_TOOLBAR 0
@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setTableBackgroundImage:[UIImage imageNamed:@"pattern_640x1136.png"]];
     _viewModel = [[MainViewModel alloc] init];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     //add refresher controll
@@ -238,13 +239,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showMatch"]) {
-        MatchInfoViewController *destVC = (MatchInfoViewController*)[segue destinationViewController];
+        MatchViewController *destVC = (MatchViewController*)[segue destinationViewController];
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         if ([indexPath section] == SECTION_CURRENT_MATCHES) {
-            destVC.match = [_viewModel currentMatchAtRow:[indexPath row]];
+            destVC.matchID = [[_viewModel currentMatchAtRow:[indexPath row]] ID];
         }
         else if ([indexPath section] == SECTION_RECENT_MATCHES) {
-            destVC.match = [_viewModel recentMatchAtRow:[indexPath row]];
+            destVC.matchID = [[_viewModel recentMatchAtRow:[indexPath row]] ID];
         }
     }
 }
