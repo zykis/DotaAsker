@@ -1,8 +1,8 @@
 # XCode
-.DS_Store
+*.DS_Store
 .Trashes
-Podfile.lock
-Pods/*
+*Podfile.lock
+*Pods/*
 
 # Python
 .installed.cfg
