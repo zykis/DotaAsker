@@ -1,0 +1,17 @@
+# XCode
+.DS_Store
+.Trashes
+Podfile.lock
+Pods/*
+
+# Python
+.installed.cfg
+bin
+develop-eggs
+dist
+downloads
+eggs
+parts
+src/*.egg-info
+lib
+lib64
