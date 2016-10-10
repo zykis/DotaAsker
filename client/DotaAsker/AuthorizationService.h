@@ -12,7 +12,6 @@
 @class RACReplaySubject;
 
 @interface AuthorizationService : AbstractService
-+ (AuthorizationService*)instance;
 
 @property (strong, nonatomic) NSString* accessToken;
 

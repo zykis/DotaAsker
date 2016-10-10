@@ -10,95 +10,49 @@
 #import "UserParser.h"
 #import "UserTransport.h"
 #import "MatchService.h"
+#import "UserCache.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import "User.h"
+#import "AuthorizationService.h"
 
 @implementation UserService
 
-@synthesize transport;
-@synthesize parser;
-@synthesize cache;
-@synthesize player = _player;
+@synthesize transport = _transport;
+@synthesize cache = _cache;
 
 - (id)init {
     self = [super init];
     if(self) {
-        parser = [[UserParser alloc] init];
-        cache = [[AbstractCache alloc] init];
-        transport = [[UserTransport alloc] init];
+        _cache = [[UserCache alloc] init];
+        _transport = [[UserTransport alloc] init];
     }
     return self;
 }
 
-+ (UserService*)instance {
-    static UserService *userService = nil;
-    @synchronized(self) {
-        if(userService == nil)
-            userService = [[self alloc] init];
-    }
-    return userService;
+- (RACReplaySubject*)obtain:(unsigned long long)ID {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    [[_transport obtain:ID] subscribeNext:^(id x) {
+        User* u = [UserParser parse:x andChildren:NO];
+        [subject sendNext:u];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
 }
 
-- (UIImage*)wallpapersDefault {
-    UIImage* wp = [UIImage imageNamed:@"wallpaper_default.jpg"];
-    return wp;
-}
-
-- (UIImage*)avatarForUser:(User *)user {
-    UIImage* avatar = [UIImage imageNamed:[user avatarImageName]];
-    return avatar;
-}
-
-- (User*)obtainUserWithUsername:(NSString *)username {
-    SEL obtainUserWithUsername = NSSelectorFromString(@"obtainUserWithUsername:");
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    NSData* data = [transport performSelector:obtainUserWithUsername withObject:username];
-#pragma clang diagnostic pop
-    if (!data) {
-        return nil;
-    }
-    NSError* error;
-    NSDictionary* jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    if (!error) {
-        User* u = [parser parse:jsonDict];
-        return u;
-    }
-    else {
-        return nil;
-    }
-}
-
-- (User*)opponentForMatch:(Match *)match {
-    unsigned long long userID = [match opponentID];
-    User* u = [self obtain:userID];
-    return u;
-}
-
-- (User*)playerForMatch:(Match *)match {
-    unsigned long long userID = [match playerID];
-    User* u = [self obtain:userID];
-    return u;
-}
-
-- (User*)opponentForRound:(Round *)round {
-    User* u;
-    Match* m = [[MatchService instance] matchForRound:round];
-    if (m) {
-        unsigned long long userID = [m opponentID];
-        u = [self obtain:userID];
-        return u;
-    }
-    return nil;
-}
-
-- (User*)playerForRound:(Round *)round {
-    User* u;
-    Match* m = [[MatchService instance] matchForRound:round];
-    if (m) {
-        unsigned long long userID = [m playerID];
-        u = [self obtain:userID];
-        return u;
-    }
-    return nil;
+- (RACReplaySubject*)obtainWithAccessToken:(NSString *)accessToken {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    [[_transport obtainWithAccessToken:accessToken] subscribeNext:^(id x) {
+        User* u = [UserParser parse:x andChildren:YES];
+        [subject sendNext:u];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
 }
 
 @end

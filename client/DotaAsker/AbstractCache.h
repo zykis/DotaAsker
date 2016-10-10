@@ -12,11 +12,8 @@
 
 @property (strong, nonatomic) NSMutableArray* entities;
 
-- (NSArray*)obtainAll;
-- (id)obtain:(unsigned long long) entityID;
-- (id)update:(id) entity;
-- (void)append:(id)entity;
-- (void)appendEntities:(NSArray *)entities;
-- (void)remove:(unsigned long long) entityID;
+- (NSArray*)allEntities;
+- (void)append: (id)entity;
+- (BOOL)equal: (id)leftEntity to:(id)rightEntity;
 
 @end

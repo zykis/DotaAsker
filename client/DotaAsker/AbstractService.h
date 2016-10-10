@@ -10,10 +10,10 @@
 
 @interface AbstractService : NSObject
 
-//- (id)obtain:(unsigned long long) entityID;
-//- (NSArray*)obtainAll;
-//- (void)remove:(unsigned long long) entityID;
-//- (id)update:(id) entity;
-//- (id)create:(id) entity;
+- (id)obtain:(unsigned long long) entityID;
+- (NSArray*)obtainAll;
+- (void)remove:(unsigned long long) entityID;
+- (id)update:(id) entity;
+- (id)create:(id) entity;
 
 @end

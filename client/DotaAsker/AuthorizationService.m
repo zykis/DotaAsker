@@ -21,18 +21,6 @@
     return self;
 }
 
-+ (AuthorizationService*)instance {
-    static AuthorizationService *authorizationService = nil;
-    @synchronized(self)
-    {
-        if(authorizationService == nil)
-        {
-            authorizationService = [[self alloc] init];
-        }
-    }
-    return authorizationService;
-}
-
 - (RACSubject*)signUpWithLogin:(NSString *)login andPassword:(NSString *)password email:(NSString *)email
 {
     RACReplaySubject *subject = [RACReplaySubject subject];

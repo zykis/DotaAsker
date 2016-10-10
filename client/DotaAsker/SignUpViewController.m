@@ -9,6 +9,7 @@
 #import "SignUpViewController.h"
 #import "SignInViewController.h"
 #import "AuthorizationService.h"
+#import "ServiceLayer.h"
 
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
@@ -49,7 +50,7 @@
 }
 
 - (IBAction)signUp {
-    RACSignal* authorizationSignal = [[AuthorizationService instance] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
+    RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
     
     [authorizationSignal subscribeError:^(NSError *error) {
         [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];

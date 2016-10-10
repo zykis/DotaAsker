@@ -11,14 +11,14 @@
 
 @implementation ServiceLayer
 
-@synthesize authorizationService;
+@synthesize authorizationService = _authorizationService;
 @synthesize userAnswerService;
 @synthesize answerService;
 @synthesize questionService;
 @synthesize themeService;
 @synthesize roundService;
-//@synthesize matchService;
-@synthesize userService;
+@synthesize matchService = _matchService;
+@synthesize userService = _userService;
 
 + (ServiceLayer*)instance {
     static ServiceLayer *serviceLayer = nil;
@@ -32,7 +32,10 @@
 -(id)init {
     self = [super init];
     if(self) {
-        authorizationService = [AuthorizationService instance];
+        _authorizationService = [[AuthorizationService alloc] init];
+        _userService = [[UserService alloc] init];
+        _matchService = [[MatchService alloc] init];
+        [_userService setAuthorizationService:_authorizationService];
     }
     return self;
 }

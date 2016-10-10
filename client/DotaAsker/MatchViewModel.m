@@ -125,6 +125,8 @@
     return rs;
 }
 
+// MatchService::currentRoundForMatch:(Match*)match;
+// RoundService::roundStateFromServerState:(NSUInterger)serverRoundState;
 - (Round_State)roundStateForCurrentRound {
     Round* currentRound;
     NSUInteger index = 0;

@@ -6,17 +6,3 @@ client/Pods/
 *.xcworkspace*
 
 # Python
-server/.cache/
-server/.idea/
-server/flask/
-*.pyc
-.installed.cfg
-bin
-develop-eggs
-dist
-downloads
-eggs
-parts
-src/*.egg-info
-lib
-lib64

@@ -35,26 +35,6 @@
     return self.entities;
 }
 
-- (id)obtain:(unsigned long long)anID {
-    SEL selector = NSSelectorFromString(@"ID");
-    for (int i = 0; i < [[self entities] count]; i++) {
-        id entity = [[self entities] objectAtIndex:i];
-        if ([entity respondsToSelector:selector]) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [[entity class] instanceMethodSignatureForSelector:selector]];
-            [invocation setSelector:selector];
-            [invocation setTarget:entity];
-            [invocation invoke];
-            NSInteger returnValue;
-            [invocation getReturnValue:&returnValue];
-            if(returnValue == anID) {
-                return [[self entities] objectAtIndex:i];
-            }
-        }
-    }
-    return nil;
-}
-
 - (void)append:(id)entity {
     [self appendEntities: [NSArray arrayWithObject:entity]];
 }
@@ -65,26 +45,6 @@
         [[self entities] replaceObjectAtIndex:ind withObject:entity];
     }
     return entity;
-}
-
-- (void)remove:(unsigned long long)anID {
-    SEL selector = NSSelectorFromString(@"getID");
-    for (int i = 0; i < [[self entities] count]; i++) {
-        id entity = [[self entities] objectAtIndex:i];
-        if ([entity respondsToSelector:selector]) {
-            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:
-                                        [[entity class] instanceMethodSignatureForSelector:selector]];
-            [invocation setSelector:selector];
-            [invocation setTarget:entity];
-            [invocation invoke];
-            NSInteger returnValue;
-            [invocation getReturnValue:&returnValue];
-            if(returnValue == anID) {
-                [[self entities] removeObjectAtIndex:i];
-                return;
-            }
-        }
-    }
 }
 
 @end

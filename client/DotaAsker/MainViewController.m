@@ -9,6 +9,8 @@
 #import "MainViewController.h"
 #import "MatchViewController.h"
 #import "MainViewModel.h"
+#import "ServiceLayer.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 #define SECTION_TOOLBAR 0
 #define SECTION_PLAYER_INFO 1
@@ -251,7 +253,15 @@
 }
 
 - (IBAction)findMatchPressed {
-    [[self tableView] reloadData];
+    NSLog(@"findMatch pressed");
+    RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
+    [signal subscribeNext:^(id x) {
+        NSLog(@"Found match: %@", x);
+    } error:^(NSError *error) {
+        NSLog(@"Error finding match: %@", [error localizedDescription]);
+    } completed:^{
+        NSLog(@"Completed finding match");
+    }];
 }
 
 - (IBAction)logout {

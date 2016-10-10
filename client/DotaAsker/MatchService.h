@@ -11,14 +11,14 @@
 #import "Round.h"
 #import "User.h"
 #import "Player.h"
-@import UIKit;
+
+@class MatchTransport;
+@class RACReplaySubject;
 
 @interface MatchService : AbstractService
-+ (MatchService*)instance;
 
-- (NSArray*)currentMatchesOfUser:(User*)user;
-- (NSArray*)recentMatchesOfUser:(User*)user;
-- (Match*)findMatch;
-- (Match*)matchForRound:(Round*)round;
+@property (strong, nonatomic) MatchTransport* transport;
+
+- (RACReplaySubject*)findMatchForUser: (NSString*)accessToken;
 
 @end

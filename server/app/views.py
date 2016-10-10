@@ -5,7 +5,8 @@ from flask import abort, request, g, jsonify, url_for, make_response
 from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
 from app.entities.parsers.user_schema import UserSchema
-from app.models import MATCH_FINISHED, MATCH_TIME_ELAPSED
+from app.entities.parsers.match_schema import MatchSchema
+from app.models import MATCH_FINISHED, MATCH_TIME_ELAPSED, Match
 
 auth = HTTPBasicAuth()
 
@@ -81,6 +82,23 @@ def auth_error():
         })
     responce.status_code = 409
     return responce
+
+
+
+@app.route('/findMatch', methods = ['GET'])
+@auth.login_required
+def find_match():
+    m = Database_queries.findMatchForUser(g.user)
+    if isinstance(m, Match):
+        m_schema = MatchSchema()
+        res = m_schema.dumps(m)
+        resp = make_response(res.data)
+
+        resp.mimetype = 'application/json'
+        return resp
+    else:
+        abort(404)
+
 
 @auth.verify_password
 def verify_password(username_or_token, password):

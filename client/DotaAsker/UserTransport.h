@@ -10,4 +10,7 @@
 
 @interface UserTransport : Transport
 
+- (RACReplaySubject*)obtainWithAccessToken:(NSString *)accessToken;
+- (RACReplaySubject*)obtain:(unsigned long long)entityID;
+
 @end

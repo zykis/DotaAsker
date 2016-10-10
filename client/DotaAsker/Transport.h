@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking/AFNetworking.h"
-#import "AFNetworking/AFURLResponseSerialization.h"
+@class RACReplaySubject;
 
 @interface Transport : NSObject
 
-- (NSData*)obtain:(unsigned long long) entityID;
-- (NSData*)obtainAll;
-- (NSData*)update:(NSData*) entity;
-- (NSData*)create:(NSData*) entity;
+- (RACReplaySubject*)obtain:(unsigned long long) entityID;
+- (RACReplaySubject*)obtainAll;
+- (RACReplaySubject*)update:(id) entity;
+- (RACReplaySubject*)create:(id) entity;
 - (void)remove:(unsigned long long) entityID;
 
 @end

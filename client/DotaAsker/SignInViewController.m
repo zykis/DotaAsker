@@ -12,6 +12,7 @@
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 #import "APIHelper.h"
 #import "Player.h"
+#import "ServiceLayer.h"
 
 @interface SignInViewController ()
 
@@ -71,14 +72,15 @@
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
-    RACSignal *signal = [[AuthorizationService instance] getTokenForUsername:username andPassword:password];
+    RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
     
     [signal subscribeNext:^(NSString* _token) {
-        [[AuthorizationService instance] setAccessToken:_token];
+        [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
     } error:^(NSError *error) {
         [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
     } completed:^{
-        [[[APIHelper shared] getPlayerWithToken:[[AuthorizationService instance] accessToken]] subscribeNext:^(User* u) {
+        [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
+         subscribeNext:^(User* u) {
             [Player setPlayer:u];
             [self performSegueWithIdentifier:@"signin" sender:self];
         } error:^(NSError *error) {

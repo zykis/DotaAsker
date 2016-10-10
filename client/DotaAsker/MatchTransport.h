@@ -9,6 +9,10 @@
 #import "Transport.h"
 #import "Match.h"
 
+@class RACReplaySubject;
+
 @interface MatchTransport : Transport
+
+- (RACReplaySubject*)findMatchForUser:(NSString*)accessToken;
 
 @end

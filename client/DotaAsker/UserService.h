@@ -10,18 +10,20 @@
 #import "User.h"
 #import "Match.h"
 #import "Round.h"
-@import UIKit;
+
+@class RACReplaySubject;
+@class UserCache;
+@class UserTransport;
+@class UserParser;
+@class AuthorizationService;
 
 @interface UserService : AbstractService
-@property (strong, nonatomic) User* player;
-+ (UserService*)instance;
 
-- (UIImage*)wallpapersDefault;
-- (UIImage*)avatarForUser:(User*)user;
-- (User*)obtainUserWithUsername:(NSString*)username;
-- (User*)opponentForMatch:(Match*)match;
-- (User*)playerForMatch:(Match*)match;
-- (User*)playerForRound:(Round*)round;
-- (User*)opponentForRound:(Round*)round;
+@property (strong, nonatomic) UserCache* cache;
+@property (strong, nonatomic) UserTransport *transport;
+@property (strong, nonatomic) AuthorizationService *authorizationService;
+
+- (RACReplaySubject*)obtain: (unsigned long long) ID;
+- (RACReplaySubject*)obtainWithAccessToken:(NSString*)accessToken;
 
 @end
