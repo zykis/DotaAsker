@@ -55,4 +55,18 @@
     return subject;
 }
 
+- (RACReplaySubject*)update:(id)entity {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    [[_transport update:entity] subscribeNext:^(id x) {
+        User* u = [UserParser parse:x andChildren:YES];
+        [subject sendNext:u];
+        [subject sendCompleted];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
 @end

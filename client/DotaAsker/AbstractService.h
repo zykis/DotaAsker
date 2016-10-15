@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class RACReplaySubject;
 @interface AbstractService : NSObject
 
-- (id)obtain:(unsigned long long) entityID;
-- (NSArray*)obtainAll;
+- (RACReplaySubject*)obtain:(unsigned long long) entityID;
+- (RACReplaySubject*)obtainAll;
 - (void)remove:(unsigned long long) entityID;
-- (id)update:(id) entity;
-- (id)create:(id) entity;
+- (RACReplaySubject*)update:(id) entity;
+- (RACReplaySubject*)create:(id) entity;
 
 @end

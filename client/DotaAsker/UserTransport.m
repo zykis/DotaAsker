@@ -71,4 +71,9 @@
     return subject;
 }
 
+- (RACReplaySubject*)update:(id)entity {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    return subject;
+}
+
 @end

@@ -7,16 +7,12 @@
 //
 
 #import "AbstractService.h"
-#import "Question.h"
 #import "Round.h"
-#import "User.h"
-#import "Match.h"
+@class Match;
 
 @interface RoundService : AbstractService
-+ (RoundService*)instance;
 
-- (void)setQuestions:(NSArray*)questions forRound:(Round*)round;
 - (Round*)currentRoundforMatch:(Match*)match;
-- (Round*)roundAtIndex:(NSInteger)index inMatch:(Match*)match;
+- (Round_State)roundStateFromServerState: (NSUInteger)serverRoundState;
 
 @end

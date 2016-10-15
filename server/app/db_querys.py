@@ -20,19 +20,20 @@ class Database_queries:
             raise TypeError
 
         not_started_matches = models.Match.query.filter(Match.state == MATCH_NOT_STARTED).all()
-        if len(not_started_matches)==0:
+        nsm = []
+        for m in not_started_matches:
+            if user not in m.users:
+                nsm.append(m)
+
+        if len(nsm)==0:
             m = Match(initiator=user)
             db.session.add(m)
             db.session.commit()
             return m
 
-        for m in not_started_matches:
-            if user in m.users:
-                not_started_matches.remove(m)
-
         # get users in this matches
         users_in_matches_list = list()
-        for m in not_started_matches:
+        for m in nsm:
             u = models.User.query.get(m.next_move_user_id)
             if not users_in_matches_list.__contains__(u):
                 users_in_matches_list.append(u)

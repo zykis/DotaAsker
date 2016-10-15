@@ -125,34 +125,10 @@
     return rs;
 }
 
-// MatchService::currentRoundForMatch:(Match*)match;
-// RoundService::roundStateFromServerState:(NSUInterger)serverRoundState;
 - (Round_State)roundStateForCurrentRound {
-    Round* currentRound;
-    NSUInteger index = 0;
-    for (Round* r in [_match rounds]) {
-        if (([r round_state] != ROUND_FINISHED) && ([r round_state] != ROUND_TIME_ELAPSED)
-            && ([r round_state] != ROUND_NOT_STARTED))
-            index++;
-    }
-    currentRound = [[_match rounds] objectAtIndex:index];
     
-    Round_State rs = [currentRound round_state];
     
-    if(rs == 3) { // ROUND_ANSWERING
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_ASWERING;
-        else
-            rs = ROUND_OPPONENT_ANSWERING;
-    }
-    else if(rs == 4) {
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_REPLYING;
-        else
-            rs = ROUND_OPPONENT_REPLYING;
-    }
     
-    return rs;
 }
 
 - (MatchState)matchState {

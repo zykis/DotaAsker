@@ -43,6 +43,7 @@
 		AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */; };
 		AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC75C2E41BA3339A0036B113 /* EPPZReachability.m */; };
 		AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */; };
+		AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC77BC451DAD7B8700B32121 /* RoundService.m */; };
 		AC7B67971DA69FF000351887 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67961DA69FF000351887 /* UserTransport.m */; };
 		AC7B679A1DA69FFF00351887 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67991DA69FFF00351887 /* Transport.m */; };
 		AC7B679D1DA6AAC900351887 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B679C1DA6AAC900351887 /* UserService.m */; };
@@ -176,6 +177,8 @@
 		AC75C2E41BA3339A0036B113 /* EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPPZReachability.m; path = ../EPPZReachability.m; sourceTree = "<group>"; };
 		AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EPPZReachability.h"; sourceTree = "<group>"; };
 		AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EPPZReachability.m"; sourceTree = "<group>"; };
+		AC77BC441DAD7B8700B32121 /* RoundService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundService.h; sourceTree = "<group>"; };
+		AC77BC451DAD7B8700B32121 /* RoundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundService.m; sourceTree = "<group>"; };
 		AC7B67951DA69FF000351887 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
 		AC7B67961DA69FF000351887 /* UserTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTransport.m; sourceTree = "<group>"; };
 		AC7B67981DA69FFF00351887 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
@@ -628,6 +631,8 @@
 		ACFDF2D61BFB40D300B89838 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AC77BC441DAD7B8700B32121 /* RoundService.h */,
+				AC77BC451DAD7B8700B32121 /* RoundService.m */,
 				AC7B67A11DA8AE3A00351887 /* MatchService.h */,
 				AC7B67A21DA8AE3A00351887 /* MatchService.m */,
 				AC7B679B1DA6AAC900351887 /* UserService.h */,
@@ -852,6 +857,7 @@
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
 				AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
+				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,

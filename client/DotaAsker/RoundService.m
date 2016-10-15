@@ -7,60 +7,40 @@
 //
 
 #import "RoundService.h"
-#import "Round.h"
 #import "RoundParser.h"
-#import "RoundTransport.h"
+#import "Match.h"
 
 @implementation RoundService
 
-@synthesize transport;
-@synthesize parser;
-@synthesize cache;
-
-- (id)init {
-    self = [super init];
-    if(self) {
-        parser = [[RoundParser alloc] init];
-        cache = [[AbstractCache alloc] init];
-        transport = [[RoundTransport alloc] init];
-    }
-    return self;
-}
-
-+ (RoundService*)instance {
-    static RoundService *roundService = nil;
-    @synchronized(self) {
-        if(roundService == nil)
-            roundService = [[self alloc] init];
-    }
-    return roundService;
-}
-
-- (void)setQuestions:(NSArray *)questions forRound:(Round *)round {
-    for (int i = 0; i < [questions count]; i++) {
-        Question* q = [questions objectAtIndex:i];
-        [[round questionsIDs] addObject:[NSNumber numberWithUnsignedLongLong:[q ID]]];
-    }
-    [self update:round];
-}
-
 - (Round*)currentRoundforMatch:(Match *)match {
-    for (unsigned long i = [[match roundsIDs] count] - 1; ; i--) {
-        Round *r = [self obtain:[[[match roundsIDs] objectAtIndex:i] integerValue]];
-        if ([r round_state] != ROUND_NOT_STARTED) {
-            return r;
-        }
+    Round* currentRound;
+    NSUInteger index = 0;
+    for (Round* r in [match rounds]) {
+        if (([r round_state] != ROUND_FINISHED) && ([r round_state] != ROUND_TIME_ELAPSED)
+            && ([r round_state] != ROUND_NOT_STARTED))
+            index++;
     }
-    return nil;
+    currentRound = [[match rounds] objectAtIndex:index];
+    return currentRound;
 }
 
-- (Round*)roundAtIndex:(NSInteger)index inMatch:(Match *)match {
-    if (index >= [[match roundsIDs] count]) {
-        return nil;
+- (Round_State)roundStateFromServerState:(NSUInteger)serverRoundState {
+    Round_State rs = serverRoundState;
+    
+    if(rs == 3) { // ROUND_ANSWERING
+        if([_match nextMoveUserID] == [[Player instance] ID])
+            rs = ROUND_PLAYER_ASWERING;
+        else
+            rs = ROUND_OPPONENT_ANSWERING;
     }
-    NSInteger roundID = [[[match roundsIDs] objectAtIndex:index] integerValue];
-    Round* r = [self obtain:roundID];
-    return r;
+    else if(rs == 4) { //ROUND_REPLYING
+        if([_match nextMoveUserID] == [[Player instance] ID])
+            rs = ROUND_PLAYER_REPLYING;
+        else
+            rs = ROUND_OPPONENT_REPLYING;
+    }
+    
+    return rs;
 }
 
 @end

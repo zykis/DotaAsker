@@ -208,6 +208,7 @@ class Theme(Base):
 class Round(Base):
     __tablename__ = 'rounds'
     id = db.Column(db.Integer, primary_key=True)
+
     state = db.Column(db.Integer, default=ROUND_NOT_STARTED)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
     selected_theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'), nullable=True)
@@ -223,17 +224,12 @@ class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, nullable=True, default=MATCH_NOT_STARTED)
-    winner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True, default=0)
-    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True, default=0)
+    finished = db.Column(db.Boolean, default=False)
     # relations
     users = db.relationship('User', secondary='users_matches')
-    winner = db.relationship('User', foreign_keys=[winner_id])
-    next_move_user = db.relationship('User', foreign_keys=[next_move_user_id])
 
     def __init__(self, initiator):
         # need to find out, if user exists already
-        self.next_move_user_id = initiator.id
-        # initiator.matches.append(self)
         self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
             round_tmp = Round()
@@ -241,7 +237,7 @@ class Match(Base):
         self.rounds[0].state = 3 # answering
 
     def __repr__(self):
-        return "Match(id=%d, state=%d, next_move_user_id=%r, creation time=%s)" % (self.id, self.state, self.next_move_user_id, self.created_on)
+        return "Match(id=%d, state=%d, creation time=%s)" % (self.id, self.state, self.created_on)
 
     def finish(self, winner):
         pass
