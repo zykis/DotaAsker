@@ -3,3 +3,4 @@
 # Python
 server/.idea/workspace.xml
 server/flask/
+*.pyc

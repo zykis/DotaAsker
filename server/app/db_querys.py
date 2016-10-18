@@ -14,7 +14,7 @@ class Database_queries:
         if not isinstance(user, User):
             raise TypeError
 
-        not_started_matches = models.Match.query.group_by(None).having(func.count(Match.users) == 1).all()
+        not_started_matches = models.Match.query.join(Match.users).group_by(Match.id).having(func.count(Match.users) == 1).all()
         nsm = []
         for m in not_started_matches:
             if user not in m.users:
@@ -50,7 +50,7 @@ class Database_queries:
                 proper_user = u
 
         # get not started matches of proper_user and sort them by creation time
-        proper_matches = models.Match.query.filter(Match.users[0] == proper_user).group_by(None).having(func.count(Match.users) == 1).all()
+        proper_matches = models.Match.query.filter(Match.users[0] == proper_user).join(Match.users).group_by(Match.id).having(func.count(Match.users) == 1).all()
         if len(proper_matches) == 0:
             m = Match(initiator=user)
             db.session.add(m)
