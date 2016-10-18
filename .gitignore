@@ -1,5 +1,6 @@
 # XCode
 *.DS_Store
+Pods/
 
 # Python
 server/.idea/workspace.xml
