@@ -1,7 +1,6 @@
 from app.models import User
-from app.entities.parsers.match_schema import MatchSchema
-from marshmallow import Schema, fields, pre_load
-from app.models import MATCH_FINISHED, MATCH_TIME_ELAPSED
+from marshmallow import Schema, fields
+
 
 class UserSchema(Schema):
     id = fields.Int()

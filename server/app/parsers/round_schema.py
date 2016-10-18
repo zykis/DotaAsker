@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields
-from app.entities.parsers.theme_schema import ThemeSchema
-from app.entities.parsers.question_schema import QuestionSchema
-from app.entities.parsers.user_answer_schema import UserAnswerSchema
+from app.parsers.theme_schema import ThemeSchema
+from app.parsers.question_schema import QuestionSchema
+from app.parsers.user_answer_schema import UserAnswerSchema
 
 class RoundSchema(Schema):
     id = fields.Int()

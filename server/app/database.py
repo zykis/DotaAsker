@@ -4,14 +4,14 @@
 
 
 MATCHES_MAX_COUNT = 2
-from entities.entity import *
-from entities.theme import Theme
-from entities.user_answer import Useranswer
-from entities.answer import Answer
-from entities.question import *
-from entities.round import Round
-from entities.match import Match
-from entities.user import User
+from parsers.entity import *
+from parsers.theme import Theme
+from parsers.user_answer import Useranswer
+from parsers.answer import Answer
+from parsers.question import *
+from parsers.round import Round
+from parsers.match import Match
+from parsers.user import User
 
 from sqlalchemy import Table
 from sqlalchemy import update, delete

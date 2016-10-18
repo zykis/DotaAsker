@@ -4,9 +4,9 @@ from app.models import User
 from flask import abort, request, g, jsonify, url_for, make_response
 from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
-from app.entities.parsers.user_schema import UserSchema
-from app.entities.parsers.match_schema import MatchSchema
-from app.models import MATCH_FINISHED, MATCH_TIME_ELAPSED, Match
+from app.parsers.user_schema import UserSchema
+from app.parsers.match_schema import MatchSchema
+from app.models import Match
 
 auth = HTTPBasicAuth()
 
@@ -36,7 +36,7 @@ def get_main_view_controller():
     user.current_matches = []
     user.recent_matches = []
     for m in user.matches:
-        if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
+        if m.finished == True:
             user.recent_matches.append(m)
         else:
             user.current_matches.append(m)
@@ -48,8 +48,6 @@ def get_main_view_controller():
         return resp
     else:
         return jsonify(res.errors)
-
-
 
 
 @app.route('/users', methods = ['POST'])
@@ -112,6 +110,7 @@ def verify_password(username_or_token, password):
             return False
     g.user = user
     return True
+
 
 @app.route('/token')
 @auth.login_required

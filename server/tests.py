@@ -2,15 +2,10 @@
 import os
 import unittest
 
-from config import basedir, questiondir, QUESTIONS_IN_ROUND, ROUNDS_IN_MATCH, THEMES_COUNT
+from config import basedir, questiondir
 from app import app, db, models
 from app.models import User, Theme, Match, Question, UserAnswer
-import random
-from app.db_querys import Database_queries
-from app.models import ROUND_FINISHED, ROUND_ANSWERING
-from app.models import MATCH_RUNNING, MATCH_TIME_ELAPSED, MATCH_FINISHED, MATCH_NOT_STARTED
-from flask import json, g
-from app.entities.parsers.user_schema import UserSchema
+from app.parsers.user_schema import UserSchema
 from marshmallow import pprint
 from app.db_querys import Database_queries
 
@@ -58,15 +53,13 @@ class TestCase(unittest.TestCase):
         # Found already existed match
         m = Database_queries.findMatchForUser(peter_user)
         assert isinstance(m, Match)
-        # print 'founded match: %s' % m.__repr__()
-
-        models.Match.query.filter(Match.state==MATCH_RUNNING).delete()
-        models.Match.query.filter(Match.state==MATCH_NOT_STARTED).delete()
-        db.session.commit()
+        print 'founded existed match: %s' % m.__repr__()
 
         # Create new match
         m1 = Database_queries.findMatchForUser(peter_user)
+        db.session.add(m1)
         db.session.commit()
+        print 'created new match: %s' % m1.__repr__()
         app.logger.debug('testFindMatch - OK')
 
     def testCascadeUserMatch(self):

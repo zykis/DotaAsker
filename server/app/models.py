@@ -1,12 +1,16 @@
 from app import db, app
-from config import ROUNDS_IN_MATCH
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
+import random
 
 
 ROLE_USER = 0
 ROLE_ADMIN = 1
+
+QUESTIONS_IN_ROUND = 3
+ROUNDS_IN_MATCH = 6
+THEMES_COUNT = 3
 
 
 class Base(db.Model):
@@ -198,13 +202,24 @@ class Round(Base):
     id = db.Column(db.Integer, primary_key=True)
 
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
-    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=None)
     # relations
     match = db.relationship('Match', backref='rounds')
 
     questions = db.relationship('Question', secondary='round_questions')
     user_answers = db.relationship('UserAnswer', cascade='all, delete-orphan')
     next_move_user = db.relationship('User')
+
+    def __init__(self):
+        themes = Theme.query.all()
+        for t in themes:
+            theme_questions = Question.query.filter(Question.theme == t).all()
+            r_questions = []
+            for x in range(0, 3):
+                rand_q = random.choice(theme_questions)
+                r_questions.append(rand_q)
+                theme_questions.remove(rand_q)
+            self.questions.extend(r_questions)
 
 
 class Match(Base):
@@ -218,13 +233,25 @@ class Match(Base):
         self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
             round_tmp = Round()
-            if i % 2 == 1:
-                round_tmp.next_move_user = initiator
             self.rounds.append(round_tmp)
+        self.setPlayer(initiator)
 
+    def setPlayer(self, initiator):
+        if not initiator in self.users:
+            self.users.append(initiator)
+        for i in range(0, ROUNDS_IN_MATCH):
+            if i % 2 == 1:
+                self.rounds[i].next_move_user = initiator
+
+    def setOpponent(self, opponent):
+        if not opponent in self.users:
+            self.users.append(opponent)
+        for r in self.rounds:
+            if r.next_move_user_id == 0:
+                r.next_move_user = opponent
 
     def __repr__(self):
-        return "Match(id=%d, creation time=%s)" % (self.id, self.created_on)
+        return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)
 
     def finish(self, winner):
         pass

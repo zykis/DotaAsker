@@ -1,7 +1,6 @@
 from app.models import Match
 from marshmallow import Schema, fields
-from app.entities.parsers.round_schema import RoundSchema
-# from app.entities.parsers.user_parser import UserSchema
+from app.parsers.round_schema import RoundSchema
 
 class MatchSchema(Schema):
     id = fields.Int()

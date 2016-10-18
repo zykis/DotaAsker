@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from app.entities.parsers.answer_schema import AnswerSchema
+from app.parsers.answer_schema import AnswerSchema
 
 class QuestionSchema(Schema):
     id = fields.Int()
