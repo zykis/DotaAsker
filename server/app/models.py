@@ -4,19 +4,10 @@ from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 
+
 ROLE_USER = 0
 ROLE_ADMIN = 1
 
-ROUND_NOT_STARTED = 0
-ROUND_FINISHED = 1
-ROUND_TIME_ELAPSED = 2
-ROUND_ANSWERING = 3
-ROUND_REPLYING = 4
-
-MATCH_NOT_STARTED = 0
-MATCH_RUNNING = 1
-MATCH_FINISHED = 2
-MATCH_TIME_ELAPSED = 3
 
 class Base(db.Model):
     __abstract__ = True
@@ -75,9 +66,6 @@ class UserAnswer(Base):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE'))
     user = db.relationship('User', foreign_keys=[user_id])
-
-    question_id = db.Column(db.Integer, db.ForeignKey('questions.id', ondelete='CASCADE', onupdate='CASCADE'))
-    question = db.relationship('Question', foreign_keys=[question_id])
 
 
 class Friends(Base):
@@ -209,35 +197,34 @@ class Round(Base):
     __tablename__ = 'rounds'
     id = db.Column(db.Integer, primary_key=True)
 
-    state = db.Column(db.Integer, default=ROUND_NOT_STARTED)
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
-    selected_theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'), nullable=True)
+    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # relations
     match = db.relationship('Match', backref='rounds')
-    selected_theme = db.relationship('Theme')
 
     questions = db.relationship('Question', secondary='round_questions')
     user_answers = db.relationship('UserAnswer', cascade='all, delete-orphan')
+    next_move_user = db.relationship('User')
 
 
 class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
-    state = db.Column(db.Integer, nullable=True, default=MATCH_NOT_STARTED)
     finished = db.Column(db.Boolean, default=False)
     # relations
     users = db.relationship('User', secondary='users_matches')
 
     def __init__(self, initiator):
-        # need to find out, if user exists already
         self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
             round_tmp = Round()
+            if i % 2 == 1:
+                round_tmp.next_move_user = initiator
             self.rounds.append(round_tmp)
-        self.rounds[0].state = 3 # answering
+
 
     def __repr__(self):
-        return "Match(id=%d, state=%d, creation time=%s)" % (self.id, self.state, self.created_on)
+        return "Match(id=%d, creation time=%s)" % (self.id, self.created_on)
 
     def finish(self, winner):
         pass

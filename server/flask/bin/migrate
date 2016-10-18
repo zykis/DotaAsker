@@ -1,10 +1,10 @@
-#!/Users/artem/projects/DotaAsker/server/flask/bin/python
+#!/home/artem/Documents/projects/DotaAsker/server/flask/bin/python2
 
 # -*- coding: utf-8 -*-
 import re
 import sys
 
-from migrate.versioning.shell import main
+from migrate import main
 
 if __name__ == '__main__':
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
