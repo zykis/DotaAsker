@@ -6,7 +6,6 @@ from config import basedir, questiondir
 from app import app, db, models
 from app.models import User, Theme, Match, Question, UserAnswer
 from app.parsers.user_schema import UserSchema
-from marshmallow import pprint
 from app.db_querys import Database_queries
 
 class TestCase(unittest.TestCase):
@@ -31,7 +30,7 @@ class TestCase(unittest.TestCase):
 
         john_user = models.User.query.get(1)
         peter_user = models.User.query.get(2)
-        jack_user = models.User.query.get(2)
+        jack_user = models.User.query.get(3)
 
         assert not peter_user.isPending(john_user)
         assert john_user.isPending(peter_user)
@@ -145,7 +144,7 @@ class TestCase(unittest.TestCase):
                 john.current_matches.append(m)
         userSchema = UserSchema()
         dumped_john = userSchema.dumps(john)
-        assert dumped_john.errors is None
+        assert not dumped_john.errors
         app.logger.debug('testSerializeDeserialize - OK')
 
 if __name__ == '__main__':

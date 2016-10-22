@@ -14,14 +14,16 @@ class Database_queries:
         if not isinstance(user, User):
             raise TypeError
 
-        not_started_matches = models.Match.query.join(Match.users).group_by(Match.id).having(func.count(Match.users) == 1).all()
-        nsm = []
-        for m in not_started_matches:
-            if user not in m.users:
-                nsm.append(m)
+        # not_started_matches = models.Match.query.join(Match.users).group_by(Match.id).join(Match.users).having(func.count(Match.users) == 1).all()
+        sql = "SELECT matches.id as matches_id FROM matches join users_matches on users_matches.match_id = matches.id group by matches.id having count(users_matches.match_id) = 1 and users_matches.user_id != {}".format(user.id)
+        not_started_matches_sql = db.engine.execute(sql)
+        not_started_matches = []
+        for row in not_started_matches_sql:
+            m = Match.query.get(row[0])
+            not_started_matches.append(m)
 
         # if not match exists
-        if len(nsm) == 0:
+        if len(not_started_matches) == 0:
             m = Match(initiator=user)
             db.session.add(m)
             db.session.commit()
@@ -29,18 +31,12 @@ class Database_queries:
 
         # get users in this matches
         users_in_matches_list = []
-        for m in nsm:
-            u = m.users[0]
-            if not users_in_matches_list.__contains__(u):
-                users_in_matches_list.append(u)
+        for m in not_started_matches:
+            if m.users[0] not in users_in_matches_list:
+                users_in_matches_list.append(m.users[0])
 
         # sort by mmr
         users_in_matches_list.sort(key=lambda user: user.mmr)
-        if len(users_in_matches_list) == 0:
-            m = Match(initiator=user)
-            db.session.add(m)
-            db.session.commit()
-            return m
 
         # find user with minimal difference between user.rating and u.rating
         proper_user = users_in_matches_list[0]
@@ -50,13 +46,12 @@ class Database_queries:
                 proper_user = u
 
         # get not started matches of proper_user and sort them by creation time
-        proper_matches = models.Match.query.filter(Match.users[0] == proper_user).join(Match.users).group_by(Match.id).having(func.count(Match.users) == 1).all()
-        if len(proper_matches) == 0:
-            m = Match(initiator=user)
-            db.session.add(m)
-            db.session.commit()
-            return m
+        proper_matches = []
+        for m in not_started_matches:
+            if m.users[0].id == proper_user.id:
+                proper_matches.append(m)
 
+        # sorting by creation time. Oldest - first
         proper_matches.sort(key=lambda match: match.created_on)
 
         # add self to this match
@@ -156,6 +151,7 @@ class Database_queries:
         third_match = Match(initiator=peter_user)
         third_match.setOpponent(john_user)
         fourth_match = Match(initiator=john_user)
+        fifth_match = Match(initiator=jack_user)
 
 
         # [1] FINISHED
@@ -218,4 +214,5 @@ class Database_queries:
         db.session.add(second_match)
         db.session.add(third_match)
         db.session.add(fourth_match)
+        db.session.add(fifth_match)
         db.session.commit()
