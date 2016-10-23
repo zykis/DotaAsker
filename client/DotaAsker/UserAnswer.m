@@ -13,7 +13,7 @@
 - (BOOL)isEqual:(id)object {
     if ([object isMemberOfClass:[UserAnswer class]]) {
         UserAnswer* ua = object;
-        if ((ua.ID == self.ID)&&(ua.relatedQuestionID == self.relatedQuestionID)&&
+        if ((ua.ID == self.ID)&&
             (ua.relatedAnswerID == self.relatedAnswerID)&&(ua.relatedRoundID == self.relatedRoundID)&&
             (ua.relatedUserID == self.relatedUserID))
             return YES;

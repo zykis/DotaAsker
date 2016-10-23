@@ -13,126 +13,30 @@
 #import "Round.h"
 #import "Question.h"
 #import "Match.h"
+#import "ServiceLayer.h"
 
 @implementation MatchViewModel
 
 @synthesize match = _match;
 
-- (NSString*)playerImagePath {
-    return [[Player instance] avatarImageName];
-}
-
-- (NSString*)playerName {
-    return [[Player instance] name];
-}
-
-- (NSString*)opponentImagePath {
+- (User*)opponent {
     for (User* u in [_match users]) {
-        if (![u isEqual: (User*)[Player instance]])
-            return [u avatarImageName];
+        if (![u isEqual: [Player instance]])
+            return u;
     }
-    if([_match state] == MATCH_NOT_STARTED)
-        return @"avatar_default.png";
-    else
-        assert(0);
+    return nil;
 }
 
-- (NSString*)opponentName {
-    for (User* u in [_match users]) {
-        if (![u isEqual: (User*)[Player instance]])
-            return [u name];
-    }
-    if([_match state] == MATCH_NOT_STARTED)
-        return @"Player";
-    else
-        assert(0);
+- (User*)nextMoveUser {
+    User* nextMoveUser = [[[[ServiceLayer instance] roundService] currentRoundforMatch:_match] nextMoveUser];
+    return nextMoveUser;
 }
 
-- (NSUInteger)playerScore {
-    NSUInteger opponentScore = 0;
-    NSUInteger playerScore = 0;
-    for (Round* r in [_match rounds]) {
-        for (UserAnswer* ua in [r userAnswers]) {
-            if ([[ua relatedAnswer] isCorrect])
-            {
-                if([[ua relatedUser] isEqual:[Player instance]])
-                    playerScore++;
-                else
-                    opponentScore++;
-            }
-        }
-    }
-    [_match setScorePlayer:playerScore];
-    [_match setScoreOpponent:opponentScore];
-    return [_match scorePlayer];
-}
-
-- (NSUInteger)opponentScore {
-    NSUInteger opponentScore = 0;
-    NSUInteger playerScore = 0;
-    for (Round* r in [_match rounds]) {
-        for (UserAnswer* ua in [r userAnswers]) {
-            if ([[ua relatedAnswer] isCorrect])
-            {
-                if([[ua relatedUser] isEqual:[Player instance]])
-                    playerScore++;
-                else
-                    opponentScore++;
-                    }
-        }
-    }
-    [_match setScorePlayer:playerScore];
-    [_match setScoreOpponent:opponentScore];
-    return [_match scoreOpponent];
-}
-
-- (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index forPlayer:(BOOL)bPlayer {
-    // index [0..2]
+- (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index {
+    // index [0..5]
+    // 0 -answerIncorrect, 1 - answerCorrect, 2 - answerHidden
     Round* r = [[_match rounds] objectAtIndex:row];
-    NSMutableArray* playerAnswers = [[NSMutableArray alloc] init];
-    NSMutableArray* opponentAnswers = [[NSMutableArray alloc] init];
-    for (UserAnswer* ua in [r userAnswers]) {
-        if ([[ua relatedUser] isEqual:[Player instance]]) {
-            [playerAnswers addObject:ua];
-        }
-        else {
-            [opponentAnswers addObject:ua];
-        }
-    }
-    if (bPlayer) {
-        return [[[playerAnswers objectAtIndex:index] relatedAnswer] isCorrect];
-    }
-    else {
-        return [[[opponentAnswers objectAtIndex:index] relatedAnswer] isCorrect];
-    }
-}
-
-- (Round_State)roundStateForRoundInRow:(NSUInteger)row {
-    Round_State rs = [[[_match rounds] objectAtIndex:row] round_state];
-    
-    if(rs == 3) { // ROUND_ANSWERING
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_ASWERING;
-        else
-            rs = ROUND_OPPONENT_ANSWERING;
-    }
-    else if(rs == 4) {
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_REPLYING;
-        else
-            rs = ROUND_OPPONENT_REPLYING;
-    }
-    return rs;
-}
-
-- (Round_State)roundStateForCurrentRound {
-    
-    
-    
-}
-
-- (MatchState)matchState {
-    return [_match state];
+    return [[[r userAnswers] objectAtIndex:index] isCorrect];
 }
 
 - (NSUInteger)playerAnswersCountForRoundInRow:(NSUInteger)row {
@@ -146,100 +50,61 @@
 }
 
 - (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index {
-    /* index = [0..2] */
     NSString* text;
     Round* selectedRound = [[_match rounds] objectAtIndex:row];
-    switch ([selectedRound round_state]) {
-        case ROUND_FINISHED: {
-            User* player = [Player instance];
-            User* opponent;
-            for (User* u in [_match users]) {
-                if(![u isEqual: player])
-                    opponent = u;
-            }
-            
-            NSMutableArray *playerAnswers = [[NSMutableArray alloc] init];
-            for (UserAnswer *ua in [selectedRound userAnswers]) {
-                if ([[ua relatedUser] isEqual: player]) {
-                    [playerAnswers addObject:ua];
-                }
-            }
-            UserAnswer* ua1 = [playerAnswers objectAtIndex:index];
-            NSString *answeredTextFirstPlayer = [[ua1 relatedAnswer] text];
-            
-            NSMutableArray *opponentAnswers = [[NSMutableArray alloc] init];
-            for (UserAnswer *ua in [selectedRound userAnswers]) {
-                if ([[ua relatedUser] isEqual: opponent]) {
-                    [opponentAnswers addObject:ua];
-                }
-            }
-            UserAnswer* ua2 = [opponentAnswers objectAtIndex:index];
-            NSString *answeredTextSecondPlayer = [[ua2 relatedAnswer] text];
-            
-            NSString* correctAnswerText;
-            for (Answer* a in [[ua1 relatedQuestion] answers]) {
-                if ([a isCorrect]) {
-                    correctAnswerText = [a text];
-                }
-            }
-            
-            if (correctAnswerText) {
-                text = [NSString stringWithFormat:
-                        @"%@\n\n"
-                        "%@: %@\n"
-                        "%@: %@\n"
-                        "Right: %@"
-                        , ua1.relatedQuestion.text,
-                        [player name],
-                        answeredTextFirstPlayer,
-                        [opponent name],
-                        answeredTextSecondPlayer,
-                        correctAnswerText
-                        ];
-            }
+    User* player = [Player instance];
+    User* opponent = [self opponent];
+    
+    NSMutableArray *playerAnswers = [[NSMutableArray alloc] init];
+    for (UserAnswer *ua in [selectedRound userAnswers]) {
+        if ([[ua relatedUser] isEqual: player]) {
+            [playerAnswers addObject:ua];
         }
-            break;
-        case ROUND_OPPONENT_REPLYING: {
-            User* player = (User*)[Player instance];
-            NSMutableArray *playerAnswers = [[NSMutableArray alloc] init];
-            for (UserAnswer *ua in [selectedRound userAnswers]) {
-                if ([ua relatedUser] == player) {
-                    [playerAnswers addObject:ua];
-                }
-            }
-            UserAnswer* ua1 = [playerAnswers objectAtIndex:index];
-            NSString *answeredTextFirstPlayer = [[ua1 relatedAnswer] text];
-            
-            NSString* correctAnswerText;
-            for (Answer* a in [[ua1 relatedQuestion] answers]) {
-                if ([a isCorrect]) {
-                    correctAnswerText = [a text];
-                }
-            }
-            
-            if (correctAnswerText) {
-                text = [NSString stringWithFormat:
-                        @"%@\n\n"
-                        "%@: %@\n"
-                        "Right: %@"
-                        , ua1.relatedQuestion.text,
-                        [player name],
-                        answeredTextFirstPlayer,
-                        correctAnswerText
-                        ];
-            }
+    }
+    UserAnswer* ua1 = [playerAnswers objectAtIndex:index];
+    NSString *answeredTextFirstPlayer = [[ua1 relatedAnswer] text];
+    
+    NSMutableArray *opponentAnswers = [[NSMutableArray alloc] init];
+    for (UserAnswer *ua in [selectedRound userAnswers]) {
+        if ([[ua relatedUser] isEqual: opponent]) {
+            [opponentAnswers addObject:ua];
         }
-        break;
-            
-        case ROUND_PLAYER_REPLYING: {
-            text = [NSString stringWithFormat:@"Hidden"];
+    }
+    UserAnswer* ua2 = [opponentAnswers objectAtIndex:index];
+    NSString *answeredTextSecondPlayer = [[ua2 relatedAnswer] text];
+    
+    NSString* correctAnswerText;
+    for (Answer* a in [[[ua1 relatedAnswer] relatedQuestion] answers]) {
+        if ([a isCorrect]) {
+            correctAnswerText = [a text];
         }
-        break;
-            
-        default:
-            text = nil;
+    }
+    
+    if (correctAnswerText) {
+        text = [NSString stringWithFormat:
+                @"%@\n\n"
+                "%@: %@\n"
+                "%@: %@\n"
+                "Right: %@"
+                , ua1.relatedAnswer.relatedQuestion.text,
+                [player name],
+                answeredTextFirstPlayer,
+                [opponent name],
+                answeredTextSecondPlayer,
+                correctAnswerText
+                ];
     }
     return text;
+}
+
+- (NSUInteger)playerScore {
+    NSUInteger score = [[[ServiceLayer instance] matchService] scoreForMatch:_match andUser:[Player instance]];
+    return score;
+}
+
+- (NSUInteger)opponentScore {
+    NSUInteger score = [[[ServiceLayer instance] matchService] scoreForMatch:_match andUser:[self opponent]];
+    return score;
 }
 
 @end

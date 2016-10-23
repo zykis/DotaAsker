@@ -7,8 +7,17 @@
 //
 
 #import "Answer.h"
+#import "Question.h"
 
 @implementation Answer
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.relatedQuestion = [[Question alloc] init];
+    }
+    return self;
+}
 
 - (BOOL)isEqual:(id)object {
     Answer* a = object;

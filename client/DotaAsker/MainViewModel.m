@@ -8,6 +8,7 @@
 
 #import "MainViewModel.h"
 #import "Player.h"
+#import "ServiceLayer.h"
 #import "Match.h"
 #import "User.h"
 #import "Round.h"
@@ -22,109 +23,73 @@
     return [[[Player instance] recentMatches] count];
 }
 
-- (NSString*)playerImagePath {
-    return [[Player instance] avatarImageName];
-}
-
-- (NSString*)opponentImagePathForCurrentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
-    for (User* u in m.users) {
-        if (![u isEqual: [Player instance]]) {
-            return [u avatarImageName];
-        }
-    }
-    if([m state] == MATCH_NOT_STARTED)
-        return @"avatar_default.png";
-    NSLog(@"No avatar found for user in MainViewModel");
-    return nil;
-}
-
-- (NSString*)opponentImagePathForRecentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
-    for (User* u in m.users) {
-        if (![u isEqual: [Player instance]]) {
-            return [u avatarImageName];
-        }
-    }
-    if([m state] == MATCH_NOT_STARTED)
-        return @"avatar_default.png";
-    NSLog(@"No avatar found for user in MainViewModel");
-    return nil;
-}
-
-- (NSString*)playerName {
-    return [[Player instance] name];
-}
-
-- (NSUInteger)playerKDA {
-    return [[Player instance] KDA];
-}
-
-- (NSUInteger)playerGPM {
-    return [[Player instance] GPM];
-}
-
-- (NSUInteger)playerMMR {
-    return [[Player instance] MMR];
-}
-
 - (NSString*)matchStateTextForCurrentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
-    switch ([m state]) {
-        case MATCH_NOT_STARTED:
-            return @"Not started";
-        case MATCH_RUNNING:
-            return @"Running";
-        case MATCH_FINISHED:
-            return @"Finished";
-        case MATCH_TIME_ELAPSED:
-            return @"Time elapsed";
-        default:
-            NSLog(@"Undefined match state in MainViewModel");
-            return nil;
+    // If less, then 2 users, then you created match and you are - initiator
+    if ([m.users count] < 2)
+        return @"You answering";
+    else {
+        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
+        if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
+            BOOL thereIsOpponentAnswer = NO;
+            for (UserAnswer* ua in [currentRound userAnswers]) {
+                if (![[ua relatedUser] isEqual:[Player instance]]) {
+                    thereIsOpponentAnswer = YES;
+                    break;
+                }
+            }
+            if (thereIsOpponentAnswer) {
+                return @"You replying";
+            }
+            else {
+                return @"You answering";
+            }
+        }
+        else {
+            BOOL thereIsPlayerAnswer = NO;
+            for (UserAnswer* ua in [currentRound userAnswers]) {
+                if ([[ua relatedUser] isEqual:[Player instance]]) {
+                    thereIsPlayerAnswer = YES;
+                    break;
+                }
+            }
+            if (thereIsPlayerAnswer) {
+                return @"Opponent replying";
+            }
+            else {
+                return @"Opponent answering";
+            }
+        }
     }
 }
 
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
-    switch ([m state]) {
-        case MATCH_NOT_STARTED:
-            return @"Not started";
-        case MATCH_RUNNING:
-            return @"Running";
-        case MATCH_FINISHED:
-            return @"Finished";
-        case MATCH_TIME_ELAPSED:
-            return @"Time elapsed";
-        default:
-            NSLog(@"Undefined match state in MainViewModel");
-            return nil;
-    }
+    Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
+    if ([currentRound isEqual:[[m rounds] lastObject]])
+        return @"Finished";
+    else
+        return @"Time Elapsed";
 }
 
-- (NSString*)opponentNameForCurrentMatch:(NSUInteger)row {
+- (User*)opponentForCurrentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
-            return [u name];
+            return u;
         }
     }
-    if([m state] == MATCH_NOT_STARTED)
-        return @"Player";
-    NSLog(@"Undefined name for user in MainViewModel");
-    return nil;
+    User* op = [[User alloc] init];
+    return op;
 }
 
-- (NSString*)opponentNameForRecentMatch:(NSUInteger)row {
+- (User*)opponentForRecentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
-            return [u name];
+            return u;
         }
     }
-    if([m state] == MATCH_NOT_STARTED)
-        return @"Player";
-    NSLog(@"Undefined name for user in MainViewModel");
     return nil;
 }
 
@@ -132,6 +97,7 @@
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
     return m;
 }
+
 - (Match*)recentMatchAtRow: (NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
     return m;

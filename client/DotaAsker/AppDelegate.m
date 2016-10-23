@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DotaButton.h"
 #import "Client.h"
-#import "EPPZReachability.h"
 
 @interface AppDelegate ()
 
@@ -19,25 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
-    [EPPZReachability listenHost:SERVER_IP withPort:SERVER_PORT delegate:(id)self];
-//    if (![[Client instance] connected]) {
-//        [[Client instance] connect];
-//    }
-//    [[Database instance] loadQuestions];
-//    [[Client instance] sendMessageSynchronizeQuestions];
-    
     return YES;
 }
 
--(void)reachabilityChanged:(EPPZReachability*) reachability
-{
-    if ([reachability reachable]) {
-//        NSLog(@"Server is reachable");
-    }
-    else {
-//        NSLog(@"Server is unreacable");
-    }
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -101,16 +101,16 @@
     else if ([indexPath section] == SECTION_PLAYER_INFO) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:PlayerInfoCellIdentifier];
         UIImageView *playerImageView = (UIImageView*)[cell viewWithTag:200];
-        [playerImageView setImage: [UIImage imageNamed:[_viewModel playerImagePath]]];
+        [playerImageView setImage: [UIImage imageNamed:[[Player instance] avatarImageName]]];
         UILabel* playerNameLabel = (UILabel*)[cell viewWithTag:201];
-        [playerNameLabel setText: [_viewModel playerName]];
+        [playerNameLabel setText: [[Player instance] name]];
         [playerNameLabel setAdjustsFontSizeToFitWidth:YES];
         UILabel *mmrLabel = (UILabel*)[cell viewWithTag:202];
-        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[_viewModel playerMMR]]];
+        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[[Player instance] MMR]]];
         UILabel *KDALabel = (UILabel*)[cell viewWithTag:203];
-        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[_viewModel playerKDA]]];
+        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[[Player instance] KDA]]];
         UILabel *GPMLabel = (UILabel*)[cell viewWithTag:204];
-        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[_viewModel playerGPM]]];
+        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[[Player instance] GPM]]];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
@@ -132,11 +132,11 @@
             UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
             [matchStateLabel setText:[_viewModel matchStateTextForCurrentMatch:[indexPath row]]];
-            UIImage *avatar = [UIImage imageNamed:[_viewModel opponentImagePathForCurrentMatch:[indexPath row]]];
+            UIImage *avatar = [UIImage imageNamed:[[_viewModel opponentForCurrentMatch:[indexPath row]] avatarImageName]];
             [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[_viewModel opponentNameForCurrentMatch:[indexPath row]]];
+            [nameLabel setText:[[_viewModel opponentForCurrentMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
         else if([indexPath section] == SECTION_RECENT_MATCHES) {
@@ -145,11 +145,11 @@
             UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
             [matchStateLabel setText:[_viewModel matchStateTextForRecentMatch:[indexPath row]]];
             
-            UIImage *avatar = [UIImage imageNamed:[_viewModel opponentImagePathForRecentMatch:[indexPath row]]];
+            UIImage *avatar = [UIImage imageNamed:[[_viewModel opponentForRecentMatch:[indexPath row]] avatarImageName]];
             [avatarView setImage:avatar];
             //opponent name
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
-            [nameLabel setText:[_viewModel opponentNameForRecentMatch:[indexPath row]]];
+            [nameLabel setText:[[_viewModel opponentForRecentMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
     }

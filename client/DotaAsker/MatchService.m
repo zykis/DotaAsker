@@ -11,6 +11,8 @@
 #import "MatchTransport.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 #import "Match.h"
+#import "UserAnswer.h"
+#import "Answer.h"
 
 @implementation MatchService
 
@@ -38,5 +40,18 @@
     return subject;
 }
 
+- (NSUInteger)scoreForMatch:(Match*)m andUser:(User*)u {
+    NSUInteger score = 0;
+    for (Round* r in [m rounds]) {
+        for (UserAnswer* ua in [r userAnswers]) {
+            if ([[ua relatedAnswer] isCorrect])
+            {
+                if([[ua relatedUser] isEqual:u])
+                    score++;
+            }
+        }
+    }
+    return score;
+}
 
 @end

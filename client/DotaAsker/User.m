@@ -16,6 +16,8 @@
         self.currentMatches = [[NSMutableArray alloc] init];
         self.recentMatches = [[NSMutableArray alloc] init];
         self.friends = [[NSMutableArray alloc] init];
+        self.name = @"Opponent";
+        self.avatarImageName = @"avatar_default.png";
     }
     return self;
 }

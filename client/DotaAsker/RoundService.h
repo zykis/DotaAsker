@@ -9,10 +9,10 @@
 #import "AbstractService.h"
 #import "Round.h"
 @class Match;
+@class User;
 
 @interface RoundService : AbstractService
 
 - (Round*)currentRoundforMatch:(Match*)match;
-- (Round_State)roundStateFromServerState: (NSUInteger)serverRoundState;
 
 @end

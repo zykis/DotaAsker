@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class Question;
 @interface Answer : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString* text;
 @property (assign, nonatomic) BOOL isCorrect;
+@property (strong, nonatomic) Question* relatedQuestion;
 
 @end

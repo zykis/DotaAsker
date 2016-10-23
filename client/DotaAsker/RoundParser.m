@@ -21,9 +21,9 @@
 
 + (Round*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
-          [JSONDict objectForKey:@"state"] &&
           [JSONDict objectForKey:@"questions"] &&
-          [JSONDict objectForKey:@"user_answers"]
+          [JSONDict objectForKey:@"user_answers"] &&
+          [JSONDict objectForKey:@"next_move_user"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in RoundParser");
         return nil;
@@ -32,41 +32,34 @@
     Round* round = [[Round alloc] init];
     //id
     [round setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
-    //round state
-    Round_State state = (Round_State)[[JSONDict objectForKey:@"state"] integerValue];
-    [round setRound_state:state];
+    //Next Move user ID
+    NSUInteger nextMoveUserID;
+    if ([[JSONDict objectForKey:@"next_move_user"] isEqual:[NSNull null]])
+        nextMoveUserID = 0;
+    else
+        nextMoveUserID = [[JSONDict objectForKey:@"next_move_user"] unsignedLongLongValue];
+    [round setNextMoveUserID: nextMoveUserID];
     
-    if (state != ROUND_NOT_STARTED) {
-        //theme
-        NSDictionary* themeDict = [JSONDict objectForKey:@"selected_theme"];
-        if (themeDict != (NSDictionary*)[NSNull null]) {
-            Theme* theme = [ThemeParser parse:themeDict];
-            [round setSelectedTheme:theme];
-        }
-        
-        //questions
-        NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
-        for (NSDictionary* questionDict in questionsDict) {
-            Question* q = [QuestionParser parse:questionDict];
-            [[round questions] addObject:q];
-        }
+    //questions
+    NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
+    for (NSDictionary* questionDict in questionsDict) {
+        Question* q = [QuestionParser parse:questionDict];
+        [[round questions] addObject:q];
+    }
 
-        //user_answers
-        NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
-        for (NSDictionary* uaDict in user_answersDict) {
-            UserAnswer* ua = [UserAnswerParser parse:uaDict];
-            ua.relatedRound = round;
-            for (Question* q in [round questions]) {
-                if (q.ID == ua.relatedQuestionID) {
-                    ua.relatedQuestion = q;
-                    for (Answer* a in q.answers) {
-                        if(a.ID == ua.relatedAnswerID)
-                            ua.relatedAnswer = a;
-                    }
-                }
+    //user_answers
+    NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
+    for (NSDictionary* uaDict in user_answersDict) {
+        UserAnswer* ua = [UserAnswerParser parse:uaDict];
+        ua.relatedRound = round;
+        for (Question* q in [round questions]) {
+            for (Answer* a in q.answers) {
+                [a setRelatedQuestion:q];
+                if(a.ID == ua.relatedAnswerID)
+                    ua.relatedAnswer = a;
             }
-            [[round userAnswers] addObject:ua];
         }
+        [[round userAnswers] addObject:ua];
     }
     return round;
 }

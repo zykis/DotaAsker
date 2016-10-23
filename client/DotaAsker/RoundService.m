@@ -9,38 +9,31 @@
 #import "RoundService.h"
 #import "RoundParser.h"
 #import "Match.h"
+#import "User.h"
+#import "Round.h"
 
 @implementation RoundService
 
 - (Round*)currentRoundforMatch:(Match *)match {
-    Round* currentRound;
-    NSUInteger index = 0;
-    for (Round* r in [match rounds]) {
-        if (([r round_state] != ROUND_FINISHED) && ([r round_state] != ROUND_TIME_ELAPSED)
-            && ([r round_state] != ROUND_NOT_STARTED))
-            index++;
+    if (match.finished) {
+        int index = 0;
+        for (Round* r in match.rounds) {
+            if ([[r userAnswers] count] == 6) {
+                index++;
+            }
+        }
+        if (index == 6) index--;
+        return [match.rounds objectAtIndex:index];
     }
-    currentRound = [[match rounds] objectAtIndex:index];
-    return currentRound;
-}
-
-- (Round_State)roundStateFromServerState:(NSUInteger)serverRoundState {
-    Round_State rs = serverRoundState;
+    int i;
+    for (i = 0; i < [[match rounds] count]; i++) {
+        Round* r = [[match rounds] objectAtIndex:i];
+        if ([[r userAnswers] count] != QUESTIONS_IN_ROUND * 2)
+            break;
+    }
+    if (i == 6) i--;
     
-    if(rs == 3) { // ROUND_ANSWERING
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_ASWERING;
-        else
-            rs = ROUND_OPPONENT_ANSWERING;
-    }
-    else if(rs == 4) { //ROUND_REPLYING
-        if([_match nextMoveUserID] == [[Player instance] ID])
-            rs = ROUND_PLAYER_REPLYING;
-        else
-            rs = ROUND_OPPONENT_REPLYING;
-    }
-    
-    return rs;
+    return [[match rounds] objectAtIndex:i];
 }
 
 @end

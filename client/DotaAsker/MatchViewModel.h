@@ -10,20 +10,15 @@
 #import "Round.h"
 #import "Match.h"
 
+@class User;
 @interface MatchViewModel : NSObject
 
 @property (strong, nonatomic) Match* match;
-- (NSString*)playerImagePath;
-- (NSString*)opponentImagePath;
-- (NSString*)playerName;
-- (NSString*)opponentName;
+- (User*)opponent;
+- (User*)nextMoveUser;
+- (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index;
+- (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index;
 - (NSUInteger)playerScore;
 - (NSUInteger)opponentScore;
-- (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index forPlayer:(BOOL)bPlayer;
-- (Round_State)roundStateForRoundInRow:(NSUInteger)row;
-- (MatchState)matchState;
-- (Round_State)roundStateForCurrentRound;
-- (NSUInteger)playerAnswersCountForRoundInRow:(NSUInteger)row;
-- (NSString*)textForUserAnswerForRoundInRow: (NSUInteger)row andUserAnswerIndex:(NSUInteger)index;
 
 @end

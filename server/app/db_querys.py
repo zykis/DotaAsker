@@ -56,6 +56,7 @@ class Database_queries:
 
         # add self to this match
         proper_matches[0].setOpponent(user)
+        db.session.commit()
 
         # return the oldest match
         return proper_matches[0]
@@ -156,7 +157,9 @@ class Database_queries:
 
         # [1] FINISHED
         for r in first_match.rounds:
+            r_theme = random.choice(Theme.query.all())
             for quest in r.questions:
+                if quest.theme == r_theme:
                     user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = first_match.users[0]
@@ -173,7 +176,9 @@ class Database_queries:
 
         # [2] RUNNING
         for r in second_match.rounds[0:2]:
+            r_theme = random.choice(Theme.query.all())
             for quest in r.questions:
+                if quest.theme == r_theme:
                     user_answer = UserAnswer()
                     user_answer.round = r
                     user_answer.user = second_match.users[0]
@@ -188,21 +193,23 @@ class Database_queries:
         # [!2]
 
         # [3] TIME_ELAPSED
-        for r in third_match.rounds:
-            for quest in r.questions[0:2]:
-                        user_answer = UserAnswer()
-                        user_answer.round = r
-                        user_answer.user = third_match.users[0]
-                        user_answer.question = quest
-                        user_answer.answer = random.choice(quest.answers)
-                        db.session.add(user_answer)
+        for r in third_match.rounds[0:3]:
+            r_theme = random.choice(Theme.query.all())
+            for quest in r.questions:
+                if quest.theme == r_theme:
+                    user_answer = UserAnswer()
+                    user_answer.round = r
+                    user_answer.user = third_match.users[0]
+                    user_answer.question = quest
+                    user_answer.answer = random.choice(quest.answers)
+                    db.session.add(user_answer)
 
-                        user2_answer = UserAnswer()
-                        user2_answer.round = r
-                        user2_answer.user = third_match.users[1]
-                        user2_answer.question = quest
-                        user2_answer.answer = random.choice(quest.answers)
-                        db.session.add(user2_answer)
+                    user2_answer = UserAnswer()
+                    user2_answer.round = r
+                    user2_answer.user = third_match.users[1]
+                    user2_answer.question = quest
+                    user2_answer.answer = random.choice(quest.answers)
+                    db.session.add(user2_answer)
         third_match.finished = True
         # [!3]
 

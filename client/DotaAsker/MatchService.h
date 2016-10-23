@@ -20,5 +20,6 @@
 @property (strong, nonatomic) MatchTransport* transport;
 
 - (RACReplaySubject*)findMatchForUser: (NSString*)accessToken;
+- (NSUInteger)scoreForMatch:(Match*)m andUser:(User*)u;
 
 @end

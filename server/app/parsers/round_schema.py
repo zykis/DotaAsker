@@ -5,7 +5,6 @@ from app.parsers.user_answer_schema import UserAnswerSchema
 
 class RoundSchema(Schema):
     id = fields.Int()
-    state = fields.Int()
-    selected_theme = fields.Nested(ThemeSchema)
+    next_move_user = fields.Nested('UserSchema', only=('id'))
     questions = fields.Nested(QuestionSchema, many=True)
     user_answers = fields.Nested(UserAnswerSchema, many=True)

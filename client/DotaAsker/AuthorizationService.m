@@ -75,7 +75,7 @@
     NSString* authStrData = [[NSString alloc] initWithData:[authData base64EncodedDataWithOptions:NSDataBase64Encoding76CharacterLineLength] encoding:NSASCIIStringEncoding];
     // Forming Basic Authorization string Header
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
-    NSLog(@"AuthValue: %@", authValue);
+//    NSLog(@"AuthValue: %@", authValue);
     // Assigning it to request
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     

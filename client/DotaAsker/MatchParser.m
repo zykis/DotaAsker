@@ -20,7 +20,7 @@
 + (Match*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"users"] &&
-          [JSONDict objectForKey:@"state"]
+          [JSONDict objectForKey:@"finished"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in MatchParser");
         return nil;
@@ -32,9 +32,9 @@
     unsigned long long matchID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [match setID:matchID];
     
-    //Next Move user ID
-    NSUInteger nextMoveUserID = [[JSONDict objectForKey:@"next_move_user"] unsignedLongLongValue];
-    [match setNextMoveUserID:nextMoveUserID];
+    //finished
+    BOOL finished = [[JSONDict objectForKey:@"finished"] boolValue];
+    [match setFinished:finished];
     
     //users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
@@ -42,9 +42,6 @@
         User* u = [UserParser parse:userDict andChildren:NO];
         [[match users] addObject:u];
     }
-    //matchState
-    MatchState state = (MatchState)[[JSONDict objectForKey:@"state"] integerValue];
-    [match setState:state];
 
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"rounds"])) {
@@ -53,8 +50,6 @@
         }
         //rounds
         NSMutableArray* roundsDict = [JSONDict objectForKey:@"rounds"];
-        NSUInteger playerScore = 0;
-        NSUInteger opponentScore = 0;
         for (NSDictionary* roundDict in roundsDict) {
             Round* r = [RoundParser parse:roundDict andChildren:YES];
             for (User* u in [match users]) {
@@ -63,12 +58,10 @@
                         [ua setRelatedUser:u];
                     }
                 }
+                if (u.ID == r.nextMoveUserID)
+                    r.nextMoveUser = u;
             }
             [[match rounds] addObject:r];
-            
-            //! TODO: score
-            [match setScorePlayer:playerScore];
-            [match setScoreOpponent:opponentScore];
         }
     }
     

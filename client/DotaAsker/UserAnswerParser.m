@@ -9,14 +9,14 @@
 #import "UserAnswerParser.h"
 #import "UserAnswer.h"
 
+
 @implementation UserAnswerParser
 
 + (UserAnswer*)parse:(NSDictionary *)JSONDict {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"round_id"] &&
           [JSONDict objectForKey:@"user_id"] &&
-          [JSONDict objectForKey:@"answer_id"] &&
-          [JSONDict objectForKey:@"question_id"]
+          [JSONDict objectForKey:@"answer_id"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -27,7 +27,6 @@
     userAnswer.relatedRoundID = [[JSONDict objectForKey:@"round_id"] longValue];
     userAnswer.relatedUserID = [[JSONDict objectForKey:@"user_id"] longValue];
     userAnswer.relatedAnswerID = [[JSONDict objectForKey:@"answer_id"] longValue];
-    userAnswer.relatedQuestionID = [[JSONDict objectForKey:@"question_id"] longValue];
     return userAnswer;
 }
 
@@ -35,7 +34,6 @@
     NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
                           @"ID", [userAnswer ID],
                           @"ROUND_ID", [userAnswer relatedRoundID],
-                          @"QUESTION_ID", [userAnswer relatedQuestionID],
                           @"USER_ID", [userAnswer relatedUserID],
                           @"ANSWER_ID", [userAnswer relatedAnswerID],
                           nil];

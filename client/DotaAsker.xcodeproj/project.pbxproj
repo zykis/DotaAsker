@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C091D9485FD0023EFF3 /* Player.m */; };
-		AC138C0D1D948BC40023EFF3 /* EndpointParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0C1D948BC40023EFF3 /* EndpointParser.m */; };
 		AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* APIHelper.m */; };
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
@@ -41,8 +40,6 @@
 		AC75AC1F1BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC161BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg */; };
 		AC75AC201BB02DF3007BA59D /* tournaments_TI1_winner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC171BB02DF3007BA59D /* tournaments_TI1_winner.jpg */; };
 		AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */; };
-		AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC75C2E41BA3339A0036B113 /* EPPZReachability.m */; };
-		AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */; };
 		AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC77BC451DAD7B8700B32121 /* RoundService.m */; };
 		AC7B67971DA69FF000351887 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67961DA69FF000351887 /* UserTransport.m */; };
 		AC7B679A1DA69FFF00351887 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67991DA69FFF00351887 /* Transport.m */; };
@@ -128,8 +125,6 @@
 		8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC138C081D9485FD0023EFF3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		AC138C091D9485FD0023EFF3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		AC138C0B1D948BC40023EFF3 /* EndpointParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EndpointParser.h; sourceTree = "<group>"; };
-		AC138C0C1D948BC40023EFF3 /* EndpointParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndpointParser.m; sourceTree = "<group>"; };
 		AC138C0E1D948EC30023EFF3 /* APIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHelper.h; sourceTree = "<group>"; };
 		AC138C0F1D948EC30023EFF3 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelper.m; sourceTree = "<group>"; };
 		AC161A4F1DAB01F400819AF7 /* MatchTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTransport.h; sourceTree = "<group>"; };
@@ -173,10 +168,6 @@
 		AC75AC161BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tournaments_TI1_grandfinal_qualification.jpg; path = resources/question_images/tournaments_TI1_grandfinal_qualification.jpg; sourceTree = "<group>"; };
 		AC75AC171BB02DF3007BA59D /* tournaments_TI1_winner.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tournaments_TI1_winner.jpg; path = resources/question_images/tournaments_TI1_winner.jpg; sourceTree = "<group>"; };
 		AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tournaments_TI2015_prizepool.jpg; path = resources/question_images/tournaments_TI2015_prizepool.jpg; sourceTree = "<group>"; };
-		AC75C2E31BA3339A0036B113 /* EPPZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EPPZReachability.h; path = ../EPPZReachability.h; sourceTree = "<group>"; };
-		AC75C2E41BA3339A0036B113 /* EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EPPZReachability.m; path = ../EPPZReachability.m; sourceTree = "<group>"; };
-		AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+EPPZReachability.h"; sourceTree = "<group>"; };
-		AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+EPPZReachability.m"; sourceTree = "<group>"; };
 		AC77BC441DAD7B8700B32121 /* RoundService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundService.h; sourceTree = "<group>"; };
 		AC77BC451DAD7B8700B32121 /* RoundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundService.m; sourceTree = "<group>"; };
 		AC7B67951DA69FF000351887 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
@@ -357,8 +348,6 @@
 				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
 				AC73520B1B239A1B00FFF356 /* AppDelegate.h */,
 				AC73520C1B239A1B00FFF356 /* AppDelegate.m */,
-				AC75C2E31BA3339A0036B113 /* EPPZReachability.h */,
-				AC75C2E41BA3339A0036B113 /* EPPZReachability.m */,
 				AC6091821C006F1E00D728B6 /* ServiceLayer.h */,
 				AC6091831C006F1E00D728B6 /* ServiceLayer.m */,
 			);
@@ -452,8 +441,6 @@
 			children = (
 				ACF5F37D1D9E492E0060EA56 /* UIViewController+Utils.h */,
 				ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */,
-				AC75C2E61BA334730036B113 /* NSString+EPPZReachability.h */,
-				AC75C2E71BA334730036B113 /* NSString+EPPZReachability.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -575,8 +562,6 @@
 				AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */,
 				AC9A196C1D9869DD00B66AAE /* UserParser.h */,
 				AC9A196D1D9869DD00B66AAE /* UserParser.m */,
-				AC138C0B1D948BC40023EFF3 /* EndpointParser.h */,
-				AC138C0C1D948BC40023EFF3 /* EndpointParser.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -855,7 +840,6 @@
 			files = (
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
-				AC75C2E51BA3339A0036B113 /* EPPZReachability.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
@@ -886,7 +870,6 @@
 				AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */,
 				ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */,
 				AC7B67971DA69FF000351887 /* UserTransport.m in Sources */,
-				AC75C2E81BA334730036B113 /* NSString+EPPZReachability.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
@@ -894,7 +877,6 @@
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,
 				AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */,
-				AC138C0D1D948BC40023EFF3 /* EndpointParser.m in Sources */,
 				AC9A19731D9869DD00B66AAE /* RoundParser.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,

@@ -15,17 +15,10 @@
 
 - (NSUInteger)currentMatchesCount;
 - (NSUInteger)recentMatchesCount;
-- (NSString*)playerImagePath;
-- (NSString*)opponentImagePathForCurrentMatch: (NSUInteger)row;
-- (NSString*)opponentImagePathForRecentMatch: (NSUInteger)row;
-- (NSString*)playerName;
-- (NSUInteger)playerMMR;
-- (NSUInteger)playerKDA;
-- (NSUInteger)playerGPM;
 - (NSString*)matchStateTextForCurrentMatch: (NSUInteger)row;
 - (NSString*)matchStateTextForRecentMatch: (NSUInteger)row;
-- (NSString*)opponentNameForCurrentMatch: (NSUInteger)row;
-- (NSString*)opponentNameForRecentMatch: (NSUInteger)row;
+- (User*)opponentForCurrentMatch: (NSUInteger)row;
+- (User*)opponentForRecentMatch: (NSUInteger)row;
 
 - (Match*)recentMatchAtRow: (NSUInteger)row;
 - (Match*)currentMatchAtRow: (NSUInteger)row;

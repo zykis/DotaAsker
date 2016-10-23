@@ -230,7 +230,6 @@ class Match(Base):
     users = db.relationship('User', secondary='users_matches')
 
     def __init__(self, initiator):
-        self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
             round_tmp = Round()
             self.rounds.append(round_tmp)
@@ -240,14 +239,14 @@ class Match(Base):
         if not initiator in self.users:
             self.users.append(initiator)
         for i in range(0, ROUNDS_IN_MATCH):
-            if i % 2 == 1:
+            if i % 2 == 0:
                 self.rounds[i].next_move_user = initiator
 
     def setOpponent(self, opponent):
         if not opponent in self.users:
             self.users.append(opponent)
         for r in self.rounds:
-            if r.next_move_user_id == 0:
+            if r.next_move_user is None:
                 r.next_move_user = opponent
 
     def __repr__(self):

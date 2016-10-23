@@ -16,7 +16,7 @@
 @synthesize answerService;
 @synthesize questionService;
 @synthesize themeService;
-@synthesize roundService;
+@synthesize roundService = _roundService;
 @synthesize matchService = _matchService;
 @synthesize userService = _userService;
 
@@ -35,6 +35,7 @@
         _authorizationService = [[AuthorizationService alloc] init];
         _userService = [[UserService alloc] init];
         _matchService = [[MatchService alloc] init];
+        _roundService = [[RoundService alloc] init];
         [_userService setAuthorizationService:_authorizationService];
     }
     return self;
