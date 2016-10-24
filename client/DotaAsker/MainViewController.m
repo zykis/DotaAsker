@@ -253,17 +253,14 @@
 }
 
 - (IBAction)findMatchPressed {
-    NSLog(@"findMatch pressed");
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
-        NSLog(@"Found match: %@", x);
         // Update player
         [[[Player instance] currentMatches] addObject:x];
         [self.tableView reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error finding match: %@", [error localizedDescription]);
     } completed:^{
-        NSLog(@"Completed finding match");
     }];
 }
 
