@@ -7,6 +7,7 @@ from app import app, db, models
 from app.models import User, Theme, Match, Question, UserAnswer
 from app.parsers.user_schema import UserSchema
 from app.db_querys import Database_queries
+from marshmallow import pprint
 
 class TestCase(unittest.TestCase):
     def setUp(self):
@@ -137,13 +138,18 @@ class TestCase(unittest.TestCase):
 
         john.recent_matches = []
         john.current_matches = []
+        john.waiting_matches = []
         for m in john.matches:
             if m.finished == True:
                 john.recent_matches.append(m)
             else:
-                john.current_matches.append(m)
+                if m.next_move_user().id == john.id:
+                    john.current_matches.append(m)
+                else:
+                    john.waiting_matches.append(m)
         userSchema = UserSchema()
         dumped_john = userSchema.dumps(john)
+        pprint(dumped_john.data)
         assert not dumped_john.errors
         app.logger.debug('testSerializeDeserialize - OK')
 

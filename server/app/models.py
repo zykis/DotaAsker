@@ -249,6 +249,13 @@ class Match(Base):
             if r.next_move_user is None:
                 r.next_move_user = opponent
 
+    def next_move_user(self):
+        i = 0
+        for r in self.rounds:
+            if len(r.user_answers) == 6:
+                ++i
+        return self.rounds[i].next_move_user
+
     def __repr__(self):
         return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)
 

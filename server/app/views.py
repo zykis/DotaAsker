@@ -35,11 +35,15 @@ def get_main_view_controller():
     user = g.user
     user.current_matches = []
     user.recent_matches = []
+    user.waiting_matches = []
     for m in user.matches:
         if m.finished == True:
-            user.recent_matches.append(m)
+                user.recent_matches.append(m)
         else:
-            user.current_matches.append(m)
+            if m.next_move_user().id == user.id:
+                user.current_matches.append(m)
+            else:
+                user.waiting_matches.append(m)
     schema = UserSchema()
     res = schema.dumps(user)
     if not res.errors:
