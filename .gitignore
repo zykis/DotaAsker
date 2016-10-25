@@ -8,4 +8,6 @@ xcuserdata/
 # Python
 server/.idea/workspace.xml
 server/flask/
+server/.idea/server.iml
+server/.idea/misc.xml
 *.pyc
