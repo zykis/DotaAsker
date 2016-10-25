@@ -134,7 +134,6 @@ class TestCase(unittest.TestCase):
 
     def testSerializeDeserialize(self):
         john = User.query.get(1) # getting John
-        jack = User.query.get(3)
 
         john.recent_matches = []
         john.current_matches = []
