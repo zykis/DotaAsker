@@ -18,4 +18,4 @@ class UserSchema(Schema):
     current_matches = fields.Nested('MatchSchema', many=True)
     waiting_matches = fields.Nested('MatchSchema', many=True)
     recent_matches = fields.Nested('MatchSchema', many=True)
-    friends = fields.Nested('UserSchema', many=True, exclude=('current_matches','recent_matches', 'friends'))
+    friends = fields.Nested('UserSchema', many=True, exclude=('current_matches','recent_matches', 'waiting_matches', 'friends'))

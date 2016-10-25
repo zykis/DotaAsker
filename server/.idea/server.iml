@@ -2,7 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Unknown at ~/Documents/projects/DotaAsker/server/flask/bin/python" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.7.9 virtualenv at ~/projects/DotaAsker/server/flask" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
