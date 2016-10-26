@@ -4,7 +4,7 @@ import unittest
 
 from config import basedir, questiondir
 from app import app, db, models
-from app.models import User, Theme, Match, Question, UserAnswer
+from app.models import User, Theme, Match, Question, UserAnswer, MATCH_FINISHED, MATCH_RUNNING, MATCH_TIME_ELAPSED
 from app.parsers.user_schema import UserSchema
 from app.db_querys import Database_queries
 from marshmallow import pprint
@@ -90,9 +90,9 @@ class TestCase(unittest.TestCase):
         assert len(secondUser.matches) == 1
 
         # cascade update
-        secondMatch.finished = True
+        secondMatch.state = MATCH_TIME_ELAPSED
         db.session.commit()
-        assert models.User.query.get(secondUser.id).matches[0].finished == True
+        assert models.User.query.get(secondUser.id).matches[0].state == MATCH_TIME_ELAPSED
 
         # cascade delete
         db.session.delete(secondMatch)
@@ -139,7 +139,7 @@ class TestCase(unittest.TestCase):
         john.current_matches = []
         john.waiting_matches = []
         for m in john.matches:
-            if m.finished == True:
+            if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
                 john.recent_matches.append(m)
             else:
                 if m.next_move_user().id == john.id:

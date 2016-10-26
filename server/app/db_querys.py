@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Match, Question, Theme, Answer, UserAnswer
+from app.models import User, Match, Question, Theme, Answer, UserAnswer, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED
 from app import models
 import json
 import random
@@ -171,7 +171,7 @@ class Database_queries:
                     user2_answer.user = first_match.users[1]
                     user2_answer.answer = random.choice(quest.answers)
                     db.session.add(user2_answer)
-        first_match.finished = True
+        first_match.state = MATCH_FINISHED
         # [!1]
 
         # [2] RUNNING
@@ -210,7 +210,7 @@ class Database_queries:
                     user2_answer.question = quest
                     user2_answer.answer = random.choice(quest.answers)
                     db.session.add(user2_answer)
-        third_match.finished = True
+        third_match.state = MATCH_TIME_ELAPSED
         # [!3]
 
         # [4] NOT_STARTED

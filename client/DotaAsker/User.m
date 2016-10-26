@@ -14,6 +14,7 @@
     self = [super init];
     if (self) {
         self.currentMatches = [[NSMutableArray alloc] init];
+        self.waitingMatches = [[NSMutableArray alloc] init];
         self.recentMatches = [[NSMutableArray alloc] init];
         self.friends = [[NSMutableArray alloc] init];
         self.name = @"Opponent";

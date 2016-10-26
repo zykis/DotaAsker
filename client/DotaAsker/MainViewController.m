@@ -16,8 +16,9 @@
 #define SECTION_PLAYER_INFO 1
 #define SECTION_FIND_BUTTON 2
 #define SECTION_CURRENT_MATCHES 3
-#define SECTION_RECENT_MATCHES 4
-#define SECTIONS_COUNT 5
+#define SECTION_WAITING_MATCHES 4
+#define SECTION_RECENT_MATCHES 5
+#define SECTIONS_COUNT 6
 
 @interface MainViewController ()
 
@@ -72,6 +73,10 @@
     else if (section == SECTION_CURRENT_MATCHES) {
         return [_viewModel currentMatchesCount];
     }
+    //current matches
+    else if (section == SECTION_WAITING_MATCHES) {
+        return [_viewModel waitingMatchesCount];
+    }
     //recent matches
     else if (section == SECTION_RECENT_MATCHES) {
         return [_viewModel recentMatchesCount];
@@ -121,7 +126,7 @@
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
 
     }
-    else if (([indexPath section] == SECTION_CURRENT_MATCHES) || ([indexPath section] == SECTION_RECENT_MATCHES)) {
+    else if (([indexPath section] == SECTION_CURRENT_MATCHES) || ([indexPath section] == SECTION_RECENT_MATCHES) || ([indexPath section] == SECTION_WAITING_MATCHES)) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:MatchCellIdentifier];
     }
     
@@ -152,6 +157,19 @@
             [nameLabel setText:[[_viewModel opponentForRecentMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
         }
+        else if([indexPath section] == SECTION_WAITING_MATCHES) {
+            //opponent avatar
+            UIImageView *avatarView = (UIImageView*)[cell viewWithTag:100];
+            UILabel *matchStateLabel = (UILabel*)[cell viewWithTag:101];
+            [matchStateLabel setText:[_viewModel matchStateTextForWaitingMatch:[indexPath row]]];
+            
+            UIImage *avatar = [UIImage imageNamed:[[_viewModel opponentForWaitingMatch:[indexPath row]] avatarImageName]];
+            [avatarView setImage:avatar];
+            //opponent name
+            UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
+            [nameLabel setText:[[_viewModel opponentForWaitingMatch:[indexPath row]] name]];
+            [nameLabel setAdjustsFontSizeToFitWidth:YES];
+        }
     }
     return cell;
 }
@@ -163,9 +181,10 @@
     else if (section == SECTION_RECENT_MATCHES) {
         return @"Recent matches";
     }
-    else {
-        return @"";
+    else if (section == SECTION_WAITING_MATCHES) {
+        return @"Waiting matches";
     }
+    else return @"FUCK";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -178,7 +197,7 @@
     else if (section == SECTION_FIND_BUTTON) {
         return 0.0f;
     }
-    else if ((section == SECTION_CURRENT_MATCHES) || (section == SECTION_RECENT_MATCHES)) {
+    else if ((section == SECTION_CURRENT_MATCHES) || (section == SECTION_RECENT_MATCHES) || (section == SECTION_WAITING_MATCHES)) {
         return UITableViewAutomaticDimension;
     }
     return 0;
@@ -210,6 +229,9 @@
         }
         else if (section == SECTION_RECENT_MATCHES) {
             headerLabel.text = @"Recent matches:";
+        }
+        else if (section == SECTION_WAITING_MATCHES) {
+            headerLabel.text = @"Waiting matches:";
         }
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
@@ -249,6 +271,9 @@
         else if ([indexPath section] == SECTION_RECENT_MATCHES) {
             destVC.matchID = [[_viewModel recentMatchAtRow:[indexPath row]] ID];
         }
+        else if ([indexPath section] == SECTION_WAITING_MATCHES) {
+            destVC.matchID = [[_viewModel waitingMatchAtRow:[indexPath row]] ID];
+        }
     }
 }
 
@@ -256,7 +281,7 @@
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
         // Update player
-        [[[Player instance] currentMatches] addObject:x];
+        [[[Player instance] currentMatches] addObject:x]; // OR WAITING MATCHES
         [self.tableView reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error finding match: %@", [error localizedDescription]);

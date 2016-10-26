@@ -20,7 +20,7 @@
 + (Match*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"users"] &&
-          [JSONDict objectForKey:@"finished"]
+          [JSONDict objectForKey:@"state"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in MatchParser");
         return nil;
@@ -32,9 +32,9 @@
     unsigned long long matchID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [match setID:matchID];
     
-    //finished
-    BOOL finished = [[JSONDict objectForKey:@"finished"] boolValue];
-    [match setFinished:finished];
+    //state
+    NSUInteger state = [[JSONDict objectForKey:@"state"] unsignedIntegerValue];
+    [match setState:state];
     
     //users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];

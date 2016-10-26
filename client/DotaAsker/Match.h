@@ -11,6 +11,10 @@
 #define MIN_MMR_PRICE 15
 #define MAX_MMR_PRICE 35
 
+#define MATCH_RUNNING 0
+#define MATCH_FINISHED 1
+#define MATCH_TIME_ELAPSED 2
+
 @class User;
 
 @interface Match : NSObject
@@ -18,6 +22,6 @@
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) NSMutableArray *rounds;
-@property (assign, nonatomic) BOOL finished;
+@property (assign, nonatomic) NSUInteger state;
 
 @end

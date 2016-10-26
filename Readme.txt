@@ -9,8 +9,9 @@ flask/bin/pip install flask-sqlalchemy \
 flask/bin/pip install passlib \
 flask/bin/pip install flask-httpauth \
 flask/bin/pip install marshmallow \
-flask/bin/pip install pytest
-flask/bin/pip install Flask-Script
+flask/bin/pip install pytest \
+flask/bin/pip install Flask-Script \
+flask/bin/pip install sqlalchemy-migrate
 
 # client
 cd ~/projects/DotaAsker/client

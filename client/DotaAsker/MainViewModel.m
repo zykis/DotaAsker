@@ -19,6 +19,11 @@
     return [[[Player instance] currentMatches] count];
 }
 
+- (NSUInteger)waitingMatchesCount {
+    NSUInteger count = [[[Player instance] waitingMatches] count];
+    return count;
+}
+
 - (NSUInteger)recentMatchesCount {
     return [[[Player instance] recentMatches] count];
 }
@@ -65,15 +70,31 @@
 
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
-    Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
-    if ([currentRound isEqual:[[m rounds] lastObject]])
+    if ([m state] == MATCH_FINISHED)
         return @"Finished";
+    else if ([m state] == MATCH_TIME_ELAPSED)
+        return @"Time elapsed";
     else
-        return @"Time Elapsed";
+        assert(0);
+}
+
+- (NSString*)matchStateTextForWaitingMatch:(NSUInteger)row {
+    return @"Waiting";
 }
 
 - (User*)opponentForCurrentMatch:(NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
+    for (User* u in m.users) {
+        if (![u isEqual: [Player instance]]) {
+            return u;
+        }
+    }
+    User* op = [[User alloc] init];
+    return op;
+}
+
+- (User*)opponentForWaitingMatch:(NSUInteger)row {
+    Match* m = [[[Player instance] waitingMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
             return u;
@@ -95,6 +116,11 @@
 
 - (Match*)currentMatchAtRow: (NSUInteger)row {
     Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
+    return m;
+}
+
+- (Match*)waitingMatchAtRow:(NSUInteger)row {
+    Match* m = [[[Player instance] waitingMatches] objectAtIndex:row];
     return m;
 }
 

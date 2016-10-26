@@ -41,6 +41,7 @@
     [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"total_incorrect_answers"] integerValue]];
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"current_matches"] &&
+              [JSONDict objectForKey:@"waiting_matches"] &&
               [JSONDict objectForKey:@"recent_matches"] &&
               [JSONDict objectForKey:@"friends"]
               )) {
@@ -49,11 +50,16 @@
         }
         
         NSArray* currentMatchesDict = [JSONDict objectForKey:@"current_matches"];
+        NSArray* waitingMatchesDict = [JSONDict objectForKey:@"waiting_matches"];
         NSArray* recentMatchesDict = [JSONDict objectForKey:@"recent_matches"];
         NSArray* friendsDict = [JSONDict objectForKey:@"friends"];
         for (NSDictionary* matchDict in currentMatchesDict) {
             Match* m = [MatchParser parse:matchDict andChildren:YES];
             [[user currentMatches] addObject:m];
+        }
+        for (NSDictionary* matchDict in waitingMatchesDict) {
+            Match* m = [MatchParser parse:matchDict andChildren:YES];
+            [[user waitingMatches] addObject:m];
         }
         for (NSDictionary* matchDict in recentMatchesDict) {
             Match* m = [MatchParser parse:matchDict andChildren:YES];

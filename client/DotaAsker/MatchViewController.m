@@ -51,6 +51,16 @@
             }
         }
     }
+    if(!bMatchFound)
+    {
+        for (Match* m in [[Player instance] waitingMatches]) {
+            if(m.ID == _matchID) {
+                [_matchViewModel setMatch:m];
+                bMatchFound = true;
+                break;
+            }
+        }
+    }
     assert(bMatchFound);
     
     
@@ -86,7 +96,7 @@
 }
 
 - (IBAction)midleButtonPushed:(id)sender {
-    if ([[_matchViewModel match] finished]) {
+    if ([[_matchViewModel match] state] != MATCH_RUNNING) {
         if ([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
             [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
         }
@@ -216,7 +226,7 @@
             //конец матча - это когда текущий раунд в состоянии Finished
             //и текущий раунд - последний
 
-            if ([[_matchViewModel match] finished]){
+            if ([[_matchViewModel match] state] != MATCH_RUNNING){
                 if([_matchViewModel playerScore] < [_matchViewModel opponentScore]) {
                     [leftButton setHidden:YES];
                     [middleButton setTitle:@"Revenge" forState:UIControlStateNormal];

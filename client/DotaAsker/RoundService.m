@@ -15,7 +15,7 @@
 @implementation RoundService
 
 - (Round*)currentRoundforMatch:(Match *)match {
-    if (match.finished) {
+    if (match.state != MATCH_RUNNING) {
         int index = 0;
         for (Round* r in match.rounds) {
             if ([[r userAnswers] count] == 6) {

@@ -6,7 +6,7 @@ from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
 from app.parsers.user_schema import UserSchema
 from app.parsers.match_schema import MatchSchema
-from app.models import Match
+from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED
 
 auth = HTTPBasicAuth()
 
@@ -37,7 +37,7 @@ def get_main_view_controller():
     user.recent_matches = []
     user.waiting_matches = []
     for m in user.matches:
-        if m.finished == True:
+        if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
                 user.recent_matches.append(m)
         else:
             if m.next_move_user().id == user.id:

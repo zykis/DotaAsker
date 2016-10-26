@@ -12,6 +12,9 @@ QUESTIONS_IN_ROUND = 3
 ROUNDS_IN_MATCH = 6
 THEMES_COUNT = 3
 
+MATCH_RUNNING = 0
+MATCH_FINISHED = 1
+MATCH_TIME_ELAPSED = 2
 
 class Base(db.Model):
     __abstract__ = True
@@ -225,7 +228,7 @@ class Round(Base):
 class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
-    finished = db.Column(db.Boolean, default=False)
+    state = db.Column(db.Integer, default=0)
     # relations
     users = db.relationship('User', secondary='users_matches')
 
@@ -250,7 +253,7 @@ class Match(Base):
                 r.next_move_user = opponent
 
     def next_move_user(self):
-        if self.finished:
+        if self.state != MATCH_RUNNING:
             return self.rounds[5].next_move_user
         else:
             i = 0
