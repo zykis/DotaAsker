@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Theme;
+
 @interface Question : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
@@ -15,5 +17,6 @@
 @property (strong, nonatomic) NSString *imageName;
 @property (strong, nonatomic) NSMutableArray *answers;
 @property (assign, nonatomic) BOOL approved;
+@property (strong, nonatomic) Theme* theme;
 
 @end

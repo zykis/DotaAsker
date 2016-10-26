@@ -96,7 +96,9 @@
 }
 
 - (IBAction)midleButtonPushed:(id)sender {
-    if ([[_matchViewModel match] state] != MATCH_RUNNING) {
+    
+    if ([[_matchViewModel match] state] == MATCH_RUNNING) {
+        // Answering or Replying?
         if ([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
             [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
         }
@@ -176,6 +178,7 @@
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
             [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",[indexPath row]+1]];
             UILabel *roundStatus = (UILabel*)[cell viewWithTag:108];
+            [roundStatus setText:[_matchViewModel roundStatusTextForRoundInRow:[indexPath row]]];
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
             
             Round* selectedRound = [[[_matchViewModel match] rounds] objectAtIndex:[indexPath row]];

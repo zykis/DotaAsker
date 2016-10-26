@@ -11,6 +11,9 @@
 #import "Match.h"
 #import "User.h"
 #import "Round.h"
+#import "UserAnswer.h"
+#import "Answer.h"
+#import "Question.h"
 
 @implementation RoundService
 
@@ -34,6 +37,15 @@
     if (i == 6) i--;
     
     return [[match rounds] objectAtIndex:i];
+}
+
+- (Theme*)themeSelectedForRound:(Round *)round {
+    Theme* selectedTheme;
+    for (UserAnswer* ua in [round userAnswers]) {
+        selectedTheme = [[[ua relatedAnswer] relatedQuestion] theme];
+        break;
+    }
+    return selectedTheme;
 }
 
 @end

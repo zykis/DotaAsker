@@ -16,6 +16,7 @@
 @property (strong, nonatomic) Match* match;
 - (User*)opponent;
 - (User*)nextMoveUser;
+- (NSString*)roundStatusTextForRoundInRow:(NSUInteger)row;
 - (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index;
 - (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index;
 - (NSUInteger)playerScore;

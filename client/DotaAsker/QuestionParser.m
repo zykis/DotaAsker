@@ -9,6 +9,7 @@
 #import "QuestionParser.h"
 #import "Question.h"
 #import "AnswerParser.h"
+#import "ThemeParser.h"
 
 @implementation QuestionParser
 
@@ -17,6 +18,7 @@
           [JSONDict objectForKey:@"text"] &&
           [JSONDict objectForKey:@"image_name"] &&
           [JSONDict objectForKey:@"answers"] &&
+          [JSONDict objectForKey:@"theme"] &&
           [JSONDict objectForKey:@"approved"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
@@ -42,6 +44,10 @@
         Answer *a = [AnswerParser parse:answerDict];
         [[question answers] addObject:a];
     }
+    //theme
+    NSDictionary *themeDict = [JSONDict objectForKey:@"theme"];
+    Theme* theme = [ThemeParser parse:themeDict];
+    [question setTheme:theme];
 
     return question;
 }

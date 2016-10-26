@@ -14,5 +14,6 @@
 @interface RoundService : AbstractService
 
 - (Round*)currentRoundforMatch:(Match*)match;
+- (Theme*)themeSelectedForRound:(Round*)round;
 
 @end

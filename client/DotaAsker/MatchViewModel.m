@@ -14,6 +14,7 @@
 #import "Question.h"
 #import "Match.h"
 #import "ServiceLayer.h"
+#import "RoundService.h"
 
 @implementation MatchViewModel
 
@@ -24,12 +25,22 @@
         if (![u isEqual: [Player instance]])
             return u;
     }
-    return nil;
+    User* defaultUser = [[User alloc] init];
+    return defaultUser;
 }
 
 - (User*)nextMoveUser {
     User* nextMoveUser = [[[[ServiceLayer instance] roundService] currentRoundforMatch:_match] nextMoveUser];
     return nextMoveUser;
+}
+
+- (NSString*)roundStatusTextForRoundInRow:(NSUInteger)row {
+    Round *r = [[_match rounds] objectAtIndex:row];
+    Theme* theme = [[[ServiceLayer instance] roundService] themeSelectedForRound:r];
+    NSString* str;
+    if (theme)
+        str = [NSString stringWithFormat:@"%@", [theme name]];
+    return str;
 }
 
 - (NSUInteger)answerStateforRoundInRow:(NSUInteger)row andAnswerIndex:(NSUInteger)index {
