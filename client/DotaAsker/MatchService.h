@@ -21,5 +21,6 @@
 
 - (RACReplaySubject*)findMatchForUser: (NSString*)accessToken;
 - (NSUInteger)scoreForMatch:(Match*)m andUser:(User*)u;
+- (User*)nextMoveUserInMatch:(Match*)match;
 
 @end

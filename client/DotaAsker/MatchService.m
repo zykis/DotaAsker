@@ -54,4 +54,15 @@
     return score;
 }
 
+- (User*)nextMoveUserInMatch:(Match *)match {
+    NSUInteger i = 0;
+    for (Round* r in [match rounds]) {
+        if ([[r userAnswers] count] == 6)
+            i++;
+    }
+    User* nextMoveUser  = [[[match rounds] objectAtIndex:i] nextMoveUser];
+    assert(nextMoveUser);
+    return nextMoveUser;
+}
+
 @end
