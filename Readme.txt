@@ -10,6 +10,7 @@ flask/bin/pip install passlib \
 flask/bin/pip install flask-httpauth \
 flask/bin/pip install marshmallow \
 flask/bin/pip install pytest
+flask/bin/pip install Flask-Script
 
 # client
 cd ~/projects/DotaAsker/client
