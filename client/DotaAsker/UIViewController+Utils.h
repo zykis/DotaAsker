@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoadingView.h"
 
 static UIAlertController *alertController;
 
 @interface UIViewController (BackgroundImage)
+
+@property (strong, nonatomic) LoadingView* loadingView;
+
 - (void)loadBackgroundImage:(UIImage*)backgroundImage;
-- (void) presentAlertControllerWithTitle: (NSString*)title andMessage:(NSString*)message;
+- (void)presentAlertControllerWithTitle: (NSString*)title andMessage:(NSString*)message;
+
 @end

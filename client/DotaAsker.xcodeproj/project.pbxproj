@@ -46,6 +46,7 @@
 		AC7B679D1DA6AAC900351887 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B679C1DA6AAC900351887 /* UserService.m */; };
 		AC7B67A01DA6B6FC00351887 /* UserCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B679F1DA6B6FC00351887 /* UserCache.m */; };
 		AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67A21DA8AE3A00351887 /* MatchService.m */; };
+		AC7E6D2B1DC2A05400F7871C /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E6D2A1DC2A05400F7871C /* LoadingView.m */; };
 		AC80436A1C36A85E0063CD67 /* UserAnswerServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */; };
 		AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC850B751B3C85A00050954C /* Trajan Bold.ttf */; };
 		AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC850B771B3C8EB90050954C /* wallpaper_default.jpg */; };
@@ -180,6 +181,8 @@
 		AC7B679F1DA6B6FC00351887 /* UserCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCache.m; sourceTree = "<group>"; };
 		AC7B67A11DA8AE3A00351887 /* MatchService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchService.h; sourceTree = "<group>"; };
 		AC7B67A21DA8AE3A00351887 /* MatchService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchService.m; sourceTree = "<group>"; };
+		AC7E6D291DC2A05400F7871C /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
+		AC7E6D2A1DC2A05400F7871C /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAnswerServiceTest.m; path = ../UserAnswerServiceTest.m; sourceTree = "<group>"; };
 		AC850B751B3C85A00050954C /* Trajan Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trajan Bold.ttf"; path = "resources/Trajan Bold.ttf"; sourceTree = "<group>"; };
 		AC850B771B3C8EB90050954C /* wallpaper_default.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = wallpaper_default.jpg; path = resources/wallpaper_default.jpg; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */,
 				ACDBCAC81B4FE96100932CA1 /* TableViewCell.h */,
 				ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */,
+				AC7E6D291DC2A05400F7871C /* LoadingView.h */,
+				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -854,6 +859,7 @@
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */,
 				ACD52F871BB15C300006D50A /* Answer.m in Sources */,
+				AC7E6D2B1DC2A05400F7871C /* LoadingView.m in Sources */,
 				AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
 				ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */,

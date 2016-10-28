@@ -72,19 +72,26 @@
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Getting player"];
+    [[self view] addSubview:loadingView];
+    
     RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
     
     [signal subscribeNext:^(NSString* _token) {
         [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
     } error:^(NSError *error) {
+        [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
     } completed:^{
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
             [Player setPlayer:u];
             [self performSegueWithIdentifier:@"signin" sender:self];
+             [loadingView removeFromSuperview];
         } error:^(NSError *error) {
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+            [loadingView removeFromSuperview];
         }];
     }];
 }

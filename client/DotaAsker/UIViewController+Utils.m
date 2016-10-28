@@ -19,11 +19,11 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-+ (void)presentLoadingView{
+- (void)presentLoadingViewWithMessage: (NSString*)message {
     
 }
 
--(void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
+- (void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
     UIAlertController *alertVC = [UIAlertController
                                           alertControllerWithTitle:title
                                           message:message
