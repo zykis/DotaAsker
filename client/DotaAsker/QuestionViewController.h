@@ -10,10 +10,15 @@
 #import "UIViewController+Utils.h"
 @class Round;
 @class Match;
+@class Theme;
+@class QuestionViewModel;
 
 @interface QuestionViewController : UIViewController
 
-@property (strong, nonatomic) Round *round;
+@property (strong, nonatomic) Round* round;
+@property (strong, nonatomic) Theme* selectedTheme;
+
+@property (strong, nonatomic) QuestionViewModel* questionViewModel;
 @property (strong, nonatomic) IBOutlet UIImageView *questionImageView;
 @property (strong, nonatomic) IBOutlet UITextView *questionText;
 @property (strong, nonatomic) IBOutlet UIButton *answer1Button;

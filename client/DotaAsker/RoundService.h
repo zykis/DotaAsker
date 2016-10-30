@@ -10,10 +10,14 @@
 #import "Round.h"
 @class Match;
 @class User;
+@class Question;
+@class Round;
 
 @interface RoundService : AbstractService
 
 - (Round*)currentRoundforMatch:(Match*)match;
 - (Theme*)themeSelectedForRound:(Round*)round;
+- (NSArray*)themesForRound:(Round*)round;
+- (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round;
 
 @end

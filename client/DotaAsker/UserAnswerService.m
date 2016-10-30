@@ -8,17 +8,35 @@
 
 #import "UserAnswerService.h"
 #import "AnswerService.h"
+#import "UserAnswerParser.h"
 #import "UserAnswer.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import "UserAnswerTransport.h"
+#import "UserAnswerParser.h"
 
 @implementation UserAnswerService
 
-+ (UserAnswerService*)instance {
-    static UserAnswerService *userAnswerService = nil;
-    @synchronized(self) {
-        if(userAnswerService == nil)
-            userAnswerService = [[self alloc] init];
+- (id)init {
+    self = [super init];
+    if (self) {
+        _transport = [[UserAnswerTransport alloc] init];
     }
-    return userAnswerService;
+    return self;
+}
+
+- (RACReplaySubject*)create:(id)entity {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSData* uaData = [UserAnswerParser encode:entity];
+    assert(uaData);
+    [[_transport create:uaData] subscribeNext:^(id x) {
+        UserAnswer* ua = [UserAnswerParser parse:x];
+        [subject sendNext:ua];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
 }
 
 @end

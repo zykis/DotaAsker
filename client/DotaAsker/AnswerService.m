@@ -13,19 +13,4 @@
 
 @implementation AnswerService
 
-
-- (id)init {
-    self = [super init];
-    return self;
-}
-
-+ (AnswerService*)instance {
-    static AnswerService *answerService = nil;
-    @synchronized(self) {
-        if(answerService == nil)
-            answerService = [[self alloc] init];
-    }
-    return answerService;
-}
-
 @end

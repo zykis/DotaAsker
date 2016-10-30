@@ -87,23 +87,36 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showThemeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-//        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:_match]];
+        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]]];
     }
     else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];
-//        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:_match]];
+        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]]];
     }
 }
 
 - (IBAction)midleButtonPushed:(id)sender {
-    
     if ([[_matchViewModel match] state] == MATCH_RUNNING) {
-        // Answering or Replying?
         if ([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
-            [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
+            // Answering or Replying?
+            Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
+            User* opponent = [_matchViewModel opponent];
+            BOOL playerAnswering = true;
+            for (UserAnswer* ua in [currentRound userAnswers]) {
+                if ([[ua relatedUser] isEqual:opponent]) {
+                    playerAnswering = NO; // Player replying
+                    break;
+                }
+            }
+            if (playerAnswering) {
+                [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
+            }
+            else {
+                [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
+            }
         }
         else {
-            [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
+            // waiting button
         }
     }
     else {

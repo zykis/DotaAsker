@@ -23,20 +23,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIImage* wallpapers = [[[ServiceLayer instance] userService] wallpapersDefault];
-    [self loadBackgroundImage:wallpapers];
+    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+    assert([themes count] == 3);
     
-    Theme *theme1 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:0];
-    Theme *theme2 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:1];
-    Theme *theme3 = [[[[ServiceLayer instance] themeService] obtainAll] objectAtIndex:2];
-    
-    [_imagedButton1 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme1] forState:UIControlStateNormal];
+    [_imagedButton1 setImage: [UIImage imageNamed:[[themes objectAtIndex:0] imageName]] forState:UIControlStateNormal];
     [[_imagedButton1 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
-    [_imagedButton2 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme2] forState:UIControlStateNormal];
+    [_imagedButton2 setImage: [UIImage imageNamed:[[themes objectAtIndex:1] imageName]] forState:UIControlStateNormal];
     [[_imagedButton2 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
-    [_imagedButton3 setImage:[[[ServiceLayer instance] themeService] imageForTheme:theme3] forState:UIControlStateNormal];
+    [_imagedButton3 setImage: [UIImage imageNamed:[[themes objectAtIndex:2] imageName]] forState:UIControlStateNormal];
     [[_imagedButton3 imageView] setContentMode:UIViewContentModeScaleAspectFill];
     
     // Do any additional setup after loading the view.
@@ -50,22 +46,21 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"themeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
+        NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+        Theme* selectedTheme;
         if ([sender isEqual:_imagedButton1]) {
-            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:1] ID];
+            selectedTheme = [themes objectAtIndex:0];
         }
         else if([sender isEqual:_imagedButton2]) {
-            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:2] ID];
+            selectedTheme = [themes objectAtIndex:1];
         }
         else if([sender isEqual:_imagedButton3]) {
-            _round.themeID = [(Theme*)[[[ServiceLayer instance] themeService] obtain:3] ID];
-        }
-        else {
-            NSLog(@"Can't identify theme pressed");
-            return;
+            selectedTheme = [themes objectAtIndex:2];
         }
         
-        _round = [[[ServiceLayer instance] roundService] update:_round];
+        assert(selectedTheme);
         [destVC setRound:_round];
+        [destVC setSelectedTheme:selectedTheme];
     }
 }
 

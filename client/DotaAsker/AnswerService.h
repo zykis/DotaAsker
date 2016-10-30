@@ -11,6 +11,7 @@
 #import "Question.h"
 
 @interface AnswerService : AbstractService
-+ (AnswerService*)instance;
+
+
 
 @end

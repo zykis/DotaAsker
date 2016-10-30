@@ -12,7 +12,7 @@
 @implementation ServiceLayer
 
 @synthesize authorizationService = _authorizationService;
-@synthesize userAnswerService;
+@synthesize userAnswerService = _userAnswerService;
 @synthesize answerService;
 @synthesize questionService;
 @synthesize themeService;
@@ -36,9 +36,11 @@
         _userService = [[UserService alloc] init];
         _matchService = [[MatchService alloc] init];
         _roundService = [[RoundService alloc] init];
+        _userAnswerService = [[UserAnswerService alloc] init];
         [_userService setAuthorizationService:_authorizationService];
     }
     return self;
 }
+
 
 @end

@@ -14,6 +14,7 @@
 #import "UserAnswer.h"
 #import "Answer.h"
 #import "Question.h"
+#import "Player.h"
 
 @implementation RoundService
 
@@ -46,6 +47,33 @@
         break;
     }
     return selectedTheme;
+}
+
+- (NSArray*)themesForRound:(Round *)round {
+    NSMutableArray* themes = [[NSMutableArray alloc] init];
+    for (Question* q in [round questions]) {
+        Theme* t = [q theme];
+        if (![themes containsObject:t]) {
+            [themes addObject:t];
+        }
+    }
+    NSArray* immutableThemes = [NSArray arrayWithArray:themes];
+    return immutableThemes;
+}
+
+- (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme *)theme inRound:(Round*)round {
+    NSUInteger i = 0;
+    for (Question* q in [round questions]) {
+        if ([[q theme] isEqual:theme]) {
+            if (index == i) {
+                return q;
+            }
+            else {
+                i++;
+            }
+        }
+    }
+    return NULL;
 }
 
 @end

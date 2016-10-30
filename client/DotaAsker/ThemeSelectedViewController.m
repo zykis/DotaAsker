@@ -21,19 +21,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
     [_themeImageView addGestureRecognizer:tapGesture];
     
-    if (_round) {
-        Theme *theme = [[[ServiceLayer instance] themeService] themeForRound:_round];
-        UIImage* themeImage = [[[ServiceLayer instance] themeService] imageForTheme:theme];
-        [_themeImageView setImage:themeImage];
-        [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
-    }
-    else {
-        NSLog(@"Can't get theme");
-    }
+    UIImage* themeImage = [UIImage imageNamed:[_selectedTheme imageName]];
+    [_themeImageView setImage:themeImage];
+    [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
     // Do any additional setup after loading the view.
 }
 
@@ -50,24 +43,10 @@
     if ([[segue identifier] isEqualToString:@"showQuestions"]) {
         QuestionViewController *destVC;
         id destID = (QuestionViewController*)[segue destinationViewController];
-        if (![destID isKindOfClass:[QuestionViewController class]]) {
-            NSLog(@"ThemeSelectedVoewController::prepareForSegue(): destination viewController is not a member of class QuestionViewController.");
-            return;
-        }
-        else {
-            destVC = (QuestionViewController*)destID;
-        }
-        
-        //GENERATING QUESTIONS
-        if (([_round round_state] == ROUND_PLAYER_ASWERING)) {
-            Theme* theme = [[[ServiceLayer instance] themeService] themeForRound:_round];
-            NSArray* questions = [[[ServiceLayer instance]  questionService] generateQuestionsOnTheme:theme];
-            [[[ServiceLayer instance] roundService] setQuestions:questions forRound:_round];
-            _round = [[[ServiceLayer instance] roundService] update:_round];
-        }
-        
-        //send RoundQuestions message!!!
+        assert([destID isKindOfClass:[QuestionViewController class]]);
+        destVC = (QuestionViewController*)destID;
         [destVC setRound:_round];
+        [destVC setSelectedTheme:_selectedTheme];
     }
 }
 

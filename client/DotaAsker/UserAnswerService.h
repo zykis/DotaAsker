@@ -9,8 +9,9 @@
 #import "UserAnswer.h"
 #import "AbstractService.h"
 
+@class UserAnswerTransport;
 @interface UserAnswerService : AbstractService
 
-+ (UserAnswerService*)instance;
+@property (strong, nonatomic) UserAnswerTransport* transport;
 
 @end

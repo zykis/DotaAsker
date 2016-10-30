@@ -7,8 +7,10 @@
 //
 
 #import "QuestionViewController.h"
-#import "MatchInfoViewController.h"
+#import "MatchViewController.h"
 #import "ServiceLayer.h"
+#import "QuestionViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @interface QuestionViewController ()
 
@@ -24,19 +26,18 @@
 @synthesize answer3Button = _answer3Button;
 @synthesize answer4Button = _answer4Button;
 @synthesize currentQuestionIndex = _currentQuestionIndex;
+@synthesize selectedTheme = _selectedTheme;
+@synthesize questionViewModel = _questionViewModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[[[ServiceLayer instance] userService] wallpapersDefault]];
-    if (_round) {
-        if ([[_round questionsIDs] count] == 0) {
-            NSLog(@"No questions in Round");
-            [[self navigationController] popViewControllerAnimated:YES];
-            return;
-        }
-        _currentQuestionIndex = 0;
-        [self showNextQuestion];
-    }
+    _questionViewModel = [[QuestionViewModel alloc] init];
+    assert(_round);
+    assert([[_round questions] count] == 9);
+    assert(_selectedTheme);
+    
+    _currentQuestionIndex = 0;
+    [self showNextQuestion];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +46,7 @@
 }
 
 - (IBAction)answerPushed:(id)sender {
-    Question *q = [[[ServiceLayer instance] questionService] questionAtIndex:_currentQuestionIndex ofRound:_round];
+    Question *q = [[[ServiceLayer instance] roundService] questionAtIndex:_currentQuestionIndex onTheme: _selectedTheme inRound:_round];
     NSInteger answerIndex;
     if (sender == _answer1Button)
         answerIndex = 0;
@@ -55,135 +56,118 @@
         answerIndex = 2;
     else if(sender == _answer4Button)
         answerIndex = 3;
-    else {
-        NSLog(@"What button was tapped?");
-    }
-
-    if (answerIndex > [[q answersIDs] count] - 1) {
-        return;
-    }
     
     Round* relatedRound = _round;
-    Question* relatedQuestion = q;
-    Answer* relatedAnswer = [[[ServiceLayer instance] answerService] answerAtIndex:answerIndex ofQuestion:q];
-    User* relatedUser = [[[ServiceLayer instance] userService] playerForRound:_round];
+    Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
+    User* relatedUser = [_round nextMoveUser];
     
     UserAnswer *userAnswer = [[UserAnswer alloc] init];
     userAnswer.relatedRoundID = relatedRound.ID;
-    userAnswer.relatedQuestionID = relatedQuestion.ID;
+    userAnswer.relatedRound = relatedRound;
+    
     userAnswer.relatedAnswerID = relatedAnswer.ID;
+    userAnswer.relatedAnswer = relatedAnswer;
+    
     userAnswer.relatedUserID = relatedUser.ID;
-    userAnswer = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+    userAnswer.relatedUser = relatedUser;
+    
+    [[_round userAnswers] addObject:userAnswer];
+    
+    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+    [subject subscribeNext:^(id x) {
+        UserAnswer* ua = x;
+        NSLog(@"UserAnswer created: %llu", [ua ID]);
+    } error:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    } completed:^{
+        NSLog(@"UserAnswer created");
+    }];
+    //! TODO: check if useranswer created
     
     
-    if ([[[[ServiceLayer instance] answerService] obtain:[userAnswer relatedAnswerID]] isCorrect]) {
-        //correct
-        Match* match = [[[ServiceLayer instance] matchService] matchForRound:_round];
-        match.scorePlayer++;
-        [[[ServiceLayer instance] matchService] update:match];
+    if ([relatedAnswer isCorrect]) {
         relatedUser.totalCorrectAnswers++;
     }
     else {
         relatedUser.totalIncorrectAnswers++;
-        //wrong
     }
     
-    [_round.answersPlayerIDs addObject:[NSNumber numberWithUnsignedLongLong:userAnswer.ID]];
-    [[[ServiceLayer instance] userService] update:relatedUser];
+    // updating user
+//    [[[ServiceLayer instance] userService] update:relatedUser];
+    // updating round
+//    [[[ServiceLayer instance] roundService] update:relatedRound];
+    
     [self showNextQuestion];
 }
 
 - (void)showNextQuestion {
-    if (_currentQuestionIndex < [[_round questionsIDs] count]) {
-        Question *currentQuestion = [[[ServiceLayer instance] questionService] questionAtIndex:_currentQuestionIndex ofRound:_round];
-        [_questionImageView setImage:[[[ServiceLayer instance] questionService] imageOfQuestion:currentQuestion]];
-        [_questionText setText:[currentQuestion text]];
+    if (_currentQuestionIndex < 3) {
+        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
+        assert(q);
+        NSArray* answers = [q answers];
         
-        Answer *answer1;
-        Answer *answer2;
-        Answer *answer3;
-        Answer *answer4;
+        [_questionImageView setImage:[UIImage imageNamed:[q imageName]]];
+        [_questionText setText:[q text]];
         
-        NSInteger count = [[currentQuestion answersIDs] count];
-        if (count > 0) {
-            answer1 = [[[ServiceLayer instance] answerService] answerAtIndex:0 ofQuestion:currentQuestion];
-            if (count > 1) {
-                answer2 = [[[ServiceLayer instance] answerService] answerAtIndex:1 ofQuestion:currentQuestion];
-                if (count > 2) {
-                    answer3 = [[[ServiceLayer instance] answerService] answerAtIndex:2 ofQuestion:currentQuestion];
-                    if (count > 3) {
-                        answer4 = [[[ServiceLayer instance] answerService] answerAtIndex:3 ofQuestion:currentQuestion];
-                    }
-                }
-            }
-        }
+        [_answer1Button setHidden:YES];
+        [_answer2Button setHidden:YES];
+        [_answer3Button setHidden:YES];
+        [_answer4Button setHidden:YES];
         
-        if (answer1) {
-            [_answer1Button setTitle:[answer1 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer1Button setTitle:@"" forState:UIControlStateNormal];
+        switch ([answers count]) {
+            case 4:
+                [_answer4Button setTitle:[[answers objectAtIndex:3] text] forState:UIControlStateNormal];
+                [_answer4Button setHidden:NO];
+            case 3:
+                [_answer3Button setTitle:[[answers objectAtIndex:2] text] forState:UIControlStateNormal];
+                [_answer3Button setHidden:NO];
+            case 2:
+                [_answer2Button setTitle:[[answers objectAtIndex:1] text] forState:UIControlStateNormal];
+                [_answer2Button setHidden:NO];
+            case 1:
+                [_answer1Button setTitle:[[answers objectAtIndex:0] text] forState:UIControlStateNormal];
+                [_answer1Button setHidden:NO];
         }
         
-        if (answer2) {
-            [_answer2Button setTitle:[answer2 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer2Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
-        if (answer3) {
-            [_answer3Button setTitle:[answer3 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer3Button setTitle:@"" forState:UIControlStateNormal];
-        }
-        
-        if (answer4) {
-            [_answer4Button setTitle:[answer4 text] forState:UIControlStateNormal];
-        }
-        else {
-            [_answer4Button setTitle:@"" forState:UIControlStateNormal];
-        }
         _currentQuestionIndex++;
     }
     
     //на все вопросы ответили
     else {
         //изменяем состояние раунда
-        switch ([_round round_state]) {
-            case ROUND_PLAYER_ASWERING: {
-                [_round setRound_state:ROUND_OPPONENT_REPLYING];
-                break;
+        if ([[_round userAnswers] count] < 6) {
+            // Если раунд не окончен
+            // Переключаем следующего игрока
+            if ([[_round nextMoveUser] isEqual:[Player instance]]) {
+                User* opponent = [_questionViewModel opponent];
+                [_round setNextMoveUser:opponent];
             }
-            
-            case ROUND_PLAYER_REPLYING: {
-                [_round setRound_state:ROUND_FINISHED];
-                break;
+            else {
+                [_round setNextMoveUser:[Player instance]];
             }
-                
-            default:
-                break;
         }
+        else {
+            // Иначе завершаем матч
+            Match* m = [_questionViewModel currentMatchForRound:_round];
+            [m setState:MATCH_FINISHED];
+            
+            RACReplaySubject* subject = [[[ServiceLayer instance] matchService] update:m];
+            //! TODO: update match
+        }
+        
         //возвращаемся к MatchInfoViewController
-        MatchInfoViewController* destVC;
+        MatchViewController* destVC;
         UINavigationController *navController = [self navigationController];
-        if (navController == nil) {
-            NSLog(@"Navigation Controller is missing");
-            
-        }
         NSInteger i_count = [[navController viewControllers] count];
         for (int i = 0; i < i_count; i++) {
-            if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchInfoViewController class]]) {
+            if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
                 destVC = [[navController viewControllers] objectAtIndex:i];
             }
         }
-        if (!destVC) {
-            NSLog(@"Main View Controller not found");
-            return;
-        }
         
-        _round = [[[ServiceLayer instance] roundService] update:_round];
+        RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+        //! TODO: update round
+        
         [[self navigationController] popToViewController:destVC animated:YES];
     }
 }

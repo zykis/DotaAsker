@@ -30,14 +30,14 @@
     return userAnswer;
 }
 
-- (NSDictionary*)encode:(UserAnswer*)userAnswer {
-    NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                          @"ID", [userAnswer ID],
-                          @"ROUND_ID", [userAnswer relatedRoundID],
-                          @"USER_ID", [userAnswer relatedUserID],
-                          @"ANSWER_ID", [userAnswer relatedAnswerID],
++ (NSData*)encode:(UserAnswer*)userAnswer {
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedRoundID]], @"round_id",
+                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedUserID]], @"user_id",
+                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswerID]], @"answer_id",
                           nil];
-    return dict;
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    return data;
 }
 
 @end

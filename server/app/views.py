@@ -6,7 +6,10 @@ from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
 from app.parsers.user_schema import UserSchema
 from app.parsers.match_schema import MatchSchema
-from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED
+from app.parsers.user_answer_schema import UserAnswerSchema
+from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer
+from app import models
+from marshmallow import pprint
 
 auth = HTTPBasicAuth()
 
@@ -19,6 +22,23 @@ def get_user(id):
     res = schema.dumps(user)
     if not res.errors:
         return jsonify({'user' : res.data})
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
+
+@app.route('/userAnswers', methods=['POST'])
+def post_userAnswer():
+    uaDict = request.data
+    schema = UserAnswerSchema()
+    ua = schema.loads(uaDict)[0]
+    db.session.add(ua)
+    db.session.commit()
+    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
+    res = schema.dumps(uaNew)
+    if not res.errors:
+        resp = make_response(res.data)
+        resp.mimetype = 'application/json'
+        return resp
     else:
         # TODO: Sending server errors to client
         abort(500)

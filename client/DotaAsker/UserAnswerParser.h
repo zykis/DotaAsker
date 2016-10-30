@@ -12,5 +12,6 @@
 @interface UserAnswerParser : NSObject
 
 + (UserAnswer*)parse: (NSDictionary*) JSONDict;
++ (NSData*)encode: (UserAnswer*)userAnswer;
 
 @end
