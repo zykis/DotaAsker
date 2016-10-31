@@ -171,6 +171,7 @@
         // Ну вот обновили мы раунд, а дальше что?
         // Во всех viewModel'ах и ViewController'ах ссылки на старый раунд сохранились
         // Их как обновлять будем?
+        // 1. Используем чудо ServiceLayer с obtain'oм. Вместо ссылок храним ID.
         
         [[self navigationController] popToViewController:destVC animated:YES];
     }

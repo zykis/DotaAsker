@@ -262,11 +262,30 @@ class Match(Base):
                     ++i
             return self.rounds[i].next_move_user
 
+    def elapseMatch(self):
+        next_move_user = self.next_move_user()
+        if self.state != MATCH_RUNNING:
+            app.logger.critical('trying to elapse not running match: {}'.format(self.__repr__()))
+            return
+        elif next_move_user is None:
+            app.logger.critical('inactive user for match: {} is undefined'.format(self.__repr__()))
+            return
+        else:
+            # nextMoveUser LOST cause didn't answer or reply
+            app.logger.debug('user {} losing match due to inactive'.format(next_move_user.__repr__()))
+            next_move_user.mmr
+            self.finish(loser=next_move_user)
+            self.state = MATCH_TIME_ELAPSED
+            db.session.add(self)
+            db.session.commit()
+
+    def finish(self, loser):
+        pass
+
     def __repr__(self):
         return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)
 
-    def finish(self, winner):
-        pass
+
 
 users_matches_table = db.Table('users_matches', db.Model.metadata,
                             db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE')),

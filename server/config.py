@@ -8,3 +8,5 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 SQLALCHEMY_TRACK_MODIFICATIONS = True
 SQLALCHEMY_ECHO=False
 SECRET_KEY = 'sadlk21lkmsadhaaw'
+MATCH_LIFETIME = 2 * 24 * 60 * 60
+MATCH_UPDATELIFE = 2 * 24 * 60 * 60
