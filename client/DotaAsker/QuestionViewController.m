@@ -91,7 +91,7 @@
 //    [[[ServiceLayer instance] userService] update:relatedUser];
     // updating round
 //    [[[ServiceLayer instance] roundService] update:relatedRound];
-    
+    _currentQuestionIndex++;
     [self showNextQuestion];
 }
 
@@ -123,11 +123,9 @@
                 [_answer1Button setTitle:[[answers objectAtIndex:0] text] forState:UIControlStateNormal];
                 [_answer1Button setHidden:NO];
         }
-        
-        _currentQuestionIndex++;
     }
     
-    //на все вопросы ответили
+    //Игрок ответил на все вопросы
     else {
         //изменяем состояние раунда
         if ([[_round userAnswers] count] < 6) {
@@ -170,6 +168,9 @@
         } completed:^{
             NSLog(@"Round updated");
         }];
+        // Ну вот обновили мы раунд, а дальше что?
+        // Во всех viewModel'ах и ViewController'ах ссылки на старый раунд сохранились
+        // Их как обновлять будем?
         
         [[self navigationController] popToViewController:destVC animated:YES];
     }

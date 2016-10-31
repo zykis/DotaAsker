@@ -63,8 +63,13 @@
 - (Theme*)themeSelectedForRound:(Round *)round {
     Theme* selectedTheme;
     for (UserAnswer* ua in [round userAnswers]) {
-        selectedTheme = [[[ua relatedAnswer] relatedQuestion] theme];
-        break;
+        for (Question* q in [round questions]) {
+            for (Answer* a in [q answers]) {
+                if ([a isEqual:[ua relatedAnswer]]) {
+                    return [q theme];
+                }
+            }
+        }
     }
     return selectedTheme;
 }

@@ -9,7 +9,3 @@ class RoundSchema(Schema):
     next_move_user = fields.Nested('UserSchema', exclude=('friends', 'current_matches', 'waiting_matches', 'recent_matches'))
     questions = fields.Nested(QuestionSchema, many=True)
     user_answers = fields.Nested(UserAnswerSchema, many=True)
-
-    @post_load()
-    def create_round(self, data):
-        return Round(**data)

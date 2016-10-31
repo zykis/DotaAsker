@@ -66,6 +66,7 @@
     User* player = [Player instance];
     User* opponent = [self opponent];
     
+    
     NSMutableArray *playerAnswers = [[NSMutableArray alloc] init];
     for (UserAnswer *ua in [selectedRound userAnswers]) {
         if ([[ua relatedUser] isEqual: player]) {
@@ -75,35 +76,63 @@
     UserAnswer* ua1 = [playerAnswers objectAtIndex:index];
     NSString *answeredTextFirstPlayer = [[ua1 relatedAnswer] text];
     
+    Question* relatedQuestion;
+    for (Question* q in [selectedRound questions]) {
+        if (relatedQuestion)
+            break;
+        for (Answer* a in [q answers]) {
+            if ([a isEqual:[ua1 relatedAnswer]]) {
+                relatedQuestion = q;
+                break;
+            }
+        }
+    }
+    assert(relatedQuestion);
+    
     NSMutableArray *opponentAnswers = [[NSMutableArray alloc] init];
     for (UserAnswer *ua in [selectedRound userAnswers]) {
         if ([[ua relatedUser] isEqual: opponent]) {
             [opponentAnswers addObject:ua];
         }
     }
-    UserAnswer* ua2 = [opponentAnswers objectAtIndex:index];
-    NSString *answeredTextSecondPlayer = [[ua2 relatedAnswer] text];
+    
+    NSString *answeredTextSecondPlayer;
+    if ([opponentAnswers count] > index + 1) {
+        UserAnswer* ua2 = [opponentAnswers objectAtIndex:index];
+        answeredTextSecondPlayer = [[ua2 relatedAnswer] text];
+    }
     
     NSString* correctAnswerText;
-    for (Answer* a in [[[ua1 relatedAnswer] relatedQuestion] answers]) {
+    for (Answer* a in [relatedQuestion answers]) {
         if ([a isCorrect]) {
             correctAnswerText = [a text];
         }
     }
     
     if (correctAnswerText) {
-        text = [NSString stringWithFormat:
-                @"%@\n\n"
-                "%@: %@\n"
-                "%@: %@\n"
-                "Right: %@"
-                , ua1.relatedAnswer.relatedQuestion.text,
-                [player name],
-                answeredTextFirstPlayer,
-                [opponent name],
-                answeredTextSecondPlayer,
-                correctAnswerText
-                ];
+        if ([opponent ID] != 0)
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    "%@: %@\n"
+                    "Right: %@"
+                    , relatedQuestion.text,
+                    [player name],
+                    answeredTextFirstPlayer,
+                    [opponent name],
+                    answeredTextSecondPlayer,
+                    correctAnswerText
+                    ];
+        else
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    "Right: %@"
+                    , relatedQuestion.text,
+                    [player name],
+                    answeredTextFirstPlayer,
+                    correctAnswerText
+                    ];
     }
     return text;
 }

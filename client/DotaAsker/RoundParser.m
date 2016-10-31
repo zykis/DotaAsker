@@ -64,9 +64,7 @@
     NSDictionary* userDict = [UserParser encode:[round nextMoveUser]];
     if (![userDict isEqual:[NSNull null]])
         [dict setObject:userDict forKey:@"next_move_user"];
-    
-    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
-    return data;
+    return userDict;
 }
 
 @end
