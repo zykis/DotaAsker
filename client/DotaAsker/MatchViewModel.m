@@ -54,7 +54,7 @@
     Round* r = [[_match rounds] objectAtIndex:row];
     NSUInteger playerAnswersCount = 0;
     for (UserAnswer *ua in [r userAnswers]) {
-        if ([ua relatedUser] == (User*)[Player instance])
+        if ([[ua relatedUser] isEqual: [Player instance]])
             playerAnswersCount++;
     }
     return playerAnswersCount;

@@ -20,8 +20,6 @@
     
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_USERANSWER parameters:nil error:nil] mutableCopy];
     
-    
-    
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     

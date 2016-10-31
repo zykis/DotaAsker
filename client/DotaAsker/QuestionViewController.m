@@ -62,13 +62,8 @@
     User* relatedUser = [_round nextMoveUser];
     
     UserAnswer *userAnswer = [[UserAnswer alloc] init];
-    userAnswer.relatedRoundID = relatedRound.ID;
     userAnswer.relatedRound = relatedRound;
-    
-    userAnswer.relatedAnswerID = relatedAnswer.ID;
     userAnswer.relatedAnswer = relatedAnswer;
-    
-    userAnswer.relatedUserID = relatedUser.ID;
     userAnswer.relatedUser = relatedUser;
     
     [[_round userAnswers] addObject:userAnswer];
@@ -139,7 +134,8 @@
             // Если раунд не окончен
             // Переключаем следующего игрока
             if ([[_round nextMoveUser] isEqual:[Player instance]]) {
-                User* opponent = [_questionViewModel opponent];
+                User* opponent = [_questionViewModel opponentForRound:_round];
+                // opponent may be nil
                 [_round setNextMoveUser:opponent];
             }
             else {
@@ -166,7 +162,14 @@
         }
         
         RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
-        //! TODO: update round
+        [subject subscribeNext:^(id x) {
+            Round* r = x;
+            NSLog(@"Round updated: %llu", [r ID]);
+        } error:^(NSError *error) {
+            NSLog(@"%@", [error localizedDescription]);
+        } completed:^{
+            NSLog(@"Round updated");
+        }];
         
         [[self navigationController] popToViewController:destVC animated:YES];
     }

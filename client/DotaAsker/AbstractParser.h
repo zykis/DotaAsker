@@ -12,6 +12,6 @@
 
 - (NSArray*)parseAll:(NSDictionary*) JSONDict;
 - (id)parse:(NSDictionary*) JSONDict;
-- (NSDictionary*)encode:(id) entity;
+- (NSData*)encode:(id) entity;
 
 @end

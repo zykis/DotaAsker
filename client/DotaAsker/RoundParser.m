@@ -16,6 +16,7 @@
 #import "Player.h"
 #import "Question.h"
 #import "Answer.h"
+#import "UserParser.h"
 
 @implementation RoundParser
 
@@ -32,13 +33,12 @@
     Round* round = [[Round alloc] init];
     //id
     [round setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
-    //Next Move user ID
-    NSUInteger nextMoveUserID;
-    if ([[JSONDict objectForKey:@"next_move_user"] isEqual:[NSNull null]])
-        nextMoveUserID = 0;
-    else
-        nextMoveUserID = [[JSONDict objectForKey:@"next_move_user"] unsignedLongLongValue];
-    [round setNextMoveUserID: nextMoveUserID];
+    //Next Move user
+    NSDictionary* userDict = [JSONDict objectForKey:@"next_move_user"];
+    User* nextMoveUser = [UserParser parse:userDict andChildren:NO];
+    //may be nil
+    if (nextMoveUser)
+        [round setNextMoveUser: nextMoveUser];
     
     //questions
     NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
@@ -51,17 +51,22 @@
     NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
     for (NSDictionary* uaDict in user_answersDict) {
         UserAnswer* ua = [UserAnswerParser parse:uaDict];
-        ua.relatedRound = round;
-        for (Question* q in [round questions]) {
-            for (Answer* a in q.answers) {
-                [a setRelatedQuestion:q];
-                if(a.ID == ua.relatedAnswerID)
-                    ua.relatedAnswer = a;
-            }
-        }
         [[round userAnswers] addObject:ua];
     }
     return round;
+}
+
++ (NSDictionary*)encode:(Round *)round {
+    NSMutableDictionary *dict = [[NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithUnsignedLongLong:[round ID]], @"id",
+            nil] mutableCopy];
+    
+    NSDictionary* userDict = [UserParser encode:[round nextMoveUser]];
+    if (![userDict isEqual:[NSNull null]])
+        [dict setObject:userDict forKey:@"next_move_user"];
+    
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    return data;
 }
 
 @end

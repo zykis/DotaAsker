@@ -12,9 +12,11 @@
 @class User;
 @class Question;
 @class Round;
+@class RoundTransport;
 
 @interface RoundService : AbstractService
 
+@property (strong, nonatomic) RoundTransport* transport;
 - (Round*)currentRoundforMatch:(Match*)match;
 - (Theme*)themeSelectedForRound:(Round*)round;
 - (NSArray*)themesForRound:(Round*)round;

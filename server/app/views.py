@@ -7,7 +7,8 @@ from db_querys import Database_queries
 from app.parsers.user_schema import UserSchema
 from app.parsers.match_schema import MatchSchema
 from app.parsers.user_answer_schema import UserAnswerSchema
-from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer
+from app.parsers.round_schema import RoundSchema
+from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer, Round
 from app import models
 from marshmallow import pprint
 
@@ -42,6 +43,27 @@ def post_userAnswer():
     else:
         # TODO: Sending server errors to client
         abort(500)
+
+@app.route('/rounds', methods=['POST'])
+def put_userAnswer():
+    rDict = request.data
+    schema = RoundSchema()
+    r = schema.loads(rDict)[0]
+    rNew = Round.query.get(r.id)
+    rNew.next_move_user = r.next_move_user
+    rNew.next_move_user_id = r.next_move_user.id
+    db.session.add(rNew)
+    db.session.commit(rNew)
+    res = schema.dumps(rNew)
+    if not res.errors:
+        resp = make_response(res.data)
+        resp.mimetype = 'application/json'
+        return resp
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
+
+
 
 @app.route('/generateTestData')
 def generate_test_data():

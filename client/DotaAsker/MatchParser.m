@@ -52,15 +52,6 @@
         NSMutableArray* roundsDict = [JSONDict objectForKey:@"rounds"];
         for (NSDictionary* roundDict in roundsDict) {
             Round* r = [RoundParser parse:roundDict andChildren:YES];
-            for (User* u in [match users]) {
-                for (UserAnswer* ua in [r userAnswers]) {
-                    if (ua.relatedUserID == u.ID) {
-                        [ua setRelatedUser:u];
-                    }
-                }
-                if (u.ID == r.nextMoveUserID)
-                    r.nextMoveUser = u;
-            }
             [[match rounds] addObject:r];
         }
     }

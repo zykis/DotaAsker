@@ -8,15 +8,19 @@
 
 #import "UserAnswerParser.h"
 #import "UserAnswer.h"
-
+#import "UserParser.h"
+#import "RoundParser.h"
+#import "AnswerParser.h"
+#import "Round.h"
+#import "User.h"
+#import "Answer.h"
 
 @implementation UserAnswerParser
 
 + (UserAnswer*)parse:(NSDictionary *)JSONDict {
     if (!([JSONDict objectForKey:@"id"] &&
-          [JSONDict objectForKey:@"round_id"] &&
-          [JSONDict objectForKey:@"user_id"] &&
-          [JSONDict objectForKey:@"answer_id"]
+          [JSONDict objectForKey:@"user"] &&
+          [JSONDict objectForKey:@"answer"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
         return nil;
@@ -24,17 +28,27 @@
     
     UserAnswer* userAnswer = [[UserAnswer alloc] init];
     userAnswer.ID = [[JSONDict objectForKey:@"id"] longValue];
-    userAnswer.relatedRoundID = [[JSONDict objectForKey:@"round_id"] longValue];
-    userAnswer.relatedUserID = [[JSONDict objectForKey:@"user_id"] longValue];
-    userAnswer.relatedAnswerID = [[JSONDict objectForKey:@"answer_id"] longValue];
+    NSDictionary* userDict = [JSONDict objectForKey:@"user"];
+    userAnswer.relatedUser = [UserParser parse:userDict andChildren:NO];
+    NSDictionary* answerDict = [JSONDict objectForKey:@"answer"];
+    userAnswer.relatedAnswer = [AnswerParser parse:answerDict];
     return userAnswer;
 }
 
 + (NSData*)encode:(UserAnswer*)userAnswer {
+//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID], @"round",
+//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedUser].ID], @"user",
+//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID], @"answer",
+//                          nil];
+    NSDictionary* roundDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID] forKey:@"id"];
+    NSDictionary* userDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedUser].ID] forKey:@"id"];
+    NSDictionary* answerDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID] forKey:@"id"];
+    
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedRoundID]], @"round_id",
-                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedUserID]], @"user_id",
-                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswerID]], @"answer_id",
+                          roundDict, @"round",
+                          userDict, @"user",
+                          answerDict, @"answer",
                           nil];
     NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     return data;

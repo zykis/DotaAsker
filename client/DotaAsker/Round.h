@@ -15,7 +15,6 @@
 @interface Round : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (assign, nonatomic) unsigned long long nextMoveUserID;
 @property (strong, nonatomic) User* nextMoveUser;
 @property (strong, nonatomic) NSMutableArray* questions;//список вопросов
 @property (strong, nonatomic) NSMutableArray* userAnswers;//список ответов

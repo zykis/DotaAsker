@@ -16,7 +16,7 @@
 @interface QuestionViewModel : NSObject
 
 - (Question*)questionForQuestionIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round;
-- (User*)opponent;
+- (User*)opponentForRound:(Round*)round;
 - (Match*)currentMatchForRound:(Round*)round;
 
 @end

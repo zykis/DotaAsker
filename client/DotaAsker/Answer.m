@@ -14,7 +14,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.relatedQuestion = [[Question alloc] init];
+//        self.relatedQuestion = [[Question alloc] init];
     }
     return self;
 }

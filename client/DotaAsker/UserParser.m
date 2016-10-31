@@ -13,6 +13,8 @@
 @implementation UserParser
 
 + (User*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
+    if ([JSONDict isEqual:[NSNull null]])
+        return nil;
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"username"] &&
           [JSONDict objectForKey:@"mmr"] &&
@@ -74,19 +76,17 @@
     return user;
 }
 
-- (NSDictionary*)encode:(User*)user {
-    NSArray* matchesIDs = [user.currentMatches arrayByAddingObjectsFromArray:user.recentMatches];
++ (NSDictionary*)encode:(User*)user {
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithUnsignedLongLong:user.ID], @"ID",
-                              user.name, @"USERNAME",
-                              [NSNumber numberWithLong:user.MMR], @"RATING",
-                              [NSNumber numberWithInt:user.GPM], @"GPM",
-                              [NSNumber numberWithFloat:user.KDA], @"KDA",
-                              user.avatarImageName, @"AVATAR_IMAGE_NAME",
-                              user.wallpapersImageName, @"WALLPAPERS_IMAGE_NAME",
-                              matchesIDs, @"MATCHES_IDS",
-                              [NSNumber numberWithLong:user.totalCorrectAnswers], @"TOTAL_CORRECT_ANSWERS",
-                              [NSNumber numberWithLong:user.totalIncorrectAnswers], @"TOTAL_INCORRECT_ANSWERS",
+                              [NSNumber numberWithUnsignedLongLong:user.ID], @"id",
+                              user.name, @"username",
+                              [NSNumber numberWithLong:user.MMR], @"rating",
+                              [NSNumber numberWithInt:user.GPM], @"gpm",
+                              [NSNumber numberWithFloat:user.KDA], @"kda",
+                              user.avatarImageName, @"avatar_image_name",
+                              user.wallpapersImageName, @"wallpapers_image_name",
+                              [NSNumber numberWithLong:user.totalCorrectAnswers], @"total_correct_answers",
+                              [NSNumber numberWithLong:user.totalIncorrectAnswers], @"total_incorrect_answers",
                               nil];
     return jsonDict;
 }

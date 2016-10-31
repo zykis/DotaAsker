@@ -15,8 +15,28 @@
 #import "Answer.h"
 #import "Question.h"
 #import "Player.h"
+#import "RoundTransport.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation RoundService
+
+@synthesize transport = _transport;
+
+- (RACReplaySubject*)update:(id)entity {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSDictionary* roundDict = [RoundParser encode:entity];
+    NSData *roundData = [NSJSONSerialization dataWithJSONObject:roundDict options:kNilOptions error:nil];
+    assert(roundData);
+    [[_transport update:roundData] subscribeNext:^(id x) {
+        Round* r = [RoundParser parse:x andChildren:YES];
+        [subject sendNext:r];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
 
 - (Round*)currentRoundforMatch:(Match *)match {
     if (match.state != MATCH_RUNNING) {

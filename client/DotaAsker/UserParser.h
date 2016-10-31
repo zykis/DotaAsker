@@ -13,5 +13,6 @@
 @interface UserParser: NSObject
 
 + (User*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren;
++ (NSDictionary*)encode:(User*)user;
 
 @end

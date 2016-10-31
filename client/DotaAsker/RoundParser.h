@@ -13,5 +13,6 @@
 @interface RoundParser : NSObject
 
 + (Round*)parse: (NSDictionary*)JSONDict andChildren:(BOOL)bParseChildren;
++ (NSDictionary*)encode:(Round*)round;
 
 @end
