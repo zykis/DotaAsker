@@ -22,6 +22,14 @@
 
 @synthesize transport = _transport;
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        _transport = [[RoundTransport alloc] init];
+    }
+    return self;
+}
+
 - (RACReplaySubject*)update:(id)entity {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     NSDictionary* roundDict = [RoundParser encode:entity];

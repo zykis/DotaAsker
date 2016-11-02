@@ -61,10 +61,13 @@
             [NSNumber numberWithUnsignedLongLong:[round ID]], @"id",
             nil] mutableCopy];
     
+    
     NSDictionary* userDict = [UserParser encode:[round nextMoveUser]];
     if (![userDict isEqual:[NSNull null]])
         [dict setObject:userDict forKey:@"next_move_user"];
-    return userDict;
+    else
+        [dict setObject:[NSNull null] forKey:@"next_move_user"];
+    return dict;
 }
 
 @end

@@ -162,6 +162,7 @@
         RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
         [subject subscribeNext:^(id x) {
             Round* r = x;
+            [_round setNextMoveUser:[r nextMoveUser]];
             NSLog(@"Round updated: %llu", [r ID]);
         } error:^(NSError *error) {
             NSLog(@"%@", [error localizedDescription]);

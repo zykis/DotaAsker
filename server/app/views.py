@@ -45,15 +45,16 @@ def post_userAnswer():
         abort(500)
 
 @app.route('/rounds', methods=['POST'])
-def put_userAnswer():
+def put_round():
     rDict = request.data
     schema = RoundSchema()
     r = schema.loads(rDict)[0]
-    rNew = Round.query.get(r.id)
-    rNew.next_move_user = r.next_move_user
-    rNew.next_move_user_id = r.next_move_user.id
+    rNew = Round.query.get(r['id'])
+    rNew.next_move_user_id = r['next_move_user']['id']
+    if rNew.next_move_user_id == 0:
+        rNew.next_move_user_id = None
     db.session.add(rNew)
-    db.session.commit(rNew)
+    db.session.commit()
     res = schema.dumps(rNew)
     if not res.errors:
         resp = make_response(res.data)
