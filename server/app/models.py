@@ -259,7 +259,7 @@ class Match(Base):
             i = 0
             for r in self.rounds:
                 if len(r.user_answers) == 6:
-                    ++i
+                    i += 1
             return self.rounds[i].next_move_user
 
     def elapseMatch(self):
