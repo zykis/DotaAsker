@@ -205,7 +205,7 @@ class Round(Base):
     id = db.Column(db.Integer, primary_key=True)
 
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
-    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=None)
+    next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=0)
     # relations
     match = db.relationship('Match', backref='rounds')
 

@@ -51,8 +51,6 @@ def put_round():
     r = schema.loads(rDict)[0]
     rNew = Round.query.get(r['id'])
     rNew.next_move_user_id = r['next_move_user']['id']
-    if rNew.next_move_user_id == 0:
-        rNew.next_move_user_id = None
     db.session.add(rNew)
     db.session.commit()
     res = schema.dumps(rNew)
