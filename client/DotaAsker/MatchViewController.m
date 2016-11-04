@@ -34,31 +34,11 @@
     _matchViewModel = [[MatchViewModel alloc] init];
     
     bool bMatchFound = false;
-    for (Match* m in [[Player instance] currentMatches]) {
+    for (Match* m in [[Player instance] matches]) {
         if (m.ID == _matchID) {
             [_matchViewModel setMatch:m];
             bMatchFound = true;
             break;
-        }
-    }
-    if(!bMatchFound)
-    {
-        for (Match* m in [[Player instance] recentMatches]) {
-            if(m.ID == _matchID) {
-                [_matchViewModel setMatch:m];
-                bMatchFound = true;
-                break;
-            }
-        }
-    }
-    if(!bMatchFound)
-    {
-        for (Match* m in [[Player instance] waitingMatches]) {
-            if(m.ID == _matchID) {
-                [_matchViewModel setMatch:m];
-                bMatchFound = true;
-                break;
-            }
         }
     }
     assert(bMatchFound);

@@ -39,9 +39,7 @@
     [[self instance] setTotalCorrectAnswers:player.totalCorrectAnswers];
     [[self instance] setTotalIncorrectAnswers:player.totalIncorrectAnswers];
     [[self instance] setRole:player.role];
-    [[self instance] setCurrentMatches:player.currentMatches];
-    [[self instance] setWaitingMatches:player.waitingMatches];
-    [[self instance] setRecentMatches:player.recentMatches];
+    [[self instance] setMatches:player.matches];
     [[self instance] setFriends:player.friends];
 }
 

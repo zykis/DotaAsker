@@ -22,7 +22,7 @@
 }
 
 - (User*)opponentForRound:(Round*)round {
-    Match* currentMatch = [self currentMatchForRound:round];
+    Match* currentMatch = [self matchForRound:round];
     User* opponent;
     for (User* u in [currentMatch users]) {
         if (![u isEqual: [Player instance]]) {
@@ -33,8 +33,8 @@
     return opponent;
 }
 
-- (Match*)currentMatchForRound:(Round *)round {
-    for (Match* m in [[Player instance] currentMatches]) {
+- (Match*)matchForRound:(Round *)round {
+    for (Match* m in [[Player instance] matches]) {
         for (Round* r in [m rounds]) {
             if ([r isEqual:round]) {
                 return m;
@@ -47,7 +47,7 @@
 }
 
 - (BOOL)isRoundLast:(Round *)round {
-    Match* m = [self currentMatchForRound:round];
+    Match* m = [self matchForRound:round];
     if ([[[m rounds] objectAtIndex:5] isEqual:round]) {
         return YES;
     }

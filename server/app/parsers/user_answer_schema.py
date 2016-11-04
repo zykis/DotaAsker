@@ -6,7 +6,7 @@ from app.parsers.answer_schema import AnswerSchema
 class UserAnswerSchema(Schema):
     id = fields.Int()
     answer = fields.Nested(AnswerSchema)
-    user = fields.Nested(UserSchema, exclude=('friends', 'current_matches', 'waiting_matches', 'recent_matches'))
+    user = fields.Nested(UserSchema, exclude=('matches', 'friends'))
     round = fields.Nested('RoundSchema', only=('id'))
 
     @post_load

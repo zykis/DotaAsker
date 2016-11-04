@@ -15,21 +15,61 @@
 
 @implementation MainViewModel
 
+- (NSUInteger)matchSectionForMatch:(Match *)match {
+    if ([match state] != MATCH_RUNNING)
+        return RECENT_MATCH;
+    else {
+        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:match];
+        if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
+            return CURRENT_MATCH;
+        }
+        else
+            return WAITING_MATCH;
+    }
+    assert(0);
+}
+
+- (NSMutableArray*)currentMatches {
+    NSMutableArray* currentMatches = [[NSMutableArray alloc] init];
+    for (Match* m in [[Player instance] matches]) {
+        if ([self matchSectionForMatch:m] == CURRENT_MATCH)
+            [currentMatches addObject:m];
+    }
+    return currentMatches;
+}
+
+- (NSMutableArray*)waitingMatches {
+    NSMutableArray* waitingMatches = [[NSMutableArray alloc] init];
+    for (Match* m in [[Player instance] matches]) {
+        if ([self matchSectionForMatch:m] == WAITING_MATCH)
+            [waitingMatches addObject:m];
+    }
+    return waitingMatches;
+}
+
+- (NSMutableArray*)recentMatches {
+    NSMutableArray* recentMatches = [[NSMutableArray alloc] init];
+    for (Match* m in [[Player instance] matches]) {
+        if ([self matchSectionForMatch:m] == RECENT_MATCH)
+            [recentMatches addObject:m];
+    }
+    return recentMatches;
+}
+
 - (NSUInteger)currentMatchesCount {
-    return [[[Player instance] currentMatches] count];
+    return [[self currentMatches] count];
 }
 
 - (NSUInteger)waitingMatchesCount {
-    NSUInteger count = [[[Player instance] waitingMatches] count];
-    return count;
+    return [[self waitingMatches] count];
 }
 
 - (NSUInteger)recentMatchesCount {
-    return [[[Player instance] recentMatches] count];
+    return [[self recentMatches] count];
 }
 
 - (NSString*)matchStateTextForCurrentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
+    Match* m = [[self currentMatches] objectAtIndex:row];
     // If less, then 2 users, then you created match and you are - initiator
     if ([m.users count] < 2)
         return @"You answering";
@@ -69,7 +109,7 @@
 }
 
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
+    Match* m = [[self recentMatches] objectAtIndex:row];
     if ([m state] == MATCH_FINISHED)
         return @"Finished";
     else if ([m state] == MATCH_TIME_ELAPSED)
@@ -83,7 +123,7 @@
 }
 
 - (User*)opponentForCurrentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
+    Match* m = [[self currentMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
             return u;
@@ -94,7 +134,7 @@
 }
 
 - (User*)opponentForWaitingMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] waitingMatches] objectAtIndex:row];
+    Match* m = [[self waitingMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
             return u;
@@ -105,7 +145,7 @@
 }
 
 - (User*)opponentForRecentMatch:(NSUInteger)row {
-    Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
+    Match* m = [[self recentMatches] objectAtIndex:row];
     for (User* u in m.users) {
         if (![u isEqual: [Player instance]]) {
             return u;
@@ -115,17 +155,17 @@
 }
 
 - (Match*)currentMatchAtRow: (NSUInteger)row {
-    Match* m = [[[Player instance] currentMatches] objectAtIndex:row];
+    Match* m = [[self currentMatches] objectAtIndex:row];
     return m;
 }
 
 - (Match*)waitingMatchAtRow:(NSUInteger)row {
-    Match* m = [[[Player instance] waitingMatches] objectAtIndex:row];
+    Match* m = [[self waitingMatches] objectAtIndex:row];
     return m;
 }
 
 - (Match*)recentMatchAtRow: (NSUInteger)row {
-    Match* m = [[[Player instance] recentMatches] objectAtIndex:row];
+    Match* m = [[self recentMatches] objectAtIndex:row];
     return m;
 }
 @end

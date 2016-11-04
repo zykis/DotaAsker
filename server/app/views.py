@@ -19,7 +19,7 @@ def get_user(id):
     user = User.query.get(id)
     if not user:
         abort(400)
-    schema = UserSchema(exclude=('current_matches', 'recent_matches', 'friends'))
+    schema = UserSchema(exclude=('matches', 'friends'))
     res = schema.dumps(user)
     if not res.errors:
         return jsonify({'user' : res.data})
@@ -108,20 +108,6 @@ def generate_test_data():
 @auth.login_required
 def get_main_view_controller():
     user = g.user
-    user.current_matches = []
-    user.recent_matches = []
-    user.waiting_matches = []
-    for m in user.matches:
-        if m.state == MATCH_FINISHED or m.state == MATCH_TIME_ELAPSED:
-                user.recent_matches.append(m)
-        else:
-            if m.next_move_user() is not None:
-                if m.next_move_user().id == user.id:
-                    user.current_matches.append(m)
-                else:
-                    user.waiting_matches.append(m)
-            else:
-                user.waiting_matches.append(m)
     schema = UserSchema()
     res = schema.dumps(user)
     if not res.errors:

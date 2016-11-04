@@ -143,11 +143,14 @@
         else {
             if ([_questionViewModel isRoundLast:_round]) {
                 // Обновляем матч
-                Match* m = [_questionViewModel currentMatchForRound:_round];
+                __block Match* m = [_questionViewModel matchForRound:_round];
                 // Завершаем его
                 RACReplaySubject* subjectFinished = [[[ServiceLayer instance] matchService] finishMatch:m];
                 [subjectFinished subscribeNext:^(id x) {
                     NSLog(@"Match finished");
+                    Match *updatedMatch = x;
+                    [m setState:[updatedMatch state]];
+                    NSLog(@"Updated");
                 } error:^(NSError *error) {
                     NSLog(@"%@", [error localizedDescription]);
                 } completed:^{

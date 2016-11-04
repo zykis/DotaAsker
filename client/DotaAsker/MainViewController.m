@@ -283,10 +283,7 @@
         // Update player
         Match* m = (Match*)x;
         assert(m);
-        if ([[[[ServiceLayer instance] matchService] nextMoveUserInMatch:m] isEqual:[Player instance]])
-            [[[Player instance] currentMatches] addObject:m];
-        else
-            [[[Player instance] waitingMatches] addObject:m];
+        [[[Player instance] matches] addObject:m];
         [self.tableView reloadData];
     } error:^(NSError *error) {
         NSLog(@"Error finding match: %@", [error localizedDescription]);

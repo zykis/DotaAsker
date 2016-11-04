@@ -6,6 +6,6 @@ from app.models import Round
 
 class RoundSchema(Schema):
     id = fields.Int()
-    next_move_user = fields.Nested('UserSchema', exclude=('friends', 'current_matches', 'waiting_matches', 'recent_matches'))
+    next_move_user = fields.Nested('UserSchema', exclude=('matches', 'friends'))
     questions = fields.Nested(QuestionSchema, many=True)
     user_answers = fields.Nested(UserAnswerSchema, many=True)

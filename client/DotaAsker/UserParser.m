@@ -42,30 +42,18 @@
     [user setTotalCorrectAnswers: [[JSONDict objectForKey:@"total_correct_answers"] integerValue]];
     [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"total_incorrect_answers"] integerValue]];
     if (bParseChildren) {
-        if (!([JSONDict objectForKey:@"current_matches"] &&
-              [JSONDict objectForKey:@"waiting_matches"] &&
-              [JSONDict objectForKey:@"recent_matches"] &&
+        if (!([JSONDict objectForKey:@"matches"] &&
               [JSONDict objectForKey:@"friends"]
               )) {
             NSLog(@"Parsing error: can't retrieve a field in UserParser");
             return nil;
         }
         
-        NSArray* currentMatchesDict = [JSONDict objectForKey:@"current_matches"];
-        NSArray* waitingMatchesDict = [JSONDict objectForKey:@"waiting_matches"];
-        NSArray* recentMatchesDict = [JSONDict objectForKey:@"recent_matches"];
+        NSArray* matchesDict = [JSONDict objectForKey:@"matches"];
         NSArray* friendsDict = [JSONDict objectForKey:@"friends"];
-        for (NSDictionary* matchDict in currentMatchesDict) {
+        for (NSDictionary* matchDict in matchesDict) {
             Match* m = [MatchParser parse:matchDict andChildren:YES];
-            [[user currentMatches] addObject:m];
-        }
-        for (NSDictionary* matchDict in waitingMatchesDict) {
-            Match* m = [MatchParser parse:matchDict andChildren:YES];
-            [[user waitingMatches] addObject:m];
-        }
-        for (NSDictionary* matchDict in recentMatchesDict) {
-            Match* m = [MatchParser parse:matchDict andChildren:YES];
-            [[user recentMatches] addObject:m];
+            [[user matches] addObject:m];
         }
         for (NSDictionary* friendDict in friendsDict) {
             User* friend = [UserParser parse:friendDict andChildren:NO];

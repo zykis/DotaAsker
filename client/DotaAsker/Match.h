@@ -15,6 +15,10 @@
 #define MATCH_FINISHED 1
 #define MATCH_TIME_ELAPSED 2
 
+#define CURRENT_MATCH 0
+#define WAITING_MATCH 1
+#define RECENT_MATCH 2
+
 @class User;
 
 @interface Match : NSObject
