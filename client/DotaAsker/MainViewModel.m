@@ -108,12 +108,40 @@
     }
 }
 
+- (User*)opponentForMatch:(Match *)match {
+    for (User* u in [match users]) {
+        if (![u isEqual: [Player instance]])
+            return u;
+    }
+    User* defaultUser = [[User alloc] init];
+    return defaultUser;
+}
+
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
     Match* m = [[self recentMatches] objectAtIndex:row];
-    if ([m state] == MATCH_FINISHED)
-        return @"Finished";
-    else if ([m state] == MATCH_TIME_ELAPSED)
-        return @"Time elapsed";
+    if ([m state] == MATCH_FINISHED) {
+        User* opponent = [self opponentForMatch:m];
+        NSUInteger playerScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:[Player instance]];
+        NSUInteger opponentScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:opponent];
+        if (playerScore > opponentScore) {
+            return @"You won!";
+        }
+        else if (opponentScore > playerScore) {
+            return @"You lost!";
+        }
+        else {
+            return @"Draw";
+        }
+    }
+    else if ([m state] == MATCH_TIME_ELAPSED) {
+        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
+        if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
+            return @"Elapsed. You lost!";
+        }
+        else {
+            return @"Elapsed. You won!";
+        }
+    }
     else
         assert(0);
 }

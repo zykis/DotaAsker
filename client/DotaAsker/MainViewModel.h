@@ -24,6 +24,7 @@
 - (User*)opponentForCurrentMatch: (NSUInteger)row;
 - (User*)opponentForWaitingMatch: (NSUInteger)row;
 - (User*)opponentForRecentMatch: (NSUInteger)row;
+- (User*)opponentForMatch: (Match*)match;
 - (NSUInteger)matchSectionForMatch: (Match*)match;
 - (NSMutableArray*)currentMatches;
 - (NSMutableArray*)waitingMatches;
