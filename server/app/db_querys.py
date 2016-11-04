@@ -175,7 +175,7 @@ class Database_queries:
         # [!1]
 
         # [2] RUNNING
-        for r in second_match.rounds[0:2]:
+        for r in second_match.rounds[0:5]:
             r_theme = random.choice(Theme.query.all())
             for quest in r.questions:
                 if quest.theme == r_theme:

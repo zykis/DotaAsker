@@ -141,21 +141,40 @@
             }
         }
         else {
-            // Иначе завершаем матч
-            Match* m = [_questionViewModel currentMatchForRound:_round];
-            [m setState:MATCH_FINISHED];
-            
-            RACReplaySubject* subject = [[[ServiceLayer instance] matchService] update:m];
-            //! TODO: update match
-        }
-        
-        //возвращаемся к MatchInfoViewController
-        MatchViewController* destVC;
-        UINavigationController *navController = [self navigationController];
-        NSInteger i_count = [[navController viewControllers] count];
-        for (int i = 0; i < i_count; i++) {
-            if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
-                destVC = [[navController viewControllers] objectAtIndex:i];
+            if ([_questionViewModel isRoundLast:_round]) {
+                // Обновляем матч
+                Match* m = [_questionViewModel currentMatchForRound:_round];
+                // Завершаем его
+                RACReplaySubject* subjectFinished = [[[ServiceLayer instance] matchService] finishMatch:m];
+                [subjectFinished subscribeNext:^(id x) {
+                    NSLog(@"Match finished");
+                } error:^(NSError *error) {
+                    NSLog(@"%@", [error localizedDescription]);
+                } completed:^{
+                    NSLog(@"Match finished (completed)");
+                    //возвращаемся к MatchInfoViewController
+                    MatchViewController* destVC;
+                    UINavigationController *navController = [self navigationController];
+                    NSInteger i_count = [[navController viewControllers] count];
+                    for (int i = 0; i < i_count; i++) {
+                        if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
+                            destVC = [[navController viewControllers] objectAtIndex:i];
+                        }
+                    }
+                    [[self navigationController] popToViewController:destVC animated:YES];
+                }];
+            }
+            else {
+                //возвращаемся к MatchInfoViewController
+                MatchViewController* destVC;
+                UINavigationController *navController = [self navigationController];
+                NSInteger i_count = [[navController viewControllers] count];
+                for (int i = 0; i < i_count; i++) {
+                    if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
+                        destVC = [[navController viewControllers] objectAtIndex:i];
+                    }
+                }
+                [[self navigationController] popToViewController:destVC animated:YES];
             }
         }
         
@@ -167,14 +186,23 @@
         } error:^(NSError *error) {
             NSLog(@"%@", [error localizedDescription]);
         } completed:^{
-            NSLog(@"Round updated");
+            //возвращаемся к MatchInfoViewController
+            MatchViewController* destVC;
+            UINavigationController *navController = [self navigationController];
+            NSInteger i_count = [[navController viewControllers] count];
+            for (int i = 0; i < i_count; i++) {
+                if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
+                    destVC = [[navController viewControllers] objectAtIndex:i];
+                }
+            }
+            [[self navigationController] popToViewController:destVC animated:YES];
         }];
         // Ну вот обновили мы раунд, а дальше что?
         // Во всех viewModel'ах и ViewController'ах ссылки на старый раунд сохранились
         // Их как обновлять будем?
         // 1. Используем чудо ServiceLayer с obtain'oм. Вместо ссылок храним ID.
         
-        [[self navigationController] popToViewController:destVC animated:YES];
+        
     }
 }
 @end

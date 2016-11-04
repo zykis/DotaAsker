@@ -10,6 +10,8 @@
 
 @class Match;
 @class User;
+@class Theme;
+@class Round;
 
 @interface MainViewModel : NSObject
 
@@ -22,6 +24,7 @@
 - (User*)opponentForCurrentMatch: (NSUInteger)row;
 - (User*)opponentForWaitingMatch: (NSUInteger)row;
 - (User*)opponentForRecentMatch: (NSUInteger)row;
+
 
 - (Match*)recentMatchAtRow: (NSUInteger)row;
 - (Match*)waitingMatchAtRow: (NSUInteger)row;

@@ -18,5 +18,6 @@
 - (Question*)questionForQuestionIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round;
 - (User*)opponentForRound:(Round*)round;
 - (Match*)currentMatchForRound:(Round*)round;
+- (BOOL)isRoundLast:(Round*)round;
 
 @end

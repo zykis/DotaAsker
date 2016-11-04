@@ -59,32 +59,18 @@
     return match;
 }
 
-- (NSDictionary*)encode:(Match*)match {
-    /*
-     id = Column(Integer, primary_key=True)
-     # (0 - not started, 1 - match running, 2 - match finished, 3 - time elapsed)
-     state = Column(Integer, nullable=True, default=0)
-     initiator_id = Column(Integer, ForeignKey('users.id'), nullable=False)
-     next_move_user_id = Column(Integer, ForeignKey('users.id'), nullable=True)
-     winner_id = Column(Integer, ForeignKey('users.id'), default=0)
-     # relations
-     users = relationship('User', secondary='users_matches')
-     rounds = relationship('Round')
-     initiator = relationship('User', foreign_keys=[next_move_user_id])
-     next_move_user = relationship('User', foreign_keys=[next_move_user_id])
-     winner = relationship('User', foreign_keys=[winner_id])
-     */
-//    NSArray* users = [NSArray arrayWithObjects:[NSNumber numberWithUnsignedLongLong:match.playerID],
-//                      [NSNumber numberWithUnsignedLongLong:match.opponentID],
-//                      nil];
-//    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-//                              [NSNumber numberWithUnsignedLongLong: match.ID], @"ID",
-//                              [NSNumber numberWithInt: (int)match.state], @"STATE",
-//                              users, @"USERS",
-//                              match.rounds, @"ROUNDS",
-//                              nil];
-//    return jsonDict;
-    return [[NSDictionary alloc] init];
++ (NSDictionary*)encode:(Match*)match andChildren:(BOOL)bEncodeChildren {
+    NSMutableDictionary *dict = [[NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithUnsignedLongLong:[match ID]], @"id",
+                          [NSNumber numberWithUnsignedLong:[match state]], @"state",
+                          nil] mutableCopy];
+    if (bEncodeChildren) {
+        // encode rounds also
+        for (Round* r in [match rounds]) {
+            NSDictionary* roundDict = [RoundParser encode:r];
+        }
+    }
+    return dict;
 }
 
 @end

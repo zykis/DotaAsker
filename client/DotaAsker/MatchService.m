@@ -40,6 +40,38 @@
     return subject;
 }
 
+- (RACReplaySubject*)update:(id)entity {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSDictionary* matchDict = [MatchParser encode:entity andChildren:NO];
+    NSData *matchData = [NSJSONSerialization dataWithJSONObject:matchDict options:kNilOptions error:nil];
+    assert(matchData);
+    [[_transport update:matchData] subscribeNext:^(id x) {
+        Match* m = [MatchParser parse:x andChildren:YES];
+        [subject sendNext:m];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
+- (RACReplaySubject*)finishMatch:(Match *)match {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSDictionary* matchDict = [MatchParser encode:match andChildren:NO];
+    NSData *matchData = [NSJSONSerialization dataWithJSONObject:matchDict options:kNilOptions error:nil];
+    assert(matchData);
+    [[_transport finishMatch:matchData] subscribeNext:^(id x) {
+        Match* m = [MatchParser parse:x andChildren:YES];
+        [subject sendNext:m];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
 - (NSUInteger)scoreForMatch:(Match*)m andUser:(User*)u {
     NSUInteger score = 0;
     for (Round* r in [m rounds]) {

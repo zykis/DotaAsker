@@ -46,4 +46,12 @@
     return NULL;
 }
 
+- (BOOL)isRoundLast:(Round *)round {
+    Match* m = [self currentMatchForRound:round];
+    if ([[[m rounds] objectAtIndex:5] isEqual:round]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

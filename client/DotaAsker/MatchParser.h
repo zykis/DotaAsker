@@ -13,5 +13,6 @@
 @interface MatchParser : NSObject
 
 + (Match*)parse: (NSDictionary*)JSONDict andChildren:(BOOL)bParseChildren;
++ (NSDictionary*)encode:(Match*)match andChildren:(BOOL)bEncodeChildren;
 
 @end

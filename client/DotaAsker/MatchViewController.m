@@ -87,7 +87,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showThemeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]]];
+        Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
+        Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
+        [destVC setRound:selectedRound];
+        [destVC setSelectedTheme:selectedTheme];
     }
     else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];

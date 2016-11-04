@@ -14,5 +14,6 @@
 @interface MatchTransport : Transport
 
 - (RACReplaySubject*)findMatchForUser:(NSString*)accessToken;
+- (RACReplaySubject*)finishMatch:(NSData*)matchData;
 
 @end

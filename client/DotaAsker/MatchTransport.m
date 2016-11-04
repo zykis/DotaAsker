@@ -12,6 +12,9 @@
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
 #define ENDPOINT_FIND_MATCH @"http://127.0.0.1:5000/findMatch"
+#define ENDPOINT_MATCH @"http://127.0.0.1:5000/matches"
+#define ENDPOINT_FINISH_MATCH @"http://127.0.0.1:5000/finishMatch"
+
 
 @implementation MatchTransport
 
@@ -34,6 +37,54 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    
+    return subject;
+}
+
+- (RACReplaySubject*)update:(NSData *)entityData {
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_MATCH parameters:nil error:nil] mutableCopy];
+    
+    [request setHTTPBody:entityData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    
+    return subject;
+}
+
+- (RACReplaySubject*)finishMatch:(NSData *)entityData {
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_FINISH_MATCH parameters:nil error:nil] mutableCopy];
+    
+    [request setHTTPBody:entityData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {

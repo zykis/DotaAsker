@@ -260,6 +260,8 @@ class Match(Base):
             for r in self.rounds:
                 if len(r.user_answers) == 6:
                     i += 1
+                if i >= 6:
+                    i -= 1
             return self.rounds[i].next_move_user
 
     def elapseMatch(self):
@@ -274,12 +276,79 @@ class Match(Base):
             # nextMoveUser LOST cause didn't answer or reply
             app.logger.debug('user {} losing match due to inactive'.format(next_move_user.__repr__()))
             next_move_user.mmr
-            self.finish(loser=next_move_user)
             self.state = MATCH_TIME_ELAPSED
             db.session.add(self)
             db.session.commit()
 
-    def finish(self, loser):
+    def finish(self):
+        # [1] match state become MATCH_FINISHED
+        if (self.state != MATCH_RUNNING):
+            app.logger.critical('Trying to finish not running match')
+            return
+        self.state = MATCH_FINISHED
+
+        # [2] checking if all users post their asnwers
+        userAnswersCount = 0
+        for r in self.rounds:
+            userAnswersCount += len(r.user_answers)
+        if userAnswersCount < 6 * 6:
+            app.logger.critical('Trying to finish match with only {} userAnswers'.format(userAnswersCount))
+            return
+
+        # [3] getting user with more correct answers
+        if (len(self.users) < 2):
+            app.logger('Trying to finish match with, that contains {} users'.format(len(self.users)))
+            return
+        user1 = self.users[0]
+        user2 = self.users[1]
+        user1CorrectAnswers = 0
+        user2CorrectAnswers = 0
+        for r in self.rounds:
+            for ua in r.user_answers:
+                if ua.user == user1 and ua.answer.is_correct:
+                    user1CorrectAnswers += 1
+                elif ua.user == user2 and ua.answer.is_correct:
+                    user2CorrectAnswers += 1
+        if user1CorrectAnswers > user2CorrectAnswers:
+            winner = user1
+            loser = user2
+        elif user2CorrectAnswers > user1CorrectAnswers:
+            winner = user2
+            loser = user1
+        else:
+            # draw
+            app.logger.debug('draw in match: {}'.format(self.__repr__()))
+            return self
+
+        # [4] calculate mmr gaining
+        mmr_gain = 25
+
+        # [5] decrease mmr of loser
+        loser.mmr -= 25
+
+        # [6] increase mmr of winner
+        winner.mmr += 25
+
+        # [7] changing total correct and incorrect answers for users
+        user1.total_correct_answers += user1CorrectAnswers
+        user1.total_incorrect_answers += 18 - user1CorrectAnswers
+        user2.total_correct_answers += user2CorrectAnswers
+        user2.total_incorrect_answers += 18 - user2CorrectAnswers
+
+        # [8] calculating users KDA
+        user1.kda = user1.total_correct_answers / float(user1.total_incorrect_answers)
+        user2.kda = user2.total_correct_answers / float(user2.total_incorrect_answers)
+
+        # [9] updating it
+        app.logger.debug('Updating users and match stats')
+        db.session.add(user1)
+        db.session.add(user2)
+        db.session.add(self)
+        db.session.commit()
+        app.logger.info('Stats updated successfully')
+
+        return self
+        # [10] GMP ?!? depends on how quick user answering
         pass
 
     def __repr__(self):

@@ -62,6 +62,40 @@ def put_round():
         # TODO: Sending server errors to client
         abort(500)
 
+@app.route('/matches', methods=['POST'])
+def put_match():
+    mData = request.data
+    schema = MatchSchema()
+    mDict = schema.loads(mData)[0]
+    m = Match.query.get(mDict['id'])
+    m.state = mDict['state']
+    db.session.add(m)
+    db.session.commit()
+    res = schema.dumps(m)
+    if not res.errors:
+        resp = make_response(res.data)
+        resp.mimetype = 'application/json'
+        return resp
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
+
+@app.route('/finishMatch', methods=['POST'])
+def finish_match():
+    mData = request.data
+    schema = MatchSchema()
+    mDict = schema.loads(mData)[0]
+    m = Match.query.get(mDict['id'])
+    m = m.finish()
+    res = schema.dumps(m)
+    if not res.errors:
+        resp = make_response(res.data)
+        resp.mimetype = 'application/json'
+        return resp
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
+
 
 
 @app.route('/generateTestData')
