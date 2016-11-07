@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) Round* round;
 @property (strong, nonatomic) Theme* selectedTheme;
+@property (strong, nonatomic) NSMutableArray* userAnswers;
+@property (strong, nonatomic) NSMutableArray* userAnswersCreatedIDs;
 
 @property (strong, nonatomic) QuestionViewModel* questionViewModel;
 @property (strong, nonatomic) IBOutlet UIImageView *questionImageView;
@@ -28,5 +30,6 @@
 @property (assign, nonatomic) NSInteger currentQuestionIndex;
 - (IBAction)answerPushed:(id)sender;
 - (void)showNextQuestion;
+- (void)sendEmptyUserAnswers;
 
 @end

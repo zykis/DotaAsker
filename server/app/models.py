@@ -65,6 +65,10 @@ class UserAnswer(Base):
     id = db.Column(db.Integer, primary_key=True)
 
     # relations
+    # answer_id might be 0. The reason is, if the posted UserAnswer is timed out or we just have to
+    # reserve UserAnswers, so the tricky persons couldn't see the question, then quit application
+    # find an answer and put in a correct one.
+    # if you've lost connection, during round... Well, you suck, man. Sorry.
     answer_id = db.Column(db.Integer, db.ForeignKey('answers.id', ondelete='CASCADE', onupdate='CASCADE'))
     answer = db.relationship('Answer', foreign_keys=[answer_id])
 
@@ -318,6 +322,8 @@ class Match(Base):
         else:
             # draw
             app.logger.debug('draw in match: {}'.format(self.__repr__()))
+            db.session.add(self)
+            db.session.commit()
             return self
 
         # [4] calculate mmr gaining

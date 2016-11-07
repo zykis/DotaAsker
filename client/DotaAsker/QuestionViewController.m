@@ -10,6 +10,7 @@
 #import "MatchViewController.h"
 #import "ServiceLayer.h"
 #import "QuestionViewModel.h"
+#import "Helper.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @interface QuestionViewController ()
@@ -28,16 +29,28 @@
 @synthesize currentQuestionIndex = _currentQuestionIndex;
 @synthesize selectedTheme = _selectedTheme;
 @synthesize questionViewModel = _questionViewModel;
+@synthesize userAnswers = _userAnswers;
+@synthesize userAnswersCreatedIDs = _userAnswersCreatedIDs;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _questionViewModel = [[QuestionViewModel alloc] init];
+    _userAnswers = [[NSMutableArray alloc] init];
+    _userAnswersCreatedIDs = [[NSMutableArray alloc] init];
+    
     assert(_round);
     assert([[_round questions] count] == 9);
     assert(_selectedTheme);
+    //! TODO: create empty asnwers and sent to server
+    [self sendEmptyUserAnswers];
     
     _currentQuestionIndex = 0;
     [self showNextQuestion];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [_userAnswers removeAllObjects];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,20 +78,18 @@
     userAnswer.relatedRound = relatedRound;
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.relatedUser = relatedUser;
+    userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
     
     [[_round userAnswers] addObject:userAnswer];
-    
+//    [_userAnswers addObject:userAnswer];
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
-        UserAnswer* ua = x;
-        NSLog(@"UserAnswer created: %llu", [ua ID]);
+        NSLog(@"Next");
     } error:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
     } completed:^{
-        NSLog(@"UserAnswer created");
+        NSLog(@"Completed");
     }];
-    //! TODO: check if useranswer created
-    
     
     if ([relatedAnswer isCorrect]) {
         relatedUser.totalCorrectAnswers++;
@@ -86,11 +97,6 @@
     else {
         relatedUser.totalIncorrectAnswers++;
     }
-    
-    // updating user
-//    [[[ServiceLayer instance] userService] update:relatedUser];
-    // updating round
-//    [[[ServiceLayer instance] roundService] update:relatedRound];
     _currentQuestionIndex++;
     [self showNextQuestion];
 }
@@ -101,7 +107,15 @@
         assert(q);
         NSArray* answers = [q answers];
         
-        [_questionImageView setImage:[UIImage imageNamed:[q imageName]]];
+        CGSize size = [[Helper shared] getQuestionImageViewSize];
+        RACReplaySubject* subject = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:size.width andHeight:size.height];
+        [subject subscribeNext:^(id x) {
+            [_questionImageView setImage:x];
+        } error:^(NSError *error) {
+            NSLog(@"%@", [error localizedDescription]);
+        } completed:^{
+        }];
+        
         [_questionText setText:[q text]];
         
         [_answer1Button setHidden:YES];
@@ -200,12 +214,30 @@
             }
             [[self navigationController] popToViewController:destVC animated:YES];
         }];
-        // Ну вот обновили мы раунд, а дальше что?
-        // Во всех viewModel'ах и ViewController'ах ссылки на старый раунд сохранились
-        // Их как обновлять будем?
-        // 1. Используем чудо ServiceLayer с obtain'oм. Вместо ссылок храним ID.
+    }
+}
+
+- (void)sendEmptyUserAnswers {
+    for (NSUInteger i = 0; i < 3; i++) {
+        Round* relatedRound = _round;
+        Answer* relatedAnswer;
+        User* relatedUser = [Player instance];
         
-        
+        UserAnswer *userAnswer = [[UserAnswer alloc] init];
+        userAnswer.relatedRound = relatedRound;
+        userAnswer.relatedAnswer = relatedAnswer;
+        userAnswer.relatedUser = relatedUser;
+        RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+        [subject subscribeNext:^(id x) {
+            // We could store an IDs of UserAnswers and just update them
+            // later. After we've got an answer to question.
+            UserAnswer* ua = x;
+            [_userAnswersCreatedIDs addObject:[NSNumber numberWithUnsignedLongLong:[ua ID]]];
+        } error:^(NSError *error) {
+            NSLog(@"Error, creating user answers. Well, that's sucks actually, cause we could be probably tricked by users");
+        } completed:^{
+            NSLog(@"GJ, bro!");
+        }];
     }
 }
 @end

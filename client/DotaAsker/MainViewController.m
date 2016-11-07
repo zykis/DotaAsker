@@ -10,7 +10,9 @@
 #import "MatchViewController.h"
 #import "MainViewModel.h"
 #import "ServiceLayer.h"
+#import "Helper.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+@import CoreGraphics;
 
 #define SECTION_TOOLBAR 0
 #define SECTION_PLAYER_INFO 1
@@ -40,8 +42,15 @@
 }
 
 - (void)refreshControllDragged {
-    [self.tableView reloadData];
-    [self.refreshControl endRefreshing];
+    [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
+     subscribeNext:^(User* u) {
+         [Player setPlayer:u];
+         [self.tableView reloadData];
+         [self.refreshControl endRefreshing];
+     } error:^(NSError *error) {
+         [self.refreshControl endRefreshing];
+     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -282,6 +291,12 @@
     [signal subscribeNext:^(id x) {
         // Update player
         Match* m = (Match*)x;
+        CGSize imageSize = [[Helper shared] getQuestionImageViewSize];
+        for (Round* r in [m rounds]) {
+            for (Question* q in [r questions]) {
+                [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:imageSize.width andHeight:imageSize.height];
+            }
+        }
         assert(m);
         [[[Player instance] matches] addObject:m];
         [self.tableView reloadData];

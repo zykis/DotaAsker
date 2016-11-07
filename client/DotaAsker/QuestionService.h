@@ -8,16 +8,11 @@
 
 #import "AbstractService.h"
 #import "Question.h"
-#import "Theme.h"
-#import "Answer.h"
-#import "Round.h"
 
+@class QuestionTransport;
 @interface QuestionService : AbstractService
-+ (QuestionService*)instance;
 
-- (NSArray*)generateQuestionsOnTheme:(Theme*)theme;
-- (NSArray*)allQuestionsOnTheme:(Theme*)theme;
-- (UIImage*)imageOfQuestion:(Question*)question;
-- (Question*)questionAtIndex:(NSInteger)index ofRound:(Round*)round;
+@property(strong, nonatomic) QuestionTransport* transport;
+- (RACReplaySubject*)obtainImageForQuestion: (Question*)question withWidth: (NSUInteger)width andHeight: (NSUInteger)height;
 
 @end

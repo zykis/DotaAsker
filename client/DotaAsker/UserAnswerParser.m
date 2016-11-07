@@ -36,16 +36,13 @@
 }
 
 + (NSData*)encode:(UserAnswer*)userAnswer {
-//    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID], @"round",
-//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedUser].ID], @"user",
-//                          [NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID], @"answer",
-//                          nil];
+
     NSDictionary* roundDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID] forKey:@"id"];
     NSDictionary* userDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedUser].ID] forKey:@"id"];
     NSDictionary* answerDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID] forKey:@"id"];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          [NSNumber numberWithUnsignedLongLong:userAnswer.ID], @"id",
                           roundDict, @"round",
                           userDict, @"user",
                           answerDict, @"answer",

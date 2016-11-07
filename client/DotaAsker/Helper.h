@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "AuthorizationService.h"
+@import CoreGraphics;
+
 @class RACReplaySubject;
 @class Player;
 
-@interface APIHelper : NSObject
+@interface Helper : NSObject
 
-@property (strong, nonatomic) NSArray* categories;
++ (Helper*)shared;
+- (CGSize)getQuestionImageViewSize;
 
-+ (APIHelper*)shared;
-- (RACReplaySubject*)getPlayerWithToken: (NSString*)accessToken;
 @end

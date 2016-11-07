@@ -11,14 +11,22 @@ class UserAnswerSchema(Schema):
 
     @post_load
     def make_user_answer(self, data):
-        ua = UserAnswer()
-        roundDict = data['round']
-        ua.round_id = roundDict['id']
+        if data['id'] == 0:
+            ua = UserAnswer()
 
-        userDict = data['user']
-        ua.user_id = userDict['id']
+            roundDict = data['round']
+            ua.round_id = roundDict['id']
 
-        answerDict = data['answer']
-        ua.answer_id = answerDict['id']
+            userDict = data['user']
+            ua.user_id = userDict['id']
 
-        return ua
+            ua.answer_id = 0
+
+            return ua
+        else:
+            ua = UserAnswer.query.get(data['id'])
+
+            answerDict = data['answer']
+            ua.answer_id = answerDict['id']
+
+            return ua

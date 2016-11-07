@@ -10,7 +10,6 @@
 #import "MainViewController.h"
 #import "AuthorizationService.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
-#import "APIHelper.h"
 #import "Player.h"
 #import "ServiceLayer.h"
 

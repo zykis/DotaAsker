@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5631DCF510C005EE564 /* QuestionService.m */; };
+		AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5661DCF518B005EE564 /* QuestionTransport.m */; };
 		AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C091D9485FD0023EFF3 /* Player.m */; };
-		AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* APIHelper.m */; };
+		AC138C101D948EC30023EFF3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* Helper.m */; };
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
@@ -132,10 +134,14 @@
 
 /* Begin PBXFileReference section */
 		8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0EE5621DCF510C005EE564 /* QuestionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionService.h; sourceTree = "<group>"; };
+		AC0EE5631DCF510C005EE564 /* QuestionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionService.m; sourceTree = "<group>"; };
+		AC0EE5651DCF518B005EE564 /* QuestionTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTransport.h; sourceTree = "<group>"; };
+		AC0EE5661DCF518B005EE564 /* QuestionTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTransport.m; sourceTree = "<group>"; };
 		AC138C081D9485FD0023EFF3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		AC138C091D9485FD0023EFF3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		AC138C0E1D948EC30023EFF3 /* APIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHelper.h; sourceTree = "<group>"; };
-		AC138C0F1D948EC30023EFF3 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHelper.m; sourceTree = "<group>"; };
+		AC138C0E1D948EC30023EFF3 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		AC138C0F1D948EC30023EFF3 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		AC161A4F1DAB01F400819AF7 /* MatchTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTransport.h; sourceTree = "<group>"; };
 		AC161A501DAB01F400819AF7 /* MatchTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTransport.m; sourceTree = "<group>"; };
 		AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theme_tournaments.png; path = resources/theme_tournaments.png; sourceTree = "<group>"; };
@@ -617,6 +623,8 @@
 		ACFDF2D41BFB40AD00B89838 /* Transport */ = {
 			isa = PBXGroup;
 			children = (
+				AC0EE5651DCF518B005EE564 /* QuestionTransport.h */,
+				AC0EE5661DCF518B005EE564 /* QuestionTransport.m */,
 				ACC5A1261DC68AA400F469ED /* RoundTransport.h */,
 				ACC5A1271DC68AA400F469ED /* RoundTransport.m */,
 				ACC5A11F1DC4D54B00F469ED /* UserAnswerTransport.h */,
@@ -657,6 +665,8 @@
 		ACFDF2D61BFB40D300B89838 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				AC0EE5621DCF510C005EE564 /* QuestionService.h */,
+				AC0EE5631DCF510C005EE564 /* QuestionService.m */,
 				ACC5A11D1DC4D54B00F469ED /* UserAnswerService.h */,
 				ACC5A11E1DC4D54B00F469ED /* UserAnswerService.m */,
 				ACC5A11A1DC4D4C200F469ED /* AnswerService.h */,
@@ -671,8 +681,8 @@
 				AC60917A1BFF5B9600D728B6 /* AbstractService.m */,
 				AC60917F1C00623200D728B6 /* AuthorizationService.h */,
 				AC6091801C00623200D728B6 /* AuthorizationService.m */,
-				AC138C0E1D948EC30023EFF3 /* APIHelper.h */,
-				AC138C0F1D948EC30023EFF3 /* APIHelper.m */,
+				AC138C0E1D948EC30023EFF3 /* Helper.h */,
+				AC138C0F1D948EC30023EFF3 /* Helper.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -884,6 +894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
+				AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */,
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
@@ -891,6 +902,7 @@
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
+				AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */,
 				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
 				AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */,
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,
@@ -910,7 +922,7 @@
 				AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */,
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
 				AC7B679A1DA69FFF00351887 /* Transport.m in Sources */,
-				AC138C101D948EC30023EFF3 /* APIHelper.m in Sources */,
+				AC138C101D948EC30023EFF3 /* Helper.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */,
 				ACB006201DC4C96F008CE926 /* ThemeSelectionViewController.m in Sources */,
@@ -1007,7 +1019,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1046,7 +1058,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

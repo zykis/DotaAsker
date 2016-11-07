@@ -12,6 +12,12 @@
 @implementation AnswerParser
 
 + (Answer*)parse:(NSDictionary *)JSONDict {
+    if ([JSONDict isEqual:[NSNull null]]) {
+        // Well, that's really bad practice....
+        Answer* answer = [[Answer alloc] init];
+        return answer;
+    }
+    
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"text"] &&
           [JSONDict objectForKey:@"is_correct"]

@@ -8,6 +8,10 @@
 
 #import "Transport.h"
 
+@class RACReplaySubject;
+@class Question;
 @interface QuestionTransport : Transport
+
+- (RACReplaySubject*)obtainImageForQuestion: (Question*)question withWidth: (NSUInteger)width andHeight: (NSUInteger)height;
 
 @end

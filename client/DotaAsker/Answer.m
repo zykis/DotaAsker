@@ -14,6 +14,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        _ID = 0;
     }
     return self;
 }

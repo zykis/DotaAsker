@@ -46,6 +46,7 @@
         Question* q = [QuestionParser parse:questionDict];
         [[round questions] addObject:q];
     }
+    assert([[round questions] count] <= 9);
 
     //user_answers
     NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
@@ -53,6 +54,7 @@
         UserAnswer* ua = [UserAnswerParser parse:uaDict];
         [[round userAnswers] addObject:ua];
     }
+    assert([[round userAnswers] count] <= 36);
     return round;
 }
 

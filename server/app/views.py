@@ -29,12 +29,19 @@ def get_user(id):
 
 @app.route('/userAnswers', methods=['POST'])
 def post_userAnswer():
+    # tricky one. We could expect empty userAnswers with answer_id = 0. If so, we just create them
+    # If answer_id contains in data, we need to update existing ones
     uaDict = request.data
     schema = UserAnswerSchema()
     ua = schema.loads(uaDict)[0]
     db.session.add(ua)
     db.session.commit()
-    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
+
+    # hmmmm...
+    if ua.answer_id == 0:
+        uaNew = UserAnswer.query.get(ua.id)
+    else:
+        uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
     res = schema.dumps(uaNew)
     if not res.errors:
         resp = make_response(res.data)
