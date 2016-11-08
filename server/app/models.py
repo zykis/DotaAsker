@@ -210,12 +210,13 @@ class Round(Base):
 
     match_id = db.Column(db.Integer, db.ForeignKey('matches.id'))
     next_move_user_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=0)
+    selected_theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'), default=0)
     # relations
     match = db.relationship('Match', backref='rounds')
-
     questions = db.relationship('Question', secondary='round_questions')
     user_answers = db.relationship('UserAnswer', cascade='all, delete-orphan')
     next_move_user = db.relationship('User')
+    selected_theme = db.relationship('Theme')
 
     def __init__(self):
         themes = Theme.query.all()

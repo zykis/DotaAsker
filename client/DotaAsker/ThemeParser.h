@@ -13,5 +13,6 @@
 @interface ThemeParser : AbstractParser
 
 + (Theme*)parse: (NSDictionary*)JSONDict;
++ (NSDictionary*)encode:(Theme*)theme;
 
 @end

@@ -15,6 +15,7 @@
 #import "Answer.h"
 #import "Question.h"
 #import "Player.h"
+#import "Theme.h"
 #import "RoundTransport.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
@@ -69,17 +70,18 @@
 }
 
 - (Theme*)themeSelectedForRound:(Round *)round {
-    Theme* selectedTheme;
-    for (UserAnswer* ua in [round userAnswers]) {
-        for (Question* q in [round questions]) {
-            for (Answer* a in [q answers]) {
-                if ([a isEqual:[ua relatedAnswer]]) {
-                    return [q theme];
-                }
-            }
-        }
-    }
-    return selectedTheme;
+//    Theme* selectedTheme;
+//    for (UserAnswer* ua in [round userAnswers]) {
+//        for (Question* q in [round questions]) {
+//            for (Answer* a in [q answers]) {
+//                if ([a isEqual:[ua relatedAnswer]]) {
+//                    return [q theme];
+//                }
+//            }
+//        }
+//    }
+//    return selectedTheme;
+    return [round selectedTheme];
 }
 
 - (NSArray*)themesForRound:(Round *)round {
@@ -97,7 +99,7 @@
 - (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme *)theme inRound:(Round*)round {
     NSUInteger i = 0;
     for (Question* q in [round questions]) {
-        if ([[q theme] isEqual:theme]) {
+        if ([[q theme] isEqual: theme]) {
             if (index == i) {
                 return q;
             }

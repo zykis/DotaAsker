@@ -9,3 +9,4 @@ class RoundSchema(Schema):
     next_move_user = fields.Nested('UserSchema', exclude=('matches', 'friends'))
     questions = fields.Nested(QuestionSchema, many=True)
     user_answers = fields.Nested(UserAnswerSchema, many=True)
+    selected_theme = fields.Nested(ThemeSchema)

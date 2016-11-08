@@ -9,6 +9,7 @@
 #import "ThemeSelectionViewController.h"
 #import "ThemeSelectedViewController.h"
 #import "ServiceLayer.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 @interface ThemeSelectionViewController ()
 
@@ -77,13 +78,40 @@
 
 - (IBAction)button1Pressed:(id)sender {
     [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+    [_round setSelectedTheme:[themes objectAtIndex:0]];
+    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+    [subject subscribeNext:^(id x) {
+        Round* r = x;
+        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
+    } error:^(NSError *error) {
+        NSLog(@"Error, while updating round");
+    }];
 }
 
 - (IBAction)button2Pressed:(id)sender {
     [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+    [_round setSelectedTheme:[themes objectAtIndex:1]];
+    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+    [subject subscribeNext:^(id x) {
+        Round* r = x;
+        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
+    } error:^(NSError *error) {
+        NSLog(@"Error, while updating round");
+    }];
 }
 
 - (IBAction)button3Pressed:(id)sender {
     [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+    [_round setSelectedTheme:[themes objectAtIndex:2]];
+    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+    [subject subscribeNext:^(id x) {
+        Round* r = x;
+        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
+    } error:^(NSError *error) {
+        NSLog(@"Error, while updating round");
+    }];
 }
 @end

@@ -55,6 +55,11 @@
         [[round userAnswers] addObject:ua];
     }
     assert([[round userAnswers] count] <= 36);
+    
+    if (![JSONDict[@"selected_theme"] isEqual: [NSNull null]]) {
+        Theme* selected_theme = [ThemeParser parse:JSONDict[@"selected_theme"]];
+        [round setSelectedTheme:selected_theme];
+    }
     return round;
 }
 
@@ -69,6 +74,11 @@
         [dict setObject:userDict forKey:@"next_move_user"];
     else
         [dict setObject:[NSNull null] forKey:@"next_move_user"];
+    
+    if ([round selectedTheme]) {
+        NSDictionary* themeDict = [ThemeParser encode: [round selectedTheme]];
+        [dict setObject:themeDict forKey:@"selected_theme"];
+    }
     return dict;
 }
 

@@ -34,11 +34,11 @@
     return theme;
 }
 
-- (NSDictionary*)encode:(Theme*)theme {
++ (NSDictionary*)encode:(Theme*)theme {
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithUnsignedLongLong: theme.ID], @"ID",
-                              theme.name, @"NAME",
-                              theme.imageName, @"IMAGE_NAME",
+                              [NSNumber numberWithUnsignedLongLong: theme.ID], @"id",
+                              theme.name, @"name",
+                              theme.imageName, @"image_name",
                               nil];
     return jsonDict;
 }

@@ -158,6 +158,7 @@ class Database_queries:
         # [1] FINISHED
         for r in first_match.rounds:
             r_theme = random.choice(Theme.query.all())
+            r.selected_theme = r_theme
             for quest in r.questions:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
@@ -177,6 +178,7 @@ class Database_queries:
         # [2] RUNNING
         for r in second_match.rounds[0:5]:
             r_theme = random.choice(Theme.query.all())
+            r.selected_theme = r_theme
             for quest in r.questions:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
@@ -195,6 +197,7 @@ class Database_queries:
         # [3] TIME_ELAPSED
         for r in third_match.rounds[0:3]:
             r_theme = random.choice(Theme.query.all())
+            r.selected_theme = r_theme
             for quest in r.questions:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
