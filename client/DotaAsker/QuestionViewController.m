@@ -238,6 +238,13 @@
         } completed:^{
             NSLog(@"GJ, bro!");
         }];
+        
+        //Setting next_move_user on server to opponent
+        User* opponent = [_questionViewModel opponentForRound:_round];
+        // Too lazy to implement copyWithZone for each Entity
+        [_round setNextMoveUser:opponent];
+        [[[ServiceLayer instance] roundService] update:_round];
+        [_round setNextMoveUser:[Player instance]];
     }
 }
 @end

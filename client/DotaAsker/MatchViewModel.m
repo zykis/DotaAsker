@@ -95,17 +95,10 @@
     }
     
     // right
-    Question* relatedQuestion;
-    for (Question* q in [selectedRound questions]) {
-        if (relatedQuestion)
-            break;
-        for (Answer* a in [q answers]) {
-            if (([[a text] isEqualToString:answeredTextFirstPlayer]) || ([[a text] isEqualToString:answeredTextSecondPlayer])){
-                relatedQuestion = q;
-                break;
-            }
-        }
-    }
+    // How to get THEME?
+    Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
+    assert(selectedTheme);
+    Question* relatedQuestion = [[[ServiceLayer instance] roundService] questionAtIndex:index onTheme:selectedTheme inRound:selectedRound];
     assert(relatedQuestion);
     
     NSString* correctAnswerText;
@@ -151,6 +144,14 @@
                     , relatedQuestion.text,
                     [opponent name],
                     @"???"
+                    ];
+        else
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    , relatedQuestion.text,
+                    [player name],
+                    @"Unanswered"
                     ];
     }
     return text;

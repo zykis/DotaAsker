@@ -27,4 +27,16 @@
     return NO;
 }
 
+//- (id)copyWithZone:(NSZone *)zone {
+////    @property (assign, nonatomic) unsigned long long ID;
+////    @property (strong, nonatomic) User* nextMoveUser;
+////    @property (strong, nonatomic) NSMutableArray* questions;//список вопросов
+////    @property (strong, nonatomic) NSMutableArray* userAnswers;//список ответов
+//    Round *newRound = [super copyWithZone:zone];
+//    newRound.ID = [_month copyWithZone:zone];
+//    newCrime->_category = [_category copyWithZone:zone];
+//    // etc...
+//    return newCrime;
+//}
+
 @end
