@@ -310,10 +310,12 @@ class Match(Base):
         user2CorrectAnswers = 0
         for r in self.rounds:
             for ua in r.user_answers:
-                if ua.user == user1 and ua.answer.is_correct:
-                    user1CorrectAnswers += 1
-                elif ua.user == user2 and ua.answer.is_correct:
-                    user2CorrectAnswers += 1
+                if ua.user == user1 and (ua.answer is not None):
+                    if  ua.answer.is_correct:
+                        user1CorrectAnswers += 1
+                elif ua.user == user2 and (ua.answer is not None):
+                    if ua.answer.is_correct:
+                        user2CorrectAnswers += 1
         if user1CorrectAnswers > user2CorrectAnswers:
             winner = user1
             loser = user2

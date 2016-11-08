@@ -27,4 +27,12 @@
     return NO;
 }
 
++ (Answer*)emptyAnswer {
+    Answer* a = [[Answer alloc] init];
+    a.text = [NSString stringWithFormat:@"Unanswered"];
+    a.isCorrect = NO;
+    a.ID = 0;
+    return a;
+}
+
 @end

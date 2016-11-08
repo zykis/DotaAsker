@@ -76,6 +76,7 @@
     else {
         Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
         if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
+            // What if there are no opponent answers due to poor connection?
             BOOL thereIsOpponentAnswer = NO;
             for (UserAnswer* ua in [currentRound userAnswers]) {
                 if (![[ua relatedUser] isEqual:[Player instance]]) {
