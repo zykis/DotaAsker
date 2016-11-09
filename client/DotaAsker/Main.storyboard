@@ -792,10 +792,16 @@
                                     <constraint firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="height" multiplier="568:319" id="nqe-jb-xa4"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time elapsed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90w-OC-mhS">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="width" multiplier="0.48" id="1ku-TW-JrI"/>
+                            <constraint firstItem="90w-OC-mhS" firstAttribute="top" secondItem="6zT-S1-Eo6" secondAttribute="bottom" constant="8" id="4T3-Kb-1F9"/>
                             <constraint firstAttribute="centerX" secondItem="HnT-pV-LHI" secondAttribute="centerX" id="53N-cm-30Z"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="67a-cb-dlQ"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="6az-by-pwR"/>
@@ -811,6 +817,7 @@
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="leading" secondItem="HnT-pV-LHI" secondAttribute="leading" id="bzK-Hd-nIK"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="centerX" secondItem="HnT-pV-LHI" secondAttribute="centerX" id="dVu-Iz-YNW"/>
                             <constraint firstAttribute="centerX" secondItem="17R-45-z1x" secondAttribute="centerX" id="h0u-3I-yga"/>
+                            <constraint firstItem="90w-OC-mhS" firstAttribute="centerX" secondItem="vHM-O6-UEQ" secondAttribute="centerX" id="i0G-82-LPH"/>
                             <constraint firstItem="6zT-S1-Eo6" firstAttribute="top" secondItem="Zu8-37-KE8" secondAttribute="bottom" constant="8" id="krF-ei-Due"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="top" secondItem="IpC-M2-nMF" secondAttribute="bottom" constant="8" id="nLs-Hx-fFd"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="width" secondItem="E7c-Qo-mxp" secondAttribute="width" id="vBs-uH-oZF"/>
@@ -826,6 +833,7 @@
                         <outlet property="answer4Button" destination="6zT-S1-Eo6" id="TPZ-De-VOp"/>
                         <outlet property="questionImageView" destination="HnT-pV-LHI" id="PeQ-bq-ths"/>
                         <outlet property="questionText" destination="IpC-M2-nMF" id="nSI-Ea-Ab3"/>
+                        <outlet property="timeElapsedLabel" destination="90w-OC-mhS" id="Sej-Il-cc5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tV-sv-xor" userLabel="First Responder" sceneMemberID="firstResponder"/>

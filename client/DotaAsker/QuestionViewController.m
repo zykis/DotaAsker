@@ -13,6 +13,8 @@
 #import "Helper.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
+#define QUESTION_TIMEOUT_INTERVAL 30
+
 @interface QuestionViewController ()
 
 @end
@@ -31,6 +33,8 @@
 @synthesize questionViewModel = _questionViewModel;
 @synthesize userAnswers = _userAnswers;
 @synthesize userAnswersCreatedIDs = _userAnswersCreatedIDs;
+@synthesize questionTimer = _questionTimer;
+@synthesize timeTimer = _timeTimer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,6 +63,12 @@
 }
 
 - (IBAction)answerPushed:(id)sender {
+    // Invalidate timer
+    [_questionTimer invalidate];
+    _questionTimer = nil;
+    [_timeTimer invalidate];
+    _timeTimer = nil;
+    
     Question *q = [[[ServiceLayer instance] roundService] questionAtIndex:_currentQuestionIndex onTheme: _selectedTheme inRound:_round];
     NSInteger answerIndex;
     if (sender == _answer1Button)
@@ -81,7 +91,6 @@
     userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
     
     [[_round userAnswers] addObject:userAnswer];
-//    [_userAnswers addObject:userAnswer];
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
         NSLog(@"Next");
@@ -101,8 +110,49 @@
     [self showNextQuestion];
 }
 
+- (void)timeElapsed {
+    NSLog(@"Timer elapsed");
+    [_timeTimer invalidate];
+    _timeTimer = nil;
+    
+    Round* relatedRound = _round;
+    Answer* relatedAnswer = [Answer emptyAnswer];
+    User* relatedUser = [_round nextMoveUser];
+    UserAnswer *userAnswer = [[UserAnswer alloc] init];
+    userAnswer.relatedRound = relatedRound;
+    userAnswer.relatedAnswer = relatedAnswer;
+    userAnswer.relatedUser = relatedUser;
+    userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
+    
+    [[_round userAnswers] addObject:userAnswer];
+    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+    [subject subscribeNext:^(id x) {
+        NSLog(@"Next");
+    } error:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    } completed:^{
+        NSLog(@"Completed");
+    }];
+    
+    relatedUser.totalIncorrectAnswers++;
+    _currentQuestionIndex++;
+    [self showNextQuestion];
+}
+
 - (void)showNextQuestion {
     if (_currentQuestionIndex < 3) {
+        // start timer
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
+                                                       target:self
+                                                     selector:@selector(timeElapsed)
+                                                     userInfo:nil
+                                                      repeats:NO];
+            self.secondsRemain = 30.0;
+            // update label with timer
+            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
+        });
+        
         Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
         assert(q);
         NSArray* answers = [q answers];
@@ -247,4 +297,11 @@
         [_round setNextMoveUser:[Player instance]];
     }
 }
+
+- (void)updateSecondsRemain {
+    self.secondsRemain -= 0.1;
+    NSString* secondsRemain = [NSString stringWithFormat:@"%2.1f", self.secondsRemain];
+    [_timeElapsedLabel setText:secondsRemain];
+}
+
 @end

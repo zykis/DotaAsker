@@ -20,7 +20,9 @@ class Database_queries:
         not_started_matches = []
         for row in not_started_matches_sql:
             m = Match.query.get(row[0])
-	    if m.next_move_user().id == user.id or m.next_move_user().id == 0:
+            if m.next_move_user() is None:
+                not_started_matches.append(m)
+            elif m.next_move_user().id == user.id:
                 not_started_matches.append(m)
 
         # if not match exists

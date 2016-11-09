@@ -28,7 +28,15 @@
 @property (strong, nonatomic) IBOutlet UIButton *answer3Button;
 @property (strong, nonatomic) IBOutlet UIButton *answer4Button;
 @property (assign, nonatomic) NSInteger currentQuestionIndex;
+@property (strong, nonatomic) NSTimer* questionTimer;
+@property (strong, nonatomic) NSTimer* timeTimer;
+@property (strong, nonatomic) IBOutlet UILabel *timeElapsedLabel;
+@property (assign, nonatomic) double secondsRemain;
+
+
+- (void)updateSecondsRemain;
 - (IBAction)answerPushed:(id)sender;
+- (void)timeElapsed;
 - (void)showNextQuestion;
 - (void)sendEmptyUserAnswers;
 
