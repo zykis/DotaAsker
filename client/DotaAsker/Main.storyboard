@@ -77,7 +77,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="438" y="353"/>
+            <point key="canvasLocation" x="367" y="352"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="pZA-NV-pxy">
@@ -121,6 +121,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="aOm-DV-C6F" kind="show" id="iZ6-6g-UK1"/>
+                                </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wMT-Gk-FGi" propertyAccessControl="none">
                                 <color key="barTintColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -146,9 +149,9 @@
                             <constraint firstAttribute="centerX" secondItem="2E2-mb-ee3" secondAttribute="centerX" constant="-0.5" id="B3H-Zv-p9O"/>
                             <constraint firstAttribute="centerX" secondItem="ZPy-Fd-eaQ" secondAttribute="centerX" constant="-0.5" id="EIg-nq-pcD"/>
                             <constraint firstItem="Oak-MF-Jcj" firstAttribute="top" secondItem="ZPy-Fd-eaQ" secondAttribute="bottom" constant="26" id="EZc-Al-jYx"/>
-                            <constraint firstItem="ZPy-Fd-eaQ" firstAttribute="top" secondItem="pjy-3t-tA2" secondAttribute="bottom" constant="60" id="H13-sj-QAn"/>
                             <constraint firstItem="byp-re-lZ3" firstAttribute="top" secondItem="Oak-MF-Jcj" secondAttribute="bottom" constant="-2" id="PUa-gW-Fl0"/>
-                            <constraint firstItem="wMT-Gk-FGi" firstAttribute="top" secondItem="pjy-3t-tA2" secondAttribute="bottom" id="obh-vo-VIh"/>
+                            <constraint firstItem="wMT-Gk-FGi" firstAttribute="top" secondItem="pjy-3t-tA2" secondAttribute="bottom" id="Uru-rg-hXu"/>
+                            <constraint firstItem="ZPy-Fd-eaQ" firstAttribute="top" secondItem="pjy-3t-tA2" secondAttribute="bottom" constant="60" id="dFu-iB-hpZ"/>
                             <constraint firstItem="2E2-mb-ee3" firstAttribute="top" secondItem="Oak-MF-Jcj" secondAttribute="bottom" constant="25" id="qV1-mK-PcX"/>
                             <constraint firstAttribute="centerX" secondItem="Oak-MF-Jcj" secondAttribute="centerX" constant="-0.5" id="vqf-D6-VpY"/>
                             <constraint firstItem="wMT-Gk-FGi" firstAttribute="leading" secondItem="6Da-aB-zxh" secondAttribute="leadingMargin" constant="-20" id="xgT-K3-6q1"/>
@@ -166,7 +169,78 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O4u-aa-xgS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159" y="4"/>
+            <point key="canvasLocation" x="1157.5999999999999" y="3.1484257871064472"/>
+        </scene>
+        <!--Password Remind View Controller-->
+        <scene sceneID="Soe-58-aji">
+            <objects>
+                <viewController id="aOm-DV-C6F" customClass="PasswordRemindViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6UP-sM-4Cc"/>
+                        <viewControllerLayoutGuide type="bottom" id="34w-cj-DPA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1VX-5H-jGW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z4Z-XH-VeE" propertyAccessControl="none">
+                                <color key="barTintColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="SignIn NavigationBar" id="kRW-sn-bfb">
+                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="My7-2p-5pV">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="backButtonPressed" destination="aOm-DV-C6F" id="wNw-P1-EME"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxn-WC-tH1" userLabel="Username">
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pxn-WC-tH1" secondAttribute="height" multiplier="181:30" id="LXH-lr-Z4q"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mog-QJ-Qjp">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="69" id="2eD-un-LKB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendNewPassword:" destination="aOm-DV-C6F" eventType="touchUpInside" id="vIo-PF-BBW"/>
+                                    <action selector="signIn" destination="4wa-4b-EdD" eventType="touchUpInside" id="zwM-iT-qre"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="pxn-WC-tH1" firstAttribute="centerX" secondItem="1VX-5H-jGW" secondAttribute="centerX" id="2jo-cq-DE2"/>
+                            <constraint firstItem="Z4Z-XH-VeE" firstAttribute="top" secondItem="6UP-sM-4Cc" secondAttribute="bottom" id="BXQ-25-pCC"/>
+                            <constraint firstItem="pxn-WC-tH1" firstAttribute="top" secondItem="6UP-sM-4Cc" secondAttribute="bottom" constant="60" id="P8c-DC-vlL"/>
+                            <constraint firstItem="mog-QJ-Qjp" firstAttribute="top" secondItem="pxn-WC-tH1" secondAttribute="bottom" constant="25" id="ZtT-8k-L09"/>
+                            <constraint firstItem="mog-QJ-Qjp" firstAttribute="centerX" secondItem="Z4Z-XH-VeE" secondAttribute="centerX" id="d4Y-cX-npA"/>
+                            <constraint firstItem="Z4Z-XH-VeE" firstAttribute="leading" secondItem="1VX-5H-jGW" secondAttribute="leading" id="eKl-A9-xWj"/>
+                            <constraint firstItem="mog-QJ-Qjp" firstAttribute="centerX" secondItem="pxn-WC-tH1" secondAttribute="centerX" id="gRt-Zu-ZtX"/>
+                            <constraint firstItem="Z4Z-XH-VeE" firstAttribute="centerX" secondItem="1VX-5H-jGW" secondAttribute="centerX" id="kmW-Ni-nFs"/>
+                            <constraint firstItem="pxn-WC-tH1" firstAttribute="width" secondItem="pxn-WC-tH1" secondAttribute="height" multiplier="181:30" id="oxu-KE-Anm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="usernameOrEmail" destination="pxn-WC-tH1" id="IdB-P1-tLO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CPs-T9-78C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1888.8" y="-688.60569715142435"/>
         </scene>
         <!--Setting View Controller-->
         <scene sceneID="dOu-Uw-afk">

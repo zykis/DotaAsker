@@ -7,6 +7,10 @@
 //
 
 #import "Helper.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <AFNetworking/AFNetworking/AFNetworking.h>
+
+#define ENDPOINT_FORGOT_PASSWORD @"http://127.0.0.1:5000/forgotPassword"
 
 @implementation Helper
 /*
@@ -37,6 +41,31 @@
 
 - (CGSize)getQuestionImageViewSize {
     return CGSizeMake(351, 197);
+}
+
+- (RACReplaySubject*)sendNewPasswordToUserOrEmail:(NSString *)userOrEmail {
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_FORGOT_PASSWORD parameters:nil error:nil] mutableCopy];
+    
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys: userOrEmail, @"username_or_email", nil];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    [request setHTTPBody:data];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    return subject;
 }
 
 @end

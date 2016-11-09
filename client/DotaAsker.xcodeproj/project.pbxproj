@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5631DCF510C005EE564 /* QuestionService.m */; };
 		AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5661DCF518B005EE564 /* QuestionTransport.m */; };
+		AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */; };
 		AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C091D9485FD0023EFF3 /* Player.m */; };
 		AC138C101D948EC30023EFF3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* Helper.m */; };
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
@@ -138,6 +139,8 @@
 		AC0EE5631DCF510C005EE564 /* QuestionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionService.m; sourceTree = "<group>"; };
 		AC0EE5651DCF518B005EE564 /* QuestionTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTransport.h; sourceTree = "<group>"; };
 		AC0EE5661DCF518B005EE564 /* QuestionTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionTransport.m; sourceTree = "<group>"; };
+		AC0EE5681DD3D38B005EE564 /* PasswordRemindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordRemindViewController.h; sourceTree = "<group>"; };
+		AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordRemindViewController.m; sourceTree = "<group>"; };
 		AC138C081D9485FD0023EFF3 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		AC138C091D9485FD0023EFF3 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		AC138C0E1D948EC30023EFF3 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
@@ -471,6 +474,8 @@
 				ACACEBA01D7A2A9400C6A61E /* SignUpViewController.m */,
 				AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */,
 				AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */,
+				AC0EE5681DD3D38B005EE564 /* PasswordRemindViewController.h */,
+				AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -933,6 +938,7 @@
 				ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */,
 				AC7B67971DA69FF000351887 /* UserTransport.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
+				AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
 				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,

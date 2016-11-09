@@ -11,6 +11,11 @@ from app.parsers.round_schema import RoundSchema
 from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer, Round
 from app import models
 from marshmallow import pprint
+from flask_mail import Message
+import json
+import random
+import string
+from app import mail
 
 auth = HTTPBasicAuth()
 
@@ -107,12 +112,60 @@ def finish_match():
         abort(500)
 
 
-
 @app.route('/generateTestData')
 def generate_test_data():
     Database_queries.createTestData()
     return 'ok'
 
+
+@app.route('/forgotPassword', methods=['POST'])
+def send_new_password():
+    username_or_email_dict = request.data
+    username_or_email = json.loads(username_or_email_dict)['username_or_email']
+    app.logger.info('{} forgot his password'.format(username_or_email))
+
+    # if it's email, we'll try to find user with it
+    if '@' not in username_or_email:
+        user = User.query.filter(User.username==username_or_email).one_or_none()
+    else:
+        user = User.query.filter(User.email==username_or_email).one_or_none()
+
+
+    if user is None:
+        app.logger.info('{}: no such username or e-mail'.format(username_or_email))
+        resp = make_response(json.dumps({'reason':'no such username or e-mail'}))
+        resp.status_code = 400
+        resp.mimetype = 'application/json'
+        return resp
+
+    email = user.email
+
+    if email is None:
+        app.logger.info('{} doesn\'t have an e-mail'.format(user.username))
+        resp = make_response(json.dumps({'reason':'user have no email'}))
+        resp.status_code = 400
+        resp.mimetype = 'application/json'
+        return resp
+
+    newPassword = ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(6))
+    user.hash_password(newPassword)
+
+    db.session.add(user)
+    db.session.commit()
+
+    app.logger.info('password generated: {}'.format(newPassword))
+
+    msg = Message("DotaAsker",
+                  sender="zykis39@gmail.com",
+                  recipients=[email])
+    msg.body = "Dear, {}. Your new password is: {}".format(user.username, newPassword)
+    mail.send(msg)
+    app.logger.debug('message with new password has sent to: {}'.format(email))
+
+    resp = make_response(json.dumps({'status':'ok'}))
+    resp.status_code = 200
+    resp.mimetype = 'application/json'
+    return resp
 
 @app.route('/MainViewController')
 @auth.login_required

@@ -10,3 +10,12 @@ SQLALCHEMY_ECHO=False
 SECRET_KEY = 'sadlk21lkmsadhaaw'
 MATCH_LIFETIME = 2 * 24 * 60 * 60
 MATCH_UPDATELIFE = 2 * 24 * 60 * 60
+
+# Flask-Mail settings
+MAIL_SERVER="smtp.gmail.com"
+MAIL_PORT=465
+MAIL_USE_TLS=False
+MAIL_USE_SSL=True
+MAIL_USERNAME="zykis39"
+MAIL_PASSWORD="stranger3005"
+DEFAULT_MAIL_SENDER='zykis39@gmail.com'

@@ -11,7 +11,8 @@ flask/bin/pip install flask-httpauth \
 flask/bin/pip install marshmallow \
 flask/bin/pip install pytest \
 flask/bin/pip install Flask-Script \
-flask/bin/pip install sqlalchemy-migrate
+flask/bin/pip install sqlalchemy-migrate \
+flask/bin/pip install Flask-Mail
 
 # client
 cd ~/projects/DotaAsker/client
