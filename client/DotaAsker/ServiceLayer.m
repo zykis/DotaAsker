@@ -38,6 +38,7 @@
         _roundService = [[RoundService alloc] init];
         _userAnswerService = [[UserAnswerService alloc] init];
         _questionService = [[QuestionService alloc] init];
+        [_matchService setAuthorizationService:_authorizationService];
         [_userService setAuthorizationService:_authorizationService];
     }
     return self;

@@ -125,9 +125,9 @@ class Database_queries:
         db.session.commit()
 
         ############################################### adding friends
-        john_user.sendRequest(peter_user)
-        john_user.sendRequest(jack_user)
-        jack_user.acceptRequest(john_user)
+        # john_user.sendRequest(peter_user)
+        # john_user.sendRequest(jack_user)
+        # jack_user.acceptRequest(john_user)
 
         # ############################################# making themes
         lore_theme = Theme(name=u'lore',

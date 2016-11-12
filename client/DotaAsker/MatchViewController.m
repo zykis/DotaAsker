@@ -13,6 +13,7 @@
 #import "Player.h"
 #import "MatchViewModel.h"
 #import "ServiceLayer.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 
 #define SECTION_MATCH_INFO 0
@@ -106,6 +107,18 @@
         //Revenge button
         [[self navigationController] popViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)sendFriendRequest:(id)sender {
+    RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
+    [subject subscribeNext:^(id x) {
+        NSLog(@"Ok");
+    } error:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
+}
+
+- (IBAction)surrend:(id)sender {
 }
 
 #pragma mark - VusialAppearence

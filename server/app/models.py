@@ -139,8 +139,14 @@ class User(Base):
         return user
 
     def sendRequest(self, aUser):
-        f = Friends(confirmed=False, from_id=self.id, to_id=aUser.id)
-        db.session.add(f)
+        if aUser.isPending(self):
+            self.acceptRequest(aUser)
+            db.session.add(self)
+            db.session.add(aUser)
+        else:
+            f = Friends(confirmed=False, from_id=self.id, to_id=aUser.id)
+            db.session.add(f)
+
 
     def isPending(self, aUser):
         return self.out_requests.filter(Friends.to_id==aUser.id, Friends.confirmed==False).count() > 0

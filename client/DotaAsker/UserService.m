@@ -69,4 +69,22 @@
     return subject;
 }
 
+- (RACReplaySubject*)sendFriendRequestToUser:(User *)to_user {
+    RACReplaySubject* subject = [RACReplaySubject subject];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLongLong:to_user.ID], @"to_id", nil];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    
+    [[_transport sendFriendtoUserData:data withAccessToken:[_authorizationService accessToken]] subscribeNext:^(id x) {
+        NSLog(@"Friend request has sent");
+        [subject sendNext:x];
+        [subject sendCompleted];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+        NSLog(@"Error while senting friend request");
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
 @end

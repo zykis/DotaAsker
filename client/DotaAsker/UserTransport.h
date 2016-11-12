@@ -8,9 +8,11 @@
 
 #import "Transport.h"
 
+@class User;
 @interface UserTransport : Transport
 
 - (RACReplaySubject*)obtainWithAccessToken:(NSString *)accessToken;
 - (RACReplaySubject*)obtain:(unsigned long long)entityID;
+- (RACReplaySubject*)sendFriendtoUserData: (NSData*)to_user_data withAccessToken: (NSString*)accessToken;
 
 @end

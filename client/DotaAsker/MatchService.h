@@ -14,10 +14,12 @@
 
 @class MatchTransport;
 @class RACReplaySubject;
+@class AuthorizationService;
 
 @interface MatchService : AbstractService
 
 @property (strong, nonatomic) MatchTransport* transport;
+@property (strong, nonatomic) AuthorizationService* authorizationService;
 
 - (RACReplaySubject*)findMatchForUser: (NSString*)accessToken;
 - (RACReplaySubject*)finishMatch: (Match*)match;

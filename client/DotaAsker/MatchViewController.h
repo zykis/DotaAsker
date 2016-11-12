@@ -22,6 +22,8 @@
 #pragma mark - Navigation
 - (IBAction)backButtonPushed:(id)sender;
 - (IBAction)midleButtonPushed:(id)sender;
+- (IBAction)sendFriendRequest:(id)sender;
+- (IBAction)surrend:(id)sender;
 
 #pragma mark - Initialization
 - (void)setBackgroundImage: (UIImage*)backgroundImage;

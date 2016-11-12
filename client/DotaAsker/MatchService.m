@@ -17,6 +17,7 @@
 @implementation MatchService
 
 @synthesize transport = _transport;
+@synthesize authorizationService = _authorizationService;
 
 - (id)init {
     self = [super init];

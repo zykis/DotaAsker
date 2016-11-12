@@ -19,6 +19,32 @@ from app import mail
 
 auth = HTTPBasicAuth()
 
+@app.route('/sendFriendRequest', methods=['POST'])
+@auth.login_required
+def sendFriendRequest():
+    user_from = g.user
+    rdata = request.json
+    user_to_id = rdata['to_id']
+    user_to = User.query.get(user_to_id)
+    if user_from.isFriend(user_to) or user_from.isPending(user_to):
+        resp = make_response(json.dumps({'result':'ok'}))
+        resp.status_code = 200
+        resp.mimetype = 'application/json'
+        app.logger.debug('user already in friend list')
+        return resp
+    else:
+        user_from.sendRequest(user_to)
+        db.session.commit()
+        resp = make_response(json.dumps({'result':'ok'}))
+        resp.status_code = 200
+        resp.mimetype = 'application/json'
+        return resp
+
+@app.route('/surrend')
+@auth.login_required
+def surrend():
+    pass
+
 @app.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
     user = User.query.get(id)
@@ -238,8 +264,10 @@ def verify_password(username_or_token, password):
         unicodeUsername = username_or_token.decode('utf-8')
         user = User.query.filter_by(username = unicodeUsername).first()
         if not user or not user.verify_password(password):
+            app.logger.info('user authorize error')
             return False
     g.user = user
+    app.logger.info('user authorized successfully')
     return True
 
 
