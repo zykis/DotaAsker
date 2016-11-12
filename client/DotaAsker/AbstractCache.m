@@ -31,7 +31,7 @@
 #pragma GCC diagnostic pop
 }
 
-- (NSArray*)obtainAll {
+- (NSArray*)allEntities {
     return self.entities;
 }
 

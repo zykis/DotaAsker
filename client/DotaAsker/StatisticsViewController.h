@@ -11,8 +11,11 @@
 
 @interface StatisticsViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate>
+
 - (IBAction)backButtonPushed:(id)sender;
+
 @property (strong, nonatomic) NSMutableArray* results;
+
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
-// result is NSArray of NSDictionary <NSUInteger place : User* user>
+
 @end

@@ -15,6 +15,5 @@
 - (RACReplaySubject*)obtainAll;
 - (RACReplaySubject*)update:(NSData*) entityData;
 - (RACReplaySubject*)create:(NSData*) entityData;
-- (void)remove:(unsigned long long) entityID;
 
 @end

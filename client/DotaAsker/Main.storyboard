@@ -297,17 +297,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Y-fv-Ult">
-                                <frame key="frameInset" minY="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q1Y-fv-Ult">
+                                <frame key="frameInset" minY="64"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="result_cell" id="2bH-Hy-1An">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="result_cell" id="2bH-Hy-1An">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bH-Hy-1An" id="EBB-KZ-4D2">
-                                            <frame key="frameInset" width="375" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <frame key="frameInset" minX="0.0%" minY="0.0%" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UbM-qe-Psx">
                                                     <constraints>
@@ -316,28 +316,28 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTC-aK-xJ8">
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="19"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-nQ-6wH">
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="16"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-VV-EDA">
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="KTt-4Q-G7k" firstAttribute="centerY" secondItem="m1b-VV-EDA" secondAttribute="centerY" id="3uP-W4-o3N"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="m1b-VV-EDA" secondAttribute="trailing" id="7os-de-UC3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="m1b-VV-EDA" secondAttribute="trailing" constant="16" id="7os-de-UC3"/>
                                                 <constraint firstItem="m1b-VV-EDA" firstAttribute="leading" secondItem="KTt-4Q-G7k" secondAttribute="trailing" constant="8" id="B8o-gW-DmK"/>
                                                 <constraint firstItem="m1b-VV-EDA" firstAttribute="centerY" secondItem="EBB-KZ-4D2" secondAttribute="centerY" id="Jye-XO-nQB"/>
                                                 <constraint firstItem="UbM-qe-Psx" firstAttribute="leading" secondItem="EBB-KZ-4D2" secondAttribute="leading" constant="60" id="WdP-Lj-x8E"/>
@@ -351,7 +351,7 @@
                                                 <constraint firstItem="GTC-aK-xJ8" firstAttribute="leading" secondItem="EBB-KZ-4D2" secondAttribute="leadingMargin" constant="2" id="ySh-fG-kWU"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -383,12 +383,12 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="Q1Y-fv-Ult" id="c1K-fo-Avt"/>
+                        <outlet property="tableView" destination="Q1Y-fv-Ult" id="VP6-9r-LeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AxL-Gx-Epx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2620" y="247.82608695652175"/>
+            <point key="canvasLocation" x="2685.5999999999999" y="249.62518740629687"/>
         </scene>
         <!--Match View Controller-->
         <scene sceneID="M2Z-0o-EDi">

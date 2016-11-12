@@ -64,12 +64,12 @@
                           [NSNumber numberWithUnsignedLongLong:[match ID]], @"id",
                           [NSNumber numberWithUnsignedLong:[match state]], @"state",
                           nil] mutableCopy];
-    if (bEncodeChildren) {
-        // encode rounds also
-        for (Round* r in [match rounds]) {
-            NSDictionary* roundDict = [RoundParser encode:r];
-        }
-    }
+//    if (bEncodeChildren) {
+//        // encode rounds also
+//        for (Round* r in [match rounds]) {
+//            NSDictionary* roundDict = [RoundParser encode:r];
+//        }
+//    }
     return dict;
 }
 

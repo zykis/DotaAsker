@@ -14,6 +14,5 @@
 
 - (NSArray*)allEntities;
 - (void)append: (id)entity;
-- (BOOL)equal: (id)leftEntity to:(id)rightEntity;
 
 @end

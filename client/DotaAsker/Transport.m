@@ -10,4 +10,20 @@
 
 @implementation Transport
 
+- (RACReplaySubject*)obtain:(unsigned long long)entityID {
+    assert(0);
+}
+
+- (RACReplaySubject*)obtainAll {
+    assert(0);
+}
+
+- (RACReplaySubject*)create:(NSData *)entityData {
+    assert(0);
+}
+
+- (RACReplaySubject*)update:(NSData *)entityData {
+    assert(0);
+}
+
 @end

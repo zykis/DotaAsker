@@ -70,6 +70,9 @@
 		AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */; };
 		AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196D1D9869DD00B66AAE /* UserParser.m */; };
 		AC9E062E1DD73F8C004FA4BE /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */; };
+		AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */; };
+		AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */; };
+		AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */; };
 		ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */; };
 		ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEBA01D7A2A9400C6A61E /* SignUpViewController.m */; };
 		ACB0061F1DC4C96F008CE926 /* ThemeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB0061C1DC4C96F008CE926 /* ThemeSelectedViewController.m */; };
@@ -236,6 +239,9 @@
 		AC9A196D1D9869DD00B66AAE /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
 		AC9E062C1DD73F8C004FA4BE /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@2x.png"; path = "resources/dota_icon_20x20@2x.png"; sourceTree = "<group>"; };
+		AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@3x.png"; path = "resources/dota_icon_20x20@3x.png"; sourceTree = "<group>"; };
+		AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dota_icon_20x20.png; path = resources/dota_icon_20x20.png; sourceTree = "<group>"; };
 		ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		ACACEB9F1D7A2A9400C6A61E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -565,6 +571,9 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */,
+				AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */,
+				AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */,
 				AC62E5291BF4BBDC00805285 /* dota_icon_40x40@2x.png */,
 				AC62E52A1BF4BBDC00805285 /* dota_icon_40x40@3x.png */,
 				AC62E5231BF4BB2100805285 /* dota_icon_40x40.png */,
@@ -787,6 +796,7 @@
 				AC850B861B3D92F40050954C /* icon_statistics_44@2x.png in Resources */,
 				ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */,
 				ACF41BFD1B3BC3720096598C /* settings_icon@3x.png in Resources */,
+				AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */,
 				AC75AC191BB02DF3007BA59D /* lore_child.jpg in Resources */,
 				AC75AC1F1BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg in Resources */,
 				AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */,
@@ -829,11 +839,13 @@
 				ACE8AF181B4197B9009C3A08 /* wallpaper_queen_of_pain_1.jpg in Resources */,
 				AC75AC1E1BB02DF3007BA59D /* mechanics_storm_chronosphere.jpg in Resources */,
 				ACEADA191BA051740057CD13 /* icon_logout_44@2x.png in Resources */,
+				AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */,
 				ACBD29D91B5B7C1B005AB718 /* theme_lore.png in Resources */,
 				ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */,
 				AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */,
 				ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */,
 				ACE8AF0E1B4197B9009C3A08 /* wallpaper_antimage_1.jpg in Resources */,
+				AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */,
 				ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */,
 				ACB3A1181B9F2C180083EE17 /* avatar_nature_prophet.png in Resources */,
 				ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */,
@@ -1031,7 +1043,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1070,7 +1082,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1087,7 +1099,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1107,7 +1119,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
