@@ -119,6 +119,12 @@
 }
 
 - (IBAction)surrend:(id)sender {
+    RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
+    [subject subscribeNext:^(id x) {
+        NSLog(@"Ok");
+    } error:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    }];
 }
 
 #pragma mark - VusialAppearence

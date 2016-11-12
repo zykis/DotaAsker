@@ -27,4 +27,6 @@
 - (NSUInteger)scoreForMatch:(Match*)m andUser:(User*)u;
 - (User*)nextMoveUserInMatch:(Match*)match;
 
+- (RACReplaySubject*)surrendAtMatch: (Match*)match;
+
 @end

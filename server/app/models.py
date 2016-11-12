@@ -275,6 +275,28 @@ class Match(Base):
                     i -= 1
             return self.rounds[i].next_move_user
 
+    def surrendMatch(self, surrender = None):
+        if surrender is None:
+            app.logger.critical('some1 trying to surrend')
+            return
+        self.state = MATCH_FINISHED
+        winner = None
+        for u in self.users:
+            if u is not surrender:
+                winner = u
+
+        if winner is None:
+            app.logger.critical("can't find winner for surrended match")
+            return
+
+        surrender.mmr -= 25
+        winner.mmr += 25
+        db.session.add(self)
+        db.session.add(surrender)
+        db.session.add(winner)
+        db.session.commit()
+
+
     def elapseMatch(self):
         next_move_user = self.next_move_user()
         if self.state != MATCH_RUNNING:
@@ -286,9 +308,21 @@ class Match(Base):
         else:
             # nextMoveUser LOST cause didn't answer or reply
             app.logger.debug('user {} losing match due to inactive'.format(next_move_user.__repr__()))
-            next_move_user.mmr
+            winner = None
+            for u in self.users:
+                if u is not next_move_user:
+                    winner = u
+
+            if winner is None:
+                app.logger.critical('no winner for timeelapsed match')
+                return
+
+            next_move_user.mmr -= 25
+            winner += 25
             self.state = MATCH_TIME_ELAPSED
             db.session.add(self)
+            db.session.add(next_move_user)
+            db.session.add(winner)
             db.session.commit()
 
     def finish(self):

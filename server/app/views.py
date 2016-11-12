@@ -40,10 +40,17 @@ def sendFriendRequest():
         resp.mimetype = 'application/json'
         return resp
 
-@app.route('/surrend')
+@app.route('/surrend', methods=['POST'])
 @auth.login_required
 def surrend():
-    pass
+    surrender = g.user
+    match_id = request.json['match_id']
+    match = Match.query.get(match_id)
+    match.surrendMatch(surrender = surrender)
+    resp = make_response(json.dumps({'status':'ok'}))
+    resp.status_code = 200
+    resp.mimetype = 'application/json'
+    return resp
 
 @app.route('/users/<int:id>', methods=['GET'])
 def get_user(id):

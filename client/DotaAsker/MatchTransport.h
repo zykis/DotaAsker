@@ -15,5 +15,6 @@
 
 - (RACReplaySubject*)findMatchForUser:(NSString*)accessToken;
 - (RACReplaySubject*)finishMatch:(NSData*)matchData;
+- (RACReplaySubject*)surrendAtMatchData: (NSData*)matchData andAccessToken:(NSString*)accessToken;
 
 @end

@@ -13,6 +13,7 @@
 #import "Match.h"
 #import "UserAnswer.h"
 #import "Answer.h"
+#import "AuthorizationService.h"
 
 @implementation MatchService
 
@@ -96,6 +97,24 @@
     User* nextMoveUser  = [[[match rounds] objectAtIndex:i] nextMoveUser];
     assert(nextMoveUser);
     return nextMoveUser;
+}
+
+- (RACReplaySubject*)surrendAtMatch: (Match*)match {
+    RACReplaySubject* subject = [RACReplaySubject subject];
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedLongLong:match.ID], @"match_id", nil];
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    
+    [[_transport surrendAtMatchData:data andAccessToken:[_authorizationService accessToken]] subscribeNext:^(id x) {
+        NSLog(@"Surrended");
+        [subject sendNext:x];
+        [subject sendCompleted];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+        NSLog(@"Error while trying to surrend");
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
 }
 
 @end
