@@ -14,5 +14,6 @@
 - (RACReplaySubject*)obtainWithAccessToken:(NSString *)accessToken;
 - (RACReplaySubject*)obtain:(unsigned long long)entityID;
 - (RACReplaySubject*)sendFriendtoUserData: (NSData*)to_user_data withAccessToken: (NSString*)accessToken;
+- (RACReplaySubject*)top100withAccessToken: (NSString*)accessToken;
 
 @end

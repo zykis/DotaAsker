@@ -87,4 +87,29 @@
     return subject;
 }
 
+- (RACReplaySubject*)top100 {
+    RACReplaySubject* subject = [RACReplaySubject subject];
+    
+    [[_transport top100withAccessToken:[_authorizationService accessToken]] subscribeNext:^(id x) {
+        NSDictionary* dict = x;
+        for (NSString* key in [dict allKeys]) {
+            NSLog(@"%@", key);
+            NSString* userJSONString = dict[key];
+            NSData* userData = [userJSONString dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary* userDict = [NSJSONSerialization JSONObjectWithData:userData options:kNilOptions error:nil];
+            
+            User* u = [UserParser parse:userDict andChildren:NO];
+            NSDictionary* newDict = [NSDictionary dictionaryWithObject:u forKey:key];
+            [subject sendNext:newDict];
+        }
+        [subject sendCompleted];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+        NSLog(@"Error while senting friend request");
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
 @end

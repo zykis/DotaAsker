@@ -16,6 +16,7 @@ import json
 import random
 import string
 from app import mail
+from sqlalchemy import desc
 
 auth = HTTPBasicAuth()
 
@@ -39,6 +40,34 @@ def sendFriendRequest():
         resp.status_code = 200
         resp.mimetype = 'application/json'
         return resp
+
+@app.route('/top100')
+@auth.login_required
+def top100():
+    user = g.user
+    # [1] Getting all users, sorted by MMR. Descending order
+    users = User.query.order_by(desc(User.mmr)).all()
+
+    # [2] Getting index of our user in this array
+    i = users.index(user)
+    app.logger.info('Our user on {} place'.format(i))
+
+    # [3] Fill dictionary, with 50 users higher and 49 users lower current one.
+    firstIndex = max(i - 50, 0)
+    lastIndex = min(i + 50, len(users))
+
+    users_dict = dict()
+
+    for ind in range(firstIndex, lastIndex):
+        schema = UserSchema(exclude=('matches', 'friends'))
+        user_dict = schema.dumps(users[ind]).data
+        users_dict.__setitem__(ind + 1, user_dict)
+
+    # [4] Also add 1-3 placed guys if not already presented
+    resp_json = json.dumps(users_dict)
+    resp = make_response(resp_json)
+    resp.mimetype = 'application/json'
+    return resp
 
 @app.route('/surrend', methods=['POST'])
 @auth.login_required

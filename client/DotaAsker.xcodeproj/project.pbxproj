@@ -69,6 +69,7 @@
 		AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19691D9869DD00B66AAE /* ThemeParser.m */; };
 		AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */; };
 		AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196D1D9869DD00B66AAE /* UserParser.m */; };
+		AC9E062E1DD73F8C004FA4BE /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */; };
 		ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */; };
 		ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEBA01D7A2A9400C6A61E /* SignUpViewController.m */; };
 		ACB0061F1DC4C96F008CE926 /* ThemeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB0061C1DC4C96F008CE926 /* ThemeSelectedViewController.m */; };
@@ -233,6 +234,8 @@
 		AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerParser.m; sourceTree = "<group>"; };
 		AC9A196C1D9869DD00B66AAE /* UserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserParser.h; sourceTree = "<group>"; };
 		AC9A196D1D9869DD00B66AAE /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
+		AC9E062C1DD73F8C004FA4BE /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		ACACEB9F1D7A2A9400C6A61E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC9E062C1DD73F8C004FA4BE /* StatisticsViewController.h */,
+				AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */,
 				ACC5A1171DC4D2B300F469ED /* QuestionViewController.h */,
 				ACC5A1181DC4D2B300F469ED /* QuestionViewController.m */,
 				ACB0061B1DC4C96F008CE926 /* ThemeSelectedViewController.h */,
@@ -928,6 +933,7 @@
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
 				AC7B679A1DA69FFF00351887 /* Transport.m in Sources */,
 				AC138C101D948EC30023EFF3 /* Helper.m in Sources */,
+				AC9E062E1DD73F8C004FA4BE /* StatisticsViewController.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */,
 				ACB006201DC4C96F008CE926 /* ThemeSelectionViewController.m in Sources */,

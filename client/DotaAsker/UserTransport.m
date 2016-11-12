@@ -13,6 +13,7 @@
 #define ENDPOINT_USER @"http://127.0.0.1:5000/user"
 #define ENDPOINT_PLAYER @"http://127.0.0.1:5000/MainViewController"
 #define ENDPOINT_SEND_FRIEND_REQUEST @"http://127.0.0.1:5000/sendFriendRequest"
+#define ENDPOINT_TOP100 @"http://127.0.0.1:5000/top100"
 
 @implementation UserTransport
 
@@ -93,6 +94,37 @@
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:to_user_data];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    return subject;
+}
+
+- (RACReplaySubject*)top100withAccessToken:(NSString *)accessToken {
+    RACReplaySubject* subject = [RACReplaySubject subject];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_TOP100 parameters:nil error:nil] mutableCopy];
+    
+    // Forming string with credentials 'myusername:mypassword'
+    NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];
+    // Getting data from token
+    NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
+    // Encoding data with base64 and converting back to NSString
+    NSString* authStrData = [[NSString alloc] initWithData:[authData base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSASCIIStringEncoding];
+    // Forming Basic Authorization string Header
+    NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
+    // Assigning it to request
+    [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

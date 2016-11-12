@@ -26,5 +26,6 @@
 - (RACReplaySubject*)obtain: (unsigned long long) ID;
 - (RACReplaySubject*)obtainWithAccessToken:(NSString*)accessToken;
 - (RACReplaySubject*)sendFriendRequestToUser:(User*)to_user;
+- (RACReplaySubject*)top100;
 
 @end
