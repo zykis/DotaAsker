@@ -11,4 +11,8 @@
 
 @interface SettingViewController : UIViewController
 - (IBAction)backButtonPushed:(id)sender;
+- (void)avatarsPushed;
+- (void)questionPushed;
+- (void)premiumPushed;
+- (void)top100Pushed;
 @end

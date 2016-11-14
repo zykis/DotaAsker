@@ -63,6 +63,7 @@ class Question(Base):
 class UserAnswer(Base):
     __tablename__ = 'user_answers'
     id = db.Column(db.Integer, primary_key=True)
+    sec_for_answer = db.Column(db.Integer, default=30)
 
     # relations
     # answer_id might be 0. The reason is, if the posted UserAnswer is timed out or we just have to
@@ -102,6 +103,8 @@ class User(Base):
     avatar_image_name = db.Column(db.String(50), nullable=False, default='avatar_default.png')
     total_correct_answers = db.Column(db.Integer, nullable=True, default=0)
     total_incorrect_answers = db.Column(db.Integer, nullable=True, default=0)
+    total_matches_won = db.Column(db.Integer, default=0)
+    total_matches_lost = db.Column(db.Integer, default=0)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     # relations
     # TODO: divide matches onto: current_matches & recent_matches

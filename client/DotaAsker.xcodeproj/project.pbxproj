@@ -13,6 +13,7 @@
 		AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C091D9485FD0023EFF3 /* Player.m */; };
 		AC138C101D948EC30023EFF3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* Helper.m */; };
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
+		AC1791F91DDA5F2200187D59 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */; };
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
@@ -69,10 +70,19 @@
 		AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19691D9869DD00B66AAE /* ThemeParser.m */; };
 		AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */; };
 		AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A196D1D9869DD00B66AAE /* UserParser.m */; };
-		AC9E062E1DD73F8C004FA4BE /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */; };
+		AC9E062E1DD73F8C004FA4BE /* Top100ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9E062D1DD73F8C004FA4BE /* Top100ViewController.m */; };
 		AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */; };
 		AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */; };
 		AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */; };
+		ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAC566F1DD771720002B1F5 /* SettingViewController.m */; };
+		ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */; };
+		ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */; };
+		ACAC56771DD7FC830002B1F5 /* premium64.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56751DD7FC830002B1F5 /* premium64.png */; };
+		ACAC56781DD7FC830002B1F5 /* question64.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56761DD7FC830002B1F5 /* question64.png */; };
+		ACAC567A1DD91FD00002B1F5 /* premium128.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56791DD91FD00002B1F5 /* premium128.png */; };
+		ACAC567C1DD921750002B1F5 /* avatar128.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC567B1DD921750002B1F5 /* avatar128.png */; };
+		ACAC567E1DD922160002B1F5 /* question128.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC567D1DD922160002B1F5 /* question128.png */; };
+		ACAC56801DD943060002B1F5 /* avatar2-128.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC567F1DD943060002B1F5 /* avatar2-128.png */; };
 		ACACEBA11D7A2A9400C6A61E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */; };
 		ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACACEBA01D7A2A9400C6A61E /* SignUpViewController.m */; };
 		ACB0061F1DC4C96F008CE926 /* ThemeSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB0061C1DC4C96F008CE926 /* ThemeSelectedViewController.m */; };
@@ -151,6 +161,8 @@
 		AC138C0F1D948EC30023EFF3 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		AC161A4F1DAB01F400819AF7 /* MatchTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchTransport.h; sourceTree = "<group>"; };
 		AC161A501DAB01F400819AF7 /* MatchTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTransport.m; sourceTree = "<group>"; };
+		AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theme_tournaments.png; path = resources/theme_tournaments.png; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
@@ -237,11 +249,21 @@
 		AC9A196B1D9869DD00B66AAE /* UserAnswerParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswerParser.m; sourceTree = "<group>"; };
 		AC9A196C1D9869DD00B66AAE /* UserParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserParser.h; sourceTree = "<group>"; };
 		AC9A196D1D9869DD00B66AAE /* UserParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserParser.m; sourceTree = "<group>"; };
-		AC9E062C1DD73F8C004FA4BE /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
-		AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AC9E062C1DD73F8C004FA4BE /* Top100ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Top100ViewController.h; sourceTree = "<group>"; };
+		AC9E062D1DD73F8C004FA4BE /* Top100ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Top100ViewController.m; sourceTree = "<group>"; };
 		AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@2x.png"; path = "resources/dota_icon_20x20@2x.png"; sourceTree = "<group>"; };
 		AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@3x.png"; path = "resources/dota_icon_20x20@3x.png"; sourceTree = "<group>"; };
 		AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dota_icon_20x20.png; path = resources/dota_icon_20x20.png; sourceTree = "<group>"; };
+		ACAC566E1DD771720002B1F5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		ACAC566F1DD771720002B1F5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_76x76@2x.png"; path = "resources/dota_icon_76x76@2x.png"; sourceTree = "<group>"; };
+		ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_83.5x83.5@2x.png"; path = "resources/dota_icon_83.5x83.5@2x.png"; sourceTree = "<group>"; };
+		ACAC56751DD7FC830002B1F5 /* premium64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = premium64.png; path = resources/premium64.png; sourceTree = "<group>"; };
+		ACAC56761DD7FC830002B1F5 /* question64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = question64.png; path = resources/question64.png; sourceTree = "<group>"; };
+		ACAC56791DD91FD00002B1F5 /* premium128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = premium128.png; path = resources/premium128.png; sourceTree = "<group>"; };
+		ACAC567B1DD921750002B1F5 /* avatar128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = avatar128.png; path = resources/avatar128.png; sourceTree = "<group>"; };
+		ACAC567D1DD922160002B1F5 /* question128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = question128.png; path = resources/question128.png; sourceTree = "<group>"; };
+		ACAC567F1DD943060002B1F5 /* avatar2-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar2-128.png"; path = "resources/avatar2-128.png"; sourceTree = "<group>"; };
 		ACACEB9D1D7A2A9400C6A61E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		ACACEB9E1D7A2A9400C6A61E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		ACACEB9F1D7A2A9400C6A61E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -467,8 +489,10 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC9E062C1DD73F8C004FA4BE /* StatisticsViewController.h */,
-				AC9E062D1DD73F8C004FA4BE /* StatisticsViewController.m */,
+				ACAC566E1DD771720002B1F5 /* SettingViewController.h */,
+				ACAC566F1DD771720002B1F5 /* SettingViewController.m */,
+				AC9E062C1DD73F8C004FA4BE /* Top100ViewController.h */,
+				AC9E062D1DD73F8C004FA4BE /* Top100ViewController.m */,
 				ACC5A1171DC4D2B300F469ED /* QuestionViewController.h */,
 				ACC5A1181DC4D2B300F469ED /* QuestionViewController.m */,
 				ACB0061B1DC4C96F008CE926 /* ThemeSelectedViewController.h */,
@@ -487,6 +511,8 @@
 				AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */,
 				AC0EE5681DD3D38B005EE564 /* PasswordRemindViewController.h */,
 				AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */,
+				AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */,
+				AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -571,6 +597,14 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				ACAC567F1DD943060002B1F5 /* avatar2-128.png */,
+				ACAC567D1DD922160002B1F5 /* question128.png */,
+				ACAC567B1DD921750002B1F5 /* avatar128.png */,
+				ACAC56791DD91FD00002B1F5 /* premium128.png */,
+				ACAC56751DD7FC830002B1F5 /* premium64.png */,
+				ACAC56761DD7FC830002B1F5 /* question64.png */,
+				ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */,
+				ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */,
 				AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */,
 				AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */,
 				AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */,
@@ -792,6 +826,7 @@
 			files = (
 				ACB3A1191B9F2C180083EE17 /* avatar_tiny.png in Resources */,
 				ACDB6DEB1B554A2F00E6256D /* cell2.png in Resources */,
+				ACAC56771DD7FC830002B1F5 /* premium64.png in Resources */,
 				AC62E51C1BF4B8E300805285 /* dota_icon_29x29@3x.png in Resources */,
 				AC850B861B3D92F40050954C /* icon_statistics_44@2x.png in Resources */,
 				ACF41C081B3C0F950096598C /* versus_image_48x48.png in Resources */,
@@ -809,6 +844,7 @@
 				ACE8AF171B4197B9009C3A08 /* wallpaper_kent_vs_naga.jpg in Resources */,
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
 				AC62E5201BF4B96900805285 /* dota_icon_60x60.png in Resources */,
+				ACAC567E1DD922160002B1F5 /* question128.png in Resources */,
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
 				AC75ABFC1BAFEBC5007BA59D /* avatar_default.png in Resources */,
 				AC62E5221BF4B96900805285 /* dota_icon_60x60@3x.png in Resources */,
@@ -817,6 +853,7 @@
 				AC75AC1A1BB02DF3007BA59D /* lore_invoker_race.jpg in Resources */,
 				ACE8AF121B4197B9009C3A08 /* wallpaper_dragon_knight_1.jpg in Resources */,
 				ACE8AF131B4197B9009C3A08 /* wallpaper_drow_ranger_1.jpg in Resources */,
+				ACAC567A1DD91FD00002B1F5 /* premium128.png in Resources */,
 				AC75AC1D1BB02DF3007BA59D /* mechanics_sacred_arrow.jpg in Resources */,
 				AC75AC201BB02DF3007BA59D /* tournaments_TI1_winner.jpg in Resources */,
 				ACE8AF161B4197B9009C3A08 /* wallpaper_juggernaut_2.jpg in Resources */,
@@ -824,7 +861,9 @@
 				ACE8AF111B4197B9009C3A08 /* wallpaper_doom_1.jpg in Resources */,
 				ACB3A1161B9F2C180083EE17 /* avatar_bristle.png in Resources */,
 				AC62E5261BF4BB2100805285 /* dota_icon_40x40.png in Resources */,
+				ACAC56781DD7FC830002B1F5 /* question64.png in Resources */,
 				ACE8AF151B4197B9009C3A08 /* wallpaper_juggernaut_1.jpg in Resources */,
+				ACAC56801DD943060002B1F5 /* avatar2-128.png in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
 				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
 				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
@@ -840,11 +879,14 @@
 				AC75AC1E1BB02DF3007BA59D /* mechanics_storm_chronosphere.jpg in Resources */,
 				ACEADA191BA051740057CD13 /* icon_logout_44@2x.png in Resources */,
 				AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */,
+				ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */,
 				ACBD29D91B5B7C1B005AB718 /* theme_lore.png in Resources */,
+				ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */,
 				ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */,
 				AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */,
 				ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */,
 				ACE8AF0E1B4197B9009C3A08 /* wallpaper_antimage_1.jpg in Resources */,
+				ACAC567C1DD921750002B1F5 /* avatar128.png in Resources */,
 				AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */,
 				ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */,
 				ACB3A1181B9F2C180083EE17 /* avatar_nature_prophet.png in Resources */,
@@ -915,6 +957,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC1791F91DDA5F2200187D59 /* StatisticsViewController.m in Sources */,
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
 				AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */,
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
@@ -945,7 +988,8 @@
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
 				AC7B679A1DA69FFF00351887 /* Transport.m in Sources */,
 				AC138C101D948EC30023EFF3 /* Helper.m in Sources */,
-				AC9E062E1DD73F8C004FA4BE /* StatisticsViewController.m in Sources */,
+				AC9E062E1DD73F8C004FA4BE /* Top100ViewController.m in Sources */,
+				ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
 				AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */,
 				ACB006201DC4C96F008CE926 /* ThemeSelectionViewController.m in Sources */,

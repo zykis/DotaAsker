@@ -15,6 +15,6 @@
 @property (strong, nonatomic) MainViewModel* viewModel;
 - (IBAction)findMatchPressed;
 - (IBAction)logout;
-//@property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)showStatistics;
 
 @end

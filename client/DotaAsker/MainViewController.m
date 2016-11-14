@@ -310,6 +310,10 @@
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
+- (IBAction)showStatistics {
+    [self performSegueWithIdentifier:@"statistics" sender:self];
+}
+
 //- (void)
 
 @end
