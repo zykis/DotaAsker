@@ -8,6 +8,7 @@ class UserAnswerSchema(Schema):
     answer = fields.Nested(AnswerSchema)
     user = fields.Nested(UserSchema, exclude=('matches', 'friends'))
     round = fields.Nested('RoundSchema', only=('id'))
+    sec_for_answer = fields.Int()
 
     @post_load
     def make_user_answer(self, data):
@@ -27,6 +28,8 @@ class UserAnswerSchema(Schema):
             ua = UserAnswer.query.get(data['id'])
 
             answerDict = data['answer']
+
             ua.answer_id = answerDict['id']
+            ua.sec_for_answer = data['sec_for_answer']
 
             return ua

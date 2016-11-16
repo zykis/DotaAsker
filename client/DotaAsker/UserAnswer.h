@@ -16,6 +16,7 @@
 @interface UserAnswer: NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) NSUInteger secForAnswer;
 @property (strong, nonatomic) Answer* relatedAnswer;
 @property (strong, nonatomic) Round* relatedRound;
 @property (strong, nonatomic) User* relatedUser;

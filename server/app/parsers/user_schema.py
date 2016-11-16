@@ -14,6 +14,8 @@ class UserSchema(Schema):
     wallpapers_image_name = fields.Str()
     total_correct_answers = fields.Int()
     total_incorrect_answers = fields.Int()
+    total_matches_won = fields.Int()
+    total_matches_lost = fields.Int()
     role = fields.Int()
     matches = fields.Nested('MatchSchema', many=True)
     friends = fields.Nested('UserSchema', many=True, exclude=('matches', 'friends'))

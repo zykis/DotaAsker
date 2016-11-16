@@ -88,9 +88,9 @@
     userAnswer.relatedRound = relatedRound;
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.relatedUser = relatedUser;
+    userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
     userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
     
-    [[_round userAnswers] addObject:userAnswer];
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
         NSLog(@"Next");
@@ -122,6 +122,7 @@
     userAnswer.relatedRound = relatedRound;
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.relatedUser = relatedUser;
+    userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
     userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
     
     [[_round userAnswers] addObject:userAnswer];
@@ -148,7 +149,7 @@
                                                      selector:@selector(timeElapsed)
                                                      userInfo:nil
                                                       repeats:NO];
-            self.secondsRemain = 30.0;
+            self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
             // update label with timer
             _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
         });
@@ -277,6 +278,7 @@
         userAnswer.relatedRound = relatedRound;
         userAnswer.relatedAnswer = relatedAnswer;
         userAnswer.relatedUser = relatedUser;
+        userAnswer.secForAnswer = 30;
         RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
         [subject subscribeNext:^(id x) {
             // We could store an IDs of UserAnswers and just update them

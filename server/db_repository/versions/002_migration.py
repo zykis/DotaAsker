@@ -6,8 +6,8 @@ from migrate.changeset import schema
 pre_meta = MetaData()
 post_meta = MetaData()
 user_answers = Table('user_answers', post_meta,
-    Column('created_on', DateTime, default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10936cf10; now>)),
-    Column('updated_on', DateTime, onupdate=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10937e210; now>), default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10937e110; now>)),
+    Column('created_on', DateTime, default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x111449f10; now>)),
+    Column('updated_on', DateTime, onupdate=ColumnDefault(<sqlalchemy.sql.functions.now at 0x11145b210; now>), default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x11145b110; now>)),
     Column('id', Integer, primary_key=True, nullable=False),
     Column('sec_for_answer', Integer, default=ColumnDefault(30)),
     Column('answer_id', Integer),
@@ -16,8 +16,8 @@ user_answers = Table('user_answers', post_meta,
 )
 
 users = Table('users', post_meta,
-    Column('created_on', DateTime, default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10936cf10; now>)),
-    Column('updated_on', DateTime, onupdate=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10937e210; now>), default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x10937e110; now>)),
+    Column('created_on', DateTime, default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x111449f10; now>)),
+    Column('updated_on', DateTime, onupdate=ColumnDefault(<sqlalchemy.sql.functions.now at 0x11145b210; now>), default=ColumnDefault(<sqlalchemy.sql.functions.now at 0x11145b110; now>)),
     Column('id', Integer, primary_key=True, nullable=False),
     Column('username', Unicode(length=50), nullable=False),
     Column('password_hash', String(length=128)),
