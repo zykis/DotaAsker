@@ -168,12 +168,14 @@ class Database_queries:
                     user_answer.round = r
                     user_answer.user = first_match.users[0]
                     user_answer.answer = random.choice(quest.answers)
+                    user_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user_answer)
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = first_match.users[1]
                     user2_answer.answer = random.choice(quest.answers)
+                    user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
         first_match.state = MATCH_FINISHED
         # [!1]
@@ -188,12 +190,14 @@ class Database_queries:
                     user_answer.round = r
                     user_answer.user = second_match.users[0]
                     user_answer.answer = random.choice(quest.answers)
+                    user_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user_answer)
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
                     user2_answer.user = second_match.users[1]
                     user2_answer.answer = random.choice(quest.answers)
+                    user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
         # [!2]
 
@@ -208,6 +212,7 @@ class Database_queries:
                     user_answer.user = third_match.users[0]
                     user_answer.question = quest
                     user_answer.answer = random.choice(quest.answers)
+                    user_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user_answer)
 
                     user2_answer = UserAnswer()
@@ -215,6 +220,7 @@ class Database_queries:
                     user2_answer.user = third_match.users[1]
                     user2_answer.question = quest
                     user2_answer.answer = random.choice(quest.answers)
+                    user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
         third_match.state = MATCH_TIME_ELAPSED
         # [!3]

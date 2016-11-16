@@ -399,8 +399,9 @@ class Match(Base):
         winner.total_matches_won += 1
         loser.total_matches_lost += 1
 
-        # [7.2] gpm
-        user1.gpm = user1.total_answers / float(user1.total_time_for_answers)
+        # [7.2] gpm // - 30 GPM per second
+        user1.gpm = (user1.total_answers * 1000 - float(user1.total_time_for_answers * 30)) / user1.total_answers
+        user2.gpm = (user2.total_answers * 1000 - float(user2.total_time_for_answers * 30)) / user2.total_answers
 
         # [8] calculating users KDA
         user1.kda = user1.total_correct_answers / float(user1.total_incorrect_answers)
