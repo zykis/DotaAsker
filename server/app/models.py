@@ -105,6 +105,8 @@ class User(Base):
     total_incorrect_answers = db.Column(db.Integer, nullable=True, default=0)
     total_matches_won = db.Column(db.Integer, default=0)
     total_matches_lost = db.Column(db.Integer, default=0)
+    total_time_for_answers = db.Column(db.Integer, default=0)
+    total_answers = db.Column(db.Integer, default=0)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     # relations
     # TODO: divide matches onto: current_matches & recent_matches
@@ -353,6 +355,12 @@ class Match(Base):
         user2CorrectAnswers = 0
         for r in self.rounds:
             for ua in r.user_answers:
+                if ua.user == user1:
+                    user1.total_time_for_answers += ua.sec_for_answer
+                    user1.total_answers += 1
+                elif ua.user == user2:
+                    user2.total_time_for_answers += ua.sec_for_answer
+                    user2.total_answers += 1
                 if ua.user == user1 and (ua.answer is not None):
                     if  ua.answer.is_correct:
                         user1CorrectAnswers += 1
@@ -376,16 +384,23 @@ class Match(Base):
         mmr_gain = 25
 
         # [5] decrease mmr of loser
-        loser.mmr -= 25
+        loser.mmr -= mmr_gain
 
         # [6] increase mmr of winner
-        winner.mmr += 25
+        winner.mmr += mmr_gain
 
         # [7] changing total correct and incorrect answers for users
         user1.total_correct_answers += user1CorrectAnswers
         user1.total_incorrect_answers += 18 - user1CorrectAnswers
         user2.total_correct_answers += user2CorrectAnswers
         user2.total_incorrect_answers += 18 - user2CorrectAnswers
+
+        # [7.1] total matches
+        winner.total_matches_won += 1
+        loser.total_matches_lost += 1
+
+        # [7.2] gpm
+        user1.gpm = user1.total_answers / float(user1.total_time_for_answers)
 
         # [8] calculating users KDA
         user1.kda = user1.total_correct_answers / float(user1.total_incorrect_answers)
