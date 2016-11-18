@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
-#define ENDPOINT_USER @"http://127.0.0.1:5000/user"
+#define ENDPOINT_USER @"http://127.0.0.1:5000/users/"
 #define ENDPOINT_PLAYER @"http://127.0.0.1:5000/MainViewController"
 #define ENDPOINT_SEND_FRIEND_REQUEST @"http://127.0.0.1:5000/sendFriendRequest"
 #define ENDPOINT_TOP100 @"http://127.0.0.1:5000/top100"
@@ -20,8 +20,8 @@
 - (RACReplaySubject*)obtain:(unsigned long long)entityID {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSDictionary* parameters = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithUnsignedLongLong:entityID], @"id", nil];
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_USER parameters:parameters error:nil] mutableCopy];
+    NSString* requestString = [NSString stringWithFormat:@"%@%llu", ENDPOINT_USER, entityID];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

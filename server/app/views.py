@@ -89,7 +89,10 @@ def get_user(id):
     schema = UserSchema(exclude=('matches', 'friends'))
     res = schema.dumps(user)
     if not res.errors:
-        return jsonify({'user' : res.data})
+        resp = make_response(res.data)
+        resp.status_code = 200
+        resp.mimetype = 'application/json'
+        return resp
     else:
         # TODO: Sending server errors to client
         abort(500)

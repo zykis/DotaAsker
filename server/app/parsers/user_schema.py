@@ -16,6 +16,7 @@ class UserSchema(Schema):
     total_incorrect_answers = fields.Int()
     total_matches_won = fields.Int()
     total_matches_lost = fields.Int()
+    total_time_for_answers = fields.Int()
     role = fields.Int()
     matches = fields.Nested('MatchSchema', many=True)
     friends = fields.Nested('UserSchema', many=True, exclude=('matches', 'friends'))

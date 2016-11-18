@@ -106,7 +106,6 @@ class User(Base):
     total_matches_won = db.Column(db.Integer, default=0)
     total_matches_lost = db.Column(db.Integer, default=0)
     total_time_for_answers = db.Column(db.Integer, default=0)
-    total_answers = db.Column(db.Integer, default=0)
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     # relations
     # TODO: divide matches onto: current_matches & recent_matches
@@ -245,6 +244,7 @@ class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
     state = db.Column(db.Integer, default=0)
+    mmr_gain = db.Column(db.Integer, default=0)
     # relations
     users = db.relationship('User', secondary='users_matches')
 
@@ -323,7 +323,7 @@ class Match(Base):
                 return
 
             next_move_user.mmr -= 25
-            winner += 25
+            winner.mmr += 25
             self.state = MATCH_TIME_ELAPSED
             db.session.add(self)
             db.session.add(next_move_user)
@@ -357,10 +357,8 @@ class Match(Base):
             for ua in r.user_answers:
                 if ua.user == user1:
                     user1.total_time_for_answers += ua.sec_for_answer
-                    user1.total_answers += 1
                 elif ua.user == user2:
                     user2.total_time_for_answers += ua.sec_for_answer
-                    user2.total_answers += 1
                 if ua.user == user1 and (ua.answer is not None):
                     if  ua.answer.is_correct:
                         user1CorrectAnswers += 1
@@ -382,6 +380,7 @@ class Match(Base):
 
         # [4] calculate mmr gaining
         mmr_gain = 25
+        self.mmr_gain = mmr_gain
 
         # [5] decrease mmr of loser
         loser.mmr -= mmr_gain
@@ -400,8 +399,8 @@ class Match(Base):
         loser.total_matches_lost += 1
 
         # [7.2] gpm // - 30 GPM per second
-        user1.gpm = (user1.total_answers * 1000 - float(user1.total_time_for_answers * 30)) / user1.total_answers
-        user2.gpm = (user2.total_answers * 1000 - float(user2.total_time_for_answers * 30)) / user2.total_answers
+        user1.gpm = ((user1.total_correct_answers + user1.total_incorrect_answers) * 1000 - float(user1.total_time_for_answers * 30)) / (user1.total_correct_answers + user1.total_incorrect_answers)
+        user2.gpm = ((user2.total_correct_answers + user2.total_incorrect_answers) * 1000 - float(user2.total_time_for_answers * 30)) / (user2.total_correct_answers + user2.total_incorrect_answers)
 
         # [8] calculating users KDA
         user1.kda = user1.total_correct_answers / float(user1.total_incorrect_answers)
@@ -416,8 +415,6 @@ class Match(Base):
         app.logger.info('Stats updated successfully')
 
         return self
-        # [10] GMP ?!? depends on how quick user answering
-        pass
 
     def __repr__(self):
         return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)

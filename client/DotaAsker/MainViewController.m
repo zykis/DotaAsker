@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "MatchViewController.h"
+#import "StatisticsViewController.h"
 #import "MainViewModel.h"
 #import "ServiceLayer.h"
 #import "Helper.h"
@@ -283,6 +284,10 @@
         else if ([indexPath section] == SECTION_WAITING_MATCHES) {
             destVC.matchID = [[_viewModel waitingMatchAtRow:[indexPath row]] ID];
         }
+    }
+    else if ([[segue identifier] isEqualToString:@"statistics"]) {
+        StatisticsViewController* destVC = [segue destinationViewController];
+        [destVC setUserID:[[Player instance] ID]];
     }
 }
 

@@ -1314,9 +1314,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yUa-wp-aDK" propertyAccessControl="none">
-                                <frame key="frameInset" minY="20" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yUa-wp-aDK" propertyAccessControl="none">
                                 <color key="barTintColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textAttributes key="titleTextAttributes">
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1332,13 +1330,177 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnH-Pn-L0K">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9IG-Yq-I65">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="QYI-Z0-iq9"/>
+                                    <constraint firstAttribute="width" secondItem="9IG-Yq-I65" secondAttribute="height" multiplier="1:1" id="bDS-CF-Xj1"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-gk-fJs">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqq-ab-Ip3">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPM:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcv-hn-K5k">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-Bu-tp0">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-xq-S0X">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="671.56" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-FD-T6A">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVERAGE ANSWER TIME:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcq-NU-hAe">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="79" id="67b-qv-rDB"/>
+                                    <constraint firstAttribute="height" constant="50" id="6Z5-fM-MEy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54.56%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-aL-PNu">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CORRECT ANSWERS:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIT-Sx-4iI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="knh-bz-8ey"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hg-lH-pJc">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHART" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-eO-kOn">
+                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.46210413490000002" blue="0.7158895918" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ofo-Gv-T8T"/>
+                                    <constraint firstItem="V13-eO-kOn" firstAttribute="centerY" secondItem="5Hg-lH-pJc" secondAttribute="centerY" id="ia9-rR-vu1"/>
+                                    <constraint firstItem="V13-eO-kOn" firstAttribute="centerX" secondItem="5Hg-lH-pJc" secondAttribute="centerX" id="iny-yK-NW4"/>
+                                    <constraint firstAttribute="width" secondItem="V13-eO-kOn" secondAttribute="height" multiplier="50:11" id="vNU-we-9cR"/>
+                                    <constraint firstAttribute="width" secondItem="5Hg-lH-pJc" secondAttribute="height" multiplier="1:1" id="wBz-Om-zmF"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-Ce-L6J">
+                                <color key="backgroundColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-Qg-Y3M">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINS:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-8f-8Lu">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOST:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-vn-VGT">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksI-p2-x0l">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="211" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-61-jsw">
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="5Hg-lH-pJc" firstAttribute="centerX" secondItem="9IG-Yq-I65" secondAttribute="centerX" id="1gk-DN-R3L"/>
+                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="centerY" secondItem="vrU-FD-T6A" secondAttribute="centerY" id="2WJ-QJ-jfN"/>
+                            <constraint firstItem="V7O-vn-VGT" firstAttribute="centerY" secondItem="OlN-61-jsw" secondAttribute="centerY" id="3TS-KH-xq2"/>
+                            <constraint firstItem="V7O-vn-VGT" firstAttribute="leading" secondItem="XnP-8f-8Lu" secondAttribute="leading" id="3pX-AE-iRf"/>
+                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="centerY" secondItem="ksI-p2-x0l" secondAttribute="centerY" id="4r4-IF-Nbn"/>
+                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="leading" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="6E8-3z-U12"/>
+                            <constraint firstItem="mbP-Bu-tp0" firstAttribute="trailing" secondItem="wWg-xq-S0X" secondAttribute="trailing" id="7X5-kZ-eDk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aKc-Ce-L6J" secondAttribute="trailing" id="BTO-BT-KQx"/>
+                            <constraint firstItem="rcK-aL-PNu" firstAttribute="trailing" secondItem="AGX-Qg-Y3M" secondAttribute="trailing" id="CUi-Wu-kOb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9IG-Yq-I65" secondAttribute="trailing" id="EOH-LZ-gCt"/>
+                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="top" secondItem="XCV-gk-fJs" secondAttribute="bottom" constant="-2" id="Fbg-VM-1a4"/>
+                            <constraint firstItem="9IG-Yq-I65" firstAttribute="leading" secondItem="XnH-Pn-L0K" secondAttribute="trailing" constant="8" id="Gr9-tG-Iap"/>
+                            <constraint firstItem="aKc-Ce-L6J" firstAttribute="top" secondItem="5Hg-lH-pJc" secondAttribute="bottom" constant="15" id="HDH-qU-ipv"/>
+                            <constraint firstItem="tcq-NU-hAe" firstAttribute="leading" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="I3l-H1-I7s"/>
+                            <constraint firstItem="vrU-FD-T6A" firstAttribute="bottom" secondItem="9IG-Yq-I65" secondAttribute="bottom" constant="-68" id="MKd-T2-XHf"/>
+                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="centerY" secondItem="wWg-xq-S0X" secondAttribute="centerY" id="MzC-mB-pdt"/>
+                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="leading" secondItem="mqq-ab-Ip3" secondAttribute="leading" id="N7K-yL-yiy"/>
+                            <constraint firstItem="ksI-p2-x0l" firstAttribute="trailing" secondItem="OlN-61-jsw" secondAttribute="trailing" id="PJf-Xu-l5K"/>
+                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="centerY" secondItem="rcK-aL-PNu" secondAttribute="centerY" id="R4d-P3-evM"/>
+                            <constraint firstItem="AGX-Qg-Y3M" firstAttribute="leading" secondItem="tcq-NU-hAe" secondAttribute="trailing" constant="17" id="VcQ-jB-JR4"/>
+                            <constraint firstItem="yUa-wp-aDK" firstAttribute="width" secondItem="guE-2e-Sy7" secondAttribute="width" id="Zfy-xU-oB6"/>
+                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="top" secondItem="xIT-Sx-4iI" secondAttribute="bottom" constant="7" id="Zhl-Tb-NwB"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="XnH-Pn-L0K" secondAttribute="leading" id="c34-0d-EiW"/>
+                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="width" secondItem="tcq-NU-hAe" secondAttribute="width" id="fbW-Ns-HsB"/>
+                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="top" secondItem="tcq-NU-hAe" secondAttribute="bottom" constant="2" id="gWk-TV-Pyf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="aKc-Ce-L6J" secondAttribute="leading" id="hSE-P9-Pd3"/>
+                            <constraint firstItem="V7O-vn-VGT" firstAttribute="top" secondItem="XnP-8f-8Lu" secondAttribute="bottom" constant="-1" id="iTF-Gh-SpX"/>
+                            <constraint firstItem="tcq-NU-hAe" firstAttribute="top" secondItem="Rcv-hn-K5k" secondAttribute="bottom" constant="3" id="lAs-I6-ofA"/>
+                            <constraint firstItem="XnH-Pn-L0K" firstAttribute="top" secondItem="9IG-Yq-I65" secondAttribute="top" id="mfd-E7-Rdw"/>
+                            <constraint firstItem="wWg-xq-S0X" firstAttribute="trailing" secondItem="vrU-FD-T6A" secondAttribute="trailing" id="o0v-eV-C1J"/>
+                            <constraint firstItem="tcq-NU-hAe" firstAttribute="leading" secondItem="Rcv-hn-K5k" secondAttribute="leading" id="pyl-8e-rwB"/>
+                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="leading" secondItem="XCV-gk-fJs" secondAttribute="leading" id="qUa-rP-Qff"/>
+                            <constraint firstItem="9IG-Yq-I65" firstAttribute="top" secondItem="yUa-wp-aDK" secondAttribute="bottom" constant="6" id="rCd-Nw-eih"/>
+                            <constraint firstItem="ksI-p2-x0l" firstAttribute="trailing" secondItem="rcK-aL-PNu" secondAttribute="trailing" id="rJy-9F-WfT"/>
+                            <constraint firstItem="5Hg-lH-pJc" firstAttribute="top" secondItem="9IG-Yq-I65" secondAttribute="bottom" constant="8" id="roQ-uc-WXM"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="sUE-qW-Ymh"/>
+                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="top" secondItem="mqq-ab-Ip3" secondAttribute="bottom" constant="-1" id="t2z-Jq-9LL"/>
+                            <constraint firstItem="XCV-gk-fJs" firstAttribute="centerY" secondItem="mbP-Bu-tp0" secondAttribute="centerY" id="vNP-jc-knf"/>
+                            <constraint firstItem="yUa-wp-aDK" firstAttribute="top" secondItem="csh-oh-mYp" secondAttribute="bottom" id="vkn-8D-hiB"/>
+                            <constraint firstItem="tcq-NU-hAe" firstAttribute="centerY" secondItem="AGX-Qg-Y3M" secondAttribute="centerY" id="vmA-ga-Nn5"/>
+                            <constraint firstItem="yUa-wp-aDK" firstAttribute="centerX" secondItem="guE-2e-Sy7" secondAttribute="centerX" id="wE8-gJ-Kb7"/>
+                            <constraint firstItem="mbP-Bu-tp0" firstAttribute="leading" secondItem="XCV-gk-fJs" secondAttribute="trailing" constant="47" id="xf0-0X-p2n"/>
+                            <constraint firstItem="qXg-sh-0rQ" firstAttribute="top" secondItem="aKc-Ce-L6J" secondAttribute="bottom" constant="8" id="ys8-bS-vIK"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answerTime" destination="AGX-Qg-Y3M" id="0WW-Xh-O0d"/>
+                        <outlet property="avatar" destination="9IG-Yq-I65" id="mfC-2T-T3W"/>
+                        <outlet property="averageCorrectAnswers" destination="rcK-aL-PNu" id="zsX-yM-PJu"/>
+                        <outlet property="chart" destination="5Hg-lH-pJc" id="dBL-aS-CnK"/>
+                        <outlet property="gpm" destination="vrU-FD-T6A" id="wAH-Wv-3np"/>
+                        <outlet property="kda" destination="wWg-xq-S0X" id="6as-1q-QVg"/>
+                        <outlet property="lost" destination="OlN-61-jsw" id="iOn-Xx-CbH"/>
+                        <outlet property="mmr" destination="mbP-Bu-tp0" id="1cM-6F-6cw"/>
+                        <outlet property="wins" destination="ksI-p2-x0l" id="faC-YG-zBs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="edM-NG-SvK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2686" y="285"/>
+            <point key="canvasLocation" x="2685.5999999999999" y="284.70764617691157"/>
         </scene>
     </scenes>
     <resources>

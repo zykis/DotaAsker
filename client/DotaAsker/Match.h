@@ -27,5 +27,6 @@
 @property (strong, nonatomic) NSMutableArray *users;
 @property (strong, nonatomic) NSMutableArray *rounds;
 @property (assign, nonatomic) NSUInteger state;
+@property (assign, nonatomic) NSUInteger mmrGain;
 
 @end

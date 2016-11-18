@@ -24,7 +24,10 @@
           [JSONDict objectForKey:@"wallpapers_image_name"] &&
           [JSONDict objectForKey:@"role"] &&
           [JSONDict objectForKey:@"total_correct_answers"] &&
-          [JSONDict objectForKey:@"total_incorrect_answers"]
+          [JSONDict objectForKey:@"total_incorrect_answers"] &&
+          [JSONDict objectForKey:@"total_matches_won"] &&
+          [JSONDict objectForKey:@"total_matches_lost"] &&
+          [JSONDict objectForKey:@"total_time_for_answers"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in UserParser");
         return nil;
@@ -41,6 +44,11 @@
     [user setRole:(ROLE)[JSONDict[@"role"] integerValue]];
     [user setTotalCorrectAnswers: [[JSONDict objectForKey:@"total_correct_answers"] integerValue]];
     [user setTotalIncorrectAnswers: [[JSONDict objectForKey:@"total_incorrect_answers"] integerValue]];
+    [user setTotalMatchesWon: [[JSONDict objectForKey:@"total_matches_won"] unsignedIntegerValue]];
+    [user setTotalMatchesLost: [[JSONDict objectForKey:@"total_matches_lost"] unsignedIntegerValue]];
+    [user setTotalTimeForAnswers:[[JSONDict objectForKey:@"total_time_for_answers"] unsignedIntegerValue]];
+    
+    
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"matches"] &&
               [JSONDict objectForKey:@"friends"]
@@ -75,6 +83,9 @@
                               user.wallpapersImageName, @"wallpapers_image_name",
                               [NSNumber numberWithLong:user.totalCorrectAnswers], @"total_correct_answers",
                               [NSNumber numberWithLong:user.totalIncorrectAnswers], @"total_incorrect_answers",
+                              [NSNumber numberWithLong:user.totalMatchesWon], @"total_matches_won",
+                              [NSNumber numberWithLong:user.totalMatchesLost], @"total_matches_lost",
+                              [NSNumber numberWithLong:user.totalTimeForAnswers], @"total_time_for_answer",
                               nil];
     return jsonDict;
 }

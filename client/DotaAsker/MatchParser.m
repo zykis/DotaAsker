@@ -20,7 +20,8 @@
 + (Match*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"users"] &&
-          [JSONDict objectForKey:@"state"]
+          [JSONDict objectForKey:@"state"] &&
+          [JSONDict objectForKey:@"mmr_gain"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in MatchParser");
         return nil;
@@ -35,6 +36,9 @@
     //state
     NSUInteger state = [[JSONDict objectForKey:@"state"] unsignedIntegerValue];
     [match setState:state];
+    
+    //mmr
+    [match setMmrGain:[[JSONDict objectForKey:@"mmr_gain"] unsignedIntegerValue]];
     
     //users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];

@@ -177,7 +177,7 @@ class Database_queries:
                     user2_answer.answer = random.choice(quest.answers)
                     user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
-        first_match.state = MATCH_FINISHED
+        first_match.finish()
         # [!1]
 
         # [2] RUNNING
@@ -222,7 +222,7 @@ class Database_queries:
                     user2_answer.answer = random.choice(quest.answers)
                     user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
-        third_match.state = MATCH_TIME_ELAPSED
+        third_match.elapseMatch()
         # [!3]
 
         # [4] NOT_STARTED
