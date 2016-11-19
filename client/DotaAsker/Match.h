@@ -28,5 +28,6 @@
 @property (strong, nonatomic) NSMutableArray *rounds;
 @property (assign, nonatomic) NSUInteger state;
 @property (assign, nonatomic) NSUInteger mmrGain;
+@property (strong, nonatomic) NSString* updatedOn;
 
 @end

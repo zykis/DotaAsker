@@ -97,6 +97,29 @@ def get_user(id):
         # TODO: Sending server errors to client
         abort(500)
 
+
+@app.route('/statistic/<int:id>', methods=['GET'])
+def get_statistic(id):
+    user = User.query.get(id)
+    recent_matches = []
+    for m in user.matches:
+        if m.state is not MATCH_RUNNING:
+            recent_matches.append(m)
+    user.matches = recent_matches
+
+    if not user:
+        abort(400)
+    schema = UserSchema() # only recent matches
+    res = schema.dumps(user)
+    if not res.errors:
+        resp = make_response(res.data)
+        resp.status_code = 200
+        resp.mimetype = 'application/json'
+        return resp
+    else:
+        # TODO: Sending server errors to client
+        abort(500)
+
 @app.route('/userAnswers', methods=['POST'])
 def post_userAnswer():
     # tricky one. We could expect empty userAnswers with answer_id = 0. If so, we just create them

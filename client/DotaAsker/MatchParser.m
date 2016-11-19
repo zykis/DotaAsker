@@ -21,7 +21,8 @@
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"users"] &&
           [JSONDict objectForKey:@"state"] &&
-          [JSONDict objectForKey:@"mmr_gain"]
+          [JSONDict objectForKey:@"mmr_gain"] &&
+          [JSONDict objectForKey:@"updated_on"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field in MatchParser");
         return nil;
@@ -46,6 +47,15 @@
         User* u = [UserParser parse:userDict andChildren:NO];
         [[match users] addObject:u];
     }
+    
+    //updated at
+    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSString* utcDate = [JSONDict objectForKey:@"updated_on"];
+    
+    NSDate* updatedAt = [formatter dateFromString:utcDate];
+    NSString* localizedDate = [NSDateFormatter localizedStringFromDate:updatedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    [match setUpdatedOn:localizedDate];
 
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"rounds"])) {

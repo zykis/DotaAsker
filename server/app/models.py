@@ -314,21 +314,66 @@ class Match(Base):
             # nextMoveUser LOST cause didn't answer or reply
             app.logger.debug('user {} losing match due to inactive'.format(next_move_user.__repr__()))
             winner = None
+            loser = self.next_move_user()
             for u in self.users:
                 if u is not next_move_user:
                     winner = u
 
             if winner is None:
-                app.logger.critical('no winner for timeelapsed match')
+                app.logger.critical('no winner or loser for timeelapsed match')
+                return
+            elif loser is None:
+                app.logger.critical('match elapsed, with finding no opponent for user {}'.format(winner.__repr__()))
                 return
 
-            next_move_user.mmr -= 25
-            winner.mmr += 25
+            # [1] MATCH STATE
             self.state = MATCH_TIME_ELAPSED
-            db.session.add(self)
-            db.session.add(next_move_user)
+
+            # [3] Calculate mmr gaining
+            mmr_gain = 25
+            self.mmr_gain = mmr_gain
+
+            # [4] decrease mmr of loser
+            next_move_user.mmr -= mmr_gain
+
+            # [5] increase mmr of winner
+            winner.mmr += mmr_gain
+
+            # [6] change total correct and incorrect answers
+            for r in self.rounds:
+                for ua in r.user_answers:
+                    if ua.user == winner:
+                        winner.total_time_for_answers += ua.sec_for_answer
+                        if ua.answer.is_correct:
+                            winner.total_correct_answers += 1
+                        else:
+                            winner.total_incorrect_answers += 1
+                    elif ua.user == loser:
+                        loser.total_time_for_answers += ua.sec_for_answer
+                        if ua.answer.is_correct:
+                            loser.total_correct_answers += 1
+                        else:
+                            loser.total_incorrect_answers += 1
+
+            # [7] change total matches
+            loser.total_matches_lost += 1
+            winner.total_matches_won += 1
+
+            # [7.1] gpm // - 30 GPM per second
+            winner.gpm = ((winner.total_correct_answers + winner.total_incorrect_answers) * 1000 - float(winner.total_time_for_answers * 30)) / (winner.total_correct_answers + winner.total_incorrect_answers)
+            loser.gpm = ((loser.total_correct_answers + loser.total_incorrect_answers) * 1000 - float(loser.total_time_for_answers * 30)) / (loser.total_correct_answers + loser.total_incorrect_answers)
+
+            # [8] calculating users KDA
+            winner.kda = winner.total_correct_answers / float(winner.total_incorrect_answers)
+            loser.kda = loser.total_correct_answers / float(loser.total_incorrect_answers)
+
+            # [9] updating it
+            app.logger.debug('Updating users and match stats')
             db.session.add(winner)
+            db.session.add(loser)
+            db.session.add(self)
             db.session.commit()
+            app.logger.info('Stats updated successfully')
 
     def finish(self):
         # [1] match state become MATCH_FINISHED

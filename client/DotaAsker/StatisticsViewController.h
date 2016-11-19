@@ -10,9 +10,11 @@
 
 @class User;
 @interface StatisticsViewController : UIViewController
+<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) User* user;
 @property (assign, nonatomic) unsigned long long userID;
+@property (strong, nonatomic) IBOutlet UINavigationItem *navigationTitle;
 @property (strong, nonatomic) IBOutlet UILabel *mmr;
 @property (strong, nonatomic) IBOutlet UILabel *kda;
 @property (strong, nonatomic) IBOutlet UILabel *gpm;
@@ -22,5 +24,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *lost;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
 @property (strong, nonatomic) IBOutlet UIView *chart;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

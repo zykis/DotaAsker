@@ -14,6 +14,7 @@
 #define ENDPOINT_PLAYER @"http://127.0.0.1:5000/MainViewController"
 #define ENDPOINT_SEND_FRIEND_REQUEST @"http://127.0.0.1:5000/sendFriendRequest"
 #define ENDPOINT_TOP100 @"http://127.0.0.1:5000/top100"
+#define ENDPOINT_STATISTIC @"http://127.0.0.1:5000/statistic/"
 
 @implementation UserTransport
 
@@ -75,6 +76,29 @@
 
 - (RACReplaySubject*)update:(id)entity {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    return subject;
+}
+
+- (RACReplaySubject*)obtainStatistic:(unsigned long long)entityID {
+    RACReplaySubject *subject = [RACReplaySubject subject];
+    
+    NSString* requestString = [NSString stringWithFormat:@"%@%llu", ENDPOINT_STATISTIC, entityID];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    
+    [dataTask resume];
+    
     return subject;
 }
 
