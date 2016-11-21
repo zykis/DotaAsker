@@ -15,6 +15,9 @@
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
 		AC1791F91DDA5F2200187D59 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */; };
 		AC3796701B9F10C800AE2F35 /* theme_tournaments.png in Resources */ = {isa = PBXBuildFile; fileRef = AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */; };
+		AC532AD41DE0E94C008AFFA1 /* star128.png in Resources */ = {isa = PBXBuildFile; fileRef = AC532AD31DE0E94C008AFFA1 /* star128.png */; };
+		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
+		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
 		AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917A1BFF5B9600D728B6 /* AbstractService.m */; };
@@ -164,6 +167,11 @@
 		AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 		AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = theme_tournaments.png; path = resources/theme_tournaments.png; sourceTree = "<group>"; };
+		AC532AD31DE0E94C008AFFA1 /* star128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = star128.png; path = resources/star128.png; sourceTree = "<group>"; };
+		AC532AD51DE1A486008AFFA1 /* SubmitQuiestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitQuiestionViewController.h; sourceTree = "<group>"; };
+		AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitQuiestionViewController.m; sourceTree = "<group>"; };
+		AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatarViewController.h; sourceTree = "<group>"; };
+		AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatarViewController.m; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		AC6091741BFF516B00D728B6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
@@ -513,6 +521,10 @@
 				AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */,
 				AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */,
 				AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */,
+				AC532AD51DE1A486008AFFA1 /* SubmitQuiestionViewController.h */,
+				AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */,
+				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
+				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -529,6 +541,7 @@
 		ACF41BF91B3BABCA0096598C /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				AC532AD31DE0E94C008AFFA1 /* star128.png */,
 				AC75ABFD1BB02D63007BA59D /* question_images */,
 				AC850B7A1B3D8E060050954C /* GUI appearence */,
 				AC850B741B3C857B0050954C /* fonts */,
@@ -867,6 +880,7 @@
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
 				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
 				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
+				AC532AD41DE0E94C008AFFA1 /* star128.png in Resources */,
 				ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */,
 				AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */,
 				AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */,
@@ -988,9 +1002,11 @@
 				ACACEBA21D7A2A9400C6A61E /* SignUpViewController.m in Sources */,
 				AC7B679A1DA69FFF00351887 /* Transport.m in Sources */,
 				AC138C101D948EC30023EFF3 /* Helper.m in Sources */,
+				AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */,
 				AC9E062E1DD73F8C004FA4BE /* Top100ViewController.m in Sources */,
 				ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */,
 				ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */,
+				AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */,
 				AC9A19761D9869DD00B66AAE /* UserParser.m in Sources */,
 				ACB006201DC4C96F008CE926 /* ThemeSelectionViewController.m in Sources */,
 				AC9A19701D9869DD00B66AAE /* MatchParser.m in Sources */,

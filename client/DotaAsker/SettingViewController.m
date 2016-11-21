@@ -91,10 +91,12 @@
 
 - (void)questionPushed {
     NSLog(@"Question pushed");
+    [self performSegueWithIdentifier:@"submit_question" sender:self];
 }
 
 - (void)avatarsPushed {
     NSLog(@"Avatars pushed");
+    [self performSegueWithIdentifier:@"change_avatar" sender:self];
 }
 
 - (void)premiumPushed {
