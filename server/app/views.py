@@ -81,6 +81,22 @@ def surrend():
     resp.mimetype = 'application/json'
     return resp
 
+@app.route('/questions', methods=['POST'])
+def surrend():
+    # [1] getting question
+    scheme = QuestionScheme()
+    question = scheme.loads(request.data)
+    
+    # [2] create in db
+    db.session.add(question)
+    db.sesstion.commit()
+    
+    # [3] send reply to client
+    resp = make_response(json.dumps({'status':'ok'}))
+    resp.status_code = 200
+    resp.mimetype = 'application/json'
+    return resp
+
 @app.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
     user = User.query.get(id)
