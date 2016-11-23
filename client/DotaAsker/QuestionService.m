@@ -39,4 +39,20 @@
     return subject;
 }
 
+- (RACReplaySubject*)submitQuestion:(Question *)question {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSDictionary* qDict = [QuestionParser encode:question];
+    NSData* qData = [NSJSONSerialization dataWithJSONObject:qDict options:kNilOptions error:nil];
+    
+    RACReplaySubject* sub = [_transport submitQuestionData:qData];
+    [sub subscribeNext:^(id x) {
+        [subject sendNext:x];
+    } error:^(NSError *error) {
+        [subject sendError:error];
+    } completed:^{
+        [subject sendCompleted];
+    }];
+    return subject;
+}
+
 @end

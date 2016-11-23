@@ -14,5 +14,6 @@
 
 @property(strong, nonatomic) QuestionTransport* transport;
 - (RACReplaySubject*)obtainImageForQuestion: (Question*)question withWidth: (NSUInteger)width andHeight: (NSUInteger)height;
+- (RACReplaySubject*)submitQuestion:(Question*)question;
 
 @end

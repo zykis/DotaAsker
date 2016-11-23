@@ -13,5 +13,6 @@
 @interface AnswerParser : NSObject
 
 + (Answer*)parse: (NSDictionary*) JSONDict;
++ (NSDictionary*)encode: (Answer*)answer;
 
 @end

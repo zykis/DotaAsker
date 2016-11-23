@@ -522,7 +522,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What race invoker is?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dTm-BB-rP3">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dTm-BB-rP3">
                                 <color key="backgroundColor" red="0.99438295570000002" green="1" blue="0.8317165527" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="91" id="pvT-vZ-kVH"/>
@@ -532,18 +532,21 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gsv-ab-SIc">
                                 <state key="normal" title="SUBMIT"/>
+                                <connections>
+                                    <action selector="submit" destination="Sfa-G4-ZAy" eventType="touchUpInside" id="ctY-TB-cRo"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXx-Zg-hfa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CORRECT ANSWER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXx-Zg-hfa">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAI-2x-NVR">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAI-2x-NVR">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-mF-0CO">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-mF-0CO">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -578,6 +581,13 @@
                             <constraint firstItem="lJd-NJ-jEk" firstAttribute="top" secondItem="rR0-VP-nuh" secondAttribute="bottom" id="zuG-9Q-Bc5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="answer1" destination="LXx-Zg-hfa" id="AMQ-rY-CJo"/>
+                        <outlet property="answer2" destination="eAI-2x-NVR" id="B3f-0l-4jV"/>
+                        <outlet property="answer3" destination="CtR-mF-0CO" id="ewq-Jx-6bo"/>
+                        <outlet property="answer4" destination="Hoy-Hc-iPf" id="ATl-YH-gQg"/>
+                        <outlet property="textField" destination="dTm-BB-rP3" id="3lU-oS-W6a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0f-cD-cVt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

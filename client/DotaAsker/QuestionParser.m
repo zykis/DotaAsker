@@ -52,12 +52,18 @@
     return question;
 }
 
-- (NSDictionary*)encode:(Question*)question {
-    NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithUnsignedLongLong: question.ID], @"ID",
-                              question.text, @"TEXT",
-                              question.imageName, @"IMAGE_NAME",
-                              question.answers, @"ANSWERS_IDS",
++ (NSDictionary*)encode:(Question*)question {
+    NSMutableArray* answers = [[NSMutableArray alloc] init];
+    for (Answer* a in [question answers]) {
+        NSDictionary* aDict = [AnswerParser encode:a];
+        [answers addObject:aDict];
+    }
+    
+    NSMutableDictionary* jsonDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+                              [NSNumber numberWithUnsignedLongLong: question.ID], @"id",
+                              question.text, @"text",
+                              answers, @"answers",
+                              question.imageName, @"image_name",
                               nil];
     return jsonDict;
 }

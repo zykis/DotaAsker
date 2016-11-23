@@ -7,12 +7,21 @@
 //
 
 #import "SubmitQuiestionViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import "ServiceLayer.h"
 
 @interface SubmitQuiestionViewController ()
 
 @end
 
 @implementation SubmitQuiestionViewController
+
+@synthesize textField = _textField;
+@synthesize answer1 = _answer1;
+@synthesize answer2 = _answer2;
+@synthesize answer3 = _answer3;
+@synthesize answer4 = _answer4;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,4 +52,49 @@
 }
 */
 
+- (IBAction)submit {
+    // If question and at least 2 answers is not empty, submit question
+    if ([[self.textField text] isEqualToString:@""]) {
+        [self presentAlertControllerWithTitle:@"Error" andMessage:@"No question text"];
+        return;
+    }
+    Question* newQ = [[Question alloc] init];
+    // text
+    [newQ setText:[_textField text]];
+    // answers
+    if (![[_answer1 text] isEqualToString:@""]) {
+        Answer* a1 = [[Answer alloc] init];
+        [a1 setText:[_answer1 text]];
+        [a1 setIsCorrect:YES];
+        [[newQ answers] addObject:a1];
+    }
+    if (![[_answer2 text] isEqualToString:@""]) {
+        Answer* a = [[Answer alloc] init];
+        [a setText:[_answer2 text]];
+        [a setIsCorrect:NO];
+        [[newQ answers] addObject:a];
+    }
+    if (![[_answer3 text] isEqualToString:@""]) {
+        Answer* a = [[Answer alloc] init];
+        [a setText:[_answer3 text]];
+        [a setIsCorrect:NO];
+        [[newQ answers] addObject:a];
+    }
+    if (![[_answer4 text] isEqualToString:@""]) {
+        Answer* a = [[Answer alloc] init];
+        [a setText:[_answer4 text]];
+        [a setIsCorrect:NO];
+        [[newQ answers] addObject:a];
+    }
+    
+    
+    RACReplaySubject* subject = [[[ServiceLayer instance] questionService] submitQuestion:newQ];
+    [subject subscribeNext:^(id x) {
+        NSLog(@"Question submitted");
+    } error:^(NSError *error) {
+        NSLog(@"%@", [error localizedDescription]);
+    } completed:^{
+        NSLog(@"Question submition complited");
+    }];
+}
 @end

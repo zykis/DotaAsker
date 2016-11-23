@@ -13,5 +13,6 @@
 @interface QuestionTransport : Transport
 
 - (RACReplaySubject*)obtainImageForQuestion: (Question*)question withWidth: (NSUInteger)width andHeight: (NSUInteger)height;
+- (RACReplaySubject*)submitQuestionData: (NSData*)questionData;
 
 @end

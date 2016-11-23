@@ -9,7 +9,7 @@ from app.parsers.match_schema import MatchSchema
 from app.parsers.user_answer_schema import UserAnswerSchema
 from app.parsers.round_schema import RoundSchema
 from app.parsers.question_schema import QuestionSchema
-from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer, Round
+from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer, Round, Question
 from app import models
 from marshmallow import pprint
 from flask_mail import Message
@@ -86,16 +86,15 @@ def surrend():
 def post_question():
     # [1] getting question
     scheme = QuestionSchema()
-    question = scheme.loads(request.data)
+    question = scheme.loads(request.data).data
     
     # [2] create in db
     db.session.add(question)
-    db.sesstion.commit()
+    db.session.commit()
     
     # [2.1] check created question
-    q = Question.query.filter(Question.text = question.text)
-    print(q.text)
-    for a in q.answers:
+    print(question.text)
+    for a in question.answers:
         print a.text
     
     # [3] send reply to client

@@ -14,6 +14,7 @@
 #define CLOUDINARY_API_SECRET 13
 #define CLOUDINARY_ENDPOINT @"http://res.cloudinary.com"
 #define CLOUDINARY_NAME @"dzixpee1a"
+#define ENDPOINT_SUBMIT_QUESTION @"http://127.0.0.1:5000/questions"
 
 @implementation QuestionTransport
 
@@ -35,6 +36,28 @@
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
     [manager setResponseSerializer:[AFImageResponseSerializer serializer]];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    [dataTask resume];
+    return subject;
+}
+
+- (RACReplaySubject*)submitQuestionData:(NSData *)questionData {
+    RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_SUBMIT_QUESTION parameters:nil error:nil] mutableCopy];
+    
+    [request setHTTPBody:questionData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
     
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
         if (error) {
