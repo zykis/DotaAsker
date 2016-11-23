@@ -92,6 +92,12 @@ def post_question():
     db.session.add(question)
     db.sesstion.commit()
     
+    # [2.1] check created question
+    q = Question.query.filter(Question.text = question.text)
+    print(q.text)
+    for a in q.answers:
+        print a.text
+    
     # [3] send reply to client
     resp = make_response(json.dumps({'status':'ok'}))
     resp.status_code = 200
