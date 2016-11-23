@@ -8,6 +8,7 @@ from app.parsers.user_schema import UserSchema
 from app.parsers.match_schema import MatchSchema
 from app.parsers.user_answer_schema import UserAnswerSchema
 from app.parsers.round_schema import RoundSchema
+from app.parsers.question_schema import QuestionSchema
 from app.models import Match, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED, UserAnswer, Round
 from app import models
 from marshmallow import pprint
@@ -82,9 +83,9 @@ def surrend():
     return resp
 
 @app.route('/questions', methods=['POST'])
-def surrend():
+def post_question():
     # [1] getting question
-    scheme = QuestionScheme()
+    scheme = QuestionSchema()
     question = scheme.loads(request.data)
     
     # [2] create in db

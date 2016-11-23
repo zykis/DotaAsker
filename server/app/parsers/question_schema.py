@@ -12,12 +12,12 @@ class QuestionSchema(Schema):
     answers = fields.Nested(AnswerSchema, many=True)
     
 @post_load
-    def create_question(self, data):
-        question = Qustion()
-        question.text = data['text']
-        question.approved = false
-        question.theme = Theme.query.get(1)
-        for a in data['answers']:
-            # parse answer?
-            question.answers.append(a)
-        return question
+def create_question(self, data):
+    question = Question()
+    question.text = data['text']
+    question.approved = False
+    question.theme = Theme.query.get(1)
+    for a in data['answers']:
+        # parse answer?
+        question.answers.append(a)
+    return question

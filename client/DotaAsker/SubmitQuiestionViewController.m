@@ -29,6 +29,9 @@
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
 }
 
+- (IBAction)backButtonPressed:(id)sender {
+    [[self navigationController] popViewControllerAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation
