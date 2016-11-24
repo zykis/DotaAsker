@@ -57,8 +57,11 @@
 
 - (RACReplaySubject*)update:(id)entity {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
-    [[_transport update:entity] subscribeNext:^(id x) {
-        User* u = [UserParser parse:x andChildren:YES];
+    NSDictionary* userDict = [UserParser encode:entity];
+    NSData* userData = [NSJSONSerialization dataWithJSONObject:userDict options:kNilOptions error:nil];
+    
+    [[_transport update:userData] subscribeNext:^(id x) {
+        User* u = [UserParser parse:x andChildren:NO];
         [subject sendNext:u];
         [subject sendCompleted];
     } error:^(NSError *error) {

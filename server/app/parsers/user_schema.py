@@ -1,5 +1,5 @@
 from app.models import User
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, post_load
 
 
 class UserSchema(Schema):
@@ -20,3 +20,9 @@ class UserSchema(Schema):
     role = fields.Int()
     matches = fields.Nested('MatchSchema', many=True)
     friends = fields.Nested('UserSchema', many=True, exclude=('matches', 'friends'))
+
+    @post_load
+    def update_user(self, data):
+        user = User.query.get(data['id'])
+        user.avatar_image_name = data['avatar_image_name']
+        return user

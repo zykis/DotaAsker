@@ -120,6 +120,19 @@ def get_user(id):
         abort(500)
 
 
+@app.route('/user', methods=['POST'])
+def update_user():
+    schema = UserSchema(exclude=('matches', 'friends'))
+    user = schema.loads(request.data).data
+    db.session.add(user)
+    db.session.commit()
+
+    resp = make_response()
+    resp.status_code = 200
+    resp.mimetype = 'application/json'
+    return resp
+
+
 @app.route('/statistic/<int:id>', methods=['GET'])
 def get_statistic(id):
     user = User.query.get(id)

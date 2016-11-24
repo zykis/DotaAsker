@@ -11,6 +11,7 @@
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
 #define ENDPOINT_USER @"http://127.0.0.1:5000/users/"
+#define ENDPOINT_USER_UPDATE @"http://127.0.0.1:5000/user"
 #define ENDPOINT_PLAYER @"http://127.0.0.1:5000/MainViewController"
 #define ENDPOINT_SEND_FRIEND_REQUEST @"http://127.0.0.1:5000/sendFriendRequest"
 #define ENDPOINT_TOP100 @"http://127.0.0.1:5000/top100"
@@ -74,8 +75,26 @@
     return subject;
 }
 
-- (RACReplaySubject*)update:(id)entity {
+- (RACReplaySubject*)update:(NSData*)entityData {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
+    
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_USER_UPDATE parameters:nil error:nil] mutableCopy];
+    [request setHTTPBody:entityData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+        if (error) {
+            [subject sendError:error];
+        } else {
+            [subject sendNext: responseObject];
+            [subject sendCompleted];
+        }
+    }];
+    
+    [dataTask resume];
     return subject;
 }
 

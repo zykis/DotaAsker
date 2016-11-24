@@ -417,7 +417,7 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </textAttributes>
                             </navigationBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-Ow-Hjw">
+                            <collectionView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-Ow-Hjw">
                                 <color key="backgroundColor" red="0.073114856379999996" green="1" blue="0.089003005469999993" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="WZ4-pb-msj">
                                     <size key="itemSize" width="50" height="50"/>
@@ -426,14 +426,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="avatar" id="abb-dE-1IT">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="avatar" id="abb-dE-1IT">
                                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-I2-Dkt">
+                                                <imageView tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhj-I2-Dkt">
                                                     <frame key="frameInset"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
@@ -444,6 +444,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="YXJ-NH-s8R" id="Yw7-ni-7cb"/>
+                                    <outlet property="delegate" destination="YXJ-NH-s8R" id="h3r-AO-haL"/>
                                 </connections>
                             </collectionView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_bounty.png" translatesAutoresizingMaskIntoConstraints="NO" id="MKO-zi-UcX">
@@ -487,6 +488,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="YpU-Ow-Hjw" id="RFM-8R-RyY"/>
+                        <outlet property="selectedImageView" destination="MKO-zi-UcX" id="tqL-Jf-rRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G6W-n9-Ov2" userLabel="First Responder" sceneMemberID="firstResponder"/>

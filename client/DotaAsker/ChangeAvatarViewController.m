@@ -7,6 +7,8 @@
 //
 
 #import "ChangeAvatarViewController.h"
+#import "Player.h"
+#import "ServiceLayer.h"
 
 @interface ChangeAvatarViewController ()
 
@@ -14,20 +16,34 @@
 
 @implementation ChangeAvatarViewController
 
-@synthesize avatarArray = _avatarArray;
+@synthesize avatarNamesArray = _avatarNamesArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _avatarArray = [[NSMutableArray alloc] init];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_axe.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_tiny.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_brood.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_tinker.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_bristle.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_bounty.png"]];
-    [_avatarArray addObject:[UIImage imageNamed:@"avatar_nature_prophet.png"]];
+    
+    // [1]
+    [self.collectionView setAllowsSelection:YES];
+    [self.collectionView setAllowsMultipleSelection:NO];
+    
+    // [2]
+    _avatarNamesArray = [[NSMutableArray alloc] init];
+    [_avatarNamesArray addObject:@"avatar_axe.png"];
+    [_avatarNamesArray addObject:@"avatar_brood.png"];
+    [_avatarNamesArray addObject:@"avatar_tinker.png"];
+    [_avatarNamesArray addObject:@"avatar_bristle.png"];
+    [_avatarNamesArray addObject:@"avatar_bounty.png"];
+    [_avatarNamesArray addObject:@"avatar_nature_prophet.png"];
+    
+    // [3]
     [self.collectionView reloadData];
     // Do any additional setup after loading the view.
+    
+    // [4]
+    NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
+    NSLog(@"Found avatar in array. Index: %lu", row);
+    NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    [self collectionView:self.collectionView didSelectItemAtIndexPath:path];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,13 +56,14 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [_avatarArray count];
+    return [_avatarNamesArray count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"avatar" forIndexPath:indexPath];
     UIImageView* avatarImageView = [cell viewWithTag:100];
-    [avatarImageView setImage:[_avatarArray objectAtIndex:[indexPath row]]];
+    UIImage* image = [UIImage imageNamed:[_avatarNamesArray objectAtIndex:[indexPath row]]];
+    [avatarImageView setImage: image];
     return cell;
 }
 
@@ -57,6 +74,24 @@
 
 - (IBAction)backButtonPressed:(id)sender {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // [1]
+    UIImage* selectedImage = [UIImage imageNamed:[_avatarNamesArray objectAtIndex: [indexPath row]]];
+    [self.selectedImageView setImage: selectedImage];
+    
+    // [2]
+    [[Player instance] setAvatarImageName:[_avatarNamesArray objectAtIndex: [indexPath row]]];
+    
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[[ServiceLayer instance] userService] update:[Player instance]];
 }
 
 /*

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ChangeAvatarViewController : UIViewController
-<UICollectionViewDataSource>
+<UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (strong, nonatomic) NSMutableArray* avatarArray;
+@property (strong, nonatomic) NSMutableArray* avatarNamesArray;
+@property (strong, nonatomic) IBOutlet UIImageView *selectedImageView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
