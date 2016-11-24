@@ -105,7 +105,7 @@
         [subject sendCompleted];
     } error:^(NSError *error) {
         [subject sendError:error];
-        NSLog(@"Error while senting friend request");
+        NSLog(@"%@", [error localizedDescription]);
     } completed:^{
         [subject sendCompleted];
     }];

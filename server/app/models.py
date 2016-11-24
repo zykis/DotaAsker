@@ -1,6 +1,6 @@
 from app import db, app
 from passlib.apps import custom_app_context as pwd_context
-from itsdangerous import (TimedJSONWebSignatureSerializer
+from itsdangerous import (JSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 import random
 
@@ -231,7 +231,7 @@ class Round(Base):
     def __init__(self):
         themes = Theme.query.all()
         for t in themes:
-            theme_questions = Question.query.filter(Question.theme == t).all()
+            theme_questions = Question.query.filter(Question.theme == t, Question.approved == True).all()
             r_questions = []
             for x in range(0, 3):
                 rand_q = random.choice(theme_questions)
