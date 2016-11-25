@@ -316,7 +316,17 @@
 }
 
 - (IBAction)showStatistics {
-    [self performSegueWithIdentifier:@"statistics" sender:self];
+    if ([self checkPremium])
+        [self performSegueWithIdentifier:@"statistics" sender:self];
+}
+
+- (BOOL)checkPremium {
+    if (![[Player instance] premium]) {
+        [self presentAlertControllerWithTitle:@"Sorry" andMessage:@"Premium account only"];
+        return NO;
+    }
+    else
+        return YES;
 }
 
 //- (void)

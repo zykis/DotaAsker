@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "ServiceLayer.h"
+#import "Player.h"
 
 @interface SettingViewController ()
 
@@ -90,22 +91,30 @@
 }
 
 - (void)questionPushed {
-    NSLog(@"Question pushed");
     [self performSegueWithIdentifier:@"submit_question" sender:self];
 }
 
 - (void)avatarsPushed {
-    NSLog(@"Avatars pushed");
-    [self performSegueWithIdentifier:@"change_avatar" sender:self];
+    if ([self checkPremium])
+        [self performSegueWithIdentifier:@"change_avatar" sender:self];
 }
 
 - (void)premiumPushed {
-    NSLog(@"Premium pushed");
+    [self performSegueWithIdentifier:@"unlock_premium" sender:self];
 }
 
 - (void)top100Pushed {
-    NSLog(@"Top100 pushed");
-    [self performSegueWithIdentifier:@"top100" sender:self];
+    if ([self checkPremium])
+        [self performSegueWithIdentifier:@"top100" sender:self];
+}
+
+- (BOOL)checkPremium {
+    if (![[Player instance] premium]) {
+        [self presentAlertControllerWithTitle:@"Sorry" andMessage:@"Premium account only"];
+        return NO;
+    }
+    else
+        return YES;
 }
 
 @end

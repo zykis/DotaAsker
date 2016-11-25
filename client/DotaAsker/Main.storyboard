@@ -393,6 +393,7 @@
                         <segue destination="E2y-wE-iq4" kind="show" identifier="top100" id="EXb-rQ-8Ld"/>
                         <segue destination="Sfa-G4-ZAy" kind="show" identifier="submit_question" id="Whv-8U-xSj"/>
                         <segue destination="YXJ-NH-s8R" kind="show" identifier="change_avatar" id="Vxg-cB-9yE"/>
+                        <segue destination="bwK-r5-7pY" kind="show" identifier="unlock_premium" id="8Qf-mQ-HNX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Chj-fs-8f9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,6 +595,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T0f-cD-cVt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3469.5999999999999" y="-838.83058470764627"/>
+        </scene>
+        <!--Unlock Premium View Controller-->
+        <scene sceneID="cSS-Cz-4s0">
+            <objects>
+                <viewController id="bwK-r5-7pY" customClass="UnlockPremiumViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vwD-Md-hbA"/>
+                        <viewControllerLayoutGuide type="bottom" id="sGm-JF-FO0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VS4-Oz-gbo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" backIndicatorImage="icon_backbutton_44.png" translatesAutoresizingMaskIntoConstraints="NO" id="g7J-81-2ok">
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="barTintColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Premium" id="lxB-AX-GbY" userLabel="Title">
+                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="3R0-9G-RIn">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="bwK-r5-7pY" id="b8k-sL-RxJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DA-1P-USh">
+                                <frame key="frameInset" minX="153" minY="318" width="68" height="30"/>
+                                <state key="normal" title="UNLOCK"/>
+                                <connections>
+                                    <action selector="unlockPressed" destination="bwK-r5-7pY" eventType="touchUpInside" id="zt4-qs-zja"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="g7J-81-2ok" firstAttribute="width" secondItem="VS4-Oz-gbo" secondAttribute="width" id="54G-or-F1X"/>
+                            <constraint firstItem="g7J-81-2ok" firstAttribute="centerX" secondItem="VS4-Oz-gbo" secondAttribute="centerX" id="GsN-sf-ruy"/>
+                            <constraint firstItem="g7J-81-2ok" firstAttribute="top" secondItem="vwD-Md-hbA" secondAttribute="bottom" id="JjR-q3-4v0"/>
+                            <constraint firstItem="9DA-1P-USh" firstAttribute="centerX" secondItem="VS4-Oz-gbo" secondAttribute="centerX" id="h3g-al-CYd"/>
+                            <constraint firstItem="9DA-1P-USh" firstAttribute="centerY" secondItem="VS4-Oz-gbo" secondAttribute="centerY" id="uqQ-eN-tQm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gjG-df-L1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4176.8000000000002" y="-839.73013493253382"/>
         </scene>
         <!--Top100 View Controller-->
         <scene sceneID="AHl-NC-TmK">

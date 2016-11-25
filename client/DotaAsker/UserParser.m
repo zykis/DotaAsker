@@ -36,6 +36,7 @@
     User* user = [[User alloc] init];
     [user setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
     [user setName:[JSONDict objectForKey:@"username"]];
+    [user setPremium:[[JSONDict objectForKey:@"premium"] boolValue]];
     [user setMMR:[[JSONDict objectForKey:@"mmr"] integerValue]];
     [user setGPM:[[JSONDict objectForKey:@"gpm"] integerValue]];
     [user setKDA:[[JSONDict objectForKey:@"kda"] floatValue]];
@@ -76,6 +77,7 @@
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedLongLong:user.ID], @"id",
                               user.name, @"username",
+                              [NSNumber numberWithBool:user.premium], @"premium",
                               [NSNumber numberWithLong:user.MMR], @"rating",
                               [NSNumber numberWithInt:user.GPM], @"gpm",
                               [NSNumber numberWithFloat:user.KDA], @"kda",

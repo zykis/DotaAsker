@@ -48,6 +48,7 @@
 		AC75AC201BB02DF3007BA59D /* tournaments_TI1_winner.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC171BB02DF3007BA59D /* tournaments_TI1_winner.jpg */; };
 		AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */; };
 		AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC77BC451DAD7B8700B32121 /* RoundService.m */; };
+		AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */; };
 		AC7B67971DA69FF000351887 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67961DA69FF000351887 /* UserTransport.m */; };
 		AC7B679A1DA69FFF00351887 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67991DA69FFF00351887 /* Transport.m */; };
 		AC7B679D1DA6AAC900351887 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B679C1DA6AAC900351887 /* UserService.m */; };
@@ -212,6 +213,8 @@
 		AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = tournaments_TI2015_prizepool.jpg; path = resources/question_images/tournaments_TI2015_prizepool.jpg; sourceTree = "<group>"; };
 		AC77BC441DAD7B8700B32121 /* RoundService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundService.h; sourceTree = "<group>"; };
 		AC77BC451DAD7B8700B32121 /* RoundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundService.m; sourceTree = "<group>"; };
+		AC780F541DE781F1007E8158 /* UnlockPremiumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockPremiumViewController.h; sourceTree = "<group>"; };
+		AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockPremiumViewController.m; sourceTree = "<group>"; };
 		AC7B67951DA69FF000351887 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
 		AC7B67961DA69FF000351887 /* UserTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTransport.m; sourceTree = "<group>"; };
 		AC7B67981DA69FFF00351887 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 				AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */,
 				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
 				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
+				AC780F541DE781F1007E8158 /* UnlockPremiumViewController.h */,
+				AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -977,6 +982,7 @@
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
 				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
+				AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,

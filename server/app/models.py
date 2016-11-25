@@ -95,6 +95,7 @@ class User(Base):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(128))
+    premium = db.Column(db.Boolean, default=False)
     email = db.Column(db.String(50), unique=False, nullable=True)
     mmr = db.Column(db.Integer, nullable=False, default=4000)
     kda = db.Column(db.Float, nullable=True, default=1.0)

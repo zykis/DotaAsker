@@ -7,6 +7,7 @@ class UserSchema(Schema):
     created_on = fields.DateTime()
     updated_on = fields.DateTime()
     username = fields.Str()
+    premium = fields.Boolean()
     mmr = fields.Int()
     gpm = fields.Float()
     kda = fields.Float()
@@ -25,4 +26,5 @@ class UserSchema(Schema):
     def update_user(self, data):
         user = User.query.get(data['id'])
         user.avatar_image_name = data['avatar_image_name']
+        user.premium = data['premium']
         return user

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
 @class MainViewModel;
 
@@ -16,5 +17,6 @@
 - (IBAction)findMatchPressed;
 - (IBAction)logout;
 - (IBAction)showStatistics;
+- (BOOL)checkPremium;
 
 @end

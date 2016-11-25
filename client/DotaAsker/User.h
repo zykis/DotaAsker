@@ -15,6 +15,7 @@ typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
 @property (assign, nonatomic) NSInteger MMR;//Текущий рейтинг среди всех игроков
+@property (assign, nonatomic) BOOL premium;
 @property (assign, nonatomic) float KDA;//Отношение правильно отвеченных вопросов на неправильно отвеченные.
 @property (assign, nonatomic) float GPM;//Насколько быстро вы отвечаете на вопросы
 @property (strong, nonatomic) NSString *wallpapersImageName;

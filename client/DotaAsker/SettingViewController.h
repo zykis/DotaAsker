@@ -15,4 +15,5 @@
 - (void)questionPushed;
 - (void)premiumPushed;
 - (void)top100Pushed;
+- (BOOL)checkPremium;
 @end
