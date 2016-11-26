@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "ServiceLayer.h"
 #import "Player.h"
+#import "PressButton.h"
 
 @interface SettingViewController ()
 
@@ -63,15 +64,6 @@
     
     // [4] Premium Button
     UIView* buttonPremium = [self.view viewWithTag:103];
-    buttonPremium.layer.cornerRadius = 3.0;
-    
-    buttonPremium.layer.borderWidth = 2.0;
-    buttonPremium.layer.borderColor = [[UIColor clearColor] CGColor];
-    
-    buttonPremium.layer.shadowColor = [UIColor colorWithRed:0 green:(100.0f/255.0f) blue:0.0 alpha:1.0].CGColor;
-    buttonPremium.layer.shadowOpacity = 1.0f;
-    buttonPremium.layer.shadowRadius = 1.0f;
-    buttonPremium.layer.shadowOffset = CGSizeMake(0, 3);
     UITapGestureRecognizer* tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(premiumPushed)];
     [buttonPremium addGestureRecognizer:tapRecognizer];
 }

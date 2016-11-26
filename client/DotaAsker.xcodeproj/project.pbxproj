@@ -49,6 +49,9 @@
 		AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */; };
 		AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC77BC451DAD7B8700B32121 /* RoundService.m */; };
 		AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */; };
+		AC780F591DE82F5E007E8158 /* PressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F581DE82F5E007E8158 /* PressButton.m */; };
+		AC780F5C1DE98D72007E8158 /* AZButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F5B1DE98D72007E8158 /* AZButton.m */; };
+		AC780F5E1DE9A224007E8158 /* premium_48@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC780F5D1DE9A224007E8158 /* premium_48@1x.png */; };
 		AC7B67971DA69FF000351887 /* UserTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67961DA69FF000351887 /* UserTransport.m */; };
 		AC7B679A1DA69FFF00351887 /* Transport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67991DA69FFF00351887 /* Transport.m */; };
 		AC7B679D1DA6AAC900351887 /* UserService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B679C1DA6AAC900351887 /* UserService.m */; };
@@ -215,6 +218,11 @@
 		AC77BC451DAD7B8700B32121 /* RoundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundService.m; sourceTree = "<group>"; };
 		AC780F541DE781F1007E8158 /* UnlockPremiumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockPremiumViewController.h; sourceTree = "<group>"; };
 		AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockPremiumViewController.m; sourceTree = "<group>"; };
+		AC780F571DE82F5E007E8158 /* PressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PressButton.h; sourceTree = "<group>"; };
+		AC780F581DE82F5E007E8158 /* PressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PressButton.m; sourceTree = "<group>"; };
+		AC780F5A1DE98D72007E8158 /* AZButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZButton.h; sourceTree = "<group>"; };
+		AC780F5B1DE98D72007E8158 /* AZButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZButton.m; sourceTree = "<group>"; };
+		AC780F5D1DE9A224007E8158 /* premium_48@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "premium_48@1x.png"; path = "resources/icons/premium_48@1x.png"; sourceTree = "<group>"; };
 		AC7B67951DA69FF000351887 /* UserTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTransport.h; sourceTree = "<group>"; };
 		AC7B67961DA69FF000351887 /* UserTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTransport.m; sourceTree = "<group>"; };
 		AC7B67981DA69FFF00351887 /* Transport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transport.h; sourceTree = "<group>"; };
@@ -562,6 +570,8 @@
 		ACF41C031B3BE8B20096598C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				AC780F5A1DE98D72007E8158 /* AZButton.h */,
+				AC780F5B1DE98D72007E8158 /* AZButton.m */,
 				ACD94DE01B428FB800F71901 /* RoundView.h */,
 				ACD94DE11B428FB800F71901 /* RoundView.m */,
 				ACD94DE31B42C3D800F71901 /* DotaButton.h */,
@@ -572,6 +582,8 @@
 				ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */,
 				AC7E6D291DC2A05400F7871C /* LoadingView.h */,
 				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
+				AC780F571DE82F5E007E8158 /* PressButton.h */,
+				AC780F581DE82F5E007E8158 /* PressButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -615,6 +627,7 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AC780F5D1DE9A224007E8158 /* premium_48@1x.png */,
 				ACAC567F1DD943060002B1F5 /* avatar2-128.png */,
 				ACAC567D1DD922160002B1F5 /* question128.png */,
 				ACAC567B1DD921750002B1F5 /* avatar128.png */,
@@ -881,6 +894,7 @@
 				AC62E5261BF4BB2100805285 /* dota_icon_40x40.png in Resources */,
 				ACAC56781DD7FC830002B1F5 /* question64.png in Resources */,
 				ACE8AF151B4197B9009C3A08 /* wallpaper_juggernaut_1.jpg in Resources */,
+				AC780F5E1DE9A224007E8158 /* premium_48@1x.png in Resources */,
 				ACAC56801DD943060002B1F5 /* avatar2-128.png in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
 				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
@@ -1020,11 +1034,13 @@
 				AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */,
 				AC138C0A1D9485FD0023EFF3 /* Player.m in Sources */,
 				ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */,
+				AC780F5C1DE98D72007E8158 /* AZButton.m in Sources */,
 				AC7B67971DA69FF000351887 /* UserTransport.m in Sources */,
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
+				AC780F591DE82F5E007E8158 /* PressButton.m in Sources */,
 				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,

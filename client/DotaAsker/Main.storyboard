@@ -341,38 +341,18 @@
                                     <constraint firstItem="BwN-sN-b6j" firstAttribute="centerX" secondItem="QSN-JP-uGK" secondAttribute="centerX" constant="24" id="xJR-4N-Unx"/>
                                 </constraints>
                             </view>
-                            <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPF-oN-fmp">
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="premium128.png" translatesAutoresizingMaskIntoConstraints="NO" id="rnZ-vl-Cqj">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="48" id="aGR-q4-J42"/>
-                                            <constraint firstAttribute="height" constant="48" id="smv-NC-X7Y"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlock premium" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAv-gp-iGf">
-                                        <fontDescription key="fontDescription" name="Optima-Regular" family="Optima" pointSize="22"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-Nm-i06" customClass="PressButton">
                                 <constraints>
-                                    <constraint firstItem="TAv-gp-iGf" firstAttribute="height" secondItem="uPF-oN-fmp" secondAttribute="height" id="1t9-VZ-qCy"/>
-                                    <constraint firstItem="TAv-gp-iGf" firstAttribute="centerY" secondItem="uPF-oN-fmp" secondAttribute="centerY" id="EeF-UB-yOQ"/>
-                                    <constraint firstItem="rnZ-vl-Cqj" firstAttribute="leading" secondItem="uPF-oN-fmp" secondAttribute="leading" constant="8" id="MUQ-oZ-OsO"/>
-                                    <constraint firstItem="rnZ-vl-Cqj" firstAttribute="centerY" secondItem="uPF-oN-fmp" secondAttribute="centerY" id="TY8-FF-pWF"/>
-                                    <constraint firstItem="TAv-gp-iGf" firstAttribute="centerX" secondItem="uPF-oN-fmp" secondAttribute="centerX" constant="24" id="cf9-UT-Hsi"/>
+                                    <constraint firstAttribute="height" constant="64" id="u5Z-7I-2jY"/>
                                 </constraints>
-                            </view>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="uPF-oN-fmp" firstAttribute="height" secondItem="QSN-JP-uGK" secondAttribute="height" id="0Rd-50-ouR"/>
+                            <constraint firstItem="kRx-Nm-i06" firstAttribute="width" secondItem="Vtq-DM-E5p" secondAttribute="width" id="1yw-bC-6ES"/>
                             <constraint firstItem="QSN-JP-uGK" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="2MY-xX-5fF"/>
                             <constraint firstItem="kBt-4p-RHp" firstAttribute="top" secondItem="qks-KR-3r9" secondAttribute="bottom" id="2az-9V-foY"/>
-                            <constraint firstItem="uPF-oN-fmp" firstAttribute="width" secondItem="Vtq-DM-E5p" secondAttribute="width" id="2l3-Ho-XAF"/>
                             <constraint firstItem="EDd-dj-8N4" firstAttribute="height" secondItem="ff2-ot-Nfs" secondAttribute="height" id="8br-r5-CY7"/>
-                            <constraint firstItem="uPF-oN-fmp" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="93t-np-mW9"/>
                             <constraint firstItem="ff2-ot-Nfs" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="A9Z-N7-riG"/>
                             <constraint firstItem="kBt-4p-RHp" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="D6I-n9-QIg"/>
                             <constraint firstItem="ff2-ot-Nfs" firstAttribute="top" secondItem="kBt-4p-RHp" secondAttribute="bottom" constant="7" id="HSC-hy-hRh"/>
@@ -382,8 +362,9 @@
                             <constraint firstItem="kBt-4p-RHp" firstAttribute="width" secondItem="Vtq-DM-E5p" secondAttribute="width" id="P0L-SN-koL"/>
                             <constraint firstItem="EDd-dj-8N4" firstAttribute="top" secondItem="ff2-ot-Nfs" secondAttribute="bottom" constant="8" id="gSw-kN-SbM"/>
                             <constraint firstItem="QSN-JP-uGK" firstAttribute="height" secondItem="EDd-dj-8N4" secondAttribute="height" id="hG5-L2-kU6"/>
+                            <constraint firstItem="kRx-Nm-i06" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="oRD-aI-mBN"/>
+                            <constraint firstItem="kRx-Nm-i06" firstAttribute="top" secondItem="QSN-JP-uGK" secondAttribute="bottom" constant="8" id="q4Z-sc-m17"/>
                             <constraint firstItem="EDd-dj-8N4" firstAttribute="width" secondItem="Vtq-DM-E5p" secondAttribute="width" id="qQE-gB-La7"/>
-                            <constraint firstItem="uPF-oN-fmp" firstAttribute="top" secondItem="QSN-JP-uGK" secondAttribute="bottom" constant="8" id="rgU-Br-h1E"/>
                             <constraint firstItem="EDd-dj-8N4" firstAttribute="centerX" secondItem="Vtq-DM-E5p" secondAttribute="centerX" id="z9R-OP-jne"/>
                         </constraints>
                     </view>
@@ -1817,7 +1798,6 @@
         <image name="icon_backbutton_44.png" width="22" height="22"/>
         <image name="icon_logout_44.png" width="22" height="22"/>
         <image name="icon_statistics_44.png" width="22" height="22"/>
-        <image name="premium128.png" width="128" height="128"/>
         <image name="question128.png" width="128" height="128"/>
         <image name="settings_icon.png" width="22" height="22"/>
         <image name="star128.png" width="128" height="128"/>
