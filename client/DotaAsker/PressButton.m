@@ -7,14 +7,15 @@
 //
 
 #import "PressButton.h"
-#import "AZButton.h"
+#import "PressButtonStyleKit.h"
 
 @implementation PressButton
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    [AZButton drawCanvas1WithIcon:[UIImage imageNamed:@"premium_48.png"] caption:@"Unlock premium" rect:self.bounds];
+    [PressButtonStyleKit drawButtonWithIcon:self.icon caption:self.caption rect:self.bounds fontSize:self.fontSize rectIcon:self.iconRect];
+    
 }
 
 

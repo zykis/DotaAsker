@@ -1,5 +1,5 @@
 //
-//  AZButton.h
+//  PressButtonStyleKit.h
 //  DotaAsker
 //
 //  Created by Zykis on 26/11/2016.
@@ -46,17 +46,17 @@
 
 typedef enum : NSInteger
 {
-    AZButtonResizingBehaviorAspectFit, //!< The content is proportionally resized to fit into the target rectangle.
-    AZButtonResizingBehaviorAspectFill, //!< The content is proportionally resized to completely fill the target rectangle.
-    AZButtonResizingBehaviorStretch, //!< The content is stretched to match the entire target rectangle.
-    AZButtonResizingBehaviorCenter, //!< The content is centered in the target rectangle, but it is NOT resized.
+    PressButtonStyleKitResizingBehaviorAspectFit, //!< The content is proportionally resized to fit into the target rectangle.
+    PressButtonStyleKitResizingBehaviorAspectFill, //!< The content is proportionally resized to completely fill the target rectangle.
+    PressButtonStyleKitResizingBehaviorStretch, //!< The content is stretched to match the entire target rectangle.
+    PressButtonStyleKitResizingBehaviorCenter, //!< The content is centered in the target rectangle, but it is NOT resized.
 
-} AZButtonResizingBehavior;
+} PressButtonStyleKitResizingBehavior;
 
-extern CGRect AZButtonResizingBehaviorApply(AZButtonResizingBehavior behavior, CGRect rect, CGRect target);
+extern CGRect PressButtonStyleKitResizingBehaviorApply(PressButtonStyleKitResizingBehavior behavior, CGRect rect, CGRect target);
 
 
-@interface AZButton : NSObject
+@interface PressButtonStyleKit : NSObject
 
 // Colors
 + (UIColor*)greenGradientColor;
@@ -71,7 +71,7 @@ extern CGRect AZButtonResizingBehaviorApply(AZButtonResizingBehavior behavior, C
 //// In Trial version of PaintCode, the code generation is limited to 3 canvases.
 
 // Drawing Methods
-+ (void)drawCanvas1WithIcon: (UIImage*)icon caption: (NSString*)caption rect: (CGRect)rect fontSize: (CGFloat)fontSize rectIcon: (CGRect)rectIcon;
-+ (void)drawCanvas1WithFrame: (CGRect)targetFrame resizing: (AZButtonResizingBehavior)resizing icon: (UIImage*)icon caption: (NSString*)caption rect: (CGRect)rect fontSize: (CGFloat)fontSize rectIcon: (CGRect)rectIcon;
++ (void)drawButtonWithIcon: (UIImage*)icon caption: (NSString*)caption rect: (CGRect)rect fontSize: (CGFloat)fontSize rectIcon: (CGRect)rectIcon;
++ (void)drawButtonWithFrame: (CGRect)targetFrame resizing: (PressButtonStyleKitResizingBehavior)resizing icon: (UIImage*)icon caption: (NSString*)caption rect: (CGRect)rect fontSize: (CGFloat)fontSize rectIcon: (CGRect)rectIcon;
 
 @end
