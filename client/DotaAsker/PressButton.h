@@ -10,9 +10,5 @@
 
 IB_DESIGNABLE
 @interface PressButton : UIButton
-@property (strong, nonatomic) IBInspectable NSString* caption;
-@property (strong, nonatomic) IBInspectable UIImage* icon;
-@property (nonatomic) IBInspectable NSUInteger fontSize;
-@property (nonatomic) IBInspectable CGRect iconRect;
 
 @end

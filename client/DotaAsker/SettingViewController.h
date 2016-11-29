@@ -20,5 +20,11 @@
 @property (strong, nonatomic) IBOutlet PressButton *top100Button;
 @property (strong, nonatomic) IBOutlet PressButton *avatarsButton;
 @property (strong, nonatomic) IBOutlet PressButton *premiumButton;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewQuestion;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewTop100;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewAvatar;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewPremium;
 - (BOOL)checkPremium;
+- (void)setupCompactWidth;
+- (void)setupRegularWidth;
 @end

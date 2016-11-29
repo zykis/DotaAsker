@@ -40,11 +40,15 @@
     if (previousTraitCollection.horizontalSizeClass != self.traitCollection.horizontalSizeClass) {
         switch (self.traitCollection.horizontalSizeClass) {
             case UIUserInterfaceSizeClassRegular:
-                [self.premiumButton setFontSize:36];
+                [self setupRegularWidth];
                 break;
                 
             case UIUserInterfaceSizeClassCompact:
-                [self.premiumButton setFontSize:26];
+                [self setupCompactWidth];
+                break;
+                
+            case UIUserInterfaceSizeClassUnspecified:
+                NSLog(@"Weird size class");
                 break;
                 
             default:
@@ -82,6 +86,14 @@
     }
     else
         return YES;
+}
+
+- (void)setupCompactWidth {
+    
+}
+
+- (void)setupRegularWidth {
+    
 }
 
 @end

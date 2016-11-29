@@ -14,8 +14,7 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
-    [PressButtonStyleKit drawButtonWithIcon:self.icon caption:self.caption rect:self.bounds fontSize:self.fontSize rectIcon:self.iconRect];
-    
+    [PressButtonStyleKit drawButtonWithRect:self.bounds];
 }
 
 
