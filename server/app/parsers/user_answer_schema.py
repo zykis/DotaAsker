@@ -18,8 +18,8 @@ class UserAnswerSchema(Schema):
             roundDict = data['round']
             ua.round_id = roundDict['id']
 
-            userDict = data['user']
-            ua.user_id = userDict['id']
+            user = data['user']
+            ua.user_id = user.id
 
             ua.answer_id = 0
 

@@ -70,6 +70,7 @@
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
         Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
         Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
+        // If no selected theme in round, try to update it
         [destVC setRound:selectedRound];
         [destVC setSelectedTheme:selectedTheme];
     }
@@ -110,20 +111,30 @@
 }
 
 - (IBAction)sendFriendRequest:(id)sender {
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Sending request"];
+    [[self view] addSubview:loadingView];
+    
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
-    [subject subscribeNext:^(id x) {
-        NSLog(@"Ok");
-    } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+    [subject subscribeError:^(NSError *error) {
+        [loadingView removeFromSuperview];
+        [self presentAlertControllerWithTitle:@"Error adding a friend" andMessage:[error localizedDescription]];
+    } completed:^{
+        [loadingView removeFromSuperview];
     }];
 }
 
 - (IBAction)surrend:(id)sender {
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Surrending"];
+    [[self view] addSubview:loadingView];
+    
     RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
-    [subject subscribeNext:^(id x) {
-        NSLog(@"Ok");
-    } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+    [subject subscribeError:^(NSError *error) {
+        [loadingView removeFromSuperview];
+        [self presentAlertControllerWithTitle:@"Can't surrend" andMessage:[error localizedDescription]];
+    } completed:^{
+        [loadingView removeFromSuperview];
     }];
 }
 

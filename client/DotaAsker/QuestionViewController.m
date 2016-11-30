@@ -45,7 +45,10 @@
     assert(_round);
     assert([[_round questions] count] == 9);
     assert(_selectedTheme);
-    //! TODO: create empty asnwers and sent to server
+    //! TODO: Если пустые ответы вдруг не дошли?
+    // Тогда что?
+    // Показывать следующий вопрос только по завершении отсыла.
+    // А при ошибке как действовать? Ручной ребут?
     [self sendEmptyUserAnswers];
     
     _currentQuestionIndex = 0;
@@ -211,6 +214,9 @@
                 // Обновляем матч
                 __block Match* m = [_questionViewModel matchForRound:_round];
                 // Завершаем его
+                //! TODO: Что делать, если не получается завершить его в данный момент?
+                // Может быть сервер сам должен определять, когда следует завершить матч?
+                
                 RACReplaySubject* subjectFinished = [[[ServiceLayer instance] matchService] finishMatch:m];
                 [subjectFinished subscribeNext:^(id x) {
                     NSLog(@"Match finished");
@@ -270,6 +276,11 @@
 }
 
 - (void)sendEmptyUserAnswers {
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Surrending"];
+    [[self view] addSubview:loadingView];
+    
+    NSMutableArray* subjectsArray = [[NSMutableArray alloc] init];
     for (NSUInteger i = 0; i < 3; i++) {
         Round* relatedRound = _round;
         Answer* relatedAnswer;
@@ -281,24 +292,27 @@
         userAnswer.relatedUser = relatedUser;
         userAnswer.secForAnswer = 30;
         RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-        [subject subscribeNext:^(id x) {
-            // We could store an IDs of UserAnswers and just update them
-            // later. After we've got an answer to question.
-            UserAnswer* ua = x;
-            [_userAnswersCreatedIDs addObject:[NSNumber numberWithUnsignedLongLong:[ua ID]]];
-        } error:^(NSError *error) {
-            NSLog(@"Error, creating user answers. Well, that's sucks actually, cause we could be probably tricked by users");
-        } completed:^{
-            NSLog(@"GJ, bro!");
-        }];
-        
+        [subjectsArray addObject:subject];
+    }
+    
+    RACSignal *signal = [RACSignal concat:[subjectsArray.rac_sequence map:^(id sig) {
+        return sig;
+    }]];
+    [signal subscribeNext:^(UserAnswer* newUa) {
+        [_userAnswersCreatedIDs addObject:[NSNumber numberWithUnsignedLongLong:[newUa ID]]];
+    } error:^(NSError *error) {
+        [[self navigationController] popViewControllerAnimated:YES];
+        [loadingView removeFromSuperview];
+        [self presentAlertControllerWithTitle:@"Sorry, match not started" andMessage:@"Check the connection and try again :("];
+    } completed:^{
+        [loadingView removeFromSuperview];
         //Setting next_move_user on server to opponent
         User* opponent = [_questionViewModel opponentForRound:_round];
         // Too lazy to implement copyWithZone for each Entity
         [_round setNextMoveUser:opponent];
         [[[ServiceLayer instance] roundService] update:_round];
         [_round setNextMoveUser:[Player instance]];
-    }
+    }];
 }
 
 - (void)updateSecondsRemain {

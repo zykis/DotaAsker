@@ -186,7 +186,7 @@ def put_round():
     r = schema.loads(rDict)[0]
     rNew = Round.query.get(r['id'])
     if r.get('next_move_user', False):
-        rNew.next_move_user_id = r['next_move_user']['id']
+        rNew.next_move_user_id = r['next_move_user'].id
     if r.get('selected_theme', False):
         rNew.selected_theme_id = r['selected_theme']['id']
     db.session.add(rNew)

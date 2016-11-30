@@ -77,41 +77,53 @@
 */
 
 - (IBAction)button1Pressed:(id)sender {
-    [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Updating round"];
+    [[self view] addSubview:loadingView];
+    
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
     [_round setSelectedTheme:[themes objectAtIndex:0]];
     RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
-    [subject subscribeNext:^(id x) {
-        Round* r = x;
-        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
-    } error:^(NSError *error) {
-        NSLog(@"Error, while updating round");
+    [subject subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
+        [loadingView removeFromSuperview];
+    } completed:^{
+        [loadingView removeFromSuperview];
+        [self performSegueWithIdentifier:@"themeSelected" sender:sender];
     }];
 }
 
 - (IBAction)button2Pressed:(id)sender {
-    [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Updating round"];
+    [[self view] addSubview:loadingView];
+    
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
     [_round setSelectedTheme:[themes objectAtIndex:1]];
     RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
-    [subject subscribeNext:^(id x) {
-        Round* r = x;
-        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
-    } error:^(NSError *error) {
-        NSLog(@"Error, while updating round");
+    [subject subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
+        [loadingView removeFromSuperview];
+    } completed:^{
+        [loadingView removeFromSuperview];
+        [self performSegueWithIdentifier:@"themeSelected" sender:sender];
     }];
 }
 
 - (IBAction)button3Pressed:(id)sender {
-    [self performSegueWithIdentifier:@"themeSelected" sender:sender];
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Updating round"];
+    [[self view] addSubview:loadingView];
+    
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
     [_round setSelectedTheme:[themes objectAtIndex:2]];
     RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
-    [subject subscribeNext:^(id x) {
-        Round* r = x;
-        NSLog(@"Round updated. Selected theme: %@", [[r selectedTheme] name]);
-    } error:^(NSError *error) {
-        NSLog(@"Error, while updating round");
+    [subject subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
+        [loadingView removeFromSuperview];
+    } completed:^{
+        [loadingView removeFromSuperview];
+        [self performSegueWithIdentifier:@"themeSelected" sender:sender];
     }];
 }
 @end

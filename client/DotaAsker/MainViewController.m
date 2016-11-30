@@ -43,15 +43,20 @@
 }
 
 - (void)refreshControllDragged {
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Updating player"];
+    [[self view] addSubview:loadingView];
+    
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
          [Player setPlayer:u];
          [self.tableView reloadData];
          [self.refreshControl endRefreshing];
+         [loadingView removeFromSuperview];
      } error:^(NSError *error) {
          [self.refreshControl endRefreshing];
+         [loadingView removeFromSuperview];
      }];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -292,6 +297,10 @@
 }
 
 - (IBAction)findMatchPressed {
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Finding match"];
+    [[self view] addSubview:loadingView];
+    
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
         // Update player
@@ -299,15 +308,18 @@
         CGSize imageSize = [[Helper shared] getQuestionImageViewSize];
         for (Round* r in [m rounds]) {
             for (Question* q in [r questions]) {
-                [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:imageSize.width andHeight:imageSize.height];
+                // Before we will go further, need to get question images
+                //! TODO:
+                // 9 RacReplaySubjects... how to handle them?
+                RACReplaySubject* subjectThumbnals = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:imageSize.width andHeight:imageSize.height];
             }
         }
         assert(m);
         [[[Player instance] matches] addObject:m];
         [self.tableView reloadData];
     } error:^(NSError *error) {
-        NSLog(@"Error finding match: %@", [error localizedDescription]);
-    } completed:^{
+        [loadingView removeFromSuperview];
+        [self presentAlertControllerWithTitle:@"Match not found" andMessage:[error localizedDescription]];
     }];
 }
 
