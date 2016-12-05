@@ -86,18 +86,46 @@
             // Answering or Replying?
             Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
             User* opponent = [_matchViewModel opponent];
-            BOOL playerAnswering = true;
-            for (UserAnswer* ua in [currentRound userAnswers]) {
-                if ([[ua relatedUser] isEqual:opponent]) {
-                    playerAnswering = NO; // Player replying
-                    break;
+            
+            NSMutableArray* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
+            
+            NSUInteger unsynchronized_count = 0;
+            for (UserAnswer* ua in lastPlayerUserAnswers) {
+                if (![ua synchronized]) {
+                    unsynchronized_count++;
                 }
             }
-            if (playerAnswering) {
-                [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
+            
+            if ((unsynchronized_count > 0) && (unsynchronized_count < 3)) {
+                // Continue answering questions
+                [self performSegueWithIdentifier:@"showQuestions" sender:sender];
             }
+            // If all 3 answers unsynchronized, SYNC
+            else if (unsynchronized_count == 3) {
+                // Sync
+                NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
+                for (UserAnswer* ua in lastPlayerUserAnswers) {
+                    if (![ua synchronized]) {
+                        [unsynchronizedUserAnswers addObject:ua];
+                    }
+                }
+            }
+            
+            // Answer or Reply
             else {
-                [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
+                BOOL playerAnswering = true;
+                for (UserAnswer* ua in [currentRound userAnswers]) {
+                    if ([[ua relatedUser] isEqual:opponent]) {
+                        playerAnswering = NO; // Player replying
+                        break;
+                    }
+                }
+                if (playerAnswering) {
+                    [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
+                }
+                else {
+                    [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
+                }
             }
         }
         else {
@@ -268,9 +296,29 @@
                 }
             }
             else if([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
-                [leftButton setHidden:NO];
-                [middleButton setTitle:@"Play" forState:UIControlStateNormal];
-                [middleButton setEnabled:YES];
+                // If last 3 UserAnswers synchronized, play
+                // else, answer estimated questions
+                NSUInteger unsynchronizedCount = 0;
+                for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
+                    if (![ua synchronized]) {
+                        unsynchronizedCount++;
+                    }
+                }
+                if ((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) {
+                    [leftButton setHidden:NO];
+                    [middleButton setTitle:@"Continue" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                }
+                else if (unsynchronizedCount == 3) {
+                    [leftButton setHidden:NO];
+                    [middleButton setTitle:@"Synchronize" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                }
+                else {
+                    [leftButton setHidden:NO];
+                    [middleButton setTitle:@"Play" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                }
             }
             else {
                 [leftButton setHidden:YES];

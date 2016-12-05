@@ -54,4 +54,27 @@
     return NO;
 }
 
+- (NSMutableArray*)lastPlayerUserAnswersForRound:(Round *)round {
+    NSMutableArray* lastPlayerUserAnswers = [[NSMutableArray alloc] init];
+    Round* currentRound = round;
+    if ([[currentRound userAnswers] count] == 0)
+        return lastPlayerUserAnswers;
+    for (NSUInteger i = [[currentRound userAnswers] count] - 1; i > 0; i--) {
+        UserAnswer* ua = [[currentRound userAnswers] objectAtIndex:i];
+        if ([[ua relatedUser] isEqual:[Player instance]]) {
+            [lastPlayerUserAnswers insertObject:ua atIndex:0];
+        }
+    }
+    return lastPlayerUserAnswers;
+}
+
+- (UserAnswer*)lastPlayerUserAnswerForRound:(Round *)round {
+    NSMutableArray* lastUserAnswers = [self lastPlayerUserAnswersForRound:round];
+    if ([lastUserAnswers count] == 0)
+        return nil;
+    else {
+        return [lastUserAnswers lastObject];
+    }
+}
+
 @end

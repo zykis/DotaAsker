@@ -11,6 +11,7 @@
 #import "ServiceLayer.h"
 #import "QuestionViewModel.h"
 #import "Helper.h"
+#import "Answer.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
 
 #define QUESTION_TIMEOUT_INTERVAL 30
@@ -31,16 +32,12 @@
 @synthesize currentQuestionIndex = _currentQuestionIndex;
 @synthesize selectedTheme = _selectedTheme;
 @synthesize questionViewModel = _questionViewModel;
-@synthesize userAnswers = _userAnswers;
-@synthesize userAnswersCreatedIDs = _userAnswersCreatedIDs;
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _questionViewModel = [[QuestionViewModel alloc] init];
-    _userAnswers = [[NSMutableArray alloc] init];
-    _userAnswersCreatedIDs = [[NSMutableArray alloc] init];
     
     assert(_round);
     assert([[_round questions] count] == 9);
@@ -49,7 +46,6 @@
     // Тогда что?
     // Показывать следующий вопрос только по завершении отсыла.
     // А при ошибке как действовать? Ручной ребут?
-    [self sendEmptyUserAnswers];
     
     _currentQuestionIndex = 0;
     [self showNextQuestion];
@@ -57,7 +53,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [_userAnswers removeAllObjects];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,27 +78,28 @@
     else if(sender == _answer4Button)
         answerIndex = 3;
     
-    Round* relatedRound = _round;
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
-    User* relatedUser = [_round nextMoveUser];
+    UserAnswer *userAnswer = [[_round userAnswers] lastObject];
     
-    UserAnswer *userAnswer = [[UserAnswer alloc] init];
-    userAnswer.relatedRound = relatedRound;
+    // Udpate existing userAnswer
     userAnswer.relatedAnswer = relatedAnswer;
-    userAnswer.relatedUser = relatedUser;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
-    userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
-    [[_round userAnswers] addObject:userAnswer];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
-        NSLog(@"Next");
+        // Mark userAnswer as synchronized
+        for (UserAnswer* ua in [_round userAnswers]) {
+            if ([ua isEqual:x]) {
+                ua.synchronized = true;
+            }
+        }
     } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
     } completed:^{
-        NSLog(@"Completed");
+        NSLog(@"Answer synchronized");
     }];
     
+    User* relatedUser = [_round nextMoveUser];
     if ([relatedAnswer isCorrect]) {
         relatedUser.totalCorrectAnswers++;
     }
@@ -115,30 +111,26 @@
 }
 
 - (void)timeElapsed {
-    NSLog(@"Timer elapsed");
     [_timeTimer invalidate];
     _timeTimer = nil;
-    
-    Round* relatedRound = _round;
-    Answer* relatedAnswer = [Answer emptyAnswer];
-    User* relatedUser = [_round nextMoveUser];
-    UserAnswer *userAnswer = [[UserAnswer alloc] init];
-    userAnswer.relatedRound = relatedRound;
-    userAnswer.relatedAnswer = relatedAnswer;
-    userAnswer.relatedUser = relatedUser;
-    userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
-    userAnswer.ID = [[_userAnswersCreatedIDs objectAtIndex:_currentQuestionIndex] unsignedLongLongValue];
-    
-    [[_round userAnswers] addObject:userAnswer];
+
+    UserAnswer *userAnswer = [[_round userAnswers] lastObject];
+
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
-        NSLog(@"Next");
+        // Mark userAnswer as synchronized
+        for (UserAnswer* ua in [_round userAnswers]) {
+            if ([ua isEqual:x]) {
+                ua.synchronized = true;
+            }
+        }
     } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
     } completed:^{
-        NSLog(@"Completed");
+        NSLog(@"Answer synchronized");
     }];
     
+    User* relatedUser = [_round nextMoveUser];
     relatedUser.totalIncorrectAnswers++;
     _currentQuestionIndex++;
     [self showNextQuestion];
@@ -146,6 +138,15 @@
 
 - (void)showNextQuestion {
     if (_currentQuestionIndex < 3) {
+        // create empty unsynchronized userAnswer
+        UserAnswer* ua = [[UserAnswer alloc] init];
+        ua.relatedAnswer = [Answer emptyAnswer];
+        ua.relatedUser = [Player instance];
+        ua.relatedRound = _round;
+        ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
+        ua.synchronized = NO;
+        [[_round userAnswers] addObject:ua];
+        
         // start timer
         dispatch_async(dispatch_get_main_queue(), ^{
             _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
@@ -196,123 +197,17 @@
     
     //Игрок ответил на все вопросы
     else {
-        //изменяем состояние раунда
-        if ([[_round userAnswers] count] < 6) {
-            // Если раунд не окончен
-            // Переключаем следующего игрока
-            if ([[_round nextMoveUser] isEqual:[Player instance]]) {
-                User* opponent = [_questionViewModel opponentForRound:_round];
-                // opponent may be nil
-                [_round setNextMoveUser:opponent];
-            }
-            else {
-                [_round setNextMoveUser:[Player instance]];
+        //возвращаемся к MatchInfoViewController
+        MatchViewController* destVC;
+        UINavigationController *navController = [self navigationController];
+        NSInteger i_count = [[navController viewControllers] count];
+        for (int i = 0; i < i_count; i++) {
+            if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
+                destVC = [[navController viewControllers] objectAtIndex:i];
             }
         }
-        else {
-            if ([_questionViewModel isRoundLast:_round]) {
-                // Обновляем матч
-                __block Match* m = [_questionViewModel matchForRound:_round];
-                // Завершаем его
-                //! TODO: Что делать, если не получается завершить его в данный момент?
-                // Может быть сервер сам должен определять, когда следует завершить матч?
-                
-                RACReplaySubject* subjectFinished = [[[ServiceLayer instance] matchService] finishMatch:m];
-                [subjectFinished subscribeNext:^(id x) {
-                    NSLog(@"Match finished");
-                    Match *updatedMatch = x;
-                    [m setState:[updatedMatch state]];
-                    NSLog(@"Updated");
-                } error:^(NSError *error) {
-                    NSLog(@"%@", [error localizedDescription]);
-                } completed:^{
-                    NSLog(@"Match finished (completed)");
-                    //возвращаемся к MatchInfoViewController
-                    MatchViewController* destVC;
-                    UINavigationController *navController = [self navigationController];
-                    NSInteger i_count = [[navController viewControllers] count];
-                    for (int i = 0; i < i_count; i++) {
-                        if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
-                            destVC = [[navController viewControllers] objectAtIndex:i];
-                        }
-                    }
-                    [[self navigationController] popToViewController:destVC animated:YES];
-                }];
-            }
-            else {
-                //возвращаемся к MatchInfoViewController
-                MatchViewController* destVC;
-                UINavigationController *navController = [self navigationController];
-                NSInteger i_count = [[navController viewControllers] count];
-                for (int i = 0; i < i_count; i++) {
-                    if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
-                        destVC = [[navController viewControllers] objectAtIndex:i];
-                    }
-                }
-                [[self navigationController] popToViewController:destVC animated:YES];
-            }
-        }
-        
-        RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
-        [subject subscribeNext:^(id x) {
-            Round* r = x;
-            [_round setNextMoveUser:[r nextMoveUser]];
-            NSLog(@"Round updated: %llu", [r ID]);
-        } error:^(NSError *error) {
-            NSLog(@"%@", [error localizedDescription]);
-        } completed:^{
-            //возвращаемся к MatchInfoViewController
-            MatchViewController* destVC;
-            UINavigationController *navController = [self navigationController];
-            NSInteger i_count = [[navController viewControllers] count];
-            for (int i = 0; i < i_count; i++) {
-                if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
-                    destVC = [[navController viewControllers] objectAtIndex:i];
-                }
-            }
-            [[self navigationController] popToViewController:destVC animated:YES];
-        }];
+        [[self navigationController] popToViewController:destVC animated:YES];
     }
-}
-
-- (void)sendEmptyUserAnswers {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Surrending"];
-    [[self view] addSubview:loadingView];
-    
-    NSMutableArray* subjectsArray = [[NSMutableArray alloc] init];
-    for (NSUInteger i = 0; i < 3; i++) {
-        Round* relatedRound = _round;
-        Answer* relatedAnswer;
-        User* relatedUser = [Player instance];
-        
-        UserAnswer *userAnswer = [[UserAnswer alloc] init];
-        userAnswer.relatedRound = relatedRound;
-        userAnswer.relatedAnswer = relatedAnswer;
-        userAnswer.relatedUser = relatedUser;
-        userAnswer.secForAnswer = 30;
-        RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-        [subjectsArray addObject:subject];
-    }
-    
-    RACSignal *signal = [RACSignal concat:[subjectsArray.rac_sequence map:^(id sig) {
-        return sig;
-    }]];
-    [signal subscribeNext:^(UserAnswer* newUa) {
-        [_userAnswersCreatedIDs addObject:[NSNumber numberWithUnsignedLongLong:[newUa ID]]];
-    } error:^(NSError *error) {
-        [[self navigationController] popViewControllerAnimated:YES];
-        [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Sorry, match not started" andMessage:@"Check the connection and try again :("];
-    } completed:^{
-        [loadingView removeFromSuperview];
-        //Setting next_move_user on server to opponent
-        User* opponent = [_questionViewModel opponentForRound:_round];
-        // Too lazy to implement copyWithZone for each Entity
-        [_round setNextMoveUser:opponent];
-        [[[ServiceLayer instance] roundService] update:_round];
-        [_round setNextMoveUser:[Player instance]];
-    }];
 }
 
 - (void)updateSecondsRemain {

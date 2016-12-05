@@ -29,5 +29,4 @@
 @property (strong, nonatomic) MatchService* matchService;
 @property (strong, nonatomic) UserService* userService;
 
-
 @end

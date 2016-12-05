@@ -20,5 +20,6 @@
 @property (strong, nonatomic) Answer* relatedAnswer;
 @property (strong, nonatomic) Round* relatedRound;
 @property (strong, nonatomic) User* relatedUser;
+@property (assign, nonatomic) BOOL synchronized;
     
 @end

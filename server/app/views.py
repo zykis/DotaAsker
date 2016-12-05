@@ -165,11 +165,32 @@ def post_userAnswer():
     db.session.add(ua)
     db.session.commit()
 
-    # hmmmm...
-    if ua.answer_id == 0:
-        uaNew = UserAnswer.query.get(ua.id)
-    else:
-        uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
+    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
+
+    # check if round is over
+    round = uaNew.round
+    if len(round.user_answers) == 3:
+        # change next_move_user
+        u1 = round.next_move_user
+        for u in round.match.users:
+            if u is not u1:
+                u2 = u
+        if not isinstance(u2, User):
+            app.logger.critical("can't find next move user for match: {}".format(round.match))
+        round.next_move_user = u2
+        db.session.add(round)
+        db.session.commit()
+
+    elif len(round.user_answers) == 6:
+        # check if match is over
+        ua_count = 0
+        for r in round.match.rounds:
+            ua_count += len(r.user_answers)
+        if ua_count == 36:
+            round.match.finish()
+            db.session.add(round.match)
+            db.session.commit()
+
     res = schema.dumps(uaNew)
     if not res.errors:
         resp = make_response(res.data)

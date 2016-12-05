@@ -21,5 +21,6 @@
 - (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index;
 - (NSUInteger)playerScore;
 - (NSUInteger)opponentScore;
+- (NSMutableArray*)lastPlayerUserAnswers;
 
 @end

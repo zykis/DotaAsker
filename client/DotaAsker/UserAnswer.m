@@ -10,6 +10,14 @@
 
 @implementation UserAnswer
 
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.synchronized = YES;
+    }
+    return self;
+}
+
 - (BOOL)isEqual:(id)object {
     if ([object isMemberOfClass:[UserAnswer class]]) {
         UserAnswer* ua = object;
