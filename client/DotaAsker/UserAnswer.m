@@ -7,6 +7,9 @@
 //
 
 #import "UserAnswer.h"
+#import "User.h"
+#import "Round.h"
+#import "Question.h"
 
 @implementation UserAnswer
 
@@ -21,8 +24,7 @@
 - (BOOL)isEqual:(id)object {
     if ([object isMemberOfClass:[UserAnswer class]]) {
         UserAnswer* ua = object;
-        if (ua.ID == self.ID)
-            return YES;
+        return ([ua.relatedUser isEqual:self.relatedUser] && [ua.relatedRound isEqual:self.relatedRound] && [ua.relatedQuestion isEqual:self.relatedQuestion]);
     }
     return NO;
 }

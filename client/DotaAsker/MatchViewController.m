@@ -96,18 +96,58 @@
                 }
             }
             
-            if ((unsynchronized_count > 0) && (unsynchronized_count < 3)) {
-                // Continue answering questions
-                [self performSegueWithIdentifier:@"showQuestions" sender:sender];
-            }
-            // If all 3 answers unsynchronized, SYNC
-            else if (unsynchronized_count == 3) {
-                // Sync
-                NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
-                for (UserAnswer* ua in lastPlayerUserAnswers) {
-                    if (![ua synchronized]) {
-                        [unsynchronizedUserAnswers addObject:ua];
+            if (unsynchronized_count > 0) {
+                if ([lastPlayerUserAnswers count] > unsynchronized_count) {
+                    // If not all question are answered
+                    // Continue answering questions
+                    
+                    //! TODO: Set current_question_index in destVC
+                    [self performSegueWithIdentifier:@"showQuestions" sender:sender];
+                }
+                else {
+                    NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
+                    for (UserAnswer* ua in lastPlayerUserAnswers) {
+                        if (![ua synchronized]) {
+                            [unsynchronizedUserAnswers addObject:ua];
+                        }
                     }
+                    NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
+                    for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
+                        RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
+                        [signalsArray addObject:signal];
+                    }
+                    
+                    RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
+                        return value;
+                    }]];
+                    
+                    [sig subscribeNext:^(id x) {
+                        // Mark userAnswer as synchronized
+                        for (UserAnswer* ua in [[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]] userAnswers]) {
+                            if ([ua isEqual:x]) {
+                                ua.synchronized = true;
+                                NSLog(@"Answer synchronized");
+                            }
+                        }
+                    } error:^(NSError *error) {
+                        NSLog(@"Error udpating ua");
+                        [self.tableView reloadData];
+                    } completed:^{
+                        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+                        [subject subscribeNext:^(id x) {
+                            [Player setPlayer:x];
+                        } error:^(NSError *error) {
+                            [self.tableView reloadData];
+                        } completed:^{
+                            for (Match* m in [[Player instance] matches]) {
+                                if ([m isEqual:[_matchViewModel match]]) {
+                                    [_matchViewModel setMatch:m];
+                                    [self.tableView reloadData];
+                                    break;
+                                }
+                            }
+                        }];
+                    }];
                 }
             }
             

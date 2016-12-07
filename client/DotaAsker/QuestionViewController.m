@@ -10,6 +10,7 @@
 #import "MatchViewController.h"
 #import "ServiceLayer.h"
 #import "QuestionViewModel.h"
+#import "MatchViewModel.h"
 #import "Helper.h"
 #import "Answer.h"
 #import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
@@ -42,10 +43,6 @@
     assert(_round);
     assert([[_round questions] count] == 9);
     assert(_selectedTheme);
-    //! TODO: Если пустые ответы вдруг не дошли?
-    // Тогда что?
-    // Показывать следующий вопрос только по завершении отсыла.
-    // А при ошибке как действовать? Ручной ребут?
     
     _currentQuestionIndex = 0;
     [self showNextQuestion];
@@ -84,20 +81,6 @@
     // Udpate existing userAnswer
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
-    
-    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-    [subject subscribeNext:^(id x) {
-        // Mark userAnswer as synchronized
-        for (UserAnswer* ua in [_round userAnswers]) {
-            if ([ua isEqual:x]) {
-                ua.synchronized = true;
-            }
-        }
-    } error:^(NSError *error) {
-        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
-    } completed:^{
-        NSLog(@"Answer synchronized");
-    }];
     
     User* relatedUser = [_round nextMoveUser];
     if ([relatedAnswer isCorrect]) {
@@ -138,11 +121,13 @@
 
 - (void)showNextQuestion {
     if (_currentQuestionIndex < 3) {
+        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
         // create empty unsynchronized userAnswer
         UserAnswer* ua = [[UserAnswer alloc] init];
         ua.relatedAnswer = [Answer emptyAnswer];
         ua.relatedUser = [Player instance];
         ua.relatedRound = _round;
+        ua.relatedQuestion = q;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
         [[_round userAnswers] addObject:ua];
@@ -159,7 +144,7 @@
             _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
         });
         
-        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
+        
         assert(q);
         NSArray* answers = [q answers];
         
@@ -197,17 +182,56 @@
     
     //Игрок ответил на все вопросы
     else {
-        //возвращаемся к MatchInfoViewController
-        MatchViewController* destVC;
-        UINavigationController *navController = [self navigationController];
-        NSInteger i_count = [[navController viewControllers] count];
-        for (int i = 0; i < i_count; i++) {
-            if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
-                destVC = [[navController viewControllers] objectAtIndex:i];
-            }
+        NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
+        for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:_round]) {
+            RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
+            [signalsArray addObject:signal];
         }
-        [[self navigationController] popToViewController:destVC animated:YES];
+        
+        RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
+            return value;
+        }]];
+        
+        [sig subscribeNext:^(id x) {
+            // Mark userAnswer as synchronized
+            for (UserAnswer* ua in [_round userAnswers]) {
+                if ([ua isEqual:x]) {
+                    ua.synchronized = true;
+                    NSLog(@"Answer synchronized");
+                }
+            }
+        } error:^(NSError *error) {
+            NSLog(@"Error udpating ua");
+            // pop
+            [self popToMatchViewController];
+        } completed:^{
+            RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+            [subject subscribeNext:^(id x) {
+                [Player setPlayer:x];
+            } error:^(NSError *error) {
+                [self popToMatchViewController];
+            } completed:^{
+                [self popToMatchViewController];
+            }];
+        }];
     }
+}
+
+- (void)popToMatchViewController {
+    //возвращаемся к MatchInfoViewController
+    MatchViewController* destVC;
+    UINavigationController *navController = [self navigationController];
+    NSInteger i_count = [[navController viewControllers] count];
+    for (int i = 0; i < i_count; i++) {
+        if ([[[navController viewControllers] objectAtIndex:i] isMemberOfClass:[MatchViewController class]]) {
+            destVC = [[navController viewControllers] objectAtIndex:i];
+        }
+    }
+    Match *m = [_questionViewModel matchForRound:_round];
+    [destVC.matchViewModel setMatch:m];
+    [destVC.tableView reloadData];
+    [[self navigationController] popToViewController:destVC animated:YES];
+
 }
 
 - (void)updateSecondsRemain {

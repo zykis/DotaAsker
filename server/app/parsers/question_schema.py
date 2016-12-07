@@ -14,20 +14,20 @@ class QuestionSchema(Schema):
     
     @post_load
     def create_question(self, data):
-        question = Question()
-        question.text = data['text']
-        question.approved = False
-        question.theme = Theme.query.get(1)
-
+        if data['id'] is 0:
+            question = Question()
+            question.text = data['text']
+            question.approved = False
+            
+            for aDict in data['answers']:
+                a = Answer()
+                a.text = aDict['text']
+                a.is_correct = aDict['is_correct']
+                question.answers.append(a)
+                # chech if answer.question_id will fill after session.commit()
+        else:
+            question = Question.query.get(data['id'])
         db.session.add(question)
         db.session.commit()
         # how to get newly created question.ID?
-
-        for aDict in data['answers']:
-            a = Answer()
-            a.text = aDict['text']
-            a.is_correct = aDict['is_correct']
-            question.answers.append(a)
-            # chech if answer.question_id will fill after session.commit()
-
         return question

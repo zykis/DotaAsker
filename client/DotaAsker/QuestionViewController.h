@@ -36,5 +36,6 @@
 - (IBAction)answerPushed:(id)sender;
 - (void)timeElapsed;
 - (void)showNextQuestion;
+- (void)popToMatchViewController;
 
 @end

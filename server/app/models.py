@@ -70,6 +70,10 @@ class UserAnswer(Base):
     # reserve UserAnswers, so the tricky persons couldn't see the question, then quit application
     # find an answer and put in a correct one.
     # if you've lost connection, during round... Well, you suck, man. Sorry.
+
+    question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
+    question = db.relationship('Question', foreign_keys=[question_id])
+
     answer_id = db.Column(db.Integer, db.ForeignKey('answers.id', ondelete='CASCADE', onupdate='CASCADE'))
     answer = db.relationship('Answer', foreign_keys=[answer_id])
 

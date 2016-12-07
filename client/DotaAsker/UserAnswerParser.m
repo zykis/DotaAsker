@@ -11,15 +11,18 @@
 #import "UserParser.h"
 #import "RoundParser.h"
 #import "AnswerParser.h"
+#import "QuestionParser.h"
 #import "Round.h"
 #import "User.h"
 #import "Answer.h"
+#import "Question.h"
 
 @implementation UserAnswerParser
 
 + (UserAnswer*)parse:(NSDictionary *)JSONDict {
     if (!([JSONDict objectForKey:@"id"] &&
           [JSONDict objectForKey:@"user"] &&
+          [JSONDict objectForKey:@"question"] &&
           [JSONDict objectForKey:@"sec_for_answer"]
           )) {
         NSLog(@"Parsing error: can't retrieve a field");
@@ -27,13 +30,15 @@
     }
     
     UserAnswer* userAnswer = [[UserAnswer alloc] init];
+    
+    // ID
     userAnswer.ID = [[JSONDict objectForKey:@"id"] longValue];
-    
+    // sec_for_answer
     userAnswer.secForAnswer = [[JSONDict objectForKey:@"sec_for_answer"] integerValue];
-    
+    // user
     NSDictionary* userDict = [JSONDict objectForKey:@"user"];
     userAnswer.relatedUser = [UserParser parse:userDict andChildren:NO];
-    
+    // answer
     if (![JSONDict[@"answer"] isEqual: [NSNull null]]) {
         NSDictionary* answerDict = [JSONDict objectForKey:@"answer"];
         userAnswer.relatedAnswer = [AnswerParser parse:answerDict];
@@ -41,6 +46,11 @@
     else {
         userAnswer.relatedAnswer = [Answer emptyAnswer];
     }
+    // round
+    userAnswer.relatedRound = [RoundParser parse:[JSONDict objectForKey:@"round"] andChildren:NO];
+    
+    // question
+    userAnswer.relatedQuestion = [QuestionParser parse:[JSONDict objectForKey:@"question"]];
     
     return userAnswer;
 }
@@ -50,11 +60,13 @@
     NSDictionary* roundDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID] forKey:@"id"];
     NSDictionary* userDict = [UserParser encode:[userAnswer relatedUser]];
     NSDictionary* answerDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID] forKey:@"id"];
+    NSDictionary* questionDict = [QuestionParser encode:[userAnswer relatedQuestion]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithUnsignedLongLong:userAnswer.ID], @"id",
                           roundDict, @"round",
                           userDict, @"user",
+                          questionDict, @"question",
                           answerDict, @"answer",
                           [NSNumber numberWithUnsignedInteger: userAnswer.secForAnswer], @"sec_for_answer",
                           nil];

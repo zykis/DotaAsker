@@ -166,6 +166,7 @@ class Database_queries:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
                     user_answer.round = r
+                    user_answer.question = quest
                     user_answer.user = first_match.users[0]
                     user_answer.answer = random.choice(quest.answers)
                     user_answer.sec_for_answer = random.uniform(5, 25)
@@ -173,6 +174,7 @@ class Database_queries:
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
+                    user2_answer.question = quest
                     user2_answer.user = first_match.users[1]
                     user2_answer.answer = random.choice(quest.answers)
                     user2_answer.sec_for_answer = random.uniform(5, 25)
@@ -188,6 +190,7 @@ class Database_queries:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
                     user_answer.round = r
+                    user_answer.question = quest
                     user_answer.user = second_match.users[0]
                     user_answer.answer = random.choice(quest.answers)
                     user_answer.sec_for_answer = random.uniform(5, 25)
@@ -195,6 +198,7 @@ class Database_queries:
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
+                    user2_answer.question = quest
                     user2_answer.user = second_match.users[1]
                     user2_answer.answer = random.choice(quest.answers)
                     user2_answer.sec_for_answer = random.uniform(5, 25)
@@ -209,6 +213,7 @@ class Database_queries:
                 if quest.theme == r_theme:
                     user_answer = UserAnswer()
                     user_answer.round = r
+                    user_answer.question = quest
                     user_answer.user = third_match.users[0]
                     user_answer.question = quest
                     user_answer.answer = random.choice(quest.answers)
@@ -217,6 +222,7 @@ class Database_queries:
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
+                    user2_answer.question = quest
                     user2_answer.user = third_match.users[1]
                     user2_answer.question = quest
                     user2_answer.answer = random.choice(quest.answers)

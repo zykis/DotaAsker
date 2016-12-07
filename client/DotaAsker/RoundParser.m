@@ -21,11 +21,7 @@
 @implementation RoundParser
 
 + (Round*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
-    if (!([JSONDict objectForKey:@"id"] &&
-          [JSONDict objectForKey:@"questions"] &&
-          [JSONDict objectForKey:@"user_answers"] &&
-          [JSONDict objectForKey:@"next_move_user"]
-          )) {
+    if (!([JSONDict objectForKey:@"id"])) {
         NSLog(@"Parsing error: can't retrieve a field in RoundParser");
         return nil;
     }
@@ -34,27 +30,33 @@
     //id
     [round setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
     //Next Move user
-    NSDictionary* userDict = [JSONDict objectForKey:@"next_move_user"];
-    User* nextMoveUser = [UserParser parse:userDict andChildren:NO];
-    //may be nil
-    if (nextMoveUser)
-        [round setNextMoveUser: nextMoveUser];
+    if ([[JSONDict allKeys] containsObject:@"next_move_user"]) {
+        NSDictionary* userDict = [JSONDict objectForKey:@"next_move_user"];
+        User* nextMoveUser = [UserParser parse:userDict andChildren:NO];
+        //may be nil
+        if (nextMoveUser)
+            [round setNextMoveUser: nextMoveUser];
+    }
     
     //questions
-    NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
-    for (NSDictionary* questionDict in questionsDict) {
-        Question* q = [QuestionParser parse:questionDict];
-        [[round questions] addObject:q];
+    if ([[JSONDict allKeys] containsObject:@"questions"]) {
+        NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
+        for (NSDictionary* questionDict in questionsDict) {
+            Question* q = [QuestionParser parse:questionDict];
+            [[round questions] addObject:q];
+        }
+        assert([[round questions] count] <= 9);
     }
-    assert([[round questions] count] <= 9);
 
     //user_answers
-    NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
-    for (NSDictionary* uaDict in user_answersDict) {
-        UserAnswer* ua = [UserAnswerParser parse:uaDict];
-        [[round userAnswers] addObject:ua];
+    if ([[JSONDict allKeys] containsObject:@"user_answers"]) {
+        NSArray* user_answersDict = [JSONDict objectForKey:@"user_answers"];
+        for (NSDictionary* uaDict in user_answersDict) {
+            UserAnswer* ua = [UserAnswerParser parse:uaDict];
+            [[round userAnswers] addObject:ua];
+        }
+        assert([[round userAnswers] count] <= 36);
     }
-    assert([[round userAnswers] count] <= 36);
     
     if (![JSONDict[@"selected_theme"] isEqual: [NSNull null]]) {
         Theme* selected_theme = [ThemeParser parse:JSONDict[@"selected_theme"]];

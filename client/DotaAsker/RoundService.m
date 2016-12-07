@@ -70,17 +70,6 @@
 }
 
 - (Theme*)themeSelectedForRound:(Round *)round {
-//    Theme* selectedTheme;
-//    for (UserAnswer* ua in [round userAnswers]) {
-//        for (Question* q in [round questions]) {
-//            for (Answer* a in [q answers]) {
-//                if ([a isEqual:[ua relatedAnswer]]) {
-//                    return [q theme];
-//                }
-//            }
-//        }
-//    }
-//    return selectedTheme;
     return [round selectedTheme];
 }
 
@@ -96,10 +85,10 @@
     return immutableThemes;
 }
 
-- (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme *)theme inRound:(Round*)round {
+- (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round {
     NSUInteger i = 0;
     for (Question* q in [round questions]) {
-        if ([[q theme] isEqual: theme]) {
+        if ([[q theme] isEqual:theme]) {
             if (index == i) {
                 return q;
             }

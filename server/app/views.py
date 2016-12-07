@@ -165,7 +165,7 @@ def post_userAnswer():
     db.session.add(ua)
     db.session.commit()
 
-    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.answer_id == ua.answer_id).one()
+    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one()
 
     # check if round is over
     round = uaNew.round

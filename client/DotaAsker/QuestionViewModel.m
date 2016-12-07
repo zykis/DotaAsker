@@ -59,7 +59,7 @@
     Round* currentRound = round;
     if ([[currentRound userAnswers] count] == 0)
         return lastPlayerUserAnswers;
-    for (NSUInteger i = [[currentRound userAnswers] count] - 1; i > 0; i--) {
+    for (NSInteger i = [[currentRound userAnswers] count] - 1; i >= 0; i--) {
         UserAnswer* ua = [[currentRound userAnswers] objectAtIndex:i];
         if ([[ua relatedUser] isEqual:[Player instance]]) {
             [lastPlayerUserAnswers insertObject:ua atIndex:0];
