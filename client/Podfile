@@ -5,4 +5,5 @@ target "DotaAsker" do
 	pod 'Realm', '~> 1.0.2'
 	pod 'ReactiveCocoa', '~> 4.2.2'
 	pod 'libextobjc', '~> 0.4.1'
+	pod 'TTGSnackbar', '~> 1.4.0'
 end
