@@ -11,10 +11,10 @@ def checkTimeElapsedMatches():
     app.logger.debug('matches: {}'.format(match_list))
     for m in match_list:
         if m.state == MATCH_RUNNING:
-             timeDiffInSec = datetime.now() - m.updated_on
-	     app.logger.debug('match {} last updated {} hours ago'.format(m.__repr__(), timeDiffInSec.total_seconds() / (60 * 60)))
-             if MATCH_UPDATELIFE < timeDiffInSec.total_seconds():
-		 app.logger.debug('match {} elapsed'.format(match.__repr__()))
+            timeDiffInSec = datetime.now() - m.updated_on
+            app.logger.debug('match {} last updated {} hours ago'.format(m.__repr__(), timeDiffInSec.total_seconds() / (60 * 60)))
+            if MATCH_UPDATELIFE < timeDiffInSec.total_seconds():
+                app.logger.debug('match {} elapsed'.format(m.__repr__()))
                  # checkout winner
 
 if __name__ == '__main__':

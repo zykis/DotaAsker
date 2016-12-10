@@ -8,7 +8,7 @@
 
 #import "UserAnswerTransport.h"
 #import "UserAnswer.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
 #define ENDPOINT_USERANSWER @"http://127.0.0.1:5000/userAnswers"

@@ -10,7 +10,7 @@
 #import "ThemeService.h"
 #import "QuestionParser.h"
 #import "QuestionTransport.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 @import UIKit;
 
 @implementation QuestionService

@@ -7,7 +7,7 @@
 //
 
 #import "SubmitQuiestionViewController.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "ServiceLayer.h"
 
 @interface SubmitQuiestionViewController ()

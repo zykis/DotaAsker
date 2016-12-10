@@ -7,7 +7,7 @@
 //
 
 #import "RoundTransport.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 #define ENDPOINT_ROUND @"http://127.0.0.1:5000/rounds"
 

@@ -13,7 +13,7 @@
 #import "MatchViewModel.h"
 #import "Helper.h"
 #import "Answer.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 #define QUESTION_TIMEOUT_INTERVAL 30
 

@@ -11,7 +11,7 @@
 #import "UserTransport.h"
 #import "MatchService.h"
 #import "UserCache.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "User.h"
 #import "AuthorizationService.h"
 

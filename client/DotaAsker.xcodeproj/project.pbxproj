@@ -146,7 +146,7 @@
 		ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */; };
 		ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3811D9F15550060EA56 /* MatchViewController.m */; };
 		ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */; };
-		F099BF0D2646182908BDA5F7 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */; };
+		C9E2BFCD7E88F7C5B78C1A00 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,7 +160,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		63728E64091E9EFB1DB6641C /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
+		6C404B455C714AAED3B43224 /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
+		975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0EE5621DCF510C005EE564 /* QuestionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionService.h; sourceTree = "<group>"; };
 		AC0EE5631DCF510C005EE564 /* QuestionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionService.m; sourceTree = "<group>"; };
 		AC0EE5651DCF518B005EE564 /* QuestionTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTransport.h; sourceTree = "<group>"; };
@@ -365,8 +367,6 @@
 		ACF5F3811D9F15550060EA56 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		ACF5F3831D9F16BF0060EA56 /* MatchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewModel.h; sourceTree = "<group>"; };
 		ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewModel.m; sourceTree = "<group>"; };
-		E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
-		F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -374,7 +374,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F099BF0D2646182908BDA5F7 /* Pods_DotaAsker.framework in Frameworks */,
+				C9E2BFCD7E88F7C5B78C1A00 /* Pods_DotaAsker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,19 +388,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		70380301B4970C7A6A1C9C61 /* Pods */ = {
+		A0CA0F2C598B1F0D1F8E6F51 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */,
-				E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */,
+				63728E64091E9EFB1DB6641C /* Pods-DotaAsker.debug.xcconfig */,
+				6C404B455C714AAED3B43224 /* Pods-DotaAsker.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		A76815F9BE51CA8CD64AF29C /* Frameworks */ = {
+		A46486A5A49B26519386D473 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8D3DACDA55A3A8FD0F8E83E9 /* Pods_DotaAsker.framework */,
+				975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -412,8 +412,8 @@
 				ACF41BF91B3BABCA0096598C /* resources */,
 				AC7352201B239A1B00FFF356 /* DotaAskerTests */,
 				AC7352051B239A1B00FFF356 /* Products */,
-				70380301B4970C7A6A1C9C61 /* Pods */,
-				A76815F9BE51CA8CD64AF29C /* Frameworks */,
+				A0CA0F2C598B1F0D1F8E6F51 /* Pods */,
+				A46486A5A49B26519386D473 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -809,12 +809,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC7352271B239A1B00FFF356 /* Build configuration list for PBXNativeTarget "DotaAsker" */;
 			buildPhases = (
-				9CD974ACCF252B8482ECD982 /* Check Pods Manifest.lock */,
+				188080946835526A6E83E4EF /* [CP] Check Pods Manifest.lock */,
 				AC7352001B239A1B00FFF356 /* Sources */,
 				AC7352011B239A1B00FFF356 /* Frameworks */,
 				AC7352021B239A1B00FFF356 /* Resources */,
-				81E537DDC435FFF56FF7ADD8 /* Embed Pods Frameworks */,
-				46E26C57005E1C9BC06861D0 /* Copy Pods Resources */,
+				8D90DFCE62A9A02FDA76067E /* [CP] Embed Pods Frameworks */,
+				CF7BF5AE6FEB30DC5B8BC44C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -974,29 +974,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		46E26C57005E1C9BC06861D0 /* Copy Pods Resources */ = {
+		188080946835526A6E83E4EF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		81E537DDC435FFF56FF7ADD8 /* Embed Pods Frameworks */ = {
+		8D90DFCE62A9A02FDA76067E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1004,19 +1004,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9CD974ACCF252B8482ECD982 /* Check Pods Manifest.lock */ = {
+		CF7BF5AE6FEB30DC5B8BC44C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1209,12 +1209,13 @@
 		};
 		AC7352281B239A1B00FFF356 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F77CD2EBCABA3442FB829ECC /* Pods-DotaAsker.debug.xcconfig */;
+			baseConfigurationReference = 63728E64091E9EFB1DB6641C /* Pods-DotaAsker.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1222,19 +1223,20 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		AC7352291B239A1B00FFF356 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E03DD8591F118DDDC9687B6B /* Pods-DotaAsker.release.xcconfig */;
+			baseConfigurationReference = 6C404B455C714AAED3B43224 /* Pods-DotaAsker.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1242,7 +1244,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

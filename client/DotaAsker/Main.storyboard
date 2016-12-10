@@ -1299,26 +1299,19 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zu8-37-KE8">
-                                <color key="backgroundColor" red="1" green="0.46210413491883229" blue="0.7158895918294893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Answer2">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="yJU-P3-ZIz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-Qo-mxp">
-                                <color key="backgroundColor" red="1" green="0.46210413491883229" blue="0.7158895918294893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Answer3">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="1mb-9g-krW"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zT-S1-Eo6">
-                                <color key="backgroundColor" red="1" green="0.46210413491883229" blue="0.7158895918294893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6zT-S1-Eo6">
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Answer4">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -1329,8 +1322,12 @@
                                 <color key="progressTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-4P-VM5">
-                                <color key="backgroundColor" red="1" green="0.46210413491883229" blue="0.7158895918294893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="T3m-fq-Kga"/>
+                                </constraints>
                                 <state key="normal" title="Answer1">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
@@ -1348,19 +1345,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-Qo-mxp">
+                                <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Answer3">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="1mb-9g-krW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="width" multiplier="0.48" id="1ku-TW-JrI"/>
+                            <constraint firstItem="6zT-S1-Eo6" firstAttribute="height" secondItem="Zu8-37-KE8" secondAttribute="height" id="2IF-bF-Ocs"/>
                             <constraint firstItem="90w-OC-mhS" firstAttribute="top" secondItem="6zT-S1-Eo6" secondAttribute="bottom" constant="8" id="4T3-Kb-1F9"/>
                             <constraint firstAttribute="centerX" secondItem="HnT-pV-LHI" secondAttribute="centerX" id="53N-cm-30Z"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="67a-cb-dlQ"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="6az-by-pwR"/>
                             <constraint firstItem="HnT-pV-LHI" firstAttribute="trailing" secondItem="vHM-O6-UEQ" secondAttribute="trailingMargin" constant="4" id="6oV-za-Fsj"/>
+                            <constraint firstItem="E7c-Qo-mxp" firstAttribute="height" secondItem="c5A-4P-VM5" secondAttribute="height" id="6qx-lZ-hPR"/>
                             <constraint firstItem="Win-pf-vVN" firstAttribute="top" secondItem="17R-45-z1x" secondAttribute="bottom" constant="-24" id="7dG-IK-9BD"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="trailing" secondItem="6zT-S1-Eo6" secondAttribute="trailing" id="8qA-rf-bxT"/>
                             <constraint firstItem="HnT-pV-LHI" firstAttribute="leading" secondItem="vHM-O6-UEQ" secondAttribute="leadingMargin" constant="-4" id="Ejv-VF-fro"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="width" multiplier="0.48" id="HbP-fZ-M15"/>
+                            <constraint firstItem="Zu8-37-KE8" firstAttribute="height" secondItem="c5A-4P-VM5" secondAttribute="height" id="PQo-NI-b7s"/>
                             <constraint firstItem="E7c-Qo-mxp" firstAttribute="top" secondItem="c5A-4P-VM5" secondAttribute="bottom" constant="8" id="Puv-ex-7Vi"/>
                             <constraint firstItem="17R-45-z1x" firstAttribute="leading" secondItem="vHM-O6-UEQ" secondAttribute="leadingMargin" constant="-4" id="VCx-Wv-0DI"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="top" secondItem="HnT-pV-LHI" secondAttribute="bottom" constant="8" id="aLH-2T-wYF"/>
@@ -1389,7 +1399,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4tV-sv-xor" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4776" y="932"/>
+            <point key="canvasLocation" x="4775.1999999999998" y="931.48425787106453"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="b83-iI-zpd">
@@ -1703,7 +1713,7 @@
                                         <rect key="frame" x="0.0" y="28" width="343" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3Y-Pz-SQO" id="DrF-vL-JCB">
-                                            <frame key="frameInset" width="1000" height="25"/>
+                                            <frame key="frameInset" width="343" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlp-Oy-5f2">
@@ -1874,8 +1884,8 @@
         <image name="versus_image_48x48.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ut3-yq-Aji"/>
         <segue reference="pH9-l1-2tt"/>
+        <segue reference="AUo-9G-fYr"/>
         <segue reference="9KW-MF-H3Q"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 #import "MatchService.h"
 #import "MatchParser.h"
 #import "MatchTransport.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "Match.h"
 #import "UserAnswer.h"
 #import "Answer.h"

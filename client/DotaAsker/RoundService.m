@@ -17,7 +17,7 @@
 #import "Player.h"
 #import "Theme.h"
 #import "RoundTransport.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @implementation RoundService
 

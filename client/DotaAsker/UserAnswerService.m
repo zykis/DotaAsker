@@ -10,7 +10,7 @@
 #import "AnswerService.h"
 #import "UserAnswerParser.h"
 #import "UserAnswer.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "UserAnswerTransport.h"
 #import "UserAnswerParser.h"
 

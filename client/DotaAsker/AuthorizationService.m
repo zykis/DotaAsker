@@ -10,7 +10,7 @@
 #define ENDPOINT_C @"http://127.0.0.1:5000/login"
 
 #import "AuthorizationService.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
 @implementation AuthorizationService

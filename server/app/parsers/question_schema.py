@@ -18,7 +18,7 @@ class QuestionSchema(Schema):
             question = Question()
             question.text = data['text']
             question.approved = False
-            
+
             for aDict in data['answers']:
                 a = Answer()
                 a.text = aDict['text']

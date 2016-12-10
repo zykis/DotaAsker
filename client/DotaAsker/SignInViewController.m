@@ -9,7 +9,7 @@
 #import "SignInViewController.h"
 #import "MainViewController.h"
 #import "AuthorizationService.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "Player.h"
 #import "ServiceLayer.h"
 

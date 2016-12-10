@@ -12,7 +12,7 @@
 #import "MainViewModel.h"
 #import "ServiceLayer.h"
 #import "Helper.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 @import CoreGraphics;
 
 #define SECTION_TOOLBAR 0

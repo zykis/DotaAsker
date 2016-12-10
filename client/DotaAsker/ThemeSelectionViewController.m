@@ -9,7 +9,7 @@
 #import "ThemeSelectionViewController.h"
 #import "ThemeSelectedViewController.h"
 #import "ServiceLayer.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface ThemeSelectionViewController ()
 

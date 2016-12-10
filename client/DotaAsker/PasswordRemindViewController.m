@@ -9,7 +9,7 @@
 #import "PasswordRemindViewController.h"
 #import "Helper.h"
 #import "LoadingView.h"
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface PasswordRemindViewController ()
 

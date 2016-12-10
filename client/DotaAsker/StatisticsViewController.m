@@ -10,7 +10,7 @@
 #import "ServiceLayer.h"
 #import "LoadingView.h"
 
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface StatisticsViewController ()
 

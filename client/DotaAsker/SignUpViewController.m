@@ -11,7 +11,7 @@
 #import "AuthorizationService.h"
 #import "ServiceLayer.h"
 
-#import <ReactiveCocoa/ReactiveCocoa/ReactiveCocoa.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface SignUpViewController ()
 

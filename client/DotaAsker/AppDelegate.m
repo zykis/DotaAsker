@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DotaButton.h"
 #import "Client.h"
+// #import "DotaAsker-Swift.h"
 
 @interface AppDelegate ()
 
