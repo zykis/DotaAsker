@@ -1,0 +1,10 @@
+Flask
+flask-sqlalchemy
+passlib
+flask-httpauth
+marshmallow
+pytest
+Flask-Script
+sqlalchemy-migrate
+Flask-Mail
+cloudinary
