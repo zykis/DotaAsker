@@ -2,22 +2,6 @@
     {
         "answers": [
             {
-                "is_correct": "false",
-                "text": "Ответ1"
-            },
-            {
-                "is_correct": "true",
-                "text": "Правильный"
-            }
-        ],
-        "approved": "false",
-        "image_name": "mechanics_sacred_arrow.jpg",
-        "text": "Вопрос новый",
-        "theme": ""
-    },
-    {
-        "answers": [
-            {
                 "is_correct": "true",
                 "text": "Blood Elf"
             },
@@ -37,7 +21,9 @@
         "approved": "true",
         "image_name": "lore_invoker_race.jpg",
         "text": "What race Invoker belong to?",
-        "theme": ""
+        "theme": {
+            "name": "lore"
+        }
     },
     {
         "answers": [
@@ -61,7 +47,9 @@
         "approved": "true",
         "image_name": "lore_treant.jpg",
         "text": "What da fuck is a treant?",
-        "theme": "lore"
+        "theme": {
+            "name": "lore"
+        }
     },
     {
         "answers": [
@@ -85,7 +73,9 @@
         "approved": "true",
         "image_name": "lore_child.jpg",
         "text": "Who of these characters is a child?",
-        "theme": "lore"
+        "theme": {
+            "name": "lore"
+        }
     },
     {
         "answers": [
@@ -109,7 +99,9 @@
         "approved": "true",
         "image_name": "mechanics_sacred_arrow.jpg",
         "text": "What is max duration of Sacred Arrow stun?",
-        "theme": "mechanics"
+        "theme": {
+            "name": "mechanics"
+        }
     },
     {
         "answers": [
@@ -125,7 +117,9 @@
         "approved": "true",
         "image_name": "mechanics_bara_cogs.jpg",
         "text": "Bara can run through Clockwerk Cogs?",
-        "theme": ""
+        "theme": {
+            "name": "tournaments"
+        }
     },
     {
         "answers": [
@@ -141,7 +135,9 @@
         "approved": "true",
         "image_name": "mechanics_storm_chronosphere.jpg",
         "text": "Storm Spirit can fly through Void's Chronosphere?",
-        "theme": "mechanics"
+        "theme": {
+            "name": "mechanics"
+        }
     },
     {
         "answers": [
@@ -165,7 +161,9 @@
         "approved": "true",
         "image_name": "tournaments_TI1_winner.jpg",
         "text": "Who take 1st place in International 1?",
-        "theme": "tournaments"
+        "theme": {
+            "name": "tournaments"
+        }
     },
     {
         "answers": [
@@ -189,7 +187,9 @@
         "approved": "true",
         "image_name": "tournaments_TI2015_prizepool.jpg",
         "text": "What is a 1st place price in TI-2015?",
-        "theme": "tournaments"
+        "theme": {
+            "name": "tournaments"
+        }
     },
     {
         "answers": [
@@ -213,6 +213,8 @@
         "approved": "false",
         "image_name": "tournaments_TI1_grandfinal_qualification.jpg",
         "text": "The International 1 Grand-Final qualification type was:",
-        "theme": ""
+        "theme": {
+            "name": "mechanics"
+        }
     }
 ]
