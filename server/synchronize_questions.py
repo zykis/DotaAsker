@@ -3,32 +3,37 @@ import cloudinary.uploader
 import cloudinary.api
 import json
 from app.models import Question, Answer, Theme, db
+from app.parser.question_schema import QuestionSchema
+import os.path
 
 def uploadQuestionFromPath(questionsPath):
+    # [1] parse JSON, retrieve questions
     with open(questionsPath + u'/questions.json') as questionsFile:
-        questions_list = json.loads(questionsFile.read())
-        Question.query.delete()
+        schema = QuestionSchema(many=True)
+        questions_list = schema.loads(questionsFile.read())
+        
         for q in questions_list:
-            theme = db.session.query(Theme).filter(Theme.name == q['theme']).one()
-            question_obj = Question(text=q['text'],
-                                    theme=theme,
-                                    image_name=q['image_name'],
-                                    approved=q['approved']
-                                    )
-            for ans in q['answers']:
-                answ = Answer(question_id=question_obj.id, text=ans['text'], is_correct=ans['is_correct'])
-                db.session.add(answ)
-                question_obj.answers.append(answ)
-            db.session.add(question_obj)
+            # [2] check, if local images exists for all questions
+            imageLocalPath = questionsPath + '/question_images/' + fname
+            exists = os.path.isfile(imageLocalPath)
+            # [2.1] if not all images exists, exit
+            if not exists:
+                app.logger.debug('no local image file for question: {}', q.__repr()__)
+                return        
+        for q in questions_list:
+            imageLocalPath = questionsPath + '/question_images/' + fname
+            # [3] update/insert questions into DB
+            db.session.add(q)
+            # [4] for each question, update image at cloudinary.com
+            cloudinary.uploader.upload(imageLocalPath)
+            
     db.session.commit()
 
 if __name__ == '__main__':
     cloudinary.config(cloud_name="dzixpee1a", api_key="497848972528918", api_secret="YCLF-_c_tnrdblryrMxH84DzcgE")
     uploadQuestionFromPath('static/questions/')
-# [1] parse JSON, retrieve questions
-# [2] check, if images exists for all questions
-	# [2.1] if not all images exists, exit
-# [3] update/insert questions into DB
-# [4] for each question, check if image already present in cloudinary.com
-	# [4.1] if image present, update it
-	# [4.2] else - create one
+
+
+	
+
+
