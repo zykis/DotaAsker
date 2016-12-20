@@ -11,6 +11,9 @@ server/flask/
 server/.idea/server.iml
 server/.idea/misc.xml
 server/db_repository/*
+server/cloudinary*
+server/json
+server/os.path
 *.pyc
 
 # Common
