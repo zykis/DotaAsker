@@ -8,6 +8,7 @@
 
 #import "UIViewController+Utils.h"
 #import "Player.h"
+#import "TTGSnackBar-Swift.h"
 
 @implementation UIViewController (BackgroundImage)
 
@@ -19,23 +20,12 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-- (void)presentLoadingViewWithMessage: (NSString*)message {
-    
-}
-
 - (void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
-    UIAlertController *alertVC = [UIAlertController
-                                          alertControllerWithTitle:title
-                                          message:message
-                                          preferredStyle:UIAlertControllerStyleAlert];
-    [alertVC addAction:[UIAlertAction
-                        actionWithTitle:@"Ok"
-                        style:UIAlertActionStyleDefault
-                        handler:^(UIAlertAction* action) {
-                            [alertVC dismissViewControllerAnimated:YES completion:nil];
-                        }
-    ]];
-    [self presentViewController:alertVC animated:YES completion:nil];
+    TTGSnackbar* snackBar = [[TTGSnackbar alloc] initWithMessage:message duration:TTGSnackbarDurationLong];
+    [snackBar setBackgroundColor:[UIColor redColor]];
+    [snackBar setSeparateViewBackgroundColor:[UIColor colorWithRed:183 green:28 blue:28 alpha:1.0]];
+    
+    [snackBar show];
 }
 
 @end

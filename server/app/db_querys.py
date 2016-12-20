@@ -5,6 +5,7 @@ import json
 import random
 from config import questiondir
 from sqlalchemy import func
+from synchronize_questions import uploadQuestionFromPath
 
 class Database_queries:
 
@@ -87,29 +88,6 @@ class Database_queries:
         return questions_to_add
 
     @classmethod
-    def uploadQuestionFromPath(self, questionsPath):
-        with open(questionsPath + u'/questions.txt') as questionsLoreFile:
-            questions_list = json.loads(questionsLoreFile.read())
-            for q in questions_list:
-                theme = db.session.query(Theme).filter(Theme.name == q['theme']).one()
-                question_obj = Question(text=q['question'],
-                                        theme=theme,
-                                        image_name=q['image']
-                                        )
-                i = 1;
-                for ans in q['answers']:
-                    answ = Answer(question_id=question_obj.id, text=ans)
-                    if i == q['correct_answer_index']:
-                        answ.is_correct = True
-                    else:
-                        answ.is_correct = False
-                    i += 1
-                    db.session.add(answ)
-                    question_obj.answers.append(answ)
-                db.session.add(question_obj)
-        db.session.commit()
-
-    @classmethod
     def createTestData(cls):
         db.drop_all()
         db.create_all()
@@ -143,7 +121,7 @@ class Database_queries:
         db.session.commit()
 
         # upload questions
-        Database_queries.uploadQuestionFromPath(questiondir)
+        uploadQuestionFromPath(questiondir + '/')
 
         ############################################## create Match
         first_match = Match(initiator=john_user)

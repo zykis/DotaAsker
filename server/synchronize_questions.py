@@ -8,6 +8,7 @@ import app
 import os.path
 
 def uploadQuestionFromPath(questionsPath):
+    cloudinary.config(cloud_name="dzixpee1a", api_key="497848972528918", api_secret="YCLF-_c_tnrdblryrMxH84DzcgE")
     # [1] parse JSON, retrieve questions
     print('parsing question.json...')
     with open(questionsPath + u'questions.json') as questionsFile:
@@ -33,13 +34,13 @@ def uploadQuestionFromPath(questionsPath):
             # [3] update/insert questions into DB
             db.session.add(q)
             # [4] for each question, update image at cloudinary.com
-            cloudinary.uploader.upload(imageLocalPath)
+            cloudinary.uploader.upload(imageLocalPath, use_filename = True, unique_filename = False)
             
     db.session.commit()
     print('questions updated')
 
 if __name__ == '__main__':
-    cloudinary.config(cloud_name="dzixpee1a", api_key="497848972528918", api_secret="YCLF-_c_tnrdblryrMxH84DzcgE")
+
     uploadQuestionFromPath('app/static/questions/')
 
 
