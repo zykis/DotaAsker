@@ -14,6 +14,7 @@
 #import "Helper.h"
 #import "Answer.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+#import <Realm/Realm.h>
 
 #define QUESTION_TIMEOUT_INTERVAL 30
 
@@ -82,6 +83,26 @@
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
     
+    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+    [subject subscribeNext:^(id x) {
+        // Mark userAnswer as synchronized
+        for (UserAnswer* ua in [_round userAnswers]) {
+            if ([ua isEqual:x]) {
+                ua.synchronized = true;
+                
+                //Remove synchronized UserAsnwer
+                RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm transactionWithBlock:^{
+                    [realm deleteObject:ua];
+                }];
+            }
+        }
+    } error:^(NSError *error) {
+        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
+    } completed:^{
+        NSLog(@"Answer synchronized");
+    }];
+    
     User* relatedUser = [_round nextMoveUser];
     if ([relatedAnswer isCorrect]) {
         relatedUser.totalCorrectAnswers++;
@@ -105,12 +126,20 @@
         for (UserAnswer* ua in [_round userAnswers]) {
             if ([ua isEqual:x]) {
                 ua.synchronized = true;
+                
+                //Remove synchronized UserAsnwer
+                RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm transactionWithBlock:^{
+                    [realm deleteObject:ua];
+                }];
             }
         }
     } error:^(NSError *error) {
         NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
     } completed:^{
         NSLog(@"Answer synchronized");
+        
+        
     }];
     
     User* relatedUser = [_round nextMoveUser];
@@ -131,6 +160,12 @@
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
         [[_round userAnswers] addObject:ua];
+        
+        // Persist unsynchronized UserAnswer
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm transactionWithBlock:^{
+            [realm addObject:ua];
+        }];
         
         // start timer
         dispatch_async(dispatch_get_main_queue(), ^{

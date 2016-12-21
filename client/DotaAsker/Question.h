@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
 @class Theme;
 
-@interface Question : NSObject
+@interface Question : RLMObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString *text;

@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
 @class Question;
 @class Answer;
 @class Round;
 @class User;
 
-@interface UserAnswer: NSObject
+@interface UserAnswer: RLMObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (assign, nonatomic) NSUInteger secForAnswer;
+@property (assign, nonatomic) NSInteger secForAnswer;
 @property (strong, nonatomic) Answer* relatedAnswer;
 @property (strong, nonatomic) Round* relatedRound;
 @property (strong, nonatomic) User* relatedUser;

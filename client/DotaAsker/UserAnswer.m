@@ -11,6 +11,8 @@
 #import "Round.h"
 #import "Question.h"
 
+#import <Realm/Realm.h>
+
 @implementation UserAnswer
 
 - (id)init {
@@ -27,6 +29,10 @@
         return ([ua.relatedUser isEqual:self.relatedUser] && [ua.relatedRound isEqual:self.relatedRound] && [ua.relatedQuestion isEqual:self.relatedQuestion]);
     }
     return NO;
+}
+
++ (NSArray *)ignoredProperties {
+    return @[@"ID"];
 }
 
 @end

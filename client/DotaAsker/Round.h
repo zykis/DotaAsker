@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
 #define QUESTIONS_IN_ROUND 3
 
 @class User;
 @class Theme;
-@interface Round : NSObject
+@interface Round : RLMObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) User* nextMoveUser;

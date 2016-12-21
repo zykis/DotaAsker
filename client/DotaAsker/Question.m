@@ -27,4 +27,8 @@
     return NO;
 }
 
++ (NSArray *)ignoredProperties {
+    return @[@"answers", @"theme"];
+}
+
 @end

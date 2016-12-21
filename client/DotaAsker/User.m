@@ -29,4 +29,8 @@
     return NO;
 }
 
++ (NSArray *)ignoredProperties {
+    return @[@"ID", @"matches", @"friends"];
+}
+
 @end

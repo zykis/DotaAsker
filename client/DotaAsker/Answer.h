@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 
-@interface Answer : NSObject
+@interface Answer : RLMObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString* text;

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
+
 @import UIKit;
 typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
-@interface User : NSObject
+@interface User : RLMObject
 
 @property (assign, nonatomic) unsigned long long ID;
 @property (strong, nonatomic) NSString *name;
@@ -22,9 +24,9 @@ typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 @property (strong, nonatomic) NSString *avatarImageName;
 @property (assign, nonatomic) NSInteger totalCorrectAnswers;
 @property (assign, nonatomic) NSInteger totalIncorrectAnswers;
-@property (assign, nonatomic) NSUInteger totalMatchesWon;
-@property (assign, nonatomic) NSUInteger totalMatchesLost;
-@property (assign, nonatomic) NSUInteger totalTimeForAnswers;
+@property (assign, nonatomic) NSInteger totalMatchesWon;
+@property (assign, nonatomic) NSInteger totalMatchesLost;
+@property (assign, nonatomic) NSInteger totalTimeForAnswers;
 @property (assign, nonatomic) ROLE role;
 @property (strong, nonatomic) NSMutableArray *matches;
 @property (strong, nonatomic) NSMutableArray *friends;

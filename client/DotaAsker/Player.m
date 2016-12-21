@@ -7,6 +7,8 @@
 //
 
 #import "Player.h"
+#import "UserAnswer.h"
+#import <Realm/Realm.h>
 
 @implementation Player
 
@@ -41,6 +43,30 @@
     [[self instance] setRole:player.role];
     [[self instance] setMatches:player.matches];
     [[self instance] setFriends:player.friends];
+    
+    //! Add locally stored unsynchronized UserAnswers if exists
+    RLMResults<UserAnswer *> *userAnswers = [UserAnswer objectsWhere:@"synchronized == NO"];
+    for (UserAnswer* ua in userAnswers) {
+        //! Obtain round, that is equal to ua.realtedRound
+        for (Match* m in [[self instance] matches])
+        {
+            BOOL found = NO;
+            if (m.state == CURRENT_MATCH)
+            {
+                if (found)
+                    break;
+                for (Round* r in m.rounds)
+                {
+                    if ([r isEqual: ua.relatedRound])
+                    {
+                        [r.userAnswers addObject: ua];
+                        found = YES;
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @end
