@@ -88,6 +88,8 @@
         // Mark userAnswer as synchronized
         for (UserAnswer* ua in [_round userAnswers]) {
             if ([ua isEqual:x]) {
+                ua = x;
+                
                 ua.synchronized = true;
                 
                 //Remove synchronized UserAsnwer
@@ -125,6 +127,7 @@
         // Mark userAnswer as synchronized
         for (UserAnswer* ua in [_round userAnswers]) {
             if ([ua isEqual:x]) {
+                ua = x;
                 ua.synchronized = true;
                 
                 //Remove synchronized UserAsnwer
