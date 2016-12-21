@@ -316,6 +316,7 @@
         }
         assert(m);
         [[[Player instance] matches] addObject:m];
+        [loadingView removeFromSuperview];
         [self.tableView reloadData];
     } error:^(NSError *error) {
         [loadingView removeFromSuperview];
