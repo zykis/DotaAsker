@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
+#import "Match.h"
 
 @import UIKit;
+
 typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
+RLM_ARAY_TYPE(Match)
+RLM_ARAY_TYPE(User)
+
 @interface User : RLMObject
 
-@property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) long long ID;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
 @property (assign, nonatomic) NSInteger MMR;//Текущий рейтинг среди всех игроков
@@ -28,7 +33,7 @@ typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
 @property (assign, nonatomic) NSInteger totalMatchesLost;
 @property (assign, nonatomic) NSInteger totalTimeForAnswers;
 @property (assign, nonatomic) ROLE role;
-@property (strong, nonatomic) NSMutableArray *matches;
-@property (strong, nonatomic) NSMutableArray *friends;
+@property (strong, nonatomic) RLMArray<Match*><Match>* matches;
+@property (strong, nonatomic) RLMArray<User*><User>* friends;
 
 @end

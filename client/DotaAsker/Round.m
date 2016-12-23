@@ -13,8 +13,6 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.questions = [[NSMutableArray alloc] init];
-        self.userAnswers = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -28,7 +26,7 @@
 }
 
 + (NSArray *)ignoredProperties {
-    return @[@"nextMoveUser", @"questions", @"userAnswers", @"selectedTheme"];
+    return @[];
 }
 
 @end

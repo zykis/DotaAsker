@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
 @import UIKit;
 
-@interface Theme : NSObject 
+@interface Theme : RLMObject
 
-@property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) long long ID;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *imageName;
 

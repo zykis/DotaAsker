@@ -16,7 +16,7 @@
 
 @interface UserAnswer: RLMObject
 
-@property (assign, nonatomic) unsigned long long ID;
+@property (assign, nonatomic) long long ID;
 @property (assign, nonatomic) NSInteger secForAnswer;
 @property (strong, nonatomic) Answer* relatedAnswer;
 @property (strong, nonatomic) Round* relatedRound;

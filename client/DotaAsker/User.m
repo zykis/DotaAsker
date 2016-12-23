@@ -13,8 +13,6 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.matches = [[NSMutableArray alloc] init];
-        self.friends = [[NSMutableArray alloc] init];
         self.name = @"Opponent";
         self.avatarImageName = @"avatar_default.png";
     }
@@ -30,7 +28,7 @@
 }
 
 + (NSArray *)ignoredProperties {
-    return @[@"ID", @"matches", @"friends"];
+    return @[@"ID"];
 }
 
 @end

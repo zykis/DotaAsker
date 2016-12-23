@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
+
 #define ROUNDS_IN_MATCH 6
 #define MIN_MMR_PRICE 15
 #define MAX_MMR_PRICE 35
@@ -20,12 +22,16 @@
 #define RECENT_MATCH 2
 
 @class User;
+@class Round;
+
+RLM_ARRAY_TYPE(User)
+RLM_ARRAY_TYPE(Round)
 
 @interface Match : NSObject
 
 @property (assign, nonatomic) unsigned long long ID;
-@property (strong, nonatomic) NSMutableArray *users;
-@property (strong, nonatomic) NSMutableArray *rounds;
+@property (strong, nonatomic) RLMArray<User*><User>* users;
+@property (strong, nonatomic) RLMArray<Round*><Round>* rounds;
 @property (assign, nonatomic) NSUInteger state;
 @property (assign, nonatomic) NSUInteger mmrGain;
 @property (strong, nonatomic) NSString* updatedOn;
