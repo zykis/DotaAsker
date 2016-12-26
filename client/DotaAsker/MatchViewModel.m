@@ -167,18 +167,17 @@
     return score;
 }
 
-- (NSMutableArray*)lastPlayerUserAnswers {
-    NSMutableArray* lastPlayerUserAnswers = [[NSMutableArray alloc] init];
+- (RLMResults<UserAnswer*>*)lastPlayerUserAnswers {
+    // Get current round id
     Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
-    if ([[currentRound userAnswers] count] == 0)
-        return lastPlayerUserAnswers;
-    for (NSInteger i = [[currentRound userAnswers] count] - 1; i >= 0; i--) {
-        UserAnswer* ua = [[currentRound userAnswers] objectAtIndex:i];
-        if ([[ua relatedUser] isEqual:[Player instance]]) {
-            [lastPlayerUserAnswers insertObject:ua atIndex:0];
-        }
-    }
-    return lastPlayerUserAnswers;
+    NSInteger roundID = currentRound.ID;
+
+    // check out unsynchronized UserAnswers
+    RLMRealm* realm = [Realm defaultRealm];
+    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %ll && relatedRound.ID == %ll", [Player instance].ID, roundID]];
+    
+    // If no unsynch UserAnswers, return empty array
+    return lastPlayerUserAnswersRealm;
 }
 
 @end

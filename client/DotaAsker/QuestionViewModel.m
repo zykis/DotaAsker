@@ -54,22 +54,20 @@
     return NO;
 }
 
-- (NSMutableArray*)lastPlayerUserAnswersForRound:(Round *)round {
-    NSMutableArray* lastPlayerUserAnswers = [[NSMutableArray alloc] init];
-    Round* currentRound = round;
-    if ([[currentRound userAnswers] count] == 0)
-        return lastPlayerUserAnswers;
-    for (NSInteger i = [[currentRound userAnswers] count] - 1; i >= 0; i--) {
-        UserAnswer* ua = [[currentRound userAnswers] objectAtIndex:i];
-        if ([[ua relatedUser] isEqual:[Player instance]]) {
-            [lastPlayerUserAnswers insertObject:ua atIndex:0];
-        }
-    }
-    return lastPlayerUserAnswers;
+- (RLMResults<UserAnswer*>*)lastPlayerUserAnswersForRound:(Round *)round {
+    // Get current round id
+    NSInteger roundID = round.ID;
+
+    // check out unsynchronized UserAnswers
+    RLMRealm* realm = [Realm defaultRealm];
+    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %ll && relatedRound.ID == %ll", [Player instance].ID, roundID]];
+    
+    // If no unsynch UserAnswers, return empty array
+    return lastPlayerUserAnswersRealm;
 }
 
 - (UserAnswer*)lastPlayerUserAnswerForRound:(Round *)round {
-    NSMutableArray* lastUserAnswers = [self lastPlayerUserAnswersForRound:round];
+    RLMResults<UserAnswer*>* lastUserAnswers = [self lastPlayerUserAnswersForRound:round];
     if ([lastUserAnswers count] == 0)
         return nil;
     else {

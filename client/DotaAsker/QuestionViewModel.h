@@ -14,13 +14,16 @@
 @class Round;
 @class Match;
 @class UserAnswer;
+
+RLM_ARRAY_TYPE(UserAnswer)
+
 @interface QuestionViewModel : NSObject
 
 - (Question*)questionForQuestionIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round;
 - (User*)opponentForRound:(Round*)round;
 - (Match*)matchForRound:(Round*)round;
 - (BOOL)isRoundLast:(Round*)round;
-- (NSMutableArray*)lastPlayerUserAnswersForRound:(Round*)round;
+- (RLMResults<UserAnswer*>*)lastPlayerUserAnswersForRound:(Round*)round;
 - (UserAnswer*)lastPlayerUserAnswerForRound:(Round*)round;
 
 @end

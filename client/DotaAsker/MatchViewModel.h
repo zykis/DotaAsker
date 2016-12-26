@@ -11,6 +11,9 @@
 #import "Match.h"
 
 @class User;
+
+RLM_ARRAY_TYPE(UserAnswer)
+
 @interface MatchViewModel : NSObject
 
 @property (strong, nonatomic) Match* match;
@@ -21,6 +24,6 @@
 - (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index;
 - (NSUInteger)playerScore;
 - (NSUInteger)opponentScore;
-- (NSMutableArray*)lastPlayerUserAnswers;
+- (RLMResults<UserAnswer*>*)lastPlayerUserAnswers;
 
 @end
