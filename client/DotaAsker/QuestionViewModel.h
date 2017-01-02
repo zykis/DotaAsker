@@ -7,15 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Realm/Realm.h>
+#import "UserAnswer.h"
 
 @class Theme;
 @class Question;
 @class User;
 @class Round;
 @class Match;
-@class UserAnswer;
-
-RLM_ARRAY_TYPE(UserAnswer)
 
 @interface QuestionViewModel : NSObject
 
@@ -23,7 +22,7 @@ RLM_ARRAY_TYPE(UserAnswer)
 - (User*)opponentForRound:(Round*)round;
 - (Match*)matchForRound:(Round*)round;
 - (BOOL)isRoundLast:(Round*)round;
-- (RLMResults<UserAnswer*>*)lastPlayerUserAnswersForRound:(Round*)round;
+- (RLMResults<UserAnswer>*)lastPlayerUserAnswersForRound:(Round*)round;
 - (UserAnswer*)lastPlayerUserAnswerForRound:(Round*)round;
 
 @end

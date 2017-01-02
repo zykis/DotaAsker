@@ -86,7 +86,8 @@
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
         // Mark userAnswer as synchronized
-        for (UserAnswer* ua in [_round userAnswers]) {
+        for (int i = 0; i < [[_round userAnswers] count]; i++) {
+            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
             if ([ua isEqual:x]) {
                 ua = x;
                 
@@ -94,9 +95,9 @@
                 
                 //Remove synchronized UserAsnwer
                 RLMRealm *realm = [RLMRealm defaultRealm];
-                [realm transactionWithBlock:^{
-                    [realm deleteObject:ua];
-                }];
+                [realm beginWriteTransaction];
+                [realm deleteObject:ua];
+                [realm commitWriteTransaction];
             }
         }
     } error:^(NSError *error) {
@@ -125,16 +126,17 @@
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
         // Mark userAnswer as synchronized
-        for (UserAnswer* ua in [_round userAnswers]) {
+        for (int i = 0; i < [[_round userAnswers] count]; i++) {
+            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
             if ([ua isEqual:x]) {
                 ua = x;
                 ua.synchronized = true;
                 
                 //Remove synchronized UserAsnwer
                 RLMRealm *realm = [RLMRealm defaultRealm];
-                [realm transactionWithBlock:^{
-                    [realm deleteObject:ua];
-                }];
+                [realm beginWriteTransaction];
+                [realm deleteObject:ua];
+                [realm commitWriteTransaction];
             }
         }
     } error:^(NSError *error) {
@@ -166,9 +168,9 @@
         
         // Persist unsynchronized UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm transactionWithBlock:^{
-            [realm addObject:ua];
-        }];
+        [realm beginWriteTransaction];
+        [realm addObject:ua];
+        [realm commitWriteTransaction];
         
         // start timer
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -184,7 +186,7 @@
         
         
         assert(q);
-        NSArray* answers = [q answers];
+        RLMArray<Answer>* answers = [q answers];
         
         CGSize size = [[Helper shared] getQuestionImageViewSize];
         RACReplaySubject* subject = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:size.width andHeight:size.height];

@@ -56,11 +56,11 @@
 
 - (RLMResults<UserAnswer*>*)lastPlayerUserAnswersForRound:(Round *)round {
     // Get current round id
-    NSInteger roundID = round.ID;
+    long long roundID = round.ID;
 
     // check out unsynchronized UserAnswers
-    RLMRealm* realm = [Realm defaultRealm];
-    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %ll && relatedRound.ID == %ll", [Player instance].ID, roundID]];
+//    RLMRealm* realm = [Realm defaultRealm];
+    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %lld && relatedRound.ID == %lld", [Player instance].ID, roundID]];
     
     // If no unsynch UserAnswers, return empty array
     return lastPlayerUserAnswersRealm;

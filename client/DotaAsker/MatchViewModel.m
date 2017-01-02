@@ -15,6 +15,7 @@
 #import "Match.h"
 #import "ServiceLayer.h"
 #import "RoundService.h"
+#import <Realm/Realm.h>
 
 @implementation MatchViewModel
 
@@ -47,7 +48,7 @@
     // index [0..5]
     // 0 -answerIncorrect, 1 - answerCorrect, 2 - answerHidden
     Round* r = [[_match rounds] objectAtIndex:row];
-    return [[[r userAnswers] objectAtIndex:index] isCorrect];
+    return [[[[r userAnswers] objectAtIndex:index] relatedAnswer] isCorrect];
 }
 
 - (NSUInteger)playerAnswersCountForRoundInRow:(NSUInteger)row {
@@ -170,11 +171,10 @@
 - (RLMResults<UserAnswer*>*)lastPlayerUserAnswers {
     // Get current round id
     Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:_match];
-    NSInteger roundID = currentRound.ID;
+    long long roundID = currentRound.ID;
 
     // check out unsynchronized UserAnswers
-    RLMRealm* realm = [Realm defaultRealm];
-    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %ll && relatedRound.ID == %ll", [Player instance].ID, roundID]];
+    RLMResults* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %lld && relatedRound.ID == %lld", [Player instance].ID, roundID]];
     
     // If no unsynch UserAnswers, return empty array
     return lastPlayerUserAnswersRealm;

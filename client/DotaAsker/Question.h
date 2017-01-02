@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
-#import "Asnwer.h"
+#import "Answer.h"
 
 @class Theme;
 RLM_ARRAY_TYPE(Answer)
@@ -23,3 +23,4 @@ RLM_ARRAY_TYPE(Answer)
 @property (strong, nonatomic) Theme* theme;
 
 @end
+RLM_ARRAY_TYPE(Question)

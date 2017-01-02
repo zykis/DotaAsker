@@ -25,3 +25,4 @@
 @property (assign, nonatomic) BOOL synchronized;
     
 @end
+RLM_ARRAY_TYPE(UserAnswer)

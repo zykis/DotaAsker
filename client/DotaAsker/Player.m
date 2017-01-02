@@ -8,6 +8,7 @@
 
 #import "Player.h"
 #import "UserAnswer.h"
+#import "Match.h"
 #import <Realm/Realm.h>
 
 @implementation Player

@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Realm/Realm.h>
+#import "Question.h"
+#import "UserAnswer.h"
 
 #define QUESTIONS_IN_ROUND 3
 
 @class User;
 @class Theme;
-
-RLM_ARRAY_TYPE(Question)
-RLM_ARRAY_TYPE(UserAnswer)
 
 @interface Round : RLMObject
 
@@ -26,3 +25,4 @@ RLM_ARRAY_TYPE(UserAnswer)
 @property (strong, nonatomic) Theme* selectedTheme;
 
 @end
+RLM_ARRAY_TYPE(Round)

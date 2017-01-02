@@ -12,8 +12,6 @@
 
 @class User;
 
-RLM_ARRAY_TYPE(UserAnswer)
-
 @interface MatchViewModel : NSObject
 
 @property (strong, nonatomic) Match* match;

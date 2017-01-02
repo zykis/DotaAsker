@@ -12,9 +12,7 @@
 
 @import UIKit;
 
-typedef enum{ROLE_USER=0, ROLE_ADMIN} ROLE;
-RLM_ARAY_TYPE(Match)
-RLM_ARAY_TYPE(User)
+typedef enum {ROLE_USER=0, ROLE_ADMIN} ROLE;
 
 @interface User : RLMObject
 
@@ -33,7 +31,9 @@ RLM_ARAY_TYPE(User)
 @property (assign, nonatomic) NSInteger totalMatchesLost;
 @property (assign, nonatomic) NSInteger totalTimeForAnswers;
 @property (assign, nonatomic) ROLE role;
-@property (strong, nonatomic) RLMArray<Match*><Match>* matches;
-@property (strong, nonatomic) RLMArray<User*><User>* friends;
+@property RLMArray<Match>* matches;
+@property RLMArray<User>* friends;
 
 @end
+
+//RLM_ARRAY_TYPE(User)

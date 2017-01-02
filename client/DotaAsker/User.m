@@ -28,7 +28,7 @@
 }
 
 + (NSArray *)ignoredProperties {
-    return @[@"ID"];
+    return @[];
 }
 
 @end
