@@ -443,12 +443,14 @@
         // If last 3 UserAnswers synchronized, play
         // else, answer estimated questions
         NSUInteger unsynchronizedCount = 0;
+        NSUInteger totalCount = 0;
         for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
+            totalCount++;
             if (![ua synchronized]) {
                 unsynchronizedCount++;
             }
         }
-        if ((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) {
+        if (((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) || (totalCount != 3)) {
             return BUTTON_CONTINUE;
         }
         else if (unsynchronizedCount == 3) {
