@@ -21,6 +21,13 @@
 #define SECTION_ACTIONS 2
 #define MINIMUM_ROUND_HEIGHT 15.0f + 27.0f + 2.0f + 6.0f
 
+#define BUTTON_WAITING 0
+#define BUTTON_PLAY 1
+#define BUTTON_CONTINUE 2
+#define BUTTON_SYNCHRONIZE 3
+#define BUTTON_PLAY_AGAIN 4
+#define BUTTON_REVENGE 5
+
 @interface MatchViewController ()
 
 @end
@@ -29,6 +36,7 @@
 
 @synthesize matchViewModel = _matchViewModel;
 @synthesize matchID = _matchID;
+@synthesize buttonState = _buttonState;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,99 +89,90 @@
 }
 
 - (IBAction)midleButtonPushed:(id)sender {
-    if ([[_matchViewModel match] state] == MATCH_RUNNING) {
-        if ([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
-            // Answering or Replying?
-            Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
-            User* opponent = [_matchViewModel opponent];
-            RLMResults<UserAnswer*>* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
+    Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
+    User* opponent = [_matchViewModel opponent];
+    RLMResults<UserAnswer*>* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
+
+    switch(_buttonState)
+    {
+        case BUTTON_PLAY:
+            BOOL playerAnswering = true;
+            for (UserAnswer* ua in [currentRound userAnswers]) {
+                if ([[ua relatedUser] isEqual:opponent]) {
+                    playerAnswering = NO;
+                    break;
+                }
+            }
+            if (playerAnswering) {
+                [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
+            }
+            else {
+                [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
+            }
+            break;
+        
+        case BUTTON_CONTINUE:
+            //! TODO: Set current_question_index in destVC
+            [self performSegueWithIdentifier:@"showQuestions" sender:sender];
+            break;
             
-            NSUInteger unsynchronized_count = 0;
+        case BUTTON_SYNCHRONIZE:
+            NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
             for (UserAnswer* ua in lastPlayerUserAnswers) {
                 if (![ua synchronized]) {
-                    unsynchronized_count++;
+                    [unsynchronizedUserAnswers addObject:ua];
                 }
             }
+            NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
+            for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
+                RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
+                [signalsArray addObject:signal];
+            }
             
-            if (unsynchronized_count > 0) {
-                if ([lastPlayerUserAnswers count] > unsynchronized_count) {
-                    // If not all question are answered
-                    // Continue answering questions
-                    
-                    //! TODO: Set current_question_index in destVC
-                    [self performSegueWithIdentifier:@"showQuestions" sender:sender];
+            RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
+                return value;
+            }]];
+            
+            [sig subscribeNext:^(id x) {
+                // Mark userAnswer as synchronized
+                for (UserAnswer* ua in [[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]] userAnswers]) {
+                    if ([ua isEqual:x]) {
+                        ua.synchronized = true;
+                        NSLog(@"Answer synchronized");
+                    }
                 }
-                else {
-                    NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
-                    for (UserAnswer* ua in lastPlayerUserAnswers) {
-                        if (![ua synchronized]) {
-                            [unsynchronizedUserAnswers addObject:ua];
-                        }
-                    }
-                    NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
-                    for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
-                        RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
-                        [signalsArray addObject:signal];
-                    }
-                    
-                    RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
-                        return value;
-                    }]];
-                    
-                    [sig subscribeNext:^(id x) {
-                        // Mark userAnswer as synchronized
-                        for (UserAnswer* ua in [[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]] userAnswers]) {
-                            if ([ua isEqual:x]) {
-                                ua.synchronized = true;
-                                NSLog(@"Answer synchronized");
-                            }
-                        }
-                    } error:^(NSError *error) {
-                        NSLog(@"Error udpating ua");
-                        [self.tableView reloadData];
-                    } completed:^{
-                        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-                        [subject subscribeNext:^(id x) {
-                            [Player setPlayer:x];
-                        } error:^(NSError *error) {
+            } error:^(NSError *error) {
+                NSLog(@"Error udpating ua");
+                [self.tableView reloadData];
+            } completed:^{
+                RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+                [subject subscribeNext:^(id x) {
+                    [Player setPlayer:x];
+                } error:^(NSError *error) {
+                    [self.tableView reloadData];
+                } completed:^{
+                    for (Match* m in [[Player instance] matches]) {
+                        if ([m isEqual:[_matchViewModel match]]) {
+                            [_matchViewModel setMatch:m];
                             [self.tableView reloadData];
-                        } completed:^{
-                            for (Match* m in [[Player instance] matches]) {
-                                if ([m isEqual:[_matchViewModel match]]) {
-                                    [_matchViewModel setMatch:m];
-                                    [self.tableView reloadData];
-                                    break;
-                                }
-                            }
-                        }];
-                    }];
-                }
-            }
-            
-            // Answer or Reply
-            else {
-                BOOL playerAnswering = true;
-                for (UserAnswer* ua in [currentRound userAnswers]) {
-                    if ([[ua relatedUser] isEqual:opponent]) {
-                        playerAnswering = NO; // Player replying
-                        break;
+                            break;
+                        }
                     }
-                }
-                if (playerAnswering) {
-                    [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
-                }
-                else {
-                    [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
-                }
-            }
-        }
-        else {
-            // waiting button
-        }
-    }
-    else {
-        //Revenge button
-        [[self navigationController] popViewControllerAnimated:YES];
+                }];
+            }];
+            break;
+            
+        case BUTTON_WAITING:
+            assert(0); // button should be inactive
+            break;
+        
+        case BUTTON_PLAY_AGAIN:
+            [[self navigationController] popViewControllerAnimated:YES];
+            break;
+        case BUTTON_REVENGE:
+            [[self navigationController] popViewControllerAnimated:YES];
+            break;
+            
     }
 }
 
@@ -322,47 +321,40 @@
             //конец матча - это когда текущий раунд в состоянии Finished
             //и текущий раунд - последний
 
-            if ([[_matchViewModel match] state] != MATCH_RUNNING){
-                if([_matchViewModel playerScore] < [_matchViewModel opponentScore]) {
-                    [leftButton setHidden:YES];
-                    [middleButton setTitle:@"Revenge" forState:UIControlStateNormal];
-                    [middleButton setEnabled:YES];
-                }
-                else {
-                    [leftButton setHidden:YES];
-                    [middleButton setTitle:@"Play again" forState:UIControlStateNormal];
-                    [middleButton setEnabled:YES];
-                }
-            }
-            else if([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
-                // If last 3 UserAnswers synchronized, play
-                // else, answer estimated questions
-                NSUInteger unsynchronizedCount = 0;
-                for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
-                    if (![ua synchronized]) {
-                        unsynchronizedCount++;
-                    }
-                }
-                if ((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) {
-                    [leftButton setHidden:NO];
-                    [middleButton setTitle:@"Continue" forState:UIControlStateNormal];
-                    [middleButton setEnabled:YES];
-                }
-                else if (unsynchronizedCount == 3) {
-                    [leftButton setHidden:NO];
-                    [middleButton setTitle:@"Synchronize" forState:UIControlStateNormal];
-                    [middleButton setEnabled:YES];
-                }
-                else {
+            _buttonState = [self middleButtonState];
+            switch(_buttonState)
+            {
+                case BUTTON_PLAY:
                     [leftButton setHidden:NO];
                     [middleButton setTitle:@"Play" forState:UIControlStateNormal];
                     [middleButton setEnabled:YES];
-                }
-            }
-            else {
-                [leftButton setHidden:YES];
-                [middleButton setTitle:@"Waiting..." forState:UIControlStateNormal];
-                [middleButton setEnabled:NO];
+                    break;
+                case BUTTON_CONTINUE:
+                    [leftButton setHidden:NO];
+                    [middleButton setTitle:@"Continue" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                    break;
+                case BUTTON_SYNCHRONIZE:
+                    [leftButton setHidden:NO];
+                    [middleButton setTitle:@"Synchronize" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                    break;
+                case BUTTON_WAITING:
+                    [leftButton setHidden:YES];
+                    [middleButton setTitle:@"Waiting..." forState:UIControlStateNormal];
+                    [middleButton setEnabled:NO];
+                    break;
+                case BUTTON_PLAY_AGAIN:
+                    [leftButton setHidden:YES];
+                    [middleButton setTitle:@"Play again" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                    break;
+                case BUTTON_REVENGE:
+                    [leftButton setHidden:YES];
+                    [middleButton setTitle:@"Revenge" forState:UIControlStateNormal];
+                    [middleButton setEnabled:YES];
+                    break;
+                default: assert(0);
             }
             break;
         }
@@ -435,6 +427,39 @@
                           }
                           ]];
         [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+- (NSUInteger)middleButtonState {
+    if ([[_matchViewModel match] state] != MATCH_RUNNING){
+        if([_matchViewModel playerScore] < [_matchViewModel opponentScore]) {
+            return BUTTON_REVENGE;
+        }
+        else {
+            return BUTTON_PLAY_AGAIN;
+        }
+    }
+    else if([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
+        // If last 3 UserAnswers synchronized, play
+        // else, answer estimated questions
+        NSUInteger unsynchronizedCount = 0;
+        for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
+            if (![ua synchronized]) {
+                unsynchronizedCount++;
+            }
+        }
+        if ((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) {
+            return BUTTON_CONTINUE;
+        }
+        else if (unsynchronizedCount == 3) {
+            return BUTTON_SYNCHRONIZE;
+        }
+        else {
+            return BUTTON_PLAY;
+        }
+    }
+    else {
+        return BUTTON_WAITING;
     }
 }
 

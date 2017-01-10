@@ -15,6 +15,7 @@
 @interface MatchViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, RoundViewDelegate>
 
+@property (assign, nonatomic) NSUInteger buttonState;
 @property (assign, nonatomic) NSUInteger matchID;
 @property (strong, nonatomic) MatchViewModel *matchViewModel;
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
