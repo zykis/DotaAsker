@@ -113,7 +113,7 @@
         
         case BUTTON_CONTINUE:
             //! TODO: Set current_question_index in destVC
-            [self performSegueWithIdentifier:@"showQuestions" sender:sender];
+            [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
             break;
             
         case BUTTON_SYNCHRONIZE:
