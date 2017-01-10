@@ -118,7 +118,7 @@
         "image_name": "mechanics_bara_cogs.jpg",
         "text": "Bara can run through Clockwerk Cogs?",
         "theme": {
-            "name": "tournaments"
+            "name": "mechanics"
         }
     },
     {
@@ -214,7 +214,7 @@
         "image_name": "tournaments_TI1_grandfinal_qualification.jpg",
         "text": "The International 1 Grand-Final qualification type was:",
         "theme": {
-            "name": "mechanics"
+            "name": "tournaments"
         }
     }
 ]

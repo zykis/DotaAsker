@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DotaButton.h"
 #import "Client.h"
+#import <Realm/Realm.h>
 // #import "DotaAsker-Swift.h"
 
 @interface AppDelegate ()
@@ -19,6 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm deleteAllObjects];
+    [realm commitWriteTransaction];
     return YES;
 }
 

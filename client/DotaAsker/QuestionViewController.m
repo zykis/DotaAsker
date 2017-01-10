@@ -80,8 +80,11 @@
     UserAnswer *userAnswer = [[_round userAnswers] lastObject];
     
     // Udpate existing userAnswer
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
+    [realm commitWriteTransaction];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
@@ -90,13 +93,9 @@
             UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
             if ([ua isEqual:x]) {
                 ua = x;
-                
-                ua.synchronized = true;
-                
-                //Remove synchronized UserAsnwer
                 RLMRealm *realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
-                [realm deleteObject:ua];
+                ua.synchronized = true;
                 [realm commitWriteTransaction];
             }
         }
@@ -107,12 +106,16 @@
     }];
     
     User* relatedUser = [_round nextMoveUser];
+
+    [realm beginWriteTransaction];
     if ([relatedAnswer isCorrect]) {
         relatedUser.totalCorrectAnswers++;
     }
     else {
         relatedUser.totalIncorrectAnswers++;
     }
+    [realm commitWriteTransaction];
+    
     _currentQuestionIndex++;
     [self showNextQuestion];
 }
@@ -130,12 +133,9 @@
             UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
             if ([ua isEqual:x]) {
                 ua = x;
-                ua.synchronized = true;
-                
-                //Remove synchronized UserAsnwer
                 RLMRealm *realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
-                [realm deleteObject:ua];
+                ua.synchronized = true;
                 [realm commitWriteTransaction];
             }
         }
@@ -143,12 +143,15 @@
         NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
     } completed:^{
         NSLog(@"Answer synchronized");
-        
-        
     }];
     
     User* relatedUser = [_round nextMoveUser];
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
     relatedUser.totalIncorrectAnswers++;
+    [realm commitWriteTransaction];
+    
     _currentQuestionIndex++;
     [self showNextQuestion];
 }
@@ -164,12 +167,12 @@
         ua.relatedQuestion = q;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
-        [[_round userAnswers] addObject:ua];
+        
         
         // Persist unsynchronized UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        [realm addObject:ua];
+        [[_round userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
         // start timer
@@ -183,7 +186,6 @@
             // update label with timer
             _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
         });
-        
         
         assert(q);
         RLMArray<Answer>* answers = [q answers];

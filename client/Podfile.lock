@@ -49,11 +49,11 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
-  - ReactiveObjC (2.1.0)
+  - ReactiveObjC (2.1.2)
   - Realm (1.0.2):
     - Realm/Headers (= 1.0.2)
   - Realm/Headers (1.0.2)
-  - TTGSnackbar (1.4.0)
+  - TTGSnackbar (1.4.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
@@ -65,9 +65,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
-  ReactiveObjC: 2edae120982d8e6d5407503a10edcfdd87eb8639
+  ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
   Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  TTGSnackbar: 181dfb234995db7380896b6c5b3af81b39d73866
+  TTGSnackbar: 466f11eb59fb7e0f7af7f05d9165abce72adf5cc
 
 PODFILE CHECKSUM: bcd9c5ef269ba3fff9934e6864245170902aa42e
 

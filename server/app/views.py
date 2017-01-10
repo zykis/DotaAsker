@@ -170,13 +170,16 @@ def post_userAnswer():
     # check if round is over
     round = uaNew.round
     if len(round.user_answers) == 3:
+
         # change next_move_user
         u1 = round.next_move_user
+        u2 = None
         for u in round.match.users:
             if u is not u1:
                 u2 = u
         if not isinstance(u2, User):
-            app.logger.critical("can't find next move user for match: {}".format(round.match))
+            # app.logger.critical("can't find next move user for match: {}".format(round.match))
+            app.logger.info("user for match is undefined yet")
         round.next_move_user = u2
         db.session.add(round)
         db.session.commit()
