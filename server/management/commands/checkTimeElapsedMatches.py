@@ -15,7 +15,8 @@ def checkTimeElapsedMatches():
             app.logger.debug('match {} last updated {} hours ago'.format(m.__repr__(), timeDiffInSec.total_seconds() / (60 * 60)))
             if MATCH_UPDATELIFE < timeDiffInSec.total_seconds():
                 app.logger.debug('match {} elapsed'.format(m.__repr__()))
-                 # checkout winner
+                # checkout winner
+		m.elapseMatch()
 
 if __name__ == '__main__':
     checkTimeElapsedMatches()

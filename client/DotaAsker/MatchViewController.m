@@ -86,8 +86,7 @@
             // Answering or Replying?
             Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
             User* opponent = [_matchViewModel opponent];
-            
-            RLMResults* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
+            RLMResults<UserAnswer*>* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
             
             NSUInteger unsynchronized_count = 0;
             for (UserAnswer* ua in lastPlayerUserAnswers) {
