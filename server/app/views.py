@@ -162,6 +162,13 @@ def post_userAnswer():
     uaDict = request.data
     schema = UserAnswerSchema()
     ua = schema.loads(uaDict)[0]
+
+    # check if there is still space in round for userAnswer of this user
+    userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
+    if userAnswersCount >= 3:
+        app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
+        return
+
     db.session.add(ua)
     db.session.commit()
 

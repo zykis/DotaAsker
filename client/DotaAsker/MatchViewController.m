@@ -96,6 +96,7 @@
     switch(_buttonState)
     {
         case BUTTON_PLAY:
+        {
             BOOL playerAnswering = true;
             for (UserAnswer* ua in [currentRound userAnswers]) {
                 if ([[ua relatedUser] isEqual:opponent]) {
@@ -110,6 +111,7 @@
                 [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
             }
             break;
+        }
         
         case BUTTON_CONTINUE:
             //! TODO: Set current_question_index in destVC
@@ -117,6 +119,7 @@
             break;
             
         case BUTTON_SYNCHRONIZE:
+        {
             NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
             for (UserAnswer* ua in lastPlayerUserAnswers) {
                 if (![ua synchronized]) {
@@ -161,6 +164,7 @@
                 }];
             }];
             break;
+        }
             
         case BUTTON_WAITING:
             assert(0); // button should be inactive
@@ -450,7 +454,7 @@
                 unsynchronizedCount++;
             }
         }
-        if (((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) || (totalCount != 3)) {
+        if (((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) || ( (totalCount > 0) && (totalCount < 3) )) {
             return BUTTON_CONTINUE;
         }
         else if (unsynchronizedCount == 3) {
