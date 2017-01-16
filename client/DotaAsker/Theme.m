@@ -18,4 +18,8 @@
     return NO;
 }
 
++ (NSString*)primaryKey {
+    return @"ID";
+}
+
 @end

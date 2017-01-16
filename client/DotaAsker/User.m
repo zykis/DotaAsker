@@ -27,8 +27,12 @@
     return NO;
 }
 
-+ (NSArray *)ignoredProperties {
++ (NSArray*)ignoredProperties {
     return @[];
+}
+
++ (NSString*)primaryKey {
+    return @"ID";
 }
 
 @end

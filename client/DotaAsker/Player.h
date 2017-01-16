@@ -1,6 +1,7 @@
 #import "User.h"
 
-@interface Player : User
+@interface Player : NSObject
+
 + (User*)instance;
 + (void)setPlayer: (User*)player;
 @end

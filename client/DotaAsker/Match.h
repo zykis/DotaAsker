@@ -25,13 +25,12 @@
 
 @class User;
 RLM_ARRAY_TYPE(User)
-@class Round;
 
 @interface Match : RLMObject
 
 @property (assign, nonatomic) long long ID;
 @property RLMArray<User>* users;
-@property (strong, nonatomic) RLMArray<Round>* rounds;
+@property RLMArray<Round*><Round>* rounds;
 @property (assign, nonatomic) NSInteger state;
 @property (assign, nonatomic) NSInteger mmrGain;
 @property (strong, nonatomic) NSString* updatedOn;

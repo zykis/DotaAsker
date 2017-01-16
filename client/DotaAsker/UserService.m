@@ -6,12 +6,16 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Libraries
+#import <Realm/Realm.h>
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
+// Local
 #import "UserService.h"
 #import "UserParser.h"
 #import "UserTransport.h"
 #import "MatchService.h"
 #import "UserCache.h"
-#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "User.h"
 #import "AuthorizationService.h"
 
@@ -46,6 +50,13 @@
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     [[_transport obtainWithAccessToken:accessToken] subscribeNext:^(id x) {
         User* u = [UserParser parse:x andChildren:YES];
+        
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm addOrUpdateObject:u];
+        [realm commitWriteTransaction];
+        
+        u = [User objectForPrimaryKey:[NSNumber numberWithLongLong:u.ID]];
         [subject sendNext:u];
     } error:^(NSError *error) {
         [subject sendError:error];

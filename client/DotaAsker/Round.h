@@ -20,8 +20,8 @@
 
 @property (assign, nonatomic) long long ID;
 @property (strong, nonatomic) User* nextMoveUser;
-@property (strong, nonatomic) RLMArray<Question*><Question>* questions;//список вопросов
-@property (strong, nonatomic) RLMArray<UserAnswer*><UserAnswer>* userAnswers;//список ответов
+@property RLMArray<Question*><Question>* questions;//список вопросов
+@property RLMArray<UserAnswer*><UserAnswer>* userAnswers;//список ответов
 @property (strong, nonatomic) Theme* selectedTheme;
 
 @end

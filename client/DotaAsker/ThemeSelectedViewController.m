@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Libraries
+#import <ReactiveObjC/ReactiveObjC.h>
+
 #import "ThemeSelectedViewController.h"
 #import "QuestionViewController.h"
 #import "ServiceLayer.h"
@@ -21,6 +24,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Getting objects from Realm
+    _round = [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
+    _selectedTheme = [Theme objectForPrimaryKey: [NSNumber numberWithLongLong:self.selectedThemeID]];
+    
+    // Setting selected theme for Round
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [_round setSelectedTheme:_selectedTheme];
+    [realm commitWriteTransaction];
+    
+    // Sending to server
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Updating round"];
+    [[self view] addSubview:loadingView];
+    
+    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+    [subject subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
+        [loadingView removeFromSuperview];
+    } completed:^{
+        [loadingView removeFromSuperview];
+    }];
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
     [_themeImageView addGestureRecognizer:tapGesture];
     

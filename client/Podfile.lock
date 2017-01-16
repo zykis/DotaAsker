@@ -50,25 +50,25 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - ReactiveObjC (2.1.2)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
+  - Realm (2.2.0):
+    - Realm/Headers (= 2.2.0)
+  - Realm/Headers (2.2.0)
   - TTGSnackbar (1.4.1)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - libextobjc (~> 0.4.1)
   - ReactiveObjC
-  - Realm (~> 1.0.2)
+  - Realm
   - TTGSnackbar (~> 1.4.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   ReactiveObjC: 7b6782ae39f9ac0f57205c3b0c0b69b9dd7048c0
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
+  Realm: d95b8fb34c83f1e764b66d319277a62c2b6e4bf5
   TTGSnackbar: 466f11eb59fb7e0f7af7f05d9165abce72adf5cc
 
-PODFILE CHECKSUM: bcd9c5ef269ba3fff9934e6864245170902aa42e
+PODFILE CHECKSUM: f07e10a6845ac26c6f7bc4019c01f8c62b6c2f07
 
 COCOAPODS: 1.1.1

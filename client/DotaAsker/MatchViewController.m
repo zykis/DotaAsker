@@ -79,12 +79,15 @@
         Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
         Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
         // If no selected theme in round, try to update it
-        [destVC setRound:selectedRound];
-        [destVC setSelectedTheme:selectedTheme];
+        [destVC setRoundID:selectedRound.ID];
+        [destVC setSelectedThemeID:selectedTheme.ID];
     }
     else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];
-        [destVC setRound:[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]]];
+        Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
+        
+        [destVC setRoundID:selectedRound.ID];
+        [destVC setRound:selectedRound];
     }
 }
 

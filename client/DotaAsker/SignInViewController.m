@@ -6,10 +6,13 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Libraries
+#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
+// Local
 #import "SignInViewController.h"
 #import "MainViewController.h"
 #import "AuthorizationService.h"
-#import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "Player.h"
 #import "ServiceLayer.h"
 
@@ -87,7 +90,7 @@
          subscribeNext:^(User* u) {
             [Player setPlayer:u];
             [self performSegueWithIdentifier:@"signin" sender:self];
-             [loadingView removeFromSuperview];
+            [loadingView removeFromSuperview];
         } error:^(NSError *error) {
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];

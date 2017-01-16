@@ -75,7 +75,9 @@
 
 - (NSArray*)themesForRound:(Round *)round {
     NSMutableArray* themes = [[NSMutableArray alloc] init];
-    for (Question* q in [round questions]) {
+    
+    for (int i = 0; i < [[round questions] count]; i++) {
+        Question* q = [[round questions] objectAtIndex:i];
         Theme* t = [q theme];
         if (![themes containsObject:t]) {
             [themes addObject:t];
