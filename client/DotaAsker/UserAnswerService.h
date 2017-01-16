@@ -13,5 +13,6 @@
 @interface UserAnswerService : AbstractService
 
 @property (strong, nonatomic) UserAnswerTransport* transport;
+- (long long)getNextPrimaryKey;
 
 @end

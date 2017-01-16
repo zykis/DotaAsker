@@ -156,22 +156,21 @@ def get_statistic(id):
         abort(500)
 
 @app.route('/userAnswers', methods=['POST'])
-def post_userAnswer():
-    # tricky one. We could expect empty userAnswers with answer_id = 0. If so, we just create them
-    # If answer_id contains in data, we need to update existing ones
+def create_userAnswer():
     uaDict = request.data
     schema = UserAnswerSchema()
     ua = schema.loads(uaDict)[0]
-
     # check if there is still space in round for userAnswer of this user
     userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
     if userAnswersCount >= 3:
         app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
         return
-
+    # reset localy created ID. Server should autoincrement it
+    ua.id = 0
     db.session.add(ua)
     db.session.commit()
 
+    # getting created UserAnswer with proper id
     uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one()
 
     # check if round is over

@@ -160,7 +160,12 @@
     if (_currentQuestionIndex < 3) {
         Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
         // create empty unsynchronized userAnswer
+        
         UserAnswer* ua = [[UserAnswer alloc] init];
+        // generating new primary key. will be replaced after creating on server side
+        long long newID = [[[ServiceLayer instance] userAnswerService] getNextPrimaryKey];
+        
+        ua.ID = newID;
         ua.relatedAnswer = [Answer emptyAnswer];
         ua.relatedUser = [Player instance];
         ua.relatedRound = _round;
