@@ -177,11 +177,13 @@
         // Persist unsynchronized UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
+        // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
+//        [realm addOrUpdateObject:ua];
         [[_round userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
         // start timer
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
                                                        target:self
                                                      selector:@selector(timeElapsed)

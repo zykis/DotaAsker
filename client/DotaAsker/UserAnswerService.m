@@ -40,7 +40,8 @@
 }
 
 - (long long)getNextPrimaryKey {
-    long long ID = [[UserAnswer allObjects] maxOfProperty:@"ID"] + 1;
+    long long ID = [[[UserAnswer allObjects] maxOfProperty:@"ID"] longLongValue] + 1;
+    return ID;
 }
 
 @end

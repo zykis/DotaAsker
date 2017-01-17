@@ -18,10 +18,10 @@
 
 @property (assign, nonatomic) long long ID;
 @property (assign, nonatomic) NSInteger secForAnswer;
-@property (strong, nonatomic) Answer* relatedAnswer;
-@property (strong, nonatomic) Round* relatedRound;
-@property (strong, nonatomic) User* relatedUser;
-@property (strong, nonatomic) Question* relatedQuestion;
+@property Answer* relatedAnswer;
+@property User* relatedUser;
+@property Question* relatedQuestion;
+@property Round* relatedRound;
 @property (assign, nonatomic) BOOL synchronized;
     
 @end

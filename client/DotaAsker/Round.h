@@ -19,10 +19,10 @@
 @interface Round : RLMObject
 
 @property (assign, nonatomic) long long ID;
-@property (strong, nonatomic) User* nextMoveUser;
-@property RLMArray<Question*><Question>* questions;//список вопросов
-@property RLMArray<UserAnswer*><UserAnswer>* userAnswers;//список ответов
-@property (strong, nonatomic) Theme* selectedTheme;
+@property User* nextMoveUser;
+@property RLMArray<Question*><Question>* questions;
+@property RLMArray<UserAnswer*><UserAnswer>* userAnswers;
+@property Theme* selectedTheme;
 
 @end
 RLM_ARRAY_TYPE(Round)

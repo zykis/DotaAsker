@@ -166,7 +166,7 @@ def create_userAnswer():
         app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
         return
     # reset localy created ID. Server should autoincrement it
-    ua.id = 0
+    ua.id = None
     db.session.add(ua)
     db.session.commit()
 
