@@ -37,6 +37,18 @@
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
 
+dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block)
+{
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    if (timer)
+    {
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, leeway);
+        dispatch_source_set_event_handler(timer, block);
+        dispatch_resume(timer);
+    }
+    return timer;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _questionViewModel = [[QuestionViewModel alloc] init];
@@ -59,11 +71,15 @@
 }
 
 - (IBAction)answerPushed:(id)sender {
-    // Invalidate timer
-    [_questionTimer invalidate];
-    _questionTimer = nil;
-    [_timeTimer invalidate];
-    _timeTimer = nil;
+    // Invalidate timers
+    if (_timeTimer) {
+        [_timeTimer invalidate];
+        _timeTimer = nil;
+    }
+    if (_questionTimer) {
+        [_questionTimer invalidate];
+        _questionTimer = nil;
+    }
     
     Question *q = [[[ServiceLayer instance] roundService] questionAtIndex:_currentQuestionIndex onTheme: _selectedTheme inRound:_round];
     NSInteger answerIndex;
@@ -121,8 +137,10 @@
 }
 
 - (void)timeElapsed {
-    [_timeTimer invalidate];
-    _timeTimer = nil;
+    if (_questionTimer) {
+        [_questionTimer invalidate];
+        _questionTimer = nil;
+    }
 
     UserAnswer *userAnswer = [[_round userAnswers] lastObject];
 
@@ -178,21 +196,59 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
-//        [realm addOrUpdateObject:ua];
-        [[_round userAnswers] addObject:ua];
+        [realm addOrUpdateObject:ua];
+//        [[_round userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
-        // start timer
+        self.secondsRemain = 30.0;
+        
+        // Start 30 seconds timer
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
-                                                       target:self
-                                                     selector:@selector(timeElapsed)
-                                                     userInfo:nil
-                                                      repeats:NO];
-            self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
-            // update label with timer
-            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
+            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:NO block:^(NSTimer * _Nonnull timer) {
+                if (_timeTimer) {
+                    [_timeTimer invalidate];
+                    _timeTimer = nil;
+                    
+                    // Elapsed timer logic
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self timeElapsed];
+                    });
+                }
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
+            [[NSRunLoop currentRunLoop] run];
         });
+        
+        // Start timer with 0.1 sec interval
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                _secondsRemain -= 0.1;
+                
+                // Update UI
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSString* secondsRemain = [NSString stringWithFormat:@"%2.1f", self.secondsRemain];
+                    [_timeElapsedLabel setText:secondsRemain];
+                });
+            }];
+            [[NSRunLoop currentRunLoop] addTimer:_timeTimer forMode:NSDefaultRunLoopMode];
+            [[NSRunLoop currentRunLoop] run];
+        });
+        
+        
+        
+        
+        
+//        // start async timer
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+//            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
+//                                                       target:self
+//                                                     selector:@selector(timeElapsed)
+//                                                     userInfo:nil
+//                                                      repeats:NO];
+//            self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
+//            // update label with timer
+//            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
+//        });
         
         assert(q);
         RLMArray<Answer>* answers = [q answers];

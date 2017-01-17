@@ -1,4 +1,5 @@
 from app.models import User
+from app import app
 from marshmallow import Schema, fields, post_load
 
 
@@ -24,7 +25,18 @@ class UserSchema(Schema):
 
     @post_load
     def update_user(self, data):
-        user = User.query.get(data['id'])
-        user.avatar_image_name = data['avatar_image_name']
-        user.premium = data['premium']
+        id = data.get('id', None)
+        if id is not None:
+            user = User.query.get(data['id'])
+        else:
+            app.logger.critical("can't update user without id")
+
+        avatar = data.get('avatar_image_name', None)
+        if avatar is not None:
+            user.avatar_image_name = avatar
+
+        premium = data.get('premium', None)
+        if premium is not None:
+            user.premium = premium
+
         return user

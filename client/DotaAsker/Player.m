@@ -31,7 +31,8 @@
 }
 
 + (void)setPlayer:(User *)player {
-    [[self instance] setID:player.ID];
+    if (!player.ID)
+        [[self instance] setID:player.ID];
     [[self instance] setName:player.name];
     [[self instance] setEmail:player.email];
     [[self instance] setMMR:player.MMR];

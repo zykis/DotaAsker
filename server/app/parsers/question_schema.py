@@ -29,8 +29,7 @@ class QuestionSchema(Schema):
                 # chech if answer.question_id will fill after session.commit()
         else:
             question = Question.query.get(data['id'])
-        db.session.add(question)
-        db.session.commit()
+        return question
         # how to get newly created question.ID?
         print('question parsed: {}'.format(question.__repr__()))
         return question
