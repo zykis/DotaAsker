@@ -34,20 +34,9 @@
 @synthesize currentQuestionIndex = _currentQuestionIndex;
 @synthesize selectedTheme = _selectedTheme;
 @synthesize questionViewModel = _questionViewModel;
+
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
-
-dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispatch_queue_t queue, dispatch_block_t block)
-{
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-    if (timer)
-    {
-        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), interval, leeway);
-        dispatch_source_set_event_handler(timer, block);
-        dispatch_resume(timer);
-    }
-    return timer;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -143,6 +132,7 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     }
 
     UserAnswer *userAnswer = [[_round userAnswers] lastObject];
+    assert(userAnswer);
 
     RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
     [subject subscribeNext:^(id x) {
@@ -196,15 +186,15 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
-        [realm addOrUpdateObject:ua];
-//        [[_round userAnswers] addObject:ua];
+//        [realm addOrUpdateObject:ua];
+        [[_round userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
         self.secondsRemain = 30.0;
         
         // Start 30 seconds timer
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:30 repeats:NO block:^(NSTimer * _Nonnull timer) {
+            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL repeats:NO block:^(NSTimer * _Nonnull timer) {
                 if (_timeTimer) {
                     [_timeTimer invalidate];
                     _timeTimer = nil;
@@ -233,22 +223,6 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
             [[NSRunLoop currentRunLoop] addTimer:_timeTimer forMode:NSDefaultRunLoopMode];
             [[NSRunLoop currentRunLoop] run];
         });
-        
-        
-        
-        
-        
-//        // start async timer
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-//            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL
-//                                                       target:self
-//                                                     selector:@selector(timeElapsed)
-//                                                     userInfo:nil
-//                                                      repeats:NO];
-//            self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
-//            // update label with timer
-//            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSecondsRemain) userInfo:nil repeats:YES];
-//        });
         
         assert(q);
         RLMArray<Answer>* answers = [q answers];
@@ -337,12 +311,6 @@ dispatch_source_t CreateDispatchTimer(uint64_t interval, uint64_t leeway, dispat
     [destVC.tableView reloadData];
     [[self navigationController] popToViewController:destVC animated:YES];
 
-}
-
-- (void)updateSecondsRemain {
-    self.secondsRemain -= 0.1;
-    NSString* secondsRemain = [NSString stringWithFormat:@"%2.1f", self.secondsRemain];
-    [_timeElapsedLabel setText:secondsRemain];
 }
 
 @end
