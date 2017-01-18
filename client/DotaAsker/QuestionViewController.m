@@ -42,6 +42,10 @@
     [super viewDidLoad];
     _questionViewModel = [[QuestionViewModel alloc] init];
     
+    // Getting objects from Realm
+    _round = [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
+    _selectedTheme = [Theme objectForPrimaryKey: [NSNumber numberWithLongLong:self.selectedThemeID]];
+    
     assert(_round);
     assert([[_round questions] count] == 9);
     assert(_selectedTheme);
@@ -186,11 +190,10 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
-//        [realm addOrUpdateObject:ua];
         [[_round userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
-        self.secondsRemain = 30.0;
+        self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
         
         // Start 30 seconds timer
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{

@@ -13,6 +13,8 @@
 
 @implementation Player
 
+static long long playerID = 0;
+
 - (id)init {
     self = [super init];
     return self;
@@ -24,15 +26,32 @@
     {
         if(user == nil)
         {
-            user = [[User alloc] init];
+            if (playerID == 0) {
+                NSException* exception = [NSException exceptionWithName:@"Player ID didn't set before calling [Player instance]"
+                                                        reason:@"Singleton implementation"
+                                                        userInfo:nil];
+                @throw exception;
+            }
+            else {
+                user = [User objectWithPrimaryKey:@playerID];
+                // If not user in local database, create one
+                if (user == nil) {
+                    user = [[User alloc] init];
+                }
+            }
         }
     }
     return user;
 }
 
 + (void)setPlayer:(User *)player {
-    if (!player.ID)
+    if (![[self instance] ID])
         [[self instance] setID:player.ID];
+    
+    // Updating user instance in lcoal DB
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    
     [[self instance] setName:player.name];
     [[self instance] setEmail:player.email];
     [[self instance] setMMR:player.MMR];
@@ -45,6 +64,12 @@
     [[self instance] setRole:player.role];
     [[self instance] setMatches:player.matches];
     [[self instance] setFriends:player.friends];
+    
+    [realm commitWriteTransaction];
+}
+
++ (void)setID: long long ID {
+    playerID = ID;
 }
 
 @end

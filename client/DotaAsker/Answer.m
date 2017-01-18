@@ -28,10 +28,13 @@
 }
 
 + (Answer*)emptyAnswer {
-    Answer* a = [[Answer alloc] init];
-    a.text = [NSString stringWithFormat:@"Unanswered"];
-    a.isCorrect = NO;
-    a.ID = 0;
+    Answer* a = [Answer objectForPrimaryKey:@0];
+    if (a == nil) {
+        a = [[Answer alloc] init];
+        a.text = [NSString stringWithFormat:@"Unanswered"];
+        a.isCorrect = NO;
+        a.ID = 0;
+    }
     return a;
 }
 

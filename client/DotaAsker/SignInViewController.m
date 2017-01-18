@@ -88,6 +88,7 @@
     } completed:^{
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
+            [Player setID: u.ID];
             [Player setPlayer:u];
             [self performSegueWithIdentifier:@"signin" sender:self];
             [loadingView removeFromSuperview];

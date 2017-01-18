@@ -15,6 +15,8 @@
 
 @interface QuestionViewController : UIViewController
 
+@property (assign, nonatomic) long long roundID;
+@property (assign, nonatomic) long long selectedThemeID;
 @property (strong, nonatomic) Round* round;
 @property (strong, nonatomic) Theme* selectedTheme;
 

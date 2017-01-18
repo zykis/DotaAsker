@@ -72,8 +72,8 @@
         id destID = (QuestionViewController*)[segue destinationViewController];
         assert([destID isKindOfClass:[QuestionViewController class]]);
         destVC = (QuestionViewController*)destID;
-        [destVC setRound:_round];
-        [destVC setSelectedTheme:_selectedTheme];
+        [destVC setRoundID:_round.ID];
+        [destVC setSelectedThemeID:_selectedTheme.ID];
     }
 }
 
