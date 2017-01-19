@@ -34,16 +34,9 @@
 }
 
 - (Match*)matchForRound:(Round *)round {
-    for (Match* m in [[Player instance] matches]) {
-        for (Round* r in [m rounds]) {
-            if ([r isEqual:round]) {
-                return m;
-            }
-        }
-    }
-    
-    assert(NULL);
-    return NULL;
+    Match* m = [[Match objectsWhere:@"ANY rounds.ID = %lld", round.ID] firstObject];
+    assert(m);
+    return m;
 }
 
 - (BOOL)isRoundLast:(Round *)round {
@@ -59,7 +52,6 @@
     long long roundID = round.ID;
 
     // check out unsynchronized UserAnswers
-//    RLMRealm* realm = [Realm defaultRealm];
     RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %lld && relatedRound.ID == %lld", [Player instance].ID, roundID]];
     
     // If no unsynch UserAnswers, return empty array

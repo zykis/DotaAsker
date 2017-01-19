@@ -16,15 +16,16 @@ class UserAnswerSchema(Schema):
     def make_user_answer(self, data):
         ua = UserAnswer()
 
-        roundDict = data['round']
-        ua.round_id = roundDict['id']
+        round = data['round']
+        ua.round_id = round['id']
 
-        ua.question = data['question']
+        question = data['question']
+        ua.question_id = question.id
 
         user = data['user']
         ua.user_id = user.id
 
-        answerDict = data['answer']
-        ua.answer_id = answerDict['id']
+        answer = data['answer']
+        ua.answer_id = answer['id']
 
         return ua

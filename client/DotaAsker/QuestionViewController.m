@@ -87,32 +87,36 @@
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
     UserAnswer *userAnswer = [[_round userAnswers] lastObject];
+    assert(userAnswer);
     
     // Udpate existing userAnswer
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
+    userAnswer.relatedUser = [Player instance];
+    userAnswer.relatedRound = _round;
+    userAnswer.relatedQuestion = q;
     [realm commitWriteTransaction];
     
-    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-    [subject subscribeNext:^(id x) {
-        // Mark userAnswer as synchronized
-        for (int i = 0; i < [[_round userAnswers] count]; i++) {
-            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
-            if ([ua isEqual:x]) {
-                ua = x;
-                RLMRealm *realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                ua.synchronized = true;
-                [realm commitWriteTransaction];
-            }
-        }
-    } error:^(NSError *error) {
-        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
-    } completed:^{
-        NSLog(@"Answer synchronized");
-    }];
+//    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+//    [subject subscribeNext:^(id x) {
+//        // Mark userAnswer as synchronized
+//        for (int i = 0; i < [[_round userAnswers] count]; i++) {
+//            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
+//            if ([ua isEqual:x]) {
+//                ua = x;
+//                RLMRealm *realm = [RLMRealm defaultRealm];
+//                [realm beginWriteTransaction];
+//                ua.synchronized = true;
+//                [realm commitWriteTransaction];
+//            }
+//        }
+//    } error:^(NSError *error) {
+//        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
+//    } completed:^{
+//        NSLog(@"Answer synchronized");
+//    }];
     
     User* relatedUser = [_round nextMoveUser];
 
@@ -138,24 +142,24 @@
     UserAnswer *userAnswer = [[_round userAnswers] lastObject];
     assert(userAnswer);
 
-    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-    [subject subscribeNext:^(id x) {
-        // Mark userAnswer as synchronized
-        for (int i = 0; i < [[_round userAnswers] count]; i++) {
-            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
-            if ([ua isEqual:x]) {
-                ua = x;
-                RLMRealm *realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                ua.synchronized = true;
-                [realm commitWriteTransaction];
-            }
-        }
-    } error:^(NSError *error) {
-        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
-    } completed:^{
-        NSLog(@"Answer synchronized");
-    }];
+//    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
+//    [subject subscribeNext:^(id x) {
+//        // Mark userAnswer as synchronized
+//        for (int i = 0; i < [[_round userAnswers] count]; i++) {
+//            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
+//            if ([ua isEqual:x]) {
+//                ua = x;
+//                RLMRealm *realm = [RLMRealm defaultRealm];
+//                [realm beginWriteTransaction];
+//                ua.synchronized = true;
+//                [realm commitWriteTransaction];
+//            }
+//        }
+//    } error:^(NSError *error) {
+//        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
+//    } completed:^{
+//        NSLog(@"Answer synchronized");
+//    }];
     
     User* relatedUser = [_round nextMoveUser];
     
@@ -184,7 +188,6 @@
         ua.relatedQuestion = q;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
-        
         
         // Persist unsynchronized UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
@@ -266,36 +269,40 @@
     else {
         NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
         for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:_round]) {
-            RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
-            [signalsArray addObject:signal];
-        }
-        
-        RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
-            return value;
-        }]];
-        
-        [sig subscribeNext:^(id x) {
-            // Mark userAnswer as synchronized
-            for (UserAnswer* ua in [_round userAnswers]) {
-                if ([ua isEqual:x]) {
-                    ua.synchronized = true;
-                    NSLog(@"Answer synchronized");
-                }
+            if (![ua synchronized]) {
+                RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
+                [signalsArray addObject:signal];
             }
-        } error:^(NSError *error) {
-            NSLog(@"Error udpating ua");
-            // pop
-            [self popToMatchViewController];
-        } completed:^{
-            RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-            [subject subscribeNext:^(id x) {
-                [Player setPlayer:x];
+        }
+
+        if ([signalsArray count] > 0) {
+            RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
+                return value;
+            }]];
+            
+            [sig subscribeNext:^(id x) {
+                // Mark userAnswer as synchronized
+                for (UserAnswer* ua in [_round userAnswers]) {
+                    if ([ua isEqual:x]) {
+                        ua.synchronized = true;
+                        NSLog(@"Answer synchronized");
+                    }
+                }
             } error:^(NSError *error) {
+                NSLog(@"Error udpating ua");
+                // pop
                 [self popToMatchViewController];
             } completed:^{
-                [self popToMatchViewController];
+                RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+                [subject subscribeNext:^(id x) {
+                    [Player setPlayer:x];
+                } error:^(NSError *error) {
+                    [self popToMatchViewController];
+                } completed:^{
+                    [self popToMatchViewController];
+                }];
             }];
-        }];
+        }
     }
 }
 

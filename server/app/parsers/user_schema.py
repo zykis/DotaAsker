@@ -27,9 +27,10 @@ class UserSchema(Schema):
     def update_user(self, data):
         id = data.get('id', None)
         if id is not None:
-            user = User.query.get(data['id'])
+            user = User.query.get(id)
         else:
             app.logger.critical("can't update user without id")
+            return None
 
         avatar = data.get('avatar_image_name', None)
         if avatar is not None:

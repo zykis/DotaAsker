@@ -33,10 +33,11 @@ static long long playerID = 0;
                 @throw exception;
             }
             else {
-                user = [User objectWithPrimaryKey:@playerID];
+                user = [User objectForPrimaryKey:@(playerID)];
                 // If not user in local database, create one
                 if (user == nil) {
                     user = [[User alloc] init];
+                    NSLog(@"Creating player...");
                 }
             }
         }
@@ -45,13 +46,11 @@ static long long playerID = 0;
 }
 
 + (void)setPlayer:(User *)player {
-    if (![[self instance] ID])
-        [[self instance] setID:player.ID];
-    
-    // Updating user instance in lcoal DB
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     
+    if (![[self instance] ID])
+        [[self instance] setID:player.ID];
     [[self instance] setName:player.name];
     [[self instance] setEmail:player.email];
     [[self instance] setMMR:player.MMR];
@@ -65,10 +64,11 @@ static long long playerID = 0;
     [[self instance] setMatches:player.matches];
     [[self instance] setFriends:player.friends];
     
+    [realm addOrUpdateObject:[self instance]];
     [realm commitWriteTransaction];
 }
 
-+ (void)setID: long long ID {
++ (void)setID: (long long) ID {
     playerID = ID;
 }
 

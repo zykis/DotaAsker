@@ -57,9 +57,9 @@
 
 + (NSData*)encode:(UserAnswer*)userAnswer {
 
-    NSDictionary* roundDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedRound].ID] forKey:@"id"];
+    NSDictionary* roundDict = [RoundParser encode:[userAnswer relatedRound]];
     NSDictionary* userDict = [UserParser encode:[userAnswer relatedUser]];
-    NSDictionary* answerDict = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedLongLong:[userAnswer relatedAnswer].ID] forKey:@"id"];
+    NSDictionary* answerDict = [AnswerParser encode:[userAnswer relatedAnswer]];
     NSDictionary* questionDict = [QuestionParser encode:[userAnswer relatedQuestion]];
     
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:

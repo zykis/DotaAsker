@@ -42,6 +42,7 @@
 
 + (NSDictionary*)encode:(Answer*)a {
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                     [NSNumber numberWithLongLong:a.ID], @"id",
                                      a.text, @"text",
                                      [NSNumber numberWithBool:a.isCorrect], @"is_correct",
                                      nil];

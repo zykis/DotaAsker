@@ -29,13 +29,16 @@
     assert(0);
 }
 
-- (NSMutableArray*)currentMatches {
+- (NSArray*)currentMatches {
     NSMutableArray* currentMatches = [[NSMutableArray alloc] init];
-    for (Match* m in [[Player instance] matches]) {
-        if ([self matchSectionForMatch:m] == CURRENT_MATCH)
+    NSUInteger count = [[[Player instance] matches] count];
+    for (int i = 0; i < count; i++) {
+        Match* m = [[[Player instance] matches] objectAtIndex:i];
+        if ([self matchSectionForMatch:m] == CURRENT_MATCH) {
             [currentMatches addObject:m];
+        }
     }
-    return currentMatches;
+    return [NSArray arrayWithArray: currentMatches];
 }
 
 - (NSMutableArray*)waitingMatches {
