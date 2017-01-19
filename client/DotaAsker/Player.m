@@ -34,11 +34,6 @@ static long long playerID = 0;
             }
             else {
                 user = [User objectForPrimaryKey:@(playerID)];
-                // If not user in local database, create one
-                if (user == nil) {
-                    user = [[User alloc] init];
-                    NSLog(@"Creating player...");
-                }
             }
         }
     }
@@ -46,26 +41,28 @@ static long long playerID = 0;
 }
 
 + (void)setPlayer:(User *)player {
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    
-    if (![[self instance] ID])
-        [[self instance] setID:player.ID];
-    [[self instance] setName:player.name];
-    [[self instance] setEmail:player.email];
-    [[self instance] setMMR:player.MMR];
-    [[self instance] setKDA:player.KDA];
-    [[self instance] setGPM:player.GPM];
-    [[self instance] setWallpapersImageName:player.wallpapersImageName];
-    [[self instance] setAvatarImageName:player.avatarImageName];
-    [[self instance] setTotalCorrectAnswers:player.totalCorrectAnswers];
-    [[self instance] setTotalIncorrectAnswers:player.totalIncorrectAnswers];
-    [[self instance] setRole:player.role];
-    [[self instance] setMatches:player.matches];
-    [[self instance] setFriends:player.friends];
-    
-    [realm addOrUpdateObject:[self instance]];
-    [realm commitWriteTransaction];
+//    RLMRealm* realm = [RLMRealm defaultRealm];
+//    [realm beginWriteTransaction];
+//    
+//    if (![[self instance] ID])
+//        [[self instance] setID:player.ID];
+//    [[self instance] setName:player.name];
+//    [[self instance] setEmail:player.email];
+//    [[self instance] setMMR:player.MMR];
+//    [[self instance] setKDA:player.KDA];
+//    [[self instance] setGPM:player.GPM];
+//    [[self instance] setWallpapersImageName:player.wallpapersImageName];
+//    [[self instance] setAvatarImageName:player.avatarImageName];
+//    [[self instance] setTotalCorrectAnswers:player.totalCorrectAnswers];
+//    [[self instance] setTotalIncorrectAnswers:player.totalIncorrectAnswers];
+//    [[self instance] setRole:player.role];
+//    // Trying to add unmanaged Matches and Users to local DB.
+//    // Need to addOrUpdate insteaad
+//    [[self instance] setMatches:player.matches];
+//    [[self instance] setFriends:player.friends];
+//    
+//    [realm addOrUpdateObject:[self instance]];
+//    [realm commitWriteTransaction];
 }
 
 + (void)setID: (long long) ID {

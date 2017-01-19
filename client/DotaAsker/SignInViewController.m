@@ -88,8 +88,12 @@
     } completed:^{
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
-            [Player setID: u.ID];
-            [Player setPlayer:u];
+             RLMRealm* realm = [RLMRealm defaultRealm];
+             [realm beginWriteTransaction];
+             [realm addOrUpdateObject:u];
+             [realm commitWriteTransaction];
+             
+             [Player setID: u.ID];
             [self performSegueWithIdentifier:@"signin" sender:self];
             [loadingView removeFromSuperview];
         } error:^(NSError *error) {

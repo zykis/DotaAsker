@@ -295,7 +295,11 @@
             } completed:^{
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
-                    [Player setPlayer:x];
+                    RLMRealm* realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    [realm addOrUpdateObject:x];
+                    [realm commitWriteTransaction];
+                    
                 } error:^(NSError *error) {
                     [self popToMatchViewController];
                 } completed:^{
