@@ -6,7 +6,11 @@ from app.models import Round
 
 class RoundSchema(Schema):
     id = fields.Int()
-    next_move_user = fields.Nested('UserSchema', exclude=('matches', 'friends'))
-    questions = fields.Nested(QuestionSchema, many=True)
-    user_answers = fields.Nested(UserAnswerSchema, many=True)
+    next_move_user = fields.Nested('UserSchema', only=('id'))
+    questions = fields.Nested(QuestionSchema, many=True, only=('id'))
+    user_answers = fields.Nested(UserAnswerSchema, many=True, only=('id'))
     selected_theme = fields.Nested(ThemeSchema)
+    
+    @post_load
+    def create_round(self, data):
+        return Round(**data)

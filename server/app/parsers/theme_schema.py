@@ -7,6 +7,5 @@ class ThemeSchema(Schema):
     image_name = fields.Str()
     
     @post_load
-    def get_theme(self, data):
-        t = Theme.query.filter(Theme.name == data['name']).one()
-        return t
+    def create_theme(self, data):
+        return Theme(**data)

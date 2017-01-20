@@ -6,26 +6,12 @@ from app.parsers.question_schema import QuestionSchema
 
 class UserAnswerSchema(Schema):
     id = fields.Int()
-    question = fields.Nested(QuestionSchema)
-    answer = fields.Nested(AnswerSchema)
-    user = fields.Nested(UserSchema, exclude=('matches', 'friends'))
-    round = fields.Nested('RoundSchema', only=('id', 'selected_theme'))
     sec_for_answer = fields.Int()
+    question = fields.Nested(QuestionSchema, only=('id'))
+    answer = fields.Nested(AnswerSchema, only=('id'))
+    user = fields.Nested(UserSchema, only=('id'))
+    round = fields.Nested('RoundSchema', only=('id'))
 
     @post_load
     def make_user_answer(self, data):
-        ua = UserAnswer()
-
-        round = data['round']
-        ua.round_id = round['id']
-
-        question = data['question']
-        ua.question_id = question.id
-
-        user = data['user']
-        ua.user_id = user.id
-
-        answer = data['answer']
-        ua.answer_id = answer['id']
-
-        return ua
+        return UserAnswer(**data)

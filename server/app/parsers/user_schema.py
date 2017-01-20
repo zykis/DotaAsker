@@ -20,24 +20,9 @@ class UserSchema(Schema):
     total_matches_lost = fields.Int()
     total_time_for_answers = fields.Int()
     role = fields.Int()
-    matches = fields.Nested('MatchSchema', many=True)
-    friends = fields.Nested('UserSchema', many=True, exclude=('matches', 'friends'))
+    matches = fields.Nested('MatchSchema', many=True, only=('id'))
+    friends = fields.Nested('UserSchema', many=True, only=('id'))
 
     @post_load
-    def update_user(self, data):
-        id = data.get('id', None)
-        if id is not None:
-            user = User.query.get(id)
-        else:
-            app.logger.critical("can't update user without id")
-            return None
-
-        avatar = data.get('avatar_image_name', None)
-        if avatar is not None:
-            user.avatar_image_name = avatar
-
-        premium = data.get('premium', None)
-        if premium is not None:
-            user.premium = premium
-
-        return user
+    def create_user(self, data):
+        return User(**data)

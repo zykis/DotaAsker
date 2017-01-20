@@ -14,22 +14,4 @@ class QuestionSchema(Schema):
     
     @post_load
     def create_question(self, data):
-        if data.get('id', None) is None:
-            question = Question()
-            question.text = data['text']
-            question.approved = data.get('approved', False)
-            question.image_name = data.get('image_name', '')
-            question.theme = data['theme']
-
-            for aDict in data['answers']:
-                a = Answer()
-                a.text = aDict['text']
-                a.is_correct = aDict['is_correct']
-                question.answers.append(a)
-                # chech if answer.question_id will fill after session.commit()
-        else:
-            question = Question.query.get(data['id'])
-        return question
-        # how to get newly created question.ID?
-        print('question parsed: {}'.format(question.__repr__()))
-        return question
+        return Question(**data)
