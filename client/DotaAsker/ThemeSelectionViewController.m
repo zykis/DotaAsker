@@ -20,12 +20,15 @@
 @synthesize imagedButton1 = _imagedButton1;
 @synthesize imagedButton2 = _imagedButton2;
 @synthesize imagedButton3 = _imagedButton3;
-@synthesize round = _round;
+@synthesize roundID = _roundID;
+
+- (Round*)round {
+    return [Round objectForPrimaryKey:@(_roundID)];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _round = [Round objectForPrimaryKey:[NSNumber numberWithLongLong: self.roundID]];
-    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+    NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     assert([themes count] == 3);
     
     [_imagedButton1 setImage: [UIImage imageNamed:[[themes objectAtIndex:0] imageName]] forState:UIControlStateNormal];
@@ -48,7 +51,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"themeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-        NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:_round];
+        NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
         Theme* selectedTheme;
         if ([sender isEqual:_imagedButton1]) {
             selectedTheme = [themes objectAtIndex:0];
@@ -61,7 +64,7 @@
         }
         
         assert(selectedTheme);
-        [destVC setRoundID:_round.ID];
+        [destVC setRoundID:_roundID];
         [destVC setSelectedThemeID:selectedTheme.ID];
     }
 }

@@ -20,14 +20,21 @@
 @implementation ThemeSelectedViewController
 
 @synthesize themeImageView = _themeImageView;
-@synthesize round = _round;
+@synthesize roundID = _roundID;
+@synthesize _selectedThemeID = _selectedThemeID;
+
+- (Round*)round {
+    return [Round objectForPrimaryKey:@(_roundID)];
+}
+
+- (Theme*)selectedTheme {
+    return [Theme objectForPrimaryKey:@(_selectedThemeID)];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     // Getting objects from Realm
-    _round = [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
-    _selectedTheme = [Theme objectForPrimaryKey: [NSNumber numberWithLongLong:self.selectedThemeID]];
     
     // Setting selected theme for Round
     RLMRealm* realm = [RLMRealm defaultRealm];
@@ -72,19 +79,9 @@
         id destID = (QuestionViewController*)[segue destinationViewController];
         assert([destID isKindOfClass:[QuestionViewController class]]);
         destVC = (QuestionViewController*)destID;
-        [destVC setRoundID:_round.ID];
-        [destVC setSelectedThemeID:_selectedTheme.ID];
+        [destVC setRoundID:_roundID];
+        [destVC setSelectedThemeID:_selectedThemeID];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

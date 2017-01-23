@@ -13,8 +13,6 @@
 
 @interface ThemeSelectedViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *themeImageView;
-@property (strong, nonatomic) Theme* selectedTheme;
-@property (strong, nonatomic) Round* round;
 @property (assign, nonatomic) long long roundID;
 @property (assign, nonatomic) long long selectedThemeID;
 - (void)showQuestions;

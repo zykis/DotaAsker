@@ -45,7 +45,7 @@
     bool bMatchFound = false;
     for (Match* m in [[Player instance] matches]) {
         if (m.ID == _matchID) {
-            [_matchViewModel setMatch:m];
+            [_matchViewModel setMatchID:m.ID];
             bMatchFound = true;
             break;
         }
@@ -87,7 +87,6 @@
         Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
         
         [destVC setRoundID:selectedRound.ID];
-        [destVC setRound:selectedRound];
     }
 }
 

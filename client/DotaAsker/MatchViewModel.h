@@ -14,7 +14,8 @@
 
 @interface MatchViewModel : NSObject
 
-@property (strong, nonatomic) Match* match;
+@property (assign, nonatomic) long long matchID;
+- (Match*)match;
 - (User*)opponent;
 - (User*)nextMoveUser;
 - (NSString*)roundStatusTextForRoundInRow:(NSUInteger)row;
