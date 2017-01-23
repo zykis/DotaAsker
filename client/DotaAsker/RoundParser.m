@@ -29,13 +29,14 @@
     Round* round = [[Round alloc] init];
     //id
     [round setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
-    //Next Move user
+    
+    // Next Move user
     if ([[JSONDict allKeys] containsObject:@"next_move_user"]) {
         NSDictionary* userDict = [JSONDict objectForKey:@"next_move_user"];
         User* nextMoveUser = [UserParser parse:userDict andChildren:NO];
+        
         //may be nil
-        if (nextMoveUser)
-            [round setNextMoveUser: nextMoveUser];
+        [round setNextMoveUser: nextMoveUser];
     }
     
     //questions
