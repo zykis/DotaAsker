@@ -63,6 +63,13 @@
             selectedTheme = [themes objectAtIndex:2];
         }
         
+        // Persist selected theme
+        Round* round = [Round objectForPrimaryKey:@(_roundID)];
+        RLMRealm* realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [round setSelectedTheme: theme];
+        [realm commitWriteTransaction];
+        
         assert(selectedTheme);
         [destVC setRoundID:_roundID];
         [destVC setSelectedThemeID:selectedTheme.ID];

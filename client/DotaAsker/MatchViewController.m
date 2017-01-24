@@ -100,13 +100,14 @@
         case BUTTON_PLAY:
         {
             BOOL playerAnswering = true;
+            BOOL bThemeSelected = ![[currentRound themeSelected] invalidated];
             for (UserAnswer* ua in [currentRound userAnswers]) {
                 if ([[ua relatedUser] isEqual:opponent]) {
                     playerAnswering = NO;
                     break;
                 }
             }
-            if (playerAnswering) {
+            if (playerAnswering && !bThemeSelected) {
                 [self performSegueWithIdentifier:@"showThemeSelection" sender:sender];
             }
             else {
