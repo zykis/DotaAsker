@@ -11,10 +11,10 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
-#define ENDPOINT_FIND_MATCH @"http://127.0.0.1:5000/findMatch"
-#define ENDPOINT_MATCH @"http://127.0.0.1:5000/matches"
-#define ENDPOINT_FINISH_MATCH @"http://127.0.0.1:5000/finishMatch"
-#define ENDPOINT_SURREND @"http://127.0.0.1:5000/surrend"
+#define kAPIEndpointFindMatch (kAPIEndpointHost @"/findMatch")
+#define kAPIEndpointMatch (kAPIEndpointHost @"/matches")
+#define kAPIEndpointFinishMatch (kAPIEndpointHost @"/finishMatch")
+#define kAPIEndpointSurrend (kAPIEndpointHost @"/surrend")
 
 
 @implementation MatchTransport
@@ -22,7 +22,7 @@
 - (RACReplaySubject*) findMatchForUser:(NSString*)accessToken {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_FIND_MATCH parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:kAPIEndpointFindMatch parameters:nil error:nil] mutableCopy];
     
     // Forming string with credentials 'myusername:mypassword'
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];
@@ -55,7 +55,7 @@
 - (RACReplaySubject*)update:(NSData *)entityData {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_MATCH parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointMatch parameters:nil error:nil] mutableCopy];
     
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -79,7 +79,7 @@
 - (RACReplaySubject*)finishMatch:(NSData *)entityData {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_FINISH_MATCH parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointFinishMatch parameters:nil error:nil] mutableCopy];
     
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -102,7 +102,7 @@
 
 - (RACReplaySubject*) surrendAtMatchData:(NSData *)matchData andAccessToken:(NSString *)accessToken {
     RACReplaySubject* subject = [RACReplaySubject subject];
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_SURREND parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointSurrend parameters:nil error:nil] mutableCopy];
     
     // Forming string with credentials 'myusername:mypassword'
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];

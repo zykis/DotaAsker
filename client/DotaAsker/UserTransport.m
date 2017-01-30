@@ -10,19 +10,20 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
-#define ENDPOINT_USER @"http://127.0.0.1:5000/users/"
-#define ENDPOINT_USER_UPDATE @"http://127.0.0.1:5000/user"
-#define ENDPOINT_PLAYER @"http://127.0.0.1:5000/MainViewController"
-#define ENDPOINT_SEND_FRIEND_REQUEST @"http://127.0.0.1:5000/sendFriendRequest"
-#define ENDPOINT_TOP100 @"http://127.0.0.1:5000/top100"
-#define ENDPOINT_STATISTIC @"http://127.0.0.1:5000/statistic/"
+#define kAPIEndpointUser                (kAPIEndpointHost @"/users/")
+#define kAPIEndpointUserUpdate          (kAPIEndpointHost @"/user")
+#define kAPIEndpointPlayer              (kAPIEndpointHost @"/MainViewController")
+#define kAPIEndpointSendFriendRequest   (kAPIEndpointHost @"/sendFriendRequest")
+#define kAPIEndpointTop100              (kAPIEndpointHost @"/top100")
+#define kAPIEndpointStatistics          (kAPIEndpointHost @"/statistic/")
+
 
 @implementation UserTransport
 
 - (RACReplaySubject*)obtain:(unsigned long long)entityID {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSString* requestString = [NSString stringWithFormat:@"%@%llu", ENDPOINT_USER, entityID];
+    NSString* requestString = [NSString stringWithFormat:@"%@%llu", kAPIEndpointUser, entityID];
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -45,7 +46,7 @@
 - (RACReplaySubject*) obtainWithAccessToken:(NSString *)accessToken {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_PLAYER parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:kAPIEndpointPlayer parameters:nil error:nil] mutableCopy];
     
     // Forming string with credentials 'myusername:mypassword'
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];
@@ -77,7 +78,7 @@
 - (RACReplaySubject*)update:(NSData*)entityData {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_USER_UPDATE parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointUserUpdate parameters:nil error:nil] mutableCopy];
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -100,7 +101,7 @@
 - (RACReplaySubject*)obtainStatistic:(unsigned long long)entityID {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSString* requestString = [NSString stringWithFormat:@"%@%llu", ENDPOINT_STATISTIC, entityID];
+    NSString* requestString = [NSString stringWithFormat:@"%@%llu", kAPIEndpointUserStatistics, entityID];
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -122,7 +123,7 @@
 
 - (RACReplaySubject*)sendFriendtoUserData:(NSData *)to_user_data withAccessToken:(NSString *)accessToken {
     RACReplaySubject* subject = [RACReplaySubject subject];
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_SEND_FRIEND_REQUEST parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointSendFriendRequest parameters:nil error:nil] mutableCopy];
     
     // Forming string with credentials 'myusername:mypassword'
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];
@@ -154,7 +155,7 @@
 
 - (RACReplaySubject*)top100withAccessToken:(NSString *)accessToken {
     RACReplaySubject* subject = [RACReplaySubject subject];
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:ENDPOINT_TOP100 parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:kAPIEndpointTop100 parameters:nil error:nil] mutableCopy];
     
     // Forming string with credentials 'myusername:mypassword'
     NSString *authStr = [NSString stringWithFormat:@"%@:%@", accessToken, @"unused"];

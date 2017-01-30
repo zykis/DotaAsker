@@ -14,7 +14,8 @@
 #define CLOUDINARY_API_SECRET 13
 #define CLOUDINARY_ENDPOINT @"http://res.cloudinary.com"
 #define CLOUDINARY_NAME @"dzixpee1a"
-#define ENDPOINT_SUBMIT_QUESTION @"http://127.0.0.1:5000/questions"
+
+#define kAPIEndpointQuestions (kAPIEndpointHost @"/questions")
 
 @implementation QuestionTransport
 
@@ -51,7 +52,7 @@
 
 - (RACReplaySubject*)submitQuestionData:(NSData *)questionData {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
-    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:ENDPOINT_SUBMIT_QUESTION parameters:nil error:nil] mutableCopy];
+    NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"POST" URLString:kAPIEndpointQuestions parameters:nil error:nil] mutableCopy];
     
     [request setHTTPBody:questionData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
