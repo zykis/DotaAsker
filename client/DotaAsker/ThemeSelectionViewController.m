@@ -67,7 +67,7 @@
         Round* round = [Round objectForPrimaryKey:@(_roundID)];
         RLMRealm* realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        [round setSelectedTheme: theme];
+        [round setSelectedTheme: selectedTheme];
         [realm commitWriteTransaction];
         
         assert(selectedTheme);

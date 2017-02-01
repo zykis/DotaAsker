@@ -100,7 +100,7 @@
         case BUTTON_PLAY:
         {
             BOOL playerAnswering = true;
-            BOOL bThemeSelected = [[currentRound themeSelected] != nil];
+            BOOL bThemeSelected = [currentRound selectedTheme] != nil;
             for (UserAnswer* ua in [currentRound userAnswers]) {
                 if ([[ua relatedUser] isEqual:opponent]) {
                     playerAnswering = NO;
@@ -153,13 +153,13 @@
             } completed:^{
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
-                    [Player setPlayer:x];
+//                    [Player setPlayer:x];
                 } error:^(NSError *error) {
                     [self.tableView reloadData];
                 } completed:^{
                     for (Match* m in [[Player instance] matches]) {
                         if ([m isEqual:[_matchViewModel match]]) {
-                            [_matchViewModel setMatch:m];
+                            [_matchViewModel setMatchID:m.ID];
                             [self.tableView reloadData];
                             break;
                         }

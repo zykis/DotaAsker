@@ -49,7 +49,7 @@
     
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
-         [Player setPlayer:u];
+//         [Player setPlayer:u];
          [self.tableView reloadData];
          [self.refreshControl endRefreshing];
          [loadingView removeFromSuperview];
@@ -314,11 +314,11 @@
         }
         assert(m);
         
-       RLMRealm* realm = [RLMRealm defaultRealm];
-       [realm beginWriteTransaction];
-       [[[Player instance] matches] addObject:m];
-       [realm commitWriteTransaction];
-
+        RLMRealm* realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [[[Player instance] matches] addObject:m];
+        [realm commitWriteTransaction];
+        
         [loadingView removeFromSuperview];
         [self.tableView reloadData];
     } error:^(NSError *error) {
@@ -328,6 +328,12 @@
 }
 
 - (IBAction)logout {
+    //! TODO: Handle unsinchronized UserAnswer persistance
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm deleteAllObjects];
+    [realm commitWriteTransaction];
+    
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 

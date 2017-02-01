@@ -7,7 +7,7 @@ from app.parsers.question_schema import QuestionSchema
 import app
 import os.path
 
-def uploadQuestionFromPath(questionsPath):
+def uploadQuestionFromPath(questionsPath, updateImages=False):
     cloudinary.config(cloud_name="dzixpee1a", api_key="497848972528918", api_secret="YCLF-_c_tnrdblryrMxH84DzcgE")
     # [1] parse JSON, retrieve questions
     print('parsing question.json...')
@@ -34,7 +34,8 @@ def uploadQuestionFromPath(questionsPath):
             # [3] update/insert questions into DB
             db.session.add(q)
             # [4] for each question, update image at cloudinary.com
-            cloudinary.uploader.upload(imageLocalPath, use_filename = True, unique_filename = False)
+            if updateImages:
+                cloudinary.uploader.upload(imageLocalPath, use_filename = True, unique_filename = False)
             
     db.session.commit()
     print('questions updated')

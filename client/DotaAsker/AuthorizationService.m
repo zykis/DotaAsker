@@ -5,9 +5,11 @@
 //  Created by Artem on 21/11/15.
 //  Copyright © 2015 Artem. All rights reserved.
 //
-#define ENDPOINT_A @"http://127.0.0.1:5000/users"
-#define ENDPOINT_B @"http://127.0.0.1:5000/token"
-#define ENDPOINT_C @"http://127.0.0.1:5000/login"
+#import "Transport.h"
+
+#define ENDPOINT_A (kAPIEndpointHost @"/users")
+#define ENDPOINT_B (kAPIEndpointHost @"/token")
+#define ENDPOINT_C (kAPIEndpointHost @"/login")
 
 #import "AuthorizationService.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -75,13 +77,13 @@
     NSString* authStrData = [[NSString alloc] initWithData:[authData base64EncodedDataWithOptions:NSDataBase64Encoding76CharacterLineLength] encoding:NSASCIIStringEncoding];
     // Forming Basic Authorization string Header
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
-//    NSLog(@"AuthValue: %@", authValue);
+    NSLog(@"AuthValue: %@", authValue);
     // Assigning it to request
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
                                                 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {

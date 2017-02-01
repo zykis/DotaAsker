@@ -22,7 +22,7 @@
 @synthesize matchID = _matchID;
 
 - (Match*)match {
-    return [Match obejectForPrimaryKey:@(_matchID)];
+    return [Match objectForPrimaryKey:@(_matchID)];
 }
 
 - (User*)opponent {

@@ -12,7 +12,7 @@ from marshmallow import pprint
 class TestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
-        app.config['SERVER_NAME'] = "localhost:5000"
+        app.config['SERVER_NAME'] = "http://192.168.100.24:5000"
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
         self.app_context = app.app_context()
         self.app_context.push()

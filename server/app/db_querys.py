@@ -121,7 +121,7 @@ class Database_queries:
         db.session.commit()
 
         # upload questions
-        uploadQuestionFromPath(questiondir + '/')
+        uploadQuestionFromPath(questiondir + '/', updateImages=False)
 
         ############################################## create Match
         first_match = Match(initiator=john_user)

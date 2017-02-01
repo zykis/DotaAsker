@@ -15,6 +15,7 @@
 @interface MatchViewModel : NSObject
 
 @property (assign, nonatomic) long long matchID;
+
 - (Match*)match;
 - (User*)opponent;
 - (User*)nextMoveUser;

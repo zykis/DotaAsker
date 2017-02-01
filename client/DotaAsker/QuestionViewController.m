@@ -24,7 +24,6 @@
 
 @implementation QuestionViewController
 
-@synthesize round = _round;
 @synthesize questionImageView = _questionImageView;
 @synthesize questionText = _questionText;
 @synthesize answer1Button = _answer1Button;
@@ -32,24 +31,22 @@
 @synthesize answer3Button = _answer3Button;
 @synthesize answer4Button = _answer4Button;
 @synthesize currentQuestionIndex = _currentQuestionIndex;
-@synthesize selectedTheme = _selectedTheme;
 @synthesize questionViewModel = _questionViewModel;
 
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
 
+- (Round*)selectedRound {
+    return [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
+}
+
+- (Theme*)selectedTheme {
+    return [Theme objectForPrimaryKey: [NSNumber numberWithLongLong:self.selectedThemeID]];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _questionViewModel = [[QuestionViewModel alloc] init];
-    
-    // Getting objects from Realm
-    _round = [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
-    _selectedTheme = [Theme objectForPrimaryKey: [NSNumber numberWithLongLong:self.selectedThemeID]];
-    
-    assert(_round);
-    assert([[_round questions] count] == 9);
-    assert(_selectedTheme);
-    
     _currentQuestionIndex = 0;
     [self showNextQuestion];
 }
@@ -74,7 +71,7 @@
         _questionTimer = nil;
     }
     
-    Question *q = [[[ServiceLayer instance] roundService] questionAtIndex:_currentQuestionIndex onTheme: _selectedTheme inRound:_round];
+    Question *q = [[[ServiceLayer instance] roundService] questionAtIndex:_currentQuestionIndex onTheme: [self selectedTheme] inRound:[self selectedRound]];
     NSInteger answerIndex;
     if (sender == _answer1Button)
         answerIndex = 0;
@@ -86,7 +83,7 @@
         answerIndex = 3;
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
-    UserAnswer *userAnswer = [[_round userAnswers] lastObject];
+    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] lastObject];
     assert(userAnswer);
     
     // Udpate existing userAnswer
@@ -95,7 +92,7 @@
     userAnswer.relatedAnswer = relatedAnswer;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
     userAnswer.relatedUser = [Player instance];
-    userAnswer.relatedRound = _round;
+    userAnswer.relatedRound = [self selectedRound];
     userAnswer.relatedQuestion = q;
     [realm commitWriteTransaction];
     
@@ -118,7 +115,7 @@
 //        NSLog(@"Answer synchronized");
 //    }];
     
-    User* relatedUser = [_round nextMoveUser];
+    User* relatedUser = [[self selectedRound] nextMoveUser];
 
     [realm beginWriteTransaction];
     if ([relatedAnswer isCorrect]) {
@@ -139,7 +136,7 @@
         _questionTimer = nil;
     }
 
-    UserAnswer *userAnswer = [[_round userAnswers] lastObject];
+    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] lastObject];
     assert(userAnswer);
 
 //    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
@@ -161,7 +158,7 @@
 //        NSLog(@"Answer synchronized");
 //    }];
     
-    User* relatedUser = [_round nextMoveUser];
+    User* relatedUser = [[self selectedRound] nextMoveUser];
     
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
@@ -174,7 +171,7 @@
 
 - (void)showNextQuestion {
     if (_currentQuestionIndex < 3) {
-        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:_selectedTheme inRound:_round];
+        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:[self selectedTheme] inRound:[self selectedRound]];
         // create empty unsynchronized userAnswer
         
         UserAnswer* ua = [[UserAnswer alloc] init];
@@ -184,7 +181,7 @@
         ua.ID = newID;
         ua.relatedAnswer = [Answer emptyAnswer];
         ua.relatedUser = [Player instance];
-        ua.relatedRound = _round;
+        ua.relatedRound = [self selectedRound];
         ua.relatedQuestion = q;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
@@ -193,7 +190,7 @@
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
-        [[_round userAnswers] addObject:ua];
+        [[[self selectedRound] userAnswers] addObject:ua];
         [realm commitWriteTransaction];
         
         self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
@@ -268,7 +265,8 @@
     //Игрок ответил на все вопросы
     else {
         NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
-        for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:_round]) {
+        Round* round = [Round objectForPrimaryKey:@(_roundID)];
+        for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:round]) {
             if (![ua synchronized]) {
                 [unsynchronizedUserAnswers addObject:ua];
             }
@@ -281,7 +279,7 @@
             
             [sig subscribeNext:^(id x) {
                 // Mark userAnswer as synchronized
-                for (UserAnswer* ua in [_round userAnswers]) {
+                for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
                     if ([ua isEqual:x]) {
                         RLMRealm* realm = [RLMRealm defaultRealm];
                         [realm beginWriteTransaction];
@@ -299,6 +297,11 @@
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
                     RLMRealm* realm = [RLMRealm defaultRealm];
+                    
+                    [realm beginWriteTransaction];
+                    [realm deleteAllObjects];
+                    [realm commitWriteTransaction];
+                    
                     [realm beginWriteTransaction];
                     [realm addOrUpdateObject:x];
                     [realm commitWriteTransaction];
@@ -323,8 +326,8 @@
             destVC = [[navController viewControllers] objectAtIndex:i];
         }
     }
-    Match *m = [_questionViewModel matchForRound:_round];
-    [destVC.matchViewModel setMatch:m];
+    Match *m = [_questionViewModel matchForRound:[self selectedRound]];
+    [destVC.matchViewModel setMatchID:m.ID];
     [destVC.tableView reloadData];
     [[self navigationController] popToViewController:destVC animated:YES];
 

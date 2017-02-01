@@ -21,6 +21,7 @@ static long long playerID = 0;
 }
 
 + (User*)instance {
+    User* user;
     if (playerID == 0) {
         NSException* exception = [NSException exceptionWithName:@"Player ID didn't set before calling [Player instance]"
                                                 reason:@"Singleton implementation"

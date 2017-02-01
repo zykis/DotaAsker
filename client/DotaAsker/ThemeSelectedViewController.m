@@ -21,7 +21,7 @@
 
 @synthesize themeImageView = _themeImageView;
 @synthesize roundID = _roundID;
-@synthesize _selectedThemeID = _selectedThemeID;
+@synthesize selectedThemeID = _selectedThemeID;
 
 - (Round*)round {
     return [Round objectForPrimaryKey:@(_roundID)];
@@ -37,9 +37,11 @@
     // Getting objects from Realm
     
     // Setting selected theme for Round
+    Round* round = [Round objectForPrimaryKey:@(_roundID)];
+    Theme* selectedTheme = [Theme objectForPrimaryKey:@(_selectedThemeID)];
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    [_round setSelectedTheme:_selectedTheme];
+    [round setSelectedTheme:selectedTheme];
     [realm commitWriteTransaction];
     
     // Sending to server
@@ -47,7 +49,7 @@
     [loadingView setMessage:@"Updating round"];
     [[self view] addSubview:loadingView];
     
-    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
+    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:round];
     [subject subscribeError:^(NSError *error) {
         [loadingView removeFromSuperview];
         [[self navigationController] popViewControllerAnimated:YES];
@@ -59,7 +61,7 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
     [_themeImageView addGestureRecognizer:tapGesture];
     
-    UIImage* themeImage = [UIImage imageNamed:[_selectedTheme imageName]];
+    UIImage* themeImage = [UIImage imageNamed:[selectedTheme imageName]];
     [_themeImageView setImage:themeImage];
     [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
     // Do any additional setup after loading the view.

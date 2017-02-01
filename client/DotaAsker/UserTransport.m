@@ -17,7 +17,6 @@
 #define kAPIEndpointTop100              (kAPIEndpointHost @"/top100")
 #define kAPIEndpointStatistics          (kAPIEndpointHost @"/statistic/")
 
-
 @implementation UserTransport
 
 - (RACReplaySubject*)obtain:(unsigned long long)entityID {
@@ -101,7 +100,7 @@
 - (RACReplaySubject*)obtainStatistic:(unsigned long long)entityID {
     RACReplaySubject *subject = [RACReplaySubject subject];
     
-    NSString* requestString = [NSString stringWithFormat:@"%@%llu", kAPIEndpointUserStatistics, entityID];
+    NSString* requestString = [NSString stringWithFormat:@"%@%llu", kAPIEndpointStatistics, entityID];
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

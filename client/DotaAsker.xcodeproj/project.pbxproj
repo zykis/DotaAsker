@@ -1216,6 +1216,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 67U7CVYQJQ;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1237,6 +1238,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 67U7CVYQJQ;
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
