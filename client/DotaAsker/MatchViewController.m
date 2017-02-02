@@ -100,7 +100,7 @@
         case BUTTON_PLAY:
         {
             BOOL playerAnswering = true;
-            BOOL bThemeSelected = ![[currentRound themeSelected] invalidated];
+            BOOL bThemeSelected = [[currentRound themeSelected] != nil];
             for (UserAnswer* ua in [currentRound userAnswers]) {
                 if ([[ua relatedUser] isEqual:opponent]) {
                     playerAnswering = NO;
