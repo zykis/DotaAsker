@@ -47,7 +47,12 @@
 
 - (IBAction)unlockPressed {
     NSLog(@"Unlocking premium");
-    [[Player instance] setPremium:YES];
+    
+   RLMRealm* realm = [RLMRealm defaultRealm];
+   [realm beginWriteTransaction];
+   [[Player instance] setPremium:YES];
+   [realm commitWriteTransaction];
+   
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
     [subject subscribeNext:^(id x) {
         NSLog(@"Premium updated");

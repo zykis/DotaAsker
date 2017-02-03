@@ -116,14 +116,11 @@ class User(Base):
     # TODO: divide matches onto: current_matches & recent_matches
     matches = db.relationship('Match', secondary='users_matches')
 
-    def __init__(self, username = None, password = None, avatar_image_name = 'default_avatar', wallpapers_image_name = 'default_wallpapers', mmr = 4000):
+    def __init__(self, username = None, password = None):
         if username is not None:
             self.username = username
         if password is not None:
             self.hash_password(password)
-        self.avatar_image_name = avatar_image_name
-        self.wallpapers_image_name = wallpapers_image_name
-        self.mmr = mmr
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)

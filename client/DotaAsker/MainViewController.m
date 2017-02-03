@@ -309,13 +309,16 @@
         for (Round* r in [m rounds]) {
             for (Question* q in [r questions]) {
                 // Before we will go further, need to get question images
-                //! TODO:
-                // 9 RacReplaySubjects... how to handle them?
                 RACReplaySubject* subjectThumbnals = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:imageSize.width andHeight:imageSize.height];
             }
         }
         assert(m);
-        [[[Player instance] matches] addObject:m];
+        
+       RLMRealm* realm = [RLMRealm defaultRealm];
+       [realm beginWriteTransaction];
+       [[[Player instance] matches] addObject:m];
+       [realm commitWriteTransaction];
+
         [loadingView removeFromSuperview];
         [self.tableView reloadData];
     } error:^(NSError *error) {
