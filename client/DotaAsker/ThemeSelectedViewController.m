@@ -49,8 +49,9 @@
     
     RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:_round];
     [subject subscribeError:^(NSError *error) {
-        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
         [loadingView removeFromSuperview];
+        [[self navigationController] popViewControllerAnimated:YES];
+        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
     } completed:^{
         [loadingView removeFromSuperview];
     }];

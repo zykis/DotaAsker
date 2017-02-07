@@ -267,27 +267,30 @@
     
     //Игрок ответил на все вопросы
     else {
-        NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
+        NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
         for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:_round]) {
             if (![ua synchronized]) {
-                RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
-                [signalsArray addObject:signal];
+                [unsynchronizedUserAnswers addObject:ua];
             }
         }
 
-        if ([signalsArray count] > 0) {
-            RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
-                return value;
+        if ([unsynchronizedUserAnswers count] > 0) {
+            RACSignal *sig = [RACSignal concat:[unsynchronizedUserAnswers.rac_sequence map:^id(id unsynchronizedUserAnswer) {
+                return [[[ServiceLayer instance] userAnswerService] create:unsynchronizedUserAnswer];
             }]];
             
             [sig subscribeNext:^(id x) {
                 // Mark userAnswer as synchronized
                 for (UserAnswer* ua in [_round userAnswers]) {
                     if ([ua isEqual:x]) {
+                        RLMRealm* realm = [RLMRealm defaultRealm];
+                        [realm beginWriteTransaction];
                         ua.synchronized = true;
+                        [realm commitWriteTransaction];
                         NSLog(@"Answer synchronized");
                     }
                 }
+                
             } error:^(NSError *error) {
                 NSLog(@"Error udpating ua");
                 // pop
