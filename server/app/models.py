@@ -240,6 +240,7 @@ class Round(Base):
                 r_questions.append(rand_q)
                 theme_questions.remove(rand_q)
             self.questions.extend(r_questions)
+            assert(len(self.question) == 9), "Generated question count == {}".format(len(self.questions))
 
 
 class Match(Base):
