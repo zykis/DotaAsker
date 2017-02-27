@@ -175,7 +175,7 @@ def create_userAnswer():
 
     # check if round is over
     round = uaNew.round
-    app.logger.debugconsole.log("userAnswers count = {}".format(round.user_answers))
+    app.logger.debug("userAnswers count = {}".format(round.user_answers))
 
     if len(round.user_answers) == 3:
 
