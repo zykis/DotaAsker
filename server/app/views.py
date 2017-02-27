@@ -175,6 +175,8 @@ def create_userAnswer():
 
     # check if round is over
     round = uaNew.round
+    app.logger.debugconsole.log("userAnswers count = {}".format(round.user_answers))
+
     if len(round.user_answers) == 3:
 
         # change next_move_user
@@ -189,6 +191,7 @@ def create_userAnswer():
         round.next_move_user = u2
         db.session.add(round)
         db.session.commit()
+	app.logger.debug("next move user changed to {}".format(u2.username))
 
     elif len(round.user_answers) == 6:
         # check if match is over

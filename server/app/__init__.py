@@ -5,7 +5,7 @@ from flask_mail import Mail
 from werkzeug.contrib.fixers import ProxyFix
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
 app = Flask(__name__)
 app.config.from_object('config')
