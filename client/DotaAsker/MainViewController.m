@@ -49,10 +49,15 @@
     
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
-//         [Player setPlayer:u];
-         [self.tableView reloadData];
-         [self.refreshControl endRefreshing];
-         [loadingView removeFromSuperview];
+        RLMRealm* realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm addOrUpdateObject:u];
+        [realm commitWriteTransaction];
+             
+        [Player setID: u.ID];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+        [loadingView removeFromSuperview];
      } error:^(NSError *error) {
          [self.refreshControl endRefreshing];
          [loadingView removeFromSuperview];
