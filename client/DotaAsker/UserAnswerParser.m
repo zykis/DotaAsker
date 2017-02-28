@@ -37,20 +37,20 @@
     userAnswer.secForAnswer = [[JSONDict objectForKey:@"sec_for_answer"] integerValue];
     // user
     NSDictionary* userDict = [JSONDict objectForKey:@"user"];
-    userAnswer.relatedUser = [UserParser parse:userDict andChildren:NO];
+    userAnswer.relatedUserID = [UserParser parse:userDict andChildren:NO].ID;
     // answer
     if (![JSONDict[@"answer"] isEqual: [NSNull null]]) {
         NSDictionary* answerDict = [JSONDict objectForKey:@"answer"];
-        userAnswer.relatedAnswer = [AnswerParser parse:answerDict];
+        userAnswer.relatedAnswerID = [AnswerParser parse:answerDict].ID;
     }
     else {
-        userAnswer.relatedAnswer = [Answer emptyAnswer];
+        userAnswer.relatedAnswerID = [Answer emptyAnswer].ID;
     }
     // round
-    userAnswer.relatedRound = [RoundParser parse:[JSONDict objectForKey:@"round"] andChildren:NO];
+    userAnswer.relatedRoundID = [RoundParser parse:[JSONDict objectForKey:@"round"] andChildren:NO].ID;
     
     // question
-    userAnswer.relatedQuestion = [QuestionParser parse:[JSONDict objectForKey:@"question"]];
+    userAnswer.relatedQuestionID = [QuestionParser parse:[JSONDict objectForKey:@"question"]].ID;
     
     return userAnswer;
 }

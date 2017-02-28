@@ -52,7 +52,7 @@
     long long roundID = round.ID;
 
     // check out unsynchronized UserAnswers
-    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUser.ID == %lld && relatedRound.ID == %lld", [Player instance].ID, roundID]];
+    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUserID == %lld && relatedRoundID == %lld", [Player instance].ID, roundID]];
     
     // If no unsynch UserAnswers, return empty array
     return lastPlayerUserAnswersRealm;

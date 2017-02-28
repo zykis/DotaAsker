@@ -46,9 +46,8 @@
             Question* q = [QuestionParser parse:questionDict];
             [[round questions] addObject:q];
         }
+        assert([[round questions] count] == 9);
     }
-    assert([[round questions] count] == 9);
-    
 
     //user_answers
     if ([[JSONDict allKeys] containsObject:@"user_answers"]) {

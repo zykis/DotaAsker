@@ -178,7 +178,7 @@
     long long roundID = currentRound.ID;
 
     // check out unsynchronized UserAnswers
-    RLMResults* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: @"relatedUser.ID == %lld AND relatedRound.ID == %lld", [Player instance].ID, roundID];
+    RLMResults* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: @"relatedUserID == %lld AND relatedRoundID == %lld", [Player instance].ID, roundID];
     
     // If no unsynch UserAnswers, return empty array
     return lastPlayerUserAnswersRealm;

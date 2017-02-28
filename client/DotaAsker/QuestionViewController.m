@@ -89,11 +89,11 @@
     // Udpate existing userAnswer
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
-    userAnswer.relatedAnswer = relatedAnswer;
+    userAnswer.relatedAnswerID = relatedAnswer.ID;
     userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
-    userAnswer.relatedUser = [Player instance];
-    userAnswer.relatedRound = [self selectedRound];
-    userAnswer.relatedQuestion = q;
+    userAnswer.relatedUserID = [Player instance].ID;
+    userAnswer.relatedRoundID = [self selectedRound].ID;
+    userAnswer.relatedQuestionID = q.ID;
     [realm commitWriteTransaction];
     
 //    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
@@ -179,10 +179,10 @@
         long long newID = [[[ServiceLayer instance] userAnswerService] getNextPrimaryKey];
         
         ua.ID = newID;
-        ua.relatedAnswer = [Answer emptyAnswer];
-        ua.relatedUser = [Player instance];
-        ua.relatedRound = [self selectedRound];
-        ua.relatedQuestion = q;
+        ua.relatedAnswerID = [Answer emptyAnswer].ID;
+        ua.relatedUserID = [Player instance].ID;
+        ua.relatedRoundID = [self selectedRound].ID;
+        ua.relatedQuestionID = q.ID;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
         ua.synchronized = NO;
         

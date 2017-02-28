@@ -17,12 +17,19 @@
 @interface UserAnswer: RLMObject
 
 @property (assign, nonatomic) long long ID;
+
 @property (assign, nonatomic) NSInteger secForAnswer;
-@property Answer* relatedAnswer;
-@property User* relatedUser;
-@property Question* relatedQuestion;
-@property Round* relatedRound;
 @property (assign, nonatomic) BOOL synchronized;
+
+@property (assign, nonatomic) NSInteger relatedAnswerID;
+@property (assign, nonatomic) NSInteger relatedUserID;
+@property (assign, nonatomic) NSInteger relatedQuestionID;
+@property (assign, nonatomic) NSInteger relatedRoundID;
+
+- (Answer*) relatedAnswer;
+- (User*) relatedUser;
+- (Question*) relatedQuestion;
+- (Round*) relatedRound;
     
 @end
 RLM_ARRAY_TYPE(UserAnswer)

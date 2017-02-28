@@ -39,4 +39,20 @@
     return @"ID";
 }
 
+- (Answer*)relatedAnswer {
+    return [Answer objectForPrimaryKey:@(self.relatedAnswerID)];
+}
+
+- (User*)relatedUser {
+    return [User objectForPrimaryKey:@(self.relatedUserID)];
+}
+
+- (Question*)relatedQuestion {
+    return [Question objectForPrimaryKey:@(self.relatedQuestionID)];
+}
+
+- (Round*)relatedRound {
+    return [Round objectForPrimaryKey:@(self.relatedRoundID)];
+}
+
 @end
