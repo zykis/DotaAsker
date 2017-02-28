@@ -116,7 +116,7 @@ class User(Base):
     # TODO: divide matches onto: current_matches & recent_matches
     matches = db.relationship('Match', secondary='users_matches')
 
-    def __init__(self, username = None, password = None, avatar_image_name = None, wallpapers_image_name = none, mmr = None):
+    def __init__(self, username = None, password = None, avatar_image_name = None, wallpapers_image_name = None, mmr = None):
         if username is not None:
             self.username = username
         if password is not None:
@@ -246,7 +246,7 @@ class Round(Base):
                 r_questions.append(rand_q)
                 theme_questions.remove(rand_q)
             self.questions.extend(r_questions)
-            assert(len(self.question) == 9), "Generated question count == {}".format(len(self.questions))
+        assert(len(self.questions) == 9), "Generated question count == {}".format(len(self.questions))
 
 
 class Match(Base):

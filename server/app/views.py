@@ -188,10 +188,12 @@ def create_userAnswer():
         if not isinstance(u2, User):
             # app.logger.critical("can't find next move user for match: {}".format(round.match))
             app.logger.info("user for match is undefined yet")
+        else:
+            app.logger.debug("next move user changed to {}".format(u2.username))
+
         round.next_move_user = u2
         db.session.add(round)
         db.session.commit()
-	app.logger.debug("next move user changed to {}".format(u2.username))
 
     elif len(round.user_answers) == 6:
         # check if match is over
