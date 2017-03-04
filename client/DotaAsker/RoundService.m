@@ -48,25 +48,25 @@
 }
 
 - (Round*)currentRoundforMatch:(Match *)match {
-    if (match.state != MATCH_RUNNING) {
-        int index = 0;
-        for (Round* r in match.rounds) {
-            if ([[r userAnswers] count] == 6) {
-                index++;
-            }
-        }
-        if (index == 6) index--;
-        return [match.rounds objectAtIndex:index];
-    }
-    int i;
-    for (i = 0; i < [[match rounds] count]; i++) {
-        Round* r = [[match rounds] objectAtIndex:i];
-        if ([[r userAnswers] count] != QUESTIONS_IN_ROUND * 2)
-            break;
-    }
-    if (i == 6) i--;
+    // Текущий раунд для матча
+    // Если состояние матча TIME_ELAPSED или MATCH_RUNNING, берём индекс раунда,
+    // пользовательских ответов в котором меньше 6
+    // Иначе, если состояние матча - MATCH_FINISHED, берём индекс последнего раунда (5)
     
-    return [[match rounds] objectAtIndex:i];
+    int i;
+    Round* currentRound;
+    if ([match state] == MATCH_RUNNING || [match state] == MATCH_TIME_ELAPSED) {
+        for (i = 0; i < ROUNDS_IN_MATCH; i++) {
+            if ([[[[match rounds] objectAtIndex:i] userAnswers] count] < QUESTIONS_IN_ROUND * 2)
+                break;
+        }
+        currentRound = [[match rounds] objectAtIndex:i];
+    }
+    else {
+        currentRound = [[match rounds] lastObject];
+    }
+    
+    return currentRound;
 }
 
 - (Theme*)themeSelectedForRound:(Round *)round {

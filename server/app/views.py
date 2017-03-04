@@ -186,8 +186,7 @@ def create_userAnswer():
             if u is not u1:
                 u2 = u
         if not isinstance(u2, User):
-            # app.logger.critical("can't find next move user for match: {}".format(round.match))
-            app.logger.info("user for match is undefined yet")
+            app.logger.debug("user for match is undefined yet")
         else:
             app.logger.debug("next move user changed to {}".format(u2.username))
 
