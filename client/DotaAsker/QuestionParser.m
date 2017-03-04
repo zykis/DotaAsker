@@ -10,6 +10,7 @@
 #import "Question.h"
 #import "AnswerParser.h"
 #import "ThemeParser.h"
+#import "Theme.h"
 
 @implementation QuestionParser
 
@@ -47,7 +48,13 @@
     //theme
     NSDictionary *themeDict = [JSONDict objectForKey:@"theme"];
     Theme* theme = [ThemeParser parse:themeDict];
-    [question setTheme:theme];
+    Theme* existingTheme = [Theme objectForPrimaryKey:@(theme.ID)];
+    if (existingTheme != nil) {
+        [question setTheme:existingTheme];
+    }
+    else {
+        [question setTheme:theme];
+    }
 
     return question;
 }
