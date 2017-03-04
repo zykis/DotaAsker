@@ -71,40 +71,22 @@
     User* player = [Player instance];
     User* opponent = [self opponent];
     
-    
-    NSMutableArray *playerAnswers = [[NSMutableArray alloc] init];
-    for (UserAnswer *ua in [selectedRound userAnswers]) {
-        if ([[ua relatedUser] isEqual: player]) {
-            [playerAnswers addObject:ua];
-        }
-    }
-    
-    NSString *answeredTextFirstPlayer;
-    if ([playerAnswers count] > index) {
-        UserAnswer* ua1 = [playerAnswers objectAtIndex:index];
-        answeredTextFirstPlayer = [[ua1 relatedAnswer] text];
-    }
-    
-    // opponent
-    NSMutableArray *opponentAnswers = [[NSMutableArray alloc] init];
-    for (UserAnswer *ua in [selectedRound userAnswers]) {
-        if ([[ua relatedUser] isEqual: opponent]) {
-            [opponentAnswers addObject:ua];
-        }
-    }
-    
-    NSString *answeredTextSecondPlayer;
-    if ([opponentAnswers count] > index) {
-        UserAnswer* ua2 = [opponentAnswers objectAtIndex:index];
-        answeredTextSecondPlayer = [[ua2 relatedAnswer] text];
-    }
-    
-    // right
-    // How to get THEME?
     Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
     assert(selectedTheme);
     Question* relatedQuestion = [[[ServiceLayer instance] roundService] questionAtIndex:index onTheme:selectedTheme inRound:selectedRound];
     assert(relatedQuestion);
+    
+    UserAnswer* playerUserAnswer = [[UserAnswer objectsWhere:@"relatedQuestionID = %llu AND relatedUserID = %llu AND relatedRoundID = %llu", relatedQuestion.ID, player.ID, selectedRound.ID] firstObject];
+    NSString* answeredTextFirstPlayer = nil;
+    if (playerUserAnswer != nil) {
+        answeredTextFirstPlayer = [[playerUserAnswer relatedAnswer] text];
+    }
+    
+    UserAnswer* opponentUserAnswer = [[UserAnswer objectsWhere:@"relatedQuestionID = %llu AND relatedUserID = %llu AND relatedRoundID = %llu", relatedQuestion.ID, opponent.ID, selectedRound.ID] firstObject];
+    NSString* answeredTextSecondPlayer = nil;
+    if (opponentUserAnswer != nil) {
+        answeredTextSecondPlayer = [[opponentUserAnswer relatedAnswer] text];
+    }
     
     NSString* correctAnswerText;
     for (Answer* a in [relatedQuestion answers]) {
