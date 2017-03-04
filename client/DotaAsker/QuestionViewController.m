@@ -288,7 +288,6 @@
                         NSLog(@"Answer synchronized");
                     }
                 }
-                
             } error:^(NSError *error) {
                 NSLog(@"Error udpating ua");
                 // pop
@@ -297,15 +296,9 @@
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
                     RLMRealm* realm = [RLMRealm defaultRealm];
-                    
-                    [realm beginWriteTransaction];
-                    [realm deleteAllObjects];
-                    [realm commitWriteTransaction];
-                    
                     [realm beginWriteTransaction];
                     [realm addOrUpdateObject:x];
                     [realm commitWriteTransaction];
-                    
                 } error:^(NSError *error) {
                     [self popToMatchViewController];
                 } completed:^{

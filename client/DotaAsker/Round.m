@@ -7,6 +7,7 @@
 //
 
 #import "Round.h"
+#import "User.h"
 
 @implementation Round
 
@@ -31,6 +32,10 @@
 
 + (NSString*)primaryKey {
     return @"ID";
+}
+
+- (User*)nextMoveUser {
+    return [User objectForPrimaryKey:@(self.nextMoveUserID)];
 }
 
 @end

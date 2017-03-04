@@ -310,13 +310,6 @@
     [signal subscribeNext:^(id x) {
         // Update player
         Match* m = (Match*)x;
-        CGSize imageSize = [[Helper shared] getQuestionImageViewSize];
-        for (Round* r in [m rounds]) {
-            for (Question* q in [r questions]) {
-                // Before we will go further, need to get question images
-                RACReplaySubject* subjectThumbnals = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:imageSize.width andHeight:imageSize.height];
-            }
-        }
         assert(m);
         
         RLMRealm* realm = [RLMRealm defaultRealm];

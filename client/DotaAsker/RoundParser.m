@@ -36,7 +36,7 @@
         User* nextMoveUser = [UserParser parse:userDict andChildren:NO];
         
         //may be nil
-        [round setNextMoveUser: nextMoveUser];
+        [round setNextMoveUserID: nextMoveUser.ID];
     }
     
     //questions
@@ -44,7 +44,13 @@
         NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
         for (NSDictionary* questionDict in questionsDict) {
             Question* q = [QuestionParser parse:questionDict];
-            [[round questions] addObject:q];
+            Question* existingQuestion = [Question objectForPrimaryKey:@(q.ID)];
+            if (existingQuestion != nil) {
+                [[round questions] addObject:existingQuestion];
+            }
+            else {
+                [[round questions] addObject:q];
+            }
         }
         assert([[round questions] count] == 9);
     }
