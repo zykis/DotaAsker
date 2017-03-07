@@ -23,7 +23,7 @@
             <objects>
                 <navigationController id="ytL-e4-7GM" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DC5-9K-Ypn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DC5-9K-Ypn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -144,7 +144,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Sign In" id="hrR-VH-AdU">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="LeL-BY-96C">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="LeL-BY-96C">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPressed" destination="4wa-4b-EdD" id="xTu-4N-Aj1"/>
@@ -203,7 +203,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Forgot password" id="kRW-sn-bfb">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="My7-2p-5pV">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="My7-2p-5pV">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPressed" destination="aOm-DV-C6F" id="wNw-P1-EME"/>
@@ -344,21 +344,21 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_48.png" translatesAutoresizingMaskIntoConstraints="NO" id="W7F-uR-AjO">
-                                <rect key="frame" x="16" y="415" width="48" height="48"/>
+                                <rect key="frame" x="16" y="414.5" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="SIX-lC-ft4"/>
                                     <constraint firstAttribute="width" constant="48" id="eZN-sE-B2T"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="question_48.png" translatesAutoresizingMaskIntoConstraints="NO" id="bpf-UK-gSW">
-                                <rect key="frame" x="16" y="136.5" width="48" height="48"/>
+                                <rect key="frame" x="16" y="137" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="XFf-b0-bRa"/>
                                     <constraint firstAttribute="height" constant="48" id="wnd-z2-yXX"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="premium_48.png" translatesAutoresizingMaskIntoConstraints="NO" id="mBz-kf-GoZ">
-                                <rect key="frame" x="16" y="554.5" width="48" height="48"/>
+                                <rect key="frame" x="16" y="555" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hwc-FS-ZVC"/>
                                     <constraint firstAttribute="width" constant="48" id="wDa-Nv-aiA"/>
@@ -372,7 +372,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Settings" id="89A-qL-ioe">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="OWN-5K-NQw">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="OWN-5K-NQw">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPushed:" destination="c2x-kO-LSJ" id="YKE-CP-oBG"/>
@@ -541,7 +541,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="sad" id="Gp2-of-f8I">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="vCy-9l-Z1z">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="vCy-9l-Z1z">
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="YXJ-NH-s8R" id="RQr-7L-F2U"/>
                                             </connections>
@@ -592,7 +592,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Submit question" id="Q7j-fN-fPf" userLabel="Title">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="jC1-S3-R2E">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="jC1-S3-R2E">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="Sfa-G4-ZAy" id="hYn-LW-nKe"/>
@@ -700,7 +700,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Premium" id="lxB-AX-GbY" userLabel="Title">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="3R0-9G-RIn">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="3R0-9G-RIn">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="bwK-r5-7pY" id="b8k-sL-RxJ"/>
@@ -764,7 +764,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTC-aK-xJ8">
-                                                    <rect key="frame" x="10" y="10.5" width="42" height="24"/>
+                                                    <rect key="frame" x="10" y="10" width="42" height="24"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="19"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -776,13 +776,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-VV-EDA">
-                                                    <rect key="frame" x="305.5" y="11.5" width="45.5" height="21.5"/>
+                                                    <rect key="frame" x="305" y="11" width="46" height="22"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
-                                                    <rect key="frame" x="266.5" y="16.5" width="31" height="12"/>
+                                                    <rect key="frame" x="266" y="16" width="31" height="13"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -863,7 +863,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Match" id="TIn-UR-kdW">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="pp1-3T-L7t">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="pp1-3T-L7t">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPushed:" destination="G7c-Er-EWf" id="4sv-3F-yhR"/>
@@ -904,7 +904,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-ZJ-4UW">
-                                                    <rect key="frame" x="240" y="80" width="55.5" height="15"/>
+                                                    <rect key="frame" x="239" y="80" width="56" height="15"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -970,27 +970,27 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtb-Ey-TGq" customClass="AnswerItemView">
-                                                            <rect key="frame" x="43.5" y="36" width="37" height="41"/>
+                                                            <rect key="frame" x="43" y="36" width="38" height="41"/>
                                                             <color key="backgroundColor" red="0.19824659208362327" green="1" blue="0.23204576761394358" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-Qm-JaU" customClass="AnswerItemView">
-                                                            <rect key="frame" x="80.5" y="36" width="37.5" height="41"/>
+                                                            <rect key="frame" x="81" y="36" width="37" height="41"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjw-TW-g5X" customClass="AnswerItemView">
-                                                            <rect key="frame" x="249" y="36" width="37.5" height="41"/>
+                                                            <rect key="frame" x="249" y="36" width="37" height="41"/>
                                                             <color key="backgroundColor" red="0.073114856377786697" green="1" blue="0.089003005470729146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-Qa-heo" customClass="AnswerItemView">
-                                                            <rect key="frame" x="286.5" y="36" width="37" height="41"/>
+                                                            <rect key="frame" x="286" y="36" width="38" height="41"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="106" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-9m-qrC" customClass="AnswerItemView">
-                                                            <rect key="frame" x="323.5" y="36" width="37.5" height="41"/>
+                                                            <rect key="frame" x="324" y="36" width="37" height="41"/>
                                                             <color key="backgroundColor" red="0.073114856379999996" green="1" blue="0.089003005469999993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh2-Ab-9yf" customClass="AnswerItemView">
-                                                            <rect key="frame" x="6" y="36" width="37.5" height="41"/>
+                                                            <rect key="frame" x="6" y="36" width="37" height="41"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                     </subviews>
@@ -1144,36 +1144,28 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f80-Rp-uXj">
-                                <rect key="frame" x="21" y="179.5" width="338" height="100"/>
-                                <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="110.5" y="127" width="159" height="47"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
-                                <state key="normal" image="theme_tournaments.png">
-                                    <color key="titleColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Tournaments"/>
                                 <connections>
                                     <action selector="button2Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="S22-7i-uoc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-3T-fC0">
-                                <rect key="frame" x="21" y="72" width="338" height="99.5"/>
+                                <rect key="frame" x="110.5" y="72" width="159" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="cKF-3T-fC0" secondAttribute="height" multiplier="563:166" id="XDp-Sz-kfX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
-                                <state key="normal" image="theme_lore.png"/>
+                                <state key="normal" title="Lore"/>
                                 <connections>
                                     <action selector="button1Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="fGP-65-DhW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RoG-B3-1NJ" customClass="ThemeButton">
-                                <rect key="frame" x="21" y="287.5" width="338" height="99.5"/>
-                                <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="110.5" y="182" width="159" height="46.5"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
-                                <state key="normal" image="theme_mechanics.png">
-                                    <color key="titleColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
+                                <state key="normal" title="Mechanics"/>
                                 <connections>
                                     <action selector="button3Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="mpr-Mh-0JT"/>
                                 </connections>
@@ -1265,7 +1257,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Sign Up" id="dQJ-NW-QTe">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="7PW-Hw-0wv">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="7PW-Hw-0wv">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPressed" destination="z0A-tC-GO0" id="IhJ-w1-Rgo"/>
@@ -1317,8 +1309,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="theme_lore.png" translatesAutoresizingMaskIntoConstraints="NO" id="sd4-Ss-ptg">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sd4-Ss-ptg">
                                 <rect key="frame" x="12" y="72" width="351" height="104"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="sd4-Ss-ptg" secondAttribute="height" multiplier="71:21" id="UlV-wC-lHH"/>
                                 </constraints>
@@ -1422,7 +1415,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time elapsed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90w-OC-mhS">
-                                <rect key="frame" x="121" y="457" width="134" height="21.5"/>
+                                <rect key="frame" x="121" y="457" width="134" height="22"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1505,20 +1498,20 @@
                                 <items>
                                     <navigationItem title="Main" id="YpD-dQ-suQ">
                                         <leftBarButtonItems>
-                                            <barButtonItem image="settings_icon.png" id="LCM-B6-fTU" userLabel="settings">
+                                            <barButtonItem image="icon-settings-white.png" id="LCM-B6-fTU" userLabel="settings">
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="settings:" destination="RTq-J4-wEo" id="MWa-dT-Eug"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem image="icon_statistics_44.png" id="ke1-VM-1vH" userLabel="statistics">
+                                            <barButtonItem image="icon-statistics-white.png" id="ke1-VM-1vH" userLabel="statistics">
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <action selector="showStatistics" destination="RTq-J4-wEo" id="33D-AO-ADm"/>
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
-                                        <barButtonItem key="rightBarButtonItem" image="icon_logout_44.png" id="uxv-hz-BJr" userLabel="logout">
+                                        <barButtonItem key="rightBarButtonItem" image="icon-logout-white.png" id="uxv-hz-BJr" userLabel="logout">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="logout" destination="RTq-J4-wEo" id="jJW-eU-sUB"/>
@@ -1541,7 +1534,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="player's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-s0-5BS">
-                                                    <rect key="frame" x="95" y="25.5" width="199" height="27.5"/>
+                                                    <rect key="frame" x="95" y="24" width="199" height="28"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="22"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1559,13 +1552,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="203" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:  3.16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LF7-mr-qmv">
-                                                    <rect key="frame" x="302" y="32" width="65" height="14"/>
+                                                    <rect key="frame" x="302" y="31" width="65" height="14"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wVi-Vd-9Hc">
-                                                    <rect key="frame" x="8" y="-0.5" width="80" height="80"/>
+                                                    <rect key="frame" x="8" y="-1" width="80" height="81"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="CJh-A8-k4w"/>
                                                         <constraint firstAttribute="height" constant="80" id="FYE-qK-QF3"/>
@@ -1630,7 +1623,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Match state text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NX-Ic-vRr">
-                                                    <rect key="frame" x="80" y="33.5" width="119" height="12"/>
+                                                    <rect key="frame" x="80" y="33" width="119" height="13"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1670,6 +1663,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.47058823529999999" green="0.56470588239999997" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="G7c-Er-EWf" kind="show" identifier="showMatch" id="YeB-ya-xfH"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1692,7 +1688,6 @@
                     <connections>
                         <outlet property="tableView" destination="Fnf-rG-GJn" id="07Y-SZ-7yC"/>
                         <outlet property="view" destination="Fnf-rG-GJn" id="CeG-v2-v3N"/>
-                        <segue destination="G7c-Er-EWf" kind="show" identifier="showMatch" id="qXY-fk-s61"/>
                         <segue destination="kfN-8r-70y" kind="show" identifier="statistics" id="EDe-sC-lay"/>
                         <segue destination="c2x-kO-LSJ" kind="show" identifier="settings" id="T40-if-khF"/>
                     </connections>
@@ -1721,7 +1716,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="PLAYER_NAME" id="d6F-7E-uo2">
-                                        <barButtonItem key="leftBarButtonItem" image="icon_backbutton_44.png" id="FNf-1J-UXN">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-back-white.png" id="FNf-1J-UXN">
                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="backButtonPressed:" destination="kfN-8r-70y" id="7Qo-VV-yBO"/>
@@ -1731,43 +1726,43 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-gk-fJs">
-                                <rect key="frame" x="16" y="72" width="40.5" height="16.5"/>
+                                <rect key="frame" x="16" y="72" width="41" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqq-ab-Ip3">
-                                <rect key="frame" x="16" y="86.5" width="35" height="16.5"/>
+                                <rect key="frame" x="16" y="87" width="35" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPM:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcv-hn-K5k">
-                                <rect key="frame" x="16" y="102" width="37" height="16.5"/>
+                                <rect key="frame" x="16" y="103" width="37" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-Bu-tp0">
-                                <rect key="frame" x="103.5" y="74" width="29.5" height="14"/>
+                                <rect key="frame" x="104" y="74" width="30" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-xq-S0X">
-                                <rect key="frame" x="113.5" y="88.5" width="19.5" height="14"/>
+                                <rect key="frame" x="114" y="89" width="20" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="671.56" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-FD-T6A">
-                                <rect key="frame" x="99" y="104" width="34" height="14"/>
+                                <rect key="frame" x="99" y="105" width="35" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVERAGE ANSWER TIME:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcq-NU-hAe">
-                                <rect key="frame" x="16" y="121.5" width="79" height="50"/>
+                                <rect key="frame" x="16" y="123" width="79" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="79" id="67b-qv-rDB"/>
                                     <constraint firstAttribute="height" constant="50" id="6Z5-fM-MEy"/>
@@ -1777,13 +1772,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54.56%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-aL-PNu">
-                                <rect key="frame" x="94" y="186.5" width="39" height="14"/>
+                                <rect key="frame" x="94" y="188" width="40" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CORRECT ANSWERS:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIT-Sx-4iI">
-                                <rect key="frame" x="16" y="173.5" width="79" height="40"/>
+                                <rect key="frame" x="16" y="175" width="79" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="knh-bz-8ey"/>
                                 </constraints>
@@ -1795,7 +1790,7 @@
                                 <rect key="frame" x="230" y="154" width="100" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHART" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-eO-kOn">
-                                        <rect key="frame" x="24.5" y="39" width="51.5" height="22"/>
+                                        <rect key="frame" x="24" y="39" width="52" height="22"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1884,31 +1879,31 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-Qg-Y3M">
-                                <rect key="frame" x="111" y="139.5" width="22" height="14"/>
+                                <rect key="frame" x="112" y="141" width="22" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINS:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-8f-8Lu">
-                                <rect key="frame" x="16" y="220.5" width="43.5" height="16.5"/>
+                                <rect key="frame" x="16" y="222" width="44" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOST:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-vn-VGT">
-                                <rect key="frame" x="16" y="236" width="40" height="16.5"/>
+                                <rect key="frame" x="16" y="238" width="40" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksI-p2-x0l">
-                                <rect key="frame" x="113.5" y="222.5" width="19.5" height="14"/>
+                                <rect key="frame" x="114" y="224" width="20" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="211" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-61-jsw">
-                                <rect key="frame" x="116" y="238" width="17" height="14"/>
+                                <rect key="frame" x="117" y="240" width="17" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1987,21 +1982,19 @@
     <resources>
         <image name="avatar_48.png" width="48" height="48"/>
         <image name="avatar_bounty.png" width="483" height="604"/>
+        <image name="icon-back-white.png" width="22" height="22"/>
+        <image name="icon-logout-white.png" width="22" height="22"/>
+        <image name="icon-settings-white.png" width="22" height="22"/>
+        <image name="icon-statistics-white.png" width="22" height="22"/>
         <image name="icon_backbutton_44.png" width="22" height="22"/>
-        <image name="icon_logout_44.png" width="22" height="22"/>
-        <image name="icon_statistics_44.png" width="22" height="22"/>
         <image name="premium_48.png" width="48" height="48"/>
         <image name="question_48.png" width="48" height="48"/>
-        <image name="settings_icon.png" width="22" height="22"/>
-        <image name="theme_lore.png" width="563" height="166"/>
-        <image name="theme_mechanics.png" width="563" height="166"/>
-        <image name="theme_tournaments.png" width="563" height="166"/>
         <image name="top100_48.png" width="48" height="48"/>
         <image name="versus_image_48x48.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ut3-yq-Aji"/>
         <segue reference="wHg-3X-Li2"/>
-        <segue reference="bEc-Q7-zHG"/>
+        <segue reference="AUo-9G-fYr"/>
+        <segue reference="9KW-MF-H3Q"/>
     </inferredMetricsTieBreakers>
 </document>
