@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIViewController.h>
+#import "UIViewController+Utils.h"
 
 @interface AuthorizationViewController : UIViewController
 
-//- (void)setBackgroundImage: (UIImage*)backgroundImage;
+@property (strong, nonatomic) NSString* username;
+@property (strong, nonatomic) NSString* password;
 
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <UIKit/UIViewController.h>
+#import "UIViewController+Utils.h"
 
 @interface SignUpViewController : UIViewController
 

@@ -40,6 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
     _matchViewModel = [[MatchViewModel alloc] init];
     
     bool bMatchFound = false;
@@ -54,7 +55,7 @@
     
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self setTableBackgroundImage:[UIImage imageNamed:@"pattern_640x1136.png"]];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"] atView:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -398,7 +399,7 @@
 
 
 - (void)setTableBackgroundImage:(UIImage *)backgroundImage {
-    UIGraphicsBeginImageContext(self.tableView.frame.size);
+    UIGraphicsBeginImageContext(backgroundImage.size);
     [backgroundImage drawInRect:self.tableView.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();

@@ -19,6 +19,12 @@
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
+		AC604ED01E6BE6AF00D433FF /* pattern-2.png in Resources */ = {isa = PBXBuildFile; fileRef = AC604ECF1E6BE6AF00D433FF /* pattern-2.png */; };
+		AC604ED21E6D834B00D433FF /* pattern-3.png in Resources */ = {isa = PBXBuildFile; fileRef = AC604ED11E6D834B00D433FF /* pattern-3.png */; };
+		AC604ED41E6D864B00D433FF /* 3px-tile.png in Resources */ = {isa = PBXBuildFile; fileRef = AC604ED31E6D864B00D433FF /* 3px-tile.png */; };
+		AC604ED71E6DCF0600D433FF /* pattern-4.png in Resources */ = {isa = PBXBuildFile; fileRef = AC604ED51E6DCF0600D433FF /* pattern-4.png */; };
+		AC604ED81E6DCF0600D433FF /* pattern-5.png in Resources */ = {isa = PBXBuildFile; fileRef = AC604ED61E6DCF0600D433FF /* pattern-5.png */; };
+		AC604EDB1E6DEFFE00D433FF /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
 		AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917A1BFF5B9600D728B6 /* AbstractService.m */; };
 		AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091801C00623200D728B6 /* AuthorizationService.m */; };
@@ -184,6 +190,13 @@
 		AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatarViewController.h; sourceTree = "<group>"; };
 		AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatarViewController.m; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AC604ECF1E6BE6AF00D433FF /* pattern-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-2.png"; path = "resources/pattern-2.png"; sourceTree = "<group>"; };
+		AC604ED11E6D834B00D433FF /* pattern-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-3.png"; path = "resources/pattern-3.png"; sourceTree = "<group>"; };
+		AC604ED31E6D864B00D433FF /* 3px-tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "3px-tile.png"; path = "resources/3px-tile.png"; sourceTree = "<group>"; };
+		AC604ED51E6DCF0600D433FF /* pattern-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-4.png"; path = "resources/pattern-4.png"; sourceTree = "<group>"; };
+		AC604ED61E6DCF0600D433FF /* pattern-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-5.png"; path = "resources/pattern-5.png"; sourceTree = "<group>"; };
+		AC604ED91E6DEFFE00D433FF /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
+		AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		AC6091741BFF516B00D728B6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		AC6091791BFF5B9600D728B6 /* AbstractService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractService.h; sourceTree = "<group>"; };
@@ -533,6 +546,11 @@
 		AC850B7A1B3D8E060050954C /* GUI appearence */ = {
 			isa = PBXGroup;
 			children = (
+				AC604ED51E6DCF0600D433FF /* pattern-4.png */,
+				AC604ED61E6DCF0600D433FF /* pattern-5.png */,
+				AC604ED31E6D864B00D433FF /* 3px-tile.png */,
+				AC604ED11E6D834B00D433FF /* pattern-3.png */,
+				AC604ECF1E6BE6AF00D433FF /* pattern-2.png */,
 				AC37966F1B9F10C800AE2F35 /* theme_tournaments.png */,
 				ACBD29DB1B5B801E005AB718 /* theme_mechanics.png */,
 				ACBD29D61B5B7C1B005AB718 /* theme_lore.png */,
@@ -621,6 +639,8 @@
 				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
 				AC780F571DE82F5E007E8158 /* PressButton.h */,
 				AC780F581DE82F5E007E8158 /* PressButton.m */,
+				AC604ED91E6DEFFE00D433FF /* ThemeButton.h */,
+				AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -899,6 +919,7 @@
 				AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */,
 				AC780F801DEB6D6E007E8158 /* avatar_48@2x.png in Resources */,
 				AC780F891DEB6D6E007E8158 /* top100_48@2x.png in Resources */,
+				AC604ED21E6D834B00D433FF /* pattern-3.png in Resources */,
 				ACE8AF191B4197B9009C3A08 /* wallpaper_vegnerful_spirit_1.jpg in Resources */,
 				AC62E51B1BF4B8E300805285 /* dota_icon_29x29@2x.png in Resources */,
 				AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */,
@@ -909,6 +930,7 @@
 				ACE8AF171B4197B9009C3A08 /* wallpaper_kent_vs_naga.jpg in Resources */,
 				AC780F881DEB6D6E007E8158 /* top100_48@1x.png in Resources */,
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
+				AC604ED71E6DCF0600D433FF /* pattern-4.png in Resources */,
 				AC62E5201BF4B96900805285 /* dota_icon_60x60.png in Resources */,
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
 				AC75ABFC1BAFEBC5007BA59D /* avatar_default.png in Resources */,
@@ -916,9 +938,11 @@
 				AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */,
 				AC75AC1B1BB02DF3007BA59D /* lore_treant.jpg in Resources */,
 				AC75AC1A1BB02DF3007BA59D /* lore_invoker_race.jpg in Resources */,
+				AC604ED81E6DCF0600D433FF /* pattern-5.png in Resources */,
 				ACE8AF121B4197B9009C3A08 /* wallpaper_dragon_knight_1.jpg in Resources */,
 				ACE8AF131B4197B9009C3A08 /* wallpaper_drow_ranger_1.jpg in Resources */,
 				AC75AC1D1BB02DF3007BA59D /* mechanics_sacred_arrow.jpg in Resources */,
+				AC604ED01E6BE6AF00D433FF /* pattern-2.png in Resources */,
 				AC75AC201BB02DF3007BA59D /* tournaments_TI1_winner.jpg in Resources */,
 				ACE8AF161B4197B9009C3A08 /* wallpaper_juggernaut_2.jpg in Resources */,
 				AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */,
@@ -933,6 +957,7 @@
 				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
 				AC532AD41DE0E94C008AFFA1 /* star128.png in Resources */,
 				ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */,
+				AC604ED41E6D864B00D433FF /* 3px-tile.png in Resources */,
 				AC780F821DEB6D6E007E8158 /* premium_48@1x.png in Resources */,
 				AC850B851B3D92F40050954C /* icon_backbutton_44@2x.png in Resources */,
 				AC850B781B3C8EB90050954C /* wallpaper_default.jpg in Resources */,
@@ -1039,6 +1064,7 @@
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */,
 				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
+				AC604EDB1E6DEFFE00D433FF /* ThemeButton.m in Sources */,
 				AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */,
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,
 				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,

@@ -33,7 +33,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setTableBackgroundImage:[UIImage imageNamed:@"pattern_640x1136.png"]];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"] atView:self.tableView];
+    
     _viewModel = [[MainViewModel alloc] init];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     //add refresher controll
@@ -326,6 +328,10 @@
 }
 
 - (IBAction)logout {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"username"];
+    [defaults removeObjectForKey:@"password"];
+    
     //! TODO: Handle unsinchronized UserAnswer persistance
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];

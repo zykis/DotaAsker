@@ -13,11 +13,29 @@
 @implementation UIViewController (BackgroundImage)
 
 - (void)loadBackgroundImage: (UIImage*)backgroundImage {
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [backgroundImage drawInRect:self.view.bounds];
+    UIGraphicsBeginImageContext(backgroundImage.size);
+    // First fill the background with white.
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2,1.0);
+    CGContextFillRect(context, self.view.frame);
+    CGContextSaveGState(context);
+    [backgroundImage drawAsPatternInRect:self.view.frame];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
+- (void)loadBackgroundImage: (UIImage*)backgroundImage atView:(UIView*)view {
+    UIGraphicsBeginImageContext(backgroundImage.size);
+    // First fill the background with white.
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2,1.0);
+    CGContextFillRect(context, view.frame);
+    CGContextSaveGState(context);
+    [backgroundImage drawAsPatternInRect:view.frame];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {

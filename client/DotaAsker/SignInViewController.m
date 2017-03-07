@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
     NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
     NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
     
@@ -71,6 +72,8 @@
 }
 
 - (IBAction)signIn {
+    [self.view endEditing:YES];
+    
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
@@ -86,6 +89,11 @@
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
     } completed:^{
+        // save username and password to user defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:username forKey:@"username"];
+        [defaults setObject:password forKey:@"password"];
+        
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
              RLMRealm* realm = [RLMRealm defaultRealm];
@@ -94,8 +102,8 @@
              [realm commitWriteTransaction];
              
              [Player setID: u.ID];
-            [self performSegueWithIdentifier:@"signin" sender:self];
-            [loadingView removeFromSuperview];
+             [self performSegueWithIdentifier:@"signin" sender:self];
+             [loadingView removeFromSuperview];
         } error:^(NSError *error) {
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];

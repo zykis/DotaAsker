@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
     NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
     NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
     
@@ -50,6 +51,7 @@
 }
 
 - (IBAction)signUp {
+    [self.view endEditing:YES];
     RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
     
     [authorizationSignal subscribeError:^(NSError *error) {

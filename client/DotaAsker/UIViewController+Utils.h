@@ -16,6 +16,7 @@ static UIAlertController *alertController;
 @property (strong, nonatomic) LoadingView* loadingView;
 
 - (void)loadBackgroundImage:(UIImage*)backgroundImage;
+- (void)loadBackgroundImage: (UIImage*)backgroundImage atView:(UIView*)view;
 - (void)presentAlertControllerWithTitle: (NSString*)title andMessage:(NSString*)message;
 
 @end
