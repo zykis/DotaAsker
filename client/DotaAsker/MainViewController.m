@@ -239,7 +239,7 @@
         UIView* headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 22)];
         
         // 2. Set a custom background color and a border
-        headerView.backgroundColor = [UIColor colorWithWhite:0.5f alpha:1.0f];
+        headerView.backgroundColor = [[Palette shared] statusBarColor];
         headerView.layer.borderColor = [UIColor colorWithWhite:0.5 alpha:1.0].CGColor;
         headerView.layer.borderWidth = 1.0;
         

@@ -158,7 +158,6 @@
             } completed:^{
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
-//                    [Player setPlayer:x];
                 } error:^(NSError *error) {
                     [self.tableView reloadData];
                 } completed:^{
