@@ -67,7 +67,13 @@
     
     if (![JSONDict[@"selected_theme"] isEqual: [NSNull null]]) {
         Theme* selected_theme = [ThemeParser parse:JSONDict[@"selected_theme"]];
-        [round setSelectedTheme:selected_theme];
+        Theme* existedTheme = [Theme objectForPrimaryKey:@(selected_theme.ID)];
+        if (existedTheme != nil) {
+            [round setSelectedTheme:existedTheme];
+        }
+        else {
+            [round setSelectedTheme:selected_theme];
+        }
     }
     return round;
 }
