@@ -39,7 +39,7 @@
     [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
     
     _viewModel = [[MainViewModel alloc] init];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     //add refresher controll
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl setTintColor:[UIColor whiteColor]];
@@ -126,6 +126,7 @@
         cell = [self.tableView dequeueReusableCellWithIdentifier:ToolbarCellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
     }
     else if ([indexPath section] == SECTION_PLAYER_INFO) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:PlayerInfoCellIdentifier];
@@ -143,12 +144,13 @@
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
     }
     else if ([indexPath section] == SECTION_FIND_BUTTON) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:FindMatchCellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
-
+        [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
     }
     else if (([indexPath section] == SECTION_CURRENT_MATCHES) || ([indexPath section] == SECTION_RECENT_MATCHES) || ([indexPath section] == SECTION_WAITING_MATCHES)) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:MatchCellIdentifier];
@@ -277,14 +279,6 @@
     }
 }
 
-- (void)setTableBackgroundImage:(UIImage *)backgroundImage {
-    UIGraphicsBeginImageContext(self.tableView.frame.size);
-    [backgroundImage drawInRect:self.tableView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showMatch"]) {
         MatchViewController *destVC = (MatchViewController*)[segue destinationViewController];
@@ -356,7 +350,5 @@
     else
         return YES;
 }
-
-//- (void)
 
 @end
