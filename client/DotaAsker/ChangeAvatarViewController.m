@@ -82,7 +82,10 @@
     [self.selectedImageView setImage: selectedImage];
     
     // [2]
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
     [[Player instance] setAvatarImageName:[_avatarNamesArray objectAtIndex: [indexPath row]]];
+    [realm commitWriteTransaction];
     
 }
 

@@ -17,13 +17,12 @@
 
 @import CoreGraphics;
 
-#define SECTION_TOOLBAR 0
-#define SECTION_PLAYER_INFO 1
-#define SECTION_FIND_BUTTON 2
-#define SECTION_CURRENT_MATCHES 3
-#define SECTION_WAITING_MATCHES 4
-#define SECTION_RECENT_MATCHES 5
-#define SECTIONS_COUNT 6
+#define SECTION_PLAYER_INFO 0
+#define SECTION_FIND_BUTTON 1
+#define SECTION_CURRENT_MATCHES 2
+#define SECTION_WAITING_MATCHES 3
+#define SECTION_RECENT_MATCHES 4
+#define SECTIONS_COUNT 5
 
 @interface MainViewController ()
 
@@ -41,9 +40,9 @@
     _viewModel = [[MainViewModel alloc] init];
     
     //add refresher controll
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl setTintColor:[UIColor whiteColor]];
-    [self.refreshControl addTarget:self action:@selector(refreshControllDragged) forControlEvents:UIControlEventValueChanged];
+    self.tableView.refreshControl = [[UIRefreshControl alloc] init];
+    [self.tableView.refreshControl setTintColor:[UIColor whiteColor]];
+    [self.tableView.refreshControl addTarget:self action:@selector(refreshControllDragged) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)refreshControllDragged {
@@ -60,10 +59,10 @@
              
         [Player setID: u.ID];
         [self.tableView reloadData];
-        [self.refreshControl endRefreshing];
+        [self.tableView.refreshControl endRefreshing];
         [loadingView removeFromSuperview];
      } error:^(NSError *error) {
-         [self.refreshControl endRefreshing];
+         [self.tableView.refreshControl endRefreshing];
          [loadingView removeFromSuperview];
      }];
 }
@@ -84,10 +83,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == SECTION_TOOLBAR) {
-        return 1;
-    }
-    else if(section == SECTION_PLAYER_INFO) {
+    if(section == SECTION_PLAYER_INFO) {
         return 1;
     }
     else if(section == SECTION_FIND_BUTTON) {
@@ -113,22 +109,12 @@
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     UITableViewCell *cell;
-    
-    static NSString *ToolbarCellIdentifier = @"toolbar_cell";
     static NSString *PlayerInfoCellIdentifier = @"player_info_cell";
     static NSString *FindMatchCellIdentifier = @"find_match_cell";
     static NSString *MatchCellIdentifier = @"match_cell";
     
-    
-    if ([indexPath section] == SECTION_TOOLBAR) {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:ToolbarCellIdentifier];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
-        [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
-    }
-    else if ([indexPath section] == SECTION_PLAYER_INFO) {
+    if ([indexPath section] == SECTION_PLAYER_INFO) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:PlayerInfoCellIdentifier];
         UIImageView *playerImageView = (UIImageView*)[cell viewWithTag:200];
         [playerImageView setImage: [UIImage imageNamed:[[Player instance] avatarImageName]]];
@@ -214,10 +200,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_TOOLBAR) {
-        return 0.0f;
-    }
-    else if (section == SECTION_PLAYER_INFO) {
+    if (section == SECTION_PLAYER_INFO) {
         return 0.0f;
     }
     else if (section == SECTION_FIND_BUTTON) {
@@ -230,7 +213,7 @@
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ((section == SECTION_PLAYER_INFO)||(section == SECTION_FIND_BUTTON)||(section == SECTION_TOOLBAR)) {
+    if ((section == SECTION_PLAYER_INFO)||(section == SECTION_FIND_BUTTON)) {
         UIView *headerView = [[UIView alloc] init];
         headerView.backgroundColor = [UIColor clearColor];
         return headerView;
@@ -271,9 +254,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch ([indexPath section]) {
-        case SECTION_TOOLBAR:
-            return 40;
-
         default:
             return 80;
     }
@@ -323,6 +303,11 @@
     }];
 }
 
+- (IBAction)showStatistics {
+    if ([self checkPremium])
+        [self performSegueWithIdentifier:@"statistics" sender:self];
+}
+
 - (IBAction)logout {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"username"];
@@ -337,9 +322,8 @@
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
-- (IBAction)showStatistics {
-    if ([self checkPremium])
-        [self performSegueWithIdentifier:@"statistics" sender:self];
+- (IBAction)settings:(id)sender {
+    [self performSegueWithIdentifier:@"settings" sender:self];
 }
 
 - (BOOL)checkPremium {

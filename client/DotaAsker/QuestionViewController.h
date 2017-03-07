@@ -31,8 +31,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeElapsedLabel;
 @property (assign, nonatomic) double secondsRemain;
 
-
-- (void)updateSecondsRemain;
 - (IBAction)answerPushed:(id)sender;
 - (void)timeElapsed;
 - (void)showNextQuestion;

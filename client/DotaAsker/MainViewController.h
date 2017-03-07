@@ -11,12 +11,14 @@
 
 @class MainViewModel;
 
-@interface MainViewController : UITableViewController
+@interface MainViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) MainViewModel* viewModel;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 - (IBAction)findMatchPressed;
-- (IBAction)logout;
 - (IBAction)showStatistics;
+- (IBAction)logout;
+- (IBAction)settings:(id)sender;
 - (BOOL)checkPremium;
 
 @end
