@@ -12,7 +12,9 @@
 #import "MainViewModel.h"
 #import "ServiceLayer.h"
 #import "Helper.h"
+#import "Palette.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
 @import CoreGraphics;
 
 #define SECTION_TOOLBAR 0
@@ -33,8 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"] atView:self.tableView];
+    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
     
     _viewModel = [[MainViewModel alloc] init];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

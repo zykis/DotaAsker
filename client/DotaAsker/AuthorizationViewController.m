@@ -9,6 +9,7 @@
 #import "AuthorizationViewController.h"
 #import "ServiceLayer.h"
 #import "SignInViewController.h"
+#import "Palette.h"
 
 @interface AuthorizationViewController ()
 
@@ -18,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
+    [self loadBackgroundImage];
     [[self navigationController] setNavigationBarHidden:YES];
 }
 

@@ -9,27 +9,32 @@
 #import "UIViewController+Utils.h"
 #import "Player.h"
 #import "TTGSnackBar-Swift.h"
+#import "Palette.h"
 
 @implementation UIViewController (BackgroundImage)
 
+- (void)loadBackgroundImage {
+    [self loadBackgroundImage:[[Palette shared] pattern]];
+}
+
 - (void)loadBackgroundImage: (UIImage*)backgroundImage {
-    UIGraphicsBeginImageContext(backgroundImage.size);
-    // First fill the background with white.
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2,1.0);
-    CGContextFillRect(context, self.view.frame);
-    CGContextSaveGState(context);
-    [backgroundImage drawAsPatternInRect:self.view.frame];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    [self loadBackgroundImage:backgroundImage atView:self.view];
 }
 
 - (void)loadBackgroundImage: (UIImage*)backgroundImage atView:(UIView*)view {
     UIGraphicsBeginImageContext(backgroundImage.size);
     // First fill the background with white.
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2,1.0);
+    
+    // Get colors from palette
+    UIColor* backgroundColor = [[Palette shared] backgroundColor];
+    CGFloat red;
+    CGFloat green;
+    CGFloat blue;
+    CGFloat alpha;
+    [backgroundColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    CGContextSetRGBFillColor(context, red, green, blue, alpha);
     CGContextFillRect(context, view.frame);
     CGContextSaveGState(context);
     [backgroundImage drawAsPatternInRect:view.frame];

@@ -12,6 +12,7 @@
 #import "ThemeSelectedViewController.h"
 #import "QuestionViewController.h"
 #import "ServiceLayer.h"
+#import "UIViewController+Utils.h"
 
 @interface ThemeSelectedViewController ()
 
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
     
     // Getting objects from Realm
     

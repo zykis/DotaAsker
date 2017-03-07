@@ -13,6 +13,8 @@
 #import "Player.h"
 #import "MatchViewModel.h"
 #import "ServiceLayer.h"
+#import "Palette.h"
+
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 
@@ -40,7 +42,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
+    
+    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[Palette shared] pattern] atView:self.tableView];
+    
     _matchViewModel = [[MatchViewModel alloc] init];
     
     bool bMatchFound = false;
@@ -55,7 +60,6 @@
     
     
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"] atView:self.tableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -210,15 +214,6 @@
     } completed:^{
         [loadingView removeFromSuperview];
     }];
-}
-
-#pragma mark - VusialAppearence
-- (void)setBackgroundImage:(UIImage *)backgroundImage {
-    UIGraphicsBeginImageContext(self.view.frame.size);
-    [backgroundImage drawInRect:self.view.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -395,15 +390,6 @@
             return 59.0f;
     }
     return UITableViewAutomaticDimension;
-}
-
-
-- (void)setTableBackgroundImage:(UIImage *)backgroundImage {
-    UIGraphicsBeginImageContext(backgroundImage.size);
-    [backgroundImage drawInRect:self.tableView.bounds];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    self.tableView.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (void)roundViewAnswerWasTapped:(RoundView *)roundView atIndex:(NSInteger)index {

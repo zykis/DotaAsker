@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "AppDelegate.h"
 #import "DotaButton.h"
 #import "Client.h"
+#import "Palette.h"
+
+// IOS
 #import <Realm/Realm.h>
-// #import "DotaAsker-Swift.h"
 
 @interface AppDelegate ()
 
@@ -51,17 +54,32 @@
 }
 
 - (void)customizeAppearence {
+    // setting up palette
+    [[Palette shared] setBackgroundColor:[UIColor colorWithRed:0.376 green:0.490 blue:0.545 alpha:1.0]];
+    [[Palette shared] setStatusBarColor:[UIColor colorWithRed:0.149 green:0.196 blue:0.220 alpha:1.0]];
+    
+    // setting up pattern
+    [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6"]];
+    
+    // customizing status bar
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+    #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
+        view.backgroundColor = [[Palette shared] statusBarColor];
+        [self.window.rootViewController.view addSubview:view];
+    }
+    
     //customizing NavigationBar
     UINavigationBar *navBarAppearence = [UINavigationBar appearance];
-    [navBarAppearence setBackgroundImage:[UIImage new]
-                             forBarMetrics:UIBarMetricsDefault];
-    navBarAppearence.shadowImage = [UIImage new];
-    navBarAppearence.translucent = YES;
     navBarAppearence.titleTextAttributes =
       @{
         NSForegroundColorAttributeName: [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f],
         NSFontAttributeName : [UIFont fontWithName:@"TrajanBold" size:14.0f]
        };
+    
     //customizing Dota button
     UIImage *resizeableDotaButton = [[UIImage imageNamed:@"ui_button_dota.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 12, 15, 12)];
     [[DotaButton appearance] setBackgroundImage:resizeableDotaButton forState:UIControlStateNormal];

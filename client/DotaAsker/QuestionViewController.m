@@ -13,6 +13,8 @@
 #import "MatchViewModel.h"
 #import "Helper.h"
 #import "Answer.h"
+#import "UIViewController+Utils.h"
+
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
@@ -46,6 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
     _questionViewModel = [[QuestionViewModel alloc] init];
     _currentQuestionIndex = 0;
     [self showNextQuestion];

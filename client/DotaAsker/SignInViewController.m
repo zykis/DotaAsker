@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage:[UIImage imageNamed:@"pattern-4"]];
+    [self loadBackgroundImage];
     NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
     NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
     

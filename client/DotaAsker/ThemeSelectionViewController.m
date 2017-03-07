@@ -9,6 +9,8 @@
 #import "ThemeSelectionViewController.h"
 #import "ThemeSelectedViewController.h"
 #import "ServiceLayer.h"
+#import "UIViewController+Utils.h"
+
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface ThemeSelectionViewController ()
@@ -28,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     assert([themes count] == 3);
     
