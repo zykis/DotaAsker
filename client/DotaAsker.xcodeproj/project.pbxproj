@@ -60,8 +60,6 @@
 		AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AC75AC181BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg */; };
 		AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC77BC451DAD7B8700B32121 /* RoundService.m */; };
 		AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */; };
-		AC780F591DE82F5E007E8158 /* PressButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F581DE82F5E007E8158 /* PressButton.m */; };
-		AC780F621DE9C200007E8158 /* PressButtonStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = AC780F611DE9C200007E8158 /* PressButtonStyleKit.m */; };
 		AC780F7F1DEB6D6E007E8158 /* avatar_48@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC780F731DEB6D6E007E8158 /* avatar_48@1x.png */; };
 		AC780F801DEB6D6E007E8158 /* avatar_48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC780F741DEB6D6E007E8158 /* avatar_48@2x.png */; };
 		AC780F811DEB6D6E007E8158 /* avatar_48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC780F751DEB6D6E007E8158 /* avatar_48@3x.png */; };
@@ -249,10 +247,6 @@
 		AC77BC451DAD7B8700B32121 /* RoundService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundService.m; sourceTree = "<group>"; };
 		AC780F541DE781F1007E8158 /* UnlockPremiumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockPremiumViewController.h; sourceTree = "<group>"; };
 		AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnlockPremiumViewController.m; sourceTree = "<group>"; };
-		AC780F571DE82F5E007E8158 /* PressButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PressButton.h; sourceTree = "<group>"; };
-		AC780F581DE82F5E007E8158 /* PressButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PressButton.m; sourceTree = "<group>"; };
-		AC780F601DE9C200007E8158 /* PressButtonStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PressButtonStyleKit.h; sourceTree = "<group>"; };
-		AC780F611DE9C200007E8158 /* PressButtonStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PressButtonStyleKit.m; sourceTree = "<group>"; };
 		AC780F731DEB6D6E007E8158 /* avatar_48@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar_48@1x.png"; path = "resources/icons/avatar_48@1x.png"; sourceTree = "<group>"; };
 		AC780F741DEB6D6E007E8158 /* avatar_48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar_48@2x.png"; path = "resources/icons/avatar_48@2x.png"; sourceTree = "<group>"; };
 		AC780F751DEB6D6E007E8158 /* avatar_48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "avatar_48@3x.png"; path = "resources/icons/avatar_48@3x.png"; sourceTree = "<group>"; };
@@ -518,15 +512,6 @@
 			name = question_images;
 			sourceTree = "<group>";
 		};
-		AC780F5F1DE9C188007E8158 /* StyleKits */ = {
-			isa = PBXGroup;
-			children = (
-				AC780F601DE9C200007E8158 /* PressButtonStyleKit.h */,
-				AC780F611DE9C200007E8158 /* PressButtonStyleKit.m */,
-			);
-			name = StyleKits;
-			sourceTree = "<group>";
-		};
 		AC780F721DEB6D4F007E8158 /* buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,7 +626,6 @@
 		ACF41C031B3BE8B20096598C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				AC780F5F1DE9C188007E8158 /* StyleKits */,
 				ACD94DE01B428FB800F71901 /* RoundView.h */,
 				ACD94DE11B428FB800F71901 /* RoundView.m */,
 				ACD94DE31B42C3D800F71901 /* DotaButton.h */,
@@ -652,8 +636,6 @@
 				ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */,
 				AC7E6D291DC2A05400F7871C /* LoadingView.h */,
 				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
-				AC780F571DE82F5E007E8158 /* PressButton.h */,
-				AC780F581DE82F5E007E8158 /* PressButton.m */,
 				AC604ED91E6DEFFE00D433FF /* ThemeButton.h */,
 				AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */,
 				AC2C9D471E6E83380068D87B /* Palette.h */,
@@ -1095,7 +1077,6 @@
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */,
 				ACD52F871BB15C300006D50A /* Answer.m in Sources */,
-				AC780F621DE9C200007E8158 /* PressButtonStyleKit.m in Sources */,
 				AC7E6D2B1DC2A05400F7871C /* LoadingView.m in Sources */,
 				AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
@@ -1124,7 +1105,6 @@
 				AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
 				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
-				AC780F591DE82F5E007E8158 /* PressButton.m in Sources */,
 				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,

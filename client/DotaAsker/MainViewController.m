@@ -196,7 +196,7 @@
     else if (section == SECTION_WAITING_MATCHES) {
         return @"Waiting matches";
     }
-    else return @"FUCK";
+    else return @"Error";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
