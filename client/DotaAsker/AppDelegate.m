@@ -61,17 +61,9 @@
     // setting up pattern
     [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6"]];
     
-    // customizing status bar
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-    #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-    {
-        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, 20)];
-        view.backgroundColor = [[Palette shared] statusBarColor];
-        [self.window.rootViewController.view addSubview:view];
-    }
-    
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"icon-back-white.png"]];
+    [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"icon-back-white.png"]];
+        
     //customizing NavigationBar
     UINavigationBar *navBarAppearence = [UINavigationBar appearance];
     navBarAppearence.titleTextAttributes =
