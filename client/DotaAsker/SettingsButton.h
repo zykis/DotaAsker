@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-IB_DESIGNABLE
 @interface SettingsButton : UIButton
 
 @property (strong, nonatomic) CAGradientLayer* backgroundLayer;
 @property (strong, nonatomic) CAGradientLayer* highlightBackgroundLayer;
 @property (strong, nonatomic) CALayer* innerGlow;
 @property (strong, nonatomic) CATextLayer* textLayer;
+@property (strong, nonatomic) CALayer* iconLayer;
 
 @property (strong, nonatomic) UIColor* backgroundColorStart;
 @property (strong, nonatomic) UIColor* backgroundColorEnd;
@@ -26,5 +26,6 @@ IB_DESIGNABLE
 @property (strong, nonatomic) IBInspectable UIFont* textFont;
 @property (strong, nonatomic) IBInspectable NSString* text;
 @property (assign, nonatomic) IBInspectable CGFloat cornerRadius;
+@property (strong, nonatomic) IBInspectable UIImage* icon;
 
 @end

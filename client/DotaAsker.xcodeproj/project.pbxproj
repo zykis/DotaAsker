@@ -76,6 +76,18 @@
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
 		AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */; };
+		AC9646471E720FF700F9CD32 /* icon-avatar-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */; };
+		AC9646481E720FF700F9CD32 /* icon-avatar-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */; };
+		AC9646491E720FF700F9CD32 /* icon-avatar-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */; };
+		AC96464A1E720FF700F9CD32 /* icon-submit-question-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463E1E720FF700F9CD32 /* icon-submit-question-white-48.png */; };
+		AC96464B1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463F1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png */; };
+		AC96464C1E720FF700F9CD32 /* icon-submit-question-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646401E720FF700F9CD32 /* icon-submit-question-white-48@3x.png */; };
+		AC96464D1E720FF700F9CD32 /* icon-top100-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646411E720FF700F9CD32 /* icon-top100-white-48.png */; };
+		AC96464E1E720FF700F9CD32 /* icon-top100-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646421E720FF700F9CD32 /* icon-top100-white-48@2x.png */; };
+		AC96464F1E720FF700F9CD32 /* icon-top100-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646431E720FF700F9CD32 /* icon-top100-white-48@3x.png */; };
+		AC9646501E720FF700F9CD32 /* icon-unlock-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646441E720FF700F9CD32 /* icon-unlock-white-48.png */; };
+		AC9646511E720FF700F9CD32 /* icon-unlock-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646451E720FF700F9CD32 /* icon-unlock-white-48@2x.png */; };
+		AC9646521E720FF700F9CD32 /* icon-unlock-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9646461E720FF700F9CD32 /* icon-unlock-white-48@3x.png */; };
 		AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A195D1D9869DD00B66AAE /* AbstractParser.m */; };
 		AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A195F1D9869DD00B66AAE /* AnswerParser.m */; };
 		AC9A19701D9869DD00B66AAE /* MatchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9A19611D9869DD00B66AAE /* MatchParser.m */; };
@@ -257,6 +269,18 @@
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
 		AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
+		AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48.png"; path = "resources/icons/icon-avatar-white-48.png"; sourceTree = "<group>"; };
+		AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@2x.png"; path = "resources/icons/icon-avatar-white-48@2x.png"; sourceTree = "<group>"; };
+		AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@3x.png"; path = "resources/icons/icon-avatar-white-48@3x.png"; sourceTree = "<group>"; };
+		AC96463E1E720FF700F9CD32 /* icon-submit-question-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-submit-question-white-48.png"; path = "resources/icons/icon-submit-question-white-48.png"; sourceTree = "<group>"; };
+		AC96463F1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-submit-question-white-48@2x.png"; path = "resources/icons/icon-submit-question-white-48@2x.png"; sourceTree = "<group>"; };
+		AC9646401E720FF700F9CD32 /* icon-submit-question-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-submit-question-white-48@3x.png"; path = "resources/icons/icon-submit-question-white-48@3x.png"; sourceTree = "<group>"; };
+		AC9646411E720FF700F9CD32 /* icon-top100-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-top100-white-48.png"; path = "resources/icons/icon-top100-white-48.png"; sourceTree = "<group>"; };
+		AC9646421E720FF700F9CD32 /* icon-top100-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-top100-white-48@2x.png"; path = "resources/icons/icon-top100-white-48@2x.png"; sourceTree = "<group>"; };
+		AC9646431E720FF700F9CD32 /* icon-top100-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-top100-white-48@3x.png"; path = "resources/icons/icon-top100-white-48@3x.png"; sourceTree = "<group>"; };
+		AC9646441E720FF700F9CD32 /* icon-unlock-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-unlock-white-48.png"; path = "resources/icons/icon-unlock-white-48.png"; sourceTree = "<group>"; };
+		AC9646451E720FF700F9CD32 /* icon-unlock-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-unlock-white-48@2x.png"; path = "resources/icons/icon-unlock-white-48@2x.png"; sourceTree = "<group>"; };
+		AC9646461E720FF700F9CD32 /* icon-unlock-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-unlock-white-48@3x.png"; path = "resources/icons/icon-unlock-white-48@3x.png"; sourceTree = "<group>"; };
 		AC9A195C1D9869DD00B66AAE /* AbstractParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractParser.h; sourceTree = "<group>"; };
 		AC9A195D1D9869DD00B66AAE /* AbstractParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractParser.m; sourceTree = "<group>"; };
 		AC9A195E1D9869DD00B66AAE /* AnswerParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerParser.h; sourceTree = "<group>"; };
@@ -620,6 +644,18 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */,
+				AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */,
+				AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */,
+				AC96463E1E720FF700F9CD32 /* icon-submit-question-white-48.png */,
+				AC96463F1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png */,
+				AC9646401E720FF700F9CD32 /* icon-submit-question-white-48@3x.png */,
+				AC9646411E720FF700F9CD32 /* icon-top100-white-48.png */,
+				AC9646421E720FF700F9CD32 /* icon-top100-white-48@2x.png */,
+				AC9646431E720FF700F9CD32 /* icon-top100-white-48@3x.png */,
+				AC9646441E720FF700F9CD32 /* icon-unlock-white-48.png */,
+				AC9646451E720FF700F9CD32 /* icon-unlock-white-48@2x.png */,
+				AC9646461E720FF700F9CD32 /* icon-unlock-white-48@3x.png */,
 				ACC730E91E6F2FE700A88A54 /* icon-versus-orange.png */,
 				ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */,
 				ACC730E31E6F2ADD00A88A54 /* icon-settings-white.png */,
@@ -851,15 +887,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9646501E720FF700F9CD32 /* icon-unlock-white-48.png in Resources */,
 				ACB3A1191B9F2C180083EE17 /* avatar_tiny.png in Resources */,
 				ACC730E71E6F2ADD00A88A54 /* icon-settings-white@2x.png in Resources */,
 				ACDB6DEB1B554A2F00E6256D /* cell2.png in Resources */,
 				AC780F841DEB6D6E007E8158 /* premium_48@3x.png in Resources */,
+				AC9646511E720FF700F9CD32 /* icon-unlock-white-48@2x.png in Resources */,
 				ACC730EB1E6F2FE700A88A54 /* icon-versus-orange.png in Resources */,
 				AC62E51C1BF4B8E300805285 /* dota_icon_29x29@3x.png in Resources */,
 				AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */,
 				AC75AC191BB02DF3007BA59D /* lore_child.jpg in Resources */,
 				AC75AC1F1BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg in Resources */,
+				AC96464B1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png in Resources */,
 				AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */,
 				AC780F801DEB6D6E007E8158 /* avatar_48@2x.png in Resources */,
 				AC780F891DEB6D6E007E8158 /* top100_48@2x.png in Resources */,
@@ -868,8 +907,10 @@
 				AC62E51B1BF4B8E300805285 /* dota_icon_29x29@2x.png in Resources */,
 				AC75AC211BB02DF3007BA59D /* tournaments_TI2015_prizepool.jpg in Resources */,
 				AC75AC1C1BB02DF3007BA59D /* mechanics_bara_cogs.jpg in Resources */,
+				AC96464D1E720FF700F9CD32 /* icon-top100-white-48.png in Resources */,
 				ACC730DE1E6F2A5900A88A54 /* icon-logout-white@2x.png in Resources */,
 				AC780F831DEB6D6E007E8158 /* premium_48@2x.png in Resources */,
+				AC96464F1E720FF700F9CD32 /* icon-top100-white-48@3x.png in Resources */,
 				AC780F881DEB6D6E007E8158 /* top100_48@1x.png in Resources */,
 				ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */,
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
@@ -891,23 +932,28 @@
 				AC780F811DEB6D6E007E8158 /* avatar_48@3x.png in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
 				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
+				AC9646481E720FF700F9CD32 /* icon-avatar-white-48@2x.png in Resources */,
 				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
 				ACC730DA1E6F2A5900A88A54 /* icon-back-white.png in Resources */,
 				ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */,
 				AC780F821DEB6D6E007E8158 /* premium_48@1x.png in Resources */,
 				AC780F8A1DEB6D6E007E8158 /* top100_48@3x.png in Resources */,
 				AC780F871DEB6D6E007E8158 /* question_48@3x.png in Resources */,
+				AC96464C1E720FF700F9CD32 /* icon-submit-question-white-48@3x.png in Resources */,
 				ACC730DC1E6F2A5900A88A54 /* icon-back-white@3x.png in Resources */,
 				AC7352151B239A1B00FFF356 /* Images.xcassets in Resources */,
 				AC75AC1E1BB02DF3007BA59D /* mechanics_storm_chronosphere.jpg in Resources */,
+				AC96464A1E720FF700F9CD32 /* icon-submit-question-white-48.png in Resources */,
 				AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */,
 				ACC730E01E6F2A5900A88A54 /* icon-statistics-white.png in Resources */,
 				ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */,
+				AC96464E1E720FF700F9CD32 /* icon-top100-white-48@2x.png in Resources */,
 				ACC730DF1E6F2A5900A88A54 /* icon-logout-white@3x.png in Resources */,
 				ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */,
 				AC780F7F1DEB6D6E007E8158 /* avatar_48@1x.png in Resources */,
 				ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */,
 				ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */,
+				AC9646521E720FF700F9CD32 /* icon-unlock-white-48@3x.png in Resources */,
 				ACC730DB1E6F2A5900A88A54 /* icon-back-white@2x.png in Resources */,
 				AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */,
 				ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */,
@@ -916,6 +962,8 @@
 				AC62E5211BF4B96900805285 /* dota_icon_60x60@2x.png in Resources */,
 				ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */,
 				ACC730DD1E6F2A5900A88A54 /* icon-logout-white.png in Resources */,
+				AC9646471E720FF700F9CD32 /* icon-avatar-white-48.png in Resources */,
+				AC9646491E720FF700F9CD32 /* icon-avatar-white-48@3x.png in Resources */,
 				AC780F851DEB6D6E007E8158 /* question_48@1x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,6 +14,7 @@
 @synthesize highlightBackgroundLayer = _highlightBackgroundLayer;
 @synthesize innerGlow = _innerGlow;
 @synthesize textLayer = _textLayer;
+@synthesize iconLayer = _iconLayer;
 
 @synthesize backgroundColorStart = _backgroundColorStart;
 @synthesize backgroundColorEnd= _backgroundColorEnd;
@@ -25,17 +26,17 @@
 @synthesize textFont = _textFont;
 @synthesize text = _text;
 @synthesize cornerRadius = _cornerRadius;
+@synthesize icon = _icon;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _text = [self titleForState:UIControlStateNormal];
         [self setColors];
         [self drawButton];
         [self drawInnerGlow];
         [self drawBackgroundLayer];
         [self drawHighlightBackgroundLayer];
-        [self drawText];
+//        [self drawText];
         _highlightBackgroundLayer.hidden = YES;
     }
     return self;
@@ -107,8 +108,17 @@
         _textLayer.font = CFBridgingRetain([UIFont fontWithName:@"Trajan" size:17.0].fontName);
         _textLayer.fontSize = 17.0;
         _textLayer.foregroundColor = [UIColor whiteColor].CGColor;
-        _textLayer.alignmentMode = kCAAlignmentCenter;
+        _textLayer.alignmentMode = kCAAlignmentLeft;
+        _textLayer.contentsScale = [[UIScreen mainScreen] scale];
         [self.layer insertSublayer:_textLayer atIndex:3];
+    }
+}
+
+- (void)drawIcon {
+    if (!_iconLayer) {
+        _iconLayer = [CALayer layer];
+        _iconLayer.contents = (id)_icon.CGImage;
+        [self.layer insertSublayer:_iconLayer atIndex:4];
     }
 }
 
@@ -125,9 +135,29 @@
     
     CGRect labelRect = [_text boundingRectWithSize:self.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Trajan" size:17.0] } context:nil];
     _textLayer.frame = labelRect;
-    _textLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    _textLayer.anchorPoint = CGPointMake(0, 0.5);
+    _textLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + 48 + 15 * 2, CGRectGetMidY(self.bounds));
+    
+    CGRect iconRect = CGRectMake(0, 0, 48, 48);
+    _iconLayer.frame = iconRect;
+    _iconLayer.anchorPoint = CGPointMake(0, 0.5);
+    _iconLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + 15, CGRectGetMidY(self.bounds));
+    
     
     [super layoutSubviews];
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self drawIcon];
+    [self drawText];
+//    [self updateText];
+}
+
+- (void)updateText {
+    if (_textLayer) {
+        _textLayer.string = _text;
+    }
 }
 
 - (void)setHighlighted:(BOOL)highlighted

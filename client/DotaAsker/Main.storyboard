@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYU-gq-1fi">
-                                <rect key="frame" x="124.5" y="167" width="71" height="31"/>
+                                <rect key="frame" x="125" y="167" width="71" height="31"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -130,7 +130,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="byp-re-lZ3">
-                                <rect key="frame" x="96.5" y="144" width="128" height="26"/>
+                                <rect key="frame" x="97" y="144" width="128" height="26"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <state key="normal" title="Forget Password?">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -186,7 +186,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username or e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxn-WC-tH1" userLabel="Username">
-                                <rect key="frame" x="69.5" y="60" width="181" height="30"/>
+                                <rect key="frame" x="70" y="60" width="181" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pxn-WC-tH1" secondAttribute="height" multiplier="181:30" id="LXH-lr-Z4q"/>
                                 </constraints>
@@ -194,7 +194,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mog-QJ-Qjp">
-                                <rect key="frame" x="125.5" y="115" width="69" height="31"/>
+                                <rect key="frame" x="126" y="115" width="69" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="2eD-un-LKB"/>
                                 </constraints>
@@ -254,13 +254,14 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                         <state key="normal">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="text" value="Change avatar"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="icon-avatar-white-48.png"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="avatarsPushed" destination="c2x-kO-LSJ" eventType="touchUpInside" id="aGz-qQ-HLy"/>
@@ -278,6 +279,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="icon-submit-question-white-48.png"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="questionPushed" destination="c2x-kO-LSJ" eventType="touchUpInside" id="7GX-49-iDO"/>
@@ -295,6 +297,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="icon-top100-white-48.png"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="top100Pushed" destination="c2x-kO-LSJ" eventType="touchUpInside" id="2nD-vo-rQz"/>
@@ -305,13 +308,14 @@
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                         <state key="normal">
-                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="text" value="Unlock premium"/>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="icon" value="icon-unlock-white-48.png"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="premiumPushed" destination="c2x-kO-LSJ" eventType="touchUpInside" id="ssx-xQ-2Hc"/>
@@ -549,7 +553,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DA-1P-USh">
-                                <rect key="frame" x="129" y="254.5" width="62" height="30"/>
+                                <rect key="frame" x="129" y="255" width="62" height="30"/>
                                 <state key="normal" title="UNLOCK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -615,19 +619,19 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-nQ-6wH">
-                                                    <rect key="frame" x="111" y="12" width="97.5" height="20"/>
+                                                    <rect key="frame" x="111" y="12" width="98" height="20"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-VV-EDA">
-                                                    <rect key="frame" x="249.5" y="11" width="46" height="22"/>
+                                                    <rect key="frame" x="250" y="11" width="46" height="22"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
-                                                    <rect key="frame" x="210.5" y="15" width="31" height="13"/>
+                                                    <rect key="frame" x="211" y="15" width="31" height="13"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -769,7 +773,7 @@
                                                     <rect key="frame" x="8" y="0.0" width="312" height="83"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="107" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Round #1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oxx-Vi-GP2">
-                                                            <rect key="frame" x="121.5" y="4" width="69" height="15"/>
+                                                            <rect key="frame" x="122" y="4" width="69" height="15"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="69" id="5Ya-tr-cn0"/>
                                                                 <constraint firstAttribute="height" constant="15" id="NLO-ix-jQL"/>
@@ -779,7 +783,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="108" contentMode="left" horizontalHuggingPriority="251" text="Round status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DU-K8-Ja4">
-                                                            <rect key="frame" x="97.5" y="50" width="116" height="27"/>
+                                                            <rect key="frame" x="98" y="50" width="116" height="27"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="27" id="2Eu-tD-9sZ"/>
                                                                 <constraint firstAttribute="width" constant="115.5" id="5Cy-NV-Ntj"/>
@@ -789,19 +793,19 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtb-Ey-TGq" customClass="AnswerItemView">
-                                                            <rect key="frame" x="34" y="36" width="28.5" height="41"/>
+                                                            <rect key="frame" x="34" y="36" width="28" height="41"/>
                                                             <color key="backgroundColor" red="0.19824659208362327" green="1" blue="0.23204576761394358" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-Qm-JaU" customClass="AnswerItemView">
-                                                            <rect key="frame" x="62.5" y="36" width="28" height="41"/>
+                                                            <rect key="frame" x="62" y="36" width="28" height="41"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjw-TW-g5X" customClass="AnswerItemView">
-                                                            <rect key="frame" x="221.5" y="36" width="28" height="41"/>
+                                                            <rect key="frame" x="222" y="36" width="28" height="41"/>
                                                             <color key="backgroundColor" red="0.073114856377786697" green="1" blue="0.089003005470729146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-Qa-heo" customClass="AnswerItemView">
-                                                            <rect key="frame" x="249.5" y="36" width="28.5" height="41"/>
+                                                            <rect key="frame" x="250" y="36" width="28" height="41"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="106" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-9m-qrC" customClass="AnswerItemView">
@@ -862,7 +866,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlL-a4-rao">
-                                                    <rect key="frame" x="18.5" y="24" width="61" height="26"/>
+                                                    <rect key="frame" x="19" y="24" width="61" height="26"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                                     <state key="normal" title="Surrend">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -873,7 +877,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ly7-44-WPL">
-                                                    <rect key="frame" x="249.5" y="24" width="55" height="26"/>
+                                                    <rect key="frame" x="250" y="24" width="55" height="26"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                                     <state key="normal" title="+Friend">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -884,7 +888,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7T5-xw-DI2">
-                                                    <rect key="frame" x="125.5" y="8" width="78" height="34"/>
+                                                    <rect key="frame" x="126" y="8" width="78" height="34"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                                     <state key="normal" title="REMAKE">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1186,7 +1190,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zu8-37-KE8">
-                                <rect key="frame" x="166.5" y="242" width="141.5" height="84"/>
+                                <rect key="frame" x="166" y="242" width="142" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Answer2">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1197,7 +1201,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6zT-S1-Eo6">
-                                <rect key="frame" x="166.5" y="334" width="141.5" height="84"/>
+                                <rect key="frame" x="166" y="334" width="142" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Answer4">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1212,7 +1216,7 @@
                                 <color key="progressTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-4P-VM5">
-                                <rect key="frame" x="12" y="242" width="142.5" height="84"/>
+                                <rect key="frame" x="12" y="242" width="143" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="T3m-fq-Kga"/>
@@ -1239,7 +1243,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-Qo-mxp">
-                                <rect key="frame" x="12" y="334" width="142.5" height="84"/>
+                                <rect key="frame" x="12" y="334" width="143" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Answer3">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1413,7 +1417,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Match state text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NX-Ic-vRr">
-                                                    <rect key="frame" x="80" y="33" width="64" height="13"/>
+                                                    <rect key="frame" x="80" y="27" width="64" height="25"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1491,6 +1495,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="603"/>
                     <connections>
                         <outlet property="tableView" destination="Fnf-rG-GJn" id="07Y-SZ-7yC"/>
                         <outlet property="view" destination="Fnf-rG-GJn" id="CeG-v2-v3N"/>
@@ -1776,10 +1782,14 @@
     </scenes>
     <resources>
         <image name="avatar_bounty.png" width="483" height="604"/>
+        <image name="icon-avatar-white-48.png" width="48" height="48"/>
         <image name="icon-back-white.png" width="22" height="22"/>
         <image name="icon-logout-white.png" width="22" height="22"/>
         <image name="icon-settings-white.png" width="22" height="22"/>
         <image name="icon-statistics-white.png" width="22" height="22"/>
+        <image name="icon-submit-question-white-48.png" width="48" height="48"/>
+        <image name="icon-top100-white-48.png" width="48" height="48"/>
+        <image name="icon-unlock-white-48.png" width="48" height="48"/>
         <image name="icon-versus-orange.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
