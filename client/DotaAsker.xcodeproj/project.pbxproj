@@ -19,7 +19,7 @@
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
-		AC604EDB1E6DEFFE00D433FF /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */; };
+		AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
 		AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917A1BFF5B9600D728B6 /* AbstractService.m */; };
 		AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091801C00623200D728B6 /* AuthorizationService.m */; };
@@ -176,8 +176,8 @@
 		AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatarViewController.h; sourceTree = "<group>"; };
 		AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatarViewController.m; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		AC604ED91E6DEFFE00D433FF /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
-		AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
+		AC604ED91E6DEFFE00D433FF /* SettingsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButton.h; sourceTree = "<group>"; };
+		AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButton.m; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
 		AC6091741BFF516B00D728B6 /* AbstractCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractCache.m; sourceTree = "<group>"; };
 		AC6091791BFF5B9600D728B6 /* AbstractService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractService.h; sourceTree = "<group>"; };
@@ -587,8 +587,8 @@
 				ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */,
 				AC7E6D291DC2A05400F7871C /* LoadingView.h */,
 				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
-				AC604ED91E6DEFFE00D433FF /* ThemeButton.h */,
-				AC604EDA1E6DEFFE00D433FF /* ThemeButton.m */,
+				AC604ED91E6DEFFE00D433FF /* SettingsButton.h */,
+				AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */,
 				AC2C9D471E6E83380068D87B /* Palette.h */,
 				AC2C9D481E6E83380068D87B /* Palette.m */,
 			);
@@ -995,7 +995,7 @@
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */,
 				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
-				AC604EDB1E6DEFFE00D433FF /* ThemeButton.m in Sources */,
+				AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */,
 				AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */,
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,
 				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,

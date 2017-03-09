@@ -57,6 +57,7 @@
     // setting up palette
     [[Palette shared] setBackgroundColor:[UIColor colorWithRed:0.376 green:0.490 blue:0.545 alpha:1.0]];
     [[Palette shared] setStatusBarColor:[UIColor colorWithRed:0.149 green:0.196 blue:0.220 alpha:1.0]];
+    [[Palette shared] setNavigationPanelColor:[UIColor colorWithRed:0.216 green:0.278 blue:0.310 alpha:1.00]];
     
     // setting up pattern
     [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6"]];
@@ -71,6 +72,9 @@
         NSForegroundColorAttributeName: [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f],
         NSFontAttributeName : [UIFont fontWithName:@"TrajanBold" size:14.0f]
        };
+    navBarAppearence.barTintColor = [[Palette shared] navigationPanelColor];
+    navBarAppearence.tintColor = [UIColor whiteColor];
+    navBarAppearence.backgroundColor = [[Palette shared] navigationPanelColor];
     
     //customizing Dota button
     UIImage *resizeableDotaButton = [[UIImage imageNamed:@"ui_button_dota.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 12, 15, 12)];

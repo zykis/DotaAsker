@@ -46,6 +46,11 @@
     [self collectionView:self.collectionView didSelectItemAtIndexPath:path];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -65,11 +70,6 @@
     UIImage* image = [UIImage imageNamed:[_avatarNamesArray objectAtIndex:[indexPath row]]];
     [avatarImageView setImage: image];
     return cell;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:YES animated:animated];
 }
 
 - (IBAction)backButtonPressed:(id)sender {

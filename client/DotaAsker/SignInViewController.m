@@ -22,7 +22,6 @@
 
 @implementation SignInViewController
 
-@synthesize navigationBar = _navigationBar;
 @synthesize textFieldUsername = _textFieldUsername;
 @synthesize textFieldPassword = _textFieldPassword;
 @synthesize strUsername = _strUsername;
@@ -51,7 +50,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:YES animated:animated];
+    [[self navigationController] setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

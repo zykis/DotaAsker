@@ -15,7 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;
 @property (strong, nonatomic) NSString* strUsername;
 @property (strong, nonatomic) NSString* strPassword;
-@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 - (IBAction)signIn;
 - (IBAction)backButtonPressed;
 
