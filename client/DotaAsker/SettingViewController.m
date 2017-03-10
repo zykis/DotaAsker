@@ -18,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

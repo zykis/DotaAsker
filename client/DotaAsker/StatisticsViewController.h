@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
 @class User;
 @interface StatisticsViewController : UIViewController

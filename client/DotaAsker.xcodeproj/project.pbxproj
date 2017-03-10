@@ -14,6 +14,7 @@
 		AC138C101D948EC30023EFF3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC138C0F1D948EC30023EFF3 /* Helper.m */; };
 		AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC161A501DAB01F400819AF7 /* MatchTransport.m */; };
 		AC1791F91DDA5F2200187D59 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */; };
+		AC26CB341E7298D7001A9258 /* RoundViewLayered.m in Sources */ = {isa = PBXBuildFile; fileRef = AC26CB331E7298D7001A9258 /* RoundViewLayered.m */; };
 		AC2C9D491E6E83380068D87B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2C9D481E6E83380068D87B /* Palette.m */; };
 		AC2C9D4D1E6E86AB0068D87B /* pattern-6.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */; };
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
@@ -136,7 +137,6 @@
 		ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */; };
 		ACD52F841BB129780006D50A /* question_images.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACD52F831BB129780006D50A /* question_images.plist */; };
 		ACD52F871BB15C300006D50A /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F861BB15C300006D50A /* Answer.m */; };
-		ACD94DE21B428FB800F71901 /* RoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD94DE11B428FB800F71901 /* RoundView.m */; };
 		ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD94DE41B42C3D800F71901 /* DotaButton.m */; };
 		ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */; };
 		ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */; };
@@ -180,6 +180,8 @@
 		AC161A501DAB01F400819AF7 /* MatchTransport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchTransport.m; sourceTree = "<group>"; };
 		AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
 		AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		AC26CB321E7298D7001A9258 /* RoundViewLayered.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundViewLayered.h; sourceTree = "<group>"; };
+		AC26CB331E7298D7001A9258 /* RoundViewLayered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundViewLayered.m; sourceTree = "<group>"; };
 		AC2C9D471E6E83380068D87B /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		AC2C9D481E6E83380068D87B /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
 		AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-6.png"; path = "resources/pattern-6.png"; sourceTree = "<group>"; };
@@ -350,8 +352,6 @@
 		ACD52F831BB129780006D50A /* question_images.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = question_images.plist; sourceTree = "<group>"; };
 		ACD52F851BB15C300006D50A /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		ACD52F861BB15C300006D50A /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
-		ACD94DE01B428FB800F71901 /* RoundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoundView.h; sourceTree = "<group>"; };
-		ACD94DE11B428FB800F71901 /* RoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundView.m; sourceTree = "<group>"; };
 		ACD94DE31B42C3D800F71901 /* DotaButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotaButton.h; sourceTree = "<group>"; };
 		ACD94DE41B42C3D800F71901 /* DotaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotaButton.m; sourceTree = "<group>"; };
 		ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerItemView.h; sourceTree = "<group>"; };
@@ -601,8 +601,6 @@
 		ACF41C031B3BE8B20096598C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				ACD94DE01B428FB800F71901 /* RoundView.h */,
-				ACD94DE11B428FB800F71901 /* RoundView.m */,
 				ACD94DE31B42C3D800F71901 /* DotaButton.h */,
 				ACD94DE41B42C3D800F71901 /* DotaButton.m */,
 				ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */,
@@ -615,6 +613,8 @@
 				AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */,
 				AC2C9D471E6E83380068D87B /* Palette.h */,
 				AC2C9D481E6E83380068D87B /* Palette.m */,
+				AC26CB321E7298D7001A9258 /* RoundViewLayered.h */,
+				AC26CB331E7298D7001A9258 /* RoundViewLayered.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1080,7 +1080,7 @@
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
-				ACD94DE21B428FB800F71901 /* RoundView.m in Sources */,
+				AC26CB341E7298D7001A9258 /* RoundViewLayered.m in Sources */,
 				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,

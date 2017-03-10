@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
+    [self loadBackgroundImageForView:self.collectionView];
     
     // [1]
     [self.collectionView setAllowsSelection:YES];

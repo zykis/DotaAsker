@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
 @interface ChangeAvatarViewController : UIViewController
 <UICollectionViewDataSource, UICollectionViewDelegate>

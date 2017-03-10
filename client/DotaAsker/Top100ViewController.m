@@ -20,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
+    [self loadBackgroundImageForView:self.tableView];
+    
     _results = [[NSMutableArray alloc] init];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

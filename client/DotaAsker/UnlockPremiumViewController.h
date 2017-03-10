@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+Utils.h"
 
 @interface UnlockPremiumViewController : UIViewController
 - (IBAction)unlockPressed;

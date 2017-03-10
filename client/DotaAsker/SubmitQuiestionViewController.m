@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
     // Do any additional setup after loading the view.
 }
 

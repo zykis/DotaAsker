@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Match.h"
-#import "RoundView.h"
+#import "RoundViewLayered.h"
 
 @class MatchViewModel;
 

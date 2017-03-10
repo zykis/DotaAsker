@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadBackgroundImage];
     
     if (!self.userID) {
         NSLog(@"No user specified");

@@ -14,6 +14,7 @@
 #import "MatchViewModel.h"
 #import "ServiceLayer.h"
 #import "Palette.h"
+#import "RoundViewLayered.h"
 
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
@@ -265,8 +266,7 @@
             
         case SECTION_ROUNDS: {
             cell = [tableView dequeueReusableCellWithIdentifier:roundCellIdentifier];
-
-            RoundView *roundView = (RoundView*)[cell viewWithTag:100];
+            RoundViewLayered* roundView = (RoundViewLayered*)[cell viewWithTag:100];
             roundView.delegate = self;
             UILabel *roundNumber = (UILabel*)[cell viewWithTag:107];
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
@@ -391,14 +391,14 @@
     return UITableViewAutomaticDimension;
 }
 
-- (void)roundViewAnswerWasTapped:(RoundView *)roundView atIndex:(NSInteger)index {
+- (void)roundViewAnswerWasTapped:(RoundViewLayered *)roundView atIndex:(NSInteger)index {
     //get appropriative answer
     NSIndexPath *path;
     //как получить указатель на текущий раунд?
     for (int i = 0; i < [[_tableView visibleCells] count]; i++) {
         UITableViewCell *cell = [[_tableView visibleCells] objectAtIndex:i];
         if ([[cell reuseIdentifier] isEqualToString:@"round_cell"]) {
-            RoundView* visibleRoundView = (RoundView*)[cell viewWithTag:100];
+            RoundViewLayered* visibleRoundView = (RoundViewLayered*)[cell viewWithTag:100];
             if ([visibleRoundView isEqual:roundView]) {
                 //находим раунд для соотв ячейки
                 path = [_tableView indexPathForCell:cell];

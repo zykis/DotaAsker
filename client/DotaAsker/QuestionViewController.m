@@ -54,6 +54,11 @@
     [self showNextQuestion];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
@@ -99,25 +104,6 @@
     userAnswer.relatedQuestionID = q.ID;
     [realm commitWriteTransaction];
     
-//    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-//    [subject subscribeNext:^(id x) {
-//        // Mark userAnswer as synchronized
-//        for (int i = 0; i < [[_round userAnswers] count]; i++) {
-//            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
-//            if ([ua isEqual:x]) {
-//                ua = x;
-//                RLMRealm *realm = [RLMRealm defaultRealm];
-//                [realm beginWriteTransaction];
-//                ua.synchronized = true;
-//                [realm commitWriteTransaction];
-//            }
-//        }
-//    } error:^(NSError *error) {
-//        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
-//    } completed:^{
-//        NSLog(@"Answer synchronized");
-//    }];
-    
     User* relatedUser = [[self selectedRound] nextMoveUser];
 
     [realm beginWriteTransaction];
@@ -142,25 +128,6 @@
     UserAnswer *userAnswer = [[[self selectedRound] userAnswers] lastObject];
     assert(userAnswer);
 
-//    RACReplaySubject* subject = [[[ServiceLayer instance] userAnswerService] create:userAnswer];
-//    [subject subscribeNext:^(id x) {
-//        // Mark userAnswer as synchronized
-//        for (int i = 0; i < [[_round userAnswers] count]; i++) {
-//            UserAnswer* ua = [[_round userAnswers] objectAtIndex:i];
-//            if ([ua isEqual:x]) {
-//                ua = x;
-//                RLMRealm *realm = [RLMRealm defaultRealm];
-//                [realm beginWriteTransaction];
-//                ua.synchronized = true;
-//                [realm commitWriteTransaction];
-//            }
-//        }
-//    } error:^(NSError *error) {
-//        NSLog(@"Answer synchronize failed: %@", [error localizedDescription]);
-//    } completed:^{
-//        NSLog(@"Answer synchronized");
-//    }];
-    
     User* relatedUser = [[self selectedRound] nextMoveUser];
     
     RLMRealm *realm = [RLMRealm defaultRealm];

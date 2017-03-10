@@ -21,6 +21,10 @@
     [self loadBackgroundImage:backgroundImage atView:self.view];
 }
 
+- (void)loadBackgroundImageForView:(UIView *)view {
+    [self loadBackgroundImage:[[Palette shared] pattern] atView:view];
+}
+
 - (void)loadBackgroundImage: (UIImage*)backgroundImage atView:(UIView*)view {
     UIGraphicsBeginImageContext(backgroundImage.size);
     // First fill the background with white.
