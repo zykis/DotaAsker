@@ -28,9 +28,8 @@
 @property (assign, nonatomic) NSInteger currentQuestionIndex;
 @property (strong, nonatomic) NSTimer* questionTimer;
 @property (strong, nonatomic) NSTimer* timeTimer;
-@property (strong, nonatomic) IBOutlet UILabel *timeElapsedLabel;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
-@property (assign, nonatomic) double secondsRemain;
+@property (assign, nonatomic) float secondsRemain;
 
 - (IBAction)answerPushed:(id)sender;
 - (void)timeElapsed;

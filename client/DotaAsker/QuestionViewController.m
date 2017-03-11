@@ -18,7 +18,7 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
-#define QUESTION_TIMEOUT_INTERVAL 30
+#define QUESTION_TIMEOUT_INTERVAL 20
 
 @interface QuestionViewController ()
 
@@ -100,7 +100,7 @@
     RLMRealm *realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     userAnswer.relatedAnswerID = relatedAnswer.ID;
-    userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - [[_timeElapsedLabel text] integerValue];
+    userAnswer.secForAnswer = QUESTION_TIMEOUT_INTERVAL - (int)_secondsRemain;
     userAnswer.relatedUserID = [Player instance].ID;
     userAnswer.relatedRoundID = [self selectedRound].ID;
     userAnswer.relatedQuestionID = q.ID;
@@ -188,12 +188,9 @@
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
                 _secondsRemain -= 0.01;
-                
+                float progress = self.secondsRemain / (float)QUESTION_TIMEOUT_INTERVAL;
                 // Update UI
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    NSString* secondsRemain = [NSString stringWithFormat:@"%2.1f", self.secondsRemain];
-                    [_timeElapsedLabel setText:secondsRemain];
-                    float progress = self.secondsRemain / (float)QUESTION_TIMEOUT_INTERVAL;
                     [_progressView setProgress:progress];
                 });
             }];
