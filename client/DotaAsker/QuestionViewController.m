@@ -32,6 +32,7 @@
 @synthesize answer2Button = _answer2Button;
 @synthesize answer3Button = _answer3Button;
 @synthesize answer4Button = _answer4Button;
+@synthesize progressView = _progressView;
 @synthesize currentQuestionIndex = _currentQuestionIndex;
 @synthesize questionViewModel = _questionViewModel;
 
@@ -51,6 +52,7 @@
     [self loadBackgroundImage];
     _questionViewModel = [[QuestionViewModel alloc] init];
     _currentQuestionIndex = 0;
+    [_progressView setProgress:1.0];
     [self showNextQuestion];
 }
 
@@ -184,13 +186,15 @@
         
         // Start timer with 0.1 sec interval
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-                _secondsRemain -= 0.1;
+            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
+                _secondsRemain -= 0.01;
                 
                 // Update UI
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSString* secondsRemain = [NSString stringWithFormat:@"%2.1f", self.secondsRemain];
                     [_timeElapsedLabel setText:secondsRemain];
+                    float progress = self.secondsRemain / (float)QUESTION_TIMEOUT_INTERVAL;
+                    [_progressView setProgress:progress];
                 });
             }];
             [[NSRunLoop currentRunLoop] addTimer:_timeTimer forMode:NSDefaultRunLoopMode];

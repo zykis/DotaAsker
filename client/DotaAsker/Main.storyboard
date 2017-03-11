@@ -708,7 +708,7 @@
                                         <rect key="frame" x="0.0" y="22" width="320" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ByM-CF-Jqd" id="G13-LF-2aj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-cg-6oZ">
@@ -727,7 +727,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-ZJ-4UW">
-                                                    <rect key="frame" x="207.5" y="80" width="55.5" height="15"/>
+                                                    <rect key="frame" x="207" y="80" width="56" height="15"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -766,7 +766,7 @@
                                         <rect key="frame" x="0.0" y="132" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xsd-MC-J9u" id="Cmr-y3-k5W">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkz-a6-qWm" customClass="RoundViewLayered">
@@ -873,7 +873,7 @@
                                         <rect key="frame" x="0.0" y="182" width="320" height="59"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="282-5U-zX3" id="4UT-cr-bdJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="58.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jlL-a4-rao">
@@ -1207,22 +1207,32 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="1mb-9g-krW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time elapsed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90w-OC-mhS">
-                                <rect key="frame" x="93" y="386" width="134" height="22"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HnT-pV-LHI">
                                 <rect key="frame" x="12" y="28" width="296" height="166"/>
                                 <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="height" multiplier="568:319" id="nqe-jb-xa4"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-4P-VM5">
                                 <rect key="frame" x="12" y="202" width="143" height="84"/>
@@ -1234,6 +1244,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="hK2-ix-mEB"/>
                                 </connections>
@@ -1249,6 +1267,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="Ir3-w2-ybI"/>
                                 </connections>
@@ -1260,6 +1286,14 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="yJU-P3-ZIz"/>
                                 </connections>
@@ -1273,12 +1307,32 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4S0-Ay-U7O">
+                                <rect key="frame" x="16" y="558" width="288" height="30"/>
+                                <color key="tintColor" red="0.0" green="0.6973828125" blue="0.00021348547210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="sNn-ns-Iqb"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.cornerRadius">
+                                        <real key="value" value="4.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="self.layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time elapsed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="90w-OC-mhS">
+                                <rect key="frame" x="93" y="562" width="134" height="22"/>
+                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="width" multiplier="0.48" id="1ku-TW-JrI"/>
                             <constraint firstItem="6zT-S1-Eo6" firstAttribute="height" secondItem="Zu8-37-KE8" secondAttribute="height" id="2IF-bF-Ocs"/>
-                            <constraint firstItem="90w-OC-mhS" firstAttribute="top" secondItem="6zT-S1-Eo6" secondAttribute="bottom" constant="8" id="4T3-Kb-1F9"/>
                             <constraint firstAttribute="centerX" secondItem="HnT-pV-LHI" secondAttribute="centerX" id="53N-cm-30Z"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="67a-cb-dlQ"/>
                             <constraint firstItem="HnT-pV-LHI" firstAttribute="trailing" secondItem="vHM-O6-UEQ" secondAttribute="trailingMargin" constant="4" id="6oV-za-Fsj"/>
@@ -1286,21 +1340,25 @@
                             <constraint firstItem="Win-pf-vVN" firstAttribute="top" secondItem="17R-45-z1x" secondAttribute="bottom" constant="-24" id="7dG-IK-9BD"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="trailing" secondItem="6zT-S1-Eo6" secondAttribute="trailing" id="8qA-rf-bxT"/>
                             <constraint firstItem="HnT-pV-LHI" firstAttribute="leading" secondItem="vHM-O6-UEQ" secondAttribute="leadingMargin" constant="-4" id="Ejv-VF-fro"/>
+                            <constraint firstItem="90w-OC-mhS" firstAttribute="centerX" secondItem="4S0-Ay-U7O" secondAttribute="centerX" id="GNc-Br-Yuw"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="width" secondItem="HnT-pV-LHI" secondAttribute="width" multiplier="0.48" id="HbP-fZ-M15"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="top" secondItem="HnT-pV-LHI" secondAttribute="bottom" constant="8" id="Lxa-RC-8SM"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="height" secondItem="c5A-4P-VM5" secondAttribute="height" id="PQo-NI-b7s"/>
                             <constraint firstItem="E7c-Qo-mxp" firstAttribute="top" secondItem="c5A-4P-VM5" secondAttribute="bottom" constant="8" id="Puv-ex-7Vi"/>
                             <constraint firstItem="17R-45-z1x" firstAttribute="leading" secondItem="vHM-O6-UEQ" secondAttribute="leadingMargin" constant="-4" id="VCx-Wv-0DI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4S0-Ay-U7O" secondAttribute="trailing" id="Wiw-vx-dHz"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="top" secondItem="HnT-pV-LHI" secondAttribute="bottom" constant="8" id="ZJO-0Y-iTK"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="leading" secondItem="E7c-Qo-mxp" secondAttribute="leading" id="bBv-Jn-cUg"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="leading" secondItem="HnT-pV-LHI" secondAttribute="leading" id="bzK-Hd-nIK"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="fhD-SR-odF"/>
                             <constraint firstAttribute="centerX" secondItem="17R-45-z1x" secondAttribute="centerX" id="h0u-3I-yga"/>
+                            <constraint firstItem="Win-pf-vVN" firstAttribute="top" secondItem="4S0-Ay-U7O" secondAttribute="bottom" constant="15" id="h2V-a8-mrD"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="leading" secondItem="HnT-pV-LHI" secondAttribute="leading" id="hHf-PC-pvR"/>
-                            <constraint firstItem="90w-OC-mhS" firstAttribute="centerX" secondItem="vHM-O6-UEQ" secondAttribute="centerX" id="i0G-82-LPH"/>
                             <constraint firstItem="6zT-S1-Eo6" firstAttribute="top" secondItem="Zu8-37-KE8" secondAttribute="bottom" constant="8" id="krF-ei-Due"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="width" secondItem="E7c-Qo-mxp" secondAttribute="width" id="vBs-uH-oZF"/>
+                            <constraint firstItem="90w-OC-mhS" firstAttribute="centerY" secondItem="4S0-Ay-U7O" secondAttribute="centerY" id="wMd-mN-LvW"/>
                             <constraint firstItem="HnT-pV-LHI" firstAttribute="top" secondItem="coO-XB-ZlP" secondAttribute="bottom" constant="8" id="z1S-hU-crx"/>
+                            <constraint firstItem="4S0-Ay-U7O" firstAttribute="leading" secondItem="vHM-O6-UEQ" secondAttribute="leadingMargin" id="z6L-3e-XKy"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="bottom" secondItem="HnT-pV-LHI" secondAttribute="bottom" id="zUM-fY-Ppg"/>
                             <constraint firstItem="Zu8-37-KE8" firstAttribute="width" secondItem="6zT-S1-Eo6" secondAttribute="width" id="zz0-UR-Rr2"/>
                         </constraints>
@@ -1313,6 +1371,7 @@
                         <outlet property="answer2Button" destination="Zu8-37-KE8" id="I2Q-6o-PAr"/>
                         <outlet property="answer3Button" destination="E7c-Qo-mxp" id="7k8-3J-bg4"/>
                         <outlet property="answer4Button" destination="6zT-S1-Eo6" id="TPZ-De-VOp"/>
+                        <outlet property="progressView" destination="4S0-Ay-U7O" id="hwP-vS-FJ4"/>
                         <outlet property="questionImageView" destination="HnT-pV-LHI" id="PeQ-bq-ths"/>
                         <outlet property="questionText" destination="IpC-M2-nMF" id="nSI-Ea-Ab3"/>
                         <outlet property="timeElapsedLabel" destination="90w-OC-mhS" id="Sej-Il-cc5"/>
@@ -1344,11 +1403,11 @@
                                         <rect key="frame" x="0.0" y="22" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EBk-I4-Pkr" id="54Y-ha-VLa">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="player's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-s0-5BS">
-                                                    <rect key="frame" x="95" y="24.5" width="150" height="27.5"/>
+                                                    <rect key="frame" x="95" y="24" width="150" height="28"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="22"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1403,7 +1462,7 @@
                                         <rect key="frame" x="0.0" y="102" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SSk-8C-alD" id="A02-Xz-Yzw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAc-Kx-Khk" customClass="DotaButton">
@@ -1433,11 +1492,11 @@
                                         <rect key="frame" x="0.0" y="182" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4gi-ni-2bv" id="TvT-kV-PYz">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Match state text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NX-Ic-vRr">
-                                                    <rect key="frame" x="80" y="27.5" width="64" height="25"/>
+                                                    <rect key="frame" x="80" y="27" width="64" height="25"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1541,43 +1600,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-gk-fJs">
-                                <rect key="frame" x="16" y="32" width="40.5" height="16.5"/>
+                                <rect key="frame" x="16" y="32" width="41" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqq-ab-Ip3">
-                                <rect key="frame" x="16" y="46.5" width="35" height="16.5"/>
+                                <rect key="frame" x="16" y="47" width="35" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPM:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcv-hn-K5k">
-                                <rect key="frame" x="16" y="62" width="37" height="16.5"/>
+                                <rect key="frame" x="16" y="63" width="37" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-Bu-tp0">
-                                <rect key="frame" x="103.5" y="34" width="29.5" height="14"/>
+                                <rect key="frame" x="104" y="34" width="30" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-xq-S0X">
-                                <rect key="frame" x="113.5" y="48.5" width="19.5" height="14"/>
+                                <rect key="frame" x="114" y="49" width="20" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="671.56" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-FD-T6A">
-                                <rect key="frame" x="99" y="64" width="34" height="14"/>
+                                <rect key="frame" x="99" y="65" width="35" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVERAGE ANSWER TIME:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcq-NU-hAe">
-                                <rect key="frame" x="16" y="81.5" width="79" height="50"/>
+                                <rect key="frame" x="16" y="83" width="79" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="79" id="67b-qv-rDB"/>
                                     <constraint firstAttribute="height" constant="50" id="6Z5-fM-MEy"/>
@@ -1587,13 +1646,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54.56%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-aL-PNu">
-                                <rect key="frame" x="94" y="146.5" width="39" height="14"/>
+                                <rect key="frame" x="94" y="148" width="40" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CORRECT ANSWERS:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIT-Sx-4iI">
-                                <rect key="frame" x="16" y="133.5" width="79" height="40"/>
+                                <rect key="frame" x="16" y="135" width="79" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="knh-bz-8ey"/>
                                 </constraints>
@@ -1605,7 +1664,7 @@
                                 <rect key="frame" x="175" y="114" width="100" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHART" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-eO-kOn">
-                                        <rect key="frame" x="24.5" y="39" width="51.5" height="22"/>
+                                        <rect key="frame" x="24" y="39" width="52" height="22"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -1694,31 +1753,31 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-Qg-Y3M">
-                                <rect key="frame" x="111" y="99.5" width="22" height="14"/>
+                                <rect key="frame" x="112" y="101" width="22" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINS:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-8f-8Lu">
-                                <rect key="frame" x="16" y="180.5" width="43.5" height="16.5"/>
+                                <rect key="frame" x="16" y="182" width="44" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOST:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-vn-VGT">
-                                <rect key="frame" x="16" y="196" width="40" height="16.5"/>
+                                <rect key="frame" x="16" y="198" width="40" height="17"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksI-p2-x0l">
-                                <rect key="frame" x="113.5" y="182.5" width="19.5" height="14"/>
+                                <rect key="frame" x="114" y="184" width="20" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="211" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-61-jsw">
-                                <rect key="frame" x="116" y="198" width="17" height="14"/>
+                                <rect key="frame" x="117" y="200" width="17" height="14"/>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
