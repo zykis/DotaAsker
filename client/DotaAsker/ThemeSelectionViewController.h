@@ -10,11 +10,12 @@
 #import "UIViewController+Utils.h"
 
 @class Round;
+@class ThemeButton;
 
 @interface ThemeSelectionViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIButton *imagedButton1;
-@property (strong, nonatomic) IBOutlet UIButton *imagedButton2;
-@property (strong, nonatomic) IBOutlet UIButton *imagedButton3;
+@property (strong, nonatomic) IBOutlet ThemeButton* imagedButton1;
+@property (strong, nonatomic) IBOutlet ThemeButton* imagedButton2;
+@property (strong, nonatomic) IBOutlet ThemeButton* imagedButton3;
 @property (assign, nonatomic) NSUInteger roundID;
 - (IBAction)button1Pressed:(id)sender;
 - (IBAction)button2Pressed:(id)sender;

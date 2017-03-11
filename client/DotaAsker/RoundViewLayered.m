@@ -20,7 +20,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self drawShape];
+        [self initShape];
     }
     return self;
 }
@@ -57,39 +57,22 @@
     [self.delegate roundViewAnswerWasTapped:self atIndex:index];
 }
 
-- (void)drawShape {
+- (void)initShape {
     if (!_shapeLayer) {
         _shapeLayer = [CAShapeLayer layer];
-        _headerHeight = 20;
-        _headerWidth = 70;
-        CGRect mainRect = self.bounds;
-        mainRect.size.height -= 5;
-        
-        CGRect headerRect;
-        headerRect.size.width = _headerWidth;
-        headerRect.size.height = _headerHeight;
-        headerRect.origin.x = (mainRect.size.width - _headerWidth) / 2;
-        headerRect.origin.y = 0;
-        
-        CGRect bottomRect = CGRectMake(0, _headerHeight / 2, mainRect.size.width, mainRect.size.height - _headerHeight / 2);
-        
-        UIBezierPath* figurePath = [UIBezierPath bezierPathWithRoundedRect:bottomRect cornerRadius:4.5];
-        [figurePath appendPath:[UIBezierPath bezierPathWithRoundedRect:headerRect cornerRadius:4.5]];
-        
-        _shapeLayer.path = figurePath.CGPath;
-        _shapeLayer.anchorPoint = CGPointMake(0.5, 0.5);
-        _shapeLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
         _shapeLayer.fillColor = _shapeLayerColor.CGColor;
-        _shapeLayer.strokeColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
         [self.layer insertSublayer:_shapeLayer atIndex:0];
     }
 }
 
 - (void)layoutSubviews {
-    if (_shapeLayer) {
-        _shapeLayer.bounds = self.bounds;
-    }
     [super layoutSubviews];
+    if (_shapeLayer) {
+        _shapeLayer.path = [self shapePath];
+        _shapeLayer.bounds = self.bounds;
+        _shapeLayer.anchorPoint = CGPointMake(0.5, 0.5);
+        _shapeLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
+    }
 }
 
 - (void)awakeFromNib {
@@ -97,23 +80,25 @@
     if (_shapeLayer) {
         _shapeLayer.fillColor = _shapeLayerColor.CGColor;
     }
+    
 }
 
-//- (CGPathRef)shapePath {
-//    CGFloat w = self.bounds.size.width;
-//    CGFloat h = self.bounds.size.height;
-//    CGFloat h_w = _headerWidth;
-//    CGFloat h_h = _headerHeight;
-//    CGFloat r = 4.5;
-//    
-//    UIBezierPath* path;
-//    // 1. (r, h_h)
-//    [path moveToPoint:CGPointMake(r, h_h)];
-//    // 2. ((w - h_w) / 2, h_h)
-//    [path addLineToPoint:CGPointMake((w - h_w) / 2, h_h)];
-//    // 3. (
-//    
-//    return path.CGPath;
-//}
+- (CGPathRef)shapePath {
+    CGRect mainRect = self.bounds;
+    mainRect.size.height -= 5;
+    
+    CGRect headerRect;
+    headerRect.size.width = _headerWidth;
+    headerRect.size.height = _headerHeight;
+    headerRect.origin.x = (mainRect.size.width - _headerWidth) / 2;
+    headerRect.origin.y = 0;
+    
+    CGRect bottomRect = CGRectMake(0, _headerHeight / 2, mainRect.size.width, mainRect.size.height - _headerHeight / 2);
+    
+    UIBezierPath* figurePath = [UIBezierPath bezierPathWithRoundedRect:bottomRect cornerRadius:4.5];
+    [figurePath appendPath:[UIBezierPath bezierPathWithRoundedRect:headerRect cornerRadius:4.5]];
+    
+    return figurePath.CGPath;
+}
 
 @end

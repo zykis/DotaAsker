@@ -4,15 +4,17 @@
 //
 //  Created by Artem on 17/07/15.
 //  Copyright (c) 2015 Artem. All rights reserved.
-//
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC.h>
 
+// Local
 #import "ThemeSelectedViewController.h"
 #import "QuestionViewController.h"
 #import "ServiceLayer.h"
 #import "UIViewController+Utils.h"
+#import "ThemeButton.h"
+
 
 @interface ThemeSelectedViewController ()
 
@@ -20,9 +22,9 @@
 
 @implementation ThemeSelectedViewController
 
-@synthesize themeImageView = _themeImageView;
 @synthesize roundID = _roundID;
 @synthesize selectedThemeID = _selectedThemeID;
+@synthesize selectedThemeButton = _selectedThemeButton;
 
 - (Round*)round {
     return [Round objectForPrimaryKey:@(_roundID)];
@@ -35,6 +37,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [_selectedThemeButton setTitle:[[self selectedTheme] name] forState:UIControlStateNormal];
 }
 
 - (void)viewDidLoad {
@@ -64,13 +67,6 @@
     } completed:^{
         [loadingView removeFromSuperview];
     }];
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showQuestions)];
-    [_themeImageView addGestureRecognizer:tapGesture];
-    
-    UIImage* themeImage = [UIImage imageNamed:[selectedTheme imageName]];
-    [_themeImageView setImage:themeImage];
-    [_themeImageView setContentMode:UIViewContentModeScaleAspectFill];
     // Do any additional setup after loading the view.
 }
 
@@ -79,8 +75,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)showQuestions {
-    [self performSegueWithIdentifier:@"showQuestions" sender:_themeImageView];
+- (IBAction)showQuestions {
+    [self performSegueWithIdentifier:@"showQuestions" sender:self];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

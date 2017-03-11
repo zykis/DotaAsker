@@ -44,9 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self loadBackgroundImage];
-    [self loadBackgroundImage:[[Palette shared] pattern] atView:self.tableView];
-    
     _matchViewModel = [[MatchViewModel alloc] init];
     
     bool bMatchFound = false;
@@ -66,6 +63,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[Palette shared] pattern] atView:self.tableView];
     [_tableView reloadData];
 }
 

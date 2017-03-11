@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UIColor* backgroundColor;
 @property (strong, nonatomic) UIColor* navigationPanelColor;
 @property (strong, nonatomic) UIColor* statusBarColor;
+@property (strong, nonatomic) UIColor* themeButtonBackgroundColor;
 
 @property (strong, nonatomic) UIColor* themesButtonColor;
 @property (strong, nonatomic) UIColor* findMatchButtonColor;

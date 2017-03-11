@@ -10,11 +10,12 @@
 #import "UIViewController+Utils.h"
 @class Round;
 @class Theme;
+@class ThemeButton;
 
 @interface ThemeSelectedViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIImageView *themeImageView;
+@property (strong, nonatomic) IBOutlet ThemeButton *selectedThemeButton;
 @property (assign, nonatomic) long long roundID;
 @property (assign, nonatomic) long long selectedThemeID;
-- (void)showQuestions;
+- (IBAction)showQuestions;
 
 @end

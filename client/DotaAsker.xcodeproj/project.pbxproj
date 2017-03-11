@@ -144,6 +144,7 @@
 		ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDBCAC31B4FE37C00932CA1 /* cell.png */; };
 		ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */; };
 		ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */; };
+		ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7A7FA1E733C0500301677 /* ThemeButton.m */; };
 		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
 		ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37B1D9A40300060EA56 /* MainViewModel.m */; };
 		ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */; };
@@ -363,6 +364,8 @@
 		ACDBCAC81B4FE96100932CA1 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_button_dota.png; path = resources/ui_button_dota.png; sourceTree = "<group>"; };
+		ACE7A7F91E733C0500301677 /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
+		ACE7A7FA1E733C0500301677 /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
 		ACF5F3761D99E1080060EA56 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ACF5F3771D99E1080060EA56 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		ACF5F37A1D9A40300060EA56 /* MainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewModel.h; sourceTree = "<group>"; };
@@ -615,6 +618,8 @@
 				AC2C9D481E6E83380068D87B /* Palette.m */,
 				AC26CB321E7298D7001A9258 /* RoundViewLayered.h */,
 				AC26CB331E7298D7001A9258 /* RoundViewLayered.m */,
+				ACE7A7F91E733C0500301677 /* ThemeButton.h */,
+				ACE7A7FA1E733C0500301677 /* ThemeButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1043,6 +1048,7 @@
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */,
 				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
+				ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */,
 				AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */,
 				AC161A511DAB01F400819AF7 /* MatchTransport.m in Sources */,
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,

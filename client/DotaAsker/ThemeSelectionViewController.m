@@ -6,12 +6,16 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "ThemeSelectionViewController.h"
 #import "ThemeSelectedViewController.h"
 #import "ServiceLayer.h"
 #import "UIViewController+Utils.h"
+#import "ThemeButton.h"
 
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
 
 @interface ThemeSelectionViewController ()
 
@@ -38,17 +42,13 @@
     [self loadBackgroundImage];
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     assert([themes count] == 3);
+    Theme* theme1 = [themes objectAtIndex:0];
+    Theme* theme2 = [themes objectAtIndex:1];
+    Theme* theme3 = [themes objectAtIndex:2];
     
-    [_imagedButton1 setImage: [UIImage imageNamed:[[themes objectAtIndex:0] imageName]] forState:UIControlStateNormal];
-    [[_imagedButton1 imageView] setContentMode:UIViewContentModeScaleAspectFill];
-    
-    [_imagedButton2 setImage: [UIImage imageNamed:[[themes objectAtIndex:1] imageName]] forState:UIControlStateNormal];
-    [[_imagedButton2 imageView] setContentMode:UIViewContentModeScaleAspectFill];
-    
-    [_imagedButton3 setImage: [UIImage imageNamed:[[themes objectAtIndex:2] imageName]] forState:UIControlStateNormal];
-    [[_imagedButton3 imageView] setContentMode:UIViewContentModeScaleAspectFill];
-    
-    // Do any additional setup after loading the view.
+    [_imagedButton1 setTitle:[theme1 name] forState:UIControlStateNormal];
+    [_imagedButton2 setTitle:[theme2 name] forState:UIControlStateNormal];
+    [_imagedButton3 setTitle:[theme3 name] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

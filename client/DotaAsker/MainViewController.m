@@ -34,15 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadBackgroundImage];
-    [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
-    
     _viewModel = [[MainViewModel alloc] init];
-    
     //add refresher controll
     self.tableView.refreshControl = [[UIRefreshControl alloc] init];
-    [self.tableView.refreshControl setTintColor:[UIColor whiteColor]];
-    [self.tableView.refreshControl addTarget:self action:@selector(refreshControllDragged) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)refreshControllDragged {
@@ -75,6 +69,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self loadBackgroundImage];
+    [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
+    
+    [self.tableView.refreshControl setTintColor:[UIColor whiteColor]];
+    [self.tableView.refreshControl addTarget:self action:@selector(refreshControllDragged) forControlEvents:UIControlEventValueChanged];
+    
     [self.tableView reloadData];
 }
 

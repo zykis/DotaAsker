@@ -279,6 +279,14 @@
     }
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    CGRect questionTextRect = [_questionText frame];
+    CGSize contentSize = [_questionText contentSize];
+    questionTextRect.size = contentSize;
+    [_questionText setFrame:questionTextRect];
+}
+
 - (void)popToMatchViewController {
     //возвращаемся к MatchInfoViewController
     MatchViewController* destVC;
