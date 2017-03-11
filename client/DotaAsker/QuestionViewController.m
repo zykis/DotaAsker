@@ -282,8 +282,10 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGRect questionTextRect = [_questionText frame];
+    CGRect questionTextRectOld = questionTextRect;
     CGSize contentSize = [_questionText contentSize];
     questionTextRect.size = contentSize;
+    questionTextRect.origin.y = questionTextRectOld.origin.y + questionTextRectOld.size.height - questionTextRect.size.height;
     [_questionText setFrame:questionTextRect];
 }
 
