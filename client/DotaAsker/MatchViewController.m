@@ -277,7 +277,8 @@
             Round* selectedRound = [[[_matchViewModel match] rounds] objectAtIndex:[indexPath row]];
             NSMutableArray* playerAnswers = [[NSMutableArray alloc] init];
             NSMutableArray* opponentAnswers = [[NSMutableArray alloc] init];
-            for (UserAnswer* ua in [selectedRound userAnswers]) {
+            RLMResults* uas = [UserAnswer objectsWhere:@"relatedRoundID = %llu", selectedRound.ID];
+            for (UserAnswer* ua in uas) {
                 if ([[ua relatedUser] isEqual:[Player instance]]) {
                     [playerAnswers addObject:ua];
                 }
@@ -285,6 +286,7 @@
                     [opponentAnswers addObject:ua];
                 }
             }
+            
             
             for (int i = 0; i < 6; i++) {
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];
@@ -296,8 +298,8 @@
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];
                 answerItemView.delegate = roundView;
                 [answerItemView setHidden:NO];
-                
-                [answerItemView setAnswerState:[[ua relatedAnswer] isCorrect]];
+                BOOL isCorrect = [[ua relatedAnswer] isCorrect];
+                [answerItemView setAnswerState:isCorrect];
             }
             for (NSUInteger i = 0; i < [opponentAnswers count]; i++) {
                 UserAnswer* ua = [opponentAnswers objectAtIndex:i];

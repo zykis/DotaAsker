@@ -35,5 +35,7 @@
 - (void)timeElapsed;
 - (void)showNextQuestion;
 - (void)popToMatchViewController;
+- (void)successAnimationOnButton: (UIButton*)button withCompletion:(void (^)())block;
+- (void)failAnimationOnButton: (UIButton*)button withCompletion:(void (^)())block;
 
 @end

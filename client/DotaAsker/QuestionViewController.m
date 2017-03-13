@@ -121,6 +121,8 @@
     [self showNextQuestion];
 }
 
+
+
 - (void)timeElapsed {
     if (_questionTimer) {
         [_questionTimer invalidate];
