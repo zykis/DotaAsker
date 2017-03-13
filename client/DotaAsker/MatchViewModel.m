@@ -71,8 +71,16 @@
     User* player = [Player instance];
     User* opponent = [self opponent];
     
-    UserAnswer* ua1 = [[UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID] objectAtIndex:index];
-    UserAnswer* ua2 = [[UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, opponent.ID] objectAtIndex:index];
+    RLMResults<UserAnswer*> firstUserUserAnswers = [UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID];
+    RLMResults<UserAnswer*> secondUserUserAnswers = [UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID];
+    UserAnswer* ua1;
+    UserAnswer* ua2;
+    if ([firstUserUserAnswers count] >= index + 1) {
+        ua1 = [firstUserUserAnswers objectAtIndex:index];
+    }
+    if ([secondUserUserAnswers count] >= index + 1) {
+        ua2 = [secondUserUserAnswers objectAtIndex:index];
+    }
 
     NSString* text = [[[ServiceLayer instance] userAnswerService] textForUserAnswerFirst: ua1 andSecond: ua2];
     
