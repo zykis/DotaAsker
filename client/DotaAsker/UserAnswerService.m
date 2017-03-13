@@ -44,4 +44,80 @@
     return ID;
 }
 
+- (NSString*)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2 {
+    User* firstUser;
+    User* secondUser;
+    NSString* firstUserAnswerText;
+    NSString* secondUserAnswerText;
+    Question* question;
+    
+    if (ua1 != nil) {
+        firstUser = [ua1 relatedUser];
+        firstUserAnswerText = [[ua1 relatedAnswer] text];
+        question = [ua1 relatedQuestion];
+    }
+    if (ua2 != nil) {
+        secondUser = [ua2 relatedUser];
+        secondUserAnswerText = [[ua2 relatedAnswer] text];
+        question = [ua2 relatedQuestion];
+    }
+    
+    Answer* correctAnswer;
+    for (Answer* a in [question answers]) {
+        if ([a isCorrect]) {
+            correctAnswer = a;
+        }
+    }
+    assert(correctAnswer);
+    
+
+    // 3 cases:
+    // [1] Player answered, opponent - not
+    // [2] Player answered, opponent - too
+    // [3] Player didn't answer, opponent - answered
+    
+    if (correctAnswer.text) {
+        if ((firstUserAnswerText) && (secondUserAnswerText))
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    "%@: %@\n"
+                    "Right: %@"
+                    , question.text,
+                    [firstUser name],
+                    firstUserAnswerText,
+                    [opponent name],
+                    secondUserAnswerText,
+                    correctAnswer.text
+                    ];
+        else if ((firstUserAnswerText) && (!secondUserAnswerText))
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    "Right: %@"
+                    , relatedQuestion.text,
+                    [player name],
+                    firstUserAnswerText,
+                    correctAnswer.text
+                    ];
+        else if ((!firstUserAnswerText) && (secondUserAnswerText))
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    , relatedQuestion.text,
+                    [opponent name],
+                    @"???"
+                    ];
+        else
+            text = [NSString stringWithFormat:
+                    @"%@\n\n"
+                    "%@: %@\n"
+                    , relatedQuestion.text,
+                    [player name],
+                    @"Unanswered"
+                    ];
+    }
+    return text;
+}
+
 @end

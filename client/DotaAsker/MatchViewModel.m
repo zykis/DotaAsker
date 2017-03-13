@@ -66,81 +66,16 @@
 }
 
 - (NSString*)textForUserAnswerForRoundInRow:(NSUInteger)row andUserAnswerIndex:(NSUInteger)index {
-    NSString* text;
     Round* selectedRound = [[[self match] rounds] objectAtIndex:row];
+    
     User* player = [Player instance];
     User* opponent = [self opponent];
     
-    Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
-    assert(selectedTheme);
-    Question* relatedQuestion = [[[ServiceLayer instance] roundService] questionAtIndex:index onTheme:selectedTheme inRound:selectedRound];
-    assert(relatedQuestion);
+    UserAnswer* ua1 = [[UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID] firstObject];
+    UserAnswer* ua2 = [[UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, opponent.ID] firstObject];
+
+    NSString* text = [[[ServiceLayer instance] userAnswerService] textForUserAnswerFirst: ua1 andSecond: ua2];
     
-    UserAnswer* playerUserAnswer = [[UserAnswer objectsWhere:@"relatedQuestionID = %llu AND relatedUserID = %llu AND relatedRoundID = %llu", relatedQuestion.ID, player.ID, selectedRound.ID] firstObject];
-    NSString* answeredTextFirstPlayer = nil;
-    if (playerUserAnswer != nil) {
-        answeredTextFirstPlayer = [[playerUserAnswer relatedAnswer] text];
-    }
-    
-    UserAnswer* opponentUserAnswer = [[UserAnswer objectsWhere:@"relatedQuestionID = %llu AND relatedUserID = %llu AND relatedRoundID = %llu", relatedQuestion.ID, opponent.ID, selectedRound.ID] firstObject];
-    NSString* answeredTextSecondPlayer = nil;
-    if (opponentUserAnswer != nil) {
-        answeredTextSecondPlayer = [[opponentUserAnswer relatedAnswer] text];
-    }
-    
-    NSString* correctAnswerText;
-    for (Answer* a in [relatedQuestion answers]) {
-        if ([a isCorrect]) {
-            correctAnswerText = [a text];
-        }
-    }
-    
-    // 3 cases:
-    // [1] Player answered, opponent - not
-    // [2] Player answered, opponent - too
-    // [3] Player didn't answer, opponent - answered
-    
-    if (correctAnswerText) {
-        if ((answeredTextFirstPlayer) && (answeredTextSecondPlayer))
-            text = [NSString stringWithFormat:
-                    @"%@\n\n"
-                    "%@: %@\n"
-                    "%@: %@\n"
-                    "Right: %@"
-                    , relatedQuestion.text,
-                    [player name],
-                    answeredTextFirstPlayer,
-                    [opponent name],
-                    answeredTextSecondPlayer,
-                    correctAnswerText
-                    ];
-        else if ((answeredTextFirstPlayer) && (!answeredTextSecondPlayer))
-            text = [NSString stringWithFormat:
-                    @"%@\n\n"
-                    "%@: %@\n"
-                    "Right: %@"
-                    , relatedQuestion.text,
-                    [player name],
-                    answeredTextFirstPlayer,
-                    correctAnswerText
-                    ];
-        else if ((!answeredTextFirstPlayer) && (answeredTextSecondPlayer))
-            text = [NSString stringWithFormat:
-                    @"%@\n\n"
-                    "%@: %@\n"
-                    , relatedQuestion.text,
-                    [opponent name],
-                    @"???"
-                    ];
-        else
-            text = [NSString stringWithFormat:
-                    @"%@\n\n"
-                    "%@: %@\n"
-                    , relatedQuestion.text,
-                    [player name],
-                    @"Unanswered"
-                    ];
-    }
     return text;
 }
 

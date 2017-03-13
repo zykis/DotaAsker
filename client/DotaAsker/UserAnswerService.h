@@ -15,4 +15,6 @@
 @property (strong, nonatomic) UserAnswerTransport* transport;
 - (long long)getNextPrimaryKey;
 
+- (NSString*)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2;
+
 @end
