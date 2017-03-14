@@ -24,11 +24,8 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    if ([object isMemberOfClass:[UserAnswer class]]) {
-        UserAnswer* ua = object;
-        return ([ua.relatedUser isEqual:self.relatedUser] && [ua.relatedRound isEqual:self.relatedRound] && [ua.relatedQuestion isEqual:self.relatedQuestion]);
-    }
-    return NO;
+    UserAnswer* ua = object;
+    return ([ua.relatedUser isEqual:self.relatedUser] && [ua.relatedRound isEqual:self.relatedRound] && [ua.relatedQuestion isEqual:self.relatedQuestion]);
 }
 
 + (NSArray *)ignoredProperties {

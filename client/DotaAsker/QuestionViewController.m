@@ -238,52 +238,62 @@
     
     //Игрок ответил на все вопросы
     else {
-        NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
-        Round* round = [Round objectForPrimaryKey:@(_roundID)];
-        for (UserAnswer* ua in [_questionViewModel lastPlayerUserAnswersForRound:round]) {
-            if (![ua synchronized]) {
-                [unsynchronizedUserAnswers addObject:ua];
-            }
-        }
-
-        if ([unsynchronizedUserAnswers count] > 0) {
-            RACSignal *sig = [RACSignal concat:[unsynchronizedUserAnswers.rac_sequence map:^id(id unsynchronizedUserAnswer) {
-                return [[[ServiceLayer instance] userAnswerService] create:unsynchronizedUserAnswer];
-            }]];
-            
-            [sig subscribeNext:^(id x) {
-                // Mark userAnswer as synchronized
-                for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
-                    if ([ua isEqual:x]) {
-                        RLMRealm* realm = [RLMRealm defaultRealm];
-                        [realm beginWriteTransaction];
-                        ua.synchronized = true;
-                        [realm commitWriteTransaction];
-                        NSLog(@"Answer synchronized");
-                    }
+        LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+        [loadingView setMessage:@"Sending answers"];
+        [[self view] addSubview:loadingView];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            dispatch_group_t postGroup = dispatch_group_create();
+            Round* round = [Round objectForPrimaryKey:@(_roundID)];
+            for (UserAnswer* ua in [_questionViewModel playerAnswersForRound:round]) {
+                if (![ua synchronized]) {
+                    dispatch_group_enter(postGroup);
+                    RACSignal* sig = [[[ServiceLayer instance] userAnswerService] create:ua];
+                    [sig subscribeNext:^(id  _Nullable x) {
+                        for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
+                            UserAnswer* serverUA = (UserAnswer*)x;
+                            if ([ua isEqual:serverUA]) {
+                                RLMRealm* realm = [RLMRealm defaultRealm];
+                                [realm beginWriteTransaction];
+                                ua.synchronized = true;
+                                [realm commitWriteTransaction];
+                                dispatch_group_leave(postGroup);
+                            }
+                        }
+                    } error:^(NSError * _Nullable error) {
+                        dispatch_group_leave(postGroup);
+                    } completed:^{
+                    }];
                 }
-            } error:^(NSError *error) {
-                NSLog(@"Error udpating ua");
-                // pop
-                [self popToMatchViewController];
-            } completed:^{
+            }
+            
+            BOOL timedout = dispatch_group_wait(postGroup, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC));
+            if (timedout) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingView removeFromSuperview];
+                    [self popToMatchViewController];
+                });
+            }
+            else {
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id x) {
                     RLMRealm* realm = [RLMRealm defaultRealm];
                     [realm beginWriteTransaction];
                     [realm addOrUpdateObject:x];
                     [realm commitWriteTransaction];
-                    RLMResults<UserAnswer*>* updatedUserAnswers = [UserAnswer objectsWhere:@"relatedRoundID = %lld", [self selectedRound].ID];
-                    for (UserAnswer* ua in updatedUserAnswers) {
-                        NSLog(@"Updated UA: ID = %lld, questionID: %ld", ua.ID, (long)ua.relatedQuestionID);
-                    }
                 } error:^(NSError *error) {
-                    [self popToMatchViewController];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingView removeFromSuperview];
+                        [self popToMatchViewController];
+                    });
                 } completed:^{
-                    [self popToMatchViewController];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingView removeFromSuperview];
+                        [self popToMatchViewController];
+                    });
                 }];
-            }];
-        }
+            }
+        });
     }
 }
 

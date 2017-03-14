@@ -47,19 +47,19 @@
     return NO;
 }
 
-- (RLMResults<UserAnswer*>*)lastPlayerUserAnswersForRound:(Round *)round {
+- (RLMResults<UserAnswer*>*)playerAnswersForRound:(Round *)round {
     // Get current round id
     long long roundID = round.ID;
 
     // check out unsynchronized UserAnswers
-    RLMResults<UserAnswer*>* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"synchronized == 0 && relatedUserID == %lld && relatedRoundID == %lld", [Player instance].ID, roundID]];
+    RLMResults<UserAnswer*>* playerAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"relatedUserID == %lld && relatedRoundID == %lld", [Player instance].ID, roundID]];
     
     // If no unsynch UserAnswers, return empty array
-    return lastPlayerUserAnswersRealm;
+    return playerAnswersRealm;
 }
 
 - (UserAnswer*)lastPlayerUserAnswerForRound:(Round *)round {
-    RLMResults<UserAnswer*>* lastUserAnswers = [self lastPlayerUserAnswersForRound:round];
+    RLMResults<UserAnswer*>* lastUserAnswers = [self playerAnswersForRound:round];
     if ([lastUserAnswers count] == 0)
         return nil;
     else {

@@ -22,7 +22,7 @@
 - (User*)opponentForRound:(Round*)round;
 - (Match*)matchForRound:(Round*)round;
 - (BOOL)isRoundLast:(Round*)round;
-- (RLMResults<UserAnswer>*)lastPlayerUserAnswersForRound:(Round*)round;
+- (RLMResults<UserAnswer>*)playerAnswersForRound:(Round*)round;
 - (UserAnswer*)lastPlayerUserAnswerForRound:(Round*)round;
 
 @end
