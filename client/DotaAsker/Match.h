@@ -29,6 +29,8 @@ RLM_ARRAY_TYPE(User)
 @interface Match : RLMObject
 
 @property (assign, nonatomic) long long ID;
+@property (strong, nonatomic) NSDate* createdOn;
+@property (strong, nonatomic) NSDate* updatedOn;
 @property RLMArray<User>* users;
 @property RLMArray<Round*><Round>* rounds;
 @property (assign, nonatomic) NSInteger state;

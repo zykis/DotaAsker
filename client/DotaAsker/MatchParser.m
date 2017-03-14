@@ -19,6 +19,8 @@
 
 + (Match*)parse:(NSDictionary *)JSONDict andChildren:(BOOL)bParseChildren {
     if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"created_on"] &&
+          [JSONDict objectForKey:@"updated_on"] &&
           [JSONDict objectForKey:@"users"] &&
           [JSONDict objectForKey:@"state"] &&
           [JSONDict objectForKey:@"mmr_gain"] &&
@@ -33,6 +35,12 @@
     //ID
     unsigned long long matchID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [match setID:matchID];
+    
+    // created_on
+    match.createdOn = [self dateFromString:[JSONDict objectForKey:@"created_on"]];
+    
+    // updated_on
+    match.updatedOn = [self dateFromString:[JSONDict objectForKey:@"updated_on"]];
     
     //state
     NSUInteger state = [[JSONDict objectForKey:@"state"] unsignedIntegerValue];
@@ -91,6 +99,17 @@
 //        }
 //    }
     return dict;
+}
+
++ (NSDate*)dateFromString:(NSString*)dateString {
+    RFC3339DateFormatter = [[NSDateFormatter alloc] init];
+    RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    RFC3339DateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+    RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    
+    // example: NSString* string = @"1996-12-19T16:39:57-08:00";
+    NSDate* date = [RFC3339DateFormatter dateFromString:dateString];
+    return date;
 }
 
 @end

@@ -4,6 +4,8 @@ from app.parsers.round_schema import RoundSchema
 
 class MatchSchema(Schema):
     id = fields.Int()
+    created_on = fields.DateTime()
+    updated_on = fields.DateTime()
     state = fields.Int()
     mmr_gain = fields.Int()
     updated_on = fields.DateTime()

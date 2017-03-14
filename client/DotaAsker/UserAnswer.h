@@ -17,6 +17,8 @@
 @interface UserAnswer: RLMObject
 
 @property (assign, nonatomic) long long ID;
+@property (strong, nonatomic) NSDate* createdOn;
+@property (strong, nonatomic) NSDate* updatedOn;
 
 @property (assign, nonatomic) NSInteger secForAnswer;
 @property (assign, nonatomic) BOOL synchronized;

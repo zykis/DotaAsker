@@ -16,6 +16,8 @@
     if ([JSONDict isEqual:[NSNull null]])
         return nil;
     if (!([JSONDict objectForKey:@"id"] &&
+          [JSONDict objectForKey:@"created_on"] &&
+          [JSONDict objectForKey:@"updated_on"] &&
           [JSONDict objectForKey:@"username"] &&
           [JSONDict objectForKey:@"mmr"] &&
           [JSONDict objectForKey:@"gpm"] &&
@@ -35,6 +37,8 @@
     
     User* user = [[User alloc] init];
     [user setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
+    [user setCreatedOn:[self dateFromString:[JSONDict objectForKey:@"created_on"]];
+    [user setUpdatedOn:[self dateFromString:[JSONDict objectForKey:@"updated_on"]];
     [user setName:[JSONDict objectForKey:@"username"]];
     [user setPremium:[[JSONDict objectForKey:@"premium"] boolValue]];
     [user setMMR:[[JSONDict objectForKey:@"mmr"] integerValue]];
@@ -90,6 +94,17 @@
                               [NSNumber numberWithLong:user.totalTimeForAnswers], @"total_time_for_answer",
                               nil];
     return jsonDict;
+}
+
++ (NSDate*)dateFromString:(NSString*)dateString {
+    RFC3339DateFormatter = [[NSDateFormatter alloc] init];
+    RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    RFC3339DateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
+    RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    
+    // example: NSString* string = @"1996-12-19T16:39:57-08:00";
+    NSDate* date = [RFC3339DateFormatter dateFromString:dateString];
+    return date;
 }
 
 @end

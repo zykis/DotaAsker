@@ -17,6 +17,8 @@ typedef enum {ROLE_USER=0, ROLE_ADMIN} ROLE;
 @interface User : RLMObject
 
 @property (assign, nonatomic) long long ID;
+@property (strong, nonatomic) NSDate* createdOn;
+@property (strong, nonatomic) NSDate* updatedOn;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
 @property (assign, nonatomic) NSInteger MMR;//Текущий рейтинг среди всех игроков

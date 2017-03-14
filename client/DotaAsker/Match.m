@@ -10,9 +10,14 @@
 
 @implementation Match
 
+@synthesize createdOn = _createdOn;
+@synthesize updatedOn = _updatedOn;
+
 - (id)init {
     self = [super init];
     if (self) {
+        self.createdOn = [NSDate date];
+        self.updatedOn = [NSDate date];
     }
     return self;
 }

@@ -6,6 +6,8 @@ from app import db
 
 class QuestionSchema(Schema):
     id = fields.Int()
+    created_on = fields.DateTime()
+    updated_on = fields.DateTime()
     image_name = fields.Str()
     text = fields.Str()
     approved = fields.Bool()

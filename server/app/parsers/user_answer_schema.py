@@ -6,6 +6,8 @@ from app.parsers.question_schema import QuestionSchema
 
 class UserAnswerSchema(Schema):
     id = fields.Int()
+    created_on = fields.DateTime()
+    updated_on = fields.DateTime()
     question = fields.Nested(QuestionSchema)
     answer = fields.Nested(AnswerSchema)
     user = fields.Nested(UserSchema, exclude=('matches', 'friends'))

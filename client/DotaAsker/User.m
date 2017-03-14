@@ -10,11 +10,16 @@
 
 @implementation User
 
+@synthesize createdOn = _createdOn;
+@synthesize updatedOn = _updatedOn;
+
 - (id)init {
     self = [super init];
     if (self) {
         self.name = @"Opponent";
         self.avatarImageName = @"avatar_default.png";
+        self.createdOn = [NSDate date];
+        self.updatedOn = [NSDate date];
     }
     return self;
 }
