@@ -247,28 +247,34 @@
     [loadingView setMessage:@"Sending answers"];
     [[self view] addSubview:loadingView];
     
-    dispatch_async(dispatch_queue_create("userAnswersCreateSerialQueue", DISPATCH_QUEUE_SERIAL), ^{
+    dispatch_queue_t queue_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
+    
+    dispatch_async(queue_global, ^{
         dispatch_group_t postGroup = dispatch_group_create();
+        dispatch_queue_t queue_serial = dispatch_queue_create("userAnswersCreateSerialQueue", DISPATCH_QUEUE_SERIAL);
         Round* round = [Round objectForPrimaryKey:@(_roundID)];
-        for (UserAnswer* ua in [_questionViewModel playerAnswersForRound:round]) {
-            if (![ua synchronized]) {
-                dispatch_group_enter(postGroup);
-                RACSignal* sig = [[[ServiceLayer instance] userAnswerService] create:ua];
-                [sig subscribeNext:^(id  _Nullable x) {
-                    for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
-                        UserAnswer* serverUA = (UserAnswer*)x;
-                        if ([ua isEqual:serverUA]) {
-                            RLMRealm* realm = [RLMRealm defaultRealm];
-                            [realm beginWriteTransaction];
-                            ua.synchronized = true;
-                            [realm commitWriteTransaction];
-                            dispatch_group_leave(postGroup);
+        
+        dispatch_async(queue_serial, ^{
+            for (UserAnswer* ua in [_questionViewModel playerAnswersForRound:round]) {
+                if (![ua synchronized]) {
+                    dispatch_group_enter(postGroup);
+                    RACSignal* sig = [[[ServiceLayer instance] userAnswerService] create:ua];
+                    [sig subscribeNext:^(id  _Nullable x) {
+                        for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
+                            UserAnswer* serverUA = (UserAnswer*)x;
+                            if ([ua isEqual:serverUA]) {
+                                RLMRealm* realm = [RLMRealm defaultRealm];
+                                [realm beginWriteTransaction];
+                                ua.synchronized = true;
+                                [realm commitWriteTransaction];
+                                dispatch_group_leave(postGroup);
+                            }
                         }
-                    }
-                } error:^(NSError * _Nullable error) {
-                    dispatch_group_leave(postGroup);
-                } completed:^{
-                }];
+                    } error:^(NSError * _Nullable error) {
+                        dispatch_group_leave(postGroup);
+                    } completed:^{
+                    }];
+                }
             }
         }
         
