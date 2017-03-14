@@ -276,8 +276,8 @@
             
             Round* selectedRound = [[[_matchViewModel match] rounds] objectAtIndex:[indexPath row]];
             
-            RLMResults* playerUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[Player instance] ID]] sortedResultsUsingKeyPath:@"ID" ascending:YES];
-            RLMResults* opponentUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[_matchViewModel opponent] ID]] sortedResultsUsingKeyPath:@"ID" ascending:YES];
+            RLMResults* playerUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[Player instance] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
+            RLMResults* opponentUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[_matchViewModel opponent] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
             
             for (int i = 0; i < 6; i++) {
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];

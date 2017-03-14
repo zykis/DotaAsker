@@ -71,8 +71,8 @@
     User* player = [Player instance];
     User* opponent = [self opponent];
     
-    RLMResults<UserAnswer*> *firstUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, player.ID] sortedResultsUsingKeyPath:@"ID" ascending:YES];
-    RLMResults<UserAnswer*> *secondUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, opponent.ID] sortedResultsUsingKeyPath:@"ID" ascending:YES];
+    RLMResults<UserAnswer*> *firstUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, player.ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
+    RLMResults<UserAnswer*> *secondUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, opponent.ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
     UserAnswer* ua1;
     UserAnswer* ua2;
     if ([firstUserUserAnswers count] >= index + 1) {
