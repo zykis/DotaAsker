@@ -71,12 +71,13 @@
     User* player = [Player instance];
     User* opponent = [self opponent];
     
-    RLMResults<UserAnswer*> firstUserUserAnswers = [UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID];
-    RLMResults<UserAnswer*> secondUserUserAnswers = [UserAnswer objectsWhere:@"relatedRound.ID == %lld AND relatedUser.ID == %lld", selectedRound.ID, player.ID];
+    RLMResults<UserAnswer*> *firstUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, player.ID] sortedResultsUsingKeyPath:@"ID" ascending:YES];
+    RLMResults<UserAnswer*> *secondUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, opponent.ID] sortedResultsUsingKeyPath:@"ID" ascending:YES];
     UserAnswer* ua1;
     UserAnswer* ua2;
     if ([firstUserUserAnswers count] >= index + 1) {
         ua1 = [firstUserUserAnswers objectAtIndex:index];
+        NSLog(@"UA tapped ID = %lld, questionID: %ld", ua1.ID, (long)ua1.relatedQuestionID);
     }
     if ([secondUserUserAnswers count] >= index + 1) {
         ua2 = [secondUserUserAnswers objectAtIndex:index];

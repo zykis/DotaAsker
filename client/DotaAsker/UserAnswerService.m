@@ -13,6 +13,7 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import "UserAnswerTransport.h"
 #import "UserAnswerParser.h"
+#import "User.h"
 
 @implementation UserAnswerService
 
@@ -50,6 +51,7 @@
     NSString* firstUserAnswerText;
     NSString* secondUserAnswerText;
     Question* question;
+    NSString* text;
     
     if (ua1 != nil) {
         firstUser = [ua1 relatedUser];
@@ -70,7 +72,6 @@
     }
     assert(correctAnswer);
     
-
     // 3 cases:
     // [1] Player answered, opponent - not
     // [2] Player answered, opponent - too
@@ -84,9 +85,9 @@
                     "%@: %@\n"
                     "Right: %@"
                     , question.text,
-                    [firstUser name],
+                    firstUser.name,
                     firstUserAnswerText,
-                    [opponent name],
+                    secondUser.name,
                     secondUserAnswerText,
                     correctAnswer.text
                     ];
@@ -94,26 +95,26 @@
             text = [NSString stringWithFormat:
                     @"%@\n\n"
                     "%@: %@\n"
-                    "Right: %@"
-                    , relatedQuestion.text,
-                    [player name],
+                    "Right: %@",
+                    question.text,
+                    firstUser.name,
                     firstUserAnswerText,
                     correctAnswer.text
                     ];
         else if ((!firstUserAnswerText) && (secondUserAnswerText))
             text = [NSString stringWithFormat:
                     @"%@\n\n"
-                    "%@: %@\n"
-                    , relatedQuestion.text,
-                    [opponent name],
+                    "%@: %@\n",
+                    question.text,
+                    secondUser.name,
                     @"???"
                     ];
         else
             text = [NSString stringWithFormat:
                     @"%@\n\n"
-                    "%@: %@\n"
-                    , relatedQuestion.text,
-                    [player name],
+                    "%@: %@\n",
+                    question.text,
+                    firstUser.name,
                     @"Unanswered"
                     ];
     }

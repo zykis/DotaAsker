@@ -4,6 +4,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 questiondir = os.path.join(basedir, 'app/static/questions')
 
 HOST = '192.168.100.24'
+debug = True
+Debug = True
+DEBUG = True
 
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')

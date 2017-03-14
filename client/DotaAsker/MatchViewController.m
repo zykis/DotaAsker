@@ -275,40 +275,31 @@
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
             
             Round* selectedRound = [[[_matchViewModel match] rounds] objectAtIndex:[indexPath row]];
-            NSMutableArray* playerAnswers = [[NSMutableArray alloc] init];
-            NSMutableArray* opponentAnswers = [[NSMutableArray alloc] init];
-            RLMResults* uas = [UserAnswer objectsWhere:@"relatedRoundID = %llu", selectedRound.ID];
-            for (UserAnswer* ua in uas) {
-                if ([[ua relatedUser] isEqual:[Player instance]]) {
-                    [playerAnswers addObject:ua];
-                }
-                else {
-                    [opponentAnswers addObject:ua];
-                }
-            }
             
+            RLMResults* playerUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[Player instance] ID]] sortedResultsUsingKeyPath:@"ID" ascending:YES];
+            RLMResults* opponentUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[_matchViewModel opponent] ID]] sortedResultsUsingKeyPath:@"ID" ascending:YES];
             
             for (int i = 0; i < 6; i++) {
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];
                 answerItemView.delegate = roundView;
                 [answerItemView setHidden:YES];
             }
-            for (NSUInteger i = 0; i < [playerAnswers count]; i++) {
-                UserAnswer* ua = [playerAnswers objectAtIndex:i];
+            for (NSUInteger i = 0; i < [playerUserAnswers count]; i++) {
+                UserAnswer* ua = [playerUserAnswers objectAtIndex:i];
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];
                 answerItemView.delegate = roundView;
                 [answerItemView setHidden:NO];
                 BOOL isCorrect = [[ua relatedAnswer] isCorrect];
                 [answerItemView setAnswerState:isCorrect];
             }
-            for (NSUInteger i = 0; i < [opponentAnswers count]; i++) {
-                UserAnswer* ua = [opponentAnswers objectAtIndex:i];
+            for (NSUInteger i = 0; i < [opponentUserAnswers count]; i++) {
+                UserAnswer* ua = [opponentUserAnswers objectAtIndex:i];
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:104 + i];
                 answerItemView.delegate = roundView;
                 [answerItemView setHidden:NO];
                 
                 if (([selectedRound isEqual:[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]]])
-                    && ([[selectedRound nextMoveUser] isEqual:[Player instance]]) && ([playerAnswers count] < 3))
+                    && ([[selectedRound nextMoveUser] isEqual:[Player instance]]) && ([playerUserAnswers count] < 3))
                     [answerItemView setAnswerState:2];
                 else
                     [answerItemView setAnswerState:[[ua relatedAnswer] isCorrect]];

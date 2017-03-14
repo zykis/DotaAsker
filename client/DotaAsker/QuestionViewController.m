@@ -166,6 +166,7 @@
         // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
         [[[self selectedRound] userAnswers] addObject:ua];
         [realm commitWriteTransaction];
+        NSLog(@"Created UA tapped ID = %lld, questionID: %ld", ua.ID, (long)ua.relatedQuestionID);
         
         self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
         
@@ -272,6 +273,10 @@
                     [realm beginWriteTransaction];
                     [realm addOrUpdateObject:x];
                     [realm commitWriteTransaction];
+                    RLMResults<UserAnswer*>* updatedUserAnswers = [UserAnswer objectsWhere:@"relatedRoundID = %lld", [self selectedRound].ID];
+                    for (UserAnswer* ua in updatedUserAnswers) {
+                        NSLog(@"Updated UA: ID = %lld, questionID: %ld", ua.ID, (long)ua.relatedQuestionID);
+                    }
                 } error:^(NSError *error) {
                     [self popToMatchViewController];
                 } completed:^{

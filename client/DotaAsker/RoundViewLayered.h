@@ -23,8 +23,6 @@
 @property (assign, nonatomic) IBInspectable CGFloat headerWidth;
 @property (assign, nonatomic) IBInspectable CGFloat headerHeight;
 
-@property (strong, nonatomic) NSMutableArray *leftAnswerViews;
-@property (strong, nonatomic) NSMutableArray *rightAnswerViews;
-@property (assign) id <RoundViewDelegate> delegate;
+@property (nonatomic, weak) id <RoundViewDelegate> delegate;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "RoundViewLayered.h"
-//#import "AnswerItemView.h"
 
 @implementation RoundViewLayered
 
@@ -20,39 +19,13 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self base_init];
         [self initShape];
     }
     return self;
 }
 
-- (void)base_init {
-    _leftAnswerViews = [[NSMutableArray alloc] init];
-    _rightAnswerViews = [[NSMutableArray alloc] init];
-    [_leftAnswerViews setObject:[self viewWithTag:101] atIndexedSubscript:0];
-    [_leftAnswerViews setObject:[self viewWithTag:102] atIndexedSubscript:1];
-    [_leftAnswerViews setObject:[self viewWithTag:103] atIndexedSubscript:2];
-    [_rightAnswerViews setObject:[self viewWithTag:104] atIndexedSubscript:0];
-    [_rightAnswerViews setObject:[self viewWithTag:105] atIndexedSubscript:1];
-    [_rightAnswerViews setObject:[self viewWithTag:106] atIndexedSubscript:2];
-    
-    for (AnswerItemView* view in _leftAnswerViews) {
-        [view setDelegate:self];
-    }
-    for (AnswerItemView* view in _rightAnswerViews) {
-        [view setDelegate:self];
-    }
-}
-
 - (void)answerItemViewWasTapped:(AnswerItemView *)answerItemView {
-    NSInteger index = [_leftAnswerViews indexOfObjectIdenticalTo:answerItemView];
-    if (index == NSNotFound) {
-        index = [_rightAnswerViews indexOfObjectIdenticalTo:answerItemView];
-        if (index == NSNotFound) {
-            NSLog(@"Tapped answer not found");
-            return;
-        }
-    }
+    NSInteger index = [answerItemView tag] - 101;
     [self.delegate roundViewAnswerWasTapped:self atIndex:index];
 }
 
