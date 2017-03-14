@@ -160,6 +160,7 @@ def create_userAnswer():
     uaDict = request.data
     schema = UserAnswerSchema()
     ua = schema.loads(uaDict)[0]
+    app.logger.info("parsed useranswerID: {}, questionID: {}".format(ua.id, ua.question_id))
     # check if there is still space in round for userAnswer of this user
     userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
     if userAnswersCount >= 3:
@@ -172,6 +173,7 @@ def create_userAnswer():
 
     # getting created UserAnswer with proper id
     uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one()
+    app.logger.info("commited useranswerID: {}, questionID: {}".format(uaNew.id, uaNew.question_id))
 
     # check if round is over
     round = uaNew.round
