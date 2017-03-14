@@ -29,34 +29,34 @@
     assert(0);
 }
 
-- (NSArray*)currentMatches {
-    NSMutableArray* currentMatches = [[NSMutableArray alloc] init];
-    NSUInteger count = [[[Player instance] matches] count];
-    for (int i = 0; i < count; i++) {
-        Match* m = [[[Player instance] matches] objectAtIndex:i];
-        if ([self matchSectionForMatch:m] == CURRENT_MATCH) {
-            [currentMatches addObject:m];
-        }
+- (RLMResults<Match*>*)currentMatches {
+    RLMArray<Match*>* currentMatches = [[RLMArray<Match*> alloc] init];
+    
+    for (Match* m in [Match allObjects]) {
+        if ([self matchSectionForMatch:m] == CURRENT_MATCH)
+            [currentMatches addObject:i];
     }
-    return [NSArray arrayWithArray: currentMatches];
+    return [currentMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
 }
 
-- (NSMutableArray*)waitingMatches {
-    NSMutableArray* waitingMatches = [[NSMutableArray alloc] init];
-    for (Match* m in [[Player instance] matches]) {
+- (RLMResults<Match*>*)waitingMatches {
+    RLMArray<Match*>* waitingMatches = [[RLMArray<Match*> alloc] init];
+    
+    for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == WAITING_MATCH)
-            [waitingMatches addObject:m];
+            [waitingMatches addObject:i];
     }
-    return waitingMatches;
+    return [waitingMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
 }
 
-- (NSMutableArray*)recentMatches {
-    NSMutableArray* recentMatches = [[NSMutableArray alloc] init];
-    for (Match* m in [[Player instance] matches]) {
+- (RLMResults<Match*>*)recentMatches {
+    RLMArray<Match*>* recentMatches = [[RLMArray<Match*> alloc] init];
+    
+    for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == RECENT_MATCH)
-            [recentMatches addObject:m];
+            [recentMatches addObject:i];
     }
-    return recentMatches;
+    return [recentMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
 }
 
 - (NSUInteger)currentMatchesCount {
