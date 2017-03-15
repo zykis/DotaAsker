@@ -99,7 +99,6 @@
     UIImageView* opponentAvatar = [cell viewWithTag:101];
     UILabel* score = [cell viewWithTag:102];
     UILabel* mmrGain = [cell viewWithTag:103];
-    UILabel* date = [cell viewWithTag:104];
     
     User* opponent;
     
@@ -127,8 +126,6 @@
     BOOL userWinner = [winner isEqual:_user];
     [mmrGain setTextColor: userWinner? [UIColor greenColor]: [UIColor redColor]];
     [mmrGain setText:[NSString stringWithFormat:@"%@%lu", userWinner? @"+": @"-" ,[m mmrGain]]];
-    // date
-    [date setText:[m updatedOn]];
     
     return cell;
 }

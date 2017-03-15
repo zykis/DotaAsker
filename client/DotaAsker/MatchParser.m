@@ -61,15 +61,6 @@
             [[match users] addObject:u];
         }
     }
-    
-    //updated at
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    NSString* utcDate = [JSONDict objectForKey:@"updated_on"];
-    
-    NSDate* updatedAt = [formatter dateFromString:utcDate];
-    NSString* localizedDate = [NSDateFormatter localizedStringFromDate:updatedAt dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
-    [match setUpdatedOn:localizedDate];
 
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"rounds"])) {
@@ -102,7 +93,7 @@
 }
 
 + (NSDate*)dateFromString:(NSString*)dateString {
-    RFC3339DateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter* RFC3339DateFormatter = [[NSDateFormatter alloc] init];
     RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     RFC3339DateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];

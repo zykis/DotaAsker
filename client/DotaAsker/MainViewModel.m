@@ -30,33 +30,33 @@
 }
 
 - (RLMResults<Match*>*)currentMatches {
-    RLMArray<Match*>* currentMatches = [[RLMArray<Match*> alloc] init];
+    RLMArray<Match*>* currentMatches;
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == CURRENT_MATCH)
-            [currentMatches addObject:i];
+            [currentMatches addObject:m];
     }
-    return [currentMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
+    return [currentMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
 }
 
 - (RLMResults<Match*>*)waitingMatches {
-    RLMArray<Match*>* waitingMatches = [[RLMArray<Match*> alloc] init];
+    RLMArray<Match*>* waitingMatches;
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == WAITING_MATCH)
-            [waitingMatches addObject:i];
+            [waitingMatches addObject:m];
     }
-    return [waitingMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
+    return [waitingMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
 }
 
 - (RLMResults<Match*>*)recentMatches {
-    RLMArray<Match*>* recentMatches = [[RLMArray<Match*> alloc] init];
+    RLMArray<Match*>* recentMatches;
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == RECENT_MATCH)
-            [recentMatches addObject:i];
+            [recentMatches addObject:m];
     }
-    return [recentMatches sortedResultsUsingProperty:@"updatedOn" ascending:NO];
+    return [recentMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
 }
 
 - (NSUInteger)currentMatchesCount {

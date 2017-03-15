@@ -6,9 +6,14 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@class Match;
+// Local
+#import <Foundation/Foundation.h>
+#import "Match.h"
+
+// Libraries
+#import <Realm/Realm.h>
+
 @class User;
 @class Theme;
 @class Round;

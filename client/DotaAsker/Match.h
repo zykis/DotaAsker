@@ -35,7 +35,6 @@ RLM_ARRAY_TYPE(User)
 @property RLMArray<Round*><Round>* rounds;
 @property (assign, nonatomic) NSInteger state;
 @property (assign, nonatomic) NSInteger mmrGain;
-@property (strong, nonatomic) NSString* updatedOn;
 
 @end
 RLM_ARRAY_TYPE(Match)

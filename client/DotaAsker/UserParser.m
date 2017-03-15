@@ -37,8 +37,8 @@
     
     User* user = [[User alloc] init];
     [user setID:[[JSONDict objectForKey:@"id"] unsignedLongLongValue]];
-    [user setCreatedOn:[self dateFromString:[JSONDict objectForKey:@"created_on"]];
-    [user setUpdatedOn:[self dateFromString:[JSONDict objectForKey:@"updated_on"]];
+    [user setCreatedOn:[self dateFromString:[JSONDict objectForKey:@"created_on"]]];
+    [user setUpdatedOn:[self dateFromString:[JSONDict objectForKey:@"updated_on"]]];
     [user setName:[JSONDict objectForKey:@"username"]];
     [user setPremium:[[JSONDict objectForKey:@"premium"] boolValue]];
     [user setMMR:[[JSONDict objectForKey:@"mmr"] integerValue]];
@@ -97,7 +97,7 @@
 }
 
 + (NSDate*)dateFromString:(NSString*)dateString {
-    RFC3339DateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter* RFC3339DateFormatter = [[NSDateFormatter alloc] init];
     RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     RFC3339DateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];

@@ -84,7 +84,7 @@
 }
 
 + (NSDate*)dateFromString:(NSString*)dateString {
-    RFC3339DateFormatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter* RFC3339DateFormatter = [[NSDateFormatter alloc] init];
     RFC3339DateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
     RFC3339DateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZZZZ";
     RFC3339DateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
