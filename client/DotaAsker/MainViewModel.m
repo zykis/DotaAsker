@@ -29,34 +29,52 @@
     assert(0);
 }
 
-- (RLMResults<Match*>*)currentMatches {
-    RLMArray<Match*>* currentMatches;
+- (NSArray*)currentMatches {
+    NSMutableArray* resultMatches = [[NSMutableArray alloc] init];
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == CURRENT_MATCH)
-            [currentMatches addObject:m];
+            [resultMatches addObject:m];
     }
-    return [currentMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
+    
+    // Sorting array by updated date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedOn" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSArray *sortedMatches = [resultMatches sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return [NSArray arrayWithArray: sortedMatches];
 }
 
-- (RLMResults<Match*>*)waitingMatches {
-    RLMArray<Match*>* waitingMatches;
+- (NSArray*)waitingMatches {
+    NSMutableArray* resultMatches = [[NSMutableArray alloc] init];
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == WAITING_MATCH)
-            [waitingMatches addObject:m];
+            [resultMatches addObject:m];
     }
-    return [waitingMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
+    
+    // Sorting array by updated date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedOn" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSArray *sortedMatches = [resultMatches sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return [NSArray arrayWithArray: sortedMatches];
 }
 
-- (RLMResults<Match*>*)recentMatches {
-    RLMArray<Match*>* recentMatches;
+- (NSArray*)recentMatches {
+    NSMutableArray* resultMatches = [[NSMutableArray alloc] init];
     
     for (Match* m in [Match allObjects]) {
         if ([self matchSectionForMatch:m] == RECENT_MATCH)
-            [recentMatches addObject:m];
+            [resultMatches addObject:m];
     }
-    return [recentMatches sortedResultsUsingKeyPath:@"updatedOn" ascending:NO];
+    
+    // Sorting array by updated date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedOn" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSArray *sortedMatches = [resultMatches sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return [NSArray arrayWithArray: sortedMatches];
 }
 
 - (NSUInteger)currentMatchesCount {

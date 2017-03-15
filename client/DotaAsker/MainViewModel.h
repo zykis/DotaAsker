@@ -31,9 +31,9 @@
 - (User*)opponentForRecentMatch: (NSUInteger)row;
 - (User*)opponentForMatch: (Match*)match;
 - (NSUInteger)matchSectionForMatch: (Match*)match;
-- (RLMResults<Match*>*)currentMatches;
-- (RLMResults<Match*>*)waitingMatches;
-- (RLMResults<Match*>*)recentMatches;
+- (NSArray*)currentMatches;
+- (NSArray*)waitingMatches;
+- (NSArray*)recentMatches;
 
 
 - (Match*)recentMatchAtRow: (NSUInteger)row;
