@@ -60,25 +60,25 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//        selector:@selector(pauseApp) 
-//        name:@"UIApplicationDidEnterBackgroundNotification"
-//        object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//        selector:@selector(resumeApp) 
-//        name:@"UIApplicationDidBecomeActiveNotification"
-//        object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(pauseApp) 
+        name:@"UIApplicationDidEnterBackgroundNotification"
+        object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(resumeApp) 
+        name:@"UIApplicationDidBecomeActiveNotification"
+        object:nil];
 }
 
-//- (void)viewDidDisappear:(BOOL)animated {
-//    [super viewDidDisappear:animated];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//        name:@"UIApplicationDidEnterBackgroundNotification"
-//        object:nil];
-//    [[NSNotificationCenter defaultCenter] removeObserver:self
-//        name:@"UIApplicationDidBecomeActiveNotification"
-//        object:nil];
-//}
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+        name:@"UIApplicationDidEnterBackgroundNotification"
+        object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+        name:@"UIApplicationDidBecomeActiveNotification"
+        object:nil];
+}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -530,8 +530,8 @@
         return;
         
     // get difference in seconds
-    double intervalInSeconds = [pauseDate timeIntervalSinceNow];
-    _secondsRemain = MIN(_secondsRemain - intervalInSeconds, 0);
+    double intervalInSeconds = ABS([pauseDate timeIntervalSinceNow]);
+    _secondsRemain = MAX(_secondsRemain - intervalInSeconds, 0);
     if (_secondsRemain == 0) {
         // Timer expired. Update UI
         [_progressView setProgress:0];
