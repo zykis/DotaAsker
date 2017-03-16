@@ -18,7 +18,7 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
-#define QUESTION_TIMEOUT_INTERVAL 15
+#define QUESTION_TIMEOUT_INTERVAL 10
 
 @interface QuestionViewController ()
 
