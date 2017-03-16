@@ -97,6 +97,10 @@
          subscribeNext:^(User* u) {
              RLMRealm* realm = [RLMRealm defaultRealm];
              [realm beginWriteTransaction];
+             [realm deleteAllObjects];
+             [realm commitWriteTransaction];
+             
+             [realm beginWriteTransaction];
              [realm addOrUpdateObject:u];
              [realm commitWriteTransaction];
              

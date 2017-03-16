@@ -49,7 +49,7 @@
 
 - (RLMResults<UserAnswer*>*)playerAnswersForRound:(Round *)round {
     // Get current round id
-    long long roundID = round.ID;
+    long long roundID = [round ID];
 
     // check out unsynchronized UserAnswers
     RLMResults<UserAnswer*>* playerAnswersRealm = [UserAnswer objectsWhere: [NSString stringWithFormat:@"relatedUserID == %lld && relatedRoundID == %lld", [Player instance].ID, roundID]];

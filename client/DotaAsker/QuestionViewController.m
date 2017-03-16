@@ -60,25 +60,25 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(pauseApp) 
-        name:@"UIApplicationDidEnterBackgroundNotification"
-        object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(resumeApp) 
-        name:@"UIApplicationDidBecomeActiveNotification"
-        object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//        selector:@selector(pauseApp) 
+//        name:@"UIApplicationDidEnterBackgroundNotification"
+//        object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//        selector:@selector(resumeApp) 
+//        name:@"UIApplicationDidBecomeActiveNotification"
+//        object:nil];
 }
 
-- (void)viewDidDisappear {
-    [super viewDidDisappear];
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-        name:@"UIApplicationDidEnterBackgroundNotification"
-        object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-        name:@"UIApplicationDidBecomeActiveNotification"
-        object:nil];
-}
+//- (void)viewDidDisappear:(BOOL)animated {
+//    [super viewDidDisappear:animated];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//        name:@"UIApplicationDidEnterBackgroundNotification"
+//        object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self
+//        name:@"UIApplicationDidBecomeActiveNotification"
+//        object:nil];
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -295,7 +295,8 @@
 
 - (void)sendUserAnswersToServerUsingSemaphores {
     // Check out UserAnswers count
-    if ([[_questionViewModel playerAnswersForRound:round] count] < 3) {
+    Round* r = [Round objectForPrimaryKey:@(_roundID)];
+    if ([[_questionViewModel playerAnswersForRound:r] count] < 3) {
         NSLog(@"UserAnswers count < 3. Not sending to server");
         return;
     }
@@ -310,6 +311,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         // Create UA1
         dispatch_semaphore_t semaphoreUA1 = dispatch_semaphore_create(0);
+        Round* round = [Round objectForPrimaryKey:@(_roundID)];
         UserAnswer* ua1 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:0];
         RACSignal* sig1 = [[[ServiceLayer instance] userAnswerService] create:ua1];
         __block BOOL obtained = NO;
@@ -320,7 +322,7 @@
                                 [realm beginWriteTransaction];
                                 ua.synchronized = true;
                                 [realm commitWriteTransaction];
-                                __obtained = YES;
+                                obtained = YES;
                                 NSLog(@"UA1 obtained");
                             }
                         }
@@ -329,8 +331,6 @@
                     } completed:^{
                         dispatch_semaphore_signal(semaphoreUA1);
                     }];
-                    
-        
         if (dispatch_semaphore_wait(semaphoreUA1, timeoutTime)) {
             NSLog(@"Timedout during creating UA1");
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -347,13 +347,12 @@
             });
             return;
         }
-        __obtained = NO;
+        obtained = NO;
         
         // Create UA2
         dispatch_semaphore_t semaphoreUA2 = dispatch_semaphore_create(0);
         UserAnswer* ua2 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:1];
         RACSignal* sig2 = [[[ServiceLayer instance] userAnswerService] create:ua2];
-        __block BOOL obtained = NO;
         [sig2 subscribeNext:^(id  _Nullable x) {
                         for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
                             if ([ua isEqual:x]) {
@@ -361,7 +360,7 @@
                                 [realm beginWriteTransaction];
                                 ua.synchronized = true;
                                 [realm commitWriteTransaction];
-                                __obtained = YES;
+                                obtained = YES;
                                 NSLog(@"UA2 obtained");
                             }
                         }
@@ -388,13 +387,12 @@
             });
             return;
         }
-        __obtained = NO;
+        obtained = NO;
         
         // Create UA3
         dispatch_semaphore_t semaphoreUA3 = dispatch_semaphore_create(0);
         UserAnswer* ua3 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:2];
         RACSignal* sig3 = [[[ServiceLayer instance] userAnswerService] create:ua3];
-        __block BOOL obtained = NO;
         [sig3 subscribeNext:^(id  _Nullable x) {
                         for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
                             if ([ua isEqual:x]) {
@@ -402,7 +400,7 @@
                                 [realm beginWriteTransaction];
                                 ua.synchronized = true;
                                 [realm commitWriteTransaction];
-                                __obtained = YES;
+                                obtained = YES;
                                 NSLog(@"UA3 obtained");
                             }
                         }
@@ -483,16 +481,18 @@
     self.secondsRemain = expirationIntervalSeconds;
         
     // Start expirationIntervalSeconds seconds timer
-    _questionTimer = [NSTimer scheduledTimerWithTimeInterval:expirationIntervalSeconds repeats:NO block:^(NSTimer * _Nonnull timer) {
-        if (_timeTimer) {
-            [_timeTimer invalidate];
-            _timeTimer = nil;
-            // Elapsed timer logic
-            [self timeElapsed];
-        }
-    }];
-    [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
-    [[NSRunLoop currentRunLoop] run];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        _questionTimer = [NSTimer scheduledTimerWithTimeInterval:expirationIntervalSeconds repeats:NO block:^(NSTimer * _Nonnull timer) {
+            if (_timeTimer) {
+                [_timeTimer invalidate];
+                _timeTimer = nil;
+                // Elapsed timer logic
+                [self timeElapsed];
+            }
+        }];
+        [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] run];
+    });
     
     // Start timer with progressIntervalSeconds sec interval
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
