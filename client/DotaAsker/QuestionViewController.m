@@ -70,6 +70,16 @@
         object:nil];
 }
 
+- (void)viewDidDisappear {
+    [super viewDidDisappear];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+        name:@"UIApplicationDidEnterBackgroundNotification"
+        object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        name:@"UIApplicationDidBecomeActiveNotification"
+        object:nil];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 }
@@ -477,7 +487,6 @@
         if (_timeTimer) {
             [_timeTimer invalidate];
             _timeTimer = nil;
-            
             // Elapsed timer logic
             [self timeElapsed];
         }
@@ -525,6 +534,9 @@
     _secondsRemain = MIN(_secondsRemain - intervalInSeconds, 0);
     if (_secondsRemain == 0) {
         // Timer expired. Update UI
+        [_progressView setProgress:0];
+        // Elapsed timer logic
+        [self timeElapsed];
     }
     else {
         // Start main timer
