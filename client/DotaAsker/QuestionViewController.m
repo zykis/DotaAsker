@@ -18,7 +18,7 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
-#define QUESTION_TIMEOUT_INTERVAL 20
+#define QUESTION_TIMEOUT_INTERVAL 15
 
 @interface QuestionViewController ()
 
@@ -70,14 +70,14 @@
         object:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-        name:@"UIApplicationDidEnterBackgroundNotification"
-        object:nil];
+                                                    name:@"UIApplicationDidEnterBackgroundNotification"
+                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
-        name:@"UIApplicationDidBecomeActiveNotification"
-        object:nil];
+                                                    name:@"UIApplicationDidBecomeActiveNotification"
+                                                  object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -231,66 +231,6 @@
     else {
         [self sendUserAnswersToServerUsingSemaphores];
     }
-}
-
-- (void)sendUserAnswersToServer {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Sending answers"];
-    [[self view] addSubview:loadingView];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        dispatch_group_t postGroup = dispatch_group_create();
-        Round* round = [Round objectForPrimaryKey:@(_roundID)];
-        
-        for (UserAnswer* ua in [_questionViewModel playerAnswersForRound:round]) {
-            if (![ua synchronized]) {
-                dispatch_group_enter(postGroup);
-                RACSignal* sig = [[[ServiceLayer instance] userAnswerService] create:ua];
-                [sig subscribeNext:^(id  _Nullable x) {
-                    for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
-                        UserAnswer* serverUA = (UserAnswer*)x;
-                        if ([ua isEqual:serverUA]) {
-                            RLMRealm* realm = [RLMRealm defaultRealm];
-                            [realm beginWriteTransaction];
-                            ua.synchronized = true;
-                            [realm commitWriteTransaction];
-                            dispatch_group_leave(postGroup);
-                        }
-                    }
-                } error:^(NSError * _Nullable error) {
-                    dispatch_group_leave(postGroup);
-                } completed:^{
-                }];
-            }
-        }
-        
-        BOOL timedout = dispatch_group_wait(postGroup, dispatch_time(DISPATCH_TIME_NOW, 10 * NSEC_PER_SEC));
-        if (timedout) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [loadingView removeFromSuperview];
-                [self popToMatchViewController];
-            });
-        }
-        else {
-            RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-            [subject subscribeNext:^(id x) {
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [realm addOrUpdateObject:x];
-                [realm commitWriteTransaction];
-            } error:^(NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
-                });
-            } completed:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
-                });
-            }];
-        }
-    });
 }
 
 - (void)sendUserAnswersToServerUsingSemaphores {
