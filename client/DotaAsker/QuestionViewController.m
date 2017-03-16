@@ -238,7 +238,7 @@
     
     //Игрок ответил на все вопросы
     else {
-        [self sendUserAnswersToServer];
+        [self sendUserAnswersToServerUsingSemaphores];
     }
 }
 
@@ -299,6 +299,165 @@
                 });
             }];
         }
+    });
+}
+
+- (void)sendUserAnswersToServerUsingSemaphores {
+    // Check out UserAnswers count
+    if ([[_questionViewModel playerAnswersForRound:round] count] < 3) {
+        NSLog(@"UserAnswers count < 3. Not sending to server");
+        return;
+    }
+    
+    // Present LoadingView
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+    [loadingView setMessage:@"Sending answers"];
+    [[self view] addSubview:loadingView];
+    
+    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        // Create UA1
+        dispatch_semaphore_t semaphoreUA1 = dispatch_semaphore_create(0);
+        UserAnswer* ua1 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:0];
+        RACSignal* sig1 = [[[ServiceLayer instance] userAnswerService] create:ua1];
+        __block BOOL obtained = NO;
+        [sig1 subscribeNext:^(id  _Nullable x) {
+                        for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
+                            if ([ua isEqual:x]) {
+                                RLMRealm* realm = [RLMRealm defaultRealm];
+                                [realm beginWriteTransaction];
+                                ua.synchronized = true;
+                                [realm commitWriteTransaction];
+                                __obtained = YES;
+                                NSLog(@"UA1 obtained");
+                            }
+                        }
+                    } error:^(NSError * _Nullable error) {
+                        dispatch_semaphore_signal(semaphoreUA1);
+                    } completed:^{
+                        dispatch_semaphore_signal(semaphoreUA1);
+                    }];
+                    
+        
+        if (dispatch_semaphore_wait(semaphoreUA1, timeoutTime)) {
+            NSLog(@"Timedout during creating UA1");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        if (!obtained) {
+            NSLog(@"Failed to obtain UA1");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        __obtained = NO;
+        
+        // Create UA2
+        dispatch_semaphore_t semaphoreUA2 = dispatch_semaphore_create(0);
+        UserAnswer* ua2 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:1];
+        RACSignal* sig2 = [[[ServiceLayer instance] userAnswerService] create:ua2];
+        __block BOOL obtained = NO;
+        [sig2 subscribeNext:^(id  _Nullable x) {
+                        for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
+                            if ([ua isEqual:x]) {
+                                RLMRealm* realm = [RLMRealm defaultRealm];
+                                [realm beginWriteTransaction];
+                                ua.synchronized = true;
+                                [realm commitWriteTransaction];
+                                __obtained = YES;
+                                NSLog(@"UA2 obtained");
+                            }
+                        }
+                    } error:^(NSError * _Nullable error) {
+                        dispatch_semaphore_signal(semaphoreUA2);
+                    } completed:^{
+                        dispatch_semaphore_signal(semaphoreUA2);
+                    }];
+                    
+        
+        if (dispatch_semaphore_wait(semaphoreUA2, timeoutTime)) {
+            NSLog(@"Timedout during creating UA2");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        if (!obtained) {
+            NSLog(@"Failed to obtain UA2");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        __obtained = NO;
+        
+        // Create UA3
+        dispatch_semaphore_t semaphoreUA3 = dispatch_semaphore_create(0);
+        UserAnswer* ua3 = [[_questionViewModel playerAnswersForRound:round] objectAtIndex:2];
+        RACSignal* sig3 = [[[ServiceLayer instance] userAnswerService] create:ua3];
+        __block BOOL obtained = NO;
+        [sig3 subscribeNext:^(id  _Nullable x) {
+                        for (UserAnswer* ua in [[self selectedRound] userAnswers]) {
+                            if ([ua isEqual:x]) {
+                                RLMRealm* realm = [RLMRealm defaultRealm];
+                                [realm beginWriteTransaction];
+                                ua.synchronized = true;
+                                [realm commitWriteTransaction];
+                                __obtained = YES;
+                                NSLog(@"UA3 obtained");
+                            }
+                        }
+                    } error:^(NSError * _Nullable error) {
+                        dispatch_semaphore_signal(semaphoreUA3);
+                    } completed:^{
+                        dispatch_semaphore_signal(semaphoreUA3);
+                    }];
+                    
+        
+        if (dispatch_semaphore_wait(semaphoreUA3, timeoutTime)) {
+            NSLog(@"Timedout during creating UA3");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        if (!obtained) {
+            NSLog(@"Failed to obtain UA3");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self popToMatchViewController];
+            });
+            return;
+        }
+        
+        // UserAnswers has been updated.
+        // Updaing Player and tableView
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+            [subject subscribeNext:^(id x) {
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                [realm addOrUpdateObject:x];
+                [realm commitWriteTransaction];
+            } error:^(NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingView removeFromSuperview];
+                    [self popToMatchViewController];
+                });
+            } completed:^{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingView removeFromSuperview];
+                    [self popToMatchViewController];
+                });
+            }];
     });
 }
 
