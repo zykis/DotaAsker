@@ -59,6 +59,15 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(pauseApp) 
+        name:@"UIApplicationDidEnterBackgroundNotification"
+        object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+        selector:@selector(resumeApp) 
+        name:@"UIApplicationDidBecomeActiveNotification"
+        object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -171,35 +180,7 @@
         self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
         
         // Start 30 seconds timer
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _questionTimer = [NSTimer scheduledTimerWithTimeInterval:QUESTION_TIMEOUT_INTERVAL repeats:NO block:^(NSTimer * _Nonnull timer) {
-                if (_timeTimer) {
-                    [_timeTimer invalidate];
-                    _timeTimer = nil;
-                    
-                    // Elapsed timer logic
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self timeElapsed];
-                    });
-                }
-            }];
-            [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
-            [[NSRunLoop currentRunLoop] run];
-        });
-        
-        // Start timer with 0.1 sec interval
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            _timeTimer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
-                _secondsRemain -= 0.01;
-                float progress = self.secondsRemain / (float)QUESTION_TIMEOUT_INTERVAL;
-                // Update UI
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [_progressView setProgress:progress];
-                });
-            }];
-            [[NSRunLoop currentRunLoop] addTimer:_timeTimer forMode:NSDefaultRunLoopMode];
-            [[NSRunLoop currentRunLoop] run];
-        });
+        [self startTimersWithExpirationInterval: QUESTION_TIMEOUT_INTERVAL andProgressUpdateInterval: 0.01];
         
         assert(q);
         RLMArray<Answer>* answers = [q answers];
@@ -486,6 +467,72 @@
     [destVC.tableView reloadData];
     [[self navigationController] popToViewController:destVC animated:YES];
 
+}
+
+- (void)startTimersWithExpirationInterval: (double)expirationIntervalSeconds andProgressUpdateInterval: (double)progressIntervalSeconds {    
+    self.secondsRemain = expirationIntervalSeconds;
+        
+    // Start expirationIntervalSeconds seconds timer
+    _questionTimer = [NSTimer scheduledTimerWithTimeInterval:expirationIntervalSeconds repeats:NO block:^(NSTimer * _Nonnull timer) {
+        if (_timeTimer) {
+            [_timeTimer invalidate];
+            _timeTimer = nil;
+            
+            // Elapsed timer logic
+            [self timeElapsed];
+        }
+    }];
+    [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop] run];
+    
+    // Start timer with progressIntervalSeconds sec interval
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        _timeTimer = [NSTimer scheduledTimerWithTimeInterval:progressIntervalSeconds repeats:YES block:^(NSTimer * _Nonnull timer) {
+            _secondsRemain -= progressIntervalSeconds;
+            float progress = self.secondsRemain / (double)QUESTION_TIMEOUT_INTERVAL;
+            // Update UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_progressView setProgress:progress];
+            });
+        }];
+        [[NSRunLoop currentRunLoop] addTimer:_timeTimer forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop] run];
+    });
+}
+
+- (void)pauseApp {
+    // Save current timestamp
+    NSDate* now = [NSDate date];
+    [[NSUserDefaults standardUserDefaults] setObject:now forKey:@"pauseDate"];
+    
+    // Invalidate progress timer
+    [_timeTimer invalidate];
+    _timeTimer = nil;
+    
+    // Invalidate main timer
+    [_questionTimer invalidate];
+    _questionTimer = nil;
+}
+
+- (void)resumeApp {
+    // get saved timestamp
+    NSDate* pauseDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"pauseDate"];
+    if (pauseDate == nil)
+        return;
+        
+    // get difference in seconds
+    double intervalInSeconds = [pauseDate timeIntervalSinceNow];
+    _secondsRemain = MIN(_secondsRemain - intervalInSeconds, 0);
+    if (_secondsRemain == 0) {
+        // Timer expired. Update UI
+    }
+    else {
+        // Start main timer
+        [self startTimersWithExpirationInterval: _secondsRemain andProgressUpdateInterval: 0.01];
+    }
+    
+    // clear NSUserDefaults
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"pauseDate"];
 }
 
 @end
