@@ -1234,6 +1234,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
+                            <textView userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Question text" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-M2-nMF">
+                                <rect key="frame" x="12" y="28" width="296" height="166"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-4P-VM5">
                                 <rect key="frame" x="12" y="202" width="143" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1298,15 +1305,6 @@
                                     <action selector="answerPushed:" destination="mzx-Bd-cuT" eventType="touchUpInside" id="yJU-P3-ZIz"/>
                                 </connections>
                             </button>
-                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Question text" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-M2-nMF">
-                                <rect key="frame" x="12" y="157" width="296" height="37"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="J0z-b2-l5b"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="4S0-Ay-U7O">
                                 <rect key="frame" x="16" y="558" width="288" height="30"/>
                                 <color key="tintColor" red="0.0" green="0.6973828125" blue="0.00021348547210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1344,6 +1342,7 @@
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="leading" secondItem="E7c-Qo-mxp" secondAttribute="leading" id="bBv-Jn-cUg"/>
                             <constraint firstItem="c5A-4P-VM5" firstAttribute="leading" secondItem="HnT-pV-LHI" secondAttribute="leading" id="bzK-Hd-nIK"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="trailing" secondItem="HnT-pV-LHI" secondAttribute="trailing" id="fhD-SR-odF"/>
+                            <constraint firstItem="IpC-M2-nMF" firstAttribute="top" secondItem="HnT-pV-LHI" secondAttribute="top" id="g54-TD-deS"/>
                             <constraint firstAttribute="centerX" secondItem="17R-45-z1x" secondAttribute="centerX" id="h0u-3I-yga"/>
                             <constraint firstItem="Win-pf-vVN" firstAttribute="top" secondItem="4S0-Ay-U7O" secondAttribute="bottom" constant="15" id="h2V-a8-mrD"/>
                             <constraint firstItem="IpC-M2-nMF" firstAttribute="leading" secondItem="HnT-pV-LHI" secondAttribute="leading" id="hHf-PC-pvR"/>

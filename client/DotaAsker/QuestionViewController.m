@@ -143,6 +143,11 @@
 
 
 - (void)timeElapsed {
+    // Invalidate timers
+    if (_timeTimer) {
+        [_timeTimer invalidate];
+        _timeTimer = nil;
+    }
     if (_questionTimer) {
         [_questionTimer invalidate];
         _questionTimer = nil;
@@ -203,6 +208,7 @@
             NSLog(@"%@", [error localizedDescription]);
         } completed:^{
         }];
+        
         
         [_questionText setText:[q text]];
         
@@ -427,7 +433,9 @@
                 [_timeTimer invalidate];
                 _timeTimer = nil;
                 // Elapsed timer logic
-                [self timeElapsed];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self timeElapsed];
+                });
             }
         }];
         [[NSRunLoop currentRunLoop] addTimer:_questionTimer forMode:NSDefaultRunLoopMode];
