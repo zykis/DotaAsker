@@ -1,0 +1,220 @@
+[
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text": "Blood Elf"
+            },
+            {
+                "is_correct": "false",
+                "text": "Human"
+            },
+            {
+                "is_correct": "false",
+                "text": "High Elf"
+            },
+            {
+                "is_correct": "false",
+                "text": "Orc"
+            }
+        ],
+        "approved": "true",
+        "image_name": "lore_invoker_race.jpg",
+        "text": "What race Invoker belong to?",
+        "theme": {
+            "name": "lore"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "Beast"
+            },
+            {
+                "is_correct": "false",
+                "text": "Orc"
+            },
+            {
+                "is_correct": "false",
+                "text": "Machine"
+            },
+            {
+                "is_correct": "true",
+                "text": "Fucking tree"
+            }
+        ],
+        "approved": "true",
+        "image_name": "lore_treant.jpg",
+        "text": "What da fuck is a treant?",
+        "theme": {
+            "name": "lore"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "Treant Protector"
+            },
+            {
+                "is_correct": "false",
+                "text": "Faceless Void"
+            },
+            {
+                "is_correct": "true",
+                "text": "Pugna"
+            },
+            {
+                "is_correct": "false",
+                "text": "Bane"
+            }
+        ],
+        "approved": "true",
+        "image_name": "lore_child.jpg",
+        "text": "Who of these characters is a child?",
+        "theme": {
+            "name": "lore"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "1 second"
+            },
+            {
+                "is_correct": "false",
+                "text": "3.5 seconds"
+            },
+            {
+                "is_correct": "true",
+                "text": "5 seconds"
+            },
+            {
+                "is_correct": "false",
+                "text": "2.2 seconds"
+            }
+        ],
+        "approved": "true",
+        "image_name": "mechanics_sacred_arrow.jpg",
+        "text": "What is max duration of Sacred Arrow stun?",
+        "theme": {
+            "name": "mechanics"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "Yes"
+            },
+            {
+                "is_correct": "true",
+                "text": "No"
+            }
+        ],
+        "approved": "true",
+        "image_name": "mechanics_bara_cogs.jpg",
+        "text": "Bara can run through Clockwerk Cogs?",
+        "theme": {
+            "name": "mechanics"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text": "Yes"
+            },
+            {
+                "is_correct": "false",
+                "text": "No"
+            }
+        ],
+        "approved": "true",
+        "image_name": "mechanics_storm_chronosphere.jpg",
+        "text": "Storm Spirit can fly through Void's Chronosphere?",
+        "theme": {
+            "name": "mechanics"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "TongFu"
+            },
+            {
+                "is_correct": "true",
+                "text": "Natus Vincere"
+            },
+            {
+                "is_correct": "false",
+                "text": "Invictus Gaming"
+            },
+            {
+                "is_correct": "false",
+                "text": "Evil Genuises"
+            }
+        ],
+        "approved": "true",
+        "image_name": "tournaments_TI1_winner.jpg",
+        "text": "Who take 1st place in International 1?",
+        "theme": {
+            "name": "tournaments"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text": "6.000.000$"
+            },
+            {
+                "is_correct": "false",
+                "text": "1.500.000$"
+            },
+            {
+                "is_correct": "false",
+                "text": "16.000.000$"
+            },
+            {
+                "is_correct": "false",
+                "text": "1.000.000$"
+            }
+        ],
+        "approved": "true",
+        "image_name": "tournaments_TI2015_prizepool.jpg",
+        "text": "What is a 1st place price in TI-2015?",
+        "theme": {
+            "name": "tournaments"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text": "BestOf3"
+            },
+            {
+                "is_correct": "false",
+                "text": "Double Elimination"
+            },
+            {
+                "is_correct": "true",
+                "text": "BestOf5"
+            },
+            {
+                "is_correct": "false",
+                "text": "BestOf7"
+            }
+        ],
+        "approved": "true",
+        "image_name": "tournaments_TI1_grandfinal_qualification.jpg",
+        "text": "The International 1 Grand-Final qualification type was:",
+        "theme": {
+            "name": "tournaments"
+        }
+    }
+]
