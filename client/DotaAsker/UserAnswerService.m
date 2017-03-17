@@ -121,4 +121,52 @@
     return text;
 }
 
+- (void)sendUserAnswers: (NSArray*)unsynchronizedUserAnswers next:(void (^ _Nullable)(UserAnswer* x))nextBlock error:(void (^_Nonnull)(NSError** error))errorBlock complete:(void(^)())completeBlock {
+    dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        Round* round = [Round objectForPrimaryKey:@(_roundID)];
+        __block BOOL obtained = NO;
+        for (UserAnswer* ua in unsynchronizedUserAnswers) {
+            // Create UA
+            dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+            RACSignal* sig = [[[ServiceLayer instance] userAnswerService] create:ua];
+            [sig subscribeNext:^(id  _Nullable x) {
+                          nextBlock(x);
+                        } error:^(NSError * _Nullable error) {
+                            dispatch_semaphore_signal(semaphoreUA1);
+                        } completed:^{
+                            dispatch_semaphore_signal(semaphoreUA1);
+                        }];
+            if (dispatch_semaphore_wait(semaphoreUA1, timeoutTime)) {
+                NSDictionary *userInfo = @{
+                    NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+                    NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The operation timed out.", nil),
+                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Have you tried turning it off and on again?", nil)
+                };
+                NSError *error = [NSError errorWithDomain:@"com.zykis.dotaasker"
+                                                    code:-57
+                                                userInfo:userInfo];
+                errorBlock(&error);
+                return;
+            }
+            if (!obtained) {
+                NSDictionary *userInfo = @{
+                    NSLocalizedDescriptionKey: NSLocalizedString(@"Operation was unsuccessful.", nil),
+                    NSLocalizedFailureReasonErrorKey: NSLocalizedString(@"The operation timed out.", nil),
+                    NSLocalizedRecoverySuggestionErrorKey: NSLocalizedString(@"Have you tried turning it off and on again?", nil)
+                };
+                NSError *error = [NSError errorWithDomain:@"com.zykis.dotaasker"
+                                                    code:-57
+                                                userInfo:userInfo];
+                errorBlock(&error);
+                return;
+            }
+            obtained = NO;
+        }
+        
+        completeBlock();
+    });
+}
+
 @end

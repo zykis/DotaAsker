@@ -128,48 +128,32 @@
             
         case BUTTON_SYNCHRONIZE:
         {
-            NSMutableArray* unsynchronizedUserAnswers = [[NSMutableArray alloc] init];
-            for (UserAnswer* ua in lastPlayerUserAnswers) {
-                if (![ua synchronized]) {
-                    [unsynchronizedUserAnswers addObject:ua];
-                }
+            // Present LoadingView
+            __block LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+            [loadingView setMessage:@"Sending answers"];
+            [[self view] addSubview:loadingView];
+        
+            void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable userAnswer) {
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                _ua = [UserAnswer objectWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld"
+                                                x.relatedRoundID, x.relatedUserID, x.relatedQuestionID];
+                _ua.synchronized = true;
+                [realm commitWriteTransaction];
+                obtained = YES;
             }
-            NSMutableArray* signalsArray = [[NSMutableArray alloc] init];
-            for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
-                RACSignal* signal = [[[ServiceLayer instance] userAnswerService] create:ua];
-                [signalsArray addObject:signal];
+            void (^errorBlock)(NSError** _Nonnull error) = ^void(NSError** _Nonnull error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingView removeFromSuperview];
+                    [self popToMatchViewController];
+                });
             }
-            
-            RACSignal *sig = [RACSignal concat:[signalsArray.rac_sequence map:^id(id value) {
-                return value;
-            }]];
-            
-            [sig subscribeNext:^(id x) {
-                // Mark userAnswer as synchronized
-                for (UserAnswer* ua in [[[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]] userAnswers]) {
-                    if ([ua isEqual:x]) {
-                        ua.synchronized = true;
-                        NSLog(@"Answer synchronized");
-                    }
-                }
-            } error:^(NSError *error) {
-                NSLog(@"Error udpating ua");
-                [self.tableView reloadData];
-            } completed:^{
-                RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-                [subject subscribeNext:^(id x) {
-                } error:^(NSError *error) {
-                    [self.tableView reloadData];
-                } completed:^{
-                    for (Match* m in [[Player instance] matches]) {
-                        if ([m isEqual:[_matchViewModel match]]) {
-                            [_matchViewModel setMatchID:m.ID];
-                            [self.tableView reloadData];
-                            break;
-                        }
-                    }
-                }];
-            }];
+            void (^completeBlock)() = ^void() {
+                //! TODO
+            }
+        
+            RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"unsynchronized == true"]
+            [[ServiceLayer instance] userAnswerService] sendUserAnswers: uas next:nextBlock error:errorBlock complete:completeBlock];
             break;
         }
             
