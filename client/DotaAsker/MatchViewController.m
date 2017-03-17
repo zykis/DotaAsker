@@ -149,7 +149,23 @@
                 });
             }
             void (^completeBlock)() = ^void() {
-                //! TODO
+                RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+ -              [subject subscribeNext:^(id x) {
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                [realm addOrUpdateObject:x];
+                [realm commitWriteTransaction];
+                } error:^(NSError *error) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingView removeFromSuperview];
+                        [self.tableView reloadData];
+                    });
+                } completed:^{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingView removeFromSuperview];
+                        [self.tableView reloadData];
+                    });
+                }];
             }
         
             RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"unsynchronized == true"]
