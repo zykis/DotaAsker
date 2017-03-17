@@ -207,7 +207,13 @@
     [[self view] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
-    [subject subscribeError:^(NSError *error) {
+    [subject subscribe next:^(id x) {
+        RLMRealm* realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        [realm addOrUpdateObject:x];
+        [realm commitWriteTransaction];
+        [self.tableView reloadData];
+    } error:^(NSError *error) {
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Can't surrend" andMessage:[error localizedDescription]];
     } completed:^{
