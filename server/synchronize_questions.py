@@ -27,7 +27,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
             # [2.1] if not all images exists, exit
             if not exists:
                 print('no local image file for question: {}', q.__repr__())
-                return      
+                continue      
         print('all images exists for questions')
         for q in questions_list.data:
             imageLocalPath = questionsPath + 'question_images/' + q.image_name
