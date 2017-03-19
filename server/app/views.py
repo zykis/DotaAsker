@@ -345,6 +345,7 @@ def new_user():
     username = request.json.get('username')
     password = request.json.get('password')
     email = request.json.get('email')
+    app.logger.info("Signing up with username: {} password: {}")
     if username is None or password is None:
         abort(400) # missing arguments
     if User.query.filter_by(username = username).first() is not None:

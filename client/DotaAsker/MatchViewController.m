@@ -435,7 +435,7 @@
         if ((unsynchronizedCount > 0) && (unsynchronizedCount <= 3)) {
             return BUTTON_SYNCHRONIZE;
         }
-        else if((unsynchronizedCount == 0) && (totalCount == 3)) {
+        else if((unsynchronizedCount == 0) && (totalCount == 0)) {
             return BUTTON_PLAY;
         } else {
             NSLog(@"Can't define round state. Crushing app");
