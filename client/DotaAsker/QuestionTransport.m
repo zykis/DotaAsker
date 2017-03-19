@@ -24,8 +24,8 @@
     NSString* urlString = [NSString stringWithFormat:@"%@/%@/image/upload/c_scale,h_%lu,w_%lu/v1478341442/%@",
                            CLOUDINARY_ENDPOINT,
                            CLOUDINARY_NAME,
-                           height,
-                           width,
+                           (unsigned long)height,
+                           (unsigned long)width,
                            [question imageName]];
     
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:urlString parameters:nil error:nil] mutableCopy];

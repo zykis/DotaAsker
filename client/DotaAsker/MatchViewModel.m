@@ -77,7 +77,6 @@
     UserAnswer* ua2;
     if ([firstUserUserAnswers count] >= index + 1) {
         ua1 = [firstUserUserAnswers objectAtIndex:index];
-        NSLog(@"UA tapped ID = %lld, questionID: %ld", ua1.ID, (long)ua1.relatedQuestionID);
     }
     if ([secondUserUserAnswers count] >= index + 1) {
         ua2 = [secondUserUserAnswers objectAtIndex:index];

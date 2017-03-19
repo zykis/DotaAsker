@@ -88,7 +88,7 @@
         // [4] MMR
         NSUInteger mmr = [u MMR];
         UILabel* mmrLabel = [cell viewWithTag:103];
-        [mmrLabel setText:[NSString stringWithFormat:@"%lu", mmr]];
+        [mmrLabel setText:[NSString stringWithFormat:@"%lu", (unsigned long)mmr]];
         
         // [5] highlight if player
         if ([u isEqual:[Player instance]]) {

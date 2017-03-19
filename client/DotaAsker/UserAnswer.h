@@ -23,10 +23,10 @@
 @property (assign, nonatomic) NSInteger secForAnswer;
 @property (assign, nonatomic) BOOL synchronized;
 
-@property (assign, nonatomic) NSInteger relatedAnswerID;
-@property (assign, nonatomic) NSInteger relatedUserID;
-@property (assign, nonatomic) NSInteger relatedQuestionID;
-@property (assign, nonatomic) NSInteger relatedRoundID;
+@property (assign, nonatomic) long long relatedAnswerID;
+@property (assign, nonatomic) long long relatedUserID;
+@property (assign, nonatomic) long long relatedQuestionID;
+@property (assign, nonatomic) long long relatedRoundID;
 
 - (Answer*) relatedAnswer;
 - (User*) relatedUser;

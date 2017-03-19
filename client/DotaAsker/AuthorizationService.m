@@ -37,7 +37,7 @@
     NSData* jsonData= [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     
     NSString* jsonString = [NSString stringWithUTF8String:[jsonData bytes]];
-    NSString* lengthStr = [NSString stringWithFormat:@"%ld", [jsonString length]];
+    NSString* lengthStr = [NSString stringWithFormat:@"%ld", (unsigned long)[jsonString length]];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];

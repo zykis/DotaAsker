@@ -15,7 +15,7 @@
 @property (strong, nonatomic) UserAnswerTransport* transport;
 - (long long)getNextPrimaryKey;
 
-- (NSString*)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2;
-- (void)sendUserAnswers: (NSArray*)unsynchronizedUserAnswers next:(void (^ _Nullable)(UserAnswer* x))nextBlock error:(void (^_Nonnull)(NSError** error))errorBlock complete:(void(^)())completeBlock;
+- (NSString* _Nullable)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2;
+- (void)sendUserAnswers: (NSArray*)unsynchronizedUserAnswerIDs next:(void (^)(UserAnswer* x))nextBlock error:(nullable void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock;
 
 @end

@@ -54,7 +54,7 @@
 
 - (void)fillUser {
     [self.navigationTitle setTitle:[_user name]];
-    [self.mmr setText: [NSString stringWithFormat:@"%lu", [_user MMR]]];
+    [self.mmr setText: [NSString stringWithFormat:@"%ld", (long)[_user MMR]]];
     [self.kda setText: [NSString stringWithFormat:@"%.2f", [_user KDA]]];
     [self.gpm setText: [NSString stringWithFormat:@"%.2f", [_user GPM]]];
     
@@ -68,8 +68,8 @@
     else
         [self.averageCorrectAnswers setText:@"1.00"];
     
-    [self.wins setText:[NSString stringWithFormat:@"%lu", _user.totalMatchesWon]];
-    [self.lost setText:[NSString stringWithFormat:@"%lu", _user.totalMatchesLost]];
+    [self.wins setText:[NSString stringWithFormat:@"%ld", (long)_user.totalMatchesWon]];
+    [self.lost setText:[NSString stringWithFormat:@"%ld", (long)_user.totalMatchesLost]];
     
     [self.avatar setImage:[UIImage imageNamed:[_user avatarImageName]]];
     [self.tableView reloadData];
@@ -115,7 +115,7 @@
     // score
     NSUInteger scorePlayer = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:_user];
     NSUInteger scoreOpponent = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:opponent];
-    NSString* scoreStr = [NSString stringWithFormat:@"%lu - %lu", scorePlayer, scoreOpponent];
+    NSString* scoreStr = [NSString stringWithFormat:@"%lu - %lu", (unsigned long)scorePlayer, (unsigned long)scoreOpponent];
     [score setText:scoreStr];
     // mmr gain
     User* winner;
@@ -125,7 +125,7 @@
         winner = opponent;
     BOOL userWinner = [winner isEqual:_user];
     [mmrGain setTextColor: userWinner? [UIColor greenColor]: [UIColor redColor]];
-    [mmrGain setText:[NSString stringWithFormat:@"%@%lu", userWinner? @"+": @"-" ,[m mmrGain]]];
+    [mmrGain setText:[NSString stringWithFormat:@"%@%lu", userWinner? @"+": @"-" ,(long)[m mmrGain]]];
     
     return cell;
 }

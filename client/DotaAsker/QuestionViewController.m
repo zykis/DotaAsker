@@ -53,6 +53,7 @@
     _questionViewModel = [[QuestionViewModel alloc] init];
     _currentQuestionIndex = 0;
     [_progressView setProgress:1.0];
+    [self createEmptyAnswers];
     [self showNextQuestion];
 }
 
@@ -112,7 +113,7 @@
         answerIndex = 3;
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
-    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] lastObject];
+    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] objectAtIndex:_currentQuestionIndex];
     assert(userAnswer);
     
     // Udpate existing userAnswer
@@ -153,7 +154,7 @@
         _questionTimer = nil;
     }
 
-    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] lastObject];
+    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] objectAtIndex:_currentQuestionIndex];
     assert(userAnswer);
 
     User* relatedUser = [[self selectedRound] nextMoveUser];
@@ -167,11 +168,12 @@
     [self showNextQuestion];
 }
 
-- (void)showNextQuestion {
-    if (_currentQuestionIndex < 3) {
-        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex onTheme:[self selectedTheme] inRound:[self selectedRound]];
+- (void)createEmptyAnswers {
+    for (int i = 0; i < 3; i++) {
+        Question* q = [_questionViewModel questionForQuestionIndex:i
+                                                           onTheme:[self selectedTheme]
+                                                           inRound:[self selectedRound]];
         // create empty unsynchronized userAnswer
-        
         UserAnswer* ua = [[UserAnswer alloc] init];
         // generating new primary key. will be replaced after creating on server side
         long long newID = [[[ServiceLayer instance] userAnswerService] getNextPrimaryKey];
@@ -187,13 +189,17 @@
         // Persist unsynchronized UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        // Error, while trying to add existing Nested objects (User, Question, Answer etc.)
         [[[self selectedRound] userAnswers] addObject:ua];
         [realm commitWriteTransaction];
-        NSLog(@"Created UA tapped ID = %lld, questionID: %ld", ua.ID, (long)ua.relatedQuestionID);
-        
         self.secondsRemain = QUESTION_TIMEOUT_INTERVAL;
-        
+    }
+}
+
+- (void)showNextQuestion {
+    if (_currentQuestionIndex < 3) {
+        Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex
+                                                           onTheme:[self selectedTheme]
+                                                           inRound:[self selectedRound]];
         // Start 30 seconds timer
         [self startTimersWithExpirationInterval: QUESTION_TIMEOUT_INTERVAL andProgressUpdateInterval: 0.01];
         
@@ -205,10 +211,8 @@
         [subject subscribeNext:^(id x) {
             [_questionImageView setImage:x];
         } error:^(NSError *error) {
-            NSLog(@"%@", [error localizedDescription]);
-        } completed:^{
+            // No image loaded
         }];
-        
         
         [_questionText setText:[q text]];
         
@@ -240,22 +244,24 @@
         [loadingView setMessage:@"Sending answers"];
         [[self view] addSubview:loadingView];
     
-        void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable userAnswer) {
+        __block BOOL obtained = YES;
+        void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
             RLMRealm* realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
-            _ua = [UserAnswer objectWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld"
-                                            x.relatedRoundID, x.relatedUserID, x.relatedQuestionID];
+            UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
             _ua.synchronized = true;
             [realm commitWriteTransaction];
             obtained = YES;
-            NSLog(@"UA obtained");
-        }
-        void (^errorBlock)(NSError** _Nonnull error) = ^void(NSError** _Nonnull error) {
+        };
+        
+        void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
             dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"%@, Code: %ld", [error localizedDescription], [error code]);
                 [loadingView removeFromSuperview];
                 [self popToMatchViewController];
             });
-        }
+        };
+        
         void (^completeBlock)() = ^void() {
             // UserAnswers has been updated.
             // Updaing Player and tableView
@@ -276,13 +282,19 @@
                     [self popToMatchViewController];
                 });
             }];
-        }
+        };
     
-        RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"unsynchronized == true"]
-        [[ServiceLayer instance] userAnswerService] sendUserAnswers: uas next:nextBlock error:errorBlock complete:completeBlock];
+        RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"synchronized == false"];
+        NSMutableArray* ar = [[NSMutableArray alloc] init];
+        for (UserAnswer* ua in uas) {
+            [ar addObject:[NSNumber numberWithLongLong:ua.ID]];
+        }
+        NSArray* arr = [NSArray arrayWithArray:ar];
+        [[[ServiceLayer instance] userAnswerService] sendUserAnswers:arr next:nextBlock error:errorBlock complete:completeBlock];
+    }
 }
 
-- (void)viewDidLayoutSubviews {
+- (void)viewWillLayoutSubviews {
     [super viewDidLayoutSubviews];
     CGRect questionTextRect = [_questionText frame];
     CGRect questionTextRectOld = questionTextRect;
@@ -306,7 +318,6 @@
     [destVC.matchViewModel setMatchID:m.ID];
     [destVC.tableView reloadData];
     [[self navigationController] popToViewController:destVC animated:YES];
-
 }
 
 - (void)startTimersWithExpirationInterval: (double)expirationIntervalSeconds andProgressUpdateInterval: (double)progressIntervalSeconds {    

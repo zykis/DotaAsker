@@ -69,7 +69,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-//    [self loadBackgroundImage];
+    [self loadBackgroundImage];
     [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
     
     [self.tableView.refreshControl setTintColor:[UIColor whiteColor]];

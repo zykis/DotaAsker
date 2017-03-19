@@ -16,7 +16,7 @@
 @property (strong, nonatomic) IBOutlet ThemeButton* imagedButton1;
 @property (strong, nonatomic) IBOutlet ThemeButton* imagedButton2;
 @property (strong, nonatomic) IBOutlet ThemeButton* imagedButton3;
-@property (assign, nonatomic) NSUInteger roundID;
+@property (assign, nonatomic) long long roundID;
 - (IBAction)button1Pressed:(id)sender;
 - (IBAction)button2Pressed:(id)sender;
 - (IBAction)button3Pressed:(id)sender;

@@ -79,18 +79,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showThemeSelected"]) {
-        ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-        Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
-        Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
-        // If no selected theme in round, try to update it
-        [destVC setRoundID:selectedRound.ID];
-        [destVC setSelectedThemeID:selectedTheme.ID];
-    }
-    else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
+    if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];
         Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
-        
         [destVC setRoundID:selectedRound.ID];
     }
 }
@@ -98,7 +89,6 @@
 - (IBAction)midleButtonPushed:(id)sender {
     Round* currentRound = [[[ServiceLayer instance] roundService ] currentRoundforMatch:[_matchViewModel match]];
     User* opponent = [_matchViewModel opponent];
-    RLMResults<UserAnswer*>* lastPlayerUserAnswers = [_matchViewModel lastPlayerUserAnswers];
 
     switch(_buttonState)
     {
@@ -120,12 +110,6 @@
             }
             break;
         }
-        
-        case BUTTON_CONTINUE:
-            //! TODO: Set current_question_index in destVC
-            [self performSegueWithIdentifier:@"showThemeSelected" sender:sender];
-            break;
-            
         case BUTTON_SYNCHRONIZE:
         {
             // Present LoadingView
@@ -133,24 +117,24 @@
             [loadingView setMessage:@"Sending answers"];
             [[self view] addSubview:loadingView];
         
-            void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable userAnswer) {
+            __block BOOL obtained = YES;
+            void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
-                _ua = [UserAnswer objectWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld"
-                                                x.relatedRoundID, x.relatedUserID, x.relatedQuestionID];
+                UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
                 _ua.synchronized = true;
                 [realm commitWriteTransaction];
                 obtained = YES;
-            }
-            void (^errorBlock)(NSError** _Nonnull error) = ^void(NSError** _Nonnull error) {
+            };
+            void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
+                    [self.tableView reloadData];
                 });
-            }
+            };
             void (^completeBlock)() = ^void() {
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
- -              [subject subscribeNext:^(id x) {
+                [subject subscribeNext:^(id x) {
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
                 [realm addOrUpdateObject:x];
@@ -166,10 +150,15 @@
                         [self.tableView reloadData];
                     });
                 }];
-            }
+            };
         
-            RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"unsynchronized == true"]
-            [[ServiceLayer instance] userAnswerService] sendUserAnswers: uas next:nextBlock error:errorBlock complete:completeBlock];
+            RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"synchronized == false"];
+            NSMutableArray* ar = [[NSMutableArray alloc] init];
+            for (UserAnswer* ua in uas) {
+                [ar addObject:[NSNumber numberWithLongLong:ua.ID]];
+            }
+            NSArray* arr = [NSArray arrayWithArray:ar];
+            [[[ServiceLayer instance] userAnswerService] sendUserAnswers:arr next:nextBlock error:errorBlock complete:completeBlock];
             break;
         }
             
@@ -207,17 +196,24 @@
     [[self view] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
-    [subject subscribe next:^(id x) {
-        RLMRealm* realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        [realm addOrUpdateObject:x];
-        [realm commitWriteTransaction];
-        [self.tableView reloadData];
-    } error:^(NSError *error) {
+    [subject subscribeError:^(NSError *error) {
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Can't surrend" andMessage:[error localizedDescription]];
     } completed:^{
-        [loadingView removeFromSuperview];
+        RACSubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+        [subject subscribeNext:^(id  _Nullable x) {
+            RLMRealm* realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            [realm addOrUpdateObject:x];
+            [realm commitWriteTransaction];
+            [loadingView removeFromSuperview];
+        } error:^(NSError * _Nullable error) {
+            NSLog(@"Error updating player");
+            [loadingView removeFromSuperview];
+        } completed:^{
+            [self.navigationController popViewControllerAnimated:YES];
+            [self.tableView reloadData];
+        }];
     }];
 }
 
@@ -275,7 +271,7 @@
             roundView.delegate = self;
             UILabel *roundNumber = (UILabel*)[cell viewWithTag:107];
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
-            [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",[indexPath row]+1]];
+            [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",(long)[indexPath row]+1]];
             UILabel *roundStatus = (UILabel*)[cell viewWithTag:108];
             [roundStatus setText:[_matchViewModel roundStatusTextForRoundInRow:[indexPath row]]];
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
@@ -327,11 +323,6 @@
                 case BUTTON_PLAY:
                     [leftButton setHidden:NO];
                     [middleButton setTitle:@"Play" forState:UIControlStateNormal];
-                    [middleButton setEnabled:YES];
-                    break;
-                case BUTTON_CONTINUE:
-                    [leftButton setHidden:NO];
-                    [middleButton setTitle:@"Continue" forState:UIControlStateNormal];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_SYNCHRONIZE:
@@ -407,7 +398,7 @@
     if(!path)
         return;
     
-    NSString *title = [NSString stringWithFormat:@"Question %ld:", index + 1];
+    NSString *title = [NSString stringWithFormat:@"Question %ld:", (long)index + 1];
     NSString *text = [_matchViewModel textForUserAnswerForRoundInRow:[path row] andUserAnswerIndex:index];
 
     
@@ -441,14 +432,15 @@
                 unsynchronizedCount++;
             }
         }
-        if (((unsynchronizedCount > 0) && (unsynchronizedCount < 3)) || ( (totalCount > 0) && (totalCount < 3) )) {
-            return BUTTON_CONTINUE;
-        }
-        else if (unsynchronizedCount == 3) {
+        if ((unsynchronizedCount > 0) && (unsynchronizedCount <= 3)) {
             return BUTTON_SYNCHRONIZE;
         }
-        else {
+        else if((unsynchronizedCount == 0) && (totalCount == 3)) {
             return BUTTON_PLAY;
+        } else {
+            NSLog(@"Can't define round state. Crushing app");
+            NSLog(@"Total UAs: %ld\nUnsynchronized UAs: %ld", totalCount, unsynchronizedCount);
+            assert(0);
         }
     }
     else {
