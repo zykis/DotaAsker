@@ -79,7 +79,17 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
+    if ([[segue identifier] isEqualToString:@"showThemeSelected"]) {
+        ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
+        Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
+        Theme* selectedTheme = [[[ServiceLayer instance] roundService] themeSelectedForRound:selectedRound];
+        assert(selectedRound);
+        assert(selectedTheme);
+        // If no selected theme in round, try to update it
+        [destVC setRoundID:selectedRound.ID];
+        [destVC setSelectedThemeID:selectedTheme.ID];
+    }
+    else if ([[segue identifier] isEqualToString:@"showThemeSelection"]) {
         ThemeSelectionViewController *destVC = (ThemeSelectionViewController*) [segue destinationViewController];
         Round* selectedRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[_matchViewModel match]];
         [destVC setRoundID:selectedRound.ID];
@@ -114,17 +124,15 @@
         {
             // Present LoadingView
             __block LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-            [loadingView setMessage:@"Sending answers"];
+            [loadingView setMessage:@"Synchronizing"];
             [[self view] addSubview:loadingView];
         
-            __block BOOL obtained = YES;
             void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
                 UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
                 _ua.synchronized = true;
                 [realm commitWriteTransaction];
-                obtained = YES;
             };
             void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -398,7 +406,7 @@
     if(!path)
         return;
     
-    NSString *title = [NSString stringWithFormat:@"Question %ld:", (long)index + 1];
+    NSString *title = [NSString stringWithFormat:@"Question %ld:", (long)index % 3 + 1];
     NSString *text = [_matchViewModel textForUserAnswerForRoundInRow:[path row] andUserAnswerIndex:index];
 
     

@@ -75,11 +75,11 @@
     RLMResults<UserAnswer*> *secondUserUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", selectedRound.ID, opponent.ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
     UserAnswer* ua1;
     UserAnswer* ua2;
-    if ([firstUserUserAnswers count] >= index + 1) {
-        ua1 = [firstUserUserAnswers objectAtIndex:index];
+    if ([firstUserUserAnswers count] >= index % 3 + 1) {
+        ua1 = [firstUserUserAnswers objectAtIndex:index % 3];
     }
-    if ([secondUserUserAnswers count] >= index + 1) {
-        ua2 = [secondUserUserAnswers objectAtIndex:index];
+    if ([secondUserUserAnswers count] >= (index % 3) + 1) {
+        ua2 = [secondUserUserAnswers objectAtIndex:index % 3];
     }
 
     NSString* text = [[[ServiceLayer instance] userAnswerService] textForUserAnswerFirst: ua1 andSecond: ua2];

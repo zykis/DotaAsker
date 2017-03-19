@@ -43,31 +43,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    
-    // Getting objects from Realm
-    
-    // Setting selected theme for Round
-    Round* round = [Round objectForPrimaryKey:@(_roundID)];
-    Theme* selectedTheme = [Theme objectForPrimaryKey:@(_selectedThemeID)];
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [round setSelectedTheme:selectedTheme];
-    [realm commitWriteTransaction];
-    
-    // Sending to server
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Updating round"];
-    [[self view] addSubview:loadingView];
-    
-    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:round];
-    [subject subscribeError:^(NSError *error) {
-        [loadingView removeFromSuperview];
-        [[self navigationController] popViewControllerAnimated:YES];
-        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
-    } completed:^{
-        [loadingView removeFromSuperview];
-    }];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

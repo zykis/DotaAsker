@@ -72,6 +72,7 @@
             [round setSelectedTheme:existedTheme];
         }
         else {
+            assert(selected_theme.ID);
             [round setSelectedTheme:selected_theme];
         }
     }
