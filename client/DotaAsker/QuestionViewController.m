@@ -245,7 +245,7 @@
         [[self view] addSubview:loadingView];
     
         void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
-            NSLog(@"Recieved UA: %@", [ua description]);
+            NSLog(@"Recieved UA: %@", [x description]);
             RLMRealm* realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
             UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
@@ -266,16 +266,17 @@
             // Updaing Player and tableView
             RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
             [subject subscribeNext:^(id u) {
-            RLMRealm* realm = [RLMRealm defaultRealm];
-            [realm beginWriteTransaction];
-            [realm deleteAllObjects];
-            [realm commitWriteTransaction];
-            
-            [realm beginWriteTransaction];
-            [realm addOrUpdateObject:u];
-            [realm commitWriteTransaction];
-             
-            [Player setID: u.ID];
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                [realm deleteAllObjects];
+                [realm commitWriteTransaction];
+                
+                [realm beginWriteTransaction];
+                [realm addOrUpdateObject:u];
+                [realm commitWriteTransaction];
+                
+                User* user = u;
+                [Player setID: user.ID];
             } error:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [loadingView removeFromSuperview];

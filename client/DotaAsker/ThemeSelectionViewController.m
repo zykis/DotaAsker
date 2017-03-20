@@ -58,6 +58,11 @@
 
 - (void)updateRoundSelectedTheme:(Theme*)theme {
     Round* round = [Round objectForPrimaryKey:@(_roundID)];
+    
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [round setSelectedTheme: theme];
+    [realm commitWriteTransaction];
     // Updating round's selected theme
     LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
     [loadingView setMessage:@"Updating round"];
@@ -68,11 +73,6 @@
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
     } completed:^{
-        // Persist selected theme
-        RLMRealm* realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        [round setSelectedTheme: theme];
-        [realm commitWriteTransaction];
         [loadingView removeFromSuperview];
         [self performSegueWithIdentifier:@"themeSelected" sender:theme];
     }];

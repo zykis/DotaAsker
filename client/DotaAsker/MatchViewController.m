@@ -288,12 +288,12 @@
             
             RLMResults* playerUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[Player instance] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
             RLMResults* opponentUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[_matchViewModel opponent] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
-            NSLog(@"Round#%lld", [indexPath row] + 1);
+            NSLog(@"Round#%ld", [indexPath row] + 1);
             NSLog(@"player UserAnswers: ");
             for (UserAnswer* ua in playerUserAnswers) {
                 NSLog(@"%@", [ua description]);
             }
-            NSLog(@"opponent UserAnswers: ")
+            NSLog(@"opponent UserAnswers: ");
             for (UserAnswer* ua in opponentUserAnswers) {
                 NSLog(@"%@", [ua description]);
             }
