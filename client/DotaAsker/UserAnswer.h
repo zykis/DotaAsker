@@ -32,6 +32,7 @@
 - (User*) relatedUser;
 - (Question*) relatedQuestion;
 - (Round*) relatedRound;
+- (NSString*)description;
     
 @end
 RLM_ARRAY_TYPE(UserAnswer)

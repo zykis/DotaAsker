@@ -81,6 +81,8 @@
     if ([secondUserUserAnswers count] >= (index % 3) + 1) {
         ua2 = [secondUserUserAnswers objectAtIndex:index % 3];
     }
+    NSLog(@"UA tapped(1): %@", [ua1 description]);
+    NSLog(@"UA tapped(2): %@", [ua2 description]);
 
     NSString* text = [[[ServiceLayer instance] userAnswerService] textForUserAnswerFirst: ua1 andSecond: ua2];
     

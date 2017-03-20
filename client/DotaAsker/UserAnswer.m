@@ -57,4 +57,10 @@
     return [Round objectForPrimaryKey:@(self.relatedRoundID)];
 }
 
+- (NSString*)description {
+    return [NSString stringWithFormat:@"ID: %lld, qID: %lld, aID: %lld uID: %lld\nQuestion: %@, Answer: %@ - %@",
+                      self.ID, [self relatedQuestion].ID, [self relatedAnswer].ID, [self relatedUser].ID,
+                      [self relatedQuestion].text, [self relatedAnswer].text, [self relatedAnswer].isCorrect? @"Correct" : @"Incorrect"];
+}
+
 @end
