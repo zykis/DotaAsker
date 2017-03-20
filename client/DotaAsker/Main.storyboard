@@ -1002,7 +1002,7 @@
                                             <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="button3Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="PmH-GC-6ue"/>
+                                            <action selector="button2Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="lBO-yg-cLd"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3b-Vw-vXo" customClass="ThemeButton">
@@ -1012,7 +1012,7 @@
                                             <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="button2Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="fcc-H3-XBB"/>
+                                            <action selector="button3Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="rUj-B1-4P0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1863,7 +1863,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wHg-3X-Li2"/>
-        <segue reference="ut3-yq-Aji"/>
+        <segue reference="AUo-9G-fYr"/>
         <segue reference="9KW-MF-H3Q"/>
     </inferredMetricsTieBreakers>
 </document>
