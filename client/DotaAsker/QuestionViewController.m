@@ -265,11 +265,17 @@
             // UserAnswers has been updated.
             // Updaing Player and tableView
             RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-            [subject subscribeNext:^(id x) {
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [realm addOrUpdateObject:x];
-                [realm commitWriteTransaction];
+            [subject subscribeNext:^(id u) {
+            RLMRealm* realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            [realm deleteAllObjects];
+            [realm commitWriteTransaction];
+            
+            [realm beginWriteTransaction];
+            [realm addOrUpdateObject:u];
+            [realm commitWriteTransaction];
+             
+            [Player setID: u.ID];
             } error:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [loadingView removeFromSuperview];
