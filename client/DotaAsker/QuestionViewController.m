@@ -113,7 +113,9 @@
         answerIndex = 3;
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
-    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] objectAtIndex:_currentQuestionIndex];
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] objectAtIndex:_currentQuestionIndex];
+    UserAnswer* userAnswer = [[[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", [self selectedRound].ID, [Player instance].ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES] objectAtIndex:_currentQuestionIndex];
     assert(userAnswer);
     
     // Udpate existing userAnswer
@@ -245,12 +247,14 @@
         [[self view] addSubview:loadingView];
     
         void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
-            NSLog(@"Recieved UA: %@", [x description]);
-            RLMRealm* realm = [RLMRealm defaultRealm];
-            [realm beginWriteTransaction];
-            UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-            _ua.synchronized = true;
-            [realm commitWriteTransaction];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Recieved UA: %@", [x description]);
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
+                _ua.synchronized = true;
+                [realm commitWriteTransaction];
+            });
         };
         
         void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -268,15 +272,8 @@
             [subject subscribeNext:^(id u) {
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
-                [realm deleteAllObjects];
-                [realm commitWriteTransaction];
-                
-                [realm beginWriteTransaction];
                 [realm addOrUpdateObject:u];
                 [realm commitWriteTransaction];
-                
-                User* user = u;
-                [Player setID: user.ID];
             } error:^(NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [loadingView removeFromSuperview];
