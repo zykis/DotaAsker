@@ -245,6 +245,7 @@
         [[self view] addSubview:loadingView];
     
         void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
+            NSLog(@"Recieved UA: %@", [ua description]);
             RLMRealm* realm = [RLMRealm defaultRealm];
             [realm beginWriteTransaction];
             UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
@@ -285,7 +286,9 @@
         Round* relatedRound = [Round objectForPrimaryKey:@(_roundID)];
         RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"synchronized == false AND relatedRoundID == %lld AND relatedUserID == %lld", [relatedRound ID], [[Player instance] ID]];
         NSMutableArray* ar = [[NSMutableArray alloc] init];
+        NSLog(@"Sending userAnswers:");
         for (UserAnswer* ua in uas) {
+            NSLog(@"%@", [ua description]);
             [ar addObject:[NSNumber numberWithLongLong:ua.ID]];
         }
         NSArray* arr = [NSArray arrayWithArray:ar];
