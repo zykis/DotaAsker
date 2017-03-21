@@ -48,13 +48,7 @@
     //theme
     NSDictionary *themeDict = [JSONDict objectForKey:@"theme"];
     Theme* theme = [ThemeParser parse:themeDict];
-    Theme* existingTheme = [Theme objectForPrimaryKey:@(theme.ID)];
-    if (existingTheme != nil) {
-        [question setTheme:existingTheme];
-    }
-    else {
-        [question setTheme:theme];
-    }
+    [question setTheme:theme];
 
     return question;
 }

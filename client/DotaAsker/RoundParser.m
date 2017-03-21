@@ -44,13 +44,7 @@
         NSMutableArray* questionsDict = [JSONDict objectForKey:@"questions"];
         for (NSDictionary* questionDict in questionsDict) {
             Question* q = [QuestionParser parse:questionDict];
-            Question* existingQuestion = [Question objectForPrimaryKey:@(q.ID)];
-            if (existingQuestion != nil) {
-                [[round questions] addObject:existingQuestion];
-            }
-            else {
-                [[round questions] addObject:q];
-            }
+            [[round questions] addObject:q];
         }
         assert([[round questions] count] == 9);
     }

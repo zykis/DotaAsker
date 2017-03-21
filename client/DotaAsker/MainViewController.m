@@ -296,7 +296,14 @@
         
         RLMRealm* realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        [[[Player instance] matches] addObject:m];
+        // Creating temporarily object with m.ID to add to RLMArray without exception
+        Match* mTemp = [[Match alloc] init];
+        mTemp.ID = m.ID;
+        // Adding to RLMArray
+        [[[Player instance] matches] addObject:mTemp];
+        // Force to update nested entities
+        [Match createOrUpdateInDefaultRealmWithValue:m];
+        
         [realm commitWriteTransaction];
         
         [loadingView removeFromSuperview];
