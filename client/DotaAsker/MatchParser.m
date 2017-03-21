@@ -53,13 +53,9 @@
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
     for (NSDictionary* userDict in usersDict) {
         User* u = [UserParser parse:userDict andChildren:NO];
-        User* existingUser = [User objectForPrimaryKey:@(u.ID)];
-        if (existingUser != nil) {
-            [[match users] addObject:existingUser];
-        }
-        else {
-            [[match users] addObject:u];
-        }
+        IntObject* userID = [[IntObject alloc] init];
+        [userID setValue:u.ID];
+        [[match usersIDs] addObject:userID];
     }
 
     if (bParseChildren) {

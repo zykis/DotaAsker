@@ -50,6 +50,19 @@
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     [[_transport obtainWithAccessToken:accessToken] subscribeNext:^(id x) {
         User* u = [UserParser parse:x andChildren:YES];
+        for (Match* m in [u matches]) {
+            for(IntObject* userID in [m usersIDs]) {
+                RACReplaySubject* userSubject = [self obtain:userID.value];
+                [userSubject subscribeNext:^(id  _Nullable x) {
+                    RLMRealm* realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    [realm addObject:x];
+                    [realm commitWriteTransaction];
+                } error:^(NSError * _Nullable error) {
+                    [subject sendError:error];
+                }];
+            }
+        }
         [subject sendNext:u];
     } error:^(NSError *error) {
         [subject sendError:error];

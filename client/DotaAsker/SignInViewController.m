@@ -96,9 +96,6 @@
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
              RLMRealm* realm = [RLMRealm defaultRealm];
-             [realm beginWriteTransaction];
-             [realm deleteAllObjects];
-             [realm commitWriteTransaction];
              
              [realm beginWriteTransaction];
              [realm addOrUpdateObject:u];

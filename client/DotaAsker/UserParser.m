@@ -70,13 +70,7 @@
         }
         for (NSDictionary* friendDict in friendsDict) {
             User* friend = [UserParser parse:friendDict andChildren:NO];
-            User* existingFriend = [User objectForPrimaryKey:@(friend.ID)];
-            if (existingFriend != ni;) {
-                [[user friends] addObject:existingFriend];
-            }
-            else {
-                [[user friends] addObject:friend];
-            }
+            [[user friends] addObject:friend];
         }
     }
     

@@ -46,19 +46,16 @@
     
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
-        RLMRealm* realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        [realm deleteAllObjects];
-        [realm commitWriteTransaction];
+         RLMRealm* realm = [RLMRealm defaultRealm];
+
+         [realm beginWriteTransaction];
+         [realm addOrUpdateObject:u];
+         [realm commitWriteTransaction];
         
-        [realm beginWriteTransaction];
-        [realm addOrUpdateObject:u];
-        [realm commitWriteTransaction];
-        
-        [Player setID: u.ID];
-        [self.tableView reloadData];
-        [self.tableView.refreshControl endRefreshing];
-        [loadingView removeFromSuperview];
+         [Player setID: u.ID];
+         [self.tableView reloadData];
+         [self.tableView.refreshControl endRefreshing];
+         [loadingView removeFromSuperview];
      } error:^(NSError *error) {
          [self.tableView.refreshControl endRefreshing];
          [loadingView removeFromSuperview];
@@ -303,11 +300,12 @@
         [[[Player instance] matches] addObject:mTemp];
         // Force to update nested entities
         [Match createOrUpdateInDefaultRealmWithValue:m];
-        
         [realm commitWriteTransaction];
         
-        [loadingView removeFromSuperview];
-        [self.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [loadingView removeFromSuperview];
+            [self.tableView reloadData];
+        });
     } error:^(NSError *error) {
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Match not found" andMessage:[error localizedDescription]];
