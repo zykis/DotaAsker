@@ -2,5 +2,5 @@
 
 @interface Player : NSObject
 + (User*)instance;
-+ (void)setID:(long long) ID;
++ (void)manualUpdate:(User*)u;
 @end

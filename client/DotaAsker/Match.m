@@ -39,14 +39,4 @@
     return @"ID";
 }
 
-- (NSArray*)users {
-    NSMutableArray* usersMutable = [[NSMutableArray alloc] init];
-    
-    for (IntObject* userID in [self usersIDs]) {
-        User* user = [User objectForPrimaryKey:@(userID.value)];
-        [usersMutable addObject:user];
-    }
-    return [NSArray arrayWithArray:usersMutable];
-}
-
 @end

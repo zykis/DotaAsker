@@ -46,13 +46,8 @@
     
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
-         RLMRealm* realm = [RLMRealm defaultRealm];
-
-         [realm beginWriteTransaction];
-         [realm addOrUpdateObject:u];
-         [realm commitWriteTransaction];
-        
-         [Player setID: u.ID];
+         [Player manualUpdate:u];
+         
          [self.tableView reloadData];
          [self.tableView.refreshControl endRefreshing];
          [loadingView removeFromSuperview];
@@ -287,25 +282,10 @@
     
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
-        // Update player
-        Match* m = (Match*)x;
-        assert(m);
+        [Player manualUpdate:x];
         
-        RLMRealm* realm = [RLMRealm defaultRealm];
-        [realm beginWriteTransaction];
-        // Creating temporarily object with m.ID to add to RLMArray without exception
-        Match* mTemp = [[Match alloc] init];
-        mTemp.ID = m.ID;
-        // Adding to RLMArray
-        [[[Player instance] matches] addObject:mTemp];
-        // Force to update nested entities
-        [Match createOrUpdateInDefaultRealmWithValue:m];
-        [realm commitWriteTransaction];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [loadingView removeFromSuperview];
-            [self.tableView reloadData];
-        });
+        [loadingView removeFromSuperview];
+        [self.tableView reloadData];
     } error:^(NSError *error) {
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithTitle:@"Match not found" andMessage:[error localizedDescription]];

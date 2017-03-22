@@ -95,15 +95,9 @@
         
         [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
          subscribeNext:^(User* u) {
-             RLMRealm* realm = [RLMRealm defaultRealm];
-             
-             [realm beginWriteTransaction];
-             [realm addOrUpdateObject:u];
-             [realm commitWriteTransaction];
-             
-             [Player setID: u.ID];
-             [self performSegueWithIdentifier:@"signin" sender:self];
-             [loadingView removeFromSuperview];
+            [Player manualUpdate:u];
+            [self performSegueWithIdentifier:@"signin" sender:self];
+            [loadingView removeFromSuperview];
         } error:^(NSError *error) {
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];

@@ -26,21 +26,15 @@
 @class User;
 RLM_ARRAY_TYPE(User)
 
-@interface IntObject : RLMObject
-@property long long value;
-@end
-RLM_ARRAY_TYPE(IntObject)
-
 @interface Match : RLMObject
 
 @property (assign, nonatomic) long long ID;
 @property (strong, nonatomic) NSDate* createdOn;
 @property (strong, nonatomic) NSDate* updatedOn;
-@property RLMArray<IntObject*><IntObject>* usersIDs;
 @property RLMArray<Round*><Round>* rounds;
+@property RLMArray<User*><User>* users;
 @property (assign, nonatomic) NSInteger state;
 @property (assign, nonatomic) NSInteger mmrGain;
-- (NSArray*)users;
 
 @end
 RLM_ARRAY_TYPE(Match)
