@@ -47,7 +47,7 @@ static long long playerID = 0;
     RLMRealm* realm = [RLMRealm defaultRealm];
     // [1] Remove all objects from Realm
     [realm beginWriteTransaction];
-    [realm removeAllObjects]
+    [realm deleteAllObjects];
     [realm commitWriteTransaction];
     // [2] Update all variables, except matches, that will be updated manually
     User* uTmp = [[User alloc] init];
@@ -67,7 +67,7 @@ static long long playerID = 0;
             // [3.1] For each user inside [match users] check if user is root
             if (_u.ID == u.ID)
                 // [3.1.1] If so set root user
-                [mTpm.users addObject:u]
+                [mTmp.users addObject:u];
             else
                 // [3.1.2] Else - add a new one
                 [mTmp.users addObject:_u];
@@ -77,7 +77,7 @@ static long long playerID = 0;
     }
     // [4] Add modified user to Realm
     [realm beginWriteTransaction];
-    [realm addObject:u];
+    [realm addOrUpdateObject:u];
     [realm commitWriteTransaction];
     // update ID
     [Player setID:u.ID];

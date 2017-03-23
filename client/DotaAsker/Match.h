@@ -32,7 +32,7 @@ RLM_ARRAY_TYPE(User)
 @property (strong, nonatomic) NSDate* createdOn;
 @property (strong, nonatomic) NSDate* updatedOn;
 @property RLMArray<Round*><Round>* rounds;
-@property RLMArray<User*><User>* users;
+@property RLMArray<User>* users;
 @property (assign, nonatomic) NSInteger state;
 @property (assign, nonatomic) NSInteger mmrGain;
 

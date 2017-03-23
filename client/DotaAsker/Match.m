@@ -9,10 +9,6 @@
 #import "Match.h"
 #import "User.h"
 
-@implementation IntObject
-
-@end
-
 @implementation Match
 
 @synthesize createdOn = _createdOn;
