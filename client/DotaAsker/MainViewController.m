@@ -283,6 +283,7 @@
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
         // add match
+        [Player manualAddMatch: x];
         
         [loadingView removeFromSuperview];
         [self.tableView reloadData];

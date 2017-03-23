@@ -83,4 +83,27 @@ static long long playerID = 0;
     [Player setID:u.ID];
 }
 
++ (void)manualAddMatch: (Match*)m /* unmanaged match */ {
+    // Iterating through users to check if they are already presented in Realm
+    Match* mTmp = [[Match alloc] init];
+    mTmp.users = m.users;
+    m.users = nil;
+    
+    for (User* u in [mTmp users]) {
+        User* existingUser = [User objectForPrimaryKey:@(u.ID)];
+        if (existingUser != nil) {
+            [[m users] addObject:existingUser]; // If the exception will be thrown?
+        }
+        else {
+            [[m users] addObject:u];
+        }
+    }
+    
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [realm addOrUpdateObject: m];
+    [[[self instance] matches] addObject:m];
+    [realm commitWriteTransaction];
+}
+
 @end

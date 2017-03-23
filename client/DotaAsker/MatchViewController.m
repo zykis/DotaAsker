@@ -210,10 +210,7 @@
     } completed:^{
         RACSubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
         [subject subscribeNext:^(id  _Nullable x) {
-            RLMRealm* realm = [RLMRealm defaultRealm];
-            [realm beginWriteTransaction];
-            [realm addOrUpdateObject:x];
-            [realm commitWriteTransaction];
+            [Player manualUpdate:x]
             [loadingView removeFromSuperview];
         } error:^(NSError * _Nullable error) {
             NSLog(@"Error updating player");
