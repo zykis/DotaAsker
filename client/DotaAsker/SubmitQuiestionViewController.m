@@ -88,14 +88,19 @@
         [[newQ answers] addObject:a];
     }
     
-    
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+        [loadingView setMessage:@"Submitting question"];
+        [[self view] addSubview:loadingView];
+        
     RACReplaySubject* subject = [[[ServiceLayer instance] questionService] submitQuestion:newQ];
     [subject subscribeNext:^(id x) {
         NSLog(@"Question submitted");
     } error:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
+        [loadingView removeFromSuperView];
     } completed:^{
         NSLog(@"Question submition complited");
+        [loadingView removeFromSuperView];
     }];
 }
 @end

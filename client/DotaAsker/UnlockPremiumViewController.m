@@ -47,7 +47,9 @@
 */
 
 - (IBAction)unlockPressed {
-    NSLog(@"Unlocking premium");
+    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
+        [loadingView setMessage:@"Unlocking premium"];
+        [[self view] addSubview:loadingView];
     
    RLMRealm* realm = [RLMRealm defaultRealm];
    [realm beginWriteTransaction];
@@ -59,8 +61,10 @@
         NSLog(@"Premium updated");
     } error:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
+        [loadingView removeFromSuperView];
     } completed:^{
         NSLog(@"Premium update complited");
+        [loadingView removeFromSuperView];
     }];
 }
 @end

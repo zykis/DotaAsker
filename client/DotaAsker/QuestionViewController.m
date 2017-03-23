@@ -113,8 +113,6 @@
         answerIndex = 3;
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!index!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    UserAnswer *userAnswer = [[[self selectedRound] userAnswers] objectAtIndex:_currentQuestionIndex];
     UserAnswer* userAnswer = [[[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", [self selectedRound].ID, [Player instance].ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES] objectAtIndex:_currentQuestionIndex];
     assert(userAnswer);
     
