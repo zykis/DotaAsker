@@ -61,10 +61,10 @@
         NSLog(@"Premium updated");
     } error:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
-        [loadingView removeFromSuperView];
+        [loadingView removeFromSuperview];
     } completed:^{
         NSLog(@"Premium update complited");
-        [loadingView removeFromSuperView];
+        [loadingView removeFromSuperview];
     }];
 }
 @end

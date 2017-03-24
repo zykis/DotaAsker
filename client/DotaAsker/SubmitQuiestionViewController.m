@@ -97,10 +97,10 @@
         NSLog(@"Question submitted");
     } error:^(NSError *error) {
         NSLog(@"%@", [error localizedDescription]);
-        [loadingView removeFromSuperView];
+        [loadingView removeFromSuperview];
     } completed:^{
         NSLog(@"Question submition complited");
-        [loadingView removeFromSuperView];
+        [loadingView removeFromSuperview];
     }];
 }
 @end
