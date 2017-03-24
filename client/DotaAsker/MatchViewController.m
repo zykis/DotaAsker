@@ -64,7 +64,7 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [self loadBackgroundImage];
-    [self loadBackgroundImage:[[Palette shared] pattern] atView:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
     [_tableView reloadData];
 }
 
@@ -267,6 +267,9 @@
             NSString *scoreText = [NSString stringWithFormat:@"%ld   -   %ld",
                                    (long)[_matchViewModel playerScore], (long)[_matchViewModel opponentScore]];
             [scoreLabel setText:scoreText];
+            
+            cell.backgroundColor = [UIColor clearColor];
+            cell.contentView.backgroundColor = [UIColor clearColor];
             break;
         }
             
@@ -321,6 +324,8 @@
                 else
                     [answerItemView setAnswerState:[[ua relatedAnswer] isCorrect]];
             }
+            cell.backgroundColor = [UIColor clearColor];
+            cell.contentView.backgroundColor = [UIColor clearColor];
             break;
         }
             
@@ -362,6 +367,8 @@
                     break;
                 default: assert(0);
             }
+            cell.backgroundColor = [UIColor clearColor];
+            cell.contentView.backgroundColor = [UIColor clearColor];
             break;
         }
             

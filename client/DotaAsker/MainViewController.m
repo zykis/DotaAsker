@@ -66,7 +66,7 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     [self loadBackgroundImage];
-    [self loadBackgroundImage:[[Palette shared] pattern]  atView:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     [self.tableView.refreshControl setTintColor:[UIColor whiteColor]];
     [self.tableView.refreshControl addTarget:self action:@selector(refreshControllDragged) forControlEvents:UIControlEventValueChanged];
@@ -125,13 +125,13 @@
         [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[[Player instance] GPM]]];
         
         cell.backgroundColor = [UIColor clearColor];
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
+        cell.contentView.backgroundColor = [UIColor clearColor];
         [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
     }
     else if ([indexPath section] == SECTION_FIND_BUTTON) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:FindMatchCellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
-        cell.contentView.backgroundColor = [UIColor colorWithRed:0.1f green:0.1f blue:0.1f alpha:0.0f];
+        cell.contentView.backgroundColor = [UIColor clearColor];
         [cell setSeparatorInset:UIEdgeInsetsMake(0.0, 0.0, 0.0, cell.bounds.size.width)];
     }
     else if (([indexPath section] == SECTION_CURRENT_MATCHES) || ([indexPath section] == SECTION_RECENT_MATCHES) || ([indexPath section] == SECTION_WAITING_MATCHES)) {
