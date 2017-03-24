@@ -22,7 +22,9 @@
           [JSONDict objectForKey:@"created_on"] &&
           [JSONDict objectForKey:@"updated_on"] &&
           [JSONDict objectForKey:@"users"] &&
+          [JSONDict objectForKey:@"winner"] &&
           [JSONDict objectForKey:@"state"] &&
+          [JSONDict objectForKey:@"finish_reason"] &&
           [JSONDict objectForKey:@"mmr_gain"] &&
           [JSONDict objectForKey:@"updated_on"]
           )) {
@@ -32,7 +34,7 @@
     
     Match* match = [[Match alloc] init];
     
-    //ID
+    // ID
     unsigned long long matchID = [[JSONDict objectForKey:@"id"] unsignedLongLongValue];
     [match setID:matchID];
     
@@ -42,19 +44,27 @@
     // updated_on
     match.updatedOn = [self dateFromString:[JSONDict objectForKey:@"updated_on"]];
     
-    //state
-    NSUInteger state = [[JSONDict objectForKey:@"state"] unsignedIntegerValue];
+    // state
+    NSInteger state = [[JSONDict objectForKey:@"state"] integerValue];
     [match setState:state];
     
-    //mmr
+    // finish_reason
+    NSInteger finishReason = [[JSONDict objectForKey:@"finish_reason"] integerValue];
+    
+    // mmr
     [match setMmrGain:[[JSONDict objectForKey:@"mmr_gain"] unsignedIntegerValue]];
     
-    //users
+    // users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
     for (NSDictionary* userDict in usersDict) {
         User* u = [UserParser parse:userDict andChildren:NO];
         [[match users] addObject: u];
     }
+    
+    // winner
+    NSArray* winnerDict = [JSONDict objectForKey:@"winner"];
+    User* winner = [UserParser parse:winnerDict andChildren:NO];
+    [match setWinner:winner];
 
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"rounds"])) {

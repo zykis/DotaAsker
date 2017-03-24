@@ -14,7 +14,11 @@ THEMES_COUNT = 3
 
 MATCH_RUNNING = 0
 MATCH_FINISHED = 1
-MATCH_TIME_ELAPSED = 2
+
+MATCH_FINISH_REASON_NONE = 0
+MATCH_FINISH_REASON_NORMAL = 1
+MATCH_FINISH_REASON_TIME_ELAPSED = 2
+MATCH_FINISH_REASON_SURREND = 3
 
 class Base(db.Model):
     __abstract__ = True
@@ -252,10 +256,13 @@ class Round(Base):
 class Match(Base):
     __tablename__ = 'matches'
     id = db.Column(db.Integer, primary_key=True)
-    state = db.Column(db.Integer, default=0)
-    mmr_gain = db.Column(db.Integer, default=0)
+    state = db.Column(db.Integer, default = MATCH_RUNNING)
+    finish_reason = db.Column(db.Integer, default = MATCH_FINISH_REASON_NONE)
+    mmr_gain = db.Column(db.Integer, default = 0)
+    winner_id = db.Column(db.Integer, db.ForeignKey('users.id'), default = 0)
     # relations
     users = db.relationship('User', secondary='users_matches')
+    winner = db.relationship('User', foreign_keys=[winner_id])
 
     def __init__(self, initiator):
         for i in range(0, ROUNDS_IN_MATCH):
@@ -293,21 +300,27 @@ class Match(Base):
         if surrender is None:
             app.logger.critical('some1 trying to surrend')
             return
-        self.state = MATCH_FINISHED
         winner = None
         for u in self.users:
             if u is not surrender:
                 winner = u
 
         if winner is None:
-            app.logger.critical("can't find winner for surrended match")
+            app.logger.info('user surrending to no one')
             return
 
+        self.state = MATCH_FINISHED
+        self.finish_reason = MATCH_FINISH_REASON_SURREND
+        self.winner = winner
+        
+        # winner is None, if surrending just started match
+        if winner is not None:
+            winner.mmr += 25
+            db.session.add(winner)
+            
         surrender.mmr -= 25
-        winner.mmr += 25
         db.session.add(self)
         db.session.add(surrender)
-        db.session.add(winner)
         db.session.commit()
 
 
@@ -336,7 +349,8 @@ class Match(Base):
                 return
 
             # [1] MATCH STATE
-            self.state = MATCH_TIME_ELAPSED
+            self.state = MATCH_FINISHED
+            self.finish_reason = MATCH_FINISH_REASON_TIME_ELAPSED
 
             # [3] Calculate mmr gaining
             mmr_gain = 25
@@ -378,6 +392,7 @@ class Match(Base):
 
             # [9] updating it
             app.logger.debug('Updating users and match stats')
+            self.winner = winner
             db.session.add(winner)
             db.session.add(loser)
             db.session.add(self)
@@ -390,6 +405,7 @@ class Match(Base):
             app.logger.critical('Trying to finish not running match')
             return
         self.state = MATCH_FINISHED
+        self.finish_reason = MATCH_FINISH_REASON_NORMAL
 
         # [2] checking if all users post their asnwers
         userAnswersCount = 0

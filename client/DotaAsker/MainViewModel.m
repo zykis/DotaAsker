@@ -142,26 +142,57 @@
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
     Match* m = [[self recentMatches] objectAtIndex:row];
     if ([m state] == MATCH_FINISHED) {
-        User* opponent = [self opponentForMatch:m];
-        NSUInteger playerScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:[Player instance]];
-        NSUInteger opponentScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:opponent];
-        if (playerScore > opponentScore) {
-            return @"You won!";
-        }
-        else if (opponentScore > playerScore) {
-            return @"You lost!";
-        }
-        else {
-            return @"Draw";
-        }
-    }
-    else if ([m state] == MATCH_TIME_ELAPSED) {
-        Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
-        if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
-            return @"Elapsed. You lost!";
-        }
-        else {
-            return @"Elapsed. You won!";
+        User* winner = m.winner;
+        switch(m.finishReason) {
+            case MATCH_FINISH_REASON_NORMAL:
+            {
+                if (winner == nil) {
+                    NSUInteger playerScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:[Player instance]];
+                    NSUInteger opponentScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:opponent];
+                    assert(playerScore == opponentScore);
+                    return @"Draw";
+                }
+                else if ([winner isEqual:opponent]) {
+                    return @"You lost!";
+                }
+                else if ([winner isEqual:[Player instance]]) {
+                    return @"You won!";
+                }
+                else {
+                    assert(0);
+                }
+            }
+            break;
+            
+            case MATCH_FINISH_REASON_TIME_ELAPSED:
+            {
+                if ([winner isEqual:opponent]) {
+                    return @"You lost! (time elapsed)";
+                }
+                else if ([winner isEqual:[Player instance]]) {
+                    return @"You won! (time elapsed)";
+                }
+                else {
+                    assert(0);
+                } 
+            }
+            break;
+            
+            case MATCH_FINISH_REASON_SURREND:
+            {
+                if ([winner isEqual:opponent]) {
+                    return @"You surrended";
+                }
+                else if ([winner isEqual:[Player instance]]) {
+                    return @"Opponent surrended";
+                }
+                else {
+                    assert(0);
+                }
+            }
+            break;
+            
+            default: assert(0);
         }
     }
     else

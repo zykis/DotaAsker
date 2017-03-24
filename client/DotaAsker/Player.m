@@ -61,6 +61,7 @@ static long long playerID = 0;
         mTmp.createdOn = m.createdOn;
         mTmp.updatedOn = m.updatedOn;
         mTmp.state = m.state;
+        mTmp.finishReason = m.finishReason;
         mTmp.mmrGain = m.mmrGain;
         mTmp.rounds = m.rounds;
         for(User* _u in m.users) {
@@ -72,6 +73,11 @@ static long long playerID = 0;
                 // [3.1.2] Else - add a new one
                 [mTmp.users addObject:_u];
         }
+        if (mTmp.winner == u.ID)
+            mTmp.winner = u;
+        else
+            mTmp.winner = m.winner;
+        
         // [3.2] Update an existing match with a new one
         [u.matches addObject:mTmp];
     }
@@ -87,7 +93,9 @@ static long long playerID = 0;
     // Iterating through users to check if they are already presented in Realm
     Match* mTmp = [[Match alloc] init];
     mTmp.users = m.users;
+    mTmp.winner = m.winner;
     m.users = nil;
+    m.winner = nil;
     
     for (User* u in [mTmp users]) {
         User* existingUser = [User objectForPrimaryKey:@(u.ID)];
@@ -98,6 +106,11 @@ static long long playerID = 0;
             [[m users] addObject:u];
         }
     }
+    User* existingWinner = [User objectForPrimaryKey:@(mTmp.winner.ID)];
+    if (existingWinner != nil)
+        m.winner = existingWinner;
+    else
+        m.winner = mTmp.winner;
     
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
