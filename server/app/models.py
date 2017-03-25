@@ -448,6 +448,9 @@ class Match(Base):
             db.session.commit()
             return self
 
+	# [3.1] setup winner
+	self.winner = winner
+
         # [4] calculate mmr gaining
         mmr_gain = 25
         self.mmr_gain = mmr_gain

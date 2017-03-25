@@ -1,5 +1,5 @@
 from app import db
-from app.models import User, Match, Question, Theme, Answer, UserAnswer, MATCH_RUNNING, MATCH_FINISHED, MATCH_TIME_ELAPSED
+from app.models import User, Match, Question, Theme, Answer, UserAnswer, MATCH_RUNNING, MATCH_FINISHED
 from app import models
 import json
 import random
