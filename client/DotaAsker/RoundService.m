@@ -55,7 +55,7 @@
     
     int i;
     Round* currentRound;
-    if ([match state] == MATCH_RUNNING || [match state] == MATCH_TIME_ELAPSED) {
+    if ([match state] == MATCH_RUNNING) {
         for (i = 0; i < ROUNDS_IN_MATCH; i++) {
             if ([[[[match rounds] objectAtIndex:i] userAnswers] count] < QUESTIONS_IN_ROUND * 2)
                 break;

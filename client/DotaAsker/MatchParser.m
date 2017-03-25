@@ -50,6 +50,7 @@
     
     // finish_reason
     NSInteger finishReason = [[JSONDict objectForKey:@"finish_reason"] integerValue];
+    match.finishReason = finishReason;
     
     // mmr
     [match setMmrGain:[[JSONDict objectForKey:@"mmr_gain"] unsignedIntegerValue]];
@@ -62,7 +63,7 @@
     }
     
     // winner
-    NSArray* winnerDict = [JSONDict objectForKey:@"winner"];
+    NSDictionary* winnerDict = [JSONDict objectForKey:@"winner"];
     User* winner = [UserParser parse:winnerDict andChildren:NO];
     [match setWinner:winner];
 

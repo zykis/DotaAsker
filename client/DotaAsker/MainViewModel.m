@@ -142,6 +142,7 @@
 - (NSString*)matchStateTextForRecentMatch:(NSUInteger)row {
     Match* m = [[self recentMatches] objectAtIndex:row];
     if ([m state] == MATCH_FINISHED) {
+        User* opponent = [self opponentForMatch:m];
         User* winner = m.winner;
         switch(m.finishReason) {
             case MATCH_FINISH_REASON_NORMAL:

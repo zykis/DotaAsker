@@ -73,7 +73,7 @@ static long long playerID = 0;
                 // [3.1.2] Else - add a new one
                 [mTmp.users addObject:_u];
         }
-        if (mTmp.winner == u.ID)
+        if (mTmp.winner.ID == u.ID)
             mTmp.winner = u;
         else
             mTmp.winner = m.winner;
