@@ -10,6 +10,7 @@
 #import "SignInViewController.h"
 #import "AuthorizationService.h"
 #import "ServiceLayer.h"
+#import "ModalLoadingView.h"
 
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
@@ -54,9 +55,8 @@
 }
 
 - (IBAction)signUp {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Registering player"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Registering player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     [self.view endEditing:YES];
     RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];

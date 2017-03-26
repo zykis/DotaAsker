@@ -15,6 +15,7 @@
 #import "AuthorizationService.h"
 #import "Player.h"
 #import "ServiceLayer.h"
+#import "ModalLoadingView.h"
 
 @interface SignInViewController ()
 
@@ -76,9 +77,8 @@
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Getting player"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
     

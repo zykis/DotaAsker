@@ -19,6 +19,7 @@
 		AC2C9D4D1E6E86AB0068D87B /* pattern-6.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */; };
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
+		AC572F791E88668800E25235 /* ModalLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F781E88668800E25235 /* ModalLoadingView.m */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
@@ -190,6 +191,8 @@
 		AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitQuiestionViewController.m; sourceTree = "<group>"; };
 		AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatarViewController.h; sourceTree = "<group>"; };
 		AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatarViewController.m; sourceTree = "<group>"; };
+		AC572F771E88668800E25235 /* ModalLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalLoadingView.h; sourceTree = "<group>"; };
+		AC572F781E88668800E25235 /* ModalLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalLoadingView.m; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC604ED91E6DEFFE00D433FF /* SettingsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButton.h; sourceTree = "<group>"; };
 		AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButton.m; sourceTree = "<group>"; };
@@ -620,6 +623,8 @@
 				AC26CB331E7298D7001A9258 /* RoundViewLayered.m */,
 				ACE7A7F91E733C0500301677 /* ThemeButton.h */,
 				ACE7A7FA1E733C0500301677 /* ThemeButton.m */,
+				AC572F771E88668800E25235 /* ModalLoadingView.h */,
+				AC572F781E88668800E25235 /* ModalLoadingView.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1086,6 +1091,7 @@
 				AC73520A1B239A1B00FFF356 /* main.m in Sources */,
 				AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */,
 				AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */,
+				AC572F791E88668800E25235 /* ModalLoadingView.m in Sources */,
 				AC26CB341E7298D7001A9258 /* RoundViewLayered.m in Sources */,
 				ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */,
 				ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */,

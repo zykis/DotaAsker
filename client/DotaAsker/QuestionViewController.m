@@ -14,6 +14,7 @@
 #import "Helper.h"
 #import "Answer.h"
 #import "UIViewController+Utils.h"
+#import "ModalLoadingView.h"
 
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
@@ -39,6 +40,20 @@
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
 
+- (void)blockUI {
+    [_answer1Button setEnabled:NO];
+    [_answer2Button setEnabled:NO];
+    [_answer3Button setEnabled:NO];
+    [_answer4Button setEnabled:NO];
+}
+
+- (void)unblockUI {
+    [_answer1Button setEnabled:YES];
+    [_answer2Button setEnabled:YES];
+    [_answer3Button setEnabled:YES];
+    [_answer4Button setEnabled:YES];
+}
+
 - (Round*)selectedRound {
     return [Round objectForPrimaryKey: [NSNumber numberWithLongLong: self.roundID]];
 }
@@ -54,12 +69,13 @@
     _currentQuestionIndex = 0;
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
-    [self showNextQuestion];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self blockUI];
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    [self showNextQuestion];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(pauseApp) 
@@ -196,6 +212,8 @@
 }
 
 - (void)showNextQuestion {
+    NSInteger totalUserAnswersCount = [[UserAnswer allObjects] count];
+    assert((totalUserAnswersCount % 3) == 0);
     if (_currentQuestionIndex < 3) {
         Question* q = [_questionViewModel questionForQuestionIndex:_currentQuestionIndex
                                                            onTheme:[self selectedTheme]
@@ -235,14 +253,14 @@
                 [_answer1Button setTitle:[[answers objectAtIndex:0] text] forState:UIControlStateNormal];
                 [_answer1Button setHidden:NO];
         }
+        [self unblockUI];
     }
-    
     //Игрок ответил на все вопросы
     else {
+        [self blockUI];
         // Present LoadingView
-        __block LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-        [loadingView setMessage:@"Sending answers"];
-        [[self view] addSubview:loadingView];
+        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+        [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
         void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
             dispatch_async(dispatch_get_main_queue(), ^{

@@ -26,6 +26,14 @@
 @synthesize selectedThemeID = _selectedThemeID;
 @synthesize selectedThemeButton = _selectedThemeButton;
 
+- (void)blockUI {
+    [_selectedThemeButton setEnabled:NO];
+}
+
+- (void)unblockUI {
+    [_selectedThemeButton setEnabled:YES];
+}
+
 - (Round*)round {
     return [Round objectForPrimaryKey:@(_roundID)];
 }
@@ -38,6 +46,11 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
     [_selectedThemeButton setTitle:[[self selectedTheme] name] forState:UIControlStateNormal];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self unblockUI];
 }
 
 - (void)viewDidLoad {

@@ -15,6 +15,7 @@
 #import "ServiceLayer.h"
 #import "Palette.h"
 #import "RoundViewLayered.h"
+#import "ModalLoadingView.h"
 
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
@@ -123,9 +124,8 @@
         case BUTTON_SYNCHRONIZE:
         {
             // Present LoadingView
-            __block LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-            [loadingView setMessage:@"Synchronizing"];
-            [[self view] addSubview:loadingView];
+            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Synchronizing"];
+            [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
         
             void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
                 RLMRealm* realm = [RLMRealm defaultRealm];
@@ -185,9 +185,8 @@
 }
 
 - (IBAction)sendFriendRequest:(id)sender {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Sending request"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending request"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
     [subject subscribeError:^(NSError *error) {
@@ -199,9 +198,8 @@
 }
 
 - (IBAction)surrend:(id)sender {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Surrending"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Surrending"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
     [subject subscribeError:^(NSError *error) {

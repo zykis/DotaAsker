@@ -13,6 +13,7 @@
 #import "ServiceLayer.h"
 #import "Helper.h"
 #import "Palette.h"
+#import "ModalLoadingView.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @import CoreGraphics;
@@ -40,9 +41,8 @@
 }
 
 - (void)refreshControllDragged {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Updating player"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
      subscribeNext:^(User* u) {
@@ -276,15 +276,13 @@
 }
 
 - (IBAction)findMatchPressed {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Finding match"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Finding match"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
     [signal subscribeNext:^(id x) {
         // add match
         [Player manualAddMatch: x];
-        
         [loadingView removeFromSuperview];
         [self.tableView reloadData];
     } error:^(NSError *error) {

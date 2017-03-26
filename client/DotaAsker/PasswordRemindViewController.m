@@ -8,7 +8,7 @@
 
 #import "PasswordRemindViewController.h"
 #import "Helper.h"
-#import "LoadingView.h"
+#import "ModalLoadingView.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface PasswordRemindViewController ()
@@ -37,9 +37,8 @@
 }
 
 - (IBAction)sendNewPassword:(id)sender {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Sending email"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending email"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     NSString* userOrEmail = [self.usernameOrEmail text];
     RACReplaySubject* subject = [[Helper shared] sendNewPasswordToUserOrEmail:userOrEmail];

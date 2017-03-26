@@ -8,7 +8,7 @@
 
 #import "StatisticsViewController.h"
 #import "ServiceLayer.h"
-#import "LoadingView.h"
+#import "ModalLoadingView.h"
 
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
@@ -29,9 +29,8 @@
         [[self navigationController] popViewControllerAnimated:YES];
     }
     
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Getting player"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainStatistic:self.userID];
     [subject subscribeNext:^(id x) {

@@ -8,6 +8,7 @@
 
 #import "UnlockPremiumViewController.h"
 #import "ServiceLayer.h"
+#import "ModalLoadingView.h"
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface UnlockPremiumViewController ()
@@ -47,15 +48,14 @@
 */
 
 - (IBAction)unlockPressed {
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-        [loadingView setMessage:@"Unlocking premium"];
-        [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Unlocking premium"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
-   RLMRealm* realm = [RLMRealm defaultRealm];
-   [realm beginWriteTransaction];
-   [[Player instance] setPremium:YES];
-   [realm commitWriteTransaction];
-   
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [[Player instance] setPremium:YES];
+    [realm commitWriteTransaction];
+
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
     [subject subscribeNext:^(id x) {
         NSLog(@"Premium updated");

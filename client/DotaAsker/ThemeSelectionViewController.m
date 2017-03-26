@@ -12,6 +12,7 @@
 #import "ServiceLayer.h"
 #import "UIViewController+Utils.h"
 #import "ThemeButton.h"
+#import "ModalLoadingView.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -28,6 +29,18 @@
 @synthesize imagedButton3 = _imagedButton3;
 @synthesize roundID = _roundID;
 
+- (void)blockUI {
+    [_imagedButton1 setEnabled:NO];
+    [_imagedButton2 setEnabled:NO];
+    [_imagedButton3 setEnabled:NO];
+}
+
+- (void)unblockUI {
+    [_imagedButton1 setEnabled:YES];
+    [_imagedButton2 setEnabled:YES];
+    [_imagedButton3 setEnabled:YES];
+}
+
 - (Round*)round {
     return [Round objectForPrimaryKey:@(_roundID)];
 }
@@ -35,6 +48,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self unblockUI];
 }
 
 - (void)viewDidLoad {
@@ -64,9 +82,8 @@
     [round setSelectedTheme: theme];
     [realm commitWriteTransaction];
     // Updating round's selected theme
-    LoadingView* loadingView = [[LoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50)];
-    [loadingView setMessage:@"Updating round"];
-    [[self view] addSubview:loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating round"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:round];
     [subject subscribeError:^(NSError *error) {
@@ -81,7 +98,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"themeSelected"]) {
         ThemeSelectedViewController *destVC = (ThemeSelectedViewController*)[segue destinationViewController];
-//        NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
         Theme* selectedTheme = sender;
         
         assert(selectedTheme);
@@ -96,15 +112,18 @@
 - (IBAction)button1Pressed:(id)sender {
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     [self updateRoundSelectedTheme:[themes objectAtIndex:0]];
+    [self blockUI];
 }
 
 - (IBAction)button2Pressed:(id)sender {
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     [self updateRoundSelectedTheme:[themes objectAtIndex:1]];
+    [self blockUI];
 }
 
 - (IBAction)button3Pressed:(id)sender {
     NSArray* themes = [[[ServiceLayer instance] roundService] themesForRound:[self round]];
     [self updateRoundSelectedTheme:[themes objectAtIndex:2]];
+    [self blockUI];
 }
 @end
