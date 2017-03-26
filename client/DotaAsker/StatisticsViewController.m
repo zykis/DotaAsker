@@ -48,6 +48,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    self.tableView.backgroundColor = [UIColor clearColor];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 

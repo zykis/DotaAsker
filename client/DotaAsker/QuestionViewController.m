@@ -67,6 +67,10 @@
     [self loadBackgroundImage];
     _questionViewModel = [[QuestionViewModel alloc] init];
     _currentQuestionIndex = 0;
+    
+    _questionImageView.clipsToBounds = YES;
+    _progressView.layer.borderWidth = 1;
+    _progressView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
 }
@@ -225,6 +229,7 @@
         RLMArray<Answer>* answers = [q answers];
         
         CGSize size = [[Helper shared] getQuestionImageViewSize];
+        [_questionImageView setImage:nil];
         RACReplaySubject* subject = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:size.width andHeight:size.height];
         [subject subscribeNext:^(id x) {
             [_questionImageView setImage:x];

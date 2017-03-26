@@ -308,16 +308,18 @@ class Match(Base):
         if winner is None:
             app.logger.info('user surrending to no one')
 
+        mmr_gain = 25
+        self.mmr_gain = mmr_gain
         self.state = MATCH_FINISHED
         self.finish_reason = MATCH_FINISH_REASON_SURREND
         self.winner = winner
         
         # winner is None, if surrending just started match
         if winner is not None:
-            winner.mmr += 25
+            winner.mmr += mmr_gain
             db.session.add(winner)
             
-        surrender.mmr -= 25
+        surrender.mmr -= mmr_gain
         db.session.add(self)
         db.session.add(surrender)
         db.session.commit()
