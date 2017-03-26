@@ -181,14 +181,13 @@
             
             case MATCH_FINISH_REASON_SURREND:
             {
-                if ([winner isEqual:opponent]) {
-                    return @"You surrended";
-                }
-                else if ([winner isEqual:[Player instance]]) {
+                if ([winner isEqual:[Player instance]]) {
                     return @"Opponent surrended";
                 }
                 else {
-                    assert(0);
+                    // You could surrend to match without opponent found yet
+                    // So, there is no winner
+                    return @"You surrended";
                 }
             }
             break;
@@ -233,7 +232,8 @@
             return u;
         }
     }
-    return nil;
+    User* op = [[User alloc] init];
+    return op;
 }
 
 - (Match*)currentMatchAtRow: (NSUInteger)row {
