@@ -307,7 +307,6 @@ class Match(Base):
 
         if winner is None:
             app.logger.info('user surrending to no one')
-            return
 
         self.state = MATCH_FINISHED
         self.finish_reason = MATCH_FINISH_REASON_SURREND
