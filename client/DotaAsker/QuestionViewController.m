@@ -187,8 +187,8 @@
 - (void)createEmptyAnswers {
     for (int i = 0; i < 3; i++) {
         Question* q = [_questionViewModel questionForQuestionIndex:i
-                                                           onTheme:[self selectedTheme]
-                                                           inRound:[self selectedRound]];
+                                          onTheme:[self selectedTheme]
+                                          inRound:[self selectedRound]];
         // create empty unsynchronized userAnswer
         UserAnswer* ua = [[UserAnswer alloc] init];
         // generating new primary key. will be replaced after creating on server side

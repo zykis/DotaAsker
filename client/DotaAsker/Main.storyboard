@@ -268,7 +268,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xm0-7V-sFI" customClass="SettingsButton">
-                                        <rect key="frame" x="0.0" y="137" width="288" height="96"/>
+                                        <rect key="frame" x="0.0" y="137.5" width="288" height="96"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                         <state key="normal">
@@ -286,7 +286,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgR-jf-E0d" customClass="SettingsButton">
-                                        <rect key="frame" x="0.0" y="275" width="288" height="96"/>
+                                        <rect key="frame" x="0.0" y="274.5" width="288" height="96"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
                                         <state key="normal">
@@ -474,25 +474,25 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CORRECT ANSWER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LXx-Zg-hfa">
-                                <rect key="frame" x="12" y="159" width="139" height="30"/>
+                                <rect key="frame" x="12" y="159" width="138.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAI-2x-NVR">
-                                <rect key="frame" x="170" y="159" width="138" height="30"/>
+                                <rect key="frame" x="169.5" y="159" width="138.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CtR-mF-0CO">
-                                <rect key="frame" x="12" y="197" width="139" height="30"/>
+                                <rect key="frame" x="12" y="197" width="138.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hoy-Hc-iPf">
-                                <rect key="frame" x="170" y="197" width="138" height="30"/>
+                                <rect key="frame" x="169.5" y="197" width="138.5" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -613,7 +613,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="39" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTC-aK-xJ8">
-                                                    <rect key="frame" x="10" y="11" width="42" height="24"/>
+                                                    <rect key="frame" x="10" y="10" width="42" height="24"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="19"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -727,7 +727,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-ZJ-4UW">
-                                                    <rect key="frame" x="208" y="80" width="56" height="15"/>
+                                                    <rect key="frame" x="207" y="80" width="56" height="15"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -793,27 +793,27 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wtb-Ey-TGq" customClass="AnswerItemView">
-                                                            <rect key="frame" x="33" y="14" width="27" height="24"/>
+                                                            <rect key="frame" x="32.5" y="14" width="27" height="24"/>
                                                             <color key="backgroundColor" red="0.19824659208362327" green="1" blue="0.23204576761394358" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hke-Qm-JaU" customClass="AnswerItemView">
-                                                            <rect key="frame" x="60" y="14" width="26" height="24"/>
+                                                            <rect key="frame" x="59.5" y="14" width="26.5" height="24"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjw-TW-g5X" customClass="AnswerItemView">
-                                                            <rect key="frame" x="218" y="14" width="27" height="24"/>
+                                                            <rect key="frame" x="218" y="14" width="26.5" height="24"/>
                                                             <color key="backgroundColor" red="0.073114856377786697" green="1" blue="0.089003005470729146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vlj-Qa-heo" customClass="AnswerItemView">
-                                                            <rect key="frame" x="245" y="14" width="27" height="24"/>
+                                                            <rect key="frame" x="244.5" y="14" width="27" height="24"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="106" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-9m-qrC" customClass="AnswerItemView">
-                                                            <rect key="frame" x="272" y="14" width="26" height="24"/>
+                                                            <rect key="frame" x="271.5" y="14" width="26.5" height="24"/>
                                                             <color key="backgroundColor" red="0.073114856379999996" green="1" blue="0.089003005469999993" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                         <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh2-Ab-9yf" customClass="AnswerItemView">
-                                                            <rect key="frame" x="6" y="14" width="27" height="24"/>
+                                                            <rect key="frame" x="6" y="14" width="26.5" height="24"/>
                                                             <color key="backgroundColor" red="1" green="0.36131907949999997" blue="0.33842245589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </view>
                                                     </subviews>
@@ -1423,7 +1423,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wVi-Vd-9Hc">
-                                                    <rect key="frame" x="8" y="-1" width="80" height="81"/>
+                                                    <rect key="frame" x="8" y="-0.5" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="CJh-A8-k4w"/>
                                                         <constraint firstAttribute="height" constant="80" id="FYE-qK-QF3"/>
@@ -1457,12 +1457,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAc-Kx-Khk" customClass="DotaButton">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAc-Kx-Khk" customClass="FindMatchButton">
                                                     <rect key="frame" x="8" y="8" width="304" height="63"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="19"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="FIND MATCH">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>

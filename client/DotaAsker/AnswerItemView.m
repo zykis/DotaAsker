@@ -32,6 +32,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self base_init];
+        self.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.4].CGColor;
+        self.layer.borderWidth = 1;
     }
     return self;
 }

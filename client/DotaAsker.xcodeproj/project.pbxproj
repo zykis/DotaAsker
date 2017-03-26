@@ -20,6 +20,7 @@
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC572F791E88668800E25235 /* ModalLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F781E88668800E25235 /* ModalLoadingView.m */; };
+		AC572F7C1E886CDF00E25235 /* FindMatchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F7B1E886CDF00E25235 /* FindMatchButton.m */; };
 		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
@@ -138,12 +139,10 @@
 		ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */; };
 		ACD52F841BB129780006D50A /* question_images.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACD52F831BB129780006D50A /* question_images.plist */; };
 		ACD52F871BB15C300006D50A /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F861BB15C300006D50A /* Answer.m */; };
-		ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD94DE41B42C3D800F71901 /* DotaButton.m */; };
 		ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */; };
 		ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */; };
 		ACDB6DEB1B554A2F00E6256D /* cell2.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDB6DEA1B554A2F00E6256D /* cell2.png */; };
 		ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDBCAC31B4FE37C00932CA1 /* cell.png */; };
-		ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */; };
 		ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */; };
 		ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7A7FA1E733C0500301677 /* ThemeButton.m */; };
 		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
@@ -193,6 +192,8 @@
 		AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeAvatarViewController.m; sourceTree = "<group>"; };
 		AC572F771E88668800E25235 /* ModalLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalLoadingView.h; sourceTree = "<group>"; };
 		AC572F781E88668800E25235 /* ModalLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalLoadingView.m; sourceTree = "<group>"; };
+		AC572F7A1E886CDF00E25235 /* FindMatchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindMatchButton.h; sourceTree = "<group>"; };
+		AC572F7B1E886CDF00E25235 /* FindMatchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindMatchButton.m; sourceTree = "<group>"; };
 		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC604ED91E6DEFFE00D433FF /* SettingsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButton.h; sourceTree = "<group>"; };
 		AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButton.m; sourceTree = "<group>"; };
@@ -356,16 +357,12 @@
 		ACD52F831BB129780006D50A /* question_images.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = question_images.plist; sourceTree = "<group>"; };
 		ACD52F851BB15C300006D50A /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		ACD52F861BB15C300006D50A /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
-		ACD94DE31B42C3D800F71901 /* DotaButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DotaButton.h; sourceTree = "<group>"; };
-		ACD94DE41B42C3D800F71901 /* DotaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DotaButton.m; sourceTree = "<group>"; };
 		ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerItemView.h; sourceTree = "<group>"; };
 		ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerItemView.m; sourceTree = "<group>"; };
 		ACDB4A5D1B454C9600545CA2 /* UserAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswer.h; sourceTree = "<group>"; };
 		ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswer.m; sourceTree = "<group>"; };
 		ACDB6DEA1B554A2F00E6256D /* cell2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell2.png; path = resources/cell2.png; sourceTree = "<group>"; };
 		ACDBCAC31B4FE37C00932CA1 /* cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell.png; path = resources/cell.png; sourceTree = "<group>"; };
-		ACDBCAC81B4FE96100932CA1 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
-		ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
 		ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_button_dota.png; path = resources/ui_button_dota.png; sourceTree = "<group>"; };
 		ACE7A7F91E733C0500301677 /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
 		ACE7A7FA1E733C0500301677 /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
@@ -607,12 +604,8 @@
 		ACF41C031B3BE8B20096598C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				ACD94DE31B42C3D800F71901 /* DotaButton.h */,
-				ACD94DE41B42C3D800F71901 /* DotaButton.m */,
 				ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */,
 				ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */,
-				ACDBCAC81B4FE96100932CA1 /* TableViewCell.h */,
-				ACDBCAC91B4FE96100932CA1 /* TableViewCell.m */,
 				AC7E6D291DC2A05400F7871C /* LoadingView.h */,
 				AC7E6D2A1DC2A05400F7871C /* LoadingView.m */,
 				AC604ED91E6DEFFE00D433FF /* SettingsButton.h */,
@@ -625,6 +618,8 @@
 				ACE7A7FA1E733C0500301677 /* ThemeButton.m */,
 				AC572F771E88668800E25235 /* ModalLoadingView.h */,
 				AC572F781E88668800E25235 /* ModalLoadingView.m */,
+				AC572F7A1E886CDF00E25235 /* FindMatchButton.h */,
+				AC572F7B1E886CDF00E25235 /* FindMatchButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -1044,7 +1039,6 @@
 				AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */,
 				AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */,
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
-				ACD94DE51B42C3D800F71901 /* DotaButton.m in Sources */,
 				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
 				AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
@@ -1059,7 +1053,6 @@
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,
 				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,
 				ACB0061F1DC4C96F008CE926 /* ThemeSelectedViewController.m in Sources */,
-				ACDBCACA1B4FE96100932CA1 /* TableViewCell.m in Sources */,
 				AC7B67A01DA6B6FC00351887 /* UserCache.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */,
@@ -1098,6 +1091,7 @@
 				AC9A196E1D9869DD00B66AAE /* AbstractParser.m in Sources */,
 				AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */,
 				AC9A19731D9869DD00B66AAE /* RoundParser.m in Sources */,
+				AC572F7C1E886CDF00E25235 /* FindMatchButton.m in Sources */,
 				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				ACC5A11C1DC4D4C200F469ED /* AnswerService.m in Sources */,
 				ACC5A1221DC4D54B00F469ED /* UserAnswerTransport.m in Sources */,

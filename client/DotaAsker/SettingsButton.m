@@ -45,10 +45,10 @@
 - (void)setColors {
     _cornerRadius = 4.5;
     _textFont = [UIFont fontWithName:@"Trajan" size:11];
-    _backgroundColorStart =             [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
-    _backgroundColorEnd =               [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
-    _highlightBackgroundColorStart =    [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
-    _highlightBackgroundColorEnd =      [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
+    _backgroundColorStart = [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
+    _backgroundColorEnd = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
+    _highlightBackgroundColorStart = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
+    _highlightBackgroundColorEnd = [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
 }
 
 - (void)drawButton {

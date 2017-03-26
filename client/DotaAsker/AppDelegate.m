@@ -8,7 +8,6 @@
 
 // Local
 #import "AppDelegate.h"
-#import "DotaButton.h"
 #import "Client.h"
 #import "Palette.h"
 
@@ -75,10 +74,6 @@
     navBarAppearence.barTintColor = [[Palette shared] navigationPanelColor];
     navBarAppearence.tintColor = [UIColor whiteColor];
     navBarAppearence.backgroundColor = [[Palette shared] navigationPanelColor];
-    
-    //customizing Dota button
-    UIImage *resizeableDotaButton = [[UIImage imageNamed:@"ui_button_dota.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(15, 12, 15, 12)];
-    [[DotaButton appearance] setBackgroundImage:resizeableDotaButton forState:UIControlStateNormal];
 }
 
 - (void)printAvailableFontNames {
