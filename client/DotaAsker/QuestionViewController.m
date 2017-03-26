@@ -313,14 +313,15 @@
     }
 }
 
-- (void)viewWillLayoutSubviews {
+- (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    CGRect questionTextRect = [_questionText frame];
-    CGRect questionTextRectOld = questionTextRect;
-    CGSize contentSize = [_questionText contentSize];
-    questionTextRect.size = contentSize;
-    questionTextRect.origin.y = questionTextRectOld.origin.y + questionTextRectOld.size.height - questionTextRect.size.height;
-    [_questionText setFrame:questionTextRect];
+    CGFloat fixedWidth = _questionText.frame.size.width;
+    CGSize newSize = [_questionText sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = CGRectMake(_questionText.frame.origin.x,
+                                 _questionText.frame.origin.y + _questionText.frame.size.height - newSize.height,
+                                 fixedWidth,
+                                 newSize.height);
+    [_questionText setFrame:newFrame];
 }
 
 - (void)popToMatchViewController {

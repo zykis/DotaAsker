@@ -48,10 +48,16 @@
 }
 
 - (void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
-    TTGSnackbar* snackBar = [[TTGSnackbar alloc] initWithMessage:message duration:TTGSnackbarDurationLong];
-    [snackBar setBackgroundColor:[UIColor redColor]];
-    [snackBar setSeparateViewBackgroundColor:[UIColor colorWithRed:183 green:28 blue:28 alpha:1.0]];
+    TTGSnackbar* snackBar = [[TTGSnackbar alloc] initWithMessage:message duration:TTGSnackbarDurationMiddle];
     
+    float m = 0;
+    [snackBar setTopMargin:m];
+    [snackBar setBottomMargin:m];
+    [snackBar setLeftMargin:m];
+    [snackBar setRightMargin:m];
+    [snackBar setCornerRadius:0];
+    
+    [snackBar setBackgroundColor:[UIColor colorWithRed:0.87 green:0.17 blue:0.00 alpha:0.5]];
     [snackBar show];
 }
 

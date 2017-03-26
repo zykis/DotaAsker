@@ -17,7 +17,8 @@ IB_DESIGNABLE
     if (self) {
         self.layer.backgroundColor = [[Palette shared] themesButtonColor].CGColor;
         self.layer.cornerRadius = 8.0;
-        self.layer.borderWidth = 3;
+        self.layer.borderWidth = 2;
+        self.layer.opacity = 0.85;
         self.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7].CGColor;
     }
     return self;

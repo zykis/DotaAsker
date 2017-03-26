@@ -99,13 +99,12 @@
     UILabel* score = [cell viewWithTag:102];
     UILabel* mmrGain = [cell viewWithTag:103];
     
-    User* opponent;
+    User* opponent = [[User alloc] init];
     
     for (User* u in [m users]) {
         if (![u isEqual:_user])
             opponent = u;
     }
-    assert(opponent);
     
     // name
     [opponentName setText:[opponent name]];

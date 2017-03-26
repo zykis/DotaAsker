@@ -989,7 +989,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="292" height="154.5"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
                                         <state key="normal" title="Theme 1">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="button1Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="cys-Yw-xUU"/>
@@ -999,7 +999,7 @@
                                         <rect key="frame" x="0.0" y="164.5" width="292" height="155"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
                                         <state key="normal" title="Theme 2">
-                                            <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="button2Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="lBO-yg-cLd"/>
@@ -1009,7 +1009,7 @@
                                         <rect key="frame" x="0.0" y="329.5" width="292" height="154.5"/>
                                         <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
                                         <state key="normal" title="Theme 3">
-                                            <color key="titleColor" red="0.20392156859999999" green="0.20392156859999999" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="button3Pressed:" destination="66Z-pZ-HL8" eventType="touchUpInside" id="rUj-B1-4P0"/>
@@ -1159,7 +1159,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
                                 <state key="normal" title="Selected theme">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="showQuestions" destination="tzv-5h-2SG" eventType="touchUpInside" id="q5w-eS-dXA"/>
