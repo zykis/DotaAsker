@@ -77,7 +77,8 @@ def surrend():
     match_id = request.json['match_id']
     match = Match.query.get(match_id)
     match.surrendMatch(surrender = surrender)
-    resp = make_response(json.dumps({'status':'ok'}))
+    match_schema = MatchSchema()
+    resp = make_response(match_schema.dumps(match))
     resp.status_code = 200
     resp.mimetype = 'application/json'
     return resp
