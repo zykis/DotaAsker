@@ -87,7 +87,8 @@ def surrend():
 def post_question():
     # [1] getting question
     scheme = QuestionSchema()
-    question = scheme.loads(request.data)
+    question = scheme.loads(request.data).data
+    app.logger.info(question)
     app.logger.info(question.__repr__())
     
     # [2] create in db
