@@ -19,7 +19,7 @@
         self.userInteractionEnabled = YES;
         self.loadingView = [[LoadingView alloc] initWithFrame:frame];
         [self.loadingView setMessage:message];
-        [self addSubview:loadingView];
+        [self addSubview:self.loadingView];
     }
     return self;
 }

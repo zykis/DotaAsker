@@ -102,12 +102,12 @@
     return NULL;
 }
 
-- (void)updateRoundsWithNext:(void (^)(UserAnswer* x))nextBlock error:(void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock {
+- (void)updateRoundsWithNext:(void (^)(Round* x))nextBlock error:(void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock {
     dispatch_time_t timeoutTime = dispatch_time(DISPATCH_TIME_NOW, 5 * NSEC_PER_SEC);
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         __block BOOL obtained = NO;
-        RLMResults<Round>* modifiedRounds = [Round objectsWhere:@"modified == YES"];
+        RLMResults<Round*>* modifiedRounds = [Round objectsWhere:@"modified == YES"];
         for (Round* r in modifiedRounds) {
             // Create Round
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);

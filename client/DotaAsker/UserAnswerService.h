@@ -16,6 +16,6 @@
 - (long long)getNextPrimaryKey;
 
 - (NSString* _Nullable)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2;
-- (void)sendUserAnswers: (NSArray*)unsynchronizedUserAnswerIDs next:(void (^)(UserAnswer* x))nextBlock error:(nullable void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock;
+- (void)sendUserAnswersWithNext:(void (^)(UserAnswer* x))nextBlock error:(void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock;
 
 @end

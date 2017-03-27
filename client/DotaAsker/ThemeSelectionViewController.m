@@ -81,6 +81,7 @@
     [round setSelectedTheme: theme];
     [round setModified:YES];
     [realm commitWriteTransaction];
+    [self performSegueWithIdentifier:@"themeSelected" sender:theme];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

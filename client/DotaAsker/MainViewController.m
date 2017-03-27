@@ -49,7 +49,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
-            [self popToMatchViewController];
         });
     };
     

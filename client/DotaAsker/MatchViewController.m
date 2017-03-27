@@ -130,7 +130,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
                     [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
                 });
             };
             
@@ -144,7 +143,6 @@
                 } error:^(NSError *error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [loadingView removeFromSuperview];
-                        [self popToMatchViewController];
                     });
                 } completed:^{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -194,7 +192,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
-            [self popToMatchViewController];
+            [self.navigationController popViewControllerAnimated:YES];
         });
     };
     
@@ -291,16 +289,6 @@
             
             RLMResults* playerUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[Player instance] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
             RLMResults* opponentUserAnswers = [[UserAnswer objectsWhere:@"relatedRoundID = %llu AND relatedUserID = %llu", selectedRound.ID, [[_matchViewModel opponent] ID]] sortedResultsUsingKeyPath:@"createdOn" ascending:YES];
-            NSLog(@"Round#%ld", [indexPath row] + 1);
-            NSLog(@"player UserAnswers: ");
-            for (UserAnswer* ua in playerUserAnswers) {
-                NSLog(@"%@", [ua description]);
-            }
-            NSLog(@"opponent UserAnswers: ");
-            for (UserAnswer* ua in opponentUserAnswers) {
-                NSLog(@"%@", [ua description]);
-            }
-            NSLog(@"\n\n");
             
             for (int i = 0; i < 6; i++) {
                 AnswerItemView *answerItemView = (AnswerItemView*)[cell viewWithTag:101 + i];
@@ -464,7 +452,7 @@
             return BUTTON_PLAY;
         } else {
             NSLog(@"Can't define round state. Crushing app");
-            NSLog(@"Total UAs: %ld\Modified UAs: %ld", total, modified);
+            NSLog(@"Total UAs: %ld\nModified UAs: %ld", total, modified);
             assert(0);
         }
     }

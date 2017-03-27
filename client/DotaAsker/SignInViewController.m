@@ -73,14 +73,8 @@
 
 - (IBAction)signIn {
     [self.view endEditing:YES];
-    
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
-    
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting player"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-    RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
     
     // Present LoadingView
     __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
@@ -90,7 +84,6 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
-            [self popToMatchViewController];
         });
     };
     
@@ -114,7 +107,7 @@
         }];
     };
 
-    
+    RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
     [signal subscribeNext:^(NSString* _token) {
         [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
     } error:^(NSError *error) {
@@ -125,7 +118,6 @@
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:username forKey:@"username"];
         [defaults setObject:password forKey:@"password"];
-        
         [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
     }];
 }

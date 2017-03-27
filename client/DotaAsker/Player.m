@@ -6,9 +6,13 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "Player.h"
 #import "UserAnswer.h"
 #import "Match.h"
+#import "ServiceLayer.h"
+
+// Libraries
 #import <Realm/Realm.h>
 
 @implementation Player
@@ -59,7 +63,7 @@ static long long playerID = 0;
         });
     };
 
-    [[ServiceLayer instance] roundService] updateRoundsWithNext:nextBlockUserAnswers error: errorBlock complete: ^{
+    [[[ServiceLayer instance] roundService] updateRoundsWithNext:nextBlockRounds error:errorBlock complete: ^{
         [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlockUserAnswers error:errorBlock complete:completionBlock];
     }];
 }
@@ -79,7 +83,6 @@ static long long playerID = 0;
     User* uTmp = [[User alloc] init];
     [uTmp setMatches: u.matches];
     u.matches = nil;
-    NSLog(@"root user matches count: %ld", [uTmp.matches count]);
     // [3] Iterating through matches, create or update all of it's properties except users.
     for(Match* m in uTmp.matches) {
         Match* mTmp = [[Match alloc] init];

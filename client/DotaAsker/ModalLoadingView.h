@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class LoadingView;
+
 @interface ModalLoadingView : UIView
 
 @property (strong, nonatomic) LoadingView* loadingView;

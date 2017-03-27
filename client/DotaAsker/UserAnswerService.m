@@ -126,7 +126,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         __block BOOL obtained = NO;
-        RLMResults<UserAnswer>* modifiedUserAnswers = [UserAnswer objectsWhere:@"modified == YES"];
+        RLMResults<UserAnswer*>* modifiedUserAnswers = [UserAnswer objectsWhere:@"modified == YES"];
         for (UserAnswer* ua in modifiedUserAnswers) {
             // Create UA
             dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
