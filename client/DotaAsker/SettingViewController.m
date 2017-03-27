@@ -81,7 +81,7 @@
 
 - (BOOL)checkPremium {
     if (![[Player instance] premium]) {
-        [self presentAlertControllerWithTitle:@"Sorry" andMessage:@"Premium account only"];
+        [self presentAlertControllerWithMessage:@"Premium account only"];
         return NO;
     }
     else

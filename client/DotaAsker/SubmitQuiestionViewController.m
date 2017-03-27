@@ -58,7 +58,7 @@
 - (IBAction)submit {
     // If question and at least 2 answers is not empty, submit question
     if ([[self.textField text] isEqualToString:@""]) {
-        [self presentAlertControllerWithTitle:@"Error" andMessage:@"No question text"];
+        [self presentAlertControllerWithMessage:@"No question text"];
         return;
     }
     Question* newQ = [[Question alloc] init];
@@ -96,10 +96,10 @@
     RACReplaySubject* subject = [[[ServiceLayer instance] questionService] submitQuestion:newQ];
     [subject subscribeNext:^(id x) {
     } error:^(NSError *error) {
-        [self presentAlertControllerWithTitle:@"" andMessage:[error localizedDescription]];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
         [loadingView removeFromSuperview];
     } completed:^{
-        [self presentAlertControllerWithTitle:@"Thank you!" andMessage:@""];
+        [self presentAlertControllerWithMessage:@"Thank you!"];
         [loadingView removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }];
