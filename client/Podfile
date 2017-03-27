@@ -6,4 +6,5 @@ target "DotaAsker" do
 	pod 'ReactiveObjC'
 	pod 'libextobjc', '~> 0.4.1'
 	pod 'TTGSnackbar', '~> 1.4.0'
+	pod 'Charts', '~> 3.0.1'
 end

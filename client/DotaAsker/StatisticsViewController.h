@@ -10,6 +10,7 @@
 #import "UIViewController+Utils.h"
 
 @class User;
+@class PieChartView;
 @interface StatisticsViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *wins;
 @property (strong, nonatomic) IBOutlet UILabel *lost;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
-@property (strong, nonatomic) IBOutlet UIView *chart;
+@property (strong, nonatomic) IBOutlet PieChartView *chartView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

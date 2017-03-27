@@ -10,6 +10,7 @@
 #import "ServiceLayer.h"
 #import "ModalLoadingView.h"
 
+#import <Charts/Charts-Swift.h>
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface StatisticsViewController ()
@@ -19,6 +20,7 @@
 @implementation StatisticsViewController
 
 @synthesize user = _user;
+@synthesize chartView = _chartView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,6 +75,46 @@
     
     [self.avatar setImage:[UIImage imageNamed:[_user avatarImageName]]];
     [self.tableView reloadData];
+    
+    // Chart
+    _chartView.usePercentValuesEnabled = YES;
+    _chartView.drawSlicesUnderHoleEnabled = NO;
+    _chartView.holeRadiusPercent = 0.58;
+    _chartView.transparentCircleRadiusPercent = 0.61;
+    _chartView.chartDescription.enabled = YES;
+    
+    _chartView.drawCenterTextEnabled = YES;
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    
+    NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"Charts\nby Daniel Cohen Gindi"];
+    _chartView.centerAttributedText = centerText;
+    
+    _chartView.drawHoleEnabled = YES;
+    _chartView.rotationAngle = 0.0;
+    _chartView.rotationEnabled = YES;
+    _chartView.highlightPerTapEnabled = YES;
+    
+    ChartLegend *l = _chartView.legend;
+    l.horizontalAlignment = ChartLegendHorizontalAlignmentRight;
+    l.verticalAlignment = ChartLegendVerticalAlignmentTop;
+    l.orientation = ChartLegendOrientationVertical;
+    l.drawInside = NO;
+    l.xEntrySpace = 7.0;
+    l.yEntrySpace = 0.0;
+    l.yOffset = 0.0;
+    
+    NSMutableArray<PieChartDataEntry*>* entries = [[NSMutableArray alloc] init];
+    PieChartDataEntry* entry = [[PieChartDataEntry alloc] init];
+    [entry setX:0.5];
+    [entry setY:0.7];
+    [entries addObject:entry];
+    [entries addObject:entry];
+    PieChartDataSet* dataSet = [[PieChartDataSet alloc] initWithValues:entries label:@"Label"];
+    PieChartData* data = [[PieChartData alloc] initWithDataSet:dataSet];
+    _chartView.data = data;
 }
 
 - (void)didReceiveMemoryWarning {
