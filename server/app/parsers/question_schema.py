@@ -16,7 +16,9 @@ class QuestionSchema(Schema):
     
     @post_load
     def create_question(self, data):
-        if data.get('id', None) is None or 0:
+        print('entered question_parser post_load')
+        if (data.get('id', None) is None) or (data.get('id') == 0):
+            print('entered question_parser post_load create question')
             question = Question()
             question.text = data['text']
             question.approved = data.get('approved', False)
