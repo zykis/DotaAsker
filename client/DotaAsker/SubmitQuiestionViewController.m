@@ -27,6 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     // Do any additional setup after loading the view.
 }
 
@@ -94,13 +95,13 @@
         
     RACReplaySubject* subject = [[[ServiceLayer instance] questionService] submitQuestion:newQ];
     [subject subscribeNext:^(id x) {
-        NSLog(@"Question submitted");
     } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
+        [self presentAlertControllerWithTitle:@"" andMessage:[error localizedDescription]];
         [loadingView removeFromSuperview];
     } completed:^{
-        NSLog(@"Question submition complited");
+        [self presentAlertControllerWithTitle:@"Thank you!" andMessage:@""];
         [loadingView removeFromSuperview];
+        [self.navigationController popViewControllerAnimated:YES];
     }];
 }
 @end

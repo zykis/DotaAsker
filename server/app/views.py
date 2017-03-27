@@ -87,19 +87,20 @@ def surrend():
 def post_question():
     # [1] getting question
     scheme = QuestionSchema()
-    question = scheme.loads(request.data).data
+    question = scheme.loads(request.data)
+    app.logger.info(question.__repr__())
     
     # [2] create in db
     db.session.add(question)
     db.session.commit()
     
     # [2.1] check created question
-    print(question.text)
+    app.logger.info("question submitted: {}".format(question.text))
     for a in question.answers:
-        print a.text
+        app.logger.info("-{}".format(a))
     
     # [3] send reply to client
-    resp = make_response(json.dumps({'status':'ok'}))
+    resp = make_response()
     resp.status_code = 200
     resp.mimetype = 'application/json'
     return resp
