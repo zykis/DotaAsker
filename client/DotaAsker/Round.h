@@ -23,6 +23,7 @@
 @property RLMArray<Question*><Question>* questions;
 @property RLMArray<UserAnswer*><UserAnswer>* userAnswers;
 @property Theme* selectedTheme;
+@property BOOL modified;
 - (User*)nextMoveUser;
 
 @end

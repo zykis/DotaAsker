@@ -125,17 +125,6 @@
             // Present LoadingView
             __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
             [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-        
-            void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(@"Recieved UA: %@", [x description]);
-                    RLMRealm* realm = [RLMRealm defaultRealm];
-                    [realm beginWriteTransaction];
-                    UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-                    _ua.modified = NO;
-                    [realm commitWriteTransaction];
-                });
-            };
             
             void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -165,7 +154,7 @@
                 }];
             };
         
-            [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlock error:errorBlock complete:completeBlock];
+            [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
             break;
         }
             
@@ -197,25 +186,42 @@
 }
 
 - (IBAction)surrend:(id)sender {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Surrending"];
+    // Present LoadingView
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
-    RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
-    [subject subscribeError:^(NSError *error) {
-        [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Can't surrend" andMessage:[error localizedDescription]];
-    } completed:^{
-        RACSubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-        [subject subscribeNext:^(id  _Nullable x) {
-            [Player manualUpdate:x];
+    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
-        } error:^(NSError * _Nullable error) {
-            NSLog(@"Error updating player");
-            [loadingView removeFromSuperview];
+            [self popToMatchViewController];
+        });
+    };
+    
+    void (^completeBlock)() = ^void() {
+        // UserAnswers has been updated.
+        // Updaing Player and tableView
+        [loadingView setMessage:@"Getting player"];
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+        [subject subscribeNext:^(id u) {
+            [Player manualUpdate:u];
+        } error:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self.tableView.refreshControl endRefreshing];
+            });
         } completed:^{
-            [self.navigationController popViewControllerAnimated:YES];
-            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.tableView.refreshControl endRefreshing];
+                [loadingView removeFromSuperview];
+            });
         }];
+    };
+    
+    RACReplaySubject* subject = [[[ServiceLayer instance] matchService] surrendAtMatch:[_matchViewModel match]];
+    [subject subscribeError:errorBlock completed:^{
+        [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
     }];
 }
 

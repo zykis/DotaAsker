@@ -38,6 +38,32 @@ static long long playerID = 0;
     playerID = ID;
 }
 
++ (void)synchronizeWithErrorBlock:(void(^)(NSError* error))errorBlock completionBlock:(void(^)())completionBlock {
+    void (^nextBlockUserAnswers)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RLMRealm* realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            UserAnswer* ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
+            ua.modified = NO;
+            [realm commitWriteTransaction];
+        });
+    };
+    
+    void (^nextBlockRounds)(Round* round) = ^void(Round* x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RLMRealm* realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            Round* r = [Round objectForPrimaryKey:@(x.ID)];
+            r.modified = NO;
+            [realm commitWriteTransaction];
+        });
+    };
+
+    [[ServiceLayer instance] roundService] updateRoundsWithNext:nextBlockUserAnswers error: errorBlock complete: ^{
+        [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlockUserAnswers error:errorBlock complete:completionBlock];
+    }];
+}
+
 + (void)manualUpdate: (User*)u /*unmanaged user object*/ {
     // Since a user, presented as Player will contain matches, that in it's turn
     // could contain user in [match users] with the same ID as Player, we should avoid updating entities

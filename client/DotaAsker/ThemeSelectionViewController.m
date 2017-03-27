@@ -76,23 +76,11 @@
 
 - (void)updateRoundSelectedTheme:(Theme*)theme {
     Round* round = [Round objectForPrimaryKey:@(_roundID)];
-    
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     [round setSelectedTheme: theme];
+    [round setModified:YES];
     [realm commitWriteTransaction];
-    // Updating round's selected theme
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating round"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-    RACReplaySubject* subject = [[[ServiceLayer instance] roundService] update:round];
-    [subject subscribeError:^(NSError *error) {
-        [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Round not updated" andMessage:@"Check out connection and try again, please"];
-    } completed:^{
-        [loadingView removeFromSuperview];
-        [self performSegueWithIdentifier:@"themeSelected" sender:theme];
-    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

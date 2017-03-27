@@ -14,6 +14,7 @@
 - (id)init {
     self = [super init];
     if (self) {
+        self.modified = NO;
     }
     return self;
 }

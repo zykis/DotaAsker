@@ -266,17 +266,6 @@
         // Present LoadingView
         __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
         [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-        void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Recieved UA: %@", [x description]);
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-                _ua.modified = NO;
-                [realm commitWriteTransaction];
-            });
-        };
         
         void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -306,7 +295,7 @@
             }];
         };
     
-        [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlock error:errorBlock complete:completeBlock];
+        [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
     }
 }
 

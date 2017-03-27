@@ -21,5 +21,6 @@
 - (Theme*)themeSelectedForRound:(Round*)round;
 - (NSArray*)themesForRound:(Round*)round;
 - (Question*)questionAtIndex:(NSUInteger)index onTheme:(Theme*)theme inRound:(Round*)round;
+- (void)updateRoundsWithNext:(void (^)(Round* x))nextBlock error:(void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock;
 
 @end
