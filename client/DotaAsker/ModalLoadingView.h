@@ -10,6 +10,8 @@
 
 @interface ModalLoadingView : UIView
 
+@property (strong, nonatomic) LoadingView* loadingView;
 - (id)initWithFrame:(CGRect)frame andMessage:(NSString*)message;
+- (void)setMessage:(NSString*)message;
 
 @end

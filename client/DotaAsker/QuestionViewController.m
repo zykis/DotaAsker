@@ -193,7 +193,7 @@
         Question* q = [_questionViewModel questionForQuestionIndex:i
                                           onTheme:[self selectedTheme]
                                           inRound:[self selectedRound]];
-        // create empty unsynchronized userAnswer
+        // create empty modified userAnswer
         UserAnswer* ua = [[UserAnswer alloc] init];
         // generating new primary key. will be replaced after creating on server side
         long long newID = [[[ServiceLayer instance] userAnswerService] getNextPrimaryKey];
@@ -204,9 +204,9 @@
         ua.relatedRoundID = [self selectedRound].ID;
         ua.relatedQuestionID = q.ID;
         ua.secForAnswer = QUESTION_TIMEOUT_INTERVAL;
-        ua.synchronized = NO;
+        ua.modified = YES;
         
-        // Persist unsynchronized UserAnswer
+        // Persist modified UserAnswer
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
         [[[self selectedRound] userAnswers] addObject:ua];
@@ -273,14 +273,14 @@
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
                 UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-                _ua.synchronized = true;
+                _ua.modified = NO;
                 [realm commitWriteTransaction];
             });
         };
         
         void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"%@, Code: %ld", [error localizedDescription], [error code]);
+                [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
                 [loadingView removeFromSuperview];
                 [self popToMatchViewController];
             });
@@ -289,6 +289,7 @@
         void (^completeBlock)() = ^void() {
             // UserAnswers has been updated.
             // Updaing Player and tableView
+            [loadingView setMessage:@"Getting player"];
             RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
             [subject subscribeNext:^(id u) {
                 [Player manualUpdate:u];
@@ -305,16 +306,7 @@
             }];
         };
     
-        Round* relatedRound = [Round objectForPrimaryKey:@(_roundID)];
-        RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"synchronized == false AND relatedRoundID == %lld AND relatedUserID == %lld", [relatedRound ID], [[Player instance] ID]];
-        NSMutableArray* ar = [[NSMutableArray alloc] init];
-        NSLog(@"Sending userAnswers:");
-        for (UserAnswer* ua in uas) {
-            NSLog(@"%@", [ua description]);
-            [ar addObject:[NSNumber numberWithLongLong:ua.ID]];
-        }
-        NSArray* arr = [NSArray arrayWithArray:ar];
-        [[[ServiceLayer instance] userAnswerService] sendUserAnswers:arr next:nextBlock error:errorBlock complete:completeBlock];
+        [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlock error:errorBlock complete:completeBlock];
     }
 }
 

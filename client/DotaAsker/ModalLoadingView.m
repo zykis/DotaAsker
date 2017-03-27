@@ -17,11 +17,15 @@
     if (self) {
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
         self.userInteractionEnabled = YES;
-        LoadingView* loadingView = [[LoadingView alloc] initWithFrame:frame];
-        [loadingView setMessage:message];
+        self.loadingView = [[LoadingView alloc] initWithFrame:frame];
+        [self.loadingView setMessage:message];
         [self addSubview:loadingView];
     }
     return self;
+}
+
+- (void)setMessage: (NSString*)message {
+    [self.loadingView setMessage:message];
 }
 
 @end

@@ -40,21 +40,52 @@
     self.tableView.refreshControl = [[UIRefreshControl alloc] init];
 }
 
-- (void)refreshControllDragged {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating player"];
+- (void)refreshControllDragged {   
+    // Present LoadingView
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
+
+    void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSLog(@"Recieved UA: %@", [x description]);
+            RLMRealm* realm = [RLMRealm defaultRealm];
+            [realm beginWriteTransaction];
+            UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
+            _ua.modified = NO;
+            [realm commitWriteTransaction];
+        });
+    };
     
-    [[[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]]
-     subscribeNext:^(User* u) {
-         [Player manualUpdate:u];
-         
-         [self.tableView reloadData];
-         [self.tableView.refreshControl endRefreshing];
-         [loadingView removeFromSuperview];
-     } error:^(NSError *error) {
-         [self.tableView.refreshControl endRefreshing];
-         [loadingView removeFromSuperview];
-     }];
+    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+            [loadingView removeFromSuperview];
+            [self popToMatchViewController];
+        });
+    };
+    
+    void (^completeBlock)() = ^void() {
+        // UserAnswers has been updated.
+        // Updaing Player and tableView
+        [loadingView setMessage:@"Getting player"];
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+        [subject subscribeNext:^(id u) {
+            [Player manualUpdate:u];
+        } error:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [loadingView removeFromSuperview];
+                [self.tableView.refreshControl endRefreshing];
+            });
+        } completed:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+                [self.tableView.refreshControl endRefreshing];
+                [loadingView removeFromSuperview];
+            });
+        }];
+    };
+
+    [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlock error:errorBlock complete:completeBlock];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -300,13 +331,6 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"username"];
     [defaults removeObjectForKey:@"password"];
-    
-    //! TODO: Handle unsinchronized UserAnswer persistance
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [realm deleteAllObjects];
-    [realm commitWriteTransaction];
-    
     [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 

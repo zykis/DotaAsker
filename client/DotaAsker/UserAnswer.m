@@ -21,7 +21,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.synchronized = YES;
+        self.modified = NO;
         self.createdOn = [NSDate date];
         self.updatedOn = [NSDate date];
     }

@@ -104,7 +104,7 @@
     Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:[self match]];
     long long roundID = currentRound.ID;
 
-    // check out unsynchronized UserAnswers
+    // check out modified UserAnswers
     RLMResults* lastPlayerUserAnswersRealm = [UserAnswer objectsWhere: @"relatedUserID == %lld AND relatedRoundID == %lld", [Player instance].ID, roundID];
     
     // If no unsynch UserAnswers, return empty array

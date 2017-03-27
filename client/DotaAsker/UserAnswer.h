@@ -21,7 +21,7 @@
 @property (strong, nonatomic) NSDate* updatedOn;
 
 @property (assign, nonatomic) NSInteger secForAnswer;
-@property (assign, nonatomic) BOOL synchronized;
+@property (assign, nonatomic) BOOL modified;
 
 @property (assign, nonatomic) long long relatedAnswerID;
 @property (assign, nonatomic) long long relatedUserID;

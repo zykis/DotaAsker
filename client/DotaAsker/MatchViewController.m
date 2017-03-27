@@ -123,33 +123,39 @@
         case BUTTON_SYNCHRONIZE:
         {
             // Present LoadingView
-            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Synchronizing"];
+            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
             [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
         
             void (^nextBlock)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-                _ua.synchronized = true;
-                [realm commitWriteTransaction];
-            };
-            void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [loadingView removeFromSuperview];
-                    [self.tableView reloadData];
+                    NSLog(@"Recieved UA: %@", [x description]);
+                    RLMRealm* realm = [RLMRealm defaultRealm];
+                    [realm beginWriteTransaction];
+                    UserAnswer* _ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
+                    _ua.modified = NO;
+                    [realm commitWriteTransaction];
                 });
             };
+            
+            void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+                    [loadingView removeFromSuperview];
+                    [self popToMatchViewController];
+                });
+            };
+            
             void (^completeBlock)() = ^void() {
+                // UserAnswers has been updated.
+                // Updaing Player and tableView
+                [loadingView setMessage:@"Getting player"];
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-                [subject subscribeNext:^(id x) {
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [realm addOrUpdateObject:x];
-                [realm commitWriteTransaction];
+                [subject subscribeNext:^(id u) {
+                    [Player manualUpdate:u];
                 } error:^(NSError *error) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [loadingView removeFromSuperview];
-                        [self.tableView reloadData];
+                        [self popToMatchViewController];
                     });
                 } completed:^{
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -159,13 +165,7 @@
                 }];
             };
         
-            RLMResults<UserAnswer*>* uas = [UserAnswer objectsWhere:@"synchronized == false"];
-            NSMutableArray* ar = [[NSMutableArray alloc] init];
-            for (UserAnswer* ua in uas) {
-                [ar addObject:[NSNumber numberWithLongLong:ua.ID]];
-            }
-            NSArray* arr = [NSArray arrayWithArray:ar];
-            [[[ServiceLayer instance] userAnswerService] sendUserAnswers:arr next:nextBlock error:errorBlock complete:completeBlock];
+            [[[ServiceLayer instance] userAnswerService] sendUserAnswersWithNext:nextBlock error:errorBlock complete:completeBlock];
             break;
         }
             
@@ -441,24 +441,24 @@
         }
     }
     else if([[_matchViewModel nextMoveUser] isEqual:[Player instance]]) {
-        // If last 3 UserAnswers synchronized, play
+        // If last 3 UserAnswers not modified, play
         // else, answer estimated questions
-        NSUInteger unsynchronizedCount = 0;
-        NSUInteger totalCount = 0;
+        NSUInteger modified = 0;
+        NSUInteger total = 0;
         for (UserAnswer* ua in [_matchViewModel lastPlayerUserAnswers]) {
-            totalCount++;
-            if (![ua synchronized]) {
-                unsynchronizedCount++;
+            total++;
+            if ([ua modified]) {
+                modified++;
             }
         }
-        if ((unsynchronizedCount > 0) && (unsynchronizedCount <= 3)) {
+        if ((modified > 0) && (modified <= 3)) {
             return BUTTON_SYNCHRONIZE;
         }
-        else if((unsynchronizedCount == 0) && (totalCount == 0)) {
+        else if((modified == 0) && (total == 0)) {
             return BUTTON_PLAY;
         } else {
             NSLog(@"Can't define round state. Crushing app");
-            NSLog(@"Total UAs: %ld\nUnsynchronized UAs: %ld", totalCount, unsynchronizedCount);
+            NSLog(@"Total UAs: %ld\Modified UAs: %ld", total, modified);
             assert(0);
         }
     }
