@@ -82,7 +82,7 @@
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
         });
     };
@@ -97,7 +97,7 @@
         } error:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [loadingView removeFromSuperview];
-                [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+                [self presentAlertControllerWithMessage:[error localizedDescription]];
             });
         } completed:^{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -112,7 +112,7 @@
         [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
     } error:^(NSError *error) {
         [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
         // save username and password to user defaults
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

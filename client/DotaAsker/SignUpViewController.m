@@ -63,7 +63,7 @@
     
     [authorizationSignal subscribeError:^(NSError *error) {
         [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
         [loadingView removeFromSuperview];
         [self performSegueWithIdentifier:@"signin" sender:self];

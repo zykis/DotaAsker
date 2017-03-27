@@ -47,7 +47,7 @@
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
         });
     };
@@ -306,7 +306,7 @@
         [self.tableView reloadData];
     } error:^(NSError *error) {
         [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Match not found" andMessage:[error localizedDescription]];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
     }];
 }
 
@@ -328,7 +328,7 @@
 
 - (BOOL)checkPremium {
     if (![[Player instance] premium]) {
-        [self presentAlertControllerWithTitle:@"Sorry" andMessage:@"Premium account only"];
+        [self presentAlertControllerWithMessage:@"Premium account only"];
         return NO;
     }
     else

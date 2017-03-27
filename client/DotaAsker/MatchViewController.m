@@ -128,7 +128,7 @@
             
             void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+                    [self presentAlertControllerWithMessage:[error localizedDescription]];
                     [loadingView removeFromSuperview];
                 });
             };
@@ -177,7 +177,7 @@
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
     [subject subscribeError:^(NSError *error) {
         [loadingView removeFromSuperview];
-        [self presentAlertControllerWithTitle:@"Error adding a friend" andMessage:[error localizedDescription]];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
         [loadingView removeFromSuperview];
     }];
@@ -190,7 +190,7 @@
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
             [loadingView removeFromSuperview];
             [self.navigationController popViewControllerAnimated:YES];
         });

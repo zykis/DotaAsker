@@ -47,7 +47,7 @@
     view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
-- (void)presentAlertControllerWithTitle:(NSString *)title andMessage:(NSString *)message {
+- (void)presentAlertControllerWithMessage:(NSString *)message {
     TTGSnackbar* snackBar = [[TTGSnackbar alloc] initWithMessage:message duration:TTGSnackbarDurationMiddle];
     
     float m = 0;

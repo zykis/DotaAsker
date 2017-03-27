@@ -269,7 +269,7 @@
         
         void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentAlertControllerWithTitle:@"Error" andMessage:[error localizedDescription]];
+                [self presentAlertControllerWithMessage:[error localizedDescription]];
                 [loadingView removeFromSuperview];
                 [self popToMatchViewController];
             });
