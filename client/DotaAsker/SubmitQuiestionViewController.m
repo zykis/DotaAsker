@@ -27,8 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    // Do any additional setup after loading the view.
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 - (void)didReceiveMemoryWarning {

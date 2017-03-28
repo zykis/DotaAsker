@@ -104,7 +104,6 @@
 - (void)drawInnerGlow {
     if (!_innerGlow) {
         _innerGlow = [CALayer layer];
-        
         _innerGlow.cornerRadius = _cornerRadius;
         _innerGlow.borderWidth = 1;
         _innerGlow.borderColor = [[UIColor whiteColor] CGColor];

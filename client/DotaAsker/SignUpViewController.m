@@ -39,6 +39,7 @@
     }];
     
     RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
