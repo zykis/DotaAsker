@@ -40,6 +40,7 @@
         [self drawHighlightBackgroundLayer];
         [self drawDisabledBackgroundLayer];
         _highlightBackgroundLayer.hidden = YES;
+        _disabledBackgroundLayer.hidden = YES;
     }
     return self;
 }
@@ -145,6 +146,9 @@
     // Set inverted gradient frame
     _highlightBackgroundLayer.frame = self.bounds;
     
+    // Set disabled layer frame
+    _disabledBackgroundLayer.frame = self.bounds;
+    
     CGRect labelRect = [_text boundingRectWithSize:self.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Trajan" size:17.0] } context:nil];
     _textLayer.frame = labelRect;
     _textLayer.anchorPoint = CGPointMake(0, 0.5);
@@ -173,14 +177,12 @@
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    // Hide/show inverted gradient
     _highlightBackgroundLayer.hidden = !highlighted;
-    
     [super setHighlighted:highlighted];
 }
 
 - (void)setEnabled:(BOOL)enabled {
-    _backgroundLayer.hidden = !enabled;
+    _disabledBackgroundColor.hidden = enabled;
     [super setEnabled:enabled];
 }
 
