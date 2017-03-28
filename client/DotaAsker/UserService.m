@@ -99,16 +99,16 @@
     
     [[_transport top100withAccessToken:[_authorizationService accessToken]] subscribeNext:^(id x) {
         NSDictionary* dict = x;
+        NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
         for (NSString* key in [dict allKeys]) {
-            NSLog(@"%@", key);
             NSString* userJSONString = dict[key];
             NSData* userData = [userJSONString dataUsingEncoding:NSUTF8StringEncoding];
             NSDictionary* userDict = [NSJSONSerialization JSONObjectWithData:userData options:kNilOptions error:nil];
             
             User* u = [UserParser parse:userDict andChildren:NO];
-            NSDictionary* newDict = [NSDictionary dictionaryWithObject:u forKey:key];
-            [subject sendNext:newDict];
+            [resultDict setObject:u forKey:key];
         }
+        [subject sendNext:resultDict];
         [subject sendCompleted];
     } error:^(NSError *error) {
         [subject sendError:error];

@@ -9,7 +9,6 @@
 // Local
 #import "Top100ViewController.h"
 #import "ServiceLayer.h"
-#import "UserParser.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -26,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    [self loadBackgroundImageForView:self.tableView];
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -65,8 +64,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:matchInfoCellIdentifier];
         
         NSInteger key = [[_sortedKeys objectAtIndex:[indexPath row]] integerValue];
-        NSDictionary* dict = [_results objectForKey:@(key)];
-        User* u = [UserParser parse:dict andChildren:NO];
+        User* u = [_results objectForKey:[NSString stringWithFormat:@"%ld", key]];
         
         // [1] place
         NSString* place = [NSString stringWithFormat:@"%ld", key];
@@ -100,7 +98,7 @@
     
     //making transparency
     cell.backgroundColor = [UIColor clearColor];
-    cell.contentView.backgroundColor = [UIColor colorWithRed:0.0f green:0.0f blue:0.0f alpha:0.0f];
+    cell.contentView.backgroundColor = [UIColor clearColor];
     return cell;
 }
 

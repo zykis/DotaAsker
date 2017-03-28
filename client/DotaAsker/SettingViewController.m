@@ -81,11 +81,10 @@
 
 - (IBAction)top100Pushed {
     if ([self checkPremium]) {
-        __block NSMutableDictionary* results = [[NSMutableDictionary alloc] init];
+        __block NSDictionary* results;
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] top100];
         [subject subscribeNext:^(id x) {
-            NSDictionary* dict = x;
-            [results setObject:[[dict allValues] firstObject] forKey:[[dict allKeys] firstObject]];
+            results = x;
         } error:^(NSError *error) {
             [self presentAlertControllerWithMessage:[error localizedDescription]];
         } completed:^{

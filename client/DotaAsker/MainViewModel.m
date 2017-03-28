@@ -243,7 +243,9 @@
 
 - (BOOL)playerWonRecentMatchAtRow:(NSUInteger)row {
     Match* m = [[self recentMatches] objectAtIndex:row];
-    if (([[m winner] isEqual: [Player instance]])|| ([m winner] == nil))
+    if (([m finishReason] == MATCH_FINISH_REASON_SURREND) && ([m winner] == nil))
+        return NO;
+    if (([[m winner] isEqual: [Player instance]]) || ([m winner] == nil))
         return YES;
     else
         return NO;
