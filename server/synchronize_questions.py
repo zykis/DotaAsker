@@ -14,7 +14,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
     with open(questionsPath + u'questions.json') as questionsFile:
         schema = QuestionSchema(many=True)
         questions_list = schema.loads(questionsFile.read())
-        
+
         if questions_list.errors:
             print(questions_list.errors)
             return
@@ -28,7 +28,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
             if not exists:
                 print('no local image file for question: {}', q.__repr__())
                 continue      
-        app.logger.debug("total question parsed: {}".format(len(questions_list.data)))
+        print("total question parsed: {}".format(len(questions_list.data)))
         for q in questions_list.data:
             imageLocalPath = questionsPath + 'question_images/' + q.image_name
             # [3] update/insert questions into DB
@@ -36,9 +36,11 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
             # [4] for each question, update image at cloudinary.com
             if updateImages:
                 cloudinary.uploader.upload(imageLocalPath, use_filename = True, unique_filename = False)
-            
+
     db.session.commit()
+    print("total question count: {}".format(len(Question.query.all())))
     print('questions updated')
+
 
 if __name__ == '__main__':
 
