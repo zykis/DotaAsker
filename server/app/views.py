@@ -345,9 +345,10 @@ def get_main_view_controller():
 
 @app.route('/users', methods = ['POST'])
 def new_user():
-    username = request.json.get('username')
-    password = request.json.get('password')
-    email = request.json.get('email')
+    username = request.json.get('username', None)
+    password = request.json.get('password', None)
+    email = request.json.get('email', None)
+    app.logger.debug("Signging up with username: {} password: {}".format(username, password))
     if (username is None) or (password is None):
         abort(400) # missing arguments
     if User.query.filter_by(username = username).first() is not None:
