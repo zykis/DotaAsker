@@ -28,7 +28,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
             if not exists:
                 print('no local image file for question: {}', q.__repr__())
                 continue      
-        print('all images exists for questions')
+        app.logger.debug("total question parsed: {}".format(len(questions_list.data)))
         for q in questions_list.data:
             imageLocalPath = questionsPath + 'question_images/' + q.image_name
             # [3] update/insert questions into DB
