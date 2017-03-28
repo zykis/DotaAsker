@@ -12,6 +12,7 @@
 
 @synthesize backgroundLayer = _backgroundLayer;
 @synthesize highlightBackgroundLayer = _highlightBackgroundLayer;
+@synthesize disabledBackgroundLayer = _disabledBackgroundLayer;
 @synthesize innerGlow = _innerGlow;
 @synthesize textLayer = _textLayer;
 @synthesize iconLayer = _iconLayer;
@@ -20,6 +21,7 @@
 @synthesize backgroundColorEnd= _backgroundColorEnd;
 @synthesize highlightBackgroundColorStart = _highlightBackgroundColorStart;
 @synthesize highlightBackgroundColorEnd = _highlightBackgroundColorEnd;
+@synthesize disabledBackgroundColor = _disabledBackgroundColor;
 @synthesize captionColor = _captionColor;
 @synthesize borderColor = _borderColor;
 
@@ -36,7 +38,7 @@
         [self drawInnerGlow];
         [self drawBackgroundLayer];
         [self drawHighlightBackgroundLayer];
-//        [self drawText];
+        [self drawDisabledBackgroundLayer];
         _highlightBackgroundLayer.hidden = YES;
     }
     return self;
@@ -49,6 +51,7 @@
     _backgroundColorEnd = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
     _highlightBackgroundColorStart = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
     _highlightBackgroundColorEnd = [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
+    _disabledBackgroundColor = [UIColor colorWithRed:1.00 green:0.80 blue:0.50 alpha:1.0];
 }
 
 - (void)drawButton {
@@ -88,6 +91,16 @@
     }
 }
 
+- (void)drawDisabledBackgroundLayer {
+    if (!_disabledBackgroundColor) {
+        _disabledBackgroundColor = [CALayer layer];
+        
+        _disabledBackgroundColor.cornerRadius = _cornerRadius;
+        _disabledBackgroundColor.backgroundColor = _disabledBackgroundColor.CGColor;
+        [self.layer insertSublayer:_disabledBackgroundColor atIndex:2];
+    }
+}
+
 - (void)drawInnerGlow {
     if (!_innerGlow) {
         _innerGlow = [CALayer layer];
@@ -97,7 +110,7 @@
         _innerGlow.borderColor = [[UIColor whiteColor] CGColor];
         _innerGlow.opacity = 0.5;
         
-        [self.layer insertSublayer:_innerGlow atIndex:2];
+        [self.layer insertSublayer:_innerGlow atIndex:3];
     }
 }
 
@@ -110,7 +123,7 @@
         _textLayer.foregroundColor = [UIColor whiteColor].CGColor;
         _textLayer.alignmentMode = kCAAlignmentLeft;
         _textLayer.contentsScale = [[UIScreen mainScreen] scale];
-        [self.layer insertSublayer:_textLayer atIndex:3];
+        [self.layer insertSublayer:_textLayer atIndex:4];
     }
 }
 
@@ -118,7 +131,7 @@
     if (!_iconLayer) {
         _iconLayer = [CALayer layer];
         _iconLayer.contents = (id)_icon.CGImage;
-        [self.layer insertSublayer:_iconLayer atIndex:4];
+        [self.layer insertSublayer:_iconLayer atIndex:5];
     }
 }
 
@@ -151,7 +164,6 @@
     [super awakeFromNib];
     [self drawIcon];
     [self drawText];
-//    [self updateText];
 }
 
 - (void)updateText {
@@ -166,6 +178,17 @@
     _highlightBackgroundLayer.hidden = !highlighted;
     
     [super setHighlighted:highlighted];
+}
+
+- (void)setEnabled:(BOOL)enabled {
+    _backgroundLayer.hidden = !enabled;
+    [super setEnabled:enabled];
+}
+
+- (UIColor *)titleColorForState:(UIControlState)state {
+    float alpha = state == UIControl​State​Disabled ? 0.54 : 1.0;
+    UIColor textColor = [[UIColor whiteColor] colorWithAlphaComponent:alpha];
+    return textColor;
 }
 
 @end

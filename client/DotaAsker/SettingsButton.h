@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) CAGradientLayer* backgroundLayer;
 @property (strong, nonatomic) CAGradientLayer* highlightBackgroundLayer;
+@property (strong, nonatomic) CAGradientLayer* disabledBackgroundLayer;
 @property (strong, nonatomic) CALayer* innerGlow;
 @property (strong, nonatomic) CATextLayer* textLayer;
 @property (strong, nonatomic) CALayer* iconLayer;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) UIColor* backgroundColorEnd;
 @property (strong, nonatomic) UIColor* highlightBackgroundColorStart;
 @property (strong, nonatomic) UIColor* highlightBackgroundColorEnd;
+@property (strong, nonatomic) UIColor* disabledBackgroundColor;
 @property (strong, nonatomic) UIColor* captionColor;
 @property (strong, nonatomic) UIColor* borderColor;
 
