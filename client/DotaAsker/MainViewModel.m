@@ -236,6 +236,19 @@
     return op;
 }
 
+- (NSInteger)mmrGainForRecentMatchAtRow: (NSUInteger)row {
+    Match* m = [[self recentMatches] objectAtIndex:row];
+    return [m mmrGain];
+}
+
+- (BOOL)playerWonRecentMatchAtRow:(NSUInteger)row {
+    Match* m = [[self recentMatches] objectAtIndex:row];
+    if (([[m winner] isEqual: [Player instance]])|| ([m winner] == nil))
+        return YES;
+    else
+        return NO;
+}
+
 - (Match*)currentMatchAtRow: (NSUInteger)row {
     Match* m = [[self currentMatches] objectAtIndex:row];
     return m;

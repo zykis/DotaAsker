@@ -170,6 +170,12 @@
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
             [nameLabel setText:[[_viewModel opponentForCurrentMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
+            // mmr gain label
+            UILabel* mmrGainLabel = (UILabel*)[cell viewWithTag:104];
+            [mmrGainLabel setHidden:YES];
+            // fight image view
+            UIImageView* fightImageView = (UIImageView*)[cell viewWithTag:105];
+            [fightImageView setHidden:NO];
         }
         else if([indexPath section] == SECTION_RECENT_MATCHES) {
             //opponent avatar
@@ -183,6 +189,18 @@
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
             [nameLabel setText:[[_viewModel opponentForRecentMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
+            // mmr gain label
+            UILabel* mmrGainLabel = (UILabel*)[cell viewWithTag:104];
+            BOOL won = [_viewModel playerWonRecentMatchAtRow:[indexPath row]];
+            NSUInteger mmrGain = [_viewModel mmrGainForRecentMatchAtRow:[indexPath row]];
+            NSString* mmrGainText = [NSString stringWithFormat:@"%@%ld", won? @"+" : @"-", mmrGain];
+            UIColor* mmrGainTextColor = won? [UIColor greenColor] : [UIColor redColor];
+            [mmrGainLabel setText:mmrGainText];
+            [mmrGainLabel setTextColor:mmrGainTextColor];
+            [mmrGainLabel setHidden:NO];
+            // fight image view
+            UIImageView* fightImageView = (UIImageView*)[cell viewWithTag:105];
+            [fightImageView setHidden:YES];
         }
         else if([indexPath section] == SECTION_WAITING_MATCHES) {
             //opponent avatar
@@ -196,6 +214,12 @@
             UILabel *nameLabel = (UILabel*)[cell viewWithTag:103];
             [nameLabel setText:[[_viewModel opponentForWaitingMatch:[indexPath row]] name]];
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
+            // mmr gain label
+            UILabel* mmrGainLabel = (UILabel*)[cell viewWithTag:104];
+            [mmrGainLabel setHidden:YES];
+            // fight image view
+            UIImageView* fightImageView = (UIImageView*)[cell viewWithTag:105];
+            [fightImageView setHidden:YES];
         }
     }
     return cell;
@@ -215,16 +239,40 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == SECTION_PLAYER_INFO) {
-        return 0.0f;
+    switch (section) {
+        case SECTION_PLAYER_INFO:
+            return 0.0f;
+            break;
+        case SECTION_FIND_BUTTON:
+            return 0.0f;
+            break;
+        case SECTION_CURRENT_MATCHES:
+        {
+            if ([[_viewModel currentMatches] count] != 0)
+                return UITableViewAutomaticDimension;
+            else
+                return 0.0f;
+        }
+            break;
+        case SECTION_WAITING_MATCHES:
+        {
+            if ([[_viewModel waitingMatches] count] != 0)
+                return UITableViewAutomaticDimension;
+            else
+                return 0.0f;
+        }
+            break;
+        case SECTION_RECENT_MATCHES:
+        {
+            if ([[_viewModel recentMatches] count] != 0)
+                return UITableViewAutomaticDimension;
+            else
+                return 0.0f;
+        }
+        default:
+            return 0.0f;
+            break;
     }
-    else if (section == SECTION_FIND_BUTTON) {
-        return 0.0f;
-    }
-    else if ((section == SECTION_CURRENT_MATCHES) || (section == SECTION_RECENT_MATCHES) || (section == SECTION_WAITING_MATCHES)) {
-        return UITableViewAutomaticDimension;
-    }
-    return 0;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

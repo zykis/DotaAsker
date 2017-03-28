@@ -6,9 +6,14 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "Top100ViewController.h"
 #import "ServiceLayer.h"
+#import "UserParser.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
 
 @interface Top100ViewController ()
 
@@ -23,19 +28,11 @@
     [self loadBackgroundImage];
     [self loadBackgroundImageForView:self.tableView];
     
-    _results = [[NSMutableArray alloc] init];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    RACReplaySubject* subject = [[[ServiceLayer instance] userService] top100];
-    [subject subscribeNext:^(id x) {
-        NSDictionary* dict = x;
-        [_results addObject:dict];
-    } error:^(NSError *error) {
-        NSLog(@"Top100 error: %@", [error localizedDescription]);
-    } completed:^{
-        [self.tableView reloadData];
-    }];
-    // Do any additional setup after loading the view.
+    
+    // Sort results by keys
+    self.sortedKeys = [[_results allKeys] sortedArrayUsingSelector:@selector(compare:)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,15 +64,16 @@
     if ([indexPath section] == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:matchInfoCellIdentifier];
         
-        NSDictionary* dict = [_results objectAtIndex:[indexPath row]];
+        NSInteger key = [[_sortedKeys objectAtIndex:[indexPath row]] integerValue];
+        NSDictionary* dict = [_results objectForKey:@(key)];
+        User* u = [UserParser parse:dict andChildren:NO];
         
         // [1] place
-        NSString* place = [[dict allKeys] firstObject];
+        NSString* place = [NSString stringWithFormat:@"%ld", key];
         UILabel* labelPlace = [cell viewWithTag:100];
         [labelPlace setText:place];
         
         // [2] avatar
-        User* u = [dict valueForKey:place];
         UIImage* avatar = [UIImage imageNamed:[u avatarImageName]];
         UIImageView* avatarImageView = [cell viewWithTag:101];
         [avatarImageView setImage:avatar];

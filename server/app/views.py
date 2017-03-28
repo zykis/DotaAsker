@@ -59,10 +59,10 @@ def top100():
 
     users_dict = dict()
 
+    schema = UserSchema(exclude=('matches', 'friends'))
     for ind in range(firstIndex, lastIndex):
-        schema = UserSchema(exclude=('matches', 'friends'))
         user_dict = schema.dumps(users[ind]).data
-        users_dict.__setitem__(ind + 1, user_dict)
+        users_dict[ind + 1] = user_dict
 
     # [4] Also add 1-3 placed guys if not already presented
     resp_json = json.dumps(users_dict)

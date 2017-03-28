@@ -56,8 +56,24 @@
     [snackBar setLeftMargin:m];
     [snackBar setRightMargin:m];
     [snackBar setCornerRadius:0];
+    [snackBar setMessageTextAlign:NSTextAlignmentCenter];
     
-    [snackBar setBackgroundColor:[UIColor colorWithRed:0.87 green:0.17 blue:0.00 alpha:0.5]];
+    [snackBar setBackgroundColor:[UIColor colorWithRed:0.87 green:0.17 blue:0.00 alpha:0.84]];
+    [snackBar show];
+}
+
+- (void)presentOkControllerWithMessage:(NSString *)message {
+    TTGSnackbar* snackBar = [[TTGSnackbar alloc] initWithMessage:message duration:TTGSnackbarDurationShort];
+    
+    float m = 0;
+    [snackBar setTopMargin:m];
+    [snackBar setBottomMargin:m];
+    [snackBar setLeftMargin:m];
+    [snackBar setRightMargin:m];
+    [snackBar setCornerRadius:0];
+    [snackBar setMessageTextAlign:NSTextAlignmentCenter];
+    
+    [snackBar setBackgroundColor:[[UIColor greenColor] colorWithAlphaComponent:0.5]];
     [snackBar show];
 }
 

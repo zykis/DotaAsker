@@ -28,6 +28,7 @@
     [super viewDidLoad];
     [self loadBackgroundImage];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,7 +99,7 @@
         [self presentAlertControllerWithMessage:[error localizedDescription]];
         [loadingView removeFromSuperview];
     } completed:^{
-        [self presentAlertControllerWithMessage:@"Thank you!"];
+        [self presentOkControllerWithMessage:@"Thank you!"];
         [loadingView removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     }];

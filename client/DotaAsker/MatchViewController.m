@@ -161,10 +161,10 @@
             break;
         
         case BUTTON_PLAY_AGAIN:
-            [[self navigationController] popViewControllerAnimated:YES];
+            // [[self navigationController] popViewControllerAnimated:YES];
             break;
         case BUTTON_REVENGE:
-            [[self navigationController] popViewControllerAnimated:YES];
+            // [[self navigationController] popViewControllerAnimated:YES];
             break;
             
     }
@@ -334,26 +334,31 @@
                 case BUTTON_PLAY:
                     [leftButton setHidden:NO];
                     [middleButton setTitle:@"Play" forState:UIControlStateNormal];
+                    [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_SYNCHRONIZE:
                     [leftButton setHidden:NO];
                     [middleButton setTitle:@"Synchronize" forState:UIControlStateNormal];
+                    [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_WAITING:
                     [leftButton setHidden:YES];
                     [middleButton setTitle:@"Waiting..." forState:UIControlStateNormal];
+                    [middleButton setHidden:NO];
                     [middleButton setEnabled:NO];
                     break;
                 case BUTTON_PLAY_AGAIN:
                     [leftButton setHidden:YES];
                     [middleButton setTitle:@"Play again" forState:UIControlStateNormal];
+                    [middleButton setHidden:YES];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_REVENGE:
                     [leftButton setHidden:YES];
                     [middleButton setTitle:@"Revenge" forState:UIControlStateNormal];
+                    [middleButton setHidden:YES];
                     [middleButton setEnabled:YES];
                     break;
                 default: assert(0);

@@ -14,7 +14,8 @@
 
 - (IBAction)backButtonPushed:(id)sender;
 
-@property (strong, nonatomic) NSMutableArray* results;
+@property (strong, nonatomic) NSMutableDictionary* results;
+@property (strong, nonatomic) NSArray* sortedKeys;
 
 @property (strong, nonatomic) IBOutlet UITableView* tableView;
 

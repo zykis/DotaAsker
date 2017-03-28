@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) CAGradientLayer* backgroundLayer;
 @property (strong, nonatomic) CAGradientLayer* highlightBackgroundLayer;
-@property (strong, nonatomic) CAGradientLayer* disabledBackgroundLayer;
+@property (strong, nonatomic) CALayer* disabledBackgroundLayer;
 @property (strong, nonatomic) CALayer* innerGlow;
 @property (strong, nonatomic) CATextLayer* textLayer;
 @property (strong, nonatomic) CALayer* iconLayer;

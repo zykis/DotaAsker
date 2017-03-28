@@ -93,12 +93,12 @@
 }
 
 - (void)drawDisabledBackgroundLayer {
-    if (!_disabledBackgroundColor) {
-        _disabledBackgroundColor = [CALayer layer];
+    if (!_disabledBackgroundLayer) {
+        _disabledBackgroundLayer = [CALayer layer];
         
-        _disabledBackgroundColor.cornerRadius = _cornerRadius;
-        _disabledBackgroundColor.backgroundColor = _disabledBackgroundColor.CGColor;
-        [self.layer insertSublayer:_disabledBackgroundColor atIndex:2];
+        _disabledBackgroundLayer.cornerRadius = _cornerRadius;
+        _disabledBackgroundLayer.backgroundColor = _disabledBackgroundColor.CGColor;
+        [self.layer insertSublayer:_disabledBackgroundLayer atIndex:2];
     }
 }
 
@@ -182,13 +182,15 @@
 }
 
 - (void)setEnabled:(BOOL)enabled {
-    _disabledBackgroundColor.hidden = enabled;
+    _disabledBackgroundLayer.hidden = enabled;
     [super setEnabled:enabled];
 }
 
 - (UIColor *)titleColorForState:(UIControlState)state {
-    float alpha = state == UIControl​State​Disabled ? 0.54 : 1.0;
-    UIColor textColor = [[UIColor whiteColor] colorWithAlphaComponent:alpha];
+    float alpha = 1.0f;
+    if (state == UIControlStateDisabled)
+        alpha = 0.54f;
+    UIColor* textColor = [[UIColor whiteColor] colorWithAlphaComponent:alpha];
     return textColor;
 }
 

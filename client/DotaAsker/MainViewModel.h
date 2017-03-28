@@ -34,7 +34,8 @@
 - (NSArray*)currentMatches;
 - (NSArray*)waitingMatches;
 - (NSArray*)recentMatches;
-
+- (NSInteger)mmrGainForRecentMatchAtRow: (NSUInteger)row;
+- (BOOL)playerWonRecentMatchAtRow:(NSUInteger)row;
 
 - (Match*)recentMatchAtRow: (NSUInteger)row;
 - (Match*)waitingMatchAtRow: (NSUInteger)row;

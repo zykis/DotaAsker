@@ -6,9 +6,14 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "SettingViewController.h"
 #import "ServiceLayer.h"
 #import "Player.h"
+#import "Top100ViewController.h"
+
+// Libraries
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface SettingViewController ()
 
@@ -75,8 +80,26 @@
 }
 
 - (IBAction)top100Pushed {
-    if ([self checkPremium])
-        [self performSegueWithIdentifier:@"top100" sender:self];
+    if ([self checkPremium]) {
+        __block NSMutableDictionary* results = [[NSMutableDictionary alloc] init];
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] top100];
+        [subject subscribeNext:^(id x) {
+            NSDictionary* dict = x;
+            [results setObject:[[dict allValues] firstObject] forKey:[[dict allKeys] firstObject]];
+        } error:^(NSError *error) {
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
+        } completed:^{
+            [self performSegueWithIdentifier:@"top100" sender:results];
+        }];
+        
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"top100"]) {
+        Top100ViewController* destVC = (Top100ViewController*)[segue destinationViewController];
+        destVC.results = sender;
+    }
 }
 
 - (BOOL)checkPremium {

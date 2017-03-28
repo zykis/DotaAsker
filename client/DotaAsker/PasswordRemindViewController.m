@@ -6,9 +6,13 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "PasswordRemindViewController.h"
 #import "Helper.h"
 #import "ModalLoadingView.h"
+#import "UIViewController+Utils.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface PasswordRemindViewController ()
@@ -43,11 +47,13 @@
     NSString* userOrEmail = [self.usernameOrEmail text];
     RACReplaySubject* subject = [[Helper shared] sendNewPasswordToUserOrEmail:userOrEmail];
     [subject subscribeNext:^(id x) {
-        NSLog(@"New password was sent");
+        [self presentOkControllerWithMessage:@"New password was sent"];
         [loadingView removeFromSuperview];
+        [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *error) {
-        NSLog(@"Error. No such username or email");
+        [self presentAlertControllerWithMessage:@"No such username or email"];
         [loadingView removeFromSuperview];
+        
     }];
 }
 @end
