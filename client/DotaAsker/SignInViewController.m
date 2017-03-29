@@ -74,53 +74,7 @@
 
 - (IBAction)signIn {
     [self.view endEditing:YES];
-    NSString *username = [_textFieldUsername text];
-    NSString *password = [_textFieldPassword text];
     
-    // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentAlertControllerWithMessage:[error localizedDescription]];
-            [loadingView removeFromSuperview];
-        });
-    };
-    
-    void (^completeBlock)() = ^void() {
-        // UserAnswers has been updated.
-        // Updaing Player and tableView
-        [loadingView setMessage:@"Getting player"];
-        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-        [subject subscribeNext:^(id u) {
-            [Player manualUpdate:u];
-        } error:^(NSError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [loadingView removeFromSuperview];
-                [self presentAlertControllerWithMessage:[error localizedDescription]];
-            });
-        } completed:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [loadingView removeFromSuperview];
-                [self performSegueWithIdentifier:@"signin" sender: self];
-            });
-        }];
-    };
-
-    RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
-    [signal subscribeNext:^(NSString* _token) {
-        [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
-    } error:^(NSError *error) {
-        [loadingView removeFromSuperview];
-        [self presentAlertControllerWithMessage:[error localizedDescription]];
-    } completed:^{
-        // save username and password to user defaults
-        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:username forKey:@"username"];
-        [defaults setObject:password forKey:@"password"];
-        [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
-    }];
 }
 
 - (IBAction)backButtonPressed {

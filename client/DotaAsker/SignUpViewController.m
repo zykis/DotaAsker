@@ -56,19 +56,7 @@
 }
 
 - (IBAction)signUp {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Registering player"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
-    [self.view endEditing:YES];
-    RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
-    
-    [authorizationSignal subscribeError:^(NSError *error) {
-        [loadingView removeFromSuperview];
-        [self presentAlertControllerWithMessage:[error localizedDescription]];
-    } completed:^{
-        [loadingView removeFromSuperview];
-        [self performSegueWithIdentifier:@"signin" sender:self];
-    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
