@@ -56,8 +56,6 @@
 }
 
 - (void)viewDidAppear {
-    [super viewDidAppear];
-    
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     self.username = [defaults valueForKey:@"username"];
     self.password = [defaults valueForKey:@"password"];
@@ -93,7 +91,7 @@
 }
 
 - (IBAction)forgetPasswordPressed:(id)sender {
-    [self performSegueWithIdentifier:@"forgetPassword"];
+    [self performSegueWithIdentifier:@"forgetPassword" sender:sender];
 }
 
 - (IBAction)signUpPressed:(id)sender {

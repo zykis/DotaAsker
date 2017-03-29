@@ -12,6 +12,7 @@
 
 @class RACReplaySubject;
 @class Player;
+@class UIImage;
 
 @interface Helper : NSObject
 

@@ -16,7 +16,6 @@
 		AC1791F91DDA5F2200187D59 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */; };
 		AC26CB341E7298D7001A9258 /* RoundViewLayered.m in Sources */ = {isa = PBXBuildFile; fileRef = AC26CB331E7298D7001A9258 /* RoundViewLayered.m */; };
 		AC2C9D491E6E83380068D87B /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = AC2C9D481E6E83380068D87B /* Palette.m */; };
-		AC2C9D4D1E6E86AB0068D87B /* pattern-6.png in Resources */ = {isa = PBXBuildFile; fileRef = AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */; };
 		AC532AD71DE1A486008AFFA1 /* SubmitQuiestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */; };
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC572F791E88668800E25235 /* ModalLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F781E88668800E25235 /* ModalLoadingView.m */; };
@@ -148,6 +147,12 @@
 		ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */; };
 		ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3811D9F15550060EA56 /* MatchViewController.m */; };
 		ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */; };
+		ACFD403D1E8C3251003DB4E3 /* pattern-6.png in Resources */ = {isa = PBXBuildFile; fileRef = ACFD40371E8C3251003DB4E3 /* pattern-6.png */; };
+		ACFD403E1E8C3251003DB4E3 /* pattern1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACFD40381E8C3251003DB4E3 /* pattern1.jpg */; };
+		ACFD403F1E8C3251003DB4E3 /* pattern2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACFD40391E8C3251003DB4E3 /* pattern2.jpg */; };
+		ACFD40401E8C3251003DB4E3 /* pattern3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACFD403A1E8C3251003DB4E3 /* pattern3.jpg */; };
+		ACFD40411E8C3251003DB4E3 /* pattern4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACFD403B1E8C3251003DB4E3 /* pattern4.jpg */; };
+		ACFD40421E8C3251003DB4E3 /* pattern5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACFD403C1E8C3251003DB4E3 /* pattern5.jpg */; };
 		C9E2BFCD7E88F7C5B78C1A00 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */; };
 /* End PBXBuildFile section */
 
@@ -183,7 +188,6 @@
 		AC26CB331E7298D7001A9258 /* RoundViewLayered.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoundViewLayered.m; sourceTree = "<group>"; };
 		AC2C9D471E6E83380068D87B /* Palette.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
 		AC2C9D481E6E83380068D87B /* Palette.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
-		AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-6.png"; path = "resources/pattern-6.png"; sourceTree = "<group>"; };
 		AC532AD51DE1A486008AFFA1 /* SubmitQuiestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitQuiestionViewController.h; sourceTree = "<group>"; };
 		AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitQuiestionViewController.m; sourceTree = "<group>"; };
 		AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeAvatarViewController.h; sourceTree = "<group>"; };
@@ -370,6 +374,12 @@
 		ACF5F3811D9F15550060EA56 /* MatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewController.m; sourceTree = "<group>"; };
 		ACF5F3831D9F16BF0060EA56 /* MatchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MatchViewModel.h; sourceTree = "<group>"; };
 		ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MatchViewModel.m; sourceTree = "<group>"; };
+		ACFD40371E8C3251003DB4E3 /* pattern-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-6.png"; path = "resources/patterns/pattern-6.png"; sourceTree = "<group>"; };
+		ACFD40381E8C3251003DB4E3 /* pattern1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern1.jpg; path = resources/patterns/pattern1.jpg; sourceTree = "<group>"; };
+		ACFD40391E8C3251003DB4E3 /* pattern2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern2.jpg; path = resources/patterns/pattern2.jpg; sourceTree = "<group>"; };
+		ACFD403A1E8C3251003DB4E3 /* pattern3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern3.jpg; path = resources/patterns/pattern3.jpg; sourceTree = "<group>"; };
+		ACFD403B1E8C3251003DB4E3 /* pattern4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern4.jpg; path = resources/patterns/pattern4.jpg; sourceTree = "<group>"; };
+		ACFD403C1E8C3251003DB4E3 /* pattern5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = pattern5.jpg; path = resources/patterns/pattern5.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -527,7 +537,12 @@
 		AC850B7A1B3D8E060050954C /* GUI appearence */ = {
 			isa = PBXGroup;
 			children = (
-				AC2C9D4A1E6E86AB0068D87B /* pattern-6.png */,
+				ACFD40371E8C3251003DB4E3 /* pattern-6.png */,
+				ACFD40381E8C3251003DB4E3 /* pattern1.jpg */,
+				ACFD40391E8C3251003DB4E3 /* pattern2.jpg */,
+				ACFD403A1E8C3251003DB4E3 /* pattern3.jpg */,
+				ACFD403B1E8C3251003DB4E3 /* pattern4.jpg */,
+				ACFD403C1E8C3251003DB4E3 /* pattern5.jpg */,
 				ACDB6DEA1B554A2F00E6256D /* cell2.png */,
 				ACDBCAC31B4FE37C00932CA1 /* cell.png */,
 				ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */,
@@ -891,7 +906,9 @@
 				ACC730EB1E6F2FE700A88A54 /* icon-versus-orange.png in Resources */,
 				AC62E51C1BF4B8E300805285 /* dota_icon_29x29@3x.png in Resources */,
 				AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */,
+				ACFD403E1E8C3251003DB4E3 /* pattern1.jpg in Resources */,
 				AC75AC191BB02DF3007BA59D /* lore_child.jpg in Resources */,
+				ACFD403F1E8C3251003DB4E3 /* pattern2.jpg in Resources */,
 				AC75AC1F1BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg in Resources */,
 				AC96464B1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png in Resources */,
 				AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */,
@@ -905,6 +922,7 @@
 				AC96464D1E720FF700F9CD32 /* icon-top100-white-48.png in Resources */,
 				ACC730DE1E6F2A5900A88A54 /* icon-logout-white@2x.png in Resources */,
 				AC780F831DEB6D6E007E8158 /* premium_48@2x.png in Resources */,
+				ACFD40401E8C3251003DB4E3 /* pattern3.jpg in Resources */,
 				AC96464F1E720FF700F9CD32 /* icon-top100-white-48@3x.png in Resources */,
 				AC780F881DEB6D6E007E8158 /* top100_48@1x.png in Resources */,
 				ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */,
@@ -913,8 +931,10 @@
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
 				AC75ABFC1BAFEBC5007BA59D /* avatar_default.png in Resources */,
 				AC62E5221BF4B96900805285 /* dota_icon_60x60@3x.png in Resources */,
+				ACFD403D1E8C3251003DB4E3 /* pattern-6.png in Resources */,
 				AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */,
 				AC75AC1B1BB02DF3007BA59D /* lore_treant.jpg in Resources */,
+				ACFD40421E8C3251003DB4E3 /* pattern5.jpg in Resources */,
 				AC75AC1A1BB02DF3007BA59D /* lore_invoker_race.jpg in Resources */,
 				AC75AC1D1BB02DF3007BA59D /* mechanics_sacred_arrow.jpg in Resources */,
 				AC75AC201BB02DF3007BA59D /* tournaments_TI1_winner.jpg in Resources */,
@@ -922,7 +942,6 @@
 				ACC730E21E6F2A5900A88A54 /* icon-statistics-white@3x.png in Resources */,
 				ACB3A1161B9F2C180083EE17 /* avatar_bristle.png in Resources */,
 				AC62E5261BF4BB2100805285 /* dota_icon_40x40.png in Resources */,
-				AC2C9D4D1E6E86AB0068D87B /* pattern-6.png in Resources */,
 				AC780F861DEB6D6E007E8158 /* question_48@2x.png in Resources */,
 				AC780F811DEB6D6E007E8158 /* avatar_48@3x.png in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
@@ -954,6 +973,7 @@
 				ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */,
 				ACB3A1181B9F2C180083EE17 /* avatar_nature_prophet.png in Resources */,
 				ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */,
+				ACFD40411E8C3251003DB4E3 /* pattern4.jpg in Resources */,
 				AC62E5211BF4B96900805285 /* dota_icon_60x60@2x.png in Resources */,
 				ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */,
 				ACC730DD1E6F2A5900A88A54 /* icon-logout-white.png in Resources */,

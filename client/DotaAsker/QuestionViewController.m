@@ -133,8 +133,7 @@
         answerIndex = 1;
     else if (sender == _answer3Button)
         answerIndex = 2;
-    else if(sender == _answer4Button)
-        answerIndex = 3;
+    else answerIndex = 3;
     
     Answer* relatedAnswer = [[q answers] objectAtIndex:answerIndex];
     UserAnswer* userAnswer = [[[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld", [self selectedRound].ID, [Player instance].ID] sortedResultsUsingKeyPath:@"createdOn" ascending:YES] objectAtIndex:_currentQuestionIndex];
@@ -239,7 +238,7 @@
             [_questionImageView setImage:x];
         } error:^(NSError *error) {
             UIImage* defaultImage = [UIImage imageNamed:@"default.png"];
-            CGSize newSize = [_questionimageView bounds].size;
+            CGSize newSize = [_questionImageView bounds].size;
             UIImage* resizedDefaultImage = [Helper imageWithImage:defaultImage scaledToSize:newSize];
             [_questionImageView setImage:resizedDefaultImage];
         }];
