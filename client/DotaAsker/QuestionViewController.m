@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "QuestionViewController.h"
 #import "MatchViewController.h"
 #import "ServiceLayer.h"
@@ -15,11 +16,14 @@
 #import "Answer.h"
 #import "UIViewController+Utils.h"
 #import "ModalLoadingView.h"
+#import "Helper.h"
 
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
 #define QUESTION_TIMEOUT_INTERVAL 10
+
 
 @interface QuestionViewController ()
 
@@ -234,7 +238,10 @@
         [subject subscribeNext:^(id x) {
             [_questionImageView setImage:x];
         } error:^(NSError *error) {
-            // No image loaded
+            UIImage* defaultImage = [UIImage imageNamed:@"default.png"];
+            CGSize newSize = [_questionimageView bounds].size;
+            UIImage* resizedDefaultImage = [Helper imageWithImage:defaultImage scaledToSize:newSize];
+            [_questionImageView setImage:resizedDefaultImage];
         }];
         
         [_questionText setText:[q text]];

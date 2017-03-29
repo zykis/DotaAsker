@@ -28,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *buttonSignIn;
 @property (strong, nonatomic) IBOutlet UIButton *buttonSign;
 @property (strong, nonatomic) ModalLoadingView* loadingView;
+@property (assign, nonatomic) BOOL currentTabSignIn;
 
 - (IBAction)signPressed:(id)sender;
 - (IBAction)forgetPasswordPressed:(id)sender;

@@ -55,12 +55,18 @@
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear {
+    [super viewDidAppear];
+    
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     self.username = [defaults valueForKey:@"username"];
     self.password = [defaults valueForKey:@"password"];
     if ((self.username != nil) && (self.password != nil)) {
         [self setupSignIn];
+        [self signIn];
+    }
+    else {
+        [self setupSignUp];
     }
 }
 
@@ -80,25 +86,36 @@
 }
 
 - (IBAction)signPressed:(id)sender {
+    if (self.currentTabSignIn)
+        [self signIn];
+    else
+        [self signUp];
 }
 
 - (IBAction)forgetPasswordPressed:(id)sender {
+    [self performSegueWithIdentifier:@"forgetPassword"];
 }
 
 - (IBAction)signUpPressed:(id)sender {
+    [self setupSignUp];
 }
 
 - (IBAction)signInPressed:(id)sender {
+    [self setupSignIn];
 }
 
 - (void)setupSignUp {
+    self.currentTabSignIn = NO;
     [self.buttonSign setTitle:@"Sign Up" forState:UIControlStateNormal];
     [self.textFieldEmail setHidden:NO];
+    [self.buttonForgetPassword setHidden:YES];
 }
 
 - (void)setupSignIn {
+    self.currentTabSignIn = YES;
     [self.buttonSign setTitle:@"Log in" forState:UIControlStateNormal];
     [self.textFieldEmail setHidden:YES];
+    [self.buttonForgetPassword setHidden:NO];
 }
 
 - (void)signUp {
@@ -112,7 +129,6 @@
         [_loadingView removeFromSuperview];
         [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
-        [_loadingView setMessage:@"Getting user"];
         [self signIn];
     }];
 }
@@ -120,6 +136,8 @@
 - (void)signIn {
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
+    
+    [_loadingView setMessage:@"Getting user"];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{

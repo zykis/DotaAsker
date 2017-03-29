@@ -18,5 +18,6 @@
 + (Helper*)shared;
 - (CGSize)getQuestionImageViewSize;
 - (RACReplaySubject*)sendNewPasswordToUserOrEmail:(NSString*)userOrEmail;
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
 
 @end
