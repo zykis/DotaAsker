@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Client.h"
 #import "Palette.h"
+#import "Helper.h
 
 // IOS
 #import <Realm/Realm.h>
@@ -22,7 +23,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
-    NSString *language = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    NSString *language = [Helper currentLocale];
     NSLog(@"Language: %@", language);
     return YES;
 }

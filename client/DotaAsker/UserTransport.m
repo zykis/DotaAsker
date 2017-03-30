@@ -6,7 +6,11 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "UserTransport.h"
+#import "Helper.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
@@ -16,6 +20,7 @@
 #define kAPIEndpointSendFriendRequest   (kAPIEndpointHost @"/sendFriendRequest")
 #define kAPIEndpointTop100              (kAPIEndpointHost @"/top100")
 #define kAPIEndpointStatistics          (kAPIEndpointHost @"/statistic/")
+
 
 @implementation UserTransport
 
@@ -57,6 +62,7 @@
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
     // Assigning it to request
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

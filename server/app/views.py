@@ -332,6 +332,7 @@ def send_new_password():
 @app.route('/MainViewController')
 @auth.login_required
 def get_main_view_controller():
+    g.locale = request.headers['Accept-Language']
     user = g.user
     schema = UserSchema()
     res = schema.dumps(user)

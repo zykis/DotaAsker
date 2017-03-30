@@ -79,5 +79,9 @@
    return newImage;
 }
 
++ (NSString*)currentLocale {
+    return [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]
+}
+
 @end
 
