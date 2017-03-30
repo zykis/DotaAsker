@@ -8,7 +8,7 @@
 
 #import "UIViewController+Utils.h"
 #import "Player.h"
-#import "TTGSnackBar-Swift.h"
+#import "TTGSnackbar-Swift.h"
 #import "Palette.h"
 
 @implementation UIViewController (BackgroundImage)

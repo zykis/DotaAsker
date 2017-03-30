@@ -136,6 +136,9 @@
     NSString *password = [_textFieldPassword text];
     
     [_loadingView setMessage:@"Getting user"];
+    if (![[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
+        [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
+    
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
