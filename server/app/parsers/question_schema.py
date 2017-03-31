@@ -33,7 +33,7 @@ class QuestionSchema(Schema):
             question = Question.query.get(data['id'])
         return question
     
-    def get_attribute(self, obj, key, default):
+    def get_attribute(self, key, obj, default):
         if key == 'text':
             return g.locale + ": " + obj.get(key, default)
         else:

@@ -335,6 +335,7 @@ def get_main_view_controller():
     g.locale = request.headers['Accept-Language']
     user = g.user
     schema = UserSchema()
+    # schema.context['request'] = request
     res = schema.dumps(user)
     if not res.errors:
         resp = make_response(res.data)
