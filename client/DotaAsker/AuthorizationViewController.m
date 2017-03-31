@@ -53,6 +53,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
+    
+    // customizing sign button
+    self.buttonSign.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
+    self.buttonSign.layer.cornerRadius = self.buttonSign.bounds.size.height / 2;
 }
 
 - (void)viewDidAppear {
@@ -104,16 +108,26 @@
 
 - (void)setupSignUp {
     self.currentTabSignIn = NO;
-    [self.buttonSign setTitle:@"Sign Up" forState:UIControlStateNormal];
     [self.textFieldEmail setHidden:NO];
     [self.buttonForgetPassword setHidden:YES];
+    NSAttributedString* stringSignIn = [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Sign In"
+                                                                                                      attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}]];
+    NSAttributedString* stringSignUp = [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Sign Up"
+                                                                                                      attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle}]];
+    [self.buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
+    [self.buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
 }
 
 - (void)setupSignIn {
     self.currentTabSignIn = YES;
-    [self.buttonSign setTitle:@"Log in" forState:UIControlStateNormal];
     [self.textFieldEmail setHidden:YES];
     [self.buttonForgetPassword setHidden:NO];
+    NSAttributedString* stringSignIn = [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Sign In"
+                                                                                                      attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}]];
+    NSAttributedString* stringSignUp = [attributedString appendAttributedString:[[NSAttributedString alloc] initWithString:@"Sign Up"
+                                                                                                      attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}]];
+    [self.buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
+    [self.buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
 }
 
 - (void)signUp {
