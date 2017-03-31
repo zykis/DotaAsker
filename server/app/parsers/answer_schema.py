@@ -1,4 +1,5 @@
 from marshmallow import Schema, fields
+from flask import g
 
 class AnswerSchema(Schema):
     id = fields.Int()

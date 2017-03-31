@@ -3,6 +3,7 @@ from app.parsers.answer_schema import AnswerSchema
 from app.parsers.theme_schema import ThemeSchema
 from app.models import Question, Theme, Answer
 from app import db
+from flask import g
 
 class QuestionSchema(Schema):
     id = fields.Int()
