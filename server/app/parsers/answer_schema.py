@@ -8,8 +8,8 @@ class AnswerSchema(Schema):
     text = fields.Str()
     is_correct = fields.Bool()
     
-    def get_attribute(self, obj, key, default):
+    def get_attribute(self, key, obj, default):
         if key == 'text':
-            return g.locale + ": " + obj.get(key, default)
+            return g.locale + ": " + getattr(obj, key)
         else:
-            return obj.get(key, default)
+            return getattr(obj, key, default)

@@ -80,7 +80,7 @@
 }
 
 + (NSString*)currentLocale {
-    return [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0]
+    return [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
 }
 
 @end

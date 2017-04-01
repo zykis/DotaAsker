@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Client.h"
 #import "Palette.h"
-#import "Helper.h
+#import "Helper.h"
 
 // IOS
 #import <Realm/Realm.h>
