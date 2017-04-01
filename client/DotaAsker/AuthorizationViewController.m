@@ -73,16 +73,6 @@
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"showMain"]) {
-        if ((self.username != nil) && (self.password != nil)) {
-            SignInViewController* destVC = [segue destinationViewController];
-            [destVC setStrUsername:self.username];
-            [destVC setStrPassword:self.password];
-        }
-    }
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -129,6 +119,10 @@
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}];
     [self.buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
     [self.buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
+    if (_username)
+        [_textFieldUsername setText:_username];
+    if (_password)
+        [_textFieldPassword setText:_password];
 }
 
 - (void)signUp {

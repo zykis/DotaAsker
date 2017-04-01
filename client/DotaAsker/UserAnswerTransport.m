@@ -6,8 +6,12 @@
 //  Copyright © 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "UserAnswerTransport.h"
 #import "UserAnswer.h"
+#import "Helper.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
@@ -22,6 +26,7 @@
     
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];

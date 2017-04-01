@@ -26,6 +26,7 @@ auth = HTTPBasicAuth()
 def sendFriendRequest():
     user_from = g.user
     rdata = request.json
+    g.locale = request.headers['Accept-Language']
     user_to_id = rdata['to_id']
     user_to = User.query.get(user_to_id)
     if user_from.isFriend(user_to) or user_from.isPending(user_to):
@@ -46,6 +47,7 @@ def sendFriendRequest():
 @auth.login_required
 def top100():
     user = g.user
+    g.locale = request.headers['Accept-Language']
     # [1] Getting all users, sorted by MMR. Descending order
     users = User.query.order_by(desc(User.mmr)).all()
 
@@ -74,6 +76,7 @@ def top100():
 @auth.login_required
 def surrend():
     surrender = g.user
+    g.locale = request.headers['Accept-Language']
     match_id = request.json['match_id']
     match = Match.query.get(match_id)
     match.surrendMatch(surrender = surrender)
@@ -85,6 +88,7 @@ def surrend():
 
 @app.route('/questions', methods=['POST'])
 def post_question():
+    g.locale = request.headers['Accept-Language']
     # [1] getting question
     scheme = QuestionSchema()
     question = scheme.loads(request.data).data
@@ -108,6 +112,7 @@ def post_question():
 
 @app.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
+    g.locale = request.headers['Accept-Language']
     user = User.query.get(id)
     if not user:
         abort(400)
@@ -125,6 +130,7 @@ def get_user(id):
 
 @app.route('/user', methods=['POST'])
 def update_user():
+    g.locale = request.headers['Accept-Language']
     schema = UserSchema(exclude=('matches', 'friends'))
     user = schema.loads(request.data).data
     db.session.add(user)
@@ -138,6 +144,7 @@ def update_user():
 
 @app.route('/statistic/<int:id>', methods=['GET'])
 def get_statistic(id):
+    g.locale = request.headers['Accept-Language']
     user = User.query.get(id)
     recent_matches = []
     for m in user.matches:
@@ -160,6 +167,7 @@ def get_statistic(id):
 
 @app.route('/userAnswers', methods=['POST'])
 def create_userAnswer():
+    g.locale = request.headers['Accept-Language']
     uaDict = request.data
     schema = UserAnswerSchema()
     ua = schema.loads(uaDict)[0]
@@ -220,6 +228,7 @@ def create_userAnswer():
 
 @app.route('/rounds', methods=['POST'])
 def put_round():
+    g.locale = request.headers['Accept-Language']
     rDict = request.data
     schema = RoundSchema()
     r = schema.loads(rDict)[0]
@@ -241,6 +250,7 @@ def put_round():
 
 @app.route('/matches', methods=['POST'])
 def put_match():
+    g.locale = request.headers['Accept-Language']
     mData = request.data
     schema = MatchSchema()
     mDict = schema.loads(mData)[0]
@@ -259,6 +269,7 @@ def put_match():
 
 @app.route('/finishMatch', methods=['POST'])
 def finish_match():
+    g.locale = request.headers['Accept-Language']
     mData = request.data
     schema = MatchSchema()
     mDict = schema.loads(mData)[0]
@@ -276,12 +287,14 @@ def finish_match():
 
 @app.route('/generateTestData')
 def generate_test_data():
+    g.locale = request.headers['Accept-Language']
     Database_queries.createTestData()
     return 'ok'
 
 
 @app.route('/forgotPassword', methods=['POST'])
 def send_new_password():
+    g.locale = request.headers['Accept-Language']
     username_or_email_dict = request.data
     username_or_email = json.loads(username_or_email_dict)['username_or_email']
     app.logger.info('{} forgot his password'.format(username_or_email))
@@ -333,6 +346,7 @@ def send_new_password():
 @auth.login_required
 def get_main_view_controller():
     g.locale = request.headers['Accept-Language']
+    g.locale = request.headers['Accept-Language']
     user = g.user
     schema = UserSchema()
     # schema.context['request'] = request
@@ -347,6 +361,7 @@ def get_main_view_controller():
 
 @app.route('/users', methods = ['POST'])
 def new_user():
+    g.locale = request.headers['Accept-Language']
     username = request.json.get('username', None)
     password = request.json.get('password', None)
     email = request.json.get('email', None)
@@ -382,6 +397,7 @@ def auth_error():
 @app.route('/findMatch', methods = ['GET'])
 @auth.login_required
 def find_match():
+    g.locale = request.headers['Accept-Language']
     m = Database_queries.findMatchForUser(g.user)
     if isinstance(m, Match):
         m_schema = MatchSchema()

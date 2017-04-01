@@ -6,16 +6,22 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "QuestionTransport.h"
 #import "Question.h"
+#import "Helper.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
+
 #define CLOUDINARY_API_KEY 13
 #define CLOUDINARY_API_SECRET 13
 #define CLOUDINARY_ENDPOINT @"http://res.cloudinary.com"
 #define CLOUDINARY_NAME @"dzixpee1a"
 
 #define kAPIEndpointQuestions (kAPIEndpointHost @"/questions")
+
 
 @implementation QuestionTransport
 
@@ -32,6 +38,7 @@
     
     // [request setHTTPBody:entityData];
      [request setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     // AFImageResponseSerializer
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -56,6 +63,7 @@
     
     [request setHTTPBody:questionData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];

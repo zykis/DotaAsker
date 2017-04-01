@@ -6,8 +6,12 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "MatchTransport.h"
 #import "UserService.h"
+#import "Helper.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <AFNetworking/AFNetworking/AFNetworking.h>
 
@@ -32,9 +36,9 @@
     NSString* authStrData = [[NSString alloc] initWithData:[authData base64EncodedDataWithOptions:NSDataBase64EncodingEndLineWithLineFeed] encoding:NSASCIIStringEncoding];
     // Forming Basic Authorization string Header
     NSString *authValue = [NSString stringWithFormat:@"Basic %@", authStrData];
-//    NSLog(@"AuthValue: %@", authValue);
     // Assigning it to request
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -59,6 +63,7 @@
     
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -83,6 +88,7 @@
     
     [request setHTTPBody:entityData];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -115,6 +121,7 @@
     // Assigning it to request
     [request setValue:authValue forHTTPHeaderField:@"Authorization"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     [request setHTTPBody:matchData];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
