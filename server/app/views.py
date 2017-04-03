@@ -176,7 +176,7 @@ def create_userAnswer():
     userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
     if userAnswersCount >= 3:
         app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
-        return
+        abort(505)
     # reset localy created ID. Server should autoincrement it
     ua.id = None
     db.session.add(ua)
@@ -233,6 +233,11 @@ def put_round():
     schema = RoundSchema()
     r = schema.loads(rDict)[0]
     rNew = Round.query.get(r['id'])
+    if rNew == None:
+        resp = make_response(json.dumps({'reason':'no round to update with id: {} in database'.format(r['id'])}))
+        resp.status_code = 404
+        resp.mimetype = 'application/json'
+        return resp
     if r.get('next_move_user', False):
         rNew.next_move_user_id = r['next_move_user'].id
     if r.get('selected_theme', False):

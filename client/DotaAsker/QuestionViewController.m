@@ -77,6 +77,7 @@
     _progressView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
+    NSLog(@"QuestionViewController DID LOAD");
 }
 
 - (void)viewWillAppear:(BOOL)animated {

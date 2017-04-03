@@ -117,6 +117,10 @@
                 obtained = YES;
                 } error:^(NSError * _Nullable error) {
                     dispatch_semaphore_signal(semaphore);
+                    if ([error code] == 404) {
+                        NSLog(@"No rounds with id: %ld found in server", r.ID);
+                        obtained = YES;
+                    }
                 } completed:^{
                     dispatch_semaphore_signal(semaphore);
                 }];
