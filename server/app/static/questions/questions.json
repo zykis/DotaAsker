@@ -2,25 +2,30 @@
     {
         "answers": [
             {
+                "is_correct": "false",
+                "text_en": "Rubic",
+                "text_ru": "Rubic"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Mirana",
+                "text_ru": "Mirana"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Juggernaut",
+                "text_ru": "Juggernaut"
+            },
+            {
                 "is_correct": "true",
-                "text": "Rubic"
-            },
-            {
-                "is_correct": "false",
-                "text": "Mirana"
-            },
-            {
-                "is_correct": "false",
-                "text": "Juggernaut"
-            },
-            {
-                "is_correct": "false",
-                "text": "Timbersaw"
+                "text_en": "Timbersaw",
+                "text_ru": "Timbersaw"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Наиболее частый пик на основном событии The Boston Major 2016?",
+        "text_en": "What was a most frequent hero's pick at main event on Boston Major 2016?",
+        "text_ru": "Наиболее частый пик на основном событии The Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -29,24 +34,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Rubic"
+                "text_en": "Rubic",
+                "text_ru": "Rubic"
             },
             {
                 "is_correct": "false",
-                "text": "Shadow Demon"
+                "text_en": "Shadow Demon",
+                "text_ru": "Shadow Demon"
             },
             {
                 "is_correct": "true",
-                "text": "Alchemist"
+                "text_en": "Alchemist",
+                "text_ru": "Alchemist"
             },
             {
                 "is_correct": "false",
-                "text": "Batrider"
+                "text_en": "Batrider",
+                "text_ru": "Batrider"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Наиболее частый бан на основном событии The Boston Major 2016?",
+        "text_en": "What was a most frequent hero's ban at main event on Boston Major 2016?",
+        "text_ru": "Наиболее частый бан на основном событии The Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -55,24 +65,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Shadow Demon"
+                "text_en": "Shadow Demon",
+                "text_ru": "Shadow Demon"
             },
             {
                 "is_correct": "false",
-                "text": "Sand King"
+                "text_en": "Sand King",
+                "text_ru": "Sand King"
             },
             {
                 "is_correct": "false",
-                "text": "Mirana"
+                "text_en": "Mirana",
+                "text_ru": "Mirana"
             },
             {
                 "is_correct": "true",
-                "text": "Ogre Magi"
+                "text_en": "Ogre Magi",
+                "text_ru": "Ogre Magi"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Наиболее частый пик на групповой стадии The Boston Major 2016?",
+        "text_en": "What was a most frequent hero's pick at group stage on Boston Major 2016?",
+        "text_ru": "Наиболее частый пик на групповой стадии The Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -81,24 +96,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Invoker"
+                "text_en": "Invoker",
+                "text_ru": "Invoker"
             },
             {
                 "is_correct": "false",
-                "text": "Slark"
+                "text_en": "Slark",
+                "text_ru": "Slark"
             },
             {
                 "is_correct": "true",
-                "text": "Batrider"
+                "text_en": "Batrider",
+                "text_ru": "Batrider"
             },
             {
                 "is_correct": "false",
-                "text": "Pugna"
+                "text_en": "Pugna",
+                "text_ru": "Pugna"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Наиболее частый бан в групповой стадии The Boston Major 2016?",
+        "text_en": "What was a most frequent hero's ban at grounp stage on Boston Major 2016?",
+        "text_ru": "Наиболее частый бан в групповой стадии The Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -107,24 +127,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "18 000 000$"
+                "text_en": "18 000 000$",
+                "text_ru": "18 000 000$"
             },
             {
                 "is_correct": "false",
-                "text": "6 000 000$"
+                "text_en": "6 000 000$",
+                "text_ru": "6 000 000$"
             },
             {
                 "is_correct": "false",
-                "text": "1 000 000$"
+                "text_en": "1 000 000$",
+                "text_ru": "1 000 000$"
             },
             {
                 "is_correct": "true",
-                "text": "3 000 000$"
+                "text_en": "3 000 000$",
+                "text_ru": "3 000 000$"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Призовой фонд The Boston Major 2016:",
+        "text_en": "What was a prize pool of Boston Major 2016?",
+        "text_ru": "Каким был призовой фонд The Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -133,24 +158,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Замедление"
+                "text_en": "Slow",
+                "text_ru": "Замедление"
             },
             {
                 "is_correct": "false",
-                "text": "Оглушение"
+                "text_en": "Stun",
+                "text_ru": "Оглушение"
             },
             {
                 "is_correct": "true",
-                "text": "Обездвиживание"
+                "text_en": "Root",
+                "text_ru": "Обездвиживание"
             },
             {
                 "is_correct": "false",
-                "text": "Молчание"
+                "text_en": "Silence",
+                "text_ru": "Молчание"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Какой эффект, накладывает активная способность предмета Rod of Atos?",
+        "text_en": "What effect is applied by active ability of Rod of Atos?",
+        "text_ru": "Какой эффект, накладывает активная способность предмета Rod of Atos?",
         "theme": {
             "name": "mechanics"
         }
@@ -159,24 +189,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Blight Stone"
+                "text_en": "Blight Stone",
+                "text_ru": "Blight Stone"
             },
             {
                 "is_correct": "false",
-                "text": "Satanic"
+                "text_en": "Satanic",
+                "text_ru": "Satanic"
             },
             {
                 "is_correct": "false",
-                "text": "Desolator"
+                "text_en": "Desolator",
+                "text_ru": "Desolator"
             },
             {
                 "is_correct": "true",
-                "text": "Eye of Skadi"
+                "text_en": "Eye of Skadi",
+                "text_ru": "Eye of Skadi"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Этот предмет не является модификатором атаки:",
+        "text_en": "Which artefact isn't an attack modifier?",
+        "text_ru": "Этот предмет не является модификатором атаки:",
         "theme": {
             "name": "mechanics"
         }
@@ -185,24 +220,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "25%"
+                "text_en": "25%",
+                "text_ru": "25%"
             },
             {
                 "is_correct": "false",
-                "text": "20%"
+                "text_en": "20%",
+                "text_ru": "20%"
             },
             {
                 "is_correct": "false",
-                "text": "50%"
+                "text_en": "50%",
+                "text_ru": "50%"
             },
             {
                 "is_correct": "false",
-                "text": "10%"
+                "text_en": "10%",
+                "text_ru": "10%"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Базовая магическая защита героя равна:",
+        "text_en": "Basic hero's magic defence is:",
+        "text_ru": "Базовая магическая защита героя равна:",
         "theme": {
             "name": "mechanics"
         }
@@ -210,77 +250,30 @@
     {
         "answers": [
             {
-                "is_correct": "false",
-                "text": "Cr1t-"
-            },
-            {
                 "is_correct": "true",
-                "text": "Maybe Next Time"
+                "text_en": "16 commands, signle-elimination",
+                "text_ru": "16 команд, signle-elimination"
             },
             {
                 "is_correct": "false",
-                "text": "Notail"
+                "text_en": "8 commands, signle-elimination",
+                "text_ru": "8 команд, signle-elimination"
             },
             {
                 "is_correct": "false",
-                "text": "Zai"
+                "text_en": "16 commands, double-elimination",
+                "text_ru": "16 команд, double-elimination"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "8 commands, double-elimination",
+                "text_ru": "8 команд, double-elimination"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Помимо перечисленных игроков (Madara, SkyLark, SsaSpartan, ThuG, ***) составе Ad Finem на Boston Major 2016 был:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "true",
-                "text": "16 команд, signle-elimination"
-            },
-            {
-                "is_correct": "false",
-                "text": "8 команд, signle-elimination"
-            },
-            {
-                "is_correct": "false",
-                "text": "16 команд, double-elimination"
-            },
-            {
-                "is_correct": "false",
-                "text": "8 команд, double-elimination"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text": "Формат основого события Boston Major:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text": "OG"
-            },
-            {
-                "is_correct": "false",
-                "text": "Ad Finem"
-            },
-            {
-                "is_correct": "false",
-                "text": "Evil Genuses"
-            },
-            {
-                "is_correct": "true",
-                "text": "Virtus Pro"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text": "Какой из этих команд не было в полуфинале Boston Major 2016?",
+        "text_en": "Boston Major 2016 main event's format was:",
+        "text_ru": "Формат основого события Boston Major:",
         "theme": {
             "name": "tournaments"
         }
@@ -289,50 +282,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Thug"
+                "text_en": "OG",
+                "text_ru": "OG"
             },
             {
                 "is_correct": "false",
-                "text": "Madara"
+                "text_en": "Ad Finem",
+                "text_ru": "Ad Finem"
             },
             {
                 "is_correct": "false",
-                "text": "Maybe Next Time"
+                "text_en": "Evil Genuses",
+                "text_ru": "Evil Genuses"
             },
             {
                 "is_correct": "true",
-                "text": "SsaSpartan"
+                "text_en": "Virtus Pro",
+                "text_ru": "Virtus Pro"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Капитаном команды Ad Finem на Boston Major 2016 являлся:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "true",
-                "text": "Европа"
-            },
-            {
-                "is_correct": "false",
-                "text": "США"
-            },
-            {
-                "is_correct": "false",
-                "text": "Китай"
-            },
-            {
-                "is_correct": "false",
-                "text": "Узбекистан"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text": "Какому региону принадлежит команда OG?",
+        "text_en": "Which of following commands wasn't at Boston Major 2016 half-final?",
+        "text_ru": "Какой из этих команд не было в полуфинале Boston Major 2016?",
         "theme": {
             "name": "tournaments"
         }
@@ -341,24 +313,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Miracle"
+                "text_en": "Thug",
+                "text_ru": "Thug"
             },
             {
                 "is_correct": "false",
-                "text": "Notail"
+                "text_en": "Madara",
+                "text_ru": "Madara"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Maybe Next Time",
+                "text_ru": "Maybe Next Time"
             },
             {
                 "is_correct": "true",
-                "text": "Fly"
-            },
-            {
-                "is_correct": "false",
-                "text": "JerAx"
+                "text_en": "SsaSpartan",
+                "text_ru": "SsaSpartan"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Капитаном команды OG на Boston Major 2016 являлся:",
+        "text_en": "Captain of Ad Finem's at Boston Major 2016 was:",
+        "text_ru": "Капитаном команды Ad Finem на Boston Major 2016 являлся:",
         "theme": {
             "name": "tournaments"
         }
@@ -367,50 +344,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "S4"
+                "text_en": "Europe",
+                "text_ru": "Европа"
             },
             {
                 "is_correct": "false",
-                "text": "Miracle"
+                "text_en": "USA",
+                "text_ru": "США"
             },
             {
                 "is_correct": "false",
-                "text": "Dendi"
+                "text_en": "China",
+                "text_ru": "Китай"
             },
             {
                 "is_correct": "false",
-                "text": "AlwaysWannaFly"
+                "text_en": "Uzbekistan",
+                "text_ru": "Узбекистан"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Помимо перечисленных игроков (NOtail, ana, JerAx, Fly, ***) составе OG на Boston Major 2016 был:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "true",
-                "text": "Греция"
-            },
-            {
-                "is_correct": "false",
-                "text": "Турция"
-            },
-            {
-                "is_correct": "false",
-                "text": "Монголия"
-            },
-            {
-                "is_correct": "false",
-                "text": "США"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text": "К какому региону принадлежит команда OG?",
+        "text_en": "What region are OG from?",
+        "text_ru": "Какому региону принадлежит команда OG?",
         "theme": {
             "name": "tournaments"
         }
@@ -419,24 +375,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Ad Finem"
+                "text_en": "Miracle",
+                "text_ru": "Miracle"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Notail",
+                "text_ru": "Notail"
             },
             {
                 "is_correct": "true",
-                "text": "OG"
+                "text_en": "Fly",
+                "text_ru": "Fly"
             },
             {
                 "is_correct": "false",
-                "text": "Digital Chaos"
-            },
-            {
-                "is_correct": "false",
-                "text": "Evil Geniuses"
+                "text_en": "JerAx",
+                "text_ru": "JerAx"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Кто является победителем Boston Major?",
+        "text_en": "Captain of OG on Boston Major 2016 was:",
+        "text_ru": "Капитаном команды OG на Boston Major 2016 являлся:",
         "theme": {
             "name": "tournaments"
         }
@@ -445,24 +406,91 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "12"
+                "text_en": "S4",
+                "text_ru": "S4"
             },
             {
                 "is_correct": "false",
-                "text": "20"
+                "text_en": "Miracle",
+                "text_ru": "Miracle"
             },
             {
                 "is_correct": "false",
-                "text": "24"
+                "text_en": "Dendi",
+                "text_ru": "Dendi"
             },
             {
                 "is_correct": "false",
-                "text": "8"
+                "text_en": "AlwaysWannaFly",
+                "text_ru": "AlwaysWannaFly"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Сколько очков маны добавляет единица интеллекта?",
+        "text_en": "Beside following player (NOtail, ana, JerAx, Fly, ***) in OG on Boston Major was:",
+        "text_ru": "Помимо перечисленных игроков (NOtail, ana, JerAx, Fly, ***) составе OG на Boston Major 2016 был:",
+        "theme": {
+            "name": "tournaments"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "Ad Finem",
+                "text_ru": "Ad Finem"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "OG",
+                "text_ru": "OG"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Digital Chaos",
+                "text_ru": "Digital Chaos"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Evil Geniuses",
+                "text_ru": "Evil Geniuses"
+            }
+        ],
+        "approved": "true",
+        "image_name": "",
+        "text_en": "Who is a winner of Boston Major?",
+        "text_ru": "Кто является победителем Boston Major?",
+        "theme": {
+            "name": "tournaments"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "12",
+                "text_ru": "12"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "20",
+                "text_ru": "20"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "24",
+                "text_ru": "24"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "8",
+                "text_ru": "8"
+            }
+        ],
+        "approved": "true",
+        "image_name": "",
+        "text_en": "How much mana will gave you 1 point of intelligence?",
+        "text_ru": "Сколько очков маны добавляет единица интеллекта?",
         "theme": {
             "name": "mechanics"
         }
@@ -471,24 +499,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "16"
+                "text_en": "16",
+                "text_ru": "16"
             },
             {
                 "is_correct": "false",
-                "text": "25"
+                "text_en": "25",
+                "text_ru": "25"
             },
             {
                 "is_correct": "false",
-                "text": "4"
+                "text_en": "4",
+                "text_ru": "4"
             },
             {
                 "is_correct": "false",
-                "text": "10"
+                "text_en": "10",
+                "text_ru": "10"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Сколько очков интеллекта необходимо, чтобы увеличить урон от способностей на 1%?",
+        "text_en": "How many intellegence needed to increase ability damage by 1%?",
+        "text_ru": "Сколько очков интеллекта необходимо, чтобы увеличить урон от способностей на 1%?",
         "theme": {
             "name": "mechanics"
         }
@@ -497,24 +530,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "12"
+                "text_en": "12",
+                "text_ru": "12"
             },
             {
                 "is_correct": "false",
-                "text": "40"
+                "text_en": "40",
+                "text_ru": "40"
             },
             {
                 "is_correct": "false",
-                "text": "25"
+                "text_en": "25",
+                "text_ru": "25"
             },
             {
                 "is_correct": "true",
-                "text": "20"
+                "text_en": "20",
+                "text_ru": "20"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Сколько очков здоровья добавляет единица силы?",
+        "text_en": "How many HP granted by 1 strenght?",
+        "text_ru": "Сколько очков здоровья добавляет единица силы?",
         "theme": {
             "name": "mechanics"
         }
@@ -523,24 +561,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "5"
+                "text_en": "5",
+                "text_ru": "5"
             },
             {
                 "is_correct": "true",
-                "text": "7"
+                "text_en": "7",
+                "text_ru": "7"
             },
             {
                 "is_correct": "false",
-                "text": "8"
+                "text_en": "8",
+                "text_ru": "8"
             },
             {
                 "is_correct": "false",
-                "text": "12"
+                "text_en": "12",
+                "text_ru": "12"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Сколько очков ловкости необходимо, чтобы повысить физическую броню на 1?",
+        "text_en": "How many points of agility needed to improve your armor by 1?",
+        "text_ru": "Сколько очков ловкости необходимо, чтобы повысить физическую броню на 1?",
         "theme": {
             "name": "mechanics"
         }
@@ -549,24 +592,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "8"
+                "text_en": "8",
+                "text_ru": "8"
             },
             {
                 "is_correct": "false",
-                "text": "4"
+                "text_en": "4",
+                "text_ru": "4"
             },
             {
                 "is_correct": "false",
-                "text": "5"
+                "text_en": "5",
+                "text_ru": "5"
             },
             {
                 "is_correct": "false",
-                "text": "7"
+                "text_en": "7",
+                "text_ru": "7"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Максимальное количество стаков способности Quiling Spray (Bristleback) на одном герое",
+        "text_en": "Maximum stack's count of Quilling Spray applied to one hero:",
+        "text_ru": "Максимальное количество стаков способности Quiling Spray (Bristleback) на одном герое:",
         "theme": {
             "name": "mechanics"
         }
@@ -575,24 +623,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "2.5 сек"
-            },
-            {
-                "is_correct": "false",
-                "text": "7 сек"
-            },
-            {
-                "is_correct": "false",
-                "text": "4.5 сек"
+                "text_en": "1.5 sec",
+                "text_ru": "1.5 сек"
             },
             {
                 "is_correct": "true",
-                "text": "5 сек"
+                "text_en": "2.0 sec",
+                "text_ru": "2 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "0.5 sec",
+                "text_ru": "0.5 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "1.7 sec",
+                "text_ru": "1.7 сек"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Максимальная длительность оглушения от способности Sacred Arrow (Mirana)",
+        "text_en": "Stun duration of Treant's Protector's Invisible Tree on the max level?",
+        "text_ru": "Длительность стана Treant Protector при выходе из невидимости за счёт способности \"Invisible tree\" на максимальном уровне прокачки:",
         "theme": {
             "name": "mechanics"
         }
@@ -601,24 +654,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "1.5 сек"
+                "text_en": "15%",
+                "text_ru": "15%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "20%",
+                "text_ru": "20%"
             },
             {
                 "is_correct": "true",
-                "text": "2 сек"
+                "text_en": "25%",
+                "text_ru": "25%"
             },
             {
                 "is_correct": "false",
-                "text": "0.5 сек"
-            },
-            {
-                "is_correct": "false",
-                "text": "1.7 сек"
+                "text_en": "40%",
+                "text_ru": "40%"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Длительность стана Treant Protector при выходе из невидимости за счёт способности \"Invisible tree\" на максимальном уровне прокачки:",
+        "text_en": "Dodge chance of Mortred's Blur on the first level of this ability?",
+        "text_ru": "Вероятность уклонения способности Blur (Mortred) на 1-ом уровне прокачки?",
         "theme": {
             "name": "mechanics"
         }
@@ -627,24 +685,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "15%"
+                "text_en": "Glimpse (Disruptor)",
+                "text_ru": "Glimpse (Disruptor)"
             },
             {
                 "is_correct": "false",
-                "text": "20%"
+                "text_en": "Life Drain (Pugna)",
+                "text_ru": "Life Drain (Pugna)"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "Stone Gaze (Medusa)",
+                "text_ru": "Stone Gaze (Medusa)"
             },
             {
                 "is_correct": "true",
-                "text": "25%"
-            },
-            {
-                "is_correct": "false",
-                "text": "40%"
+                "text_en": "Telekinesis (Rubic)",
+                "text_ru": "Telekinesis (Rubic)"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Вероятность уклонения способности Blur (Mortred) на 1-ом уровне прокачки?",
+        "text_en": "Which of these abilities CAN'T destroy an illusion?",
+        "text_ru": "Какая из этих способностей НЕ способна уничтожить иллюзию?",
         "theme": {
             "name": "mechanics"
         }
@@ -653,46 +716,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Glimpse (Disruptor)"
+                "text_en": "Physical",
+                "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text": "Life Drain (Pugna)"
-            },
-            {
-                "is_correct": "false",
-                "text": "Stone Gaze (Medusa)"
+                "text_en": "Pure",
+                "text_ru": "Чистый"
             },
             {
                 "is_correct": "true",
-                "text": "Telekinesis (Rubic)"
+                "text_en": "Magic",
+                "text_ru": "Магический"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Какая из этих способностей НЕ способна уничтожить иллюзию?",
-        "theme": {
-            "name": "mechanics"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text": "Физический"
-            },
-            {
-                "is_correct": "false",
-                "text": "Чистый"
-            },
-            {
-                "is_correct": "true",
-                "text": "Магический"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text": "Тип урона, наносимый первой способностью Аббадона \"Mist Coil\":",
+        "text_en": "Damage type of Abbadon's Mist Coil is:",
+        "text_ru": "Тип урона, наносимый первой способностью Аббадона \"Mist Coil\":",
         "theme": {
             "name": "mechanics"
         }
@@ -701,24 +747,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "310"
+                "text_en": "310",
+                "text_ru": "310"
             },
             {
                 "is_correct": "false",
-                "text": "295"
+                "text_en": "295",
+                "text_ru": "295"
             },
             {
                 "is_correct": "false",
-                "text": "280"
+                "text_en": "280",
+                "text_ru": "280"
             },
             {
                 "is_correct": "false",
-                "text": "320"
+                "text_en": "320",
+                "text_ru": "320"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Базовая скорость передвижения Аббадона равна:",
+        "text_en": "Base Abbadon's movement speed is:",
+        "text_ru": "Базовая скорость передвижения Аббадона равна:",
         "theme": {
             "name": "mechanics"
         }
@@ -727,24 +778,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "1.38"
+                "text_en": "1.38",
+                "text_ru": "1.38"
             },
             {
                 "is_correct": "false",
-                "text": "4.75"
+                "text_en": "4.75",
+                "text_ru": "4.75"
             },
             {
                 "is_correct": "false",
-                "text": "1.2"
+                "text_en": "1.2",
+                "text_ru": "1.2"
             },
             {
                 "is_correct": "false",
-                "text": "1.76"
+                "text_en": "1.76",
+                "text_ru": "1.76"
             }
         ],
         "approved": "true",
         "image_name": "",
-        "text": "Базовый показатель брони Аббадона равен:",
+        "text_en": "Base Abbadon's armor is:",
+        "text_ru": "Базовый показатель брони Аббадона равен:",
         "theme": {
             "name": "mechanics"
         }
@@ -753,24 +809,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "Кровавый Эльф"
+                "text_en": "Blood elf",
+                "text_ru": "Кровавый Эльф"
             },
             {
                 "is_correct": "false",
-                "text": "Человек"
+                "text_en": "Human",
+                "text_ru": "Человек"
             },
             {
                 "is_correct": "false",
-                "text": "Высокий Эльф"
+                "text_en": "High elf",
+                "text_ru": "Высокий Эльф"
             },
             {
                 "is_correct": "false",
-                "text": "Орк"
+                "text_en": "Orc",
+                "text_ru": "Орк"
             }
         ],
         "approved": "true",
         "image_name": "lore_invoker_race.jpg",
-        "text": "Какой рассе принадлежит Инвокер?",
+        "text_en": "What race is Invoker belongs to?",
+        "text_ru": "Какой рассе принадлежит Инвокер?",
         "theme": {
             "name": "lore"
         }
@@ -779,24 +840,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Тварь"
+                "text_en": "Beast",
+                "text_ru": "Тварь"
             },
             {
                 "is_correct": "false",
-                "text": "Орк"
+                "text_en": "Orc",
+                "text_ru": "Орк"
             },
             {
                 "is_correct": "false",
-                "text": "Механическая поипень"
+                "text_en": "Mechanic's sh*t",
+                "text_ru": "Механическая поипень"
             },
             {
                 "is_correct": "true",
-                "text": "Чёртово дерево"
+                "text_en": "Fucking tree",
+                "text_ru": "Чёртово дерево"
             }
         ],
         "approved": "true",
         "image_name": "lore_treant.jpg",
-        "text": "Кто такое Дерево?",
+        "text_en": "What is treant?",
+        "text_ru": "Кто такое Дерево?",
         "theme": {
             "name": "lore"
         }
@@ -805,24 +871,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Treant Protector"
+                "text_en": "Treant Protector",
+                "text_ru": "Treant Protector"
             },
             {
                 "is_correct": "false",
-                "text": "Faceless Void"
+                "text_en": "Faceless Void",
+                "text_ru": "Faceless Void"
             },
             {
                 "is_correct": "true",
-                "text": "Pugna"
+                "text_en": "Pugna",
+                "text_ru": "Pugna"
             },
             {
                 "is_correct": "false",
-                "text": "Bane"
+                "text_en": "Bane",
+                "text_ru": "Bane"
             }
         ],
         "approved": "true",
         "image_name": "lore_child.jpg",
-        "text": "Кто из этих персонажей является ребёнком?",
+        "text_en": "Who of these heroes is a child?",
+        "text_ru": "Кто из этих персонажей является ребёнком?",
         "theme": {
             "name": "lore"
         }
@@ -831,24 +902,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "1 сек"
+                "text_en": "1 sec",
+                "text_ru": "1 сек"
             },
             {
                 "is_correct": "false",
-                "text": "3.5 сек"
+                "text_en": "3.5 sec",
+                "text_ru": "3.5 сек"
             },
             {
                 "is_correct": "true",
-                "text": "5 сек"
+                "text_en": "5 sec",
+                "text_ru": "5 сек"
             },
             {
                 "is_correct": "false",
-                "text": "2.2 сек"
+                "text_en": "2.2 sec",
+                "text_ru": "2.2 сек"
             }
         ],
         "approved": "true",
         "image_name": "mechanics_sacred_arrow.jpg",
-        "text": "Максимальная длительность оглушения от способности Sacred Arrow (Mirana)?",
+        "text_en": "Max duration of Sacred Arrow's stun (Mirana)?",
+        "text_ru": "Максимальная длительность оглушения от способности Sacred Arrow (Mirana)?",
         "theme": {
             "name": "mechanics"
         }
@@ -857,16 +933,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "Да"
+                "text_en": "No",
+                "text_ru": "Нет"
             },
             {
                 "is_correct": "true",
-                "text": "Нет"
+                "text_en": "Yes",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
         "approved": "true",
         "image_name": "mechanics_bara_cogs.jpg",
-        "text": "Barathrum может пробежать сквозь Cogs?",
+        "text_en": "Barathrum can charge through Cogs?",
+        "text_ru": "Barathrum может пробежать сквозь Cogs?",
         "theme": {
             "name": "tournaments"
         }
@@ -875,16 +964,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "Да"
+                "text_en": "Yes",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text": "Нет"
+                "text_en": "No",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
         "approved": "true",
         "image_name": "mechanics_storm_chronosphere.jpg",
-        "text": "Storm Spirit может пролететь сквозь хроносферу Void'а?",
+        "text_en": "Storm Spirit can fly through Void's chronosphere?",
+        "text_ru": "Storm Spirit может пролететь сквозь хроносферу Void'а?",
         "theme": {
             "name": "mechanics"
         }
@@ -893,24 +995,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "TongFu"
+                "text_en": "TongFu",
+                "text_ru": "TongFu"
             },
             {
                 "is_correct": "true",
-                "text": "Natus Vincere"
+                "text_en": "Natus Vincere",
+                "text_ru": "Natus Vincere"
             },
             {
                 "is_correct": "false",
-                "text": "Invictus Gaming"
+                "text_en": "Invictus Gaming",
+                "text_ru": "Invictus Gaming"
             },
             {
                 "is_correct": "false",
-                "text": "Evil Genuises"
+                "text_en": "Evil Genuises",
+                "text_ru": "Evil Genuises"
             }
         ],
         "approved": "true",
         "image_name": "tournaments_TI1_winner.jpg",
-        "text": "Кто стал победителем The International - 1?",
+        "text_en": "Winner of The International - 1?",
+        "text_ru": "Кто стал победителем The International - 1?",
         "theme": {
             "name": "tournaments"
         }
@@ -919,24 +1026,29 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text": "6.000.000$"
+                "text_en": "6.000.000$",
+                "text_ru": "6.000.000$"
             },
             {
                 "is_correct": "false",
-                "text": "1.500.000$"
+                "text_en": "1.500.000$",
+                "text_ru": "1.500.000$"
             },
             {
                 "is_correct": "false",
-                "text": "16.000.000$"
+                "text_en": "16.000.000$",
+                "text_ru": "16.000.000$"
             },
             {
                 "is_correct": "false",
-                "text": "1.000.000$"
+                "text_en": "1.000.000$",
+                "text_ru": "1.000.000$"
             }
         ],
         "approved": "true",
         "image_name": "tournaments_TI2015_prizepool.jpg",
-        "text": "Награда за первое место в The International - 2015:",
+        "text_en": "Prize for the first place at The International - 2015:",
+        "text_ru": "Награда за первое место в The International - 2015:",
         "theme": {
             "name": "tournaments"
         }
@@ -945,24 +1057,29 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text": "BestOf3"
+                "text_en": "BestOf3",
+                "text_ru": "BestOf3"
             },
             {
                 "is_correct": "false",
-                "text": "BestOf1"
+                "text_en": "BestOf1",
+                "text_ru": "BestOf1"
             },
             {
                 "is_correct": "true",
-                "text": "BestOf5"
+                "text_en": "BestOf5",
+                "text_ru": "BestOf5"
             },
             {
                 "is_correct": "false",
-                "text": "BestOf7"
+                "text_en": "BestOf7",
+                "text_ru": "BestOf7"
             }
         ],
         "approved": "true",
         "image_name": "tournaments_TI1_grandfinal_qualification.jpg",
-        "text": "Формат грандфинала The International 1:",
+        "text_en": "Format of Grind Final The International 1:",
+        "text_ru": "Формат грандфинала The International 1:",
         "theme": {
             "name": "mechanics"
         }

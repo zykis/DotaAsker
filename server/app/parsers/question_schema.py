@@ -11,9 +11,11 @@ class QuestionSchema(Schema):
     updated_on = fields.DateTime()
     image_name = fields.Str()
     text = fields.Str()
+    text_en = fields.Str()
+    text_ru = fields.Str()
     approved = fields.Bool()
     theme = fields.Nested(ThemeSchema)
-    answers = fields.Nested(AnswerSchema, many=True, exclude=('text_en', 'text_ru'))
+    answers = fields.Nested(AnswerSchema, many=True)
     
     @post_load
     def create_question(self, data):
@@ -27,7 +29,8 @@ class QuestionSchema(Schema):
 
             for aDict in data.get('answers'):
                 a = Answer()
-                a.text = aDict.get('text')
+                a.text_en = aDict.get('text_en', '')
+                a.text_ru = aDict.get('text_ru', '')
                 a.is_correct = aDict.get('is_correct')
                 question.answers.append(a)
                 # chech if answer.question_id will fill after session.commit()
