@@ -6,8 +6,11 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "AnswerParser.h"
 #import "Answer.h"
+#import "Helper.h"
+
 
 @implementation AnswerParser
 
@@ -41,9 +44,10 @@
 }
 
 + (NSDictionary*)encode:(Answer*)a {
+    NSString* locale = [Helper currentLocale];
     NSDictionary* jsonDict = [[NSDictionary alloc] initWithObjectsAndKeys:
                                      [NSNumber numberWithLongLong:a.ID], @"id",
-                                     a.text, @"text",
+                                     a.text, [NSString stringWithFormat: @"text_%@", locale],
                                      [NSNumber numberWithBool:a.isCorrect], @"is_correct",
                                      nil];
     return jsonDict;

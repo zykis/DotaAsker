@@ -6,11 +6,14 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "QuestionParser.h"
 #import "Question.h"
 #import "AnswerParser.h"
 #import "ThemeParser.h"
 #import "Theme.h"
+#import "Helper.h"
+
 
 @implementation QuestionParser
 
@@ -60,9 +63,10 @@
         [answers addObject:aDict];
     }
     
+    NSString* locale = [Helper currentLocale];
     NSMutableDictionary* jsonDict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedLongLong: question.ID], @"id",
-                              question.text, @"text",
+                              question.text, [NSString stringWithFormat: @"text_%@", locale],
                               answers, @"answers",
                               question.imageName, @"image_name",
                               nil];

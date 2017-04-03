@@ -100,7 +100,7 @@ def post_question():
     db.session.commit()
     
     # [2.1] check created question
-    app.logger.info("question submitted: {}".format(question.text))
+    app.logger.info("question submitted: {}".format(getattr(question, 'text_' + g.locale)))
     for a in question.answers:
         app.logger.info("-{}".format(a))
     

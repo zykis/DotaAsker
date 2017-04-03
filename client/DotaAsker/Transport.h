@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-//#define kAPIEndpointHost @"http://185.156.179.139:80"
-#define kAPIEndpointHost @"localhost:5000"
+#define kAPIEndpointHost @"http://185.156.179.139:80"
+//#define kAPIEndpointHost @"localhost:5000"
 
 @class RACReplaySubject;
 
