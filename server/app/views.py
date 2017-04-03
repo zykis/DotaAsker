@@ -100,10 +100,10 @@ def post_question():
     db.session.commit()
     
     # [2.1] check created question
-    app.logger.info("question submitted: {}".format(getattr(question, 'text_' + g.locale)))
-    for a in question.answers:
-        app.logger.info("-{}".format(a))
-    
+    # app.logger.info("question submitted: {}".format(getattr(question, 'text_' + g.locale)))
+    # for a in question.answers:
+    #     app.logger.info("-{}".format(a))
+
     # [3] send reply to client
     resp = make_response()
     resp.status_code = 200
