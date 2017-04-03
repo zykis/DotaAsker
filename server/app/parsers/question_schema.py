@@ -13,13 +13,14 @@ class QuestionSchema(Schema):
     text = fields.Str()
     approved = fields.Bool()
     theme = fields.Nested(ThemeSchema)
-    answers = fields.Nested(AnswerSchema, many=True)
+    answers = fields.Nested(AnswerSchema, many=True, exclude=('text_en', 'text_ru'))
     
     @post_load
     def create_question(self, data):
         if (data.get('id', None) is None) or (data.get('id') == 0):
             question = Question()
-            question.text = data.get('text', '')
+            question.text_en = data.get('text_en', '')
+            question.text_ru = data.get('text_ru', '')
             question.approved = data.get('approved', False)
             question.image_name = data.get('image_name', '')
             question.theme = data.get('theme', None)
@@ -36,6 +37,6 @@ class QuestionSchema(Schema):
     
     def get_attribute(self, key, obj, default):
         if key == 'text':
-            return g.locale + ": " + getattr(obj, key)
+            return getattr(obj, key + '_' + g.locale)
         else:
             return getattr(obj, key, default)

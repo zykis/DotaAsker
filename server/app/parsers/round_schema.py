@@ -9,6 +9,6 @@ class RoundSchema(Schema):
     created_on = fields.DateTime()
     updated_on = fields.DateTime()
     next_move_user = fields.Nested('UserSchema', exclude=('matches', 'friends'))
-    questions = fields.Nested(QuestionSchema, many=True)
+    questions = fields.Nested(QuestionSchema, many=True, exclude=('text_en', 'text_ru'))
     user_answers = fields.Nested(UserAnswerSchema, many=True)
     selected_theme = fields.Nested(ThemeSchema)
