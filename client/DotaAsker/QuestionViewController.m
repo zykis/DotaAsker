@@ -233,15 +233,15 @@
         RLMArray<Answer>* answers = [q answers];
         
         CGSize size = [[Helper shared] getQuestionImageViewSize];
-        [_questionImageView setImage:nil];
+        UIImage* defaultImage = [UIImage imageNamed:@"default-2.jpg"];
+        CGSize newSize = [_questionImageView bounds].size;
+        UIImage* resizedDefaultImage = [Helper imageWithImage:defaultImage scaledToSize:newSize];
+        [_questionImageView setImage:resizedDefaultImage];
+        
         RACReplaySubject* subject = [[[ServiceLayer instance] questionService] obtainImageForQuestion:q withWidth:size.width andHeight:size.height];
         [subject subscribeNext:^(id x) {
             [_questionImageView setImage:x];
         } error:^(NSError *error) {
-            UIImage* defaultImage = [UIImage imageNamed:@"default.png"];
-            CGSize newSize = [_questionImageView bounds].size;
-            UIImage* resizedDefaultImage = [Helper imageWithImage:defaultImage scaledToSize:newSize];
-            [_questionImageView setImage:resizedDefaultImage];
         }];
         
         [_questionText setText:[q text]];

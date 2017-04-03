@@ -58,7 +58,7 @@
     [[Palette shared] setThemesButtonColor:[UIColor colorWithRed:0.96 green:0.50 blue:0.09 alpha:1.0]];
     
     // setting up pattern
-    [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6"]];
+    [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6.png"]];
     
     [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"icon-back-white.png"]];
     [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"icon-back-white.png"]];

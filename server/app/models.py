@@ -30,7 +30,8 @@ class Answer(Base):
     __tablename__ = 'answers'
     id = db.Column(db.Integer, primary_key=True)
     question_id = db.Column(db.Integer, db.ForeignKey('questions.id'))
-    text = db.Column(db.String(50))
+    text_en = db.Column(db.Unicode(50))
+    text_ru = db.Column(db.Unicode(50))
     is_correct = db.Column(db.Boolean)
     # relations
     question = db.relationship('Question', foreign_keys=[question_id])
@@ -41,27 +42,12 @@ class Question(Base):
     id = db.Column(db.Integer, primary_key=True)
     theme_id = db.Column(db.Integer, db.ForeignKey('themes.id'))
     image_name = db.Column(db.String(50), nullable=True)
-    text = db.Column(db.String(50), nullable=False)
+    text_en = db.Column(db.Unicode(50))
+    text_ru = db.Column(db.Unicode(50))
     approved = db.Column(db.Boolean, default=True)
     # relations
     theme = db.relationship('Theme', foreign_keys=[theme_id])
     answers = db.relationship('Answer', cascade='all, delete-orphan')
-
-    def addAnswer(self, answerText):
-        answer = Answer()
-        answer.question_id = self.id
-        answer.text = answerText
-
-    def setCorrectAnswer(self, correctAnswerText):
-        for ans in self.answers:
-            for txt in ans.text:
-                if (txt == correctAnswerText):
-                    self.correct_answer_id = ans.id
-                    return
-        answer = Answer()
-        answer.question_id = self.id
-        answer.text = correctAnswerText
-        self.correct_answer_id = answer.id
 
 
 class UserAnswer(Base):

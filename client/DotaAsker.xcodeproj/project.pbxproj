@@ -102,6 +102,9 @@
 		AC9E06311DD75FBA004FA4BE /* dota_icon_20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */; };
 		AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */; };
 		AC9E06341DD76104004FA4BE /* dota_icon_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */; };
+		ACA1CE701E8F8B550004DC70 /* default-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE6E1E8F8B550004DC70 /* default-2.jpg */; };
+		ACA1CE711E8F8B550004DC70 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE6F1E8F8B550004DC70 /* default.png */; };
+		ACA1CE741E9005AE0004DC70 /* SignButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1CE731E9005AE0004DC70 /* SignButton.m */; };
 		ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAC566F1DD771720002B1F5 /* SettingViewController.m */; };
 		ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */; };
 		ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */; };
@@ -311,6 +314,10 @@
 		AC9E062F1DD75FBA004FA4BE /* dota_icon_20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@2x.png"; path = "resources/dota_icon_20x20@2x.png"; sourceTree = "<group>"; };
 		AC9E06301DD75FBA004FA4BE /* dota_icon_20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_20x20@3x.png"; path = "resources/dota_icon_20x20@3x.png"; sourceTree = "<group>"; };
 		AC9E06331DD76104004FA4BE /* dota_icon_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dota_icon_20x20.png; path = resources/dota_icon_20x20.png; sourceTree = "<group>"; };
+		ACA1CE6E1E8F8B550004DC70 /* default-2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "default-2.jpg"; path = "resources/question_images/default-2.jpg"; sourceTree = "<group>"; };
+		ACA1CE6F1E8F8B550004DC70 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = resources/question_images/default.png; sourceTree = "<group>"; };
+		ACA1CE721E9005AE0004DC70 /* SignButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignButton.h; sourceTree = "<group>"; };
+		ACA1CE731E9005AE0004DC70 /* SignButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignButton.m; sourceTree = "<group>"; };
 		ACAC566E1DD771720002B1F5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		ACAC566F1DD771720002B1F5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_76x76@2x.png"; path = "resources/dota_icon_76x76@2x.png"; sourceTree = "<group>"; };
@@ -494,6 +501,8 @@
 		AC75ABFD1BB02D63007BA59D /* question_images */ = {
 			isa = PBXGroup;
 			children = (
+				ACA1CE6E1E8F8B550004DC70 /* default-2.jpg */,
+				ACA1CE6F1E8F8B550004DC70 /* default.png */,
 				AC75AC101BB02DF3007BA59D /* lore_child.jpg */,
 				AC75AC111BB02DF3007BA59D /* lore_invoker_race.jpg */,
 				AC75AC121BB02DF3007BA59D /* lore_treant.jpg */,
@@ -625,6 +634,8 @@
 				AC572F781E88668800E25235 /* ModalLoadingView.m */,
 				AC572F7A1E886CDF00E25235 /* FindMatchButton.h */,
 				AC572F7B1E886CDF00E25235 /* FindMatchButton.m */,
+				ACA1CE721E9005AE0004DC70 /* SignButton.h */,
+				ACA1CE731E9005AE0004DC70 /* SignButton.m */,
 			);
 			name = CustomViews;
 			sourceTree = "<group>";
@@ -911,6 +922,7 @@
 				ACFD403F1E8C3251003DB4E3 /* pattern2.jpg in Resources */,
 				AC75AC1F1BB02DF3007BA59D /* tournaments_TI1_grandfinal_qualification.jpg in Resources */,
 				AC96464B1E720FF700F9CD32 /* icon-submit-question-white-48@2x.png in Resources */,
+				ACA1CE711E8F8B550004DC70 /* default.png in Resources */,
 				AC62E52C1BF4BBDC00805285 /* dota_icon_40x40@3x.png in Resources */,
 				AC780F801DEB6D6E007E8158 /* avatar_48@2x.png in Resources */,
 				AC780F891DEB6D6E007E8158 /* top100_48@2x.png in Resources */,
@@ -929,6 +941,7 @@
 				AC62E51A1BF4B8E300805285 /* dota_icon_29x29.png in Resources */,
 				AC62E5201BF4B96900805285 /* dota_icon_60x60.png in Resources */,
 				AC62E52B1BF4BBDC00805285 /* dota_icon_40x40@2x.png in Resources */,
+				ACA1CE701E8F8B550004DC70 /* default-2.jpg in Resources */,
 				AC75ABFC1BAFEBC5007BA59D /* avatar_default.png in Resources */,
 				AC62E5221BF4B96900805285 /* dota_icon_60x60@3x.png in Resources */,
 				ACFD403D1E8C3251003DB4E3 /* pattern-6.png in Resources */,
@@ -1063,6 +1076,7 @@
 				ACC5A1191DC4D2B300F469ED /* QuestionViewController.m in Sources */,
 				ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */,
 				ACB0061F1DC4C96F008CE926 /* ThemeSelectedViewController.m in Sources */,
+				ACA1CE741E9005AE0004DC70 /* SignButton.m in Sources */,
 				AC7B67A01DA6B6FC00351887 /* UserCache.m in Sources */,
 				AC8841C31B2EFCF9006212D2 /* Question.m in Sources */,
 				AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ytL-e4-7GM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ytL-e4-7GM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -93,7 +93,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="Gbk-pX-xBE"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Sign Up">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -107,7 +107,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" constant="75" id="Sej-AQ-Dc9"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="Log in">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -118,8 +118,11 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czf-1N-Wxt">
-                                <rect key="frame" x="125" y="180" width="71" height="31"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Czf-1N-Wxt" customClass="SignButton">
+                                <rect key="frame" x="70" y="180" width="181" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="QBr-MY-55x"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -142,8 +145,10 @@
                             <constraint firstItem="L9m-kz-UHw" firstAttribute="top" secondItem="jE0-Qb-69F" secondAttribute="bottom" constant="8" id="VJl-ue-BBx"/>
                             <constraint firstItem="jE0-Qb-69F" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="Vls-nW-IaX"/>
                             <constraint firstItem="LRB-DV-OHL" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="a9D-jR-MfT"/>
+                            <constraint firstItem="Czf-1N-Wxt" firstAttribute="trailing" secondItem="LRB-DV-OHL" secondAttribute="trailing" id="ajn-XC-GWP"/>
                             <constraint firstItem="Czf-1N-Wxt" firstAttribute="top" secondItem="L9m-kz-UHw" secondAttribute="bottom" constant="8" id="fz3-U5-rFm"/>
                             <constraint firstItem="aJz-ZV-58U" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gKq-yJ-MJx"/>
+                            <constraint firstItem="Czf-1N-Wxt" firstAttribute="leading" secondItem="LRB-DV-OHL" secondAttribute="leading" id="ggj-F3-tYD"/>
                             <constraint firstItem="qSJ-7z-OHQ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="jVB-r7-qrf"/>
                             <constraint firstItem="L9m-kz-UHw" firstAttribute="width" secondItem="L9m-kz-UHw" secondAttribute="height" multiplier="181:30" id="kyX-8c-Rm1"/>
                             <constraint firstItem="aJz-ZV-58U" firstAttribute="top" secondItem="jE0-Qb-69F" secondAttribute="bottom" constant="2" id="pzY-pm-wOs"/>
@@ -168,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="363"/>
+            <point key="canvasLocation" x="1273.5999999999999" y="362.96851574212894"/>
         </scene>
         <!--Remind password-->
         <scene sceneID="Soe-58-aji">
@@ -626,13 +631,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-nQ-6wH">
-                                                    <rect key="frame" x="99" y="13" width="122.5" height="19"/>
+                                                    <rect key="frame" x="99" y="12.5" width="122.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-VV-EDA">
-                                                    <rect key="frame" x="265.5" y="11.5" width="46" height="21.5"/>
+                                                    <rect key="frame" x="265.5" y="12" width="46" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="B4h-Pg-8qU"/>
                                                     </constraints>
@@ -641,7 +646,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
-                                                    <rect key="frame" x="226.5" y="15.5" width="31" height="12"/>
+                                                    <rect key="frame" x="226.5" y="16.5" width="31" height="12"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -736,7 +741,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-ZJ-4UW">
-                                                    <rect key="frame" x="207.5" y="80" width="55.5" height="15"/>
+                                                    <rect key="frame" x="208" y="80" width="55.5" height="15"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1396,7 +1401,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Match state text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NX-Ic-vRr">
-                                                    <rect key="frame" x="170" y="28" width="64" height="22.5"/>
+                                                    <rect key="frame" x="170" y="28.5" width="64" height="22.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="mPY-oL-cae"/>
                                                     </constraints>

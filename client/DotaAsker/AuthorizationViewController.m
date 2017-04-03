@@ -53,10 +53,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
-    
-    // customizing sign button
-    self.buttonSign.layer.backgroundColor = (__bridge CGColorRef _Nullable)([[UIColor whiteColor] colorWithAlphaComponent:0.2]);
-    self.buttonSign.layer.cornerRadius = self.buttonSign.bounds.size.height / 2;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -105,8 +101,12 @@
                                         attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}];
     NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:@"Sign Up"
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
-    [self.buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
-    [self.buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
+    [_buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
+    [_buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
+    [_buttonSignIn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    [_buttonSignUp.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    
+    [_buttonSign setTitle:@"Sign up" forState:UIControlStateNormal];
 }
 
 - (void)setupSignIn {
@@ -117,8 +117,13 @@
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
     NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:@"Sign Up"
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}];
-    [self.buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
-    [self.buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
+    [_buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
+    [_buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
+    [_buttonSignIn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    [_buttonSignUp.titleLabel setFont:[UIFont systemFontOfSize:16]];
+    
+    [_buttonSign setTitle:@"Sign in" forState:UIControlStateNormal];
+    
     if (_username)
         [_textFieldUsername setText:_username];
     if (_password)
