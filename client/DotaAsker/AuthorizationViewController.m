@@ -46,6 +46,8 @@
         return @([passwordRegexp numberOfMatchesInString:value options:0
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];
+    [self.textFieldUsername sendActionsForControlEvents:UIControlEventAllEvents];
+    [self.textFieldPassword sendActionsForControlEvents:UIControlEventAllEvents];
     
     RAC(self.buttonSign, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
 }
