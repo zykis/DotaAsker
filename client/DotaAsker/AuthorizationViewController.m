@@ -99,32 +99,32 @@
     self.currentTabSignIn = NO;
     [self.textFieldEmail setHidden:NO];
     [self.buttonForgetPassword setHidden:YES];
-    NSAttributedString* stringSignIn = [[NSAttributedString alloc] initWithString:@"Sign In"
+    NSAttributedString* stringSignIn = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sign In", 0)
                                         attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}];
-    NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:@"Sign Up"
+    NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sign Up", 0)
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
     [_buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
     [_buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
     [_buttonSignIn.titleLabel setFont:[UIFont systemFontOfSize:16]];
     [_buttonSignUp.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     
-    [_buttonSign setTitle:@"Sign up" forState:UIControlStateNormal];
+    [_buttonSign setTitle:NSLocalizedString(@"Sign Up", 0) forState:UIControlStateNormal];
 }
 
 - (void)setupSignIn {
     self.currentTabSignIn = YES;
     [self.textFieldEmail setHidden:YES];
     [self.buttonForgetPassword setHidden:NO];
-    NSAttributedString* stringSignIn = [[NSAttributedString alloc] initWithString:@"Sign In"
+    NSAttributedString* stringSignIn = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sign In", 0)
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)}];
-    NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:@"Sign Up"
+    NSAttributedString* stringSignUp = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"Sign Up", 0)
                                                                        attributes:@{NSUnderlineStyleAttributeName: @(NSUnderlineStyleNone)}];
     [_buttonSignIn setAttributedTitle:stringSignIn forState:UIControlStateNormal];
     [_buttonSignUp setAttributedTitle:stringSignUp forState:UIControlStateNormal];
     [_buttonSignIn.titleLabel setFont:[UIFont boldSystemFontOfSize:16]];
     [_buttonSignUp.titleLabel setFont:[UIFont systemFontOfSize:16]];
     
-    [_buttonSign setTitle:@"Sign in" forState:UIControlStateNormal];
+    [_buttonSign setTitle:NSLocalizedString(@"Sign In", 0) forState:UIControlStateNormal];
     
     if (_username)
         [_textFieldUsername setText:_username];

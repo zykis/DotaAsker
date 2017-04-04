@@ -20,7 +20,6 @@
 		AC532C561DE1A947008AFFA1 /* ChangeAvatarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */; };
 		AC572F791E88668800E25235 /* ModalLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F781E88668800E25235 /* ModalLoadingView.m */; };
 		AC572F7C1E886CDF00E25235 /* FindMatchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC572F7B1E886CDF00E25235 /* FindMatchButton.m */; };
-		AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC5ADBFD1C47A34400A73F97 /* Main.storyboard */; };
 		AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */; };
 		AC6091751BFF516B00D728B6 /* AbstractCache.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6091741BFF516B00D728B6 /* AbstractCache.m */; };
 		AC60917B1BFF5B9600D728B6 /* AbstractService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC60917A1BFF5B9600D728B6 /* AbstractService.m */; };
@@ -105,6 +104,8 @@
 		ACA1CE701E8F8B550004DC70 /* default-2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE6E1E8F8B550004DC70 /* default-2.jpg */; };
 		ACA1CE711E8F8B550004DC70 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE6F1E8F8B550004DC70 /* default.png */; };
 		ACA1CE741E9005AE0004DC70 /* SignButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1CE731E9005AE0004DC70 /* SignButton.m */; };
+		ACA1CE771E940D940004DC70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE791E940D940004DC70 /* Main.storyboard */; };
+		ACA1CE7F1E9410E40004DC70 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE811E9410E40004DC70 /* Localizable.strings */; };
 		ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAC566F1DD771720002B1F5 /* SettingViewController.m */; };
 		ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */; };
 		ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */; };
@@ -137,13 +138,9 @@
 		ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730E51E6F2ADD00A88A54 /* icon-settings-white@3x.png */; };
 		ACC730EB1E6F2FE700A88A54 /* icon-versus-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730E91E6F2FE700A88A54 /* icon-versus-orange.png */; };
 		ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */; };
-		ACD52F841BB129780006D50A /* question_images.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACD52F831BB129780006D50A /* question_images.plist */; };
 		ACD52F871BB15C300006D50A /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F861BB15C300006D50A /* Answer.m */; };
 		ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */; };
 		ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */; };
-		ACDB6DEB1B554A2F00E6256D /* cell2.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDB6DEA1B554A2F00E6256D /* cell2.png */; };
-		ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDBCAC31B4FE37C00932CA1 /* cell.png */; };
-		ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */ = {isa = PBXBuildFile; fileRef = ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */; };
 		ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7A7FA1E733C0500301677 /* ThemeButton.m */; };
 		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
 		ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37B1D9A40300060EA56 /* MainViewModel.m */; };
@@ -199,7 +196,6 @@
 		AC572F781E88668800E25235 /* ModalLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalLoadingView.m; sourceTree = "<group>"; };
 		AC572F7A1E886CDF00E25235 /* FindMatchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindMatchButton.h; sourceTree = "<group>"; };
 		AC572F7B1E886CDF00E25235 /* FindMatchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindMatchButton.m; sourceTree = "<group>"; };
-		AC5ADBFD1C47A34400A73F97 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AC604ED91E6DEFFE00D433FF /* SettingsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsButton.h; sourceTree = "<group>"; };
 		AC604EDA1E6DEFFE00D433FF /* SettingsButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsButton.m; sourceTree = "<group>"; };
 		AC6091731BFF516B00D728B6 /* AbstractCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractCache.h; sourceTree = "<group>"; };
@@ -318,6 +314,11 @@
 		ACA1CE6F1E8F8B550004DC70 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = resources/question_images/default.png; sourceTree = "<group>"; };
 		ACA1CE721E9005AE0004DC70 /* SignButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignButton.h; sourceTree = "<group>"; };
 		ACA1CE731E9005AE0004DC70 /* SignButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignButton.m; sourceTree = "<group>"; };
+		ACA1CE761E940D770004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		ACA1CE781E940D940004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ACA1CE7C1E940FDB0004DC70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ACA1CE801E9410E40004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ACA1CE821E9410E60004DC70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ACAC566E1DD771720002B1F5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		ACAC566F1DD771720002B1F5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_76x76@2x.png"; path = "resources/dota_icon_76x76@2x.png"; sourceTree = "<group>"; };
@@ -359,16 +360,12 @@
 		ACC730E51E6F2ADD00A88A54 /* icon-settings-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-settings-white@3x.png"; path = "resources/icons/icon-settings-white@3x.png"; sourceTree = "<group>"; };
 		ACC730E91E6F2FE700A88A54 /* icon-versus-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-versus-orange.png"; path = "resources/icons/icon-versus-orange.png"; sourceTree = "<group>"; };
 		ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-versus-orange@2x.png"; path = "resources/icons/icon-versus-orange@2x.png"; sourceTree = "<group>"; };
-		ACD52F831BB129780006D50A /* question_images.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = question_images.plist; sourceTree = "<group>"; };
 		ACD52F851BB15C300006D50A /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		ACD52F861BB15C300006D50A /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
 		ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerItemView.h; sourceTree = "<group>"; };
 		ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnswerItemView.m; sourceTree = "<group>"; };
 		ACDB4A5D1B454C9600545CA2 /* UserAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnswer.h; sourceTree = "<group>"; };
 		ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswer.m; sourceTree = "<group>"; };
-		ACDB6DEA1B554A2F00E6256D /* cell2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell2.png; path = resources/cell2.png; sourceTree = "<group>"; };
-		ACDBCAC31B4FE37C00932CA1 /* cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cell.png; path = resources/cell.png; sourceTree = "<group>"; };
-		ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ui_button_dota.png; path = resources/ui_button_dota.png; sourceTree = "<group>"; };
 		ACE7A7F91E733C0500301677 /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
 		ACE7A7FA1E733C0500301677 /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
 		ACF5F3761D99E1080060EA56 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -460,10 +457,12 @@
 				AC9BBE151B32A83900E59DE2 /* ViewControllers */,
 				AC7352071B239A1B00FFF356 /* Supporting Files */,
 				AC7352141B239A1B00FFF356 /* Images.xcassets */,
-				AC5ADBFD1C47A34400A73F97 /* Main.storyboard */,
+				ACA1CE791E940D940004DC70 /* Main.storyboard */,
 				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
 				AC73520B1B239A1B00FFF356 /* AppDelegate.h */,
 				AC73520C1B239A1B00FFF356 /* AppDelegate.m */,
+				AC138C0E1D948EC30023EFF3 /* Helper.h */,
+				AC138C0F1D948EC30023EFF3 /* Helper.m */,
 				AC6091821C006F1E00D728B6 /* ServiceLayer.h */,
 				AC6091831C006F1E00D728B6 /* ServiceLayer.m */,
 			);
@@ -475,7 +474,7 @@
 			children = (
 				AC7352081B239A1B00FFF356 /* Info.plist */,
 				AC7352091B239A1B00FFF356 /* main.m */,
-				ACD52F831BB129780006D50A /* question_images.plist */,
+				ACA1CE811E9410E40004DC70 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -552,9 +551,6 @@
 				ACFD403A1E8C3251003DB4E3 /* pattern3.jpg */,
 				ACFD403B1E8C3251003DB4E3 /* pattern4.jpg */,
 				ACFD403C1E8C3251003DB4E3 /* pattern5.jpg */,
-				ACDB6DEA1B554A2F00E6256D /* cell2.png */,
-				ACDBCAC31B4FE37C00932CA1 /* cell.png */,
-				ACDDC40C1B41B9AF0003A3BC /* ui_button_dota.png */,
 			);
 			name = "GUI appearence";
 			sourceTree = "<group>";
@@ -562,30 +558,30 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACAC566E1DD771720002B1F5 /* SettingViewController.h */,
-				ACAC566F1DD771720002B1F5 /* SettingViewController.m */,
-				AC9E062C1DD73F8C004FA4BE /* Top100ViewController.h */,
-				AC9E062D1DD73F8C004FA4BE /* Top100ViewController.m */,
-				ACC5A1171DC4D2B300F469ED /* QuestionViewController.h */,
-				ACC5A1181DC4D2B300F469ED /* QuestionViewController.m */,
-				ACB0061B1DC4C96F008CE926 /* ThemeSelectedViewController.h */,
-				ACB0061C1DC4C96F008CE926 /* ThemeSelectedViewController.m */,
-				ACB0061D1DC4C96F008CE926 /* ThemeSelectionViewController.h */,
-				ACB0061E1DC4C96F008CE926 /* ThemeSelectionViewController.m */,
-				ACF5F3801D9F15550060EA56 /* MatchViewController.h */,
-				ACF5F3811D9F15550060EA56 /* MatchViewController.m */,
-				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
-				ACF5F3771D99E1080060EA56 /* MainViewController.m */,
 				AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */,
 				AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */,
+				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
+				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
+				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
+				ACF5F3771D99E1080060EA56 /* MainViewController.m */,
+				ACF5F3801D9F15550060EA56 /* MatchViewController.h */,
+				ACF5F3811D9F15550060EA56 /* MatchViewController.m */,
 				AC0EE5681DD3D38B005EE564 /* PasswordRemindViewController.h */,
 				AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */,
+				ACC5A1171DC4D2B300F469ED /* QuestionViewController.h */,
+				ACC5A1181DC4D2B300F469ED /* QuestionViewController.m */,
+				ACAC566E1DD771720002B1F5 /* SettingViewController.h */,
+				ACAC566F1DD771720002B1F5 /* SettingViewController.m */,
 				AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */,
 				AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */,
 				AC532AD51DE1A486008AFFA1 /* SubmitQuiestionViewController.h */,
 				AC532AD61DE1A486008AFFA1 /* SubmitQuiestionViewController.m */,
-				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
-				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
+				ACB0061B1DC4C96F008CE926 /* ThemeSelectedViewController.h */,
+				ACB0061C1DC4C96F008CE926 /* ThemeSelectedViewController.m */,
+				ACB0061D1DC4C96F008CE926 /* ThemeSelectionViewController.h */,
+				ACB0061E1DC4C96F008CE926 /* ThemeSelectionViewController.m */,
+				AC9E062C1DD73F8C004FA4BE /* Top100ViewController.h */,
+				AC9E062D1DD73F8C004FA4BE /* Top100ViewController.m */,
 				AC780F541DE781F1007E8158 /* UnlockPremiumViewController.h */,
 				AC780F551DE781F1007E8158 /* UnlockPremiumViewController.m */,
 			);
@@ -818,8 +814,6 @@
 				AC60917A1BFF5B9600D728B6 /* AbstractService.m */,
 				AC60917F1C00623200D728B6 /* AuthorizationService.h */,
 				AC6091801C00623200D728B6 /* AuthorizationService.m */,
-				AC138C0E1D948EC30023EFF3 /* Helper.h */,
-				AC138C0F1D948EC30023EFF3 /* Helper.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -908,10 +902,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACA1CE7F1E9410E40004DC70 /* Localizable.strings in Resources */,
 				AC9646501E720FF700F9CD32 /* icon-unlock-white-48.png in Resources */,
 				ACB3A1191B9F2C180083EE17 /* avatar_tiny.png in Resources */,
 				ACC730E71E6F2ADD00A88A54 /* icon-settings-white@2x.png in Resources */,
-				ACDB6DEB1B554A2F00E6256D /* cell2.png in Resources */,
 				AC780F841DEB6D6E007E8158 /* premium_48@3x.png in Resources */,
 				AC9646511E720FF700F9CD32 /* icon-unlock-white-48@2x.png in Resources */,
 				ACC730EB1E6F2FE700A88A54 /* icon-versus-orange.png in Resources */,
@@ -958,9 +952,8 @@
 				AC780F861DEB6D6E007E8158 /* question_48@2x.png in Resources */,
 				AC780F811DEB6D6E007E8158 /* avatar_48@3x.png in Resources */,
 				ACB3A1171B9F2C180083EE17 /* avatar_brood.png in Resources */,
-				ACD52F841BB129780006D50A /* question_images.plist in Resources */,
 				AC9646481E720FF700F9CD32 /* icon-avatar-white-48@2x.png in Resources */,
-				AC5ADBFE1C47A34400A73F97 /* Main.storyboard in Resources */,
+				ACA1CE771E940D940004DC70 /* Main.storyboard in Resources */,
 				ACC730DA1E6F2A5900A88A54 /* icon-back-white.png in Resources */,
 				ACB3A1151B9F2C180083EE17 /* avatar_bounty.png in Resources */,
 				AC780F821DEB6D6E007E8158 /* premium_48@1x.png in Resources */,
@@ -979,11 +972,9 @@
 				ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */,
 				AC780F7F1DEB6D6E007E8158 /* avatar_48@1x.png in Resources */,
 				ACB3A10F1B9F2A830083EE17 /* avatar_tinker.png in Resources */,
-				ACDDC40D1B41B9AF0003A3BC /* ui_button_dota.png in Resources */,
 				AC9646521E720FF700F9CD32 /* icon-unlock-white-48@3x.png in Resources */,
 				ACC730DB1E6F2A5900A88A54 /* icon-back-white@2x.png in Resources */,
 				AC9E06321DD75FBA004FA4BE /* dota_icon_20x20@3x.png in Resources */,
-				ACDBCAC41B4FE37C00932CA1 /* cell.png in Resources */,
 				ACB3A1181B9F2C180083EE17 /* avatar_nature_prophet.png in Resources */,
 				ACB3A10D1B9F29DC0083EE17 /* avatar_axe.png in Resources */,
 				ACFD40411E8C3251003DB4E3 /* pattern4.jpg in Resources */,
@@ -1147,8 +1138,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				AC7352171B239A1B00FFF356 /* Base */,
+				ACA1CE761E940D770004DC70 /* ru */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		ACA1CE791E940D940004DC70 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACA1CE781E940D940004DC70 /* ru */,
+				ACA1CE7C1E940FDB0004DC70 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		ACA1CE811E9410E40004DC70 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ACA1CE801E9410E40004DC70 /* ru */,
+				ACA1CE821E9410E60004DC70 /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1158,6 +1168,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1204,6 +1215,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

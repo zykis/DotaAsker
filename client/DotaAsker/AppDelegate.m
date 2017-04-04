@@ -23,6 +23,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
+    NSLog(@"Localizations: ");
+    for (NSString* loc in [[NSBundle mainBundle] preferredLocalizations]) {
+        NSLog(@"%@", loc);
+    }
     NSString *language = [Helper currentLocale];
     NSLog(@"Language: %@", language);
     return YES;
