@@ -6,9 +6,12 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "ChangeAvatarViewController.h"
 #import "Player.h"
 #import "ServiceLayer.h"
+#import "AvatarCollectionViewCell.h"
+
 
 @interface ChangeAvatarViewController ()
 
@@ -32,7 +35,7 @@
     [_avatarNamesArray addObject:@"avatar_axe.png"];
     [_avatarNamesArray addObject:@"avatar_brood.png"];
     [_avatarNamesArray addObject:@"avatar_tinker.png"];
-    [_avatarNamesArray addObject:@"avatar_bristle.png"];
+//    [_avatarNamesArray addObject:@"avatar_bristle.png"];
     [_avatarNamesArray addObject:@"avatar_bounty.png"];
     [_avatarNamesArray addObject:@"avatar_nature_prophet.png"];
     
@@ -67,10 +70,9 @@
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"avatar" forIndexPath:indexPath];
-    UIImageView* avatarImageView = [cell viewWithTag:100];
+    AvatarCollectionViewCell* cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"avatar" forIndexPath:indexPath];
     UIImage* image = [UIImage imageNamed:[_avatarNamesArray objectAtIndex:[indexPath row]]];
-    [avatarImageView setImage: image];
+    [cell.imageView setImage:image];
     return cell;
 }
 
