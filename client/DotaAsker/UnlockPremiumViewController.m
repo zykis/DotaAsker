@@ -17,6 +17,8 @@
 
 @implementation UnlockPremiumViewController
 
+@synthesize verticalStackView = _verticalStackView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
@@ -33,19 +35,67 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    float maxStringWidth = 0;
+    float screenWidth = self.view.frame.size.width;
+    float iconWidth = 50.0f;
+    
+    // [1] Get maxStringWidth
+    for(UIView* subview in self.subviews) {
+        // get labels
+        if ([subview isKindOfClass:[UILabel class]]) {
+            UILabel* label = (UILabel*)subview;
+            if ([label intrinsicContentSize].width > maxStringWidth)
+                maxStringWidth = [label intrinsicContentSize].width;
+        }
+    }
+    
+    // [1.1]
+    float spacing = _verticalStackView.spacing;
+    float constraintWidth = (screenWidth - iconWidth - maxStringWidth - spacing) / 2.0f;
+    
+    // [2] Updating constraints
+    NSLayoutConstraint* leading;
+    NSLayoutConstraint* trailing;
+    for (NSLayoutConstraint* con in _verticalStackView.constraints) {
+        if (con.secondItem == self.view)
+            if (con.secondAttribute == NSLayoutAttributeLeading)
+                leading = con;
+            else if (con.secondAttribute == NSLayoutAttributeTrailing)
+                trailing = con;
+        else if (con.firstItem == self.view)
+            if (con.firstAttribute == NSLayoutAttributeLeading)
+                leading = con;
+            else if (con.firstAttribute == NSLayoutAttributeTrailing)
+                trailing = con;
+    }
+    if (!leading) {
+        NSLog(@"Leading constraint not found");
+        
+        [_verticalStackView addConstraint:[NSLayoutConstraint constraintWithItem:self.view
+                                                                        attribute:NSLayoutAttributeLeading
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                            toItem:_verticalStackView
+                                                                        attribute:NSLayoutAttributeLeft
+                                                                        multiplier:1.0
+                                                                        constant:-constraintWidth]];
+    }
+    if (!trailing) {
+        NSLog(@"Trailing constraint not found");
+        [_verticalStackView addConstraint:[NSLayoutConstraint constraintWithItem:_verticalStackView
+                                                                        attribute:NSLayoutAttributeRight
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                            toItem:self.view
+                                                                        attribute:NSLayoutAttributeTrailing
+                                                                        multiplier:1.0
+                                                                        constant:constraintWidth]];
+    }
+}
+
 - (IBAction)backButtonPressed:(id)sender {
     [[self navigationController] popViewControllerAnimated:YES];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)unlockPressed {
     ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Unlocking premium"];

@@ -11,5 +11,6 @@
 
 @interface UnlockPremiumViewController : UIViewController
 - (IBAction)unlockPressed;
+@property (weak, nonatomic) IBOutlet UIStackView* verticalStackView;
 
 @end
