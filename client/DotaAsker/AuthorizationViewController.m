@@ -38,16 +38,14 @@
     __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
     __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
     
-    RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
+    RACSignal* validUsername = [[RACSignal combineLatest:[self.textFieldUsername.rac_textSignal, RACObserve(_textFieldUsername, "text")] map:^id(NSString* value) {
         return @([usernameRegexp numberOfMatchesInString:value options:0
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];
-    RACSignal* validPassword = [self.textFieldPassword.rac_textSignal map:^id(NSString* value) {
+    RACSignal* validPassword = [[RACSignal combineLatest:[self.textFieldPassword.rac_textSignal, RACObserve(_textFieldPassword, "text")] map:^id(NSString* value) {
         return @([passwordRegexp numberOfMatchesInString:value options:0
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];
-    [self.textFieldUsername sendActionsForControlEvents:UIControlEventAllEvents];
-    [self.textFieldPassword sendActionsForControlEvents:UIControlEventAllEvents];
     
     RAC(self.buttonSign, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
 }

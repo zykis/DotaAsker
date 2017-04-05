@@ -7,6 +7,7 @@
 //
 
 #import "AvatarCollectionViewCell.h"
+#import "Palette.h"
 
 @implementation AvatarCollectionViewCell
 
@@ -15,7 +16,8 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.imageView = [[UIImageView alloc] initWithFrame:frame];
+        _imageView = [[UIImageView alloc] initWithFrame:frame];
+        [self.contentView addSubview: _imageView];
     }
     return self;
 }
@@ -23,12 +25,22 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     if (selected) {
-        _imageView.layer.borderWidth = 3;
-        _imageView.layer.borderColor = [UIColor blackColor].CGColor;
+        _imageView.layer.borderWidth = 1.8f;
+        _imageView.layer.borderColor = [[Palette shared] themesButtonColor].CGColor;
+        _imageView.layer.backgroundColor = [[UIColor blacColor] colorWithAlphaComponent:0.2].CGColor;
+        _imageView.cornerRadius = 4.5f;
     }
     else {
-        _imageView.layer.borderWidth = 0;
+        _imageView.layer.borderWidth = 1;
+        _imageView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.8].CGColor;
+        _imageView.layer.backgroundColor = [[UIColor blacColor] colorWithAlphaComponent:0.2].CGColor;
+        _imageView.cornerRadius = 4.5f;
     }
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _imageView.frame = self.contentView.frame;
 }
 
 @end

@@ -20,9 +20,11 @@
 @implementation ChangeAvatarViewController
 
 @synthesize avatarNamesArray = _avatarNamesArray;
+@synthesize currentIndex = _currentIndex;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _currentIndex = [_avatarNamesArray indexofObject:[[Player instance] avatarImageName]];
     [self loadBackgroundImage];
     [self loadBackgroundImageForView:self.collectionView];
     
@@ -35,7 +37,7 @@
     [_avatarNamesArray addObject:@"avatar_axe.png"];
     [_avatarNamesArray addObject:@"avatar_brood.png"];
     [_avatarNamesArray addObject:@"avatar_tinker.png"];
-//    [_avatarNamesArray addObject:@"avatar_bristle.png"];
+    [_avatarNamesArray addObject:@"avatar_bristle.png"];
     [_avatarNamesArray addObject:@"avatar_bounty.png"];
     [_avatarNamesArray addObject:@"avatar_nature_prophet.png"];
     
@@ -84,21 +86,30 @@
     // [1]
     UIImage* selectedImage = [UIImage imageNamed:[_avatarNamesArray objectAtIndex: [indexPath row]]];
     [self.selectedImageView setImage: selectedImage];
-    
-    // [2]
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [[Player instance] setAvatarImageName:[_avatarNamesArray objectAtIndex: [indexPath row]]];
-    [realm commitWriteTransaction];
-    
+    _currentIndex = [indexPath row];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [[[ServiceLayer instance] userService] update:[Player instance]];
+- (void)savePressed {
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [[Player instance] setAvatarImageName:[_avatarNamesArray objectAtIndex:_currentIndex]];
+    [realm commitWriteTransaction];
+
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Submiting question"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
+    
+    RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
+    [subject subscribeError:^(NSError *error) {
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Check out connection", 0)];
+        [loadingView removeFromSuperview];
+    } completed:^{
+        [loadingView removeFromSuperview];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 /*
