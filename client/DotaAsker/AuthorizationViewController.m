@@ -47,7 +47,7 @@
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RAC(self.buttonSign, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
+    RAC(self.buttonSign, enabled) = [RACSignal combineLatest:@[validUsername, validPassword]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
