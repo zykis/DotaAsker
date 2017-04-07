@@ -184,19 +184,16 @@
             case 3: rightButton = _answer4Button; break;
             default: assert(0);
         }
-        UIColor* rightButtonOldColor = [rightButtonColor];
-        rightButton.backgroundColor = [UIColor greenColor];
+        CGColor* rightButtonOldColor = rightButton.layer.backgroundColor;
+        rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
         
         [self animateWrongButton:sender withCompletion: ^() {
             _currentQuestionIndex++;
             [self showNextQuestion];
-            rightButton.backgroundColor = rightButtonOldColor;
+            rightButton.layer.backgroundColor = rightButtonOldColor;
         }
     }
-    
 }
-
-
 
 - (void)timeElapsed {
     // Invalidate timers
@@ -224,26 +221,26 @@
 }
 
 - (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completion {
+    CGColor* oldColor = rightButton.layer.backgroundColor;
     [rightButton animateWithDuration:2
         delay: 0.7
         options: 'repeat'
-        animations: ^(){
-            UIColor* oldColor = [rightButton backgroundColor];
-            rightButton.backgroundColor = [UIColor greenColor];
-            rightButton.backgroundColor = oldColor;
+        animations: ^(){        
+            rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
+            rightButton.layer.backgroundColor = oldColor;
         } 
         completion: ^(bool finished) completion(finished)
     ];   
 }
 
 - (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completion {
+    CGColor* oldColor = wrongButton.layer.backgroundColor;
     [wrongButton animateWithDuration:2
         delay: 0.7
         options: 'repeat'
         animations: ^(){
-            UIColor* oldColor = [wrongButton backgroundColor];
-            wrongButton.backgroundColor = [UIColor redColor];
-            wrongButton.backgroundColor = oldColor;
+            wrongButton.layer.backgroundColor = [UIColor redColor].CGColor;
+            wrongButton.layer.backgroundColor = oldColor;
         } 
         completion: ^(bool finished) completion(finished)
     ];   
