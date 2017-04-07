@@ -74,10 +74,55 @@
 
 - (IBAction)signIn {
     [self.view endEditing:YES];
+    NSString *username = [_textFieldUsername text];
+    NSString *password = [_textFieldPassword text];
+    
+    [_loadingView setMessage:@"Getting user"];
+    if (![[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
+        [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
+    
+    
+    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
+            [_loadingView removeFromSuperview];
+        });
+    };
+    
+    void (^completeBlock)() = ^void() {
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+        [subject subscribeNext:^(id u) {
+            [Player manualUpdate:u];
+        } error:^(NSError *error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_loadingView removeFromSuperview];
+                [self presentAlertControllerWithMessage:[error localizedDescription]];
+            });
+        } completed:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_loadingView removeFromSuperview];
+                [self performSegueWithIdentifier:@"showMain" sender: self];
+            });
+        }];
+    };
+    
+    RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];
+    [signal subscribeNext:^(NSString* _token) {
+        [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
+    } error:^(NSError *error) {
+        [_loadingView removeFromSuperview];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
+    } completed:^{
+        // save username and password to user defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:username forKey:@"username"];
+        [defaults setObject:password forKey:@"password"];
+        [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
+    }];
     
 }
 
-- (IBAction)backButtonPressed {
+- (IBAction)signUpPressed {
     [[self navigationController] popViewControllerAnimated:YES];
 }
 

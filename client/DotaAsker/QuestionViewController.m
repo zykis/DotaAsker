@@ -161,8 +161,39 @@
     }
     [realm commitWriteTransaction];
     
-    _currentQuestionIndex++;
-    [self showNextQuestion];
+    if ([relatedAnswer isCorrect]) {
+        [self animateRightButton:sender withCompletion: ^() {
+            _currentQuestionIndex++;
+            [self showNextQuestion];
+        }
+    }
+    else {
+        NSUInteger rightAnwerIndex = 0;
+        for (int i = 0; i < [[relatedQuestion answers] count]; i++) {
+            Answer* relatedAnswer = [[q answers] objectAtIndex:i];
+            if ([relatedAnswer isCorrect]) {
+                rightAnswerIndex = i;
+                break;
+            }
+        }
+        UIButton* rightButton;
+        switch (rightAnswerIndex) {
+            case 0: rightButton = _answer1Button; break;
+            case 1: rightButton = _answer2Button; break;
+            case 2: rightButton = _answer3Button; break;
+            case 3: rightButton = _answer4Button; break;
+            default: assert(0);
+        }
+        UIColor* rightButtonOldColor = [rightButtonColor];
+        rightButton.backgroundColor = [UIColor greenColor];
+        
+        [self animateWrongButton:sender withCompletion: ^() {
+            _currentQuestionIndex++;
+            [self showNextQuestion];
+            rightButton.backgroundColor = rightButtonOldColor;
+        }
+    }
+    
 }
 
 
@@ -190,6 +221,32 @@
     
     _currentQuestionIndex++;
     [self showNextQuestion];
+}
+
+- (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completion {
+    [rightButton animateWithDuration:2
+        delay: 0.7
+        options: 'repeat'
+        animations: ^(){
+            UIColor* oldColor = [rightButton backgroundColor];
+            rightButton.backgroundColor = [UIColor greenColor];
+            rightButton.backgroundColor = oldColor;
+        } 
+        completion: ^(bool finished) completion(finished)
+    ];   
+}
+
+- (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completion {
+    [wrongButton animateWithDuration:2
+        delay: 0.7
+        options: 'repeat'
+        animations: ^(){
+            UIColor* oldColor = [wrongButton backgroundColor];
+            wrongButton.backgroundColor = [UIColor redColor];
+            wrongButton.backgroundColor = oldColor;
+        } 
+        completion: ^(bool finished) completion(finished)
+    ];   
 }
 
 - (void)createEmptyAnswers {

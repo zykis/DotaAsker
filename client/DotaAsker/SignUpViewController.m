@@ -20,6 +20,10 @@
 
 @implementation SignUpViewController
 
+@synthesize textFieldUsername = _textFieldUsername;
+@synthesize textFieldPassword = _textFieldPassword;
+@synthesize _textFieldEmail = _textFieldEmail;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
@@ -29,16 +33,19 @@
     __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
     __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
     
-    RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
+    RACSignal* signalUsername = [RACSignal combineLatest:@[_textFieldUsername.rac_textSignal, RACObserve(_textFieldUsername, text)]];
+    RACSignal* validUsername = [signalUsername map:^id(NSString* value) {
         return @([usernameRegexp numberOfMatchesInString:value options:0
                                                               range:NSMakeRange(0, [value length])] == 1);
     }];
-    RACSignal* validPassword = [self.textFieldPassword.rac_textSignal map:^id(NSString* value) {
+    
+    RACSignal* signalPassword = [RACSignal combineLatest:@[_textFieldPassword.rac_textSignal, RACObserve(_textFieldPassword, text)]];
+    RACSignal* validPassword = [signalPassword map:^id(NSString* value) {
         return @([passwordRegexp numberOfMatchesInString:value options:0
-                                                              range:NSMakeRange(0, [value length])] == 1);
+                                                                        range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[ validUsername, validPassword ]] and];
+    RAC(self.signUpButton, enabled) = [RACSignal combineLatest:@[validUsername, validPassword]];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
@@ -52,11 +59,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-}
-
 - (IBAction)signUp {
+    [_loadingView setMessage:@"Registering player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     
+    [self.view endEditing:YES];
+    RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
+    
+    [authorizationSignal subscribeError:^(NSError *error) {
+        [_loadingView removeFromSuperview];
+        [self presentAlertControllerWithMessage:[error localizedDescription]];
+    } completed:^{
+        [self performSegueWithIdentifier:@"signin" sender:self];
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -67,7 +82,9 @@
     }
 }
 
-- (IBAction)backButtonPressed {
-    [[self navigationController] popViewControllerAnimated:YES];
+- (IBAction)signInPressed {
+    _textFieldPassword.text = @"";
+    _textFieldPassword.text = @"";
+    [self performSegueWithIdentifier:@"signin" sender:self];
 }
 @end
