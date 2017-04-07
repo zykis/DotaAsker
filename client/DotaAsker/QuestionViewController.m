@@ -44,6 +44,8 @@
 @synthesize questionTimer = _questionTimer;
 @synthesize timeTimer = _timeTimer;
 
+@synthesize interstitial = _interstitial;
+
 - (void)blockUI {
     [_answer1Button setEnabled:NO];
     [_answer2Button setEnabled:NO];
@@ -78,6 +80,10 @@
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
     NSLog(@"QuestionViewController DID LOAD");
+    
+    // create ad
+    _interstitial = [[ADInterstitialAd alloc] init];
+    _interstitial.delegate = self;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -323,6 +329,10 @@
     }
     //Игрок ответил на все вопросы
     else {
+        if ([_interstitial loaded]) {
+            [interstitial presentFromViewController:self];
+        }
+    
         [self blockUI];
         // Present LoadingView
         __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];

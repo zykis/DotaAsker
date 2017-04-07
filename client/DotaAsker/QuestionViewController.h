@@ -30,6 +30,7 @@
 @property (strong, nonatomic) NSTimer* timeTimer;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (assign, nonatomic) float secondsRemain;
+@property (strong, nonatomic) ADInterstitialAd* interstitial;
 
 - (IBAction)answerPushed:(id)sender;
 - (void)timeElapsed;
