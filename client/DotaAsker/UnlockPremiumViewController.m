@@ -48,9 +48,12 @@
             // get labels
             for(UIView* label in [subview subviews]) {
                 if ([label isKindOfClass:[UILabel class]]) {
-                    if ([label intrinsicContentSize].width > maxStringWidth) {
-                        maxStringWidth = [label intrinsicContentSize].width;
-                        NSLog(@"Runtime label: %@, %ld", [[[label] font] fontName], [[[label] font] pointSize]);
+                    UILabel* l = (UILabel*)label;
+                    NSLog(@"Runtime label: %@, %f", [[l font] fontName], [[l font] pointSize]);
+                    NSLog(@"%@ - %f", [l text], [l intrinsicContentSize].width);
+                    
+                    if ([l intrinsicContentSize].width > maxStringWidth) {
+                        maxStringWidth = [l intrinsicContentSize].width;
                     }
                 }
             }
@@ -60,7 +63,6 @@
     // [1.1]
     float spacing = 14;
     float constraintWidth = (screenWidth - iconWidth - maxStringWidth - spacing) / 2.0f;
-    constraintWidth -= 5.0f;
     
     // [2] Updating constraints
     NSLayoutConstraint* leading;
@@ -86,6 +88,9 @@
                                                                         multiplier:1.0
                                                                         constant:-constraintWidth]];
     }
+    else {
+        [leading setConstant:-constraintWidth];
+    }
     if (!trailing) {
         [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_verticalStackView
                                                                         attribute:NSLayoutAttributeTrailing
@@ -95,8 +100,9 @@
                                                                         multiplier:1.0
                                                                         constant:constraintWidth]];
     }
-    [leading setConstant:-constraintWidth];
-    [trailing setConstant:constraintWidth];
+    else {
+        [trailing setConstant:constraintWidth];
+    }
 }
 
 - (IBAction)backButtonPressed:(id)sender {
