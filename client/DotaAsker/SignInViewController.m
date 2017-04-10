@@ -37,11 +37,14 @@
     __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
     __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
     
-    RACSignal* validUsername = [self.textFieldUsername.rac_textSignal map:^id(NSString* value) {
+    RACSignal* signalUsername = [RACSignal combineLatest:@[_textFieldUsername.rac_textSignal, RACObserve(_textFieldUsername, text)]];
+    RACSignal* validUsername = [signalUsername map:^id(NSString* value) {
         return @([usernameRegexp numberOfMatchesInString:value options:0
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];
-    RACSignal* validPassword = [self.textFieldPassword.rac_textSignal map:^id(NSString* value) {
+    
+    RACSignal* signalPassword = [RACSignal combineLatest:@[_textFieldPassword.rac_textSignal, RACObserve(_textFieldPassword, text)]];
+    RACSignal* validPassword = [signalPassword map:^id(NSString* value) {
         return @([passwordRegexp numberOfMatchesInString:value options:0
                                                    range:NSMakeRange(0, [value length])] == 1);
     }];

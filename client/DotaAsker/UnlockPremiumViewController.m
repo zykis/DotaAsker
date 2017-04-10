@@ -48,8 +48,10 @@
             // get labels
             for(UIView* label in [subview subviews]) {
                 if ([label isKindOfClass:[UILabel class]]) {
-                    if ([label intrinsicContentSize].width > maxStringWidth)
+                    if ([label intrinsicContentSize].width > maxStringWidth) {
                         maxStringWidth = [label intrinsicContentSize].width;
+                        NSLog(@"Runtime label: %@, %ld", [[[label] font] fontName], [[[label] font] pointSize]);
+                    }
                 }
             }
         }
