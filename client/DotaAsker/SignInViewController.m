@@ -80,15 +80,13 @@
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
-    [_loadingView setMessage:@"Getting user"];
-    if (![[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
-        [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
-    
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting user"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self presentAlertControllerWithMessage:[error localizedDescription]];
-            [_loadingView removeFromSuperview];
+            [loadingView removeFromSuperview];
         });
     };
     
@@ -98,13 +96,13 @@
             [Player manualUpdate:u];
         } error:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_loadingView removeFromSuperview];
+                [loadingView removeFromSuperview];
                 [self presentAlertControllerWithMessage:[error localizedDescription]];
             });
         } completed:^{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [_loadingView removeFromSuperview];
-                [self performSegueWithIdentifier:@"showMain" sender: self];
+                [loadingView removeFromSuperview];
+                [self performSegueWithIdentifier:@"signin" sender: self];
             });
         }];
     };
@@ -113,7 +111,7 @@
     [signal subscribeNext:^(NSString* _token) {
         [[[ServiceLayer instance] authorizationService] setAccessToken:_token];
     } error:^(NSError *error) {
-        [_loadingView removeFromSuperview];
+        [loadingView removeFromSuperview];
         [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
         // save username and password to user defaults
@@ -127,6 +125,10 @@
 
 - (IBAction)signUpPressed {
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+- (IBAction)forgetPasswordPressed:(id)sender {
+    [self performSegueWithIdentifier:@"forgetPassword" sender:sender];
 }
 
 @end

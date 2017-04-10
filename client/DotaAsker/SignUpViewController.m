@@ -22,7 +22,7 @@
 
 @synthesize textFieldUsername = _textFieldUsername;
 @synthesize textFieldPassword = _textFieldPassword;
-@synthesize _textFieldEmail = _textFieldEmail;
+@synthesize textFieldEmail = _textFieldEmail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,15 +34,19 @@
     __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
     
     RACSignal* signalUsername = [RACSignal combineLatest:@[_textFieldUsername.rac_textSignal, RACObserve(_textFieldUsername, text)]];
-    RACSignal* validUsername = [signalUsername map:^id(NSString* value) {
-        return @([usernameRegexp numberOfMatchesInString:value options:0
-                                                              range:NSMakeRange(0, [value length])] == 1);
+    RACSignal* validUsername = [signalUsername map:^id(RACTuple* tuple) {
+        BOOL firstStringPassed = [usernameRegexp numberOfMatchesInString:[tuple objectAtIndex:0] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:0] length])] == 1;
+        BOOL secondStringPassed = [usernameRegexp numberOfMatchesInString:[tuple objectAtIndex:1] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:1] length])] == 1;
+        
+        return @(firstStringPassed || secondStringPassed);
     }];
     
     RACSignal* signalPassword = [RACSignal combineLatest:@[_textFieldPassword.rac_textSignal, RACObserve(_textFieldPassword, text)]];
-    RACSignal* validPassword = [signalPassword map:^id(NSString* value) {
-        return @([passwordRegexp numberOfMatchesInString:value options:0
-                                                                        range:NSMakeRange(0, [value length])] == 1);
+    RACSignal* validPassword = [signalPassword map:^id(RACTuple* tuple) {
+        BOOL firstStringPassed = [passwordRegexp numberOfMatchesInString:[tuple objectAtIndex:0] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:0] length])] == 1;
+        BOOL secondStringPassed = [passwordRegexp numberOfMatchesInString:[tuple objectAtIndex:1] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:1] length])] == 1;
+        
+        return @(firstStringPassed || secondStringPassed);
     }];
     
     RAC(self.signUpButton, enabled) = [RACSignal combineLatest:@[validUsername, validPassword]];
@@ -60,22 +64,22 @@
 }
 
 - (IBAction)signUp {
-    [_loadingView setMessage:@"Registering player"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Registering player"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     [self.view endEditing:YES];
     RACSignal* authorizationSignal = [[[ServiceLayer instance] authorizationService] signUpWithLogin:[_textFieldUsername text] andPassword:[_textFieldPassword text] email:[_textFieldEmail text]];
     
     [authorizationSignal subscribeError:^(NSError *error) {
-        [_loadingView removeFromSuperview];
+        [loadingView removeFromSuperview];
         [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
-        [self performSegueWithIdentifier:@"signin" sender:self];
+        [self performSegueWithIdentifier:@"signup" sender:self];
     }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"signin"]) {
+    if ([[segue identifier] isEqualToString:@"signup"]) {
         SignInViewController* destVC = [segue destinationViewController];
         destVC.strUsername = [_textFieldUsername text];
         destVC.strPassword = [_textFieldPassword text];
@@ -85,6 +89,6 @@
 - (IBAction)signInPressed {
     _textFieldPassword.text = @"";
     _textFieldPassword.text = @"";
-    [self performSegueWithIdentifier:@"signin" sender:self];
+    [self performSegueWithIdentifier:@"signup" sender:self];
 }
 @end

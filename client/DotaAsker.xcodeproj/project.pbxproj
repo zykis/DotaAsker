@@ -76,7 +76,6 @@
 		AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BC1B2EFB9C006212D2 /* Round.m */; };
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
-		AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */; };
 		AC9646471E720FF700F9CD32 /* icon-avatar-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */; };
 		AC9646481E720FF700F9CD32 /* icon-avatar-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */; };
 		AC9646491E720FF700F9CD32 /* icon-avatar-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */; };
@@ -110,6 +109,8 @@
 		ACA1CE871E94323A0004DC70 /* icon-checked-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE841E94323A0004DC70 /* icon-checked-50@2x.png */; };
 		ACA1CE881E94323A0004DC70 /* icon-checked-50@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACA1CE851E94323A0004DC70 /* icon-checked-50@3x.png */; };
 		ACA1CE8B1E94AC200004DC70 /* AvatarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1CE8A1E94AC200004DC70 /* AvatarCollectionViewCell.m */; };
+		ACA1CE901E9C33460004DC70 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1CE8D1E9C33460004DC70 /* SignInViewController.m */; };
+		ACA1CE911E9C33460004DC70 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA1CE8F1E9C33460004DC70 /* SignUpViewController.m */; };
 		ACAC56701DD771720002B1F5 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAC566F1DD771720002B1F5 /* SettingViewController.m */; };
 		ACAC56731DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */; };
 		ACAC56741DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACAC56721DD7F7AC0002B1F5 /* dota_icon_83.5x83.5@2x.png */; };
@@ -279,8 +280,6 @@
 		AC8841BF1B2EFC6B006212D2 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		AC8841C11B2EFCF9006212D2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
-		AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizationViewController.h; sourceTree = "<group>"; };
-		AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizationViewController.m; sourceTree = "<group>"; };
 		AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48.png"; path = "resources/icons/icon-avatar-white-48.png"; sourceTree = "<group>"; };
 		AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@2x.png"; path = "resources/icons/icon-avatar-white-48@2x.png"; sourceTree = "<group>"; };
 		AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@3x.png"; path = "resources/icons/icon-avatar-white-48@3x.png"; sourceTree = "<group>"; };
@@ -328,6 +327,10 @@
 		ACA1CE851E94323A0004DC70 /* icon-checked-50@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-checked-50@3x.png"; path = "resources/icons/icon-checked-50@3x.png"; sourceTree = "<group>"; };
 		ACA1CE891E94AC200004DC70 /* AvatarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvatarCollectionViewCell.h; sourceTree = "<group>"; };
 		ACA1CE8A1E94AC200004DC70 /* AvatarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvatarCollectionViewCell.m; sourceTree = "<group>"; };
+		ACA1CE8C1E9C33460004DC70 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		ACA1CE8D1E9C33460004DC70 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		ACA1CE8E1E9C33460004DC70 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		ACA1CE8F1E9C33460004DC70 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		ACAC566E1DD771720002B1F5 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		ACAC566F1DD771720002B1F5 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		ACAC56711DD7F7AC0002B1F5 /* dota_icon_76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_76x76@2x.png"; path = "resources/dota_icon_76x76@2x.png"; sourceTree = "<group>"; };
@@ -569,8 +572,10 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AC95F7ED1C46258000FE4EE2 /* AuthorizationViewController.h */,
-				AC95F7EE1C46258000FE4EE2 /* AuthorizationViewController.m */,
+				ACA1CE8C1E9C33460004DC70 /* SignInViewController.h */,
+				ACA1CE8D1E9C33460004DC70 /* SignInViewController.m */,
+				ACA1CE8E1E9C33460004DC70 /* SignUpViewController.h */,
+				ACA1CE8F1E9C33460004DC70 /* SignUpViewController.m */,
 				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
 				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
 				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
@@ -1077,6 +1082,7 @@
 				AC9A19721D9869DD00B66AAE /* QuestionParser.m in Sources */,
 				AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */,
 				AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */,
+				ACA1CE911E9C33460004DC70 /* SignUpViewController.m in Sources */,
 				ACF5F3851D9F16BF0060EA56 /* MatchViewModel.m in Sources */,
 				ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */,
 				AC604EDB1E6DEFFE00D433FF /* SettingsButton.m in Sources */,
@@ -1122,8 +1128,8 @@
 				AC9A19751D9869DD00B66AAE /* UserAnswerParser.m in Sources */,
 				AC9A19731D9869DD00B66AAE /* RoundParser.m in Sources */,
 				AC572F7C1E886CDF00E25235 /* FindMatchButton.m in Sources */,
+				ACA1CE901E9C33460004DC70 /* SignInViewController.m in Sources */,
 				ACA1CE8B1E94AC200004DC70 /* AvatarCollectionViewCell.m in Sources */,
-				AC95F8051C46258000FE4EE2 /* AuthorizationViewController.m in Sources */,
 				ACC5A11C1DC4D4C200F469ED /* AnswerService.m in Sources */,
 				ACC5A1221DC4D54B00F469ED /* UserAnswerTransport.m in Sources */,
 				ACC5A1211DC4D54B00F469ED /* UserAnswerService.m in Sources */,

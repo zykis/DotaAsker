@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSString* strUsername;
 @property (strong, nonatomic) NSString* strPassword;
 - (IBAction)signIn;
-- (IBAction)backButtonPressed;
+- (IBAction)signUpPressed;
+- (IBAction)forgetPasswordPressed:(id)sender;
+
 
 @end
