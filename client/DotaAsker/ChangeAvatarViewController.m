@@ -11,6 +11,10 @@
 #import "Player.h"
 #import "ServiceLayer.h"
 #import "AvatarCollectionViewCell.h"
+#import "ModalLoadingView.h"
+
+// Libraries
+#import <ReactiveObjC/ReactiveObjC.h>
 
 
 @interface ChangeAvatarViewController ()
@@ -24,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _currentIndex = [_avatarNamesArray indexofObject:[[Player instance] avatarImageName]];
+    _currentIndex = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
     [self loadBackgroundImage];
     [self loadBackgroundImageForView:self.collectionView];
     

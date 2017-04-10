@@ -35,62 +35,66 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     float maxStringWidth = 0;
     float screenWidth = self.view.frame.size.width;
     float iconWidth = 50.0f;
     
     // [1] Get maxStringWidth
-    for(UIView* subview in self.subviews) {
-        // get labels
-        if ([subview isKindOfClass:[UILabel class]]) {
-            UILabel* label = (UILabel*)subview;
-            if ([label intrinsicContentSize].width > maxStringWidth)
-                maxStringWidth = [label intrinsicContentSize].width;
+    for(UIView* subview in [_verticalStackView subviews]) {
+        // get horizonal stacks
+        if ([subview isKindOfClass:[UIStackView class]]) {
+            // get labels
+            for(UIView* label in [subview subviews]) {
+                if ([label isKindOfClass:[UILabel class]]) {
+                    if ([label intrinsicContentSize].width > maxStringWidth)
+                        maxStringWidth = [label intrinsicContentSize].width;
+                }
+            }
         }
     }
     
     // [1.1]
-    float spacing = _verticalStackView.spacing;
+    float spacing = 14;
     float constraintWidth = (screenWidth - iconWidth - maxStringWidth - spacing) / 2.0f;
+    constraintWidth -= 5.0f;
     
     // [2] Updating constraints
     NSLayoutConstraint* leading;
     NSLayoutConstraint* trailing;
-    for (NSLayoutConstraint* con in _verticalStackView.constraints) {
-        if (con.secondItem == self.view)
+    for (NSLayoutConstraint* con in self.view.constraints) {
+        if (con.secondItem == _verticalStackView)
             if (con.secondAttribute == NSLayoutAttributeLeading)
                 leading = con;
             else if (con.secondAttribute == NSLayoutAttributeTrailing)
                 trailing = con;
-        else if (con.firstItem == self.view)
-            if (con.firstAttribute == NSLayoutAttributeLeading)
-                leading = con;
-            else if (con.firstAttribute == NSLayoutAttributeTrailing)
-                trailing = con;
+            else
+                continue;
+        else
+            continue;
     }
+    
     if (!leading) {
-        NSLog(@"Leading constraint not found");
-        
-        [_verticalStackView addConstraint:[NSLayoutConstraint constraintWithItem:self.view
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view
                                                                         attribute:NSLayoutAttributeLeading
                                                                         relatedBy:NSLayoutRelationEqual
                                                                             toItem:_verticalStackView
-                                                                        attribute:NSLayoutAttributeLeft
+                                                                        attribute:NSLayoutAttributeLeading
                                                                         multiplier:1.0
                                                                         constant:-constraintWidth]];
     }
     if (!trailing) {
-        NSLog(@"Trailing constraint not found");
-        [_verticalStackView addConstraint:[NSLayoutConstraint constraintWithItem:_verticalStackView
-                                                                        attribute:NSLayoutAttributeRight
+        [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_verticalStackView
+                                                                        attribute:NSLayoutAttributeTrailing
                                                                         relatedBy:NSLayoutRelationEqual
                                                                             toItem:self.view
                                                                         attribute:NSLayoutAttributeTrailing
                                                                         multiplier:1.0
                                                                         constant:constraintWidth]];
     }
+    [leading setConstant:-constraintWidth];
+    [trailing setConstant:constraintWidth];
 }
 
 - (IBAction)backButtonPressed:(id)sender {

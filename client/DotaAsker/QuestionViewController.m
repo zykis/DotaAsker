@@ -7,6 +7,7 @@
 //
 
 // Local
+@import iAd;
 #import "QuestionViewController.h"
 #import "MatchViewController.h"
 #import "ServiceLayer.h"
@@ -168,14 +169,14 @@
     [realm commitWriteTransaction];
     
     if ([relatedAnswer isCorrect]) {
-        [self animateRightButton:sender withCompletion: ^() {
+        [self animateRightButton:sender withCompletion:^(bool finished) {
             _currentQuestionIndex++;
             [self showNextQuestion];
-        }
+        }];
     }
     else {
-        NSUInteger rightAnwerIndex = 0;
-        for (int i = 0; i < [[relatedQuestion answers] count]; i++) {
+        NSUInteger rightAnswerIndex = 0;
+        for (int i = 0; i < [[q answers] count]; i++) {
             Answer* relatedAnswer = [[q answers] objectAtIndex:i];
             if ([relatedAnswer isCorrect]) {
                 rightAnswerIndex = i;
@@ -190,14 +191,14 @@
             case 3: rightButton = _answer4Button; break;
             default: assert(0);
         }
-        CGColor* rightButtonOldColor = rightButton.layer.backgroundColor;
+        struct CGColor* rightButtonOldColor = rightButton.layer.backgroundColor;
         rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
         
-        [self animateWrongButton:sender withCompletion: ^() {
+        [self animateWrongButton:sender withCompletion:^(bool finished) {
             _currentQuestionIndex++;
             [self showNextQuestion];
             rightButton.layer.backgroundColor = rightButtonOldColor;
-        }
+        }];
     }
 }
 
@@ -226,30 +227,24 @@
     [self showNextQuestion];
 }
 
-- (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completion {
-    CGColor* oldColor = rightButton.layer.backgroundColor;
-    [rightButton animateWithDuration:2
-        delay: 0.7
-        options: 'repeat'
-        animations: ^(){        
-            rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
-            rightButton.layer.backgroundColor = oldColor;
-        } 
-        completion: ^(bool finished) completion(finished)
-    ];   
+- (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completionBlock {
+    struct CGColor* oldColor = rightButton.layer.backgroundColor;
+    [UIView animateWithDuration:2 delay:0.7 options:UIViewAnimationOptionRepeat animations:^{
+        rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
+        rightButton.layer.backgroundColor = oldColor;
+    } completion:^(BOOL finished) {
+        completionBlock(finished);
+    }];
 }
 
-- (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completion {
-    CGColor* oldColor = wrongButton.layer.backgroundColor;
-    [wrongButton animateWithDuration:2
-        delay: 0.7
-        options: 'repeat'
-        animations: ^(){
-            wrongButton.layer.backgroundColor = [UIColor redColor].CGColor;
-            wrongButton.layer.backgroundColor = oldColor;
-        } 
-        completion: ^(bool finished) completion(finished)
-    ];   
+- (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completionBlock {
+    struct CGColor* oldColor = wrongButton.layer.backgroundColor;
+    [UIView animateWithDuration:2 delay:0.7 options:UIViewAnimationOptionRepeat animations:^{
+        wrongButton.layer.backgroundColor = [UIColor greenColor].CGColor;
+        wrongButton.layer.backgroundColor = oldColor;
+    } completion:^(BOOL finished) {
+        completionBlock(finished);
+    }];
 }
 
 - (void)createEmptyAnswers {
@@ -329,8 +324,9 @@
     }
     //Игрок ответил на все вопросы
     else {
-        if ([_interstitial loaded]) {
-            [interstitial presentFromViewController:self];
+        if ([_interstitial isLoaded]) {
+//            [_interstitial presentFromViewController:self];
+            [self requestInterstitialAdPresentation];
         }
     
         [self blockUI];

@@ -27,14 +27,14 @@
     if (selected) {
         _imageView.layer.borderWidth = 1.8f;
         _imageView.layer.borderColor = [[Palette shared] themesButtonColor].CGColor;
-        _imageView.layer.backgroundColor = [[UIColor blacColor] colorWithAlphaComponent:0.2].CGColor;
-        _imageView.cornerRadius = 4.5f;
+        _imageView.layer.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
+        _imageView.layer.cornerRadius = 4.5f;
     }
     else {
         _imageView.layer.borderWidth = 1;
         _imageView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.8].CGColor;
-        _imageView.layer.backgroundColor = [[UIColor blacColor] colorWithAlphaComponent:0.2].CGColor;
-        _imageView.cornerRadius = 4.5f;
+        _imageView.layer.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2].CGColor;
+        _imageView.layer.cornerRadius = 4.5f;
     }
 }
 
