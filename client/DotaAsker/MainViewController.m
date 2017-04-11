@@ -138,10 +138,6 @@
         [playerNameLabel setAdjustsFontSizeToFitWidth:YES];
         UILabel *mmrLabel = (UILabel*)[cell viewWithTag:202];
         [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[[Player instance] MMR]]];
-        UILabel *KDALabel = (UILabel*)[cell viewWithTag:203];
-        [KDALabel setText:[NSString stringWithFormat:@"KDA: %.2f", (float)[[Player instance] KDA]]];
-        UILabel *GPMLabel = (UILabel*)[cell viewWithTag:204];
-        [GPMLabel setText:[NSString stringWithFormat:@"GPM: %.2f", (float)[[Player instance] GPM]]];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
@@ -381,6 +377,63 @@
     }
     else
         return YES;
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    // Getting player info stack view
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    // Getting sizes
+    UILabel* playerNameLabel = (UILabel*)[cell viewWithTag:201];
+    float stringWidth = [playerNameLabel intrinsicContentSize].width;
+    float iconWidth = [cell viewWithTag:200].bounds.size.width;
+    float screenWidth = self.view.frame.size.width;
+    float spacing = 14;
+    float constraintWidth = (screenWidth - iconWidth - maxStringWidth - spacing) / 2.0f;
+        
+    // [2] Updating constraints
+    NSLayoutConstraint* leading;
+    NSLayoutConstraint* trailing;
+    UIStackView* playerStackView = [cell viewWithTag:206];
+    for (NSLayoutConstraint* con in self.tableView.constraints) {
+        if (con.secondItem == playerStackView)
+            if (con.secondAttribute == NSLayoutAttributeLeading)
+                leading = con;
+            else if (con.secondAttribute == NSLayoutAttributeTrailing)
+                trailing = con;
+            else
+                continue;
+        else
+            continue;
+    }
+    
+    if (!leading) {
+        [self.tableView addConstraint:[NSLayoutConstraint constraintWithItem:self.tableView
+                                                                        attribute:NSLayoutAttributeLeading
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                            toItem:playerStackView
+                                                                        attribute:NSLayoutAttributeLeading
+                                                                        multiplier:1.0
+                                                                        constant:-constraintWidth]];
+    }
+    else {
+        [leading setConstant:-constraintWidth];
+    }
+    if (!trailing) {
+        [self.tableView addConstraint:[NSLayoutConstraint constraintWithItem:playerStackView
+                                                                        attribute:NSLayoutAttributeTrailing
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                            toItem:self.tableView
+                                                                        attribute:NSLayoutAttributeTrailing
+                                                                        multiplier:1.0
+                                                                        constant:constraintWidth]];
+    }
+    else {
+        [trailing setConstant:constraintWidth];
+    }
 }
 
 @end
