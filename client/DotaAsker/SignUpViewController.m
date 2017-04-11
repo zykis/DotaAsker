@@ -33,23 +33,26 @@
     __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
     __block NSRegularExpression* passwordRegexp = [NSRegularExpression regularExpressionWithPattern:strASCIIRegexp options:0 error:0];
     
-    RACSignal* signalUsername = [RACSignal combineLatest:@[_textFieldUsername.rac_textSignal, RACObserve(_textFieldUsername, text)]];
-    RACSignal* validUsername = [signalUsername map:^id(RACTuple* tuple) {
-        BOOL firstStringPassed = [usernameRegexp numberOfMatchesInString:[tuple objectAtIndex:0] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:0] length])] == 1;
-        BOOL secondStringPassed = [usernameRegexp numberOfMatchesInString:[tuple objectAtIndex:1] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:1] length])] == 1;
-        
-        return @(firstStringPassed || secondStringPassed);
+    RACSignal* textSignalValid = [_textFieldUsername.rac_textSignal map:^(NSString* value) {
+        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+    }];
+    RACSignal* textValid = [RACObserve(_textFieldUsername, text) map:^(NSString* value) {
+        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RACSignal* signalPassword = [RACSignal combineLatest:@[_textFieldPassword.rac_textSignal, RACObserve(_textFieldPassword, text)]];
-    RACSignal* validPassword = [signalPassword map:^id(RACTuple* tuple) {
-        BOOL firstStringPassed = [passwordRegexp numberOfMatchesInString:[tuple objectAtIndex:0] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:0] length])] == 1;
-        BOOL secondStringPassed = [passwordRegexp numberOfMatchesInString:[tuple objectAtIndex:1] options:0 range:NSMakeRange(0, [[tuple objectAtIndex:1] length])] == 1;
-        
-        return @(firstStringPassed || secondStringPassed);
+    RACSignal* signalUsername = [[RACSignal combineLatest:@[textSignalValid, textValid]] and];
+    
+    
+    RACSignal* passwordTextSignalValid = [_textFieldPassword.rac_textSignal map:^(NSString* value) {
+        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+    }];
+    RACSignal* passwordTextValid = [RACObserve(_textFieldPassword, text) map:^(NSString* value) {
+        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RAC(self.signUpButton, enabled) = [RACSignal combineLatest:@[validUsername, validPassword]];
+    RACSignal* signalPassword = [[RACSignal combineLatest:@[passwordTextSignalValid, passwordTextValid]] and];
+    
+    RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[signalUsername, signalPassword]] and];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
