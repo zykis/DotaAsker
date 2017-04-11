@@ -86,7 +86,7 @@
 
 - (GADInterstitial*)createAndLoadInterstitial {
     _interstitial = [[GADInterstitial alloc] init];
-    _interstitial.adUnitID = @"pub-3423098810762932"
+    _interstitial.adUnitID = @"ca-app-pub-3423098810762932/4243097002"
     _interstitial.delegate = self;
     
     // Remove the following line before you upload the app
