@@ -43,25 +43,26 @@
     RACSignal* textValid = [RACObserve(_textFieldUsername, text) map:^(NSString* value) {
         return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
-    RACSignal* signalUsername = [[RACSignal combineLatest:@[textSignalValid, textValid]] and];
+    RACSignal* signalUsername = [[RACSignal combineLatest:@[textSignalValid, textValid]] or];
     
     
     RACSignal* passwordTextSignalValid = [_textFieldPassword.rac_textSignal map:^(NSString* value) {
-        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+        return @([passwordRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     RACSignal* passwordTextValid = [RACObserve(_textFieldPassword, text) map:^(NSString* value) {
-        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+        return @([passwordRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
-    RACSignal* signalPassword = [[RACSignal combineLatest:@[passwordTextSignalValid, passwordTextValid]] and];
+    RACSignal* signalPassword = [[RACSignal combineLatest:@[passwordTextSignalValid, passwordTextValid]] or];
     
-    RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[signalUsername, signalPassword]] and];
+    RAC(self.signInButton, enabled) = [[RACSignal combineLatest:@[signalUsername, signalPassword]] and];
     
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:NO animated:animated];
+    [[self navigationController] setNavigationBarHidden:YES animated:animated];
+    self.sheetView.layer.cornerRadius = 4;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -108,7 +109,7 @@
         } completed:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [loadingView removeFromSuperview];
-                [self performSegueWithIdentifier:@"signin" sender: self];
+                [self performSegueWithIdentifier:@"showMain" sender: self];
             });
         }];
     };
@@ -130,6 +131,9 @@
 }
 
 - (IBAction)signUpPressed {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"username"];
+    [defaults removeObjectForKey:@"password"];
     [[self navigationController] popViewControllerAnimated:YES];
 }
 

@@ -392,7 +392,7 @@
     float iconWidth = [cell viewWithTag:200].bounds.size.width;
     float screenWidth = self.view.frame.size.width;
     float spacing = 14;
-    float constraintWidth = (screenWidth - iconWidth - maxStringWidth - spacing) / 2.0f;
+    float constraintWidth = (screenWidth - iconWidth - stringWidth - spacing) / 2.0f;
         
     // [2] Updating constraints
     NSLayoutConstraint* leading;

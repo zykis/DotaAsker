@@ -40,17 +40,17 @@
         return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RACSignal* signalUsername = [[RACSignal combineLatest:@[textSignalValid, textValid]] and];
+    RACSignal* signalUsername = [[RACSignal combineLatest:@[textSignalValid, textValid]] or];
     
     
     RACSignal* passwordTextSignalValid = [_textFieldPassword.rac_textSignal map:^(NSString* value) {
-        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+        return @([passwordRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     RACSignal* passwordTextValid = [RACObserve(_textFieldPassword, text) map:^(NSString* value) {
-        return @([usernameRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
+        return @([passwordRegexp numberOfMatchesInString:value options:0 range:NSMakeRange(0, [value length])] == 1);
     }];
     
-    RACSignal* signalPassword = [[RACSignal combineLatest:@[passwordTextSignalValid, passwordTextValid]] and];
+    RACSignal* signalPassword = [[RACSignal combineLatest:@[passwordTextSignalValid, passwordTextValid]] or];
     
     RAC(self.signUpButton, enabled) = [[RACSignal combineLatest:@[signalUsername, signalPassword]] and];
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self.view action:@selector(endEditing:)]];
@@ -58,7 +58,20 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [[self navigationController] setNavigationBarHidden:YES animated:animated];
+    self.sheetView.layer.cornerRadius = 4;
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if (![[defaults objectForKey:@"username"] isEqualToString:@""])
+        _textFieldUsername.text = [defaults objectForKey:@"username"];
+    if (![[defaults objectForKey:@"password"] isEqualToString:@""])
+        _textFieldPassword.text = [defaults objectForKey:@"password"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    if (![_textFieldUsername.text isEqualToString:@""] && ![_textFieldPassword.text isEqualToString:@""])
+        [self performSegueWithIdentifier:@"signin" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,12 +90,13 @@
         [loadingView removeFromSuperview];
         [self presentAlertControllerWithMessage:[error localizedDescription]];
     } completed:^{
-        [self performSegueWithIdentifier:@"signup" sender:self];
+        [loadingView removeFromSuperview];
+        [self performSegueWithIdentifier:@"signin" sender:self];
     }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"signup"]) {
+    if ([[segue identifier] isEqualToString:@"signin"]) {
         SignInViewController* destVC = [segue destinationViewController];
         destVC.strUsername = [_textFieldUsername text];
         destVC.strPassword = [_textFieldPassword text];
@@ -90,8 +104,6 @@
 }
 
 - (IBAction)signInPressed {
-    _textFieldPassword.text = @"";
-    _textFieldPassword.text = @"";
-    [self performSegueWithIdentifier:@"signup" sender:self];
+    [self performSegueWithIdentifier:@"signin" sender:self];
 }
 @end

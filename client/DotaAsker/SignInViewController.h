@@ -10,6 +10,7 @@
 #import "UIViewController+Utils.h"
 
 @interface SignInViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *sheetView;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldUsername;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldPassword;
 @property (strong, nonatomic) IBOutlet UIButton *signInButton;

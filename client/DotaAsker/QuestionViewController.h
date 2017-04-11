@@ -11,9 +11,7 @@
 
 // Libraries
 #import <UIKit/UIKit.h>
-#import <AdMob/AdMob.h>
-
-
+@import GoogleMobileAds;
 
 @class Round;
 @class Match;

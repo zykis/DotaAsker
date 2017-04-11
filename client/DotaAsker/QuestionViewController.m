@@ -7,7 +7,6 @@
 //
 
 // Local
-@import iAd;
 #import "QuestionViewController.h"
 #import "MatchViewController.h"
 #import "ServiceLayer.h"
@@ -85,14 +84,15 @@
 }
 
 - (GADInterstitial*)createAndLoadInterstitial {
-    _interstitial = [[GADInterstitial alloc] init];
-    _interstitial.adUnitID = @"ca-app-pub-3423098810762932/4243097002"
+    _interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3423098810762932/4243097002"];
     _interstitial.delegate = self;
     
+    
     // Remove the following line before you upload the app
-    GADRequest* adRequest = [[GADRequest alloc] init];
-    adRequest.testDevices = [ kGADSimulatorID ]
-    _interstitial.load(adRequest)
+    GADRequest* adRequest = [GADRequest request];
+    adRequest.testDevices = @[ kGADSimulatorID ];
+    [_interstitial loadRequest:adRequest];
+    return _interstitial;
 }
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
@@ -207,13 +207,12 @@
             case 3: rightButton = _answer4Button; break;
             default: assert(0);
         }
-        struct CGColor* rightButtonOldColor = rightButton.layer.backgroundColor;
-        rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
         
         [self animateWrongButton:sender withCompletion:^(bool finished) {
             _currentQuestionIndex++;
             [self showNextQuestion];
-            rightButton.layer.backgroundColor = rightButtonOldColor;
+        }];
+        [self animateRightButton:rightButton withCompletion:^(bool finished) { 
         }];
     }
 }
@@ -245,21 +244,21 @@
 
 - (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completionBlock {
     struct CGColor* oldColor = rightButton.layer.backgroundColor;
-    [UIView animateWithDuration:2 delay:0.7 options:UIViewAnimationOptionRepeat animations:^{
+    [UIView animateWithDuration:0.8 delay:0.2 options:kNilOptions animations:^{
         rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
-        rightButton.layer.backgroundColor = oldColor;
     } completion:^(BOOL finished) {
         completionBlock(finished);
+        rightButton.layer.backgroundColor = oldColor;
     }];
 }
 
 - (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completionBlock {
     struct CGColor* oldColor = wrongButton.layer.backgroundColor;
-    [UIView animateWithDuration:2 delay:0.7 options:UIViewAnimationOptionRepeat animations:^{
-        wrongButton.layer.backgroundColor = [UIColor greenColor].CGColor;
-        wrongButton.layer.backgroundColor = oldColor;
+    [UIView animateWithDuration:0.8 delay:0.2 options:kNilOptions animations:^{
+        wrongButton.layer.backgroundColor = [UIColor redColor].CGColor;
     } completion:^(BOOL finished) {
         completionBlock(finished);
+        wrongButton.layer.backgroundColor = oldColor;
     }];
 }
 
