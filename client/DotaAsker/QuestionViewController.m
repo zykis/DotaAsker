@@ -81,10 +81,26 @@
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
     NSLog(@"QuestionViewController DID LOAD");
-    
-    // create ad
-    _interstitial = [[ADInterstitialAd alloc] init];
+    [self createAndLoadInterstitial];
+}
+
+- (GADInterstitial*)createAndLoadInterstitial {
+    _interstitial = [[GADInterstitial alloc] init];
+    _interstitial.adUnitID = @"pub-3423098810762932"
     _interstitial.delegate = self;
+    
+    // Remove the following line before you upload the app
+    GADRequest* adRequest = [[GADRequest alloc] init];
+    adRequest.testDevices = [ kGADSimulatorID ]
+    _interstitial.load(adRequest)
+}
+
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitial ready");
+}
+
+- (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial loading failed: %@", [error localizedDescription]);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -324,46 +340,54 @@
     }
     //Игрок ответил на все вопросы
     else {
-        if ([_interstitial isLoaded]) {
-//            [_interstitial presentFromViewController:self];
-            [self requestInterstitialAdPresentation];
+        if ([_interstitial isReady]) {
+            [_interstitial presentFromRootViewController:self];
         }
+        else {
+            [self sendAnswers];
+        }    
+    }
+}
+
+- (void)interstitialDidDismissScreen:(GADInterstitial *)ad {
+    [self sendAnswers];
+}
+
+- (void)sendAnswers {
+    [self blockUI];
+    // Present LoadingView
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
-        [self blockUI];
-        // Present LoadingView
-        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
-        [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-        
-        void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
+            [loadingView removeFromSuperview];
+            [self popToMatchViewController];
+        });
+    };
+    
+    void (^completeBlock)() = ^void() {
+        // UserAnswers has been updated.
+        // Updaing Player and tableView
+        [loadingView setMessage:@"Getting player"];
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
+        [subject subscribeNext:^(id u) {
+            [Player manualUpdate:u];
+        } error:^(NSError *error) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentAlertControllerWithMessage:[error localizedDescription]];
+                [loadingView removeFromSuperview];
+                [self  popToMatchViewController];
+            });
+        } completed:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [loadingView removeFromSuperview];
                 [self popToMatchViewController];
             });
-        };
-        
-        void (^completeBlock)() = ^void() {
-            // UserAnswers has been updated.
-            // Updaing Player and tableView
-            [loadingView setMessage:@"Getting player"];
-            RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
-            [subject subscribeNext:^(id u) {
-                [Player manualUpdate:u];
-            } error:^(NSError *error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
-                });
-            } completed:^{
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [loadingView removeFromSuperview];
-                    [self popToMatchViewController];
-                });
-            }];
-        };
-    
-        [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
-    }
+        }];
+    };
+
+    [Player synchronizeWithErrorBlock:errorBlock completionBlock:completeBlock];
 }
 
 - (void)viewDidLayoutSubviews {

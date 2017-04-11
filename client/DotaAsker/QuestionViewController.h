@@ -11,7 +11,7 @@
 
 // Libraries
 #import <UIKit/UIKit.h>
-@import iAd;
+#import <AdMob/AdMob.h>
 
 
 
@@ -20,7 +20,7 @@
 @class Theme;
 @class QuestionViewModel;
 
-@interface QuestionViewController : UIViewController
+@interface QuestionViewController : UIViewController <GADInterstitialDelegate>
 
 @property (assign, nonatomic) long long roundID;
 @property (assign, nonatomic) long long selectedThemeID;
@@ -37,7 +37,7 @@
 @property (strong, nonatomic) NSTimer* timeTimer;
 @property (strong, nonatomic) IBOutlet UIProgressView *progressView;
 @property (assign, nonatomic) float secondsRemain;
-@property (strong, nonatomic) ADInterstitialAd* interstitial;
+@property (strong, nonatomic) GADInterstitial* interstitial;
 
 - (IBAction)answerPushed:(id)sender;
 - (void)timeElapsed;
