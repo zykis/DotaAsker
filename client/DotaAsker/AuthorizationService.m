@@ -41,8 +41,10 @@
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];
-    
     [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // print request
+    NSLog(@"%@", [self formatURLRequest:request]);
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -54,7 +56,7 @@
             [errDict setObject:errorDescription forKey:NSLocalizedDescriptionKey];
             
             NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:errDict];
-            [subject sendError:err];
+            [subject sendError:error];
         } else {
             [subject sendNext:responseObject];
             [subject sendCompleted];
@@ -62,6 +64,20 @@
     }];
     [dataTask resume];
     return subject;
+}
+
+- (NSString *)formatURLRequest:(NSURLRequest *)request
+{
+    NSMutableString *message = [NSMutableString stringWithString:@"---REQUEST------------------\n"];
+    [message appendFormat:@"URL: %@\n",[request.URL description] ];
+    [message appendFormat:@"METHOD: %@\n",[request HTTPMethod]];
+    for (NSString *header in [request allHTTPHeaderFields])
+    {
+        [message appendFormat:@"%@: %@\n",header,[request valueForHTTPHeaderField:header]];
+    }
+    [message appendFormat:@"BODY: %@\n",[[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding]];
+    [message appendString:@"----------------------------\n"];
+    return [NSString stringWithFormat:@"%@",message];
 }
 
 - (RACReplaySubject*)getTokenForUsername:(NSString *)username andPassword:(NSString *)password
