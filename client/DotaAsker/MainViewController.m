@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+// Local
 #import "MainViewController.h"
 #import "MatchViewController.h"
 #import "StatisticsViewController.h"
@@ -14,6 +15,9 @@
 #import "Helper.h"
 #import "Palette.h"
 #import "ModalLoadingView.h"
+#import "SignInViewController.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @import CoreGraphics;
@@ -363,7 +367,12 @@
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"username"];
     [defaults removeObjectForKey:@"password"];
-    [[self navigationController] popToRootViewControllerAnimated:YES];
+    SignInViewController* destVC = (SignInViewController*)[[[self navigationController] viewControllers] objectAtIndex:[[[self navigationController] viewControllers] count] - 2];
+    
+    [destVC setStrUsername:@""];
+    [destVC setStrPassword:@""];
+    [[self navigationController] popViewControllerAnimated:YES];
+    
 }
 
 - (IBAction)settings:(id)sender {

@@ -18,6 +18,7 @@
     if (self) {
         _imageView = [[UIImageView alloc] initWithFrame:frame];
         [self.contentView addSubview: _imageView];
+        [self setSelected:NO];
     }
     return self;
 }
@@ -27,6 +28,7 @@
     if (self) {
         _imageView = [[UIImageView alloc] init];
         [self.contentView addSubview: _imageView];
+        [self setSelected:NO];
     }
     return self;
 }

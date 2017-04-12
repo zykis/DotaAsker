@@ -60,7 +60,7 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
     self.sheetView.layer.cornerRadius = 8;
-    self.sheetView.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.2];
+    self.sheetView.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.4].CGColor;
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     if (![[defaults objectForKey:@"username"] isEqualToString:@""])

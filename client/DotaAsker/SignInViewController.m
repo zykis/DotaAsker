@@ -63,15 +63,13 @@
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:animated];
     self.sheetView.layer.cornerRadius = 8;
-    self.sheetView.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.2];
+    self.sheetView.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.4].CGColor;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    if (![_strUsername isEqualToString:@""])
-        [_textFieldUsername setText:_strUsername];
-    if (![_strPassword isEqualToString:@""])
-        [_textFieldPassword setText:_strPassword];
+    [_textFieldUsername setText:_strUsername];
+    [_textFieldPassword setText:_strPassword];
     
     if (![[_textFieldUsername text] isEqualToString:@""] && ![[_textFieldPassword text] isEqualToString:@""]) {
         [self signIn];

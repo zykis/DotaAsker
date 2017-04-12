@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *selectedImageView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (assign, nonatomic) NSInteger currentIndex;
+- (IBAction)save:(id)sender;
 
 @end
