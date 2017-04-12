@@ -25,7 +25,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        _imageView = [[UIImageView alloc] initWithCoder:aDecoder];
+        _imageView = [[UIImageView alloc] init];
         [self.contentView addSubview: _imageView];
     }
     return self;

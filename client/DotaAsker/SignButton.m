@@ -32,6 +32,7 @@
     _backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.35];
     _backgroundSelectedColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
     _backgroundDisabledColor = [[UIColor whiteColor] colorWithAlphaComponent:0.2];
+    self.titleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:0.4];
 }
 
 - (void)setupLayers {
@@ -65,7 +66,7 @@
     [super setEnabled:enabled];
     _backgroundDisabledLayer.hidden = enabled;
     _backgroundLayer.hidden = !enabled;
-    self.titleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:enabled? 1.0: 0.4];
+    self.titleLabel.textColor = [[UIColor whiteColor] colorWithAlphaComponent:enabled ? 1.0 : 0.4];
 }
 
 @end

@@ -351,6 +351,10 @@
     [self sendAnswers];
 }
 
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    [self sendAnswers];
+}
+
 - (void)sendAnswers {
     [self blockUI];
     // Present LoadingView
