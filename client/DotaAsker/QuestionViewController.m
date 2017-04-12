@@ -79,7 +79,6 @@
     _progressView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
-    NSLog(@"QuestionViewController DID LOAD");
     [self createAndLoadInterstitial];
 }
 
@@ -96,11 +95,11 @@
 }
 
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-    NSLog(@"interstitial ready");
+    
 }
 
 - (void)interstitial:(GADInterstitial *)ad didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"interstitial loading failed: %@", [error localizedDescription]);
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {

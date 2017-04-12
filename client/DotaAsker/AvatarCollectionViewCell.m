@@ -22,6 +22,15 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        _imageView = [[UIImageView alloc] initWithCoder:aDecoder];
+        [self.contentView addSubview: _imageView];
+    }
+    return self;
+}
+
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     if (selected) {

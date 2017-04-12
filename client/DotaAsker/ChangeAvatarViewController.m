@@ -51,7 +51,6 @@
     
     // [4]
     NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
-    NSLog(@"Found avatar in array. Index: %lu", (unsigned long)row);
     NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
     [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
     [self collectionView:self.collectionView didSelectItemAtIndexPath:path];
