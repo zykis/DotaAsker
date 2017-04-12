@@ -39,6 +39,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    self.sheetView.layer.cornerRadius = 8;
+    self.sheetView.layer.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent: 0.4].CGColor;
 }
 
 - (IBAction)backButtonPressed:(id)sender {
