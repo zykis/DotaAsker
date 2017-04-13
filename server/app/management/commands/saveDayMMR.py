@@ -1,7 +1,3 @@
-if __name__ == '__main__':
-    import sys 
-    sys.path.append('/Users/artem/projects/DotaAsker/server/')
-from app import app
 from app.models import User
 from datetime import date
 

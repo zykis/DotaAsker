@@ -1,7 +1,4 @@
-if __name__ == '__main__':
-    import sys 
-    sys.path.append('/Users/artem/projects/DotaAsker/server/')
-from app import app, db
+from app import db
 from app.models import Match, MATCH_FINISHED, MATCH_RUNNING, MATCH_TIME_ELAPSED
 from datetime import datetime
 from config import MATCH_LIFETIME, MATCH_UPDATELIFE

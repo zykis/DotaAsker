@@ -22,6 +22,8 @@ db = SQLAlchemy(app)
 manager = Manager(app)
 mail = Mail(app)
 
+from app import models, views
+
 jobstores = {
     'default': MemoryJobStore(),
 }
@@ -40,5 +42,3 @@ scheduler.add_job(checkTimeElapsedMatches, trigger=trigger)
 
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
 scheduler.start()
-
-from app import models, views
