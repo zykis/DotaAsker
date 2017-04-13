@@ -38,8 +38,8 @@ trigger = CronTrigger(hour=23, minute=30, timezone=utc)
 
 import app.management.commands.saveDayMMR
 import app.management.commands.checkTimeElapsedMatches
-scheduler.add_job(app.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
-scheduler.add_job(app.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
 
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
+scheduler.add_job(app.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
+scheduler.add_job(app.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
 scheduler.start()

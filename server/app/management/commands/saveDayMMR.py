@@ -1,8 +1,9 @@
-from app import db
+from app import db, app
 from app.models import User
-from datetime import date
+from datetime import date, datetime
 
 def saveDayMMR():
+    app.logger.info("STARTED saveDayMMR: {}".format(datetime.now()))
     users_list = Users.query.all()
     today = date.today()
     for u in users_list:

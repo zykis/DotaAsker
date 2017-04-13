@@ -1,9 +1,10 @@
-from app import db
+from app import db, app
 from app.models import Match, MATCH_FINISHED, MATCH_RUNNING
 from datetime import datetime
 from config import MATCH_LIFETIME, MATCH_UPDATELIFE
 
 def checkTimeElapsedMatches():
+    app.logger.info("STARTED checkTimeElapsedMatches: {}".format(datetime.now()))
     match_list = Match.query.all()
     app.logger.debug('matches: {}'.format(match_list))
     for m in match_list:
