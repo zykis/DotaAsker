@@ -490,3 +490,9 @@ round_questions_table = db.Table('round_questions', db.Model.metadata,
                               db.Column('round_id', db.Integer, db.ForeignKey('rounds.id', ondelete='CASCADE', onupdate='CASCADE')),
                               db.Column('question_id', db.Integer, db.ForeignKey('questions.id', ondelete='CASCADE', onupdate='CASCADE'))
                               )
+
+user_date_mmr_table = db.Table('user_date_mmr', db.Model.metadata,
+                               db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE')),
+                               db.Column('date', db.Date, default=db.func.current_date())
+                               db.Column('mmr', db.Integer)
+                               )

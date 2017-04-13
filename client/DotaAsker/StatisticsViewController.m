@@ -61,8 +61,8 @@
     _chartView.backgroundColor = [[Palette shared] themesButtonColor];
     
     ChartXAxis* xaxis = _chartView.xAxis;
-    xaxis.drawGridLinesEnabled = NO;
-    xaxis.drawAxisLineEnabled = NO;
+    xaxis.drawGridLinesEnabled = YES;
+    xaxis.drawAxisLineEnabled = YES;
     xaxis.drawLabelsEnabled = NO;
     
     ChartYAxis* laxis = _chartView.leftAxis;

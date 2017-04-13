@@ -4,7 +4,7 @@ passlib
 flask-httpauth
 marshmallow
 pytest
-Flask-Script
 sqlalchemy-migrate
 Flask-Mail
 cloudinary
+apscheduler
