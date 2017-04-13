@@ -8,7 +8,7 @@ import logging
 from apscheduler.schedulers.background import BackgroundScheduler, BlockingScheduler
 from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
-from apscheduler.triggers.date import DateTrigger
+from apscheduler.triggers.cron import CronTrigger
 from datetime import datetime
 
 logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
@@ -33,8 +33,7 @@ job_defaults = {
     'max_instances': 2
 }
 
-everyDay = datetime(hour=23, minute=30)
-trigger = DateTrigger(run_date=everyDay, timezone=utc)
+trigger = CronTrigger(hour=23, minute=30, timezone=utc)
 
 import app.management.commands.saveDayMMR
 import app.management.commands.checkTimeElapsedMatches
