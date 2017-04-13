@@ -1,5 +1,5 @@
-from app import db, app
-from app.models import Match, MATCH_FINISHED, MATCH_RUNNING
+from appplication import db, app
+from appplication.models import Match, MATCH_FINISHED, MATCH_RUNNING
 from datetime import datetime
 from config import MATCH_LIFETIME, MATCH_UPDATELIFE
 

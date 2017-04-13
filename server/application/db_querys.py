@@ -1,6 +1,6 @@
-from app import db
-from app.models import User, Match, Question, Theme, Answer, UserAnswer, MATCH_RUNNING, MATCH_FINISHED
-from app import models
+from appplication import db
+from appplication.models import User, Match, Question, Theme, Answer, UserAnswer, MATCH_RUNNING, MATCH_FINISHED
+from appplication import models
 import json
 import random
 from config import questiondir

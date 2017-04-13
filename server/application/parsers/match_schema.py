@@ -1,6 +1,6 @@
-from app.models import Match
+from appplication.models import Match
 from marshmallow import Schema, fields
-from app.parsers.round_schema import RoundSchema
+from appplication.parsers.round_schema import RoundSchema
 
 class MatchSchema(Schema):
     id = fields.Int()

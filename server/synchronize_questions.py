@@ -2,9 +2,8 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 import json
-from app.models import Question, Answer, Theme, db
-from app.parsers.question_schema import QuestionSchema
-import app
+from appplication.models import Question, Answer, Theme, db
+from appplication.parsers.question_schema import QuestionSchema
 import os.path
 
 def uploadQuestionFromPath(questionsPath, updateImages=False):
@@ -44,7 +43,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
 
 if __name__ == '__main__':
 
-    uploadQuestionFromPath('app/static/questions/')
+    uploadQuestionFromPath('appplication/static/questions/')
 
 
 	

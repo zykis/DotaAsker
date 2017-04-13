@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields, post_load
-from app.models import Theme
+from appplication.models import Theme
 
 class ThemeSchema(Schema):
     id = fields.Int()

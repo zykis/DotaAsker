@@ -1,8 +1,8 @@
 from marshmallow import Schema, fields, post_load
-from app.parsers.answer_schema import AnswerSchema
-from app.parsers.theme_schema import ThemeSchema
-from app.models import Question, Theme, Answer
-from app import db
+from appplication.parsers.answer_schema import AnswerSchema
+from appplication.parsers.theme_schema import ThemeSchema
+from appplication.models import Question, Theme, Answer
+from appplication import db
 from flask import g
 
 class QuestionSchema(Schema):

@@ -1,5 +1,5 @@
-from app import db, app
-from app.models import User
+from appplication import db, app
+from appplication.models import User
 from datetime import date, datetime
 
 def saveDayMMR():

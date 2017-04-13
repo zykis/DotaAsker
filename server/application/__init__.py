@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager
 from flask_mail import Mail
 from werkzeug.contrib.fixers import ProxyFix
 import logging  
@@ -18,10 +17,9 @@ app = Flask(__name__)
 app.config.from_object('config')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 db = SQLAlchemy(app)
-manager = Manager(app)
 mail = Mail(app)
 
-from app import models, views
+from appplication import models, views
 
 jobstores = {
     'default': MemoryJobStore(),
@@ -34,12 +32,12 @@ job_defaults = {
     'max_instances': 2
 }
 
-trigger = CronTrigger(hour=23, minute=30, timezone=utc)
+trigger = CronTrigger(hour=15, minute=30, timezone=utc)
 
-import app.management.commands.saveDayMMR
-import app.management.commands.checkTimeElapsedMatches
+import appplication.management.commands.saveDayMMR
+import appplication.management.commands.checkTimeElapsedMatches
 
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
-scheduler.add_job(app.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
-scheduler.add_job(app.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
+scheduler.add_job(appplication.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
+scheduler.add_job(appplication.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
 scheduler.start()
