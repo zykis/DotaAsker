@@ -10,8 +10,8 @@ from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from apscheduler.triggers.date import DateTrigger
 from datetime import datetime
-from app.management.commands.saveDayMMR import saveDayMMR
-from app.management.commands.checkTimeElapsedMatches import checkTimeElapsedMatches
+import app.management.commands.saveDayMMR
+import app.management.commands.checkTimeElapsedMatches
 
 logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
@@ -37,8 +37,8 @@ job_defaults = {
 
 everyDay = datetime(hour=23, minute=30)
 trigger = DateTrigger(run_date=everyDay, timezone=utc)
-scheduler.add_job(saveDayMMR, trigger=trigger)
-scheduler.add_job(checkTimeElapsedMatches, trigger=trigger)
+scheduler.add_job(app.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
+scheduler.add_job(app.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
 
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
 scheduler.start()
