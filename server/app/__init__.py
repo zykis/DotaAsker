@@ -10,6 +10,7 @@ from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from apscheduler.triggers.cron import CronTrigger
 from datetime import datetime
+from pytz import utc
 
 logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
