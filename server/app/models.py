@@ -493,6 +493,6 @@ round_questions_table = db.Table('round_questions', db.Model.metadata,
 
 user_date_mmr_table = db.Table('user_date_mmr', db.Model.metadata,
                                db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE')),
-                               db.Column('date', db.Date, default=db.func.current_date())
+                               db.Column('date', db.Date, default=db.func.current_date()),
                                db.Column('mmr', db.Integer)
                                )
