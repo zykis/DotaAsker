@@ -1,8 +1,8 @@
 from marshmallow import Schema, fields, post_load
-from appplication.parsers.theme_schema import ThemeSchema
-from appplication.parsers.question_schema import QuestionSchema
-from appplication.parsers.user_answer_schema import UserAnswerSchema
-from appplication.models import Round
+from application.parsers.theme_schema import ThemeSchema
+from application.parsers.question_schema import QuestionSchema
+from application.parsers.user_answer_schema import UserAnswerSchema
+from application.models import Round
 
 class RoundSchema(Schema):
     id = fields.Int()

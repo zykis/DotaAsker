@@ -1,5 +1,5 @@
-from appplication.models import User
-from appplication import app
+from application.models import User
+from application import app
 from marshmallow import Schema, fields, post_load
 
 

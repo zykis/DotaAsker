@@ -19,7 +19,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app)
 db = SQLAlchemy(app)
 mail = Mail(app)
 
-from appplication import models, views
+from application import models, views
 
 jobstores = {
     'default': MemoryJobStore(),
@@ -34,10 +34,10 @@ job_defaults = {
 
 trigger = CronTrigger(hour=15, minute=30, timezone=utc)
 
-import appplication.management.commands.saveDayMMR
-import appplication.management.commands.checkTimeElapsedMatches
+import application.management.commands.saveDayMMR
+import application.management.commands.checkTimeElapsedMatches
 
 scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults, timezone=utc)
-scheduler.add_job(appplication.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
-scheduler.add_job(appplication.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
+scheduler.add_job(application.management.commands.checkTimeElapsedMatches.checkTimeElapsedMatches, trigger=trigger)
+scheduler.add_job(application.management.commands.saveDayMMR.saveDayMMR, trigger=trigger)
 scheduler.start()

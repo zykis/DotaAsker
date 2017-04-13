@@ -1,22 +1,22 @@
-from appplication import app
-from appplication import db
-from appplication.models import User
+from application import app
+from application import db
+from application.models import User
 from flask import abort, request, g, jsonify, url_for, make_response
 from flask_httpauth import HTTPBasicAuth
 from db_querys import Database_queries
-from appplication.parsers.user_schema import UserSchema
-from appplication.parsers.match_schema import MatchSchema
-from appplication.parsers.user_answer_schema import UserAnswerSchema
-from appplication.parsers.round_schema import RoundSchema
-from appplication.parsers.question_schema import QuestionSchema
-from appplication.models import Match, MATCH_RUNNING, MATCH_FINISHED, UserAnswer, Round, Question
-from appplication import models
+from application.parsers.user_schema import UserSchema
+from application.parsers.match_schema import MatchSchema
+from application.parsers.user_answer_schema import UserAnswerSchema
+from application.parsers.round_schema import RoundSchema
+from application.parsers.question_schema import QuestionSchema
+from application.models import Match, MATCH_RUNNING, MATCH_FINISHED, UserAnswer, Round, Question
+from application import models
 from marshmallow import pprint
 from flask_mail import Message
 import json
 import random
 import string
-from appplication import mail
+from application import mail
 from sqlalchemy import desc
 
 auth = HTTPBasicAuth()

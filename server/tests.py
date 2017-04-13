@@ -3,10 +3,10 @@ import os
 import unittest
 
 from config import basedir, questiondir
-from appplication import app, db, models
-from appplication.models import User, Theme, Match, Question, UserAnswer, MATCH_FINISHED, MATCH_RUNNING, MATCH_TIME_ELAPSED
-from appplication.parsers.user_schema import UserSchema
-from appplication.db_querys import Database_queries
+from application import app, db, models
+from application.models import User, Theme, Match, Question, UserAnswer, MATCH_FINISHED, MATCH_RUNNING, MATCH_TIME_ELAPSED
+from application.parsers.user_schema import UserSchema
+from application.db_querys import Database_queries
 from marshmallow import pprint
 
 class TestCase(unittest.TestCase):

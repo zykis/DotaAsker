@@ -1,8 +1,8 @@
 from marshmallow import Schema, fields, post_load
-from appplication.models import UserAnswer
-from appplication.parsers.user_schema import UserSchema
-from appplication.parsers.answer_schema import AnswerSchema
-from appplication.parsers.question_schema import QuestionSchema
+from application.models import UserAnswer
+from application.parsers.user_schema import UserSchema
+from application.parsers.answer_schema import AnswerSchema
+from application.parsers.question_schema import QuestionSchema
 
 class UserAnswerSchema(Schema):
     id = fields.Int()
