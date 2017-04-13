@@ -108,6 +108,7 @@
     
     NSString* requestString = [NSString stringWithFormat:@"%@%llu", kAPIEndpointStatistics, entityID];
     NSMutableURLRequest *request = [[[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:requestString parameters:nil error:nil] mutableCopy];
+    [request setValue:[Helper currentLocale] forHTTPHeaderField:@"Accept-Language"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

@@ -359,8 +359,20 @@
 }
 
 - (IBAction)showStatistics {
-    if ([self checkPremium])
+    if ([self checkPremium]) {
+        ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting statistics"];
+        [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
+        
+        RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainStatistic:[Player instance].ID];
+        [subject subscribeNext:^(id x) {
+        } error:^(NSError *error) {
+            [loadingView removeFromSuperview];
+        } completed:^{
+            [loadingView removeFromSuperview];
+        }];
+        
         [self performSegueWithIdentifier:@"statistics" sender:self];
+    }
 }
 
 - (IBAction)logout {

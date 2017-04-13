@@ -122,8 +122,7 @@
 - (RACReplaySubject*)obtainStatistic:(unsigned long long)ID {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     [[_transport obtainStatistic:ID] subscribeNext:^(id x) {
-        User* u = [UserParser parse:x andChildren:YES];
-        [subject sendNext:u];
+        // parse statistic
     } error:^(NSError *error) {
         [subject sendError:error];
     } completed:^{

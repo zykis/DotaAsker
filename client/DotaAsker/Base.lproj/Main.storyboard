@@ -1585,7 +1585,7 @@
         <!--Statistics-->
         <scene sceneID="IyG-sx-jIj">
             <objects>
-                <viewController id="kfN-8r-70y" customClass="StatisticsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="kfN-8r-70y" customClass="StatisticsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="csh-oh-mYp"/>
                         <viewControllerLayoutGuide type="bottom" id="qXg-sh-0rQ"/>
@@ -1594,90 +1594,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-gk-fJs">
-                                <rect key="frame" x="16" y="52" width="40.5" height="16.5"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqq-ab-Ip3">
-                                <rect key="frame" x="16" y="66.5" width="35" height="16.5"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPM:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcv-hn-K5k">
-                                <rect key="frame" x="16" y="82" width="37" height="16.5"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-Bu-tp0">
-                                <rect key="frame" x="103.5" y="54" width="29.5" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWg-xq-S0X">
-                                <rect key="frame" x="113.5" y="68.5" width="19.5" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="671.56" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-FD-T6A">
-                                <rect key="frame" x="99" y="84" width="34" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AVERAGE ANSWER TIME:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcq-NU-hAe">
-                                <rect key="frame" x="16" y="101.5" width="79" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="79" id="67b-qv-rDB"/>
-                                    <constraint firstAttribute="height" constant="50" id="6Z5-fM-MEy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="54.56%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcK-aL-PNu">
-                                <rect key="frame" x="94" y="166.5" width="39" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CORRECT ANSWERS:" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xIT-Sx-4iI">
-                                <rect key="frame" x="16" y="153.5" width="79" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="knh-bz-8ey"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hg-lH-pJc" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="152" y="134" width="140" height="140"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHART" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V13-eO-kOn">
-                                        <rect key="frame" x="44.5" y="55" width="51.5" height="31"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="Ofo-Gv-T8T"/>
-                                    <constraint firstItem="V13-eO-kOn" firstAttribute="centerY" secondItem="5Hg-lH-pJc" secondAttribute="centerY" id="ia9-rR-vu1"/>
-                                    <constraint firstItem="V13-eO-kOn" firstAttribute="centerX" secondItem="5Hg-lH-pJc" secondAttribute="centerX" id="iny-yK-NW4"/>
-                                    <constraint firstAttribute="width" secondItem="V13-eO-kOn" secondAttribute="height" multiplier="50:11" id="vNU-we-9cR"/>
-                                    <constraint firstAttribute="width" secondItem="5Hg-lH-pJc" secondAttribute="height" multiplier="1:1" id="wBz-Om-zmF"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-Ce-L6J">
-                                <rect key="frame" x="16" y="285" width="288" height="310"/>
+                                <rect key="frame" x="16" y="300" width="288" height="295"/>
                                 <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="match" rowHeight="25" id="G3Y-Pz-SQO">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="match" rowHeight="25" id="G3Y-Pz-SQO">
                                         <rect key="frame" x="0.0" y="28" width="288" height="25"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3Y-Pz-SQO" id="DrF-vL-JCB">
@@ -1746,82 +1667,95 @@
                                     <outlet property="delegate" destination="kfN-8r-70y" id="FXM-63-Lvd"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23.5" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGX-Qg-Y3M">
-                                <rect key="frame" x="111" y="119.5" width="22" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINS:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-8f-8Lu">
-                                <rect key="frame" x="16" y="200.5" width="43.5" height="16.5"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOST:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-vn-VGT">
-                                <rect key="frame" x="16" y="216" width="40" height="16.5"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
-                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksI-p2-x0l">
-                                <rect key="frame" x="113.5" y="202.5" width="19.5" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="211" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-61-jsw">
-                                <rect key="frame" x="116" y="218" width="17" height="14"/>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9IG-Yq-I65">
-                                <rect key="frame" x="187" y="52" width="70" height="70"/>
+                                <rect key="frame" x="16" y="28" width="128" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="QYI-Z0-iq9"/>
+                                    <constraint firstAttribute="height" constant="128" id="QYI-Z0-iq9"/>
                                     <constraint firstAttribute="width" secondItem="9IG-Yq-I65" secondAttribute="height" multiplier="1:1" id="bDS-CF-Xj1"/>
                                 </constraints>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="mBj-Dv-J0e">
+                                <rect key="frame" x="160" y="28" width="144" height="128"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="C9b-ot-eyv">
+                                        <rect key="frame" x="0.0" y="0.0" width="103.5" height="42.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCV-gk-fJs">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbP-Bu-tp0">
+                                                <rect key="frame" x="63.5" y="0.0" width="40" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Yrl-Cf-KZm">
+                                        <rect key="frame" x="0.0" y="42.5" width="90" height="43"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WINS:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnP-8f-8Lu">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="43"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="235" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksI-p2-x0l">
+                                                <rect key="frame" x="63.5" y="0.0" width="26.5" height="43"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oJq-DB-wAV">
+                                        <rect key="frame" x="0.0" y="85.5" width="86.5" height="42.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOST:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7O-vn-VGT">
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                                <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="211" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlN-61-jsw">
+                                                <rect key="frame" x="63.5" y="0.0" width="23" height="42.5"/>
+                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="V7O-vn-VGT" firstAttribute="width" secondItem="XnP-8f-8Lu" secondAttribute="width" id="2q0-pd-PVU"/>
+                                    <constraint firstItem="XCV-gk-fJs" firstAttribute="width" secondItem="XnP-8f-8Lu" secondAttribute="width" id="LPf-BX-56v"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhN-Qj-AMQ" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="164" width="288" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="E0p-yk-hbc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="9IG-Yq-I65" firstAttribute="top" secondItem="csh-oh-mYp" secondAttribute="bottom" constant="32" id="0wF-tr-MUW"/>
-                            <constraint firstItem="AGX-Qg-Y3M" firstAttribute="trailing" secondItem="vrU-FD-T6A" secondAttribute="trailing" id="1Cn-Ed-1zw"/>
-                            <constraint firstItem="5Hg-lH-pJc" firstAttribute="centerX" secondItem="9IG-Yq-I65" secondAttribute="centerX" id="1gk-DN-R3L"/>
-                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="centerY" secondItem="vrU-FD-T6A" secondAttribute="centerY" id="2WJ-QJ-jfN"/>
-                            <constraint firstItem="V7O-vn-VGT" firstAttribute="centerY" secondItem="OlN-61-jsw" secondAttribute="centerY" id="3TS-KH-xq2"/>
-                            <constraint firstItem="V7O-vn-VGT" firstAttribute="leading" secondItem="XnP-8f-8Lu" secondAttribute="leading" id="3pX-AE-iRf"/>
-                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="centerY" secondItem="ksI-p2-x0l" secondAttribute="centerY" id="4r4-IF-Nbn"/>
-                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="leading" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="6E8-3z-U12"/>
-                            <constraint firstItem="mbP-Bu-tp0" firstAttribute="trailing" secondItem="wWg-xq-S0X" secondAttribute="trailing" id="7X5-kZ-eDk"/>
+                            <constraint firstItem="9IG-Yq-I65" firstAttribute="top" secondItem="csh-oh-mYp" secondAttribute="bottom" constant="8" id="0wF-tr-MUW"/>
+                            <constraint firstItem="mBj-Dv-J0e" firstAttribute="leading" secondItem="9IG-Yq-I65" secondAttribute="trailing" constant="16" id="4C7-Ne-LmD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uhN-Qj-AMQ" secondAttribute="trailing" id="51V-6v-L3F"/>
+                            <constraint firstItem="uhN-Qj-AMQ" firstAttribute="top" secondItem="9IG-Yq-I65" secondAttribute="bottom" constant="8" id="8uw-7H-jYZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aKc-Ce-L6J" secondAttribute="trailing" id="BTO-BT-KQx"/>
-                            <constraint firstItem="rcK-aL-PNu" firstAttribute="trailing" secondItem="AGX-Qg-Y3M" secondAttribute="trailing" id="CUi-Wu-kOb"/>
-                            <constraint firstItem="XCV-gk-fJs" firstAttribute="top" secondItem="csh-oh-mYp" secondAttribute="bottom" constant="32" id="DZK-Ui-1Er"/>
-                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="top" secondItem="XCV-gk-fJs" secondAttribute="bottom" constant="-2" id="Fbg-VM-1a4"/>
-                            <constraint firstItem="aKc-Ce-L6J" firstAttribute="top" secondItem="5Hg-lH-pJc" secondAttribute="bottom" constant="11" id="HDH-qU-ipv"/>
-                            <constraint firstItem="tcq-NU-hAe" firstAttribute="leading" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="I3l-H1-I7s"/>
-                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="centerY" secondItem="wWg-xq-S0X" secondAttribute="centerY" id="MzC-mB-pdt"/>
-                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="leading" secondItem="mqq-ab-Ip3" secondAttribute="leading" id="N7K-yL-yiy"/>
-                            <constraint firstItem="ksI-p2-x0l" firstAttribute="trailing" secondItem="OlN-61-jsw" secondAttribute="trailing" id="PJf-Xu-l5K"/>
-                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="centerY" secondItem="rcK-aL-PNu" secondAttribute="centerY" id="R4d-P3-evM"/>
-                            <constraint firstItem="XnP-8f-8Lu" firstAttribute="top" secondItem="xIT-Sx-4iI" secondAttribute="bottom" constant="7" id="Zhl-Tb-NwB"/>
-                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="width" secondItem="tcq-NU-hAe" secondAttribute="width" id="fbW-Ns-HsB"/>
-                            <constraint firstItem="xIT-Sx-4iI" firstAttribute="top" secondItem="tcq-NU-hAe" secondAttribute="bottom" constant="2" id="gWk-TV-Pyf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="9IG-Yq-I65" secondAttribute="leading" id="Chb-P9-Vmj"/>
+                            <constraint firstItem="mBj-Dv-J0e" firstAttribute="bottom" secondItem="9IG-Yq-I65" secondAttribute="bottom" id="OzU-Vz-QKV"/>
+                            <constraint firstItem="mBj-Dv-J0e" firstAttribute="top" secondItem="csh-oh-mYp" secondAttribute="bottom" constant="8" id="PzR-IU-sic"/>
+                            <constraint firstItem="aKc-Ce-L6J" firstAttribute="top" secondItem="uhN-Qj-AMQ" secondAttribute="bottom" constant="8" id="T4o-Ox-Bcp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mBj-Dv-J0e" secondAttribute="trailing" id="V9r-IR-D1R"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="uhN-Qj-AMQ" secondAttribute="leading" id="eL8-cg-Epy"/>
                             <constraint firstAttribute="leadingMargin" secondItem="aKc-Ce-L6J" secondAttribute="leading" id="hSE-P9-Pd3"/>
-                            <constraint firstItem="V7O-vn-VGT" firstAttribute="top" secondItem="XnP-8f-8Lu" secondAttribute="bottom" constant="-1" id="iTF-Gh-SpX"/>
-                            <constraint firstItem="tcq-NU-hAe" firstAttribute="top" secondItem="Rcv-hn-K5k" secondAttribute="bottom" constant="3" id="lAs-I6-ofA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5Hg-lH-pJc" secondAttribute="trailing" constant="12" id="nYU-zL-ilE"/>
-                            <constraint firstItem="wWg-xq-S0X" firstAttribute="trailing" secondItem="vrU-FD-T6A" secondAttribute="trailing" id="o0v-eV-C1J"/>
-                            <constraint firstItem="tcq-NU-hAe" firstAttribute="leading" secondItem="Rcv-hn-K5k" secondAttribute="leading" id="pyl-8e-rwB"/>
-                            <constraint firstItem="mqq-ab-Ip3" firstAttribute="leading" secondItem="XCV-gk-fJs" secondAttribute="leading" id="qUa-rP-Qff"/>
-                            <constraint firstItem="ksI-p2-x0l" firstAttribute="trailing" secondItem="rcK-aL-PNu" secondAttribute="trailing" id="rJy-9F-WfT"/>
-                            <constraint firstItem="5Hg-lH-pJc" firstAttribute="top" secondItem="9IG-Yq-I65" secondAttribute="bottom" constant="12" id="roQ-uc-WXM"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="xIT-Sx-4iI" secondAttribute="leading" id="sUE-qW-Ymh"/>
-                            <constraint firstItem="Rcv-hn-K5k" firstAttribute="top" secondItem="mqq-ab-Ip3" secondAttribute="bottom" constant="-1" id="t2z-Jq-9LL"/>
-                            <constraint firstItem="XCV-gk-fJs" firstAttribute="centerY" secondItem="mbP-Bu-tp0" secondAttribute="centerY" id="vNP-jc-knf"/>
-                            <constraint firstItem="tcq-NU-hAe" firstAttribute="centerY" secondItem="AGX-Qg-Y3M" secondAttribute="centerY" id="vmA-ga-Nn5"/>
-                            <constraint firstItem="mbP-Bu-tp0" firstAttribute="leading" secondItem="XCV-gk-fJs" secondAttribute="trailing" constant="47" id="xf0-0X-p2n"/>
                             <constraint firstItem="qXg-sh-0rQ" firstAttribute="top" secondItem="aKc-Ce-L6J" secondAttribute="bottom" constant="8" id="ys8-bS-vIK"/>
                         </constraints>
                     </view>
@@ -1835,12 +1769,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="603"/>
                     <connections>
-                        <outlet property="answerTime" destination="AGX-Qg-Y3M" id="0WW-Xh-O0d"/>
                         <outlet property="avatar" destination="9IG-Yq-I65" id="mfC-2T-T3W"/>
-                        <outlet property="averageCorrectAnswers" destination="rcK-aL-PNu" id="zsX-yM-PJu"/>
-                        <outlet property="chartView" destination="5Hg-lH-pJc" id="Cvt-Ay-3l9"/>
-                        <outlet property="gpm" destination="vrU-FD-T6A" id="wAH-Wv-3np"/>
-                        <outlet property="kda" destination="wWg-xq-S0X" id="6as-1q-QVg"/>
+                        <outlet property="chartView" destination="uhN-Qj-AMQ" id="yAN-0p-jdx"/>
                         <outlet property="lost" destination="OlN-61-jsw" id="iOn-Xx-CbH"/>
                         <outlet property="mmr" destination="mbP-Bu-tp0" id="1cM-6F-6cw"/>
                         <outlet property="navigationTitle" destination="URN-g7-yxS" id="Edu-vh-cOP"/>
