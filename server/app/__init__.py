@@ -10,8 +10,8 @@ from apscheduler.jobstores.memory import MemoryJobStore
 from apscheduler.executors.pool import ThreadPoolExecutor, ProcessPoolExecutor
 from apscheduler.triggers.date import DateTrigger
 from datetime import datetime
-from server.management.commands.saveDayMMR import saveDayMMR()
-from server.management.commands.checkTimeElapsedMatches import checkTimeElapsedMatches()
+from app.management.commands.saveDayMMR import saveDayMMR
+from app.management.commands.checkTimeElapsedMatches import checkTimeElapsedMatches
 
 logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
