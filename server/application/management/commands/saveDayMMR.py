@@ -1,4 +1,4 @@
-def saveDayMMR():
+def run():
     from application import db, app
     from application.models import User
     from datetime import date, datetime
@@ -16,4 +16,4 @@ def saveDayMMR():
 if __name__ == '__main__':
     import sys 
     sys.path.append('/home/zykis/DotaAsker/server/')
-    saveDayMMR()
+    run()

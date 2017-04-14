@@ -1,4 +1,4 @@
-def checkTimeElapsedMatches():
+def run():
     from application import db, app
     from application.models import Match, MATCH_FINISHED, MATCH_RUNNING
     from datetime import datetime
@@ -22,4 +22,4 @@ def checkTimeElapsedMatches():
 if __name__ == '__main__':
     import sys 
     sys.path.append('/home/zykis/DotaAsker/server/')
-    checkTimeElapsedMatches()
+    run()
