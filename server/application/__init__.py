@@ -7,13 +7,16 @@ import logging
 
 logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
+def func3():
+    print('func3 started')
+
 app = Flask(__name__)
 app.config.from_object('config')
 app.wsgi_app = ProxyFix(app.wsgi_app)
 db = SQLAlchemy(app)
 mail = Mail(app)
+
 scheduler = APScheduler()
-scheduler.api_enabled = True
 scheduler.init_app(app)
 scheduler.start()
 

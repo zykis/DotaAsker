@@ -29,6 +29,12 @@ JOBS = [
         'func': 'application.management.commands.saveDayMMR:run',
         'trigger': 'cron',
         'minute': '*/1'
+    },
+    {
+        'id': 'func_3',
+        'func': 'application:func3',
+        'trigger': 'cron',
+        'second': '*/5'
     }
 ]
 
