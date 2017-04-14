@@ -12,13 +12,14 @@ def func3():
 
 app = Flask(__name__)
 app.config.from_object('config')
-app.wsgi_app = ProxyFix(app.wsgi_app)
-db = SQLAlchemy(app)
-mail = Mail(app)
 
 scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
+
+app.wsgi_app = ProxyFix(app.wsgi_app)
+db = SQLAlchemy(app)
+mail = Mail(app)
 
 from application import models, views
 
