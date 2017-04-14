@@ -1,10 +1,9 @@
 def run():
-    from application import db, app
+    from application import db
     from application.models import User
     from datetime import date, datetime
 
     print("STARTED saveDayMMR: {}".format(datetime.now()))
-    app.logger.info("STARTED saveDayMMR: {}".format(datetime.now()))
     users_list = User.query.all()
     t = date.today()
     strt = t.strftime("%Y-%m-%d")
