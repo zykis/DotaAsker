@@ -20,13 +20,13 @@ MATCH_UPDATELIFE = 2 * 24 * 60 * 60
 JOBS = [
     {
         'id': 'check_elapsed',
-        'func': 'application.management.commands.checkTimeElapsedMatches:checkTimeElapsedMatches',
+        'func': 'application.management.commands:checkTimeElapsedMatches',
         'trigger': 'cron',
         'seconds': '*/1'
     },
     {
         'id': 'save_mmr',
-        'func': 'application.management.commands.saveDayMMR:saveDayMMR',
+        'func': 'application.management.commands:saveDayMMR',
         'trigger': 'cron',
         'seconds': '*/1'
     }
