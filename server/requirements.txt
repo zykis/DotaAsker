@@ -7,5 +7,3 @@ pytest
 sqlalchemy-migrate
 Flask-Mail
 cloudinary
-apscheduler
-Flask-APScheduler
