@@ -22,13 +22,13 @@ JOBS = [
         'id': 'check_elapsed',
         'func': 'application.management.commands:checkTimeElapsedMatches',
         'trigger': 'cron',
-        'seconds': '*/1'
+        'minute': '*/1'
     },
     {
         'id': 'save_mmr',
         'func': 'application.management.commands:saveDayMMR',
         'trigger': 'cron',
-        'seconds': '*/1'
+        'minute': '*/1'
     }
 ]
 
