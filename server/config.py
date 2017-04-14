@@ -16,6 +16,22 @@ SECRET_KEY = 'sadlk21lkmsadhaaw'
 MATCH_LIFETIME = 2 * 24 * 60 * 60
 MATCH_UPDATELIFE = 2 * 24 * 60 * 60
 
+# Flask-APScheduler
+JOBS = [
+    {
+        'id': 'check_elapsed',
+        'func': 'application.management.commands.checkTimeElapsedMatches:checkTimeElapsedMatches',
+        'trigger': 'cron',
+        'seconds': '*/1'
+    },
+    {
+        'id': 'save_mmr',
+        'func': 'application.management.commands.saveDayMMR:saveDayMMR',
+        'trigger': 'cron',
+        'seconds': '*/1'
+    }
+]
+
 # Flask-Mail settings
 MAIL_SERVER="smtp.gmail.com"
 MAIL_PORT=465
