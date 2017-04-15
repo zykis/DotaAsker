@@ -24,6 +24,8 @@
 #define WAITING_MATCH 1
 #define RECENT_MATCH 2
 
+typedef enum { kPlayer = 0, kOpponent, kDraw } Winner;
+
 @class User;
 RLM_ARRAY_TYPE(User)
 

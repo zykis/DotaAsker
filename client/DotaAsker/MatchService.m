@@ -117,4 +117,15 @@
     return subject;
 }
 
+- (Winner)winnerAtMatch:(Match*)match {
+    if (([match finishReason] == MATCH_FINISH_REASON_SURREND) && (![[match winner] isEqual:[Player instance]]))
+        return kOpponent;
+    if (([match finishReason] == MATCH_FINISH_REASON_TIME_ELAPSED) && (![[match winner] isEqual:[Player instance]]))
+        return kOpponent;
+    if ([[match winner] isEqual: [Player instance]])
+        return kPlayer;
+    else
+        return kDraw;
+}
+
 @end

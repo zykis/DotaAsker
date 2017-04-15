@@ -28,5 +28,6 @@
 - (User*)nextMoveUserInMatch:(Match*)match;
 
 - (RACReplaySubject*)surrendAtMatch: (Match*)match;
+- (Winner)winnerAtMatch:(Match*)match;
 
 @end

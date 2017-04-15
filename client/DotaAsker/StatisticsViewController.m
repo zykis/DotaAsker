@@ -147,9 +147,26 @@
     return 1;
 }
 
+- (NSArray*)recentMatches {
+    NSMutableArray* resultMatches = [[NSMutableArray alloc] init];
+    
+    for (Match* m in [Match allObjects]) {
+        if (m.state == MATCH_FINISHED)
+            [resultMatches addObject:m];
+    }
+    
+    // Sorting array by updated date
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedOn" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSArray *sortedMatches = [resultMatches sortedArrayUsingDescriptors:sortDescriptors];
+    
+    return [NSArray arrayWithArray: sortedMatches];
+}
+
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"match"];
-    Match* m = [[[Player instance] matches] objectAtIndex:[indexPath row]];
+    
+    Match* m = [[self recentMatches] objectAtIndex:[indexPath row]];
     UILabel* opponentName = [cell viewWithTag:100];
     UIImageView* opponentAvatar = [cell viewWithTag:101];
     UILabel* score = [cell viewWithTag:102];
@@ -172,10 +189,9 @@
     NSString* scoreStr = [NSString stringWithFormat:@"%lu - %lu", (unsigned long)scorePlayer, (unsigned long)scoreOpponent];
     [score setText:scoreStr];
     // mmr gain
-    User* winner = m.winner;
-    BOOL userWinner = [winner isEqual:[Player instance]];
-    [mmrGain setTextColor: userWinner? [UIColor greenColor]: [UIColor redColor]];
-    [mmrGain setText:[NSString stringWithFormat:@"%@%lu", userWinner? @"+": @"-" ,(long)[m mmrGain]]];
+    Winner winner = [[[ServiceLayer instance] matchService] winnerAtMatch:m];
+    [mmrGain setTextColor: winner == kPlayer ? [UIColor greenColor] : winner == kOpponent ? [UIColor redColor] : [UIColor grayColor]];
+    [mmrGain setText:[NSString stringWithFormat:@"%@%lu", winner == kPlayer ? @"+" : winner == kOpponent ?  @"-" : @"" ,(long)[m mmrGain]]];
     
     return cell;
 }

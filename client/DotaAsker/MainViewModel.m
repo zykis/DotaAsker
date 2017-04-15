@@ -241,14 +241,9 @@
     return [m mmrGain];
 }
 
-- (BOOL)playerWonRecentMatchAtRow:(NSUInteger)row {
+- (Winner)winnerAtMatchAtRow:(NSUInteger)row {
     Match* m = [[self recentMatches] objectAtIndex:row];
-    if (([m finishReason] == MATCH_FINISH_REASON_SURREND) && ([m winner] == nil))
-        return NO;
-    if (([[m winner] isEqual: [Player instance]]) || ([m winner] == nil))
-        return YES;
-    else
-        return NO;
+    return [[[ServiceLayer instance] matchService] winnerAtMatch:m];
 }
 
 - (Match*)currentMatchAtRow: (NSUInteger)row {

@@ -306,6 +306,8 @@ class Match(Base):
             db.session.add(winner)
             
         surrender.mmr -= mmr_gain
+        surrender.total_matches_lost += 1
+
         db.session.add(self)
         db.session.add(surrender)
         db.session.commit()

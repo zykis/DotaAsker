@@ -191,10 +191,12 @@
             [nameLabel setAdjustsFontSizeToFitWidth:YES];
             // mmr gain label
             UILabel* mmrGainLabel = (UILabel*)[cell viewWithTag:104];
-            BOOL won = [_viewModel playerWonRecentMatchAtRow:[indexPath row]];
+            
+            Winner winner = [_viewModel winnerAtMatchAtRow:[indexPath row]];
+            
             NSUInteger mmrGain = [_viewModel mmrGainForRecentMatchAtRow:[indexPath row]];
-            NSString* mmrGainText = [NSString stringWithFormat:@"%@%ld", won? @"+" : @"-", mmrGain];
-            UIColor* mmrGainTextColor = won? [UIColor greenColor] : [UIColor redColor];
+            NSString* mmrGainText = [NSString stringWithFormat:@"%@%ld", winner == kPlayer? @"+" : winner == kOpponent? @"-" : @"", mmrGain];
+            UIColor* mmrGainTextColor = winner == kPlayer ? [UIColor greenColor] : winner == kOpponent ? [UIColor redColor] : [UIColor grayColor];
             [mmrGainLabel setText:mmrGainText];
             [mmrGainLabel setTextColor:mmrGainTextColor];
             [mmrGainLabel setHidden:NO];
