@@ -11,10 +11,12 @@
 #import "ServiceLayer.h"
 #import "ModalLoadingView.h"
 #import "Palette.h"
+#import "PercentValueFormatter.h"
 
 // Libraries
 #import <Charts/Charts-Swift.h>
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
+
 
 @interface StatisticsViewController ()
 
@@ -23,6 +25,7 @@
 @implementation StatisticsViewController
 
 @synthesize chartView = _chartView;
+@synthesize pieChartView = _pieChartView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,9 +49,6 @@
     if (user.totalCorrectAnswers + user.totalIncorrectAnswers)
         averageAnswerTime = user.totalTimeForAnswers / (user.totalCorrectAnswers + (float)user.totalIncorrectAnswers);
     
-    [self.wins setText:[NSString stringWithFormat:@"%ld", (long)user.totalMatchesWon]];
-    [self.lost setText:[NSString stringWithFormat:@"%ld", (long)user.totalMatchesLost]];
-    
     [self.avatar setImage:[UIImage imageNamed:[user avatarImageName]]];
     [self.tableView reloadData];
     
@@ -58,12 +58,18 @@
     _chartView.highlightPerTapEnabled = YES;
     _chartView.drawGridBackgroundEnabled = NO;
     _chartView.drawBordersEnabled = NO;
-    _chartView.backgroundColor = [[Palette shared] themesButtonColor];
+    _chartView.backgroundColor = [UIColor clearColor];
+    _chartView.descriptionText = @"";
+    _chartView.legend.enabled = NO;
+    _chartView.scaleXEnabled = NO;
+    _chartView.scaleYEnabled = NO;
     
     ChartXAxis* xaxis = _chartView.xAxis;
-    xaxis.drawGridLinesEnabled = YES;
+    xaxis.drawGridLinesEnabled = NO;
     xaxis.drawAxisLineEnabled = YES;
-    xaxis.drawLabelsEnabled = NO;
+    xaxis.drawLabelsEnabled = YES;
+    xaxis.labelPosition = XAxisLabelPositionBottom;
+    xaxis.labelTextColor = [UIColor whiteColor];
     
     ChartYAxis* laxis = _chartView.leftAxis;
     laxis.drawGridLinesEnabled = NO;
@@ -79,6 +85,8 @@
     for (int i = 0; i < 10; i++) {
         ChartDataEntry* entry = [[ChartDataEntry alloc] init];
         [entry setX:i];
+        NSString* dateString = @"12.04";
+        [entry setData:dateString];
         [entry setY:(float)rand() / RAND_MAX * 5000 + 4000];
         [entries addObject:entry];
     }
@@ -90,10 +98,36 @@
     dataSet.circleHoleColor = [[Palette shared] themesButtonColor];
     dataSet.drawCubicEnabled = YES;
     dataSet.drawFilledEnabled = YES;
-    dataSet.valueTextColor = [[Palette shared] backgroundColor];
+    dataSet.valueTextColor = [[Palette shared] themesButtonColor];
+    dataSet.fillColor = [UIColor greenColor];
+    dataSet.label = @"MMR";
     
     LineChartData* data = [[LineChartData alloc] initWithDataSet:dataSet];
     _chartView.data = data;
+    
+    // Pie Chart
+    _pieChartView.holeRadiusPercent = 0.15f;
+    _pieChartView.descriptionText = @"";
+    _pieChartView.legend.enabled = NO;
+    _pieChartView.backgroundColor = [UIColor clearColor];
+    _pieChartView.tintColor = [UIColor brownColor];
+    _pieChartView.highlightPerTapEnabled = NO;
+    _pieChartView.transparentCircleColor = [UIColor clearColor];
+    _pieChartView.holeColor = [UIColor whiteColor];
+    
+    float winRate = (float)[[Player instance] totalMatchesWon] / (float)([[Player instance] totalMatchesLost] + [[Player instance] totalMatchesWon]);
+    PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winRate * 100];
+    eWin.label = @"Won";
+    PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:(1 - winRate) * 100];
+    eLose.label = @"Lost";
+    
+    PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:@[eLose, eWin]];
+    dSet.sliceSpace = 4;
+    dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
+    dSet.selectionShift = 0.0f;
+    dSet.colors = @[[[[Palette shared] darkRedColor] colorWithAlphaComponent:0.7], [[[Palette shared] darkGreenColor] colorWithAlphaComponent:0.7]];
+    PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
+    _pieChartView.data = d;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,11 +172,7 @@
     NSString* scoreStr = [NSString stringWithFormat:@"%lu - %lu", (unsigned long)scorePlayer, (unsigned long)scoreOpponent];
     [score setText:scoreStr];
     // mmr gain
-    User* winner;
-    if (scorePlayer > scoreOpponent)
-        winner = [Player instance];
-    else
-        winner = opponent;
+    User* winner = m.winner;
     BOOL userWinner = [winner isEqual:[Player instance]];
     [mmrGain setTextColor: userWinner? [UIColor greenColor]: [UIColor redColor]];
     [mmrGain setText:[NSString stringWithFormat:@"%@%lu", userWinner? @"+": @"-" ,(long)[m mmrGain]]];

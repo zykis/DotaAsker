@@ -19,6 +19,9 @@
 @property (strong, nonatomic) UIColor* findMatchButtonColor;
 @property (strong, nonatomic) UIColor* roundViewColor;
 
+@property (strong, nonatomic) UIColor* darkGreenColor;
+@property (strong, nonatomic) UIColor* darkRedColor;
+
 @property (strong, nonatomic) UIImage* pattern;
 
 + (Palette*)shared;

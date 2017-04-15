@@ -76,6 +76,8 @@
 		AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BC1B2EFB9C006212D2 /* Round.m */; };
 		AC8841C01B2EFC6B006212D2 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BF1B2EFC6B006212D2 /* Theme.m */; };
 		AC8841C31B2EFCF9006212D2 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841C21B2EFCF9006212D2 /* Question.m */; };
+		AC9564111EA2050700A3A71F /* PercentValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9564101EA2050600A3A71F /* PercentValueFormatter.m */; };
+		AC9564141EA208B800A3A71F /* DateAxisValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9564131EA208B800A3A71F /* DateAxisValueFormatter.m */; };
 		AC9646471E720FF700F9CD32 /* icon-avatar-white-48.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */; };
 		AC9646481E720FF700F9CD32 /* icon-avatar-white-48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */; };
 		AC9646491E720FF700F9CD32 /* icon-avatar-white-48@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */; };
@@ -280,6 +282,10 @@
 		AC8841BF1B2EFC6B006212D2 /* Theme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theme.m; sourceTree = "<group>"; };
 		AC8841C11B2EFCF9006212D2 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		AC8841C21B2EFCF9006212D2 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		AC95640F1EA2050600A3A71F /* PercentValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PercentValueFormatter.h; sourceTree = "<group>"; };
+		AC9564101EA2050600A3A71F /* PercentValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PercentValueFormatter.m; sourceTree = "<group>"; };
+		AC9564121EA208B800A3A71F /* DateAxisValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateAxisValueFormatter.h; sourceTree = "<group>"; };
+		AC9564131EA208B800A3A71F /* DateAxisValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateAxisValueFormatter.m; sourceTree = "<group>"; };
 		AC96463B1E720FF700F9CD32 /* icon-avatar-white-48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48.png"; path = "resources/icons/icon-avatar-white-48.png"; sourceTree = "<group>"; };
 		AC96463C1E720FF700F9CD32 /* icon-avatar-white-48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@2x.png"; path = "resources/icons/icon-avatar-white-48@2x.png"; sourceTree = "<group>"; };
 		AC96463D1E720FF700F9CD32 /* icon-avatar-white-48@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-avatar-white-48@3x.png"; path = "resources/icons/icon-avatar-white-48@3x.png"; sourceTree = "<group>"; };
@@ -489,6 +495,10 @@
 				AC7352081B239A1B00FFF356 /* Info.plist */,
 				AC7352091B239A1B00FFF356 /* main.m */,
 				ACA1CE811E9410E40004DC70 /* Localizable.strings */,
+				AC95640F1EA2050600A3A71F /* PercentValueFormatter.h */,
+				AC9564101EA2050600A3A71F /* PercentValueFormatter.m */,
+				AC9564121EA208B800A3A71F /* DateAxisValueFormatter.h */,
+				AC9564131EA208B800A3A71F /* DateAxisValueFormatter.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1076,6 +1086,7 @@
 				AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */,
 				ACF5F3821D9F15550060EA56 /* MatchViewController.m in Sources */,
 				AC77BC461DAD7B8700B32121 /* RoundService.m in Sources */,
+				AC9564141EA208B800A3A71F /* DateAxisValueFormatter.m in Sources */,
 				AC780F561DE781F1007E8158 /* UnlockPremiumViewController.m in Sources */,
 				AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */,
 				AC8841B71B2E5DAA006212D2 /* User.m in Sources */,
@@ -1098,6 +1109,7 @@
 				AC7E6D2B1DC2A05400F7871C /* LoadingView.m in Sources */,
 				AC9A196F1D9869DD00B66AAE /* AnswerParser.m in Sources */,
 				AC6091841C006F1E00D728B6 /* ServiceLayer.m in Sources */,
+				AC9564111EA2050700A3A71F /* PercentValueFormatter.m in Sources */,
 				AC7B679D1DA6AAC900351887 /* UserService.m in Sources */,
 				AC8841BA1B2E650B006212D2 /* Match.m in Sources */,
 				AC9A19741D9869DD00B66AAE /* ThemeParser.m in Sources */,

@@ -17,6 +17,7 @@
 #import "UIViewController+Utils.h"
 #import "ModalLoadingView.h"
 #import "Helper.h"
+#import "Palette.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -244,7 +245,7 @@
 - (void)animateRightButton: (UIButton*)rightButton withCompletion:(void (^)(bool finished))completionBlock {
     struct CGColor* oldColor = rightButton.layer.backgroundColor;
     [UIView animateWithDuration:0.8 delay:0.2 options:kNilOptions animations:^{
-        rightButton.layer.backgroundColor = [UIColor greenColor].CGColor;
+        rightButton.layer.backgroundColor = [[Palette shared] darkGreenColor].CGColor;
     } completion:^(BOOL finished) {
         completionBlock(finished);
         rightButton.layer.backgroundColor = oldColor;
@@ -254,7 +255,7 @@
 - (void)animateWrongButton: (UIButton*)wrongButton withCompletion:(void (^)(bool finished))completionBlock {
     struct CGColor* oldColor = wrongButton.layer.backgroundColor;
     [UIView animateWithDuration:0.8 delay:0.2 options:kNilOptions animations:^{
-        wrongButton.layer.backgroundColor = [UIColor redColor].CGColor;
+        wrongButton.layer.backgroundColor = [[Palette shared] darkRedColor].CGColor;
     } completion:^(BOOL finished) {
         completionBlock(finished);
         wrongButton.layer.backgroundColor = oldColor;

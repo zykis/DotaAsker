@@ -54,6 +54,8 @@
     [[Palette shared] setStatusBarColor:[UIColor colorWithRed:0.149 green:0.196 blue:0.220 alpha:1.0]];
     [[Palette shared] setNavigationPanelColor:[UIColor colorWithRed:0.216 green:0.278 blue:0.310 alpha:1.00]];
     [[Palette shared] setThemesButtonColor:[UIColor colorWithRed:0.96 green:0.50 blue:0.09 alpha:1.0]];
+    [[Palette shared] setDarkGreenColor:[UIColor colorWithRed:0.11 green:0.37 blue:0.13 alpha:1.0]];
+    [[Palette shared] setDarkRedColor:[UIColor colorWithRed:0.75 green:0.21 blue:0.05 alpha:1.0]];
     
     // setting up pattern
     [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-6.png"]];
