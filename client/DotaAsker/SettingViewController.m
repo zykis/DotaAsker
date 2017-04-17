@@ -81,13 +81,19 @@
 
 - (IBAction)top100Pushed {
     if ([self checkPremium]) {
+        // Present LoadingView
+        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting top100"];
+        [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
+    
         __block NSDictionary* results;
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] top100];
         [subject subscribeNext:^(id x) {
             results = x;
         } error:^(NSError *error) {
+            [loadingView removeFromSuperview];
             [self presentAlertControllerWithMessage:[error localizedDescription]];
         } completed:^{
+            [loadingView removeFromSuperview];
             [self performSegueWithIdentifier:@"top100" sender:results];
         }];
         

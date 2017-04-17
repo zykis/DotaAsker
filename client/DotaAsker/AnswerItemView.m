@@ -7,6 +7,7 @@
 //
 
 #import "AnswerItemView.h"
+#import "Palette.h"
 
 @implementation AnswerItemView
 
@@ -45,15 +46,15 @@
     UIColor *color;
     if (_answerState == 0) {
         //answer incorrect
-        color = [[UIColor redColor] colorWithAlphaComponent:0.55f];
+        color = [[[Palette shared] darkRedColor] colorWithAlphaComponent:1.0f];
     }
     else if (_answerState == 1) {
         //answer correct
-        color = [[UIColor greenColor] colorWithAlphaComponent:0.55f];
+        color = [[[Palette shared] darkGreenColor] colorWithAlphaComponent:1.0f];
     }
     else {
         //answer is hidden
-        color = [[UIColor grayColor] colorWithAlphaComponent:0.55f];
+        color = [[UIColor grayColor] colorWithAlphaComponent:1.0f];
     }
     [color setFill];
     UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rect cornerRadius:4.0f];

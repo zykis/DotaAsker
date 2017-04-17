@@ -52,7 +52,7 @@
     _backgroundColorEnd = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
     _highlightBackgroundColorStart = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
     _highlightBackgroundColorEnd = [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
-    _disabledBackgroundColor = [UIColor colorWithRed:1.00 green:0.80 blue:0.50 alpha:1.0];
+    _disabledBackgroundColor = [UIColor colorWithRed:0.62 green:0.62 blue:0.62 alpha:1.0];
 }
 
 - (void)drawButton {
