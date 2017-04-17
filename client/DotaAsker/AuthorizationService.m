@@ -34,9 +34,9 @@
         [dict setValue:email forKey:@"email"];
     }
     
-    NSData* jsonData= [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     
-    NSString* jsonString = [NSString stringWithUTF8String:[jsonData bytes]];
+    NSString* jsonString = [NSString alloc] initWithData:[jsonData bytes] encoding:NSUTF16StringEncoding];
     NSString* lengthStr = [NSString stringWithFormat:@"%ld", (unsigned long)[jsonString length]];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

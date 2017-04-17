@@ -110,22 +110,21 @@ def post_question():
     resp.mimetype = 'application/json'
     return resp
 
-@app.route('/users/<int:id>', methods=['GET'])
-def get_user(id):
-    g.locale = request.headers['Accept-Language']
-    user = User.query.get(id)
-    if not user:
-        abort(400)
-    schema = UserSchema(exclude=('matches', 'friends'))
-    res = schema.dumps(user)
-    if not res.errors:
-        resp = make_response(res.data)
-        resp.status_code = 200
-        resp.mimetype = 'application/json'
-        return resp
-    else:
-        # TODO: Sending server errors to client
-        abort(500)
+#@app.route('/users/<int:id>', methods=['GET'])
+#def get_user(id):
+#    g.locale = request.headers['Accept-Language']
+#    user = User.query.get(id)
+#    if not user:
+#        abort(400)
+#    schema = UserSchema(exclude=('matches', 'friends'))
+#    res = schema.dumps(user)
+#    if not res.errors:
+#        resp = make_response(res.data)
+#        resp.status_code = 200
+#        resp.mimetype = 'application/json'
+#        return resp
+#    else:
+#        abort(500)
 
 
 @app.route('/user', methods=['POST'])
