@@ -29,6 +29,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    self.premiumButton.hidden = ![[SKPaymentQueue] canMakePayments];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +77,10 @@
 }
 
 - (IBAction)premiumPushed {
-    [self performSegueWithIdentifier:@"unlock_premium" sender:self];
+    if (![self checkPremium])
+        [self performSegueWithIdentifier:@"unlock_premium" sender:self];
+    else
+        [self presentOkControllerWithMessage:NSLocalizedString(@"You already have premium")];
 }
 
 - (IBAction)top100Pushed {
@@ -114,14 +118,6 @@
     }
     else
         return YES;
-}
-
-- (void)setupCompactWidth {
-    
-}
-
-- (void)setupRegularWidth {
-    
 }
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ModalLoadingView;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -23,8 +25,6 @@
 
 //Or....
 //Should it be a BOOL 'Synchronized' property on every data object?...
-
-@property (strong, nonatomic) NSMutableArray *messagesToHost;
 - (void)customizeAppearence;
 - (void)printAvailableFontNames;
 @end

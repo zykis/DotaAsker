@@ -11,6 +11,7 @@
 #import "Client.h"
 #import "Palette.h"
 #import "Helper.h"
+#import "ModalLoadingView.h"
 
 // IOS
 #import <Realm/Realm.h>

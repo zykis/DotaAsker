@@ -6,9 +6,13 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "UnlockPremiumViewController.h"
 #import "ServiceLayer.h"
 #import "ModalLoadingView.h"
+#import "IAPHelper.h"
+
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 @interface UnlockPremiumViewController ()
@@ -18,16 +22,22 @@
 @implementation UnlockPremiumViewController
 
 @synthesize verticalStackView = _verticalStackView;
+@synthesize loadingView = _loadingView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    // Do any additional setup after loading the view.
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    self.unlockButton.enabled = NO;
+    
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"product_ids" withExtension:@"plist"];
+    NSArray *productIDs = [NSArray arrayWithContentsOfURL:url];
+
+    [IAPHelper validateProductIdentifiers:productIDs withDelegate:self andStrongRefToRequest:self.productRequest];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -107,23 +117,93 @@
 }
 
 - (IBAction)unlockPressed {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Unlocking premium"];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [[Player instance] setPremium:YES];
-    [realm commitWriteTransaction];
-
-    RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
-    [subject subscribeNext:^(id x) {
-        NSLog(@"Premium updated");
-    } error:^(NSError *error) {
-        NSLog(@"%@", [error localizedDescription]);
-        [loadingView removeFromSuperview];
-    } completed:^{
-        NSLog(@"Premium update complited");
-        [loadingView removeFromSuperview];
-    }];
+    if (!_loadingView)
+        _loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage: NSLocalizedString(@"Buying premium", 0)];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
+    [IAPHelper buy:self.premiumProduct];
 }
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    self.premiumProduct = [response.products firstObject];
+ 
+    for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
+        NSLog(@"Invalid Product Identifier: %@", invalidIdentifier);
+        return;
+    }
+ 
+    self.unlockButton.enabled = YES;
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState) {
+            case SKPaymentTransactionStatePurchasing:
+                break;
+            case SKPaymentTransactionStateDeferred:
+                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                    [_loadingView removeFromSuperview];
+                break;
+            case SKPaymentTransactionStateFailed:
+                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                        [_loadingView removeFromSuperview];
+                [self presentAlertControllerWithMessage:NSLocalizedString(@"Error, while trying to buy premium", 0)];
+                break;
+            case SKPaymentTransactionStatePurchased:
+                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                    [_loadingView removeFromSuperview];
+                
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                [[Player instance] setPremium:YES];
+                [realm commitWriteTransaction];
+
+                RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
+                [subject subscribeNext:^(id x) {
+                    NSLog(@"Premium updated");
+                } error:^(NSError *error) {
+                    //! TODO: store somehow
+                    NSLog(@"%@", [error localizedDescription]);
+                    [_loadingView removeFromSuperview];
+                } completed:^{
+                    NSLog(@"Premium update complited");
+                    [_loadingView removeFromSuperview];
+                }];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
+                break;
+            case SKPaymentTransactionStateRestored:
+                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                        [_loadingView removeFromSuperview];
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                [[Player instance] setPremium:YES];
+                [realm commitWriteTransaction];
+                
+                RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
+                [subject subscribeNext:^(id x) {
+                    NSLog(@"Premium updated");
+                } error:^(NSError *error) {
+                    NSLog(@"%@", [error localizedDescription]);
+                    [loadingView removeFromSuperview];
+                } completed:^{
+                    NSLog(@"Premium update complited");
+                    [loadingView removeFromSuperview];
+                }];
+                
+                [self.navigationController popViewControllerAnimated:YES];
+                [self presentOkControllerWithMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
+                break;
+            default:
+                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                        [_loadingView removeFromSuperview];
+                // For debugging
+                NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
+                break;
+        }
+    }
+}
+
 @end

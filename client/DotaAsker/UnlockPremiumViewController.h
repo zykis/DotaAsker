@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "UIViewController+Utils.h"
 
-@interface UnlockPremiumViewController : UIViewController
+@interface UnlockPremiumViewController : UIViewController <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 - (IBAction)unlockPressed;
 @property (weak, nonatomic) IBOutlet UIStackView* verticalStackView;
+@property (strong, nonatomic) ModalLoadingView* loadingView;
+@property (strong, nonatomic) SKProduct* premiumProduct;
+@property (strong, nonatomic) SKProductsRequest* productRequest;
 
 @end
