@@ -359,7 +359,7 @@ def new_user():
     username = request.json.get('username', None)
     password = request.json.get('password', None)
     email = request.json.get('email', None)
-    app.logger.debug("Signging up with username: {} password: {}".format(username, password))
+    # app.logger.debug("Signging up with username: {} password: {}".format(username.decode('utf-8'), password.decode('utf-8')))
     if (username is None) or (password is None):
         abort(400) # missing arguments
     if User.query.filter_by(username = username).first() is not None:
@@ -375,7 +375,10 @@ def new_user():
     user.hash_password(password)
     db.session.add(user)
     db.session.commit()
-    return jsonify({ 'username': user.username }), 201, {'Location': url_for('get_user', id = user.id, _external = True)}
+    data = json.dumps
+    resp = make_response()
+    resp.status_code = 200
+    return resp
 
 @auth.error_handler
 def auth_error():
