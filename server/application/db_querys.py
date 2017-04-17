@@ -50,7 +50,7 @@ class Database_queries:
         for u in users_in_matches_list:
             if abs(u.mmr - user.mmr) < min_diff:
                 proper_user = u
-                
+
         # get not started matches of proper_user and sort them by creation time
         proper_matches = []
         for m in not_started_matches:

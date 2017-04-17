@@ -134,7 +134,7 @@
         return kOpponent;
     if ([[match winner] isEqual: [Player instance]])
         return kPlayer;
-    else if ([[match winner] isEqual:opponent]
+    else if ([[match winner] isEqual:opponent])
         return kOpponent;
     else
         return kDraw;

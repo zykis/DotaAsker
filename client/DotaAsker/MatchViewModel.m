@@ -6,6 +6,7 @@
 //  Copyright © 2016 Artem. All rights reserved.
 //
 
+// Local
 #import "MatchViewModel.h"
 #import "Player.h"
 #import "UserAnswer.h"
@@ -15,6 +16,9 @@
 #import "Match.h"
 #import "ServiceLayer.h"
 #import "RoundService.h"
+#import "Theme.h"
+
+// Libraries
 #import <Realm/Realm.h>
 
 @implementation MatchViewModel

@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
+
+// Local
 #import "MatchViewController.h"
 #import "ThemeSelectedViewController.h"
 #import "ThemeSelectionViewController.h"
@@ -15,7 +17,9 @@
 #import "Palette.h"
 #import "RoundViewLayered.h"
 #import "ModalLoadingView.h"
+#import "Theme.h"
 
+// Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 
 

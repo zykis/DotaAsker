@@ -1,6 +1,10 @@
 #import "IAPHelper.h"
 
-+ (void)validateProductIdentifiers: (NSArray*)product_ids withDelegate: (id<SKProductsRequestDelegate>)delegate andStrongRefToRequest: (SKProductsRequest*)request [
+@implementation IAPHelper
+
++ (void)validateProductIdentifiers: (NSArray*)product_ids
+                      withDelegate: (id<SKProductsRequestDelegate>)delegate
+             andStrongRefToRequest: (SKProductsRequest*)request {
     SKProductsRequest *productsRequest = [[SKProductsRequest alloc]
                     initWithProductIdentifiers:[NSSet setWithArray:product_ids]];
  
@@ -11,7 +15,8 @@
 }
 
 + (void)buy: (SKProduct*)product {
-    SKProduct *product = product;
     SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
     [[SKPaymentQueue defaultQueue] addPayment:payment];
 }
+
+@end

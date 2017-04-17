@@ -11,6 +11,11 @@
 #import "ServiceLayer.h"
 #import "Player.h"
 #import "Top100ViewController.h"
+#import "ModalLoadingView.h"
+#import "SettingsButton.h"
+
+// iOS
+#import <StoreKit/StoreKit.h>
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC.h>
@@ -29,7 +34,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    self.premiumButton.hidden = ![[SKPaymentQueue] canMakePayments];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,28 +43,6 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-}
-
-- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
-    [super traitCollectionDidChange:previousTraitCollection];
-    if (previousTraitCollection.horizontalSizeClass != self.traitCollection.horizontalSizeClass) {
-        switch (self.traitCollection.horizontalSizeClass) {
-            case UIUserInterfaceSizeClassRegular:
-                [self setupRegularWidth];
-                break;
-                
-            case UIUserInterfaceSizeClassCompact:
-                [self setupCompactWidth];
-                break;
-                
-            case UIUserInterfaceSizeClassUnspecified:
-                NSLog(@"Weird size class");
-                break;
-                
-            default:
-                break;
-        }
-    }
 }
 
 - (IBAction)backButtonPushed:(id)sender {
@@ -80,7 +62,7 @@
     if (![self checkPremium])
         [self performSegueWithIdentifier:@"unlock_premium" sender:self];
     else
-        [self presentOkControllerWithMessage:NSLocalizedString(@"You already have premium")];
+        [self presentOkControllerWithMessage:NSLocalizedString(@"You already have premium", 0)];
 }
 
 - (IBAction)top100Pushed {

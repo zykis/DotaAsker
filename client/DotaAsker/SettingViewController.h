@@ -6,17 +6,20 @@
 //  Copyright (c) 2015 Artem. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+// Local
 #import "UIViewController+Utils.h"
 
+// iOS
+#import <UIKit/UIKit.h>
+
+@class SettingsButton;
+
 @interface SettingViewController : UIViewController
+@property (strong, nonatomic) IBOutlet SettingsButton *unlockButton;
 - (IBAction)backButtonPushed:(id)sender;
 - (IBAction)avatarsPushed;
 - (IBAction)questionPushed;
 - (IBAction)premiumPushed;
 - (IBAction)top100Pushed;
-
 - (BOOL)checkPremium;
-- (void)setupCompactWidth;
-- (void)setupRegularWidth;
 @end

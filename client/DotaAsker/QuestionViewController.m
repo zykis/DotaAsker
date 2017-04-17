@@ -18,6 +18,7 @@
 #import "ModalLoadingView.h"
 #import "Helper.h"
 #import "Palette.h"
+#import "Theme.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>

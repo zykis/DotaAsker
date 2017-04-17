@@ -9,7 +9,6 @@
 #import "AnswerService.h"
 #import "QuestionService.h"
 #import "AnswerParser.h"
-#import "AnswerTransport.h"
 
 @implementation AnswerService
 

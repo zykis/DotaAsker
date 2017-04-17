@@ -122,7 +122,7 @@
 - (RACReplaySubject*)obtainStatistic:(unsigned long long)ID {
     RACReplaySubject* subject = [[RACReplaySubject alloc] init];
     [[_transport obtainStatistic:ID] subscribeNext:^(id x) {
-        NSData* date = [x dataUsingEncoding:NSUTF8StringEncoding];
+        NSData* data = [x dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
         [subject sendNext:dict];
     } error:^(NSError *error) {

@@ -36,7 +36,7 @@
     
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     
-    NSString* jsonString = [NSString alloc] initWithData:[jsonData bytes] encoding:NSUTF16StringEncoding];
+    NSString* jsonString = [[NSString alloc] initWithData:[jsonData bytes] encoding:NSUTF16StringEncoding];
     NSString* lengthStr = [NSString stringWithFormat:@"%ld", (unsigned long)[jsonString length]];
 
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -56,7 +56,7 @@
             [errDict setObject:errorDescription forKey:NSLocalizedDescriptionKey];
             
             NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:errDict];
-            [subject sendError:error];
+            [subject sendError:err];
         } else {
             [subject sendNext:responseObject];
             [subject sendCompleted];

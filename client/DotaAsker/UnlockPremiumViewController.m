@@ -11,6 +11,7 @@
 #import "ServiceLayer.h"
 #import "ModalLoadingView.h"
 #import "IAPHelper.h"
+#import "SettingsButton.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -142,16 +143,17 @@
             case SKPaymentTransactionStatePurchasing:
                 break;
             case SKPaymentTransactionStateDeferred:
-                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                     [_loadingView removeFromSuperview];
                 break;
             case SKPaymentTransactionStateFailed:
-                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                         [_loadingView removeFromSuperview];
                 [self presentAlertControllerWithMessage:NSLocalizedString(@"Error, while trying to buy premium", 0)];
                 break;
             case SKPaymentTransactionStatePurchased:
-                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+            {
+                if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                     [_loadingView removeFromSuperview];
                 
                 RLMRealm* realm = [RLMRealm defaultRealm];
@@ -174,8 +176,10 @@
                 [self.navigationController popViewControllerAnimated:YES];
                 [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
                 break;
+            }
             case SKPaymentTransactionStateRestored:
-                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+            {
+                if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                         [_loadingView removeFromSuperview];
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
@@ -187,17 +191,18 @@
                     NSLog(@"Premium updated");
                 } error:^(NSError *error) {
                     NSLog(@"%@", [error localizedDescription]);
-                    [loadingView removeFromSuperview];
+                    [_loadingView removeFromSuperview];
                 } completed:^{
                     NSLog(@"Premium update complited");
-                    [loadingView removeFromSuperview];
+                    [_loadingView removeFromSuperview];
                 }];
                 
                 [self.navigationController popViewControllerAnimated:YES];
                 [self presentOkControllerWithMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
                 break;
+            }
             default:
-                if ([[[UIApplication sharedApplication] keyWindow] contains:_loadingView])
+                if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                         [_loadingView removeFromSuperview];
                 // For debugging
                 NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));

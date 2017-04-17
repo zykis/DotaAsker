@@ -89,7 +89,7 @@
         NSString* key = [[_statistic allKeys] objectAtIndex:i];
         NSString* dateString = key;
         [entry setData:dateString];
-        [entry setY:[_statistic value:key];
+        [entry setY:[[_statistic objectForKey:key] integerValue]];
         [entries addObject:entry];
     }
 
@@ -142,7 +142,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[Player instance] matches] count];
+    return [[Match objectsWhere:[NSString stringWithFormat:@"state == %d", MATCH_FINISHED]] count];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -192,7 +192,7 @@
     [score setText:scoreStr];
     // mmr gain
     Winner winner = [[[ServiceLayer instance] matchService] winnerAtMatch:m];
-    [mmrGain setTextColor: winner == kPlayer ? [UIColor greenColor] : winner == kOpponent ? [UIColor redColor] : [UIColor grayColor]];
+    [mmrGain setTextColor: winner == kPlayer ? [UIColor greenColor] : winner == kOpponent ? [UIColor redColor] : [UIColor whiteColor]];
     [mmrGain setText:[NSString stringWithFormat:@"%@%lu", winner == kPlayer ? @"+" : winner == kOpponent ?  @"-" : @"" ,(long)[m mmrGain]]];
     
     return cell;

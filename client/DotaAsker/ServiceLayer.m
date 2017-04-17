@@ -13,9 +13,7 @@
 
 @synthesize authorizationService = _authorizationService;
 @synthesize userAnswerService = _userAnswerService;
-@synthesize answerService;
 @synthesize questionService = _questionService;
-@synthesize themeService;
 @synthesize roundService = _roundService;
 @synthesize matchService = _matchService;
 @synthesize userService = _userService;

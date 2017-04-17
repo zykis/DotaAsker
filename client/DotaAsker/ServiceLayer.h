@@ -11,7 +11,6 @@
 #import "UserAnswerService.h"
 #import "AnswerService.h"
 #import "QuestionService.h"
-#import "ThemeService.h"
 #import "RoundService.h"
 #import "MatchService.h"
 #import "UserService.h"
@@ -24,7 +23,6 @@
 @property (strong, nonatomic) UserAnswerService* userAnswerService;
 @property (strong, nonatomic) AnswerService* answerService;
 @property (strong, nonatomic) QuestionService* questionService;
-@property (strong, nonatomic) ThemeService* themeService;
 @property (strong, nonatomic) RoundService* roundService;
 @property (strong, nonatomic) MatchService* matchService;
 @property (strong, nonatomic) UserService* userService;

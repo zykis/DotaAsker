@@ -13,6 +13,7 @@
 #import "UIViewController+Utils.h"
 #import "ThemeButton.h"
 #import "ModalLoadingView.h"
+#import "Theme.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>

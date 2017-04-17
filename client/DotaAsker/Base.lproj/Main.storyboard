@@ -335,6 +335,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="603"/>
                     <connections>
+                        <outlet property="unlockButton" destination="C7P-3r-zWi" id="ZOc-NK-MaH"/>
                         <segue destination="YXJ-NH-s8R" kind="show" identifier="change_avatar" id="zSi-Gb-Dfv"/>
                         <segue destination="Sfa-G4-ZAy" kind="show" identifier="submit_question" id="Fky-p9-yM8"/>
                         <segue destination="E2y-wE-iq4" kind="show" identifier="top100" id="VHx-dC-mco"/>
@@ -672,6 +673,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="603"/>
                     <connections>
+                        <outlet property="unlockButton" destination="9DA-1P-USh" id="Omc-U9-Bc0"/>
                         <outlet property="verticalStackView" destination="n8t-NO-MOO" id="nzv-1D-qbX"/>
                     </connections>
                 </viewController>
