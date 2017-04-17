@@ -117,13 +117,25 @@
     return subject;
 }
 
+- (User*)opponentAtMatch: (Match*)match {
+    User* opponent = [[User alloc] init];
+    for (User* u in match.users) {
+        if (![u isEqual:[Player instance]])
+            opponent = u;
+    }
+    return opponent;
+}
+
 - (Winner)winnerAtMatch:(Match*)match {
+    User* opponent = [self opponentAtMatch:match];
     if (([match finishReason] == MATCH_FINISH_REASON_SURREND) && (![[match winner] isEqual:[Player instance]]))
         return kOpponent;
     if (([match finishReason] == MATCH_FINISH_REASON_TIME_ELAPSED) && (![[match winner] isEqual:[Player instance]]))
         return kOpponent;
     if ([[match winner] isEqual: [Player instance]])
         return kPlayer;
+    else if ([[match winner] isEqual:opponent]
+        return kOpponent;
     else
         return kDraw;
 }
