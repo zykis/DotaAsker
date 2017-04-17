@@ -340,7 +340,7 @@
     }
     else if ([[segue identifier] isEqualToString:@"statistics"]) {
         StatisticsViewController* destVC = [segue destinationViewController];
-        [destVC setUserID:[[Player instance] ID]];
+        [destVC setStatistic:sender];
     }
 }
 
@@ -367,13 +367,13 @@
         
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainStatistic:[Player instance].ID];
         [subject subscribeNext:^(id x) {
+            NSDictionary* statistics = x;
+            [loadingView removeFromSuperview];
+            [self performSegueWithIdentifier:@"statistics" sender:statistics];
         } error:^(NSError *error) {
             [loadingView removeFromSuperview];
-        } completed:^{
-            [loadingView removeFromSuperview];
+        } completed:^{  
         }];
-        
-        [self performSegueWithIdentifier:@"statistics" sender:self];
     }
 }
 

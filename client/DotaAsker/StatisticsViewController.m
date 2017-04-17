@@ -24,6 +24,7 @@
 
 @implementation StatisticsViewController
 
+@synthesize statistic = _statistic;
 @synthesize chartView = _chartView;
 @synthesize pieChartView = _pieChartView;
 
@@ -82,12 +83,13 @@
     raxis.drawLabelsEnabled = NO;
     
     NSMutableArray<ChartDataEntry*>* entries = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 7; i++) {
         ChartDataEntry* entry = [[ChartDataEntry alloc] init];
         [entry setX:i];
-        NSString* dateString = @"12.04";
+        NSString* key = [[_statistic allKeys] objectAtIndex:i];
+        NSString* dateString = key;
         [entry setData:dateString];
-        [entry setY:(float)rand() / RAND_MAX * 5000 + 4000];
+        [entry setY:[_statistic value:key];
         [entries addObject:entry];
     }
 

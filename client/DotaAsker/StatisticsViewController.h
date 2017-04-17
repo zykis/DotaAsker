@@ -15,7 +15,7 @@
 @interface StatisticsViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>
 
-@property (assign, nonatomic) unsigned long long userID;
+@property (strong, nonatomic) NSDictionary* statistic;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationTitle;
 @property (strong, nonatomic) IBOutlet UILabel *mmr;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
