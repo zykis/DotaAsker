@@ -21,6 +21,11 @@ from sqlalchemy import desc
 
 auth = HTTPBasicAuth()
 
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return 'You want path: %s' % path
+
 @app.route('/sendFriendRequest', methods=['POST'])
 @auth.login_required
 def sendFriendRequest():
