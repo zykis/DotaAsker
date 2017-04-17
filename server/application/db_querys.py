@@ -88,21 +88,21 @@ class Database_queries:
             if need_to_add == True:
                 questions_to_add.append(q)
         return questions_to_add
-    
+
     @classmethod
-    def generateTestMMR()
+    def generateTestMMR(cls):
         users = User.query.all()
         today = date.today()
         for u in users:
             for i in range(0, 10):
                 past_day = today - timedelta(days=i)
-                multiplier = random.uniform(1, 3)
-                sign = random.uniform(1,10) % 2
+                multiplier = random.randint(1, 3)
+                sign = random.randint(1,10) % 2
                 if sign == 1:
                     mmr = 4000 + multiplier * 25
                 else:
                     mmr = 4000 - multiplier * 25
-                db.engine.execute("INSERT OR REPLACE INTO user_date_mmr (user_id, date, mmr) VALUES (u.id, {}, {})".format(past_day.stftime("%Y-%m-%d"), mmr)
+                db.engine.execute("INSERT OR REPLACE INTO user_date_mmr (user_id, date, mmr) VALUES ({}, {}, {})".format(u.id, past_day.strftime("%Y-%m-%d"), mmr))
 
     @classmethod
     def createTestData(cls):
@@ -119,7 +119,7 @@ class Database_queries:
         db.session.add(jack_user)
         db.session.commit()
         
-        generateTestMMR()
+        Database_queries.generateTestMMR()
 
         ############################################### adding friends
         # john_user.sendRequest(peter_user)

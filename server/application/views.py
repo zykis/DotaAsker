@@ -146,7 +146,7 @@ def update_user():
 def get_statistic(id):
     g.locale = request.headers['Accept-Language']
     statistic = dict()
-    q_res = db.engine.exexute("SELECT * FROM user_date_mmr WHERE (user_id = {}".format(id))
+    q_res = db.engine.execute("SELECT * FROM user_date_mmr WHERE user_id = {}".format(id))
     for row in q_res:
         statistic[row['date']] = row['mmr']
     res = json.dumps(statistic)
