@@ -102,7 +102,7 @@ class Database_queries:
                     mmr = 4000 + multiplier * 25
                 else:
                     mmr = 4000 - multiplier * 25
-                db.engine.execute("INSERT OR REPLACE INTO user_date_mmr (user_id, date, mmr) VALUES ({}, {}, {})".format(u.id, past_day.strftime("%Y-%m-%d"), mmr))
+                db.engine.execute("INSERT OR REPLACE INTO user_date_mmr (user_id, date, mmr) VALUES ({}, '{}', {})".format(u.id, past_day.strftime("%Y-%m-%d"), mmr))
 
     @classmethod
     def createTestData(cls):
