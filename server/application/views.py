@@ -145,25 +145,15 @@ def update_user():
 @app.route('/statistic/<int:id>', methods=['GET'])
 def get_statistic(id):
     g.locale = request.headers['Accept-Language']
-    user = User.query.get(id)
-    recent_matches = []
-    for m in user.matches:
-        if m.state is not MATCH_RUNNING:
-            recent_matches.append(m)
-    user.matches = recent_matches
-
-    if not user:
-        abort(400)
-    schema = UserSchema() # only recent matches
-    res = schema.dumps(user)
-    if not res.errors:
-        resp = make_response(res.data)
-        resp.status_code = 200
-        resp.mimetype = 'application/json'
-        return resp
-    else:
-        # TODO: Sending server errors to client
-        abort(500)
+    statistic = dict()
+    q_res = db.engine.exexute("SELECT * FROM user_date_mmr WHERE (user_id = {}".format(id))
+    for row in q_res:
+        statistic[row['date']] = row['mmr']
+    res = json.dumps(statistic)
+    resp = make_response(res)
+    resp.status_code = 200
+    resp.mimetype = 'application/json'
+    return resp
 
 @app.route('/userAnswers', methods=['POST'])
 def create_userAnswer():
