@@ -89,7 +89,7 @@
         "text_en": "What effect is applied by active ability of Rod of Atos?",
         "text_ru": "Какой эффект, накладывает активная способность предмета Rod of Atos?",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -120,7 +120,7 @@
         "text_en": "Which artefact isn't an attack modifier?",
         "text_ru": "Этот предмет не является модификатором атаки:",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -523,7 +523,7 @@
         "text_en": "Maximum stack's count of Quilling Spray applied to one hero:",
         "text_ru": "Максимальное количество стаков способности Quiling Spray (Bristleback) на одном герое:",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -554,7 +554,7 @@
         "text_en": "Stun duration of Treant's Protector's Invisible Tree on the max level?",
         "text_ru": "Длительность стана Treant Protector при выходе из невидимости за счёт способности \"Invisible tree\" на максимальном уровне прокачки:",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -585,7 +585,7 @@
         "text_en": "Dodge chance of Mortred's Blur on the first level of this ability?",
         "text_ru": "Вероятность уклонения способности Blur (Mortred) на 1-ом уровне прокачки?",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -647,7 +647,7 @@
         "text_en": "Damage type of Abbadon's Mist Coil is:",
         "text_ru": "Тип урона, наносимый первой способностью Аббадона \"Mist Coil\":",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -678,7 +678,7 @@
         "text_en": "Base Abbadon's movement speed is:",
         "text_ru": "Базовая скорость передвижения Аббадона равна:",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -709,7 +709,7 @@
         "text_en": "Base Abbadon's armor is:",
         "text_ru": "Базовый показатель брони Аббадона равен:",
         "theme": {
-            "name": "heroes_items"
+            "name": "heroes / items"
         }
     },
     {
@@ -740,7 +740,7 @@
         "text_en": "Max duration of Sacred Arrow's stun (Mirana)?",
         "text_ru": "Максимальная длительность оглушения от способности Sacred Arrow (Mirana)?",
         "theme": {
-            "name": "mechanics"
+            "name": "heroes / items"
         }
     },
     {
@@ -771,7 +771,7 @@
         "text_en": "Barathrum can charge through Cogs?",
         "text_ru": "Barathrum может пробежать сквозь Cogs?",
         "theme": {
-            "name": "mechanics"
+            "name": "heroes / items"
         }
     },
     {
@@ -802,7 +802,7 @@
         "text_en": "Storm Spirit can fly through Void's chronosphere?",
         "text_ru": "Storm Spirit может пролететь сквозь хроносферу Void'а?",
         "theme": {
-            "name": "mechanics"
+            "name": "heroes / items"
         }
     },
     {
