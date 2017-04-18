@@ -28,6 +28,7 @@ class QuestionSchema(Schema):
             theme_schema = ThemeSchema()
             theme_dict = data.get('theme', None)
             if theme_dict is not None:
+                print ('theme_dict: ' + theme_dict)
                 question.theme = theme_schema.loads(theme_dict)
             else:
                 question.theme = None
