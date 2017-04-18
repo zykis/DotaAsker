@@ -26,7 +26,11 @@ class QuestionSchema(Schema):
             question.approved = data.get('approved', False)
             question.image_name = data.get('image_name', '')
             theme_schema = ThemeSchema()
-            question.theme = theme_schema.loads(data.get('theme', None))
+            theme_dict = data.get('theme', None)
+            if theme_dict is not None:
+                question.theme = theme_schema.loads()
+            else:
+                question.theme = None
 
             for aDict in data.get('answers'):
                 a = Answer()
