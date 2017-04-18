@@ -41,17 +41,17 @@
 }
 
 - (IBAction)sendNewPassword:(id)sender {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending email"];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending email", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     NSString* userOrEmail = [self.usernameOrEmail text];
     RACReplaySubject* subject = [[Helper shared] sendNewPasswordToUserOrEmail:userOrEmail];
     [subject subscribeNext:^(id x) {
-        [self presentOkControllerWithMessage:@"New password was sent"];
+        [self presentOkControllerWithMessage:NSLocalizedString(@"New password was sent", 0)];
         [loadingView removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];
     } error:^(NSError *error) {
-        [self presentAlertControllerWithMessage:@"No such username or email"];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"No such username or email", 0)];
         [loadingView removeFromSuperview];
         
     }];

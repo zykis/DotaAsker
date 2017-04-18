@@ -46,7 +46,7 @@
 
 - (void)refreshControllDragged {   
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating player"];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -59,7 +59,6 @@
     void (^completeBlock)() = ^void() {
         // UserAnswers has been updated.
         // Updaing Player and tableView
-        [loadingView setMessage:@"Getting player"];
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
         [subject subscribeNext:^(id u) {
             [Player manualUpdate:u];
@@ -141,7 +140,7 @@
         [playerNameLabel setText: [[Player instance] name]];
         [playerNameLabel setAdjustsFontSizeToFitWidth:YES];
         UILabel *mmrLabel = (UILabel*)[cell viewWithTag:202];
-        [mmrLabel setText:[NSString stringWithFormat:@"MMR: %ld", (long)[[Player instance] MMR]]];
+        [mmrLabel setText:[NSString stringWithFormat:NSLocalizedString(@"MMR: %ld", 0), (long)[[Player instance] MMR]]];
         
         cell.backgroundColor = [UIColor clearColor];
         cell.contentView.backgroundColor = [UIColor clearColor];
@@ -229,15 +228,15 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SECTION_CURRENT_MATCHES) {
-        return @"Current matches";
+        return NSLocalizedString(@"Current matches", @"Current matches header");
     }
     else if (section == SECTION_RECENT_MATCHES) {
-        return @"Recent matches";
+        return NSLocalizedString(@"Recent matches", @"Recent matches header");
     }
     else if (section == SECTION_WAITING_MATCHES) {
-        return @"Waiting matches";
+        return NSLocalizedString(@"Waiting matches", @"Waiting matches header");
     }
-    else return @"Error";
+    else return NSLocalizedString(@"Error", 0);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -299,13 +298,13 @@
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor whiteColor];
         if (section == SECTION_CURRENT_MATCHES) {
-            headerLabel.text = @"Current matches:";
+            headerLabel.text = NSLocalizedString(@"Current matches:", 0);
         }
         else if (section == SECTION_RECENT_MATCHES) {
-            headerLabel.text = @"Recent matches:";
+            headerLabel.text = NSLocalizedString(@"Recent matches:", 0);
         }
         else if (section == SECTION_WAITING_MATCHES) {
-            headerLabel.text = @"Waiting matches:";
+            headerLabel.text = NSLocalizedString(@"Waiting matches:", 0);
         }
         headerLabel.textAlignment = NSTextAlignmentLeft;
         
@@ -345,7 +344,7 @@
 }
 
 - (IBAction)findMatchPressed {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Finding match"];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Finding match", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
@@ -362,7 +361,7 @@
 
 - (IBAction)showStatistics {
     if ([self checkPremium]) {
-        ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting statistics"];
+        ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Getting statistics", 0)];
         [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
         
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainStatistic:[Player instance].ID];
@@ -374,6 +373,9 @@
             [loadingView removeFromSuperview];
         } completed:^{  
         }];
+    }
+    else {
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Premium account only", 0)];
     }
 }
 
@@ -395,7 +397,6 @@
 
 - (BOOL)checkPremium {
     if (![[Player instance] premium]) {
-        [self presentAlertControllerWithMessage:@"Premium account only"];
         return NO;
     }
     else

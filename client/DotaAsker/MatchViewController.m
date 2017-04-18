@@ -123,7 +123,7 @@
         case BUTTON_SYNCHRONIZE:
         {
             // Present LoadingView
-            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending answers", 0)];
             [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
             
             void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -136,7 +136,7 @@
             void (^completeBlock)() = ^void() {
                 // UserAnswers has been updated.
                 // Updaing Player and tableView
-                [loadingView setMessage:@"Getting player"];
+                [loadingView setMessage:NSLocalizedString(@"Getting player", 0)];
                 RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
                 [subject subscribeNext:^(id u) {
                     [Player manualUpdate:u];
@@ -171,7 +171,7 @@
 }
 
 - (IBAction)sendFriendRequest:(id)sender {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending request"];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending request", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
@@ -185,7 +185,7 @@
 
 - (IBAction)surrend:(id)sender {
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending answers", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -280,7 +280,7 @@
             roundView.delegate = self;
             UILabel *roundNumber = (UILabel*)[cell viewWithTag:107];
             [roundNumber setAdjustsFontSizeToFitWidth:YES];
-            [roundNumber setText:[NSString stringWithFormat:@"Round # %ld",(long)[indexPath row]+1]];
+            [roundNumber setText:[NSString stringWithFormat:NSLocalizedString(@"Round # %ld", 0),(long)[indexPath row]+1]];
             UILabel *roundStatus = (UILabel*)[cell viewWithTag:108];
             [roundStatus setText:[_matchViewModel roundStatusTextForRoundInRow:[indexPath row]]];
             [roundStatus setAdjustsFontSizeToFitWidth:YES];
@@ -333,31 +333,31 @@
             {
                 case BUTTON_PLAY:
                     [leftButton setHidden:NO];
-                    [middleButton setTitle:@"Play" forState:UIControlStateNormal];
+                    [middleButton setTitle:NSLocalizedString(@"Play", 0) forState:UIControlStateNormal];
                     [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_SYNCHRONIZE:
                     [leftButton setHidden:NO];
-                    [middleButton setTitle:@"Synchronize" forState:UIControlStateNormal];
+                    [middleButton setTitle:NSLocalizedString(@"Synchronize", 0) forState:UIControlStateNormal];
                     [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_WAITING:
                     [leftButton setHidden:YES];
-                    [middleButton setTitle:@"Waiting..." forState:UIControlStateNormal];
+                    [middleButton setTitle:NSLocalizedString(@"Waiting", 0) forState:UIControlStateNormal];
                     [middleButton setHidden:NO];
                     [middleButton setEnabled:NO];
                     break;
                 case BUTTON_PLAY_AGAIN:
                     [leftButton setHidden:YES];
-                    [middleButton setTitle:@"Play again" forState:UIControlStateNormal];
+                    [middleButton setTitle:NSLocalizedString(@"Play again", 0) forState:UIControlStateNormal];
                     [middleButton setHidden:YES];
                     [middleButton setEnabled:YES];
                     break;
                 case BUTTON_REVENGE:
                     [leftButton setHidden:YES];
-                    [middleButton setTitle:@"Revenge" forState:UIControlStateNormal];
+                    [middleButton setTitle:NSLocalizedString(@"Revenge", 0) forState:UIControlStateNormal];
                     [middleButton setHidden:YES];
                     [middleButton setEnabled:YES];
                     break;
@@ -416,13 +416,13 @@
     if(!path)
         return;
     
-    NSString *title = [NSString stringWithFormat:@"Question %ld:", (long)index % 3 + 1];
+    NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Question %ld:", 0), (long)index % 3 + 1];
     NSString *text = [_matchViewModel textForUserAnswerForRoundInRow:[path row] andUserAnswerIndex:index];
 
     
     if (text) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:text preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:
+        [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Ok", @"Ok button on question message") style:UIAlertActionStyleDefault handler:
                           ^(UIAlertAction* action){
                           }
                           ]];

@@ -113,7 +113,7 @@
 
 - (BOOL)checkPremium {
     if (![[Player instance] premium]) {
-        [self presentAlertControllerWithMessage:@"Premium account only"];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Premium account only", 0)];
         return NO;
     }
     else
