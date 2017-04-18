@@ -56,6 +56,8 @@
 - (IBAction)avatarsPushed {
     if ([self checkPremium])
         [self performSegueWithIdentifier:@"change_avatar" sender:self];
+    else
+        [self presentAlertControllerWithMessage:@"Premium account only"];
 }
 
 - (IBAction)premiumPushed {
@@ -82,7 +84,9 @@
             [loadingView removeFromSuperview];
             [self performSegueWithIdentifier:@"top100" sender:results];
         }];
-        
+    }
+    else {
+        [self presentAlertControllerWithMessage:@"Premium account only"];
     }
 }
 
@@ -95,7 +99,6 @@
 
 - (BOOL)checkPremium {
     if (![[Player instance] premium]) {
-        [self presentAlertControllerWithMessage:@"Premium account only"];
         return NO;
     }
     else

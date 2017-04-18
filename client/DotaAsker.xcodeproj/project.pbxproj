@@ -224,7 +224,7 @@
 		AC62E5231BF4BB2100805285 /* dota_icon_40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dota_icon_40x40.png; path = resources/dota_icon_40x40.png; sourceTree = "<group>"; };
 		AC62E5291BF4BBDC00805285 /* dota_icon_40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_40x40@2x.png"; path = "resources/dota_icon_40x40@2x.png"; sourceTree = "<group>"; };
 		AC62E52A1BF4BBDC00805285 /* dota_icon_40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dota_icon_40x40@3x.png"; path = "resources/dota_icon_40x40@3x.png"; sourceTree = "<group>"; };
-		AC7352041B239A1B00FFF356 /* DotaAsker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DotaAsker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC7352041B239A1B00FFF356 /* Dota Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7352081B239A1B00FFF356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7352091B239A1B00FFF356 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AC73520B1B239A1B00FFF356 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -328,10 +328,7 @@
 		ACA1CE6F1E8F8B550004DC70 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default.png; path = resources/question_images/default.png; sourceTree = "<group>"; };
 		ACA1CE721E9005AE0004DC70 /* SignButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignButton.h; sourceTree = "<group>"; };
 		ACA1CE731E9005AE0004DC70 /* SignButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignButton.m; sourceTree = "<group>"; };
-		ACA1CE761E940D770004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		ACA1CE781E940D940004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACA1CE7C1E940FDB0004DC70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		ACA1CE801E9410E40004DC70 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ACA1CE821E9410E60004DC70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ACA1CE831E94323A0004DC70 /* icon-checked-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-checked-50.png"; path = "resources/icons/icon-checked-50.png"; sourceTree = "<group>"; };
 		ACA1CE841E94323A0004DC70 /* icon-checked-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-checked-50@2x.png"; path = "resources/icons/icon-checked-50@2x.png"; sourceTree = "<group>"; };
@@ -460,7 +457,7 @@
 		AC7352051B239A1B00FFF356 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AC7352041B239A1B00FFF356 /* DotaAsker.app */,
+				AC7352041B239A1B00FFF356 /* Dota Quiz.app */,
 				AC73521D1B239A1B00FFF356 /* DotaAskerTests.xctest */,
 			);
 			name = Products;
@@ -875,7 +872,7 @@
 			);
 			name = DotaAsker;
 			productName = DotaAsker;
-			productReference = AC7352041B239A1B00FFF356 /* DotaAsker.app */;
+			productReference = AC7352041B239A1B00FFF356 /* Dota Quiz.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AC73521C1B239A1B00FFF356 /* DotaAskerTests */ = {
@@ -1184,7 +1181,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AC7352171B239A1B00FFF356 /* Base */,
-				ACA1CE761E940D770004DC70 /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -1192,7 +1188,6 @@
 		ACA1CE791E940D940004DC70 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ACA1CE781E940D940004DC70 /* ru */,
 				ACA1CE7C1E940FDB0004DC70 /* Base */,
 			);
 			name = Main.storyboard;
@@ -1201,7 +1196,6 @@
 		ACA1CE811E9410E40004DC70 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				ACA1CE801E9410E40004DC70 /* ru */,
 				ACA1CE821E9410E60004DC70 /* Base */,
 			);
 			name = Localizable.strings;
@@ -1316,7 +1310,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dota Quiz";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1338,7 +1332,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "GVC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Dota Quiz";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
