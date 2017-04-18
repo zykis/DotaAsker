@@ -25,7 +25,8 @@ class QuestionSchema(Schema):
             question.text_ru = data.get('text_ru', '')
             question.approved = data.get('approved', False)
             question.image_name = data.get('image_name', '')
-            question.theme = data.get('theme', None)
+            theme_schema = ThemeSchema()
+            question.theme = theme_schema.loads(data.get('theme', None))
 
             for aDict in data.get('answers'):
                 a = Answer()
