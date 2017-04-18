@@ -3,37 +3,6 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            }
-        ],
-        "approved": "false",
-        "image_name": "",
-        "text_en": "",
-        "text_ru": "",
-        "theme": {
-            "name": ""
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
                 "text_en": "18 000 000$",
                 "text_ru": "18 000 000$"
             },
