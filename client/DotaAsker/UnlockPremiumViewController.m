@@ -121,10 +121,30 @@
 }
 
 - (IBAction)unlockPressed {
+    /* Comment, while troubles with bank info
     if (!_loadingView)
         _loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage: NSLocalizedString(@"Buying premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     [IAPHelper buy:self.premiumProduct];
+    */
+    
+    // Will be commented
+    RLMRealm* realm = [RLMRealm defaultRealm];
+    [realm beginWriteTransaction];
+    [[Player instance] setPremium:YES];
+    [realm commitWriteTransaction];
+
+    RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
+    [subject subscribeNext:^(id x) {
+        NSLog(@"Premium updated");
+    } error:^(NSError *error) {
+        [_loadingView removeFromSuperview];
+        [self presentAlertControllerWithMessage:NSLocalizedString([error localuzedDescription], 0)];
+    } completed:^{
+        [_loadingView removeFromSuperview];
+        [self.navigationController popViewControllerAnimated:YES];
+        [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
+    }];
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
@@ -134,6 +154,8 @@
     for (SKProduct* product in response.products) {
         NSLog(@"%@", [product productIdentifier]);
     }
+    
+    /* Comment, while troubles with bank info
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
         NSLog(@"Invalid Product Identifier: %@", invalidIdentifier);
         [_loadingView removeFromSuperview];
@@ -142,6 +164,7 @@
         [self presentAlertControllerWithMessage:NSLocalizedString(@"Product problem. Please, try again later", 0)];
         return;
     }
+    */
  
     self.unlockButton.enabled = YES;
     [_loadingView removeFromSuperview];
