@@ -86,7 +86,7 @@
     NSString *username = [_textFieldUsername text];
     NSString *password = [_textFieldPassword text];
     
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting user"];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Getting user", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {

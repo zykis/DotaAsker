@@ -33,18 +33,10 @@
     if (![email isEqualToString:@""]) {
         [dict setValue:email forKey:@"email"];
     }
-    
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
-    
-    NSString* jsonString = [[NSString alloc] initWithData:[jsonData bytes] encoding:NSUTF16StringEncoding];
-    NSString* lengthStr = [NSString stringWithFormat:@"%ld", (unsigned long)[jsonString length]];
 
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:lengthStr forHTTPHeaderField:@"Content-Length"];
-    [request setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // print request
-    NSLog(@"%@", [self formatURLRequest:request]);
+    [request setHTTPBody:jsonData];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];

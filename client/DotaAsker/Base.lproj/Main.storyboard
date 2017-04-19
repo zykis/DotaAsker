@@ -16,9 +16,6 @@
         <array key="Trajan Bold.ttf">
             <string>TrajanBold</string>
         </array>
-        <array key="TrajanPro3-Bold.ttf">
-            <string>TrajanPro3-Bold</string>
-        </array>
         <array key="TrajanPro3-Regular.ttf">
             <string>TrajanPro3-Regular</string>
         </array>
@@ -585,7 +582,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No advertisements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-br-C5h">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274509803915" green="0.55294117647058827" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -603,7 +600,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoK-yn-zRF">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -621,7 +618,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get your statistic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAF-LF-Z9m">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -639,7 +636,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 100 players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6V-Hu-WKi">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -648,10 +645,10 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9DA-1P-USh" customClass="SettingsButton">
-                                <rect key="frame" x="100" y="538" width="120" height="45"/>
+                                <rect key="frame" x="65" y="538" width="190" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="KHr-Ab-OHE"/>
-                                    <constraint firstAttribute="width" constant="120" id="zqb-gx-UwI"/>
+                                    <constraint firstAttribute="width" constant="190" id="zqb-gx-UwI"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="UNLOCK">
@@ -1884,6 +1881,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bEc-Q7-zHG"/>
-        <segue reference="ut3-yq-Aji"/>
+        <segue reference="AUo-9G-fYr"/>
     </inferredMetricsTieBreakers>
 </document>

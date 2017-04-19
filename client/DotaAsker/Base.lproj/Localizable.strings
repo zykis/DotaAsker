@@ -5,3 +5,79 @@
   Created by Artem on 04/04/2017.
   Copyright © 2017 Artem. All rights reserved.
 */
+
+"Dota Quiz" = "Dota Quiz";
+
+// Match states
+"You answering" = "You answering";
+"You replying" = "You replying";
+"Opponent answering" = "Opponent answering";
+"Opponent replying" = "Opponent replying";
+"Draw" = "Draw";
+"You lost!" = "You lost!";
+"You won!" = "You won!";
+"You lost! (time elapsed)" = "You lost! (time elapsed)";
+"You won! (time elapsed)" = "You won! (time elapsed)";
+"Opponent surrended" = "Opponent surrended";
+"You surrended" = "You surrended";
+"Waiting" = "Waiting";
+
+// Matches headers
+"Current matches" = "Current matches";
+"Waiting matches" = "Waiting matches";
+"Recent matches" = "Recent matches";
+
+// Loading views messages
+"Registering player" = "Registering player";
+"Getting user" = "Getting user";
+"Getting player" = "Getting player";
+"Updating player" = "Updating player";
+"Finding match" = "Finding match";
+"Getting statistics" = "Getting statistics";
+"Sending answers" = "Sending answers";
+"Sending request" = "Sending request";
+"Buying premium" = "Buying premium";
+
+// Error messages
+"Premium account only" = "Premium account only";
+"No such username or email" = "No such username or email";
+
+// Notification messages
+"You already have premium" = "You already have premium";
+"New password was sent" = "New password was sent";
+
+// Sign up View Controller
+"Sign Up" = "Sign Up";
+"Sign In" = "Sign In";
+
+// Main View Controller
+"MMR: %ld" = "MMR: %ld";
+"Find Match" = "Find Match";
+"Opponent" = "Opponent";
+"Main" = "Main";
+
+// Match View Controller
+"Round # %ld" = "Round # %ld";
+"Play" = "Play";
+"Surrend" = "Surrend";
+"Synchronize" = "Synchronize";
+"Waiting" = "Waiting";
+"Play again" = "Play again";
+"Revenge" = "Revenge";
+"Question %ld:" = "Question %ld:";
+"Right: %@" = "Right: %@";
+"Unanswered" = "Unanswered";
+"Ok" = "Ok";
+
+// Theme selection view controller
+"Heroes / Items" = "Heroes / Items";
+"Tournaments" = "Tournaments";
+"Mechanics" = "Mechanics";
+
+// Password remind view controller
+"Sending email" = "Sending email";
+
+// Unlock premium view controller
+"Error, while trying to buy premium" = "Error, while trying to buy premium";
+"Thank you for buying premium!" = "Thank you for buying premium!";
+"Your purchase has been restored!" = "Your purchase has been restored!";

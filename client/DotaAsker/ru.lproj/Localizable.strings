@@ -6,78 +6,86 @@
   Copyright © 2017 Artem. All rights reserved.
 */
 
-"Dota Quiz" = "Дота Викторина"
+"Dota Quiz" = "Дота Викторина";
 
 // Match states
-"You answering" = "Выберите тему"
-"You replying" = "Вы отвечаете"
-"Opponent answering" = "Противник выбирает тему"
-"Opponent replying" = "Противник отвечает"
-"Draw" = "Ничья"
-"You lost!" = "Вы проиграли!"
-"You won!" = "Вы победили!"
-"You lost! (time elapsed)" = "Вы проиграли (время истекло)"
-"You won! (time elapsed)" = "Вы победили (время истекло)"
-"Opponent surrended" = "Противник сдался"
-"You surrended" = "Вы сдались"
-"Waiting" = "Ожидание"
+"You answering" = "Выберите тему";
+"You replying" = "Вы отвечаете";
+"Opponent answering" = "Противник выбирает тему";
+"Opponent replying" = "Противник отвечает";
+"Draw" = "Ничья";
+"You lost!" = "Вы проиграли!";
+"You won!" = "Вы победили!";
+"You lost! (time elapsed)" = "Вы проиграли (время истекло)";
+"You won! (time elapsed)" = "Вы победили (время истекло)";
+"Opponent surrended" = "Противник сдался";
+"You surrended" = "Вы сдались";
+"Waiting" = "Ожидание";
 
 // Matches headers
-"Current matches" = "Текущие матчи"
-"Waiting matches" = "Ожидание противника"
-"Recent matches" = "Завершённые матчи"
+"Current matches:" = "Текущие матчи:";
+"Waiting matches:" = "Ожидание противника:";
+"Recent matches:" = "Завершённые матчи:";
 
 // Loading views messages
-"Registering player" = "Регистрация игрока"
-"Getting user" = "Получение пользователя"
-"Getting player" = "Получение игрока"
-"Updating player" = "Обновление игрока"
-"Finding match" = "Поиск матча"
-"Getting statistics" = "Получение статистики"
-"Sending answers" = "Отправка ответов"
-"Sending request" = "Отправка запроса"
-"Buying premium" = "Покупка премиума"
+"Registering player" = "Регистрация игрока";
+"Getting user" = "Получение пользователя";
+"Getting player" = "Получение игрока";
+"Getting top 100" = "Получение топ 100";
+"Updating player" = "Обновление игрока";
+"Finding match" = "Поиск матча";
+"Getting statistics" = "Получение статистики";
+"Sending answers" = "Отправка ответов";
+"Sending request" = "Отправка запроса";
+"Buying premium" = "Покупка премиума";
+"Changing avatar" = "Смена аватара";
 
 // Error messages
-"Premium account only" = "Только для премиум-аккаунта"
-"No such username or email" = "Неверный логин или пароль"
+"Premium account only" = "Только для премиум-аккаунта";
+"No such username or email" = "Неверный логин или пароль";
 
 // Notification messages
-"You already have premium" = "У вас уже есть премиум-аккаунт"
-"New password was sent" = "Новый пароль был выслан"
+"You already have premium" = "У вас уже есть премиум-аккаунт";
+"New password was sent" = "Новый пароль был выслан";
 
 // Sign up View Controller
 "Sign Up" = "Создать";
 "Sign In" = "Войти";
 
 // Main View Controller
-"MMR: %ld" = "ММР: %ld"
-"Find Match" = "Найти матч"
-"Opponent" = "Противник"
-"Main"
+"MMR: %ld" = "ММР: %ld";
+"Find Match" = "Поиск матча";
+"Opponent" = "Противник";
+"Main" = "Главная";
 
 // Match View Controller
-"Round # %ld" = "Раунд № %ld"
-"Play" = "Играть"
-"Surrend" = "Сдаться"
-"Synchronize" = "Синхронизировать"
-"Waiting" = "Ожидание"
-"Play again" = "Играть снова"
-"Revenge" = "Реванш"
-"Question %ld:" = "Вопрос %ld:"
-"Right: %@" = "Правильный: %@"
-"Unanswered" = "Неотвеченный"
-"Ok" = "Готово"
+"Round # %ld" = "Раунд № %ld";
+"Play" = "Играть";
+"Surrend" = "Сдаться";
+"Synchronize" = "Синхронизировать";
+"Waiting" = "Ожидание";
+"Play again" = "Играть снова";
+"Revenge" = "Реванш";
+"Question %ld:" = "Вопрос %ld:";
+"Right: %@" = "Правильный: %@";
+"Unanswered" = "Неотвеченный";
+"Ok" = "Готово";
 
 // Theme selection view controller
-"Heroes / Items" = "Герои / Предметы"
-"Tournaments" = "Турниры"
-"Mechanics" = "Механика"
+"heroes / items" = "Герои / Предметы";
+"tournaments" = "Турниры";
+"mechanics" = "Механика";
 
 // Password remind view controller
-"Sending email" = "Отправка сообщения"
+"Sending email" = "Отправка сообщения";
+
+// Settings View Controller
+"Change avatar" = "Сменить аватар";
+"Submit question" = "Предложить вопрос";
+"Top 100" = "Топ 100";
+"Unlock premium" = "Разблокировать премиум";
 
 // Unlock premium view controller
-"Error, while trying to buy premium" = "Ошибка при покупке премиум-аккаунта"
-"Thank you for buying premium!" = "Спасибо за покупку премиум-аккаунта"
-"Your purchase has been restored!" = "Премиум аккаунт восстановлен"
+"Error, while trying to buy premium" = "Ошибка при покупке премиум-аккаунта";
+"Thank you for buying premium!" = "Спасибо за покупку премиум-аккаунта";
+"Your purchase has been restored!" = "Премиум аккаунт восстановлен";

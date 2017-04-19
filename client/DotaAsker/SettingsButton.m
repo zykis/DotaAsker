@@ -117,7 +117,7 @@
 - (void)drawText {
     if (!_textLayer) {
         _textLayer = [CATextLayer layer];
-        _textLayer.string = _text;
+        _textLayer.string = NSLocalizedString(_text, 0);
         _textLayer.font = CFBridgingRetain([UIFont fontWithName:@"Trajan Pro 3" size:17.0].fontName);
         _textLayer.fontSize = 17.0;
         _textLayer.foregroundColor = [UIColor whiteColor].CGColor;

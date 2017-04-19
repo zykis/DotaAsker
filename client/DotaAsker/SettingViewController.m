@@ -57,7 +57,7 @@
     if ([self checkPremium])
         [self performSegueWithIdentifier:@"change_avatar" sender:self];
     else
-        [self presentAlertControllerWithMessage:@"Premium account only"];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Premium account only", 0)];
 }
 
 - (IBAction)premiumPushed {
@@ -70,7 +70,7 @@
 - (IBAction)top100Pushed {
     if ([self checkPremium]) {
         // Present LoadingView
-        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Getting top100"];
+        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Getting top 100", 0)];
         [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
         __block NSDictionary* results;
@@ -86,7 +86,7 @@
         }];
     }
     else {
-        [self presentAlertControllerWithMessage:@"Premium account only"];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Premium account only", 0)];
     }
 }
 

@@ -228,13 +228,13 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == SECTION_CURRENT_MATCHES) {
-        return NSLocalizedString(@"Current matches", @"Current matches header");
+        return NSLocalizedString(@"Current matches:", 0);
     }
     else if (section == SECTION_RECENT_MATCHES) {
-        return NSLocalizedString(@"Recent matches", @"Recent matches header");
+        return NSLocalizedString(@"Recent matches:", 0);
     }
     else if (section == SECTION_WAITING_MATCHES) {
-        return NSLocalizedString(@"Waiting matches", @"Waiting matches header");
+        return NSLocalizedString(@"Waiting matches:", 0);
     }
     else return NSLocalizedString(@"Error", 0);
 }
@@ -293,7 +293,7 @@
         // 3. Add a label
         UILabel* headerLabel = [[UILabel alloc] init];
         [headerLabel setAdjustsFontSizeToFitWidth:YES];
-        [headerLabel setFont:[UIFont fontWithName:@"TrajanBold" size:12.0f]];
+        [headerLabel setFont:[UIFont fontWithName:@"Trajan Pro 3" size:12.0f]];
         headerLabel.frame = CGRectMake(5, 2, tableView.frame.size.width - 5, 18);
         headerLabel.backgroundColor = [UIColor clearColor];
         headerLabel.textColor = [UIColor whiteColor];

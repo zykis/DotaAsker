@@ -46,7 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    [_selectedThemeButton setTitle:[[self selectedTheme] name] forState:UIControlStateNormal];
+    [_selectedThemeButton setTitle:NSLocalizedString([[self selectedTheme] name], 0) forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

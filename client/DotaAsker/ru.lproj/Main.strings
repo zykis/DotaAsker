@@ -1,36 +1,198 @@
-// SignInViewController - SignUpViewController
-"Username" = "Логин"
-"Password" = "Пароль"
-"e-mail" = "e-mail"
-"Sign up" = "Создать"
-"Sign in" = "Войти"
-"Forget password?" = "Забыли пароль?"
 
-// MainViewController
-"Find Match" = "Найти Матч"
+/* Class = "UILabel"; text = "Round status"; ObjectID = "0DU-K8-Ja4"; */
+"0DU-K8-Ja4.text" = "Round status";
 
-// SettingsViewController
-"Settings" = "Настройки"
-"Change avatar" = "Сменить аватар"
-"Submit question" = "Предложить вопрос"
-"Top 100" = "Топ 100"
-"Unlock premium" = "Разблокировать премиум"
+/* Class = "UILabel"; text = "Match state text"; ObjectID = "0NX-Ic-vRr"; */
+"0NX-Ic-vRr.text" = "Match state text";
 
-// MatchViewController
-"Match" = "Матч"
+/* Class = "UINavigationItem"; title = "Submit question"; ObjectID = "1Cd-eP-NXI"; */
+"1Cd-eP-NXI.title" = "Предложить вопрос";
 
-// ThemeSelectionViewController
-"Choose theme:" = "Выберите тему"
+/* Class = "UILabel"; text = "player's name"; ObjectID = "20E-kU-5X3"; */
+"20E-kU-5X3.text" = "player's name";
 
-// ThemeSelectedViewController
-"Chosen theme:" = "Выбранная тема"
+/* Class = "UILabel"; text = "Player name"; ObjectID = "2ui-nQ-6wH"; */
+"2ui-nQ-6wH.text" = "Player name";
 
-// SubmitQuestionViewController
-"Save" = "Сохранить"
-"Correct answer" = "Правильный ответ"
-"Answer 2" = "Ответ 2"
-"Answer 3" = "Ответ 3"
-"Answer 4" = "Ответ 4"
+/* Class = "UILabel"; text = "MMR:"; ObjectID = "3Y9-kl-U9T"; */
+"3Y9-kl-U9T.text" = "ММР:";
 
-// UnlockPremiumViewController
-"Unlock" = "Разблокировать"
+/* Class = "UITextField"; placeholder = "Correct"; ObjectID = "45r-x9-goA"; */
+"45r-x9-goA.placeholder" = "Правильно";
+
+/* Class = "UIButton"; normalTitle = "SUBMIT"; ObjectID = "5Hj-aQ-Ksv"; */
+"5Hj-aQ-Ksv.normalTitle" = "Отправить";
+
+/* Class = "UIButton"; normalTitle = "Answer4"; ObjectID = "6zT-S1-Eo6"; */
+"6zT-S1-Eo6.normalTitle" = "Ответ 4";
+
+/* Class = "UIButton"; normalTitle = "REMAKE"; ObjectID = "7T5-xw-DI2"; */
+"7T5-xw-DI2.normalTitle" = "REMAKE";
+
+/* Class = "UIButton"; normalTitle = "UNLOCK"; ObjectID = "9DA-1P-USh"; */
+"9DA-1P-USh.normalTitle" = "Разблокировать";
+
+/* Class = "UILabel"; text = "Top 100 players"; ObjectID = "A6V-Hu-WKi"; */
+"A6V-Hu-WKi.text" = "Топ 100";
+
+/* Class = "UILabel"; text = "Chosen theme:"; ObjectID = "Bkb-gn-fYC"; */
+"Bkb-gn-fYC.text" = "Выбранная тема:";
+
+/* Class = "UILabel"; text = "+25"; ObjectID = "C7a-NT-dhQ"; */
+"C7a-NT-dhQ.text" = "+25";
+
+/* Class = "UINavigationItem"; title = "Select avatar"; ObjectID = "CL3-Lg-dxr"; */
+"CL3-Lg-dxr.title" = "Выберите аватар";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Dai-jn-m5L"; */
+"Dai-jn-m5L.normalTitle" = "Сохранить";
+
+/* Class = "UIButton"; normalTitle = "Answer3"; ObjectID = "E7c-Qo-mxp"; */
+"E7c-Qo-mxp.normalTitle" = "Ответ 3";
+
+/* Class = "UILabel"; text = "999"; ObjectID = "GTC-aK-xJ8"; */
+"GTC-aK-xJ8.text" = "999";
+
+/* Class = "UIButton"; normalTitle = "Selected theme"; ObjectID = "H3a-ne-BUf"; */
+"H3a-ne-BUf.normalTitle" = "Выбранная тема";
+
+/* Class = "UITextView"; text = "Question text"; ObjectID = "IpC-M2-nMF"; */
+"IpC-M2-nMF.text" = "Question text";
+
+/* Class = "UILabel"; text = "Player1"; ObjectID = "JbM-cg-6oZ"; */
+"JbM-cg-6oZ.text" = "Player1";
+
+/* Class = "UINavigationItem"; title = "Remind password"; ObjectID = "KCr-Z5-7bG"; */
+"KCr-Z5-7bG.title" = "Напомнить пароль";
+
+/* Class = "UILabel"; text = "MMR:"; ObjectID = "KTt-4Q-G7k"; */
+"KTt-4Q-G7k.text" = "ММР:";
+
+/* Class = "UILabel"; text = "+25"; ObjectID = "Kbw-a2-H2X"; */
+"Kbw-a2-H2X.text" = "+25";
+
+/* Class = "UILabel"; text = "Round #1"; ObjectID = "Oxx-Vi-GP2"; */
+"Oxx-Vi-GP2.text" = "Раунд №1";
+
+/* Class = "UILabel"; text = "Choose an avatar"; ObjectID = "PoK-yn-zRF"; */
+"PoK-yn-zRF.text" = "Выберите аватар";
+
+/* Class = "UILabel"; text = "No advertisements"; ObjectID = "Qa9-br-C5h"; */
+"Qa9-br-C5h.text" = "Никакой рекламы";
+
+/* Class = "UINavigationItem"; title = "Top 100"; ObjectID = "Qp5-zU-xkP"; */
+"Qp5-zU-xkP.title" = "Топ 100";
+
+/* Class = "UINavigationItem"; title = "Match"; ObjectID = "Rsa-NW-k5Q"; */
+"Rsa-NW-k5Q.title" = "Матч";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "Sv1-iB-fuh"; */
+"Sv1-iB-fuh.placeholder" = "Пароль";
+
+/* Class = "UINavigationItem"; title = "Statistics"; ObjectID = "URN-g7-yxS"; */
+"URN-g7-yxS.title" = "Статистика";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "UVt-l5-tJq"; */
+"UVt-l5-tJq.normalTitle" = "Создать";
+
+/* Class = "UILabel"; text = "7 - 1"; ObjectID = "Uh1-Pf-7qM"; */
+"Uh1-Pf-7qM.text" = "7 - 1";
+
+/* Class = "UILabel"; text = "4000"; ObjectID = "V9a-yP-JAm"; */
+"V9a-yP-JAm.text" = "4000";
+
+/* Class = "UIButton"; normalTitle = "Theme 2"; ObjectID = "X0t-Rc-bTM"; */
+"X0t-Rc-bTM.normalTitle" = "Theme 2";
+
+/* Class = "UINavigationItem"; title = "Unlock premium"; ObjectID = "XUu-1X-2un"; */
+"XUu-1X-2un.title" = "Разблокировать премиум";
+
+/* Class = "UIButton"; normalTitle = "Answer2"; ObjectID = "Zu8-37-KE8"; */
+"Zu8-37-KE8.normalTitle" = "Ответ 2";
+
+/* Class = "UINavigationItem"; title = "Main"; ObjectID = "abZ-70-RBC"; */
+"abZ-70-RBC.title" = "Главная";
+
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "bAd-Fq-Jlq"; */
+"bAd-Fq-Jlq.normalTitle" = "Создать";
+
+/* Class = "UIButton"; normalTitle = "Answer1"; ObjectID = "c5A-4P-VM5"; */
+"c5A-4P-VM5.normalTitle" = "Ответ 1";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "dN6-Bp-R82"; */
+"dN6-Bp-R82.placeholder" = "Пароль";
+
+/* Class = "UILabel"; text = "Player_Name"; ObjectID = "dVH-5u-XBB"; */
+"dVH-5u-XBB.text" = "Player_Name";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "doM-7D-oc1"; */
+"doM-7D-oc1.placeholder" = "Логин";
+
+/* Class = "UIButton"; normalTitle = "Theme 3"; ObjectID = "f3b-Vw-vXo"; */
+"f3b-Vw-vXo.normalTitle" = "Theme 3";
+
+/* Class = "UITextField"; placeholder = "Answer 3"; ObjectID = "f7O-cm-bEy"; */
+"f7O-cm-bEy.placeholder" = "Ответ 3";
+
+/* Class = "UILabel"; text = "Get your statistic"; ObjectID = "gAF-LF-Z9m"; */
+"gAF-LF-Z9m.text" = "Просмотр статистики";
+
+/* Class = "UILabel"; text = "12.11.2016"; ObjectID = "gn1-aq-dnb"; */
+"gn1-aq-dnb.text" = "12.11.2016";
+
+/* Class = "UIButton"; normalTitle = "Sign in"; ObjectID = "hZX-GP-yqa"; */
+"hZX-GP-yqa.normalTitle" = "Войти";
+
+/* Class = "UILabel"; text = "Peter"; ObjectID = "hlp-Oy-5f2"; */
+"hlp-Oy-5f2.text" = "Peter";
+
+/* Class = "UIButton"; normalTitle = "Surrend"; ObjectID = "jlL-a4-rao"; */
+"jlL-a4-rao.normalTitle" = "Сдаться";
+
+/* Class = "UIButton"; normalTitle = "Forget password?"; ObjectID = "l43-cJ-LDE"; */
+"l43-cJ-LDE.normalTitle" = "Забыли пароль?";
+
+/* Class = "UIButton"; normalTitle = "FIND MATCH"; ObjectID = "lAc-Kx-Khk"; */
+"lAc-Kx-Khk.normalTitle" = "ПОИСК МАТЧА";
+
+/* Class = "UIButton"; normalTitle = "+Friend"; ObjectID = "ly7-44-WPL"; */
+"ly7-44-WPL.normalTitle" = "+Друг";
+
+/* Class = "UILabel"; text = "4000"; ObjectID = "m1b-VV-EDA"; */
+"m1b-VV-EDA.text" = "4000";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "mog-QJ-Qjp"; */
+"mog-QJ-Qjp.normalTitle" = "Отправить";
+
+/* Class = "UITextField"; placeholder = "Answer 4"; ObjectID = "oFG-Qe-yKN"; */
+"oFG-Qe-yKN.placeholder" = "Ответ 4";
+
+/* Class = "UITextField"; placeholder = "Username or e-mail"; ObjectID = "pxn-WC-tH1"; */
+"pxn-WC-tH1.placeholder" = "Логин или e-mail";
+
+/* Class = "UILabel"; text = "13 - 18"; ObjectID = "rYV-hW-yFc"; */
+"rYV-hW-yFc.text" = "13 - 18";
+
+/* Class = "UITextField"; placeholder = "Answer 2"; ObjectID = "sXf-6B-2K0"; */
+"sXf-6B-2K0.placeholder" = "Ответ 2";
+
+/* Class = "UILabel"; text = "Choose theme:"; ObjectID = "saQ-b7-48s"; */
+"saQ-b7-48s.text" = "Выбранная тема:";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "tPg-Y0-kuc"; */
+"tPg-Y0-kuc.normalTitle" = "Войти";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "trl-7g-b7r"; */
+"trl-7g-b7r.placeholder" = "Логин";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "vN6-5p-BD4"; */
+"vN6-5p-BD4.title" = "Настройки";
+
+/* Class = "UIButton"; normalTitle = "Theme 1"; ObjectID = "wv6-vh-qtU"; */
+"wv6-vh-qtU.normalTitle" = "Theme 1";
+
+/* Class = "UILabel"; text = "Player2"; ObjectID = "xsL-ZJ-4UW"; */
+"xsL-ZJ-4UW.text" = "Player2";
+
+/* Class = "UITextField"; placeholder = "e-mail"; ObjectID = "ysM-cH-O8j"; */
+"ysM-cH-O8j.placeholder" = "e-mail";

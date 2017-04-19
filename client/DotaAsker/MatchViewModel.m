@@ -48,7 +48,7 @@
     Theme* theme = [[[ServiceLayer instance] roundService] themeSelectedForRound:r];
     NSString* str;
     if (theme)
-        str = [NSString stringWithFormat:@"%@", [theme name]];
+        str = [NSString stringWithFormat:@"%@", NSLocalizedString([theme name], 0)];
     return str;
 }
 
