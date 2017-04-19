@@ -16,7 +16,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.name = @"Opponent";
+        self.name = NSLocalizedString(@"Opponent", @"Default opponent name");
         self.avatarImageName = @"avatar_default.png";
         self.createdOn = [NSDate date];
         self.updatedOn = [NSDate date];

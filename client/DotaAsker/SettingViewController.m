@@ -101,8 +101,9 @@
     if (![[Player instance] premium]) {
         return NO;
     }
-    else
+    else {
         return YES;
+    }
 }
 
 @end

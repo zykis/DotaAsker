@@ -65,9 +65,9 @@
     Theme* theme2 = [themes objectAtIndex:1];
     Theme* theme3 = [themes objectAtIndex:2];
     
-    [_imagedButton1 setTitle:[theme1 name] forState:UIControlStateNormal];
-    [_imagedButton2 setTitle:[theme2 name] forState:UIControlStateNormal];
-    [_imagedButton3 setTitle:[theme3 name] forState:UIControlStateNormal];
+    [_imagedButton1 setTitle:NSLocalizedString([theme1 name], 0) forState:UIControlStateNormal];
+    [_imagedButton2 setTitle:NSLocalizedString([theme2 name], 0) forState:UIControlStateNormal];
+    [_imagedButton3 setTitle:NSLocalizedString([theme3 name], 0) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {

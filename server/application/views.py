@@ -24,6 +24,7 @@ auth = HTTPBasicAuth()
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):
+    app.logger.debug("Client tried to connect to path: {}".format(path))
     return 'You want path: %s' % path
 
 @app.route('/sendFriendRequest', methods=['POST'])

@@ -127,14 +127,14 @@ class Database_queries:
         # jack_user.acceptRequest(john_user)
 
         # ############################################# making themes
-        lore_theme = Theme(name=u'lore',
-                           image_name=u'theme_lore.png')
+        heroes_items_theme = Theme(name=u'heroes / items',
+                           image_name=u'theme_heroes_items.png')
         tournaments_theme = Theme(name=u'tournaments',
                                   image_name=u'theme_tournaments.png')
         mechanics_theme = Theme(name=u'mechanics',
                                 image_name=u'theme_mechanics.png')
         # add to session
-        db.session.add(lore_theme)
+        db.session.add(heroes_items_theme)
         db.session.add(tournaments_theme)
         db.session.add(mechanics_theme)
         db.session.commit()

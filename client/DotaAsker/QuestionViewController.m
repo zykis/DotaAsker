@@ -91,7 +91,7 @@
     
     // Remove the following line before you upload the app
     GADRequest* adRequest = [GADRequest request];
-    adRequest.testDevices = @[ kGADSimulatorID ];
+    adRequest.testDevices = @[ kGADSimulatorID, @"8a9389e7d52399c7c63a57e77b42cc683f283af5" ];
     [_interstitial loadRequest:adRequest];
     return _interstitial;
 }
@@ -360,7 +360,7 @@
 - (void)sendAnswers {
     [self blockUI];
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Sending answers"];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending answers", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -374,7 +374,7 @@
     void (^completeBlock)() = ^void() {
         // UserAnswers has been updated.
         // Updaing Player and tableView
-        [loadingView setMessage:@"Getting player"];
+        [loadingView setMessage:NSLocalizedString(@"Getting player", 0)];
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
         [subject subscribeNext:^(id u) {
             [Player manualUpdate:u];

@@ -34,6 +34,9 @@
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"product_ids" withExtension:@"plist"];
     NSArray *productIDs = [NSArray arrayWithContentsOfURL:url];
 
+    if (!_loadingView)
+        _loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage: NSLocalizedString(@"Checking premium", 0)];
+    [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     [IAPHelper validateProductIdentifiers:productIDs withDelegate:self andStrongRefToRequest:self.productRequest];
 }
 
@@ -128,12 +131,21 @@
 {
     self.premiumProduct = [response.products firstObject];
  
+    for (SKProduct* product in response.products) {
+        NSLog(@"%@", [product productIdentifier]);
+    }
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
         NSLog(@"Invalid Product Identifier: %@", invalidIdentifier);
+        [_loadingView removeFromSuperview];
+        _loadingView = nil;
+        [self.navigationController popViewControllerAnimated:YES];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Product problem. Please, try again later", 0)];
         return;
     }
  
     self.unlockButton.enabled = YES;
+    [_loadingView removeFromSuperview];
+    _loadingView = nil;
 }
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions

@@ -93,7 +93,7 @@
     Match* m = [[self currentMatches] objectAtIndex:row];
     // If less, then 2 users, then you created match and you are - initiator
     if ([m.users count] < 2)
-        return @"You answering";
+        return NSLocalizedString(@"You answering", @"Match state text");
     else {
         Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
         if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
@@ -106,10 +106,10 @@
                 }
             }
             if (thereIsOpponentAnswer) {
-                return @"You replying";
+                return NSLocalizedString(@"You replying", @"Match state text");
             }
             else {
-                return @"You answering";
+                return NSLocalizedString(@"You answering", @"Match state text");
             }
         }
         else {
@@ -121,10 +121,10 @@
                 }
             }
             if (thereIsPlayerAnswer) {
-                return @"Opponent replying";
+                return NSLocalizedString(@"Opponent replying", @"Match state text");
             }
             else {
-                return @"Opponent answering";
+                return NSLocalizedString(@"Opponent answering", @"Match state text");
             }
         }
     }
@@ -151,13 +151,13 @@
                     NSUInteger playerScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:[Player instance]];
                     NSUInteger opponentScore = [[[ServiceLayer instance] matchService] scoreForMatch:m andUser:opponent];
                     assert(playerScore == opponentScore);
-                    return @"Draw";
+                    return NSLocalizedString(@"Draw", 0);
                 }
                 else if ([winner isEqual:opponent]) {
-                    return @"You lost!";
+                    return NSLocalizedString(@"You lost!", 0);
                 }
                 else if ([winner isEqual:[Player instance]]) {
-                    return @"You won!";
+                    return NSLocalizedString(@"You won!", 0);
                 }
                 else {
                     assert(0);
@@ -168,10 +168,10 @@
             case MATCH_FINISH_REASON_TIME_ELAPSED:
             {
                 if ([winner isEqual:opponent]) {
-                    return @"You lost! (time elapsed)";
+                    return NSLocalizedString(@"You lost! (time elapsed)", 0);
                 }
                 else if ([winner isEqual:[Player instance]]) {
-                    return @"You won! (time elapsed)";
+                    return NSLocalizedString(@"You won! (time elapsed)", 0);
                 }
                 else {
                     assert(0);
@@ -182,12 +182,12 @@
             case MATCH_FINISH_REASON_SURREND:
             {
                 if ([winner isEqual:[Player instance]]) {
-                    return @"Opponent surrended";
+                    return NSLocalizedString(@"Opponent surrended", 0);
                 }
                 else {
                     // You could surrend to match without opponent found yet
                     // So, there is no winner
-                    return @"You surrended";
+                    return NSLocalizedString(@"You surrended", 0);
                 }
             }
             break;
@@ -200,7 +200,7 @@
 }
 
 - (NSString*)matchStateTextForWaitingMatch:(NSUInteger)row {
-    return @"Waiting";
+    return NSLocalizedString(@"Waiting", 0);
 }
 
 - (User*)opponentForCurrentMatch:(NSUInteger)row {
