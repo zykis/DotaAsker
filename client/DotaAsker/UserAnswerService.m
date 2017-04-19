@@ -76,6 +76,7 @@
     // [1] Player answered, opponent - not
     // [2] Player answered, opponent - too
     // [3] Player didn't answer, opponent - answered
+    NSString* rightString = NSLocalizedString(@"Right", 0);
     
     if (correctAnswer.text) {
         if ((firstUserAnswerText) && (secondUserAnswerText))
@@ -83,22 +84,24 @@
                     @"%@\n\n"
                     "%@: %@\n"
                     "%@: %@\n"
-                    NSLocalizedString("Right: %@", 0),
+                    "%@: %@",
                     question.text,
                     firstUser.name,
                     firstUserAnswerText,
                     secondUser.name,
                     secondUserAnswerText,
+                    rightString,
                     correctAnswer.text
                     ];
         else if ((firstUserAnswerText) && (!secondUserAnswerText))
             text = [NSString stringWithFormat:
                     @"%@\n\n"
                     "%@: %@\n"
-                    NSLocalizedString("Right: %@", 0),
+                    "%@: %@",
                     question.text,
                     firstUser.name,
                     firstUserAnswerText,
+                    rightString,
                     correctAnswer.text
                     ];
         else if ((!firstUserAnswerText) && (secondUserAnswerText))

@@ -68,7 +68,7 @@
     navBarAppearence.titleTextAttributes =
       @{
         NSForegroundColorAttributeName: [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f],
-        NSFontAttributeName : [UIFont fontWithName:@"TrajanBold" size:14.0f]
+        NSFontAttributeName : [UIFont fontWithName:@"Trajan Pro 3" size:14.0f]
        };
     navBarAppearence.barTintColor = [[Palette shared] navigationPanelColor];
     navBarAppearence.tintColor = [UIColor whiteColor];
@@ -76,7 +76,7 @@
 }
 
 - (void)printAvailableFontNames {
-    NSArray *trajanFonts = [UIFont fontNamesForFamilyName:@"Trajan"];
+    NSArray *trajanFonts = [UIFont fontNamesForFamilyName:@"TrajanPro3"];
     NSLog(@"Available Trajan font names: %@", trajanFonts);
 }
 

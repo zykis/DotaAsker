@@ -16,6 +16,12 @@
         <array key="Trajan Bold.ttf">
             <string>TrajanBold</string>
         </array>
+        <array key="TrajanPro3-Bold.ttf">
+            <string>TrajanPro3-Bold</string>
+        </array>
+        <array key="TrajanPro3-Regular.ttf">
+            <string>TrajanPro3-Regular</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
@@ -60,7 +66,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="trl-7g-b7r" secondAttribute="height" multiplier="181:30" id="Gja-xK-iHk"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dN6-Bp-R82" userLabel="Password">
@@ -68,7 +74,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="dN6-Bp-R82" secondAttribute="height" multiplier="181:30" id="5hH-HI-twL"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-Y0-kuc" customClass="SettingsButton">
@@ -76,7 +82,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="38" id="UQU-4N-KDw"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <state key="normal" title="Sign In">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -97,11 +103,11 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l43-cJ-LDE">
-                                <rect key="frame" x="90" y="518" width="140" height="30"/>
+                                <rect key="frame" x="70" y="520" width="180" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="vYZ-Ag-PwF"/>
+                                    <constraint firstAttribute="width" constant="180" id="vYZ-Ag-PwF"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="Forget password?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -110,11 +116,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAd-Fq-Jlq">
-                                <rect key="frame" x="120" y="553" width="80" height="30"/>
+                                <rect key="frame" x="110" y="554" width="100" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="obT-sW-Se7"/>
+                                    <constraint firstAttribute="width" constant="100" id="obT-sW-Se7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -169,15 +175,15 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="pxn-WC-tH1" secondAttribute="height" multiplier="181:30" id="LXH-lr-Z4q"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mog-QJ-Qjp">
-                                <rect key="frame" x="126" y="135" width="69" height="31"/>
+                                <rect key="frame" x="126" y="135" width="69" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="69" id="2eD-un-LKB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <state key="normal" title="Send">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -234,7 +240,7 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="v8v-RQ-qf8" secondAttribute="height" multiplier="3:1" id="Qgz-mo-ZhI"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -252,7 +258,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xm0-7V-sFI" customClass="SettingsButton">
                                         <rect key="frame" x="0.0" y="152" width="288" height="96"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -270,7 +276,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AgR-jf-E0d" customClass="SettingsButton">
                                         <rect key="frame" x="0.0" y="304" width="288" height="96"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -288,7 +294,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C7P-3r-zWi" customClass="SettingsButton">
                                         <rect key="frame" x="0.0" y="456" width="288" height="96"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.2784313725" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <state key="normal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -390,7 +396,7 @@
                                     <constraint firstAttribute="height" constant="45" id="brW-ki-UYW"/>
                                     <constraint firstAttribute="width" constant="173" id="f2p-WR-7ek"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -458,7 +464,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="qOf-OU-8ST"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Hj-aQ-Ksv" customClass="SettingsButton">
@@ -467,6 +473,7 @@
                                             <constraint firstAttribute="width" constant="120" id="39v-wh-wU7"/>
                                             <constraint firstAttribute="height" constant="45" id="InR-XZ-CaW"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <state key="normal" title="SUBMIT">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -474,28 +481,28 @@
                                             <action selector="submit" destination="Sfa-G4-ZAy" eventType="touchUpInside" id="cR7-hM-UMl"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CORRECT" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45r-x9-goA">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correct" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="45r-x9-goA">
                                         <rect key="frame" x="8" y="84" width="129.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sXf-6B-2K0">
                                         <rect key="frame" x="150.5" y="84" width="129.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 3" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f7O-cm-bEy">
                                         <rect key="frame" x="8" y="122" width="129.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 4" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oFG-Qe-yKN">
                                         <rect key="frame" x="150.5" y="122" width="129.5" height="30"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -578,7 +585,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No advertisements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-br-C5h">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274509803915" green="0.55294117647058827" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -596,7 +603,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoK-yn-zRF">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -614,7 +621,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get your statistic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAF-LF-Z9m">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -632,7 +639,7 @@
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 100 players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6V-Hu-WKi">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Bold" family="Trajan Pro 3" pointSize="17"/>
                                                 <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -646,6 +653,7 @@
                                     <constraint firstAttribute="height" constant="45" id="KHr-Ab-OHE"/>
                                     <constraint firstAttribute="width" constant="120" id="zqb-gx-UwI"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="UNLOCK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -721,13 +729,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-nQ-6wH">
-                                                    <rect key="frame" x="99" y="12.5" width="122.5" height="19"/>
+                                                    <rect key="frame" x="99" y="13" width="122.5" height="19"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1b-VV-EDA">
-                                                    <rect key="frame" x="265.5" y="12" width="46" height="21.5"/>
+                                                    <rect key="frame" x="265.5" y="11.5" width="46" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="B4h-Pg-8qU"/>
                                                     </constraints>
@@ -736,7 +744,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTt-4Q-G7k">
-                                                    <rect key="frame" x="226.5" y="16.5" width="31" height="12"/>
+                                                    <rect key="frame" x="226.5" y="15.5" width="31" height="12"/>
                                                     <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -816,35 +824,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbM-cg-6oZ">
-                                                    <rect key="frame" x="59" y="80" width="54" height="15"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
+                                                    <rect key="frame" x="63.5" y="80" width="47.5" height="12"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 - 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uh1-Pf-7qM">
-                                                    <rect key="frame" x="143" y="30" width="35" height="21"/>
+                                                    <rect key="frame" x="144" y="30" width="33" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21.5" id="cWO-G8-Mj7"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsL-ZJ-4UW">
-                                                    <rect key="frame" x="207.5" y="80" width="55.5" height="15"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
+                                                    <rect key="frame" x="210" y="80" width="49.5" height="12"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_bounty.png" translatesAutoresizingMaskIntoConstraints="NO" id="qwg-M7-n5P">
-                                                    <rect key="frame" x="54" y="8" width="64" height="64"/>
+                                                    <rect key="frame" x="55" y="8" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="64" id="TUF-He-4DO"/>
                                                         <constraint firstAttribute="width" constant="64" id="ieM-gK-oB8"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_bristle.png" translatesAutoresizingMaskIntoConstraints="NO" id="c10-Xs-Am1">
-                                                    <rect key="frame" x="203" y="8" width="64" height="64"/>
+                                                    <rect key="frame" x="202" y="8" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="LR9-pT-Yfq"/>
                                                         <constraint firstAttribute="height" constant="64" id="lkv-Yg-kSG"/>
@@ -882,7 +890,7 @@
                                                                 <constraint firstAttribute="width" constant="69" id="5Ya-tr-cn0"/>
                                                                 <constraint firstAttribute="height" constant="15" id="NLO-ix-jQL"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="9"/>
+                                                            <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="9"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -892,7 +900,7 @@
                                                                 <constraint firstAttribute="height" constant="27" id="2Eu-tD-9sZ"/>
                                                                 <constraint firstAttribute="width" constant="115.5" id="5Cy-NV-Ntj"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                                            <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -985,7 +993,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="81" id="Twv-nA-B8R"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="11"/>
                                                     <state key="normal" title="Surrend">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -999,7 +1007,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="81" id="wpp-5y-zsK"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="11"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="11"/>
                                                     <state key="normal" title="+Friend">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1013,7 +1021,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="98" id="uhi-No-uOq"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                     <state key="normal" title="REMAKE">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1091,7 +1099,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="8ao-2h-epA"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1100,7 +1108,7 @@
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wv6-vh-qtU" customClass="ThemeButton">
                                         <rect key="frame" x="0.0" y="0.0" width="292" height="154.5"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="18"/>
                                         <state key="normal" title="Theme 1">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1110,7 +1118,7 @@
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X0t-Rc-bTM" customClass="ThemeButton">
                                         <rect key="frame" x="0.0" y="164.5" width="292" height="155"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="18"/>
                                         <state key="normal" title="Theme 2">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1120,7 +1128,7 @@
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3b-Vw-vXo" customClass="ThemeButton">
                                         <rect key="frame" x="0.0" y="329.5" width="292" height="154.5"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="18"/>
                                         <state key="normal" title="Theme 3">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1178,7 +1186,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="es5-JR-FNa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1187,7 +1195,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="127" id="bu7-wM-Grn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="18"/>
                                 <state key="normal" title="Selected theme">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1233,6 +1241,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="E7c-Qo-mxp">
                                 <rect key="frame" x="12" y="294" width="143" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <state key="normal" title="Answer3">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1271,7 +1280,7 @@
                                     <constraint firstAttribute="height" constant="63" id="lAM-y7-N5i"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="c5A-4P-VM5">
@@ -1280,6 +1289,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="T3m-fq-Kga"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <state key="normal" title="Answer1">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1303,6 +1313,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="6zT-S1-Eo6">
                                 <rect key="frame" x="166" y="294" width="142" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <state key="normal" title="Answer4">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1322,6 +1333,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Zu8-37-KE8">
                                 <rect key="frame" x="166" y="202" width="142" height="84"/>
                                 <color key="backgroundColor" red="0.2035787563" green="0.2035787563" blue="0.2035787563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                 <state key="normal" title="Answer2">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1421,7 +1433,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" tag="206" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hn2-Mn-HkY">
-                                                    <rect key="frame" x="22" y="-1" width="276" height="80"/>
+                                                    <rect key="frame" x="35" y="-1" width="251.5" height="80"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UBk-2u-GHS">
                                                             <rect key="frame" x="0.0" y="0.0" width="80.5" height="80"/>
@@ -1431,8 +1443,8 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" tag="201" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="player's name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="20E-kU-5X3">
-                                                            <rect key="frame" x="90.5" y="0.0" width="185.5" height="80"/>
-                                                            <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="22"/>
+                                                            <rect key="frame" x="90.5" y="0.0" width="161" height="80"/>
+                                                            <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="22"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1456,7 +1468,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAc-Kx-Khk" customClass="FindMatchButton">
                                                     <rect key="frame" x="23" y="8" width="274" height="63"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="19"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="19"/>
                                                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="FIND MATCH">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1484,17 +1496,17 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Match state text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0NX-Ic-vRr">
-                                                    <rect key="frame" x="170" y="28.5" width="64" height="22.5"/>
+                                                    <rect key="frame" x="170" y="30.5" width="64" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="64" id="mPY-oL-cae"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="9"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="9"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player_Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVH-5u-XBB">
-                                                    <rect key="frame" x="80" y="32" width="82" height="15"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="12"/>
+                                                    <rect key="frame" x="80" y="33.5" width="82" height="12"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1512,8 +1524,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbw-a2-H2X">
-                                                    <rect key="frame" x="253" y="25.5" width="40" height="29"/>
-                                                    <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="23"/>
+                                                    <rect key="frame" x="253" y="28.5" width="40" height="23"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="23"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1597,7 +1609,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aKc-Ce-L6J">
-                                <rect key="frame" x="16" y="316" width="288" height="279"/>
+                                <rect key="frame" x="16" y="315" width="288" height="280"/>
                                 <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="match" rowHeight="25" id="G3Y-Pz-SQO">
@@ -1608,35 +1620,35 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlp-Oy-5f2">
-                                                    <rect key="frame" x="8" y="5" width="33" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <rect key="frame" x="8" y="4.5" width="50.5" height="17"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 - 18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rYV-hW-yFc">
-                                                    <rect key="frame" x="129" y="5" width="42" height="16"/>
+                                                    <rect key="frame" x="129" y="6" width="42" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="eNe-HR-Erd"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7a-NT-dhQ">
-                                                    <rect key="frame" x="179" y="2" width="31" height="21"/>
+                                                    <rect key="frame" x="179" y="4" width="31" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="31" id="krc-vF-K8b"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.6973828125" blue="0.00021348547210000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.11.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gn1-aq-dnb">
-                                                    <rect key="frame" x="218" y="5" width="62" height="16"/>
+                                                    <rect key="frame" x="218" y="6" width="62" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="62.5" id="7Up-6S-ssm"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1677,31 +1689,31 @@
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhN-Qj-AMQ" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="180" width="288" height="128"/>
+                                <rect key="frame" x="16" y="179" width="288" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="E0p-yk-hbc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ziM-QD-7nY" customClass="PieChartView" customModule="Charts">
-                                <rect key="frame" x="152" y="28" width="152" height="152"/>
+                                <rect key="frame" x="153" y="28" width="151" height="151"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ziM-QD-7nY" secondAttribute="height" multiplier="1:1" id="I8I-3B-SsT"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="kHx-9N-KP7">
-                                <rect key="frame" x="30" y="156" width="100.5" height="16"/>
+                                <rect key="frame" x="30" y="156" width="100" height="15"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Y9-kl-U9T">
-                                        <rect key="frame" x="0.0" y="0.0" width="40.5" height="16"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="13"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="15"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
                                         <color key="textColor" red="1" green="0.95839753490000001" blue="0.48410387129999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9a-yP-JAm">
-                                        <rect key="frame" x="60.5" y="0.0" width="40" height="16"/>
-                                        <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="15"/>
+                                        <rect key="frame" x="62.5" y="0.0" width="37.5" height="15"/>
+                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -1762,17 +1774,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-My-Kix">
-                                <rect key="frame" x="16" y="28" width="288" height="223.5"/>
+                                <rect key="frame" x="16" y="28" width="288" height="218.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-PG-5Tv">
-                                        <rect key="frame" x="15" y="8" width="258" height="207.5"/>
+                                        <rect key="frame" x="15" y="8" width="258" height="202.5"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="doM-7D-oc1" userLabel="Username">
                                                 <rect key="frame" x="0.0" y="0.0" width="258" height="43"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="doM-7D-oc1" secondAttribute="height" multiplier="181:30" id="Enf-sh-Ouh"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sv1-iB-fuh" userLabel="Password">
@@ -1780,21 +1792,21 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Sv1-iB-fuh" secondAttribute="height" multiplier="181:30" id="vYh-CL-3bJ"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail (not necessery)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysM-cH-O8j" userLabel="Password">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e-mail" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysM-cH-O8j" userLabel="Password">
                                                 <rect key="frame" x="0.0" y="115.5" width="258" height="43"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="ysM-cH-O8j" secondAttribute="height" multiplier="181:30" id="Qpw-wv-rBV"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="9"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVt-l5-tJq" customClass="SettingsButton">
-                                                <rect key="frame" x="0.0" y="173.5" width="258" height="34"/>
-                                                <fontDescription key="fontDescription" name="TrajanBold" family="Trajan" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="173.5" width="258" height="29"/>
+                                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1815,11 +1827,11 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZX-GP-yqa">
-                                <rect key="frame" x="120" y="553" width="80" height="30"/>
+                                <rect key="frame" x="110" y="554" width="100" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="cKO-cL-zPY"/>
+                                    <constraint firstAttribute="width" constant="100" id="cKO-cL-zPY"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1871,7 +1883,7 @@
         <image name="icon-versus-orange.png" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ut3-yq-Aji"/>
         <segue reference="bEc-Q7-zHG"/>
+        <segue reference="ut3-yq-Aji"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -139,7 +139,7 @@
         NSLog(@"Premium updated");
     } error:^(NSError *error) {
         [_loadingView removeFromSuperview];
-        [self presentAlertControllerWithMessage:NSLocalizedString([error localuzedDescription], 0)];
+        [self presentAlertControllerWithMessage:NSLocalizedString([error localizedDescription], 0)];
     } completed:^{
         [_loadingView removeFromSuperview];
         [self.navigationController popViewControllerAnimated:YES];

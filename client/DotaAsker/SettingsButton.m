@@ -47,7 +47,7 @@
 
 - (void)setColors {
     _cornerRadius = 4.5;
-    _textFont = [UIFont fontWithName:@"Trajan" size:11];
+    _textFont = [UIFont fontWithName:@"Trajan Pro 3" size:11];
     _backgroundColorStart = [UIColor colorWithRed:0.94f green:0.82f blue:0.52f alpha:1.00f];
     _backgroundColorEnd = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
     _highlightBackgroundColorStart = [UIColor colorWithRed:0.91f green:0.55f blue:0.00f alpha:1.00f];
@@ -118,7 +118,7 @@
     if (!_textLayer) {
         _textLayer = [CATextLayer layer];
         _textLayer.string = _text;
-        _textLayer.font = CFBridgingRetain([UIFont fontWithName:@"Trajan" size:17.0].fontName);
+        _textLayer.font = CFBridgingRetain([UIFont fontWithName:@"Trajan Pro 3" size:17.0].fontName);
         _textLayer.fontSize = 17.0;
         _textLayer.foregroundColor = [UIColor whiteColor].CGColor;
         _textLayer.alignmentMode = kCAAlignmentLeft;
@@ -149,7 +149,7 @@
     // Set disabled layer frame
     _disabledBackgroundLayer.frame = self.bounds;
     
-    CGRect labelRect = [_text boundingRectWithSize:self.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Trajan" size:17.0] } context:nil];
+    CGRect labelRect = [_text boundingRectWithSize:self.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Trajan Pro 3" size:17.0] } context:nil];
     _textLayer.frame = labelRect;
     _textLayer.anchorPoint = CGPointMake(0, 0.5);
     _textLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + 48 + 15 * 2, CGRectGetMidY(self.bounds));
