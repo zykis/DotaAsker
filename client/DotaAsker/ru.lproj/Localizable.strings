@@ -59,16 +59,23 @@
 // Match View Controller
 "Round # %ld" = "Раунд № %ld"
 "Play" = "Играть"
+"Surrend" = "Сдаться"
 "Synchronize" = "Синхронизировать"
 "Waiting" = "Ожидание"
 "Play again" = "Играть снова"
 "Revenge" = "Реванш"
-
-// Passport remind view controller
-"Sending email" = "Отправка сообщения"
-
 "Question %ld:" = "Вопрос %ld:"
+"Right: %@" = "Правильный: %@"
+"Unanswered" = "Неотвеченный"
 "Ok" = "Готово"
+
+// Theme selection view controller
+"Heroes / Items" = "Герои / Предметы"
+"Tournaments" = "Турниры"
+"Mechanics" = "Механика"
+
+// Password remind view controller
+"Sending email" = "Отправка сообщения"
 
 // Unlock premium view controller
 "Error, while trying to buy premium" = "Ошибка при покупке премиум-аккаунта"

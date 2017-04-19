@@ -83,8 +83,8 @@
                     @"%@\n\n"
                     "%@: %@\n"
                     "%@: %@\n"
-                    "Right: %@"
-                    , question.text,
+                    NSLocalizedString("Right: %@", 0),
+                    question.text,
                     firstUser.name,
                     firstUserAnswerText,
                     secondUser.name,
@@ -95,7 +95,7 @@
             text = [NSString stringWithFormat:
                     @"%@\n\n"
                     "%@: %@\n"
-                    "Right: %@",
+                    NSLocalizedString("Right: %@", 0),
                     question.text,
                     firstUser.name,
                     firstUserAnswerText,
@@ -115,7 +115,7 @@
                     "%@: %@\n",
                     question.text,
                     firstUser.name,
-                    @"Unanswered"
+                    NSLocalizedString(@"Unanswered", 0)
                     ];
     }
     return text;
