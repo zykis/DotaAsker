@@ -189,7 +189,7 @@
 
 - (IBAction)surrend:(id)sender {
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Sending answers", 0)];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Surrending", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -203,7 +203,7 @@
     void (^completeBlock)() = ^void() {
         // UserAnswers has been updated.
         // Updaing Player and tableView
-        [loadingView setMessage:@"Getting player"];
+        [loadingView setMessage:NSLocalizedString(@"Getting player", 0)];
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
         [subject subscribeNext:^(id u) {
             [Player manualUpdate:u];
