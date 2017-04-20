@@ -23,7 +23,8 @@
 
         NSUInteger margins = 8;
         CGSize loadingSize = [[loadingView loadingLabel] intrinsicContentSize];
-        loadingSize.width += margins * 2;
+        loadingSize.width += margins * 3;
+        loadingSize.width += 16; // Indicator view
         CGPoint loadingPoint = CGPointMake(r.size.width / 2.0 - loadingSize.width / 2.0, r.size.height / 2.0 - loadingSize.height / 2.0);
         CGRect loadingFrame = CGRectMake(loadingPoint, loadingSize);
         
