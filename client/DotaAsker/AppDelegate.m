@@ -65,6 +65,9 @@
         
     //customizing NavigationBar
     UINavigationBar *navBarAppearence = [UINavigationBar appearance];
+    for (NSString* familtyName in [UIFont familyNames]) {
+        NSLog(@"%@", familtyName);
+    }
     navBarAppearence.titleTextAttributes =
       @{
         NSForegroundColorAttributeName: [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:1.0f],
@@ -76,7 +79,7 @@
 }
 
 - (void)printAvailableFontNames {
-    NSArray *trajanFonts = [UIFont fontNamesForFamilyName:@"TrajanPro3"];
+    NSArray *trajanFonts = [UIFont fontNamesForFamilyName:@"Trajan Pro 3"];
     NSLog(@"Available Trajan font names: %@", trajanFonts);
 }
 
