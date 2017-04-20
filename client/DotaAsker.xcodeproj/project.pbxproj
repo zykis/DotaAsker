@@ -95,7 +95,6 @@
 		AC7B67A31DA8AE3A00351887 /* MatchService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7B67A21DA8AE3A00351887 /* MatchService.m */; };
 		AC7E6D2B1DC2A05400F7871C /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7E6D2A1DC2A05400F7871C /* LoadingView.m */; };
 		AC80436A1C36A85E0063CD67 /* UserAnswerServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */; };
-		AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC850B751B3C85A00050954C /* Trajan Bold.ttf */; };
 		AC8841B71B2E5DAA006212D2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841B61B2E5DAA006212D2 /* User.m */; };
 		AC8841BA1B2E650B006212D2 /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841B91B2E650B006212D2 /* Match.m */; };
 		AC8841BD1B2EFB9C006212D2 /* Round.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8841BC1B2EFB9C006212D2 /* Round.m */; };
@@ -310,7 +309,6 @@
 		AC7E6D291DC2A05400F7871C /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		AC7E6D2A1DC2A05400F7871C /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		AC8043691C36A85E0063CD67 /* UserAnswerServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAnswerServiceTest.m; path = ../UserAnswerServiceTest.m; sourceTree = "<group>"; };
-		AC850B751B3C85A00050954C /* Trajan Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Trajan Bold.ttf"; path = "resources/Trajan Bold.ttf"; sourceTree = "<group>"; };
 		AC8841B51B2E5DAA006212D2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		AC8841B61B2E5DAA006212D2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		AC8841B81B2E650B006212D2 /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
@@ -620,7 +618,6 @@
 			children = (
 				AC6929651EA7D22000BEB661 /* TrajanPro3-Bold.ttf */,
 				AC6929661EA7D22000BEB661 /* TrajanPro3-Regular.ttf */,
-				AC850B751B3C85A00050954C /* Trajan Bold.ttf */,
 			);
 			name = fonts;
 			sourceTree = "<group>";
@@ -1021,7 +1018,6 @@
 				ACFD403D1E8C3251003DB4E3 /* pattern-6.png in Resources */,
 				AC69299A1EA7D27000BEB661 /* Icon-App-57x57@1x.png in Resources */,
 				ACA1CE861E94323A0004DC70 /* icon-checked-50.png in Resources */,
-				AC850B761B3C85A00050954C /* Trajan Bold.ttf in Resources */,
 				AC69297B1EA7D25D00BEB661 /* ItunesArtwork@2x.png in Resources */,
 				ACFD40421E8C3251003DB4E3 /* pattern5.jpg in Resources */,
 				AC6929A21EA7D27000BEB661 /* Icon-App-76x76@3x.png in Resources */,
