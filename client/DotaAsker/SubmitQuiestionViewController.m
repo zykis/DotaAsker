@@ -92,7 +92,7 @@
         [[newQ answers] addObject:a];
     }
     
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Submiting question"];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Submiting question", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
         
     RACReplaySubject* subject = [[[ServiceLayer instance] questionService] submitQuestion:newQ];

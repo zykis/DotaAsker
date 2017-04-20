@@ -35,7 +35,7 @@
     NSArray *productIDs = [NSArray arrayWithContentsOfURL:url];
 
     if (!_loadingView)
-        _loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage: NSLocalizedString(@"Checking premium", 0)];
+        _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Checking premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     [IAPHelper validateProductIdentifiers:productIDs withDelegate:self andStrongRefToRequest:self.productRequest];
 }
@@ -123,7 +123,7 @@
 - (IBAction)unlockPressed {
     /* Comment, while troubles with bank info
     if (!_loadingView)
-        _loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage: NSLocalizedString(@"Buying premium", 0)];
+        _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     [IAPHelper buy:self.premiumProduct];
     */

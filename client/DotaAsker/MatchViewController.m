@@ -73,7 +73,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    [super didReceiveMemoryWarning];d
     // Dispose of any resources that can be recreated.
 }
 
@@ -127,7 +127,7 @@
         case BUTTON_SYNCHRONIZE:
         {
             // Present LoadingView
-            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending answers", 0)];
+            __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Sending answers", 0)];
             [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
             
             void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -175,7 +175,7 @@
 }
 
 - (IBAction)sendFriendRequest:(id)sender {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending request", 0)];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Sending request", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACReplaySubject* subject = [[[ServiceLayer instance] userService] sendFriendRequestToUser:[_matchViewModel opponent]];
@@ -189,7 +189,7 @@
 
 - (IBAction)surrend:(id)sender {
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Sending answers", 0)];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Sending answers", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {

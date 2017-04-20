@@ -70,7 +70,7 @@
 - (IBAction)top100Pushed {
     if ([self checkPremium]) {
         // Present LoadingView
-        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Getting top 100", 0)];
+        __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Getting top 100", 0)];
         [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
         __block NSDictionary* results;

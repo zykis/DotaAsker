@@ -39,6 +39,7 @@
 "Sending request" = "Отправка запроса";
 "Buying premium" = "Покупка премиума";
 "Changing avatar" = "Смена аватара";
+"Checking premium" = "Проверка премиума";
 
 // Error messages
 "Premium account only" = "Только для премиум-аккаунта";
@@ -89,3 +90,8 @@
 "Error, while trying to buy premium" = "Ошибка при покупке премиум-аккаунта";
 "Thank you for buying premium!" = "Спасибо за покупку премиум-аккаунта";
 "Your purchase has been restored!" = "Премиум аккаунт восстановлен";
+
+
+// Statistics view controller
+"Won" = "Побед";
+"Lost" = "Поражений";

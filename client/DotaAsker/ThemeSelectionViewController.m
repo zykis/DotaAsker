@@ -12,7 +12,6 @@
 #import "ServiceLayer.h"
 #import "UIViewController+Utils.h"
 #import "ThemeButton.h"
-#import "ModalLoadingView.h"
 #import "Theme.h"
 
 // Libraries

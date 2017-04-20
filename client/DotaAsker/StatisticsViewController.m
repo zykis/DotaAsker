@@ -119,9 +119,9 @@
     
     float winRate = (float)[[Player instance] totalMatchesWon] / (float)([[Player instance] totalMatchesLost] + [[Player instance] totalMatchesWon]);
     PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winRate * 100];
-    eWin.label = @"Won";
+    eWin.label = NSLocalizableString(@"Won", 0);
     PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:(1 - winRate) * 100];
-    eLose.label = @"Lost";
+    eLose.label = NSLocalizableString(@"Lost", 0);
     
     PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:@[eLose, eWin]];
     dSet.sliceSpace = 4;

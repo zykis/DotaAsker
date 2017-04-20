@@ -93,7 +93,8 @@
     Match* m = [[self currentMatches] objectAtIndex:row];
     // If less, then 2 users, then you created match and you are - initiator
     if ([m.users count] < 2)
-        return NSLocalizedString(@"You answering", @"Match state text");
+        // return NSLocalizedString(@"You answering", @"Match state text");
+        return @"";
     else {
         Round* currentRound = [[[ServiceLayer instance] roundService] currentRoundforMatch:m];
         if ([[currentRound nextMoveUser] isEqual:[Player instance]]) {
@@ -106,10 +107,12 @@
                 }
             }
             if (thereIsOpponentAnswer) {
-                return NSLocalizedString(@"You replying", @"Match state text");
+                // return NSLocalizedString(@"You replying", @"Match state text");
+                return @"";
             }
             else {
-                return NSLocalizedString(@"You answering", @"Match state text");
+                // return NSLocalizedString(@"You answering", @"Match state text");
+                return @"";
             }
         }
         else {
@@ -121,10 +124,12 @@
                 }
             }
             if (thereIsPlayerAnswer) {
-                return NSLocalizedString(@"Opponent replying", @"Match state text");
+                // return NSLocalizedString(@"Opponent replying", @"Match state text");
+                return @"";
             }
             else {
-                return NSLocalizedString(@"Opponent answering", @"Match state text");
+                // return NSLocalizedString(@"Opponent answering", @"Match state text");
+                return @"";
             }
         }
     }
@@ -200,7 +205,8 @@
 }
 
 - (NSString*)matchStateTextForWaitingMatch:(NSUInteger)row {
-    return NSLocalizedString(@"Waiting", 0);
+    // return NSLocalizedString(@"Waiting", 0);
+    return @"";
 }
 
 - (User*)opponentForCurrentMatch:(NSUInteger)row {

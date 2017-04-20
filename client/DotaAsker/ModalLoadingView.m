@@ -11,17 +11,26 @@
 
 @implementation ModalLoadingView
 
-- (id)initWithFrame:(CGRect)frame andMessage:(NSString*)message {
+- (id)initWithMessage:(NSString*)message {
     CGRect r = [[UIScreen mainScreen] bounds];
     self = [super initWithFrame:r];
     if (self) {
         self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
         self.userInteractionEnabled = YES;
-        self.loadingView = [[LoadingView alloc] initWithFrame:frame];
+        
+        self.loadingView = [[LoadingView alloc] init];
         [self.loadingView setMessage:message];
+
+        NSUInteger margins = 8;
+        CGSize loadingSize = [[loadingView loadingLabel] intrinsicContentSize];
+        loadingSize.width += margins * 2;
+        CGPoint loadingPoint = CGPointMake(r.size.width / 2.0 - loadingSize.width / 2.0, r.size.height / 2.0 - loadingSize.height / 2.0);
+        CGRect loadingFrame = CGRectMake(loadingPoint, loadingSize);
+        
+        [self.loadingView setFrame:loadingFrame];
+        
         [self addSubview:self.loadingView];
     }
-    return self;
 }
 
 - (void)setMessage: (NSString*)message {

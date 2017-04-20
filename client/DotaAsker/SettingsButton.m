@@ -149,16 +149,19 @@
     // Set disabled layer frame
     _disabledBackgroundLayer.frame = self.bounds;
     
-    CGRect labelRect = [_text boundingRectWithSize:self.bounds.size options:NSStringDrawingUsesLineFragmentOrigin attributes:@{ NSFontAttributeName : [UIFont fontWithName:@"Trajan Pro 3" size:17.0] } context:nil];
-    _textLayer.frame = labelRect;
-    _textLayer.anchorPoint = CGPointMake(0, 0.5);
-    _textLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + 48 + 15 * 2, CGRectGetMidY(self.bounds));
-    
     CGRect iconRect = CGRectMake(0, 0, 48, 48);
+    NSUInteger margins = 15;
     _iconLayer.frame = iconRect;
     _iconLayer.anchorPoint = CGPointMake(0, 0.5);
-    _iconLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + 15, CGRectGetMidY(self.bounds));
+    _iconLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + margins, CGRectGetMidY(self.bounds));
     
+    CGSize labelSize = CGSizeMake(self.bounds.size.width - iconRect.size.width - margins * 3, self.bounds.size.height);
+    CGPoint labelOrigin = CGPointMake(iconRect.size.width + margins * 2, 0);
+    CGRect labelRect = CGRectMake(labelOrigin, labelSize);
+    
+    _textLayer.frame = labelRect;
+    _textLayer.anchorPoint = CGPointMake(0, 0.5);
+    _textLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + iconRect.size.width + margins * 2, CGRectGetMidY(self.bounds));
     
     [super layoutSubviews];
 }

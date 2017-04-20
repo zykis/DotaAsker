@@ -46,7 +46,7 @@
 
 - (void)refreshControllDragged {   
     // Present LoadingView
-    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:@"Updating player"];
+    __block ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Updating player", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
@@ -344,7 +344,7 @@
 }
 
 - (IBAction)findMatchPressed {
-    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Finding match", 0)];
+    ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Finding match", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
     RACSignal* signal = [[[ServiceLayer instance] matchService] findMatchForUser:[[[ServiceLayer instance] authorizationService] accessToken]];
@@ -361,7 +361,7 @@
 
 - (IBAction)showStatistics {
     if ([self checkPremium]) {
-        ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithFrame:CGRectMake(self.view.frame.size.width / 2 - 200 / 2, self.view.frame.size.height / 2 - 50 / 2, 200, 50) andMessage:NSLocalizedString(@"Getting statistics", 0)];
+        ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Getting statistics", 0)];
         [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
         
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainStatistic:[Player instance].ID];
