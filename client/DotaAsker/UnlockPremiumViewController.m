@@ -121,14 +121,13 @@
 }
 
 - (IBAction)unlockPressed {
-    /* Comment, while troubles with bank info
     if (!_loadingView)
         _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
     [IAPHelper buy:self.premiumProduct];
-    */
     
-    // Will be commented
+    
+    /*
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     [[Player instance] setPremium:YES];
@@ -145,6 +144,7 @@
         [self.navigationController popViewControllerAnimated:YES];
         [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
     }];
+    */
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
@@ -155,7 +155,6 @@
         NSLog(@"%@", [product productIdentifier]);
     }
     
-    /* Comment, while troubles with bank info
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
         NSLog(@"Invalid Product Identifier: %@", invalidIdentifier);
         [_loadingView removeFromSuperview];
@@ -163,9 +162,8 @@
         [self.navigationController popViewControllerAnimated:YES];
         [self presentAlertControllerWithMessage:NSLocalizedString(@"Product problem. Please, try again later", 0)];
         return;
-    }
-    */
- 
+    }    
+
     self.unlockButton.enabled = YES;
     [_loadingView removeFromSuperview];
     _loadingView = nil;
