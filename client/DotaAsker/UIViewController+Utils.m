@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "TTGSnackbar-Swift.h"
 #import "Palette.h"
+#import "ModalLoadingView.h"
 
 @implementation UIViewController (BackgroundImage)
 
@@ -75,6 +76,14 @@
     
     [snackBar setBackgroundColor:[[UIColor greenColor] colorWithAlphaComponent:0.5]];
     [snackBar show];
+}
+
+- (void)hideLoadingViewIfPresented {
+    for (UIView* subview in [[[UIApplication sharedApplication] keyWindow] subviews]) {
+        if ([subview isKindOfClass:[ModalLoadingView class]]) {
+            [subview removeFromSuperView];
+        }
+    }
 }
 
 @end

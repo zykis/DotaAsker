@@ -75,6 +75,11 @@
         [self performSegueWithIdentifier:@"signin" sender:self];
 }
 
+- (void)viewWillDissapear: (BOOL)animated {
+    [super viewWillDissapear:animated];
+    [self hideLoadingViewIfPresented];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

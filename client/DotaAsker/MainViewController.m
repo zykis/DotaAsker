@@ -100,6 +100,11 @@
     [super viewDidAppear:animated];
 }
 
+- (void)viewWillDissapear: (BOOL)animated {
+    [super viewWillDissapear:animated];
+    [self hideLoadingViewIfPresented];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == SECTION_PLAYER_INFO) {
         return 1;

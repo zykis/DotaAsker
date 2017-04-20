@@ -36,6 +36,11 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)viewWillDissapear: (BOOL)animated {
+    [super viewWillDissapear:animated];
+    [self hideLoadingViewIfPresented];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
