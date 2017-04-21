@@ -20,16 +20,6 @@
         
         self.loadingView = [[LoadingView alloc] init];
         [self.loadingView setMessage:message];
-
-        NSUInteger margins = 8;
-        CGSize loadingSize = [[self.loadingView loadingLabel] intrinsicContentSize];
-        loadingSize.width += margins * 3;
-        loadingSize.width += 16; // Indicator view
-        CGPoint loadingPoint = CGPointMake(r.size.width / 2.0 - loadingSize.width / 2.0, r.size.height / 2.0 - loadingSize.height / 2.0);
-        CGRect loadingFrame = CGRectMake(loadingPoint.x, loadingPoint.y, loadingSize.width, loadingSize.height);
-        
-        [self.loadingView setFrame:loadingFrame];
-        
         [self addSubview:self.loadingView];
     }
     return self;

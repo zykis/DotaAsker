@@ -155,13 +155,15 @@
     _iconLayer.anchorPoint = CGPointMake(0, 0.5);
     _iconLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + margins, CGRectGetMidY(self.bounds));
     
-    CGSize labelSize = CGSizeMake(self.bounds.size.width - iconRect.size.width - margins * 3, self.bounds.size.height);
+    float labelHeight = [someString sizeWithFont:[UIFont fontWithName:@"Trajan Pro 3 Regular" size:17] constrainedToSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) lineBreakMode:UILineBreakModeWordWrap].height;
+    CGSize labelSize = CGSizeMake(self.bounds.size.width - iconRect.size.width - margins * 3, labelHeight);
     CGPoint labelOrigin = CGPointMake(iconRect.size.width + margins * 2, 0);
     CGRect labelRect = CGRectMake(labelOrigin.x, labelOrigin.y, labelSize.width, labelSize.height);
     
     _textLayer.frame = labelRect;
     _textLayer.anchorPoint = CGPointMake(0, 0.5);
     _textLayer.position = CGPointMake(CGRectGetMinX(self.bounds) + iconRect.size.width + margins * 2, CGRectGetMidY(self.bounds));
+    _textLayer.truncationMode = kCATrancationEnd;
     
     [super layoutSubviews];
 }
