@@ -157,7 +157,7 @@
     
     CGSize labelSize = CGSizeMake(self.bounds.size.width - iconRect.size.width - margins * 3, self.bounds.size.height);
     CGPoint labelOrigin = CGPointMake(iconRect.size.width + margins * 2, 0);
-    CGRect labelRect = CGRectMake(labelOrigin, labelSize);
+    CGRect labelRect = CGRectMake(labelOrigin.x, labelOrigin.y, labelSize.width, labelSize.height);
     
     _textLayer.frame = labelRect;
     _textLayer.anchorPoint = CGPointMake(0, 0.5);

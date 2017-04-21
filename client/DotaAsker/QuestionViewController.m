@@ -128,7 +128,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:@"UIApplicationDidBecomeActiveNotification"
                                                   object:nil];
-    [super viewWillDissapear:animated];
+    [super viewWillDisappear:animated];
     [self hideLoadingViewIfPresented];
 }
 

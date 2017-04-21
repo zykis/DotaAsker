@@ -72,13 +72,13 @@
     [_tableView reloadData];
 }
 
-- (void)viewWillDissapear: (BOOL)animated {
-    [super viewWillDissapear:animated];
+- (void)viewWillDisappear: (BOOL)animated {
+    [super viewWillDisappear:animated];
     [self hideLoadingViewIfPresented];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];d
+    [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 

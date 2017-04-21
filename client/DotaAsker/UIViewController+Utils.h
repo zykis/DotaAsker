@@ -19,5 +19,6 @@ static UIAlertController *alertController;
 - (void)loadBackgroundImageForView: (UIView*)view;
 - (void)presentAlertControllerWithMessage:(NSString *)message;
 - (void)presentOkControllerWithMessage:(NSString *)message;
+- (void)hideLoadingViewIfPresented;
 
 @end

@@ -81,7 +81,7 @@
 - (void)hideLoadingViewIfPresented {
     for (UIView* subview in [[[UIApplication sharedApplication] keyWindow] subviews]) {
         if ([subview isKindOfClass:[ModalLoadingView class]]) {
-            [subview removeFromSuperView];
+            [subview removeFromSuperview];
         }
     }
 }

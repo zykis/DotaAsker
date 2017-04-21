@@ -58,7 +58,7 @@
     [[Palette shared] setDarkRedColor:[UIColor colorWithRed:0.96 green:0.26 blue:0.21 alpha:1.0]];
     
     // setting up pattern
-    [[Palette shared] setPattern:[UIImage imageNamed:@"pattern.png"]];
+    [[Palette shared] setPattern:[UIImage imageNamed:@"pattern-1.png"]];
     
     [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"icon-back-white.png"]];
     [[UINavigationBar appearance] setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"icon-back-white.png"]];
