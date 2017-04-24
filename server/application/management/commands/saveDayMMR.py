@@ -1,11 +1,11 @@
 def run():
+    from datetime import date, datetime
     print("STARTED saveDayMMR: {}".format(datetime.now()))
     t = date.today()
     strt = t.strftime("%Y-%m-%d")
     print(strt)
     from application import db
     from application.models import User
-    from datetime import date, datetime
 
     users_list = User.query.all()
     for u in users_list:

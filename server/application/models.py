@@ -183,7 +183,7 @@ class User(Base):
         return friend_list
 
     def __repr__(self):
-        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username, self.mmr)
+        return "User(id=%d, username=%s, rating=%d)" % (self.id, self.username.encode('utf-8'), self.mmr)
 
     def __iter__(self):
         return self
@@ -314,6 +314,8 @@ class Match(Base):
 
 
     def elapseMatch(self):
+        if len(self.users) < 2:
+            app.logger.debug("skip match {} with no opponent found yet".format(self.__repr__()))
         next_move_user = self.next_move_user()
         if self.state != MATCH_RUNNING:
             app.logger.critical('trying to elapse not running match: {}'.format(self.__repr__()))
@@ -331,7 +333,7 @@ class Match(Base):
                     winner = u
 
             if winner is None:
-                app.logger.critical('no winner or loser for timeelapsed match')
+                app.logger.debug('no winner or loser for timeelapsed match')
                 return
             elif loser is None:
                 app.logger.critical('match elapsed, with finding no opponent for user {}'.format(winner.__repr__()))
@@ -372,12 +374,19 @@ class Match(Base):
             winner.total_matches_won += 1
 
             # [7.1] gpm // - 30 GPM per second
-            winner.gpm = ((winner.total_correct_answers + winner.total_incorrect_answers) * 1000 - float(winner.total_time_for_answers * 30)) / (winner.total_correct_answers + winner.total_incorrect_answers)
-            loser.gpm = ((loser.total_correct_answers + loser.total_incorrect_answers) * 1000 - float(loser.total_time_for_answers * 30)) / (loser.total_correct_answers + loser.total_incorrect_answers)
+            total_w = winner.total_correct_answers + winner.total_incorrect_answers
+	    if total_w != 0:
+                winner.gpm = ((winner.total_correct_answers + winner.total_incorrect_answers) * 1000 - float(winner.total_time_for_answers * 30)) / (winner.total_correct_answers + winner.total_incorrect_answers)
+
+            total_l = loser.total_correct_answers + loser.total_incorrect_answers
+            if total_l != 0:
+                loser.gpm = ((loser.total_correct_answers + loser.total_incorrect_answers) * 1000 - float(loser.total_time_for_answers * 30)) / (loser.total_correct_answers + loser.total_incorrect_answers)
 
             # [8] calculating users KDA
-            winner.kda = winner.total_correct_answers / float(winner.total_incorrect_answers)
-            loser.kda = loser.total_correct_answers / float(loser.total_incorrect_answers)
+            if winner.total_incorrect_answers != 0:
+                winner.kda = winner.total_correct_answers / float(winner.total_incorrect_answers)
+	    if loser.total_incorrect_answers != 0:
+                loser.kda = loser.total_correct_answers / float(loser.total_incorrect_answers)
 
             # [9] updating it
             app.logger.debug('Updating users and match stats')

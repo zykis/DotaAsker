@@ -15,9 +15,6 @@ def run():
                 print('match {} elapsed'.format(m.__repr__()))
                 # checkout winner
                 m.elapseMatch()
-                db.session.add(m)
-                db.session.add(m.users)
-    db.session.commit()
 
 if __name__ == '__main__':
     import sys 
