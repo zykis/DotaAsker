@@ -38,8 +38,8 @@
     
     // [2]
     _avatarNamesArray = [[NSMutableArray alloc] init];
+    [_avatarNamesArray addObject:@"avatar_default.png"];
     [_avatarNamesArray addObject:@"avatar_axe.png"];
-    [_avatarNamesArray addObject:@"avatar_brood.png"];
     [_avatarNamesArray addObject:@"avatar_tinker.png"];
     [_avatarNamesArray addObject:@"avatar_bristle.png"];
     [_avatarNamesArray addObject:@"avatar_bounty.png"];
@@ -51,8 +51,13 @@
     
     // [4]
     NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
-    NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
-    [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    if (row == NSNotFound) {    
+        NSLog(@"Avatar with name: \"%@\" not found.", [[Player instance] avatarImageName]);
+    }
+    else {
+        NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
+        [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {

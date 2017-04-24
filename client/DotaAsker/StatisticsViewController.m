@@ -94,19 +94,21 @@
         [entries addObject:entry];
     }
 
-    LineChartDataSet* dataSet = [[LineChartDataSet alloc] initWithValues:entries];
-    dataSet.circleHoleRadius = 2.0f;
-    dataSet.circleRadius = 4.0f;
-    dataSet.circleColors = @[[[Palette shared] backgroundColor]];
-    dataSet.circleHoleColor = [[Palette shared] themesButtonColor];
-    dataSet.drawCubicEnabled = YES;
-    dataSet.drawFilledEnabled = YES;
-    dataSet.valueTextColor = [[Palette shared] themesButtonColor];
-    dataSet.fillColor = [UIColor greenColor];
-    dataSet.label = @"MMR";
-    
-    LineChartData* data = [[LineChartData alloc] initWithDataSet:dataSet];
-    _chartView.data = data;
+    if (minStats > 0) {
+        LineChartDataSet* dataSet = [[LineChartDataSet alloc] initWithValues:entries];
+        dataSet.circleHoleRadius = 2.0f;
+        dataSet.circleRadius = 4.0f;
+        dataSet.circleColors = @[[[Palette shared] backgroundColor]];
+        dataSet.circleHoleColor = [[Palette shared] themesButtonColor];
+        dataSet.drawCubicEnabled = YES;
+        dataSet.drawFilledEnabled = YES;
+        dataSet.valueTextColor = [[Palette shared] themesButtonColor];
+        dataSet.fillColor = [UIColor greenColor];
+        dataSet.label = @"MMR";
+        
+        LineChartData* data = [[LineChartData alloc] initWithDataSet:dataSet];
+        _chartView.data = data;
+    }
     
     // Pie Chart
     _pieChartView.holeRadiusPercent = 0.15f;
@@ -118,19 +120,22 @@
     _pieChartView.transparentCircleColor = [UIColor clearColor];
     _pieChartView.holeColor = [UIColor whiteColor];
     
-    float winRate = (float)[[Player instance] totalMatchesWon] / (float)([[Player instance] totalMatchesLost] + [[Player instance] totalMatchesWon]);
-    PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winRate * 100];
-    eWin.label = NSLocalizedString(@"Won", 0);
-    PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:(1 - winRate) * 100];
-    eLose.label = NSLocalizedString(@"Lost", 0);
-    
-    PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:@[eLose, eWin]];
-    dSet.sliceSpace = 4;
-    dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
-    dSet.selectionShift = 0.0f;
-    dSet.colors = @[[[[Palette shared] darkRedColor] colorWithAlphaComponent:0.7], [[[Palette shared] darkGreenColor] colorWithAlphaComponent:0.7]];
-    PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
-    _pieChartView.data = d;
+    NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
+    if (totalMatches > 0) {
+        float winRate = (float)[[Player instance] totalMatchesWon] / (float)totalMatches;
+        PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winRate * 100];
+        eWin.label = NSLocalizedString(@"Won", 0);
+        PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:(1 - winRate) * 100];
+        eLose.label = NSLocalizedString(@"Lost", 0);
+        
+        PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:@[eLose, eWin]];
+        dSet.sliceSpace = 4;
+        dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
+        dSet.selectionShift = 0.0f;
+        dSet.colors = @[[[[Palette shared] darkRedColor] colorWithAlphaComponent:0.7], [[[Palette shared] darkGreenColor] colorWithAlphaComponent:0.7]];
+        PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
+        _pieChartView.data = d;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
