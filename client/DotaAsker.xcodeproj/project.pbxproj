@@ -87,6 +87,10 @@
 		AC6929CE1EAA7B2900BEB661 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CD1EAA7B2800BEB661 /* ReactiveObjC.framework */; };
 		AC6929D01EAA7B3200BEB661 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */; };
 		AC6929D21EAA7CCC00BEB661 /* libextobjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */; };
+		AC6929D51EAE878700BEB661 /* StatisticsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6929D41EAE878700BEB661 /* StatisticsViewModel.m */; };
+		AC6929DF1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */; };
+		AC6929E01EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */; };
+		AC6929E11EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */; };
 		AC73520A1B239A1B00FFF356 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7352091B239A1B00FFF356 /* main.m */; };
 		AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC73520C1B239A1B00FFF356 /* AppDelegate.m */; };
 		AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7352161B239A1B00FFF356 /* LaunchScreen.xib */; };
@@ -298,6 +302,11 @@
 		AC6929CD1EAA7B2800BEB661 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/ReactiveObjC/ReactiveObjC.framework"; sourceTree = "<group>"; };
 		AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
 		AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libextobjc.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/libextobjc/libextobjc.framework"; sourceTree = "<group>"; };
+		AC6929D31EAE878700BEB661 /* StatisticsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewModel.h; sourceTree = "<group>"; };
+		AC6929D41EAE878700BEB661 /* StatisticsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewModel.m; sourceTree = "<group>"; };
+		AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@1x.png"; path = "resources/icons/dotaquiz_inner-200@1x.png"; sourceTree = "<group>"; };
+		AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@2x.png"; path = "resources/icons/dotaquiz_inner-200@2x.png"; sourceTree = "<group>"; };
+		AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@3x.png"; path = "resources/icons/dotaquiz_inner-200@3x.png"; sourceTree = "<group>"; };
 		AC7352041B239A1B00FFF356 /* Dota Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7352081B239A1B00FFF356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7352091B239A1B00FFF356 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -773,6 +782,9 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */,
+				AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */,
+				AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */,
 				AC6929691EA7D24D00BEB661 /* app */,
 				ACA1CE831E94323A0004DC70 /* icon-checked-50.png */,
 				ACA1CE841E94323A0004DC70 /* icon-checked-50@2x.png */,
@@ -817,6 +829,8 @@
 				ACF5F3841D9F16BF0060EA56 /* MatchViewModel.m */,
 				ACC5A1231DC4DD9100F469ED /* QuestionViewModel.h */,
 				ACC5A1241DC4DD9100F469ED /* QuestionViewModel.m */,
+				AC6929D31EAE878700BEB661 /* StatisticsViewModel.h */,
+				AC6929D41EAE878700BEB661 /* StatisticsViewModel.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -1030,6 +1044,7 @@
 				AC69299B1EA7D27000BEB661 /* Icon-App-57x57@2x.png in Resources */,
 				AC6929621EA7D20F00BEB661 /* avatar_nature_prophet.png in Resources */,
 				AC6929631EA7D20F00BEB661 /* avatar_tinker.png in Resources */,
+				AC6929E01EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png in Resources */,
 				AC6929BF1EA9606600BEB661 /* pattern-4.png in Resources */,
 				AC69295D1EA7D20F00BEB661 /* avatar_axe.png in Resources */,
 				AC6929761EA7D25D00BEB661 /* Icon-Small-50.png in Resources */,
@@ -1052,6 +1067,7 @@
 				AC6929BC1EA9606600BEB661 /* pattern-1.png in Resources */,
 				ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */,
 				AC6929991EA7D27000BEB661 /* Icon-App-40x40@3x.png in Resources */,
+				AC6929E11EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png in Resources */,
 				AC6929731EA7D25D00BEB661 /* Icon-60.png in Resources */,
 				AC6929601EA7D20F00BEB661 /* avatar_brood.png in Resources */,
 				AC6929A01EA7D27000BEB661 /* Icon-App-76x76@1x.png in Resources */,
@@ -1095,6 +1111,7 @@
 				AC780F7F1DEB6D6E007E8158 /* avatar_48@1x.png in Resources */,
 				AC9646521E720FF700F9CD32 /* icon-unlock-white-48@3x.png in Resources */,
 				ACC730DB1E6F2A5900A88A54 /* icon-back-white@2x.png in Resources */,
+				AC6929DF1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png in Resources */,
 				AC69299C1EA7D27000BEB661 /* Icon-App-57x57@3x.png in Resources */,
 				ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */,
 				ACC730DD1E6F2A5900A88A54 /* icon-logout-white.png in Resources */,
@@ -1240,6 +1257,7 @@
 				ACC5A1211DC4D54B00F469ED /* UserAnswerService.m in Sources */,
 				AC6091811C00623200D728B6 /* AuthorizationService.m in Sources */,
 				ACC5A1281DC68AA400F469ED /* RoundTransport.m in Sources */,
+				AC6929D51EAE878700BEB661 /* StatisticsViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

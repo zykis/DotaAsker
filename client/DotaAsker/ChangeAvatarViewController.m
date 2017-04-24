@@ -48,21 +48,20 @@
     // [3]
     [self.collectionView reloadData];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
-    // [4]
     NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
-    if (row == NSNotFound) {    
+    if (row == NSNotFound) {
         NSLog(@"Avatar with name: \"%@\" not found.", [[Player instance] avatarImageName]);
     }
     else {
         NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
         [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
     }
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [[self navigationController] setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

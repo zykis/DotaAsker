@@ -28,11 +28,11 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotaquiz_inner_128.png" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-hg-92d">
-                    <rect key="frame" x="202" y="191" width="76" height="76"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dotaquiz_inner-200.png" translatesAutoresizingMaskIntoConstraints="NO" id="RxP-hg-92d">
+                    <rect key="frame" x="140" y="191" width="200" height="200"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="76" id="0qD-IF-XAQ"/>
-                        <constraint firstAttribute="width" constant="76" id="bDz-qn-sDV"/>
+                        <constraint firstAttribute="height" constant="200" id="0qD-IF-XAQ"/>
+                        <constraint firstAttribute="width" constant="200" id="bDz-qn-sDV"/>
                     </constraints>
                 </imageView>
             </subviews>
@@ -53,6 +53,6 @@
         </view>
     </objects>
     <resources>
-        <image name="dotaquiz_inner_128.png" width="128" height="128"/>
+        <image name="dotaquiz_inner-200.png" width="200" height="200"/>
     </resources>
 </document>

@@ -10,7 +10,7 @@
 #import "UIViewController+Utils.h"
 
 @class User;
-@class LineChartView;
+@class BarChartView;
 @class PieChartView;
 @interface StatisticsViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource>
@@ -19,7 +19,7 @@
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationTitle;
 @property (strong, nonatomic) IBOutlet UILabel *mmr;
 @property (strong, nonatomic) IBOutlet UIImageView *avatar;
-@property (strong, nonatomic) IBOutlet LineChartView *chartView;
+@property (strong, nonatomic) IBOutlet BarChartView *chartView;
 @property (strong, nonatomic) IBOutlet PieChartView *pieChartView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

@@ -124,10 +124,10 @@
     if (!_loadingView)
         _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
-    [IAPHelper buy:self.premiumProduct];
+//    [IAPHelper buy:self.premiumProduct];
     
     
-    /*
+    
     RLMRealm* realm = [RLMRealm defaultRealm];
     [realm beginWriteTransaction];
     [[Player instance] setPremium:YES];
@@ -144,7 +144,7 @@
         [self.navigationController popViewControllerAnimated:YES];
         [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
     }];
-    */
+    
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
@@ -220,7 +220,7 @@
                 if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
                     [_loadingView removeFromSuperview];
                 else {
-                    MSLog(@"No loadingView found, when restoring have finished");
+                    NSLog(@"No loadingView found, when restoring have finished");
                     [_loadingView removeFromSuperview];
                 }
                         

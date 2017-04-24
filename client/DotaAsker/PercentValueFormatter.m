@@ -11,7 +11,7 @@
 @implementation PercentValueFormatter
 
 - (NSString*)stringForValue:(double)value entry:(ChartDataEntry *)entry dataSetIndex:(NSInteger)dataSetIndex viewPortHandler:(ChartViewPortHandler *)viewPortHandler {
-    return [NSString stringWithFormat:@"%.1f %%", value];
+    return [NSString stringWithFormat:@"%.1f%%", value];
 }
 
 @end

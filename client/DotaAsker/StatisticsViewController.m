@@ -82,10 +82,10 @@
     raxis.drawAxisLineEnabled = NO;
     raxis.drawLabelsEnabled = NO;
     
-    NSMutableArray<ChartDataEntry*>* entries = [[NSMutableArray alloc] init];
+    NSMutableArray<BarChartDataEntry*>* entries = [[NSMutableArray alloc] init];
     NSUInteger minStats = MIN([[_statistic allKeys] count], 7);
     for (int i = 0; i < minStats; i++) {
-        ChartDataEntry* entry = [[ChartDataEntry alloc] init];
+        BarChartDataEntry* entry = [[BarChartDataEntry alloc] init];
         [entry setX:i];
         NSString* key = [[_statistic allKeys] objectAtIndex:i];
         NSString* dateString = key;
@@ -94,45 +94,66 @@
         [entries addObject:entry];
     }
 
-    if (minStats > 0) {
-        LineChartDataSet* dataSet = [[LineChartDataSet alloc] initWithValues:entries];
-        dataSet.circleHoleRadius = 2.0f;
-        dataSet.circleRadius = 4.0f;
-        dataSet.circleColors = @[[[Palette shared] backgroundColor]];
-        dataSet.circleHoleColor = [[Palette shared] themesButtonColor];
-        dataSet.drawCubicEnabled = YES;
-        dataSet.drawFilledEnabled = YES;
-        dataSet.valueTextColor = [[Palette shared] themesButtonColor];
-        dataSet.fillColor = [UIColor greenColor];
+    if (minStats >= 2) {
+        BarChartDataSet* dataSet = [[BarChartDataSet alloc] initWithValues:entries];
+        dataSet.barShadowColor = [UIColor blackColor];
+        dataSet.barBorderWidth = 0.8f;
+        dataSet.barBorderColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+        dataSet.highlightAlpha = 0.95f;
+        dataSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:9];
+        dataSet.valueColors = @[[[Palette shared] themesButtonColor]];
+        dataSet.valueTextColor = [UIColor whiteColor];
         dataSet.label = @"MMR";
         
-        LineChartData* data = [[LineChartData alloc] initWithDataSet:dataSet];
+        BarChartData* data = [[BarChartData alloc] initWithDataSet:dataSet];
         _chartView.data = data;
     }
     
     // Pie Chart
-    _pieChartView.holeRadiusPercent = 0.15f;
+    _pieChartView.holeRadiusPercent = 0.25f;
     _pieChartView.descriptionText = @"";
     _pieChartView.legend.enabled = NO;
     _pieChartView.backgroundColor = [UIColor clearColor];
     _pieChartView.tintColor = [UIColor brownColor];
     _pieChartView.highlightPerTapEnabled = NO;
+    UIColor* patternColor = [UIColor colorWithPatternImage:[[Palette shared] pattern]];
     _pieChartView.transparentCircleColor = [UIColor clearColor];
-    _pieChartView.holeColor = [UIColor whiteColor];
+    _pieChartView.transparentCircleRadiusPercent = 0.0f;
+    _pieChartView.holeColor = patternColor;
     
     NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
     if (totalMatches > 0) {
         float winRate = (float)[[Player instance] totalMatchesWon] / (float)totalMatches;
-        PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winRate * 100];
-        eWin.label = NSLocalizedString(@"Won", 0);
-        PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:(1 - winRate) * 100];
-        eLose.label = NSLocalizedString(@"Lost", 0);
+        float winPercent = winRate * 100;
+        float losePercent = (1 - winRate) * 100;
         
-        PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:@[eLose, eWin]];
+        NSMutableArray *entriesArray = [[NSMutableArray alloc] init];
+        if (winPercent > 0) {
+            PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winPercent];
+            eWin.label = [NSString stringWithFormat:@"%@\n(%ld)", NSLocalizedString(@"Won", 0), [[Player instance] totalMatchesWon]];
+            [entriesArray addObject:eWin];
+        }
+        if (losePercent > 0) {
+            PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:losePercent];
+            eLose.label = [NSString stringWithFormat:@"%@\n(%ld)", NSLocalizedString(@"Lost", 0), [[Player instance] totalMatchesLost]];
+            [entriesArray addObject:eLose];
+        }
+        
+        PieChartDataSet* dSet = [[PieChartDataSet alloc] initWithValues:[NSArray arrayWithArray:entriesArray]];
+        dSet.valueLinePart1OffsetPercentage = 10.0f;
+        NSMutableArray* colorsArray = [[NSMutableArray alloc] init];
+        if (winPercent > 0) {
+            [colorsArray addObject:[[[Palette shared] darkGreenColor] colorWithAlphaComponent:1.0]];
+        }
+        if (losePercent > 0) {
+            [colorsArray addObject:[[[Palette shared] darkRedColor] colorWithAlphaComponent:1.0]];
+        }
         dSet.sliceSpace = 4;
         dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
         dSet.selectionShift = 0.0f;
-        dSet.colors = @[[[[Palette shared] darkRedColor] colorWithAlphaComponent:0.7], [[[Palette shared] darkGreenColor] colorWithAlphaComponent:0.7]];
+        dSet.colors = [NSArray arrayWithArray:colorsArray];
+        dSet.entryLabelFont = [UIFont fontWithName:@"Trajan Pro 3" size:8.0];
+        dSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:11.0];
         PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
         _pieChartView.data = d;
     }
