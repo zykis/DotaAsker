@@ -53,7 +53,6 @@
     NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
     NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
     [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
-    [self collectionView:self.collectionView didSelectItemAtIndexPath:path];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

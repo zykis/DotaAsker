@@ -199,7 +199,7 @@
             Winner winner = [_viewModel winnerAtMatchAtRow:[indexPath row]];
             
             NSUInteger mmrGain = [_viewModel mmrGainForRecentMatchAtRow:[indexPath row]];
-            NSString* mmrGainText = [NSString stringWithFormat:@"%@%ld", winner == kPlayer? @"+" : winner == kOpponent? @"-" : @"", mmrGain];
+            NSString* mmrGainText = [NSString stringWithFormat:@"%@%ld", winner == kPlayer? @"+" : winner == kOpponent? @"-" : @"", (unsigned long)mmrGain];
             UIColor* mmrGainTextColor = winner == kPlayer ? [UIColor greenColor] : winner == kOpponent ? [UIColor redColor] : [UIColor whiteColor];
             [mmrGainLabel setText:mmrGainText];
             [mmrGainLabel setTextColor:mmrGainTextColor];

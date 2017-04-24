@@ -4,6 +4,7 @@ Pods/
 build/
 DerivedData/
 xcuserdata/
+*.ipa
 
 # Python
 server/.idea/workspace.xml

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32A5D8A4A72E9BCCF3E56A44 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */; };
 		AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5631DCF510C005EE564 /* QuestionService.m */; };
 		AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5661DCF518B005EE564 /* QuestionTransport.m */; };
 		AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */; };
@@ -79,6 +80,13 @@
 		AC6929C21EA9606600BEB661 /* pattern-7.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929B91EA9606600BEB661 /* pattern-7.png */; };
 		AC6929C31EA9606600BEB661 /* pattern-8.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929BA1EA9606600BEB661 /* pattern-8.png */; };
 		AC6929C41EA9606600BEB661 /* pattern-9.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929BB1EA9606600BEB661 /* pattern-9.png */; };
+		AC6929C61EAA7A4C00BEB661 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929C51EAA7A4C00BEB661 /* Charts.framework */; };
+		AC6929C81EAA7B0C00BEB661 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929C71EAA7B0C00BEB661 /* Realm.framework */; };
+		AC6929CA1EAA7B1200BEB661 /* TTGSnackbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929C91EAA7B1200BEB661 /* TTGSnackbar.framework */; };
+		AC6929CC1EAA7B1B00BEB661 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CB1EAA7B1B00BEB661 /* AFNetworking.framework */; };
+		AC6929CE1EAA7B2900BEB661 /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CD1EAA7B2800BEB661 /* ReactiveObjC.framework */; };
+		AC6929D01EAA7B3200BEB661 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */; };
+		AC6929D21EAA7CCC00BEB661 /* libextobjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */; };
 		AC73520A1B239A1B00FFF356 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7352091B239A1B00FFF356 /* main.m */; };
 		AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC73520C1B239A1B00FFF356 /* AppDelegate.m */; };
 		AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7352161B239A1B00FFF356 /* LaunchScreen.xib */; };
@@ -283,6 +291,13 @@
 		AC6929B91EA9606600BEB661 /* pattern-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-7.png"; path = "resources/patterns/pattern-7.png"; sourceTree = "<group>"; };
 		AC6929BA1EA9606600BEB661 /* pattern-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-8.png"; path = "resources/patterns/pattern-8.png"; sourceTree = "<group>"; };
 		AC6929BB1EA9606600BEB661 /* pattern-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-9.png"; path = "resources/patterns/pattern-9.png"; sourceTree = "<group>"; };
+		AC6929C51EAA7A4C00BEB661 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/Charts/Charts.framework"; sourceTree = "<group>"; };
+		AC6929C71EAA7B0C00BEB661 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/Realm/Realm.framework"; sourceTree = "<group>"; };
+		AC6929C91EAA7B1200BEB661 /* TTGSnackbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TTGSnackbar.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/TTGSnackbar/TTGSnackbar.framework"; sourceTree = "<group>"; };
+		AC6929CB1EAA7B1B00BEB661 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/AFNetworking/AFNetworking.framework"; sourceTree = "<group>"; };
+		AC6929CD1EAA7B2800BEB661 /* ReactiveObjC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveObjC.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/ReactiveObjC/ReactiveObjC.framework"; sourceTree = "<group>"; };
+		AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
+		AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libextobjc.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/libextobjc/libextobjc.framework"; sourceTree = "<group>"; };
 		AC7352041B239A1B00FFF356 /* Dota Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7352081B239A1B00FFF356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7352091B239A1B00FFF356 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -437,7 +452,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC6929D21EAA7CCC00BEB661 /* libextobjc.framework in Frameworks */,
+				AC6929D01EAA7B3200BEB661 /* GoogleToolboxForMac.framework in Frameworks */,
+				AC6929CE1EAA7B2900BEB661 /* ReactiveObjC.framework in Frameworks */,
+				AC6929CC1EAA7B1B00BEB661 /* AFNetworking.framework in Frameworks */,
+				AC6929CA1EAA7B1200BEB661 /* TTGSnackbar.framework in Frameworks */,
+				AC6929C81EAA7B0C00BEB661 /* Realm.framework in Frameworks */,
+				AC6929C61EAA7A4C00BEB661 /* Charts.framework in Frameworks */,
 				AC6929541EA71AF100BEB661 /* StoreKit.framework in Frameworks */,
+				32A5D8A4A72E9BCCF3E56A44 /* Pods_DotaAsker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +486,13 @@
 		A46486A5A49B26519386D473 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */,
+				AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */,
+				AC6929CD1EAA7B2800BEB661 /* ReactiveObjC.framework */,
+				AC6929CB1EAA7B1B00BEB661 /* AFNetworking.framework */,
+				AC6929C91EAA7B1200BEB661 /* TTGSnackbar.framework */,
+				AC6929C71EAA7B0C00BEB661 /* Realm.framework */,
+				AC6929C51EAA7A4C00BEB661 /* Charts.framework */,
 				AC4AC7771EA69340001BCC66 /* StoreKit.framework */,
 				975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */,
 			);
@@ -647,10 +677,6 @@
 		AC9BBE151B32A83900E59DE2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ACA1CE8C1E9C33460004DC70 /* SignInViewController.h */,
-				ACA1CE8D1E9C33460004DC70 /* SignInViewController.m */,
-				ACA1CE8E1E9C33460004DC70 /* SignUpViewController.h */,
-				ACA1CE8F1E9C33460004DC70 /* SignUpViewController.m */,
 				AC532C541DE1A947008AFFA1 /* ChangeAvatarViewController.h */,
 				AC532C551DE1A947008AFFA1 /* ChangeAvatarViewController.m */,
 				ACF5F3761D99E1080060EA56 /* MainViewController.h */,
@@ -663,6 +689,10 @@
 				ACC5A1181DC4D2B300F469ED /* QuestionViewController.m */,
 				ACAC566E1DD771720002B1F5 /* SettingViewController.h */,
 				ACAC566F1DD771720002B1F5 /* SettingViewController.m */,
+				ACA1CE8C1E9C33460004DC70 /* SignInViewController.h */,
+				ACA1CE8D1E9C33460004DC70 /* SignInViewController.m */,
+				ACA1CE8E1E9C33460004DC70 /* SignUpViewController.h */,
+				ACA1CE8F1E9C33460004DC70 /* SignUpViewController.m */,
 				AC1791F71DDA5F2200187D59 /* StatisticsViewController.h */,
 				AC1791F81DDA5F2200187D59 /* StatisticsViewController.m */,
 				AC532AD51DE1A486008AFFA1 /* SubmitQuiestionViewController.h */,
@@ -1367,7 +1397,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Dota-Quiz";
 				PRODUCT_NAME = "Dota Quiz";
 				PROVISIONING_PROFILE = "";
@@ -1390,7 +1420,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Pods";
 				INFOPLIST_FILE = DotaAsker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "Dota-Quiz";
 				PRODUCT_NAME = "Dota Quiz";
 				PROVISIONING_PROFILE = "";

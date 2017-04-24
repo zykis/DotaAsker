@@ -64,10 +64,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:matchInfoCellIdentifier];
         
         NSInteger key = [[_sortedKeys objectAtIndex:[indexPath row]] integerValue];
-        User* u = [_results objectForKey:[NSString stringWithFormat:@"%ld", key]];
+        User* u = [_results objectForKey:[NSString stringWithFormat:@"%ld", (long)key]];
         
         // [1] place
-        NSString* place = [NSString stringWithFormat:@"%ld", key];
+        NSString* place = [NSString stringWithFormat:@"%ld", (long)key];
         UILabel* labelPlace = [cell viewWithTag:100];
         [labelPlace setText:place];
         

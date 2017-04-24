@@ -33,16 +33,23 @@
 
 - (void)setMessage:(NSString *)message {
     [_loadingLabel setText:message];
+    [self layoutSubviews];
 }
 
-- (void)layourSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     
     NSUInteger margins = 15;
-    NSUInteger labelWidth = [_loadingLabel intrinsicContentSize].width;
-    CGRect labelFrame = CGRectMake(_activityIndicatorView.frame.size.width + margins, 0, labelWidth + margins, _activityIndicatorView.frame.size.height);
-    
+    NSUInteger labelWidth = [_loadingLabel intrinsicContentSize].width + margins;
+    CGRect labelFrame = CGRectMake(_activityIndicatorView.frame.size.width, 0, labelWidth, _activityIndicatorView.frame.size.height);
     [_loadingLabel setFrame:labelFrame];
+    
+    CGSize viewSize = CGSizeMake(_activityIndicatorView.bounds.size.width + labelWidth + margins,
+                                 _activityIndicatorView.bounds.size.height);
+    CGPoint viewOrigin = CGPointMake(CGRectGetMidX([UIScreen mainScreen].bounds) - viewSize.width / 2,
+                                     CGRectGetMidY([UIScreen mainScreen].bounds) - viewSize.height / 2);
+    
+    self.frame = CGRectMake(viewOrigin.x, viewOrigin.y, viewSize.width, viewSize.height);
 }
 
 @end

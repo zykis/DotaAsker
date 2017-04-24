@@ -83,9 +83,9 @@
 
 // Settings View Controller
 "Change avatar" = "Сменить аватар";
-"Submit question" = "Предложить вопрос";
+"Submit question" = "Написать вопрос";
 "Top 100" = "Топ 100";
-"Unlock premium" = "Разблокировать премиум";
+"Unlock premium" = "Премиум";
 
 // Unlock premium view controller
 "Error, while trying to buy premium" = "Ошибка при покупке премиум-аккаунта";

@@ -12,10 +12,10 @@
 @class UserAnswerTransport;
 @interface UserAnswerService : AbstractService
 
-@property (strong, nonatomic) UserAnswerTransport* transport;
+@property (strong, nonatomic) UserAnswerTransport* _Nullable transport;
 - (long long)getNextPrimaryKey;
 
-- (NSString* _Nullable)textForUserAnswerFirst: (UserAnswer*)ua1 andSecond: (UserAnswer*)ua2;
-- (void)sendUserAnswersWithNext:(void (^)(UserAnswer* x))nextBlock error:(void (^)(NSError* error))errorBlock complete:(void(^)())completeBlock;
+- (NSString* _Nullable)textForUserAnswerFirst: (UserAnswer*_Nullable)ua1 andSecond: (UserAnswer*_Nullable)ua2;
+- (void)sendUserAnswersWithNext:(void (^_Nullable)(UserAnswer* _Nullable x))nextBlock error:(void (^_Nullable)(NSError* _Nullable error))errorBlock complete:(void(^_Nullable)())completeBlock;
 
 @end

@@ -466,7 +466,7 @@
             return BUTTON_PLAY;
         } else {
             NSLog(@"Can't define round state. Crushing app");
-            NSLog(@"Total UAs: %ld\nModified UAs: %ld", total, modified);
+            NSLog(@"Total UAs: %ld\nModified UAs: %ld", (unsigned long)total, (unsigned long)modified);
             assert(0);
         }
     }

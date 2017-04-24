@@ -71,9 +71,9 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4.1)
   - libextobjc/UmbrellaHeader (0.4.1)
   - ReactiveObjC (3.0.0)
-  - Realm (2.5.1):
-    - Realm/Headers (= 2.5.1)
-  - Realm/Headers (2.5.1)
+  - Realm (2.6.2):
+    - Realm/Headers (= 2.6.2)
+  - Realm/Headers (2.6.2)
   - TTGSnackbar (1.4.1)
 
 DEPENDENCIES:
@@ -97,7 +97,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
-  Realm: 32f86104d37c8521f864d4274050b38ba6190733
+  Realm: 29222766425b9f831228f81b63f0e38a97a4d700
   TTGSnackbar: 466f11eb59fb7e0f7af7f05d9165abce72adf5cc
 
 PODFILE CHECKSUM: aabf0cbe1ea9bfc769c020a2f5c01f8aa58eaedb

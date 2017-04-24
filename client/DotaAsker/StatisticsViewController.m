@@ -83,7 +83,8 @@
     raxis.drawLabelsEnabled = NO;
     
     NSMutableArray<ChartDataEntry*>* entries = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 7; i++) {
+    NSUInteger minStats = MIN([[_statistic allKeys] count], 7);
+    for (int i = 0; i < minStats; i++) {
         ChartDataEntry* entry = [[ChartDataEntry alloc] init];
         [entry setX:i];
         NSString* key = [[_statistic allKeys] objectAtIndex:i];
