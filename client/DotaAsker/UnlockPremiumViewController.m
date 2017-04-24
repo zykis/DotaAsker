@@ -169,6 +169,10 @@
     _loadingView = nil;
 }
 
+- (void)restore {
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction *transaction in transactions) {
@@ -206,6 +210,7 @@
                     [_loadingView removeFromSuperview];
                 }];
                 
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
                 break;
@@ -213,7 +218,12 @@
             case SKPaymentTransactionStateRestored:
             {
                 if ([[[[UIApplication sharedApplication] keyWindow] subviews] containsObject:_loadingView])
-                        [_loadingView removeFromSuperview];
+                    [_loadingView removeFromSuperview];
+                else {
+                    MSLog(@"No loadingView found, when restoring have finished");
+                    [_loadingView removeFromSuperview];
+                }
+                        
                 RLMRealm* realm = [RLMRealm defaultRealm];
                 [realm beginWriteTransaction];
                 [[Player instance] setPremium:YES];
@@ -230,6 +240,7 @@
                     [_loadingView removeFromSuperview];
                 }];
                 
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
                 [self.navigationController popViewControllerAnimated:YES];
                 [self presentOkControllerWithMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
                 break;

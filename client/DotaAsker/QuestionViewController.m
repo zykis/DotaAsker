@@ -81,7 +81,9 @@
     _progressView.layer.borderColor = [[UIColor blackColor] colorWithAlphaComponent:0.5].CGColor;
     [_progressView setProgress:1.0];
     [self createEmptyAnswers];
-    [self createAndLoadInterstitial];
+    
+    if (![[Player instance] premium])
+        [self createAndLoadInterstitial];
 }
 
 - (GADInterstitial*)createAndLoadInterstitial {
@@ -342,12 +344,13 @@
     }
     //Игрок ответил на все вопросы
     else {
-        if ([_interstitial isReady]) {
-            [_interstitial presentFromRootViewController:self];
+        if (_interstitial != nil) {
+            if ([_interstitial isReady])
+                [_interstitial presentFromRootViewController:self];
         }
         else {
             [self sendAnswers];
-        }    
+        }
     }
 }
 
