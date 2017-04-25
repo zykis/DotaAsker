@@ -1,7 +1,9 @@
 def run():
+    from datetime import datetime
+    t = datetime.now()
+    print ('{}: starting checkTimeElapsedMatches.py'.format(t.strftime('%Y-%m-%d %H:%M:%S')))
     from application import db
     from application.models import Match, MATCH_FINISHED, MATCH_RUNNING
-    from datetime import datetime
     from config import MATCH_LIFETIME, MATCH_UPDATELIFE
 
     print("STARTED checkTimeElapsedMatches: {}".format(datetime.now()))
@@ -15,6 +17,8 @@ def run():
                 print('match {} elapsed'.format(m.__repr__()))
                 # checkout winner
                 m.elapseMatch()
+    t = datetime.now()
+    print ('{}: ending checkTimeElapsedMatches.py'.format(t.strftime('%Y-%m-%d %H:%M:%S')))
 
 if __name__ == '__main__':
     import sys 
