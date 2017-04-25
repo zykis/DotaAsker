@@ -1,0 +1,2 @@
+@reboot source /home/zykis/DotaAsker/server/flask/bin/activate
+0 0 */1 * * python /home/zykis/DotaAsker/server/application/management/commands/saveDayMMR.py > /var/log/dotaasker/cronjobs.log
