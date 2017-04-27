@@ -216,12 +216,14 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [loadingView removeFromSuperview];
                 [self.tableView.refreshControl endRefreshing];
+                [self.navigationController popViewControllerAnimated:YES];
             });
         } completed:^{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
                 [self.tableView.refreshControl endRefreshing];
                 [loadingView removeFromSuperview];
+                [self.navigationController popViewControllerAnimated:YES];
             });
         }];
     };

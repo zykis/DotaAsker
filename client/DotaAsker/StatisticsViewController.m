@@ -27,10 +27,12 @@
 @synthesize statistic = _statistic;
 @synthesize chartView = _chartView;
 @synthesize pieChartView = _pieChartView;
+@synthesize contentView = _contentView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
+    [self loadBackgroundImageForView:_contentView];
     [self fillUser];
 }
 
@@ -96,12 +98,12 @@
 
     if (minStats >= 2) {
         BarChartDataSet* dataSet = [[BarChartDataSet alloc] initWithValues:entries];
-        dataSet.barShadowColor = [UIColor blackColor];
+        dataSet.barShadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
         dataSet.barBorderWidth = 0.8f;
         dataSet.barBorderColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
-        dataSet.highlightAlpha = 0.95f;
+        dataSet.highlightAlpha = 0.15f;
         dataSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:9];
-        dataSet.valueColors = @[[[Palette shared] themesButtonColor]];
+        [dataSet setColors:@[[[Palette shared] themesButtonColor]]];
         dataSet.valueTextColor = [UIColor whiteColor];
         dataSet.label = @"MMR";
         
@@ -120,6 +122,8 @@
     _pieChartView.transparentCircleColor = [UIColor clearColor];
     _pieChartView.transparentCircleRadiusPercent = 0.0f;
     _pieChartView.holeColor = patternColor;
+    _pieChartView.rotationEnabled = NO;
+    _pieChartView.rotationAngle = 30;
     
     NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
     if (totalMatches > 0) {
@@ -130,12 +134,12 @@
         NSMutableArray *entriesArray = [[NSMutableArray alloc] init];
         if (winPercent > 0) {
             PieChartDataEntry* eWin = [[PieChartDataEntry alloc] initWithValue:winPercent];
-            eWin.label = [NSString stringWithFormat:@"%@\n(%ld)", NSLocalizedString(@"Won", 0), [[Player instance] totalMatchesWon]];
+            eWin.label = [NSString stringWithFormat:@"%@", NSLocalizedString(@"Won", 0)];
             [entriesArray addObject:eWin];
         }
         if (losePercent > 0) {
             PieChartDataEntry* eLose = [[PieChartDataEntry alloc] initWithValue:losePercent];
-            eLose.label = [NSString stringWithFormat:@"%@\n(%ld)", NSLocalizedString(@"Lost", 0), [[Player instance] totalMatchesLost]];
+            eLose.label = [NSString stringWithFormat:@"%@", NSLocalizedString(@"Lost", 0)];
             [entriesArray addObject:eLose];
         }
         
@@ -152,8 +156,8 @@
         dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
         dSet.selectionShift = 0.0f;
         dSet.colors = [NSArray arrayWithArray:colorsArray];
-        dSet.entryLabelFont = [UIFont fontWithName:@"Trajan Pro 3" size:8.0];
-        dSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:11.0];
+        dSet.entryLabelFont = [UIFont fontWithName:@"Trajan Pro 3" size:11.0];
+        dSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:16.0];
         PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
         _pieChartView.data = d;
     }

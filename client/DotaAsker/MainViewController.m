@@ -42,6 +42,8 @@
     _viewModel = [[MainViewModel alloc] init];
     //add refresher controll
     self.tableView.refreshControl = [[UIRefreshControl alloc] init];
+    // This will remove extra separators from tableview
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)refreshControllDragged {   

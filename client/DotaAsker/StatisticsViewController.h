@@ -22,5 +22,6 @@
 @property (strong, nonatomic) IBOutlet BarChartView *chartView;
 @property (strong, nonatomic) IBOutlet PieChartView *pieChartView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end

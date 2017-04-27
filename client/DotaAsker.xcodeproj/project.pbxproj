@@ -181,6 +181,9 @@
 		ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */; };
 		ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */; };
 		ACE7A7FB1E733C0500301677 /* ThemeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ACE7A7FA1E733C0500301677 /* ThemeButton.m */; };
+		ACEF92A21EAFF6A900E3617A /* icon_forward_50@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEF929F1EAFF6A900E3617A /* icon_forward_50@1x.png */; };
+		ACEF92A31EAFF6A900E3617A /* icon_forward_50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEF92A01EAFF6A900E3617A /* icon_forward_50@2x.png */; };
+		ACEF92A41EAFF6A900E3617A /* icon_forward_50@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACEF92A11EAFF6A900E3617A /* icon_forward_50@3x.png */; };
 		ACF5F3781D99E1080060EA56 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F3771D99E1080060EA56 /* MainViewController.m */; };
 		ACF5F37C1D9A40300060EA56 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37B1D9A40300060EA56 /* MainViewModel.m */; };
 		ACF5F37F1D9E492E0060EA56 /* UIViewController+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF5F37E1D9E492E0060EA56 /* UIViewController+Utils.m */; };
@@ -444,6 +447,9 @@
 		ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnswer.m; sourceTree = "<group>"; };
 		ACE7A7F91E733C0500301677 /* ThemeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThemeButton.h; sourceTree = "<group>"; };
 		ACE7A7FA1E733C0500301677 /* ThemeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThemeButton.m; sourceTree = "<group>"; };
+		ACEF929F1EAFF6A900E3617A /* icon_forward_50@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_forward_50@1x.png"; path = "resources/icons/icon_forward_50@1x.png"; sourceTree = "<group>"; };
+		ACEF92A01EAFF6A900E3617A /* icon_forward_50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_forward_50@2x.png"; path = "resources/icons/icon_forward_50@2x.png"; sourceTree = "<group>"; };
+		ACEF92A11EAFF6A900E3617A /* icon_forward_50@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_forward_50@3x.png"; path = "resources/icons/icon_forward_50@3x.png"; sourceTree = "<group>"; };
 		ACF5F3761D99E1080060EA56 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ACF5F3771D99E1080060EA56 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		ACF5F37A1D9A40300060EA56 /* MainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewModel.h; sourceTree = "<group>"; };
@@ -782,6 +788,9 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				ACEF929F1EAFF6A900E3617A /* icon_forward_50@1x.png */,
+				ACEF92A01EAFF6A900E3617A /* icon_forward_50@2x.png */,
+				ACEF92A11EAFF6A900E3617A /* icon_forward_50@3x.png */,
 				AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */,
 				AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */,
 				AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */,
@@ -1042,6 +1051,7 @@
 				AC6929791EA7D25D00BEB661 /* Icon@2x.png in Resources */,
 				AC6929781EA7D25D00BEB661 /* Icon.png in Resources */,
 				AC69299B1EA7D27000BEB661 /* Icon-App-57x57@2x.png in Resources */,
+				ACEF92A31EAFF6A900E3617A /* icon_forward_50@2x.png in Resources */,
 				AC6929621EA7D20F00BEB661 /* avatar_nature_prophet.png in Resources */,
 				AC6929631EA7D20F00BEB661 /* avatar_tinker.png in Resources */,
 				AC6929E01EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png in Resources */,
@@ -1066,6 +1076,7 @@
 				AC780F881DEB6D6E007E8158 /* top100_48@1x.png in Resources */,
 				AC6929BC1EA9606600BEB661 /* pattern-1.png in Resources */,
 				ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */,
+				ACEF92A21EAFF6A900E3617A /* icon_forward_50@1x.png in Resources */,
 				AC6929991EA7D27000BEB661 /* Icon-App-40x40@3x.png in Resources */,
 				AC6929E11EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png in Resources */,
 				AC6929731EA7D25D00BEB661 /* Icon-60.png in Resources */,
@@ -1093,6 +1104,7 @@
 				AC6929C11EA9606600BEB661 /* pattern-6.png in Resources */,
 				AC780F871DEB6D6E007E8158 /* question_48@3x.png in Resources */,
 				AC6929A41EA7D27000BEB661 /* Contents.json in Resources */,
+				ACEF92A41EAFF6A900E3617A /* icon_forward_50@3x.png in Resources */,
 				AC69295F1EA7D20F00BEB661 /* avatar_bristle.png in Resources */,
 				AC96464C1E720FF700F9CD32 /* icon-submit-question-white-48@3x.png in Resources */,
 				AC6929C31EA9606600BEB661 /* pattern-8.png in Resources */,
