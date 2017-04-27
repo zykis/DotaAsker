@@ -22,11 +22,12 @@ class Database_queries:
         not_started_matches = []
         for row in not_started_matches_sql:
             m = Match.query.get(row[0])
-            if m.state != MATCH_FINISHED:
-                if m.next_move_user() is None:
-                    not_started_matches.append(m)
-                elif m.next_move_user().id == user.id:
-                    not_started_matches.append(m)
+            if m.state == MATCH_RUNNING:
+                not_started_matches.append(m)
+#                if m.next_move_user() is None:
+#                    not_started_matches.append(m)
+#                elif m.next_move_user().id == user.id:
+#                    not_started_matches.append(m)
 
         # if not match exists
         if len(not_started_matches) == 0:
