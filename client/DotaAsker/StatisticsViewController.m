@@ -66,6 +66,7 @@
     _chartView.legend.enabled = NO;
     _chartView.scaleXEnabled = NO;
     _chartView.scaleYEnabled = NO;
+    _chartView.noDataText = NSLocalizedString("Not enough data for displaying statistic (Need at least 1 day after registration)", 0);
     
     ChartXAxis* xaxis = _chartView.xAxis;
     xaxis.drawGridLinesEnabled = NO;
@@ -124,6 +125,7 @@
     _pieChartView.holeColor = patternColor;
     _pieChartView.rotationEnabled = NO;
     _pieChartView.rotationAngle = 30;
+    _pieChartView.noDataText = NSLocalizedString("Not enough data for displaying statistic (Need at least 1 matches finished)", 0);
     
     NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
     if (totalMatches > 0) {
