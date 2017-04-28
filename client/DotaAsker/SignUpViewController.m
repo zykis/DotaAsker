@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,20}$";
+    NSString* strUnicodeRegexp = @"^[a-zA-Z0-9\\xC0-\\uFFFF]{3,12}$";
     NSString* strASCIIRegexp = @"^[a-zA-Z0-9]{3,20}$";
     
     __block NSRegularExpression* usernameRegexp = [NSRegularExpression regularExpressionWithPattern:strUnicodeRegexp options:0 error:0];
