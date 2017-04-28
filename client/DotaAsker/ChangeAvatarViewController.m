@@ -55,13 +55,9 @@
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
     
     NSUInteger row = [_avatarNamesArray indexOfObject:[[Player instance] avatarImageName]];
-    if (row == NSNotFound) {
-        NSLog(@"Avatar with name: \"%@\" not found.", [[Player instance] avatarImageName]);
-    }
-    else {
-        NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
-        [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
-    }
+    assert(row != NSNotFound);
+    NSIndexPath* path = [NSIndexPath indexPathForRow:row inSection:0];
+    [self.collectionView selectItemAtIndexPath:path animated:YES scrollPosition:UICollectionViewScrollPositionTop];
 }
 
 - (void)didReceiveMemoryWarning {
