@@ -87,6 +87,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // [1]
     UIImage* selectedImage = [UIImage imageNamed:[_avatarNamesArray objectAtIndex: [indexPath row]]];
+    assert(selectedImage);
     [self.selectedImageView setImage: selectedImage];
     _currentIndex = [indexPath row];
 }
