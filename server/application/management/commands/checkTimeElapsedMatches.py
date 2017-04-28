@@ -23,4 +23,8 @@ def run():
 if __name__ == '__main__':
     import sys 
     sys.path.append('/home/zykis/DotaAsker/server/')
+    sys.path.append('/home/zykis/DotaAsker/server/flask/lib/python2.7/site-packages/')
+    
+    sys.path.append('/home/artem/projects/DotaAsker/server/')
+    sys.path.append('/home/artem/projects/DotaAsker/server/flask/lib/python2.7/site-packages/')
     run()
