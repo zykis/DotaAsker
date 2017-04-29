@@ -47,12 +47,15 @@
     User* user = [Player instance];
     [self.navigationTitle setTitle:[user name]];
     [self.mmr setText: [NSString stringWithFormat:@"%ld", (long)[user MMR]]];
+    [self.labelWon setText:[NSString stringWithFormat:@"%ld", (long)[user totalMatchesWon]]];
+    [self.labelLost setText:[NSString stringWithFormat:@"%ld", (long)[user totalMatchesLost]]];
+    [self.labelGPM setText:[NSString stringWithFormat:@"%.1f", [user GPM]]];
+    [self.labelKDA setText:[NSString stringWithFormat:@"%.1f", [user KDA]]];
+    [self.avatar setImage:[UIImage imageNamed:[user avatarImageName]]];
     
     float averageAnswerTime = 0;
     if (user.totalCorrectAnswers + user.totalIncorrectAnswers)
         averageAnswerTime = user.totalTimeForAnswers / (user.totalCorrectAnswers + (float)user.totalIncorrectAnswers);
-    
-    [self.avatar setImage:[UIImage imageNamed:[user avatarImageName]]];
     [self.tableView reloadData];
     
     // Chart
@@ -66,7 +69,7 @@
     _chartView.legend.enabled = NO;
     _chartView.scaleXEnabled = NO;
     _chartView.scaleYEnabled = NO;
-    _chartView.noDataText = NSLocalizedString("Not enough data for displaying statistic (Need at least 1 day after registration)", 0);
+    _chartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least 1 day after registration)", 0);
     
     ChartXAxis* xaxis = _chartView.xAxis;
     xaxis.drawGridLinesEnabled = NO;
@@ -125,7 +128,7 @@
     _pieChartView.holeColor = patternColor;
     _pieChartView.rotationEnabled = NO;
     _pieChartView.rotationAngle = 30;
-    _pieChartView.noDataText = NSLocalizedString("Not enough data for displaying statistic (Need at least 1 matches finished)", 0);
+    _pieChartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least 1 matches finished)", 0);
     
     NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
     if (totalMatches > 0) {

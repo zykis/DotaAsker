@@ -171,7 +171,9 @@ def create_userAnswer():
     userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
     if userAnswersCount >= 3:
         app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
-        abort(505)
+        resp = make_response()
+        resp.mimetype = 'application/json'
+        resp.code = 200
     # reset localy created ID. Server should autoincrement it
     ua.id = None
     db.session.add(ua)
@@ -196,7 +198,7 @@ def create_userAnswer():
         if not isinstance(u2, User):
             app.logger.debug("user for match is undefined yet")
         else:
-            app.logger.debug("next move user changed to {}".format(u2.username))
+            app.logger.debug("next move user changed to {}".format(u2.username.encode('utf-8')))
 
         round.next_move_user = u2
         db.session.add(round)
