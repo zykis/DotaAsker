@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		32A5D8A4A72E9BCCF3E56A44 /* Pods_DotaAsker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */; };
+		AC0E74FC1EB916D1006F2BDD /* dotaquiz_inner-200@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC0E74F91EB916D1006F2BDD /* dotaquiz_inner-200@1x.png */; };
+		AC0E74FD1EB916D1006F2BDD /* dotaquiz_inner-200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC0E74FA1EB916D1006F2BDD /* dotaquiz_inner-200@2x.png */; };
+		AC0E74FE1EB916D1006F2BDD /* dotaquiz_inner-200@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC0E74FB1EB916D1006F2BDD /* dotaquiz_inner-200@3x.png */; };
 		AC0EE5641DCF510C005EE564 /* QuestionService.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5631DCF510C005EE564 /* QuestionService.m */; };
 		AC0EE5671DCF518B005EE564 /* QuestionTransport.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5661DCF518B005EE564 /* QuestionTransport.m */; };
 		AC0EE56A1DD3D38B005EE564 /* PasswordRemindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0EE5691DD3D38B005EE564 /* PasswordRemindViewController.m */; };
@@ -88,9 +91,6 @@
 		AC6929D01EAA7B3200BEB661 /* GoogleToolboxForMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929CF1EAA7B3200BEB661 /* GoogleToolboxForMac.framework */; };
 		AC6929D21EAA7CCC00BEB661 /* libextobjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */; };
 		AC6929D51EAE878700BEB661 /* StatisticsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC6929D41EAE878700BEB661 /* StatisticsViewModel.m */; };
-		AC6929DF1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */; };
-		AC6929E01EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */; };
-		AC6929E11EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */; };
 		AC73520A1B239A1B00FFF356 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC7352091B239A1B00FFF356 /* main.m */; };
 		AC73520D1B239A1B00FFF356 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AC73520C1B239A1B00FFF356 /* AppDelegate.m */; };
 		AC7352181B239A1B00FFF356 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7352161B239A1B00FFF356 /* LaunchScreen.xib */; };
@@ -205,6 +205,9 @@
 		63728E64091E9EFB1DB6641C /* Pods-DotaAsker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.debug.xcconfig"; sourceTree = "<group>"; };
 		6C404B455C714AAED3B43224 /* Pods-DotaAsker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DotaAsker.release.xcconfig"; path = "Pods/Target Support Files/Pods-DotaAsker/Pods-DotaAsker.release.xcconfig"; sourceTree = "<group>"; };
 		975704DCB00AAE6809D72B3E /* Pods_DotaAsker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DotaAsker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0E74F91EB916D1006F2BDD /* dotaquiz_inner-200@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@1x.png"; path = "resources/icons/dotaquiz_inner-200@1x.png"; sourceTree = "<group>"; };
+		AC0E74FA1EB916D1006F2BDD /* dotaquiz_inner-200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@2x.png"; path = "resources/icons/dotaquiz_inner-200@2x.png"; sourceTree = "<group>"; };
+		AC0E74FB1EB916D1006F2BDD /* dotaquiz_inner-200@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@3x.png"; path = "resources/icons/dotaquiz_inner-200@3x.png"; sourceTree = "<group>"; };
 		AC0EE5621DCF510C005EE564 /* QuestionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionService.h; sourceTree = "<group>"; };
 		AC0EE5631DCF510C005EE564 /* QuestionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionService.m; sourceTree = "<group>"; };
 		AC0EE5651DCF518B005EE564 /* QuestionTransport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionTransport.h; sourceTree = "<group>"; };
@@ -286,7 +289,6 @@
 		AC6929A81EA7D65400BEB661 /* dotaquiz_inner_128@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner_128@2x.png"; path = "resources/icons/dotaquiz_inner_128@2x.png"; sourceTree = "<group>"; };
 		AC6929A91EA7D65400BEB661 /* dotaquiz_inner_128@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner_128@3x.png"; path = "resources/icons/dotaquiz_inner_128@3x.png"; sourceTree = "<group>"; };
 		AC6929AD1EA7DD3D00BEB661 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		AC6929AE1EA7DD3D00BEB661 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		AC6929B01EA7DDCB00BEB661 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AC6929B21EA7DDD300BEB661 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AC6929B31EA9606600BEB661 /* pattern-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pattern-1.png"; path = "resources/patterns/pattern-1.png"; sourceTree = "<group>"; };
@@ -307,9 +309,6 @@
 		AC6929D11EAA7CCC00BEB661 /* libextobjc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libextobjc.framework; path = "../../../Library/Developer/Xcode/DerivedData/DotaAsker-fibotoyjgbhcpdakppuvbajaigfx/Build/Products/Debug-iphoneos/libextobjc/libextobjc.framework"; sourceTree = "<group>"; };
 		AC6929D31EAE878700BEB661 /* StatisticsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewModel.h; sourceTree = "<group>"; };
 		AC6929D41EAE878700BEB661 /* StatisticsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewModel.m; sourceTree = "<group>"; };
-		AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@1x.png"; path = "resources/icons/dotaquiz_inner-200@1x.png"; sourceTree = "<group>"; };
-		AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@2x.png"; path = "resources/icons/dotaquiz_inner-200@2x.png"; sourceTree = "<group>"; };
-		AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "dotaquiz_inner-200@3x.png"; path = "resources/icons/dotaquiz_inner-200@3x.png"; sourceTree = "<group>"; };
 		AC7352041B239A1B00FFF356 /* Dota Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dota Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC7352081B239A1B00FFF356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7352091B239A1B00FFF356 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -788,12 +787,12 @@
 		ACF41C0F1B3C3D990096598C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				AC0E74F91EB916D1006F2BDD /* dotaquiz_inner-200@1x.png */,
+				AC0E74FA1EB916D1006F2BDD /* dotaquiz_inner-200@2x.png */,
+				AC0E74FB1EB916D1006F2BDD /* dotaquiz_inner-200@3x.png */,
 				ACEF929F1EAFF6A900E3617A /* icon_forward_50@1x.png */,
 				ACEF92A01EAFF6A900E3617A /* icon_forward_50@2x.png */,
 				ACEF92A11EAFF6A900E3617A /* icon_forward_50@3x.png */,
-				AC6929DC1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png */,
-				AC6929DD1EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png */,
-				AC6929DE1EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png */,
 				AC6929691EA7D24D00BEB661 /* app */,
 				ACA1CE831E94323A0004DC70 /* icon-checked-50.png */,
 				ACA1CE841E94323A0004DC70 /* icon-checked-50@2x.png */,
@@ -1054,7 +1053,6 @@
 				ACEF92A31EAFF6A900E3617A /* icon_forward_50@2x.png in Resources */,
 				AC6929621EA7D20F00BEB661 /* avatar_nature_prophet.png in Resources */,
 				AC6929631EA7D20F00BEB661 /* avatar_tinker.png in Resources */,
-				AC6929E01EAEA6DB00BEB661 /* dotaquiz_inner-200@2x.png in Resources */,
 				AC6929BF1EA9606600BEB661 /* pattern-4.png in Resources */,
 				AC69295D1EA7D20F00BEB661 /* avatar_axe.png in Resources */,
 				AC6929761EA7D25D00BEB661 /* Icon-Small-50.png in Resources */,
@@ -1078,11 +1076,13 @@
 				ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */,
 				ACEF92A21EAFF6A900E3617A /* icon_forward_50@1x.png in Resources */,
 				AC6929991EA7D27000BEB661 /* Icon-App-40x40@3x.png in Resources */,
-				AC6929E11EAEA6DB00BEB661 /* dotaquiz_inner-200@3x.png in Resources */,
+				AC0E74FD1EB916D1006F2BDD /* dotaquiz_inner-200@2x.png in Resources */,
 				AC6929731EA7D25D00BEB661 /* Icon-60.png in Resources */,
 				AC6929601EA7D20F00BEB661 /* avatar_brood.png in Resources */,
 				AC6929A01EA7D27000BEB661 /* Icon-App-76x76@1x.png in Resources */,
 				AC69299A1EA7D27000BEB661 /* Icon-App-57x57@1x.png in Resources */,
+				AC0E74FC1EB916D1006F2BDD /* dotaquiz_inner-200@1x.png in Resources */,
+				AC0E74FE1EB916D1006F2BDD /* dotaquiz_inner-200@3x.png in Resources */,
 				ACA1CE861E94323A0004DC70 /* icon-checked-50.png in Resources */,
 				AC69297B1EA7D25D00BEB661 /* ItunesArtwork@2x.png in Resources */,
 				AC6929A21EA7D27000BEB661 /* Icon-App-76x76@3x.png in Resources */,
@@ -1123,7 +1123,6 @@
 				AC780F7F1DEB6D6E007E8158 /* avatar_48@1x.png in Resources */,
 				AC9646521E720FF700F9CD32 /* icon-unlock-white-48@3x.png in Resources */,
 				ACC730DB1E6F2A5900A88A54 /* icon-back-white@2x.png in Resources */,
-				AC6929DF1EAEA6DB00BEB661 /* dotaquiz_inner-200@1x.png in Resources */,
 				AC69299C1EA7D27000BEB661 /* Icon-App-57x57@3x.png in Resources */,
 				ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */,
 				ACC730DD1E6F2A5900A88A54 /* icon-logout-white.png in Resources */,
@@ -1306,7 +1305,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				AC7352171B239A1B00FFF356 /* Base */,
-				AC6929AE1EA7DD3D00BEB661 /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

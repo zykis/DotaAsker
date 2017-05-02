@@ -171,16 +171,16 @@ def create_userAnswer():
     userAnswersCount = len(UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id).all())
     if userAnswersCount >= 3:
         app.logger.critical("stack overflow for userAnswers in round: {} for user: {}".format(ua.round.__repr__(), ua.user.__repr__()))
-        resp = make_response()
-        resp.mimetype = 'application/json'
-        resp.code = 200
+        abort(505)
     # reset localy created ID. Server should autoincrement it
     ua.id = None
     db.session.add(ua)
     db.session.commit()
 
     # getting created UserAnswer with proper id
-    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one()
+    uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one_or_none()
+    if uaNew is None:
+        abort(505)
     app.logger.info("commited useranswerID: {}, questionID: {}".format(uaNew.id, uaNew.question_id))
 
     # check if round is over

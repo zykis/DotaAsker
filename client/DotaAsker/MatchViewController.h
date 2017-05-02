@@ -11,6 +11,7 @@
 #import "RoundViewLayered.h"
 
 @class MatchViewModel;
+@class SettingsButton;
 
 @interface MatchViewController : UIViewController
 <UITableViewDataSource, UITableViewDelegate, RoundViewDelegate>

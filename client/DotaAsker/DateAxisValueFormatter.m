@@ -11,7 +11,11 @@
 @implementation DateAxisValueFormatter
 
 - (NSString*)stringForValue:(double)value axis:(ChartAxisBase *)axis {
-    return [NSString stringWithFormat:@"%f", value];
+    NSDate* date = [NSDate dateWithTimeIntervalSince1970:value];
+    NSDateFormatter* toFormatter = [[NSDateFormatter alloc] init];
+    [toFormatter setDateFormat:@"dd.MM"];
+    NSString* res = [toFormatter stringFromDate:date];
+    return res;
 }
 
 @end

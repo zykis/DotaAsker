@@ -93,14 +93,6 @@
     
     ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Getting user", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
-    
-    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self presentAlertControllerWithMessage:[error localizedDescription]];
-            [loadingView removeFromSuperview];
-        });
-    };
-    
     void (^completeBlock)() = ^void() {
         RACReplaySubject* subject = [[[ServiceLayer instance] userService] obtainWithAccessToken:[[[ServiceLayer instance] authorizationService] accessToken]];
         [subject subscribeNext:^(id u) {
@@ -116,6 +108,17 @@
                 [self performSegueWithIdentifier:@"showMain" sender: self];
             });
         }];
+    };
+    
+    void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([error code] == 505) {
+                completeBlock();
+                NSLog(@"Error code: %ld", (long)error.code);
+            }
+            [self presentAlertControllerWithMessage:[error localizedDescription]];
+            [loadingView removeFromSuperview];
+        });
     };
     
     RACSignal *signal = [[[ServiceLayer instance] authorizationService] getTokenForUsername:username andPassword:password];

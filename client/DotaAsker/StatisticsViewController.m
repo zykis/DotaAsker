@@ -12,6 +12,7 @@
 #import "ModalLoadingView.h"
 #import "Palette.h"
 #import "PercentValueFormatter.h"
+#import "DateAxisValueFormatter.h"
 
 // Libraries
 #import <Charts/Charts-Swift.h>
@@ -33,6 +34,9 @@
     [super viewDidLoad];
     [self loadBackgroundImage];
     [self loadBackgroundImageForView:_contentView];
+    self.backgroundView.layer.backgroundColor = [[Palette shared] backgroundColor].CGColor;
+    self.backgroundView.layer.cornerRadius = 8;
+    
     [self fillUser];
 }
 
@@ -40,12 +44,12 @@
     [super viewWillAppear:animated];
     self.tableView.backgroundColor = [UIColor clearColor];
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    _tableView.layer.cornerRadius = 4;
+    _tableView.layer.cornerRadius = 8;
 }
 
 - (void)fillUser {
     User* user = [Player instance];
-    [self.navigationTitle setTitle:[user name]];
+    [self.labelUsername setText:[user name]];
     [self.mmr setText: [NSString stringWithFormat:@"%ld", (long)[user MMR]]];
     [self.labelWon setText:[NSString stringWithFormat:@"%ld", (long)[user totalMatchesWon]]];
     [self.labelLost setText:[NSString stringWithFormat:@"%ld", (long)[user totalMatchesLost]]];
@@ -59,48 +63,86 @@
     [self.tableView reloadData];
     
     // Chart
-    _chartView.layer.cornerRadius = 4;
     _chartView.chartDescription.enabled = YES;
     _chartView.highlightPerTapEnabled = YES;
     _chartView.drawGridBackgroundEnabled = NO;
     _chartView.drawBordersEnabled = NO;
-    _chartView.backgroundColor = [UIColor clearColor];
+    _chartView.backgroundColor = [[Palette shared] backgroundColor];
     _chartView.descriptionText = @"";
     _chartView.legend.enabled = NO;
     _chartView.scaleXEnabled = NO;
     _chartView.scaleYEnabled = NO;
-    _chartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least 1 day after registration)", 0);
+    _chartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least a day after registration)", 0);
+    _chartView.noDataTextColor = [UIColor whiteColor];
     
     ChartXAxis* xaxis = _chartView.xAxis;
-    xaxis.drawGridLinesEnabled = NO;
+    DateAxisValueFormatter* dateFormatter = [[DateAxisValueFormatter alloc] init];
+    NSMutableArray* axisEntries = [[NSMutableArray alloc] init];
+    xaxis.drawGridLinesEnabled = YES;
     xaxis.drawAxisLineEnabled = YES;
     xaxis.drawLabelsEnabled = YES;
     xaxis.labelPosition = XAxisLabelPositionBottom;
     xaxis.labelTextColor = [UIColor whiteColor];
+    xaxis.valueFormatter = dateFormatter;
+    xaxis.labelFont = [UIFont systemFontOfSize:4];
+    xaxis.granularity = 60.0 * 60 * 24;
+    xaxis.granularityEnabled = YES;
+    xaxis.avoidFirstLastClippingEnabled = YES;
     
     ChartYAxis* laxis = _chartView.leftAxis;
-    laxis.drawGridLinesEnabled = NO;
-    laxis.drawAxisLineEnabled = NO;
-    laxis.drawLabelsEnabled = NO;
+    laxis.drawGridLinesEnabled = YES;
+    laxis.drawAxisLineEnabled = YES;
+    laxis.drawLabelsEnabled = YES;
+    laxis.labelTextColor = [UIColor whiteColor];
     
     ChartYAxis* raxis = _chartView.rightAxis;
-    raxis.drawGridLinesEnabled = NO;
+    raxis.drawGridLinesEnabled = YES;
     raxis.drawAxisLineEnabled = NO;
     raxis.drawLabelsEnabled = NO;
     
     NSMutableArray<BarChartDataEntry*>* entries = [[NSMutableArray alloc] init];
+    // _statistic may contain up to 30 values, so let's restict this to 7 for a week
     NSUInteger minStats = MIN([[_statistic allKeys] count], 7);
+    NSUInteger lastIndex = [[_statistic allKeys] count] - 1;
+    NSUInteger count = minStats;
+    NSArray* statisticsOrderedKeys = [[_statistic allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        NSString* string1 = (NSString*)obj1;
+        NSString* string2 = (NSString*)obj2;
+        long int1 = [[string1 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
+        long int2 = [[string2 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
+        return int1 < int2 ? NSOrderedAscending: int1 == int2 ? NSOrderedSame: NSOrderedDescending;
+    }];
+    NSArray* weekStatisticsKeys = [statisticsOrderedKeys objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(lastIndex - count + 1, count)]];
+    NSMutableDictionary* weekStatistics = [[NSMutableDictionary alloc] init];
+    for (NSString* key in weekStatisticsKeys) {
+        weekStatistics[key] = [_statistic objectForKey:key];
+    }
+    
     for (int i = 0; i < minStats; i++) {
         BarChartDataEntry* entry = [[BarChartDataEntry alloc] init];
-        [entry setX:i];
-        NSString* key = [[_statistic allKeys] objectAtIndex:i];
-        NSString* dateString = key;
-        [entry setData:dateString];
+        
+        NSString* key = [[[weekStatistics allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            NSString* string1 = (NSString*)obj1;
+            NSString* string2 = (NSString*)obj2;
+            long int1 = [[string1 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
+            long int2 = [[string2 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
+            return int1 < int2 ? NSOrderedAscending: int1 == int2 ? NSOrderedSame: NSOrderedDescending;
+        }] objectAtIndex:i];
+        
+        NSDateFormatter *fromFormatter = [[NSDateFormatter alloc] init];
+        [fromFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate* date = [fromFormatter dateFromString:key];
+        
+        double ti = [date timeIntervalSince1970];
+        
+        [entry setX:ti];
         [entry setY:[[_statistic objectForKey:key] integerValue]];
         [entries addObject:entry];
+        [axisEntries addObject:[NSNumber numberWithDouble:ti]];
     }
-
-    if (minStats >= 2) {
+    xaxis.entries = axisEntries;
+    
+    if (minStats >= 1) {
         BarChartDataSet* dataSet = [[BarChartDataSet alloc] initWithValues:entries];
         dataSet.barShadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.15];
         dataSet.barBorderWidth = 0.8f;
@@ -113,6 +155,7 @@
         
         BarChartData* data = [[BarChartData alloc] initWithDataSet:dataSet];
         _chartView.data = data;
+        xaxis.labelCount = minStats;
     }
     
     // Pie Chart
@@ -129,6 +172,7 @@
     _pieChartView.rotationEnabled = NO;
     _pieChartView.rotationAngle = 30;
     _pieChartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least 1 matches finished)", 0);
+    _pieChartView.noDataTextColor = [UIColor whiteColor];
     
     NSUInteger totalMatches = [[Player instance] totalMatchesWon] + [[Player instance] totalMatchesLost];
     if (totalMatches > 0) {

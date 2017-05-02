@@ -18,6 +18,7 @@
 #import "RoundViewLayered.h"
 #import "ModalLoadingView.h"
 #import "Theme.h"
+#import "SettingsButton.h"
 
 // Libraries
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
@@ -27,6 +28,7 @@
 #define SECTION_ROUNDS 1
 #define SECTION_ACTIONS 2
 #define MINIMUM_ROUND_HEIGHT 15.0f + 27.0f + 2.0f + 6.0f
+#define ACTIONS_CELL_HEIGHT 80.0f
 
 #define BUTTON_WAITING 0
 #define BUTTON_PLAY 1
@@ -343,17 +345,25 @@
             switch(_buttonState)
             {
                 case BUTTON_PLAY:
+                {
                     [leftButton setHidden:NO];
                     [middleButton setTitle:NSLocalizedString(@"Play", 0) forState:UIControlStateNormal];
+                    
                     [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
+                }
                 case BUTTON_SYNCHRONIZE:
+                {
                     [leftButton setHidden:NO];
                     [middleButton setTitle:NSLocalizedString(@"Synchronize", 0) forState:UIControlStateNormal];
+                    CGSize synchSize = CGSizeMake(180, middleButton.frame.size.height);
+                    CGRect synchFrame = CGRectMake(middleButton.frame.origin.x, middleButton.frame.origin.y, synchSize.width, synchSize.height);
+                    [middleButton setFrame:synchFrame];
                     [middleButton setHidden:NO];
                     [middleButton setEnabled:YES];
                     break;
+                }
                 case BUTTON_WAITING:
                     [leftButton setHidden:YES];
                     [middleButton setTitle:NSLocalizedString(@"Waiting", 0) forState:UIControlStateNormal];
@@ -389,6 +399,23 @@
     return cell;
 }
 
+- (void)viewDidLayoutSubviews {
+    _buttonState = [self middleButtonState];
+    NSIndexPath* actionsPath = [NSIndexPath indexPathForRow:0 inSection:SECTION_ACTIONS];
+    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:actionsPath];
+    SettingsButton* middleButton = [cell viewWithTag:101];
+    
+    float minWidth = 140;
+    float width = [middleButton intrinsicContentSize].width;
+    CGSize synchSize = CGSizeMake(MAX(width, minWidth), middleButton.frame.size.height);
+    float screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGPoint synchOrigin = CGPointMake(screenWidth / 2.0 - synchSize.width / 2.0, middleButton.frame.origin.y);
+    CGRect synchFrame = CGRectMake(synchOrigin.x, synchOrigin.y, synchSize.width, synchSize.height);
+    [middleButton setFrame:synchFrame];
+    
+    [super viewDidLayoutSubviews];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch ([indexPath section]) {
         case SECTION_MATCH_INFO:
@@ -397,14 +424,14 @@
         case SECTION_ROUNDS: {
             CGFloat height = [_tableView frame].size.height;
             height -= 110.0f;
-            height -= 59.0f;
+            height -= ACTIONS_CELL_HEIGHT;
             height /= 6.0;
             height /= 2.0;
             return MAX(MINIMUM_ROUND_HEIGHT, height);
         }
             
         case SECTION_ACTIONS:
-            return 59.0f;
+            return ACTIONS_CELL_HEIGHT;
     }
     return UITableViewAutomaticDimension;
 }
