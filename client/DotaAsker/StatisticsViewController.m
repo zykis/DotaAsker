@@ -147,6 +147,13 @@
         dataSet.label = @"MMR";
         
         BarChartData* data = [[BarChartData alloc] initWithDataSet:dataSet];
+        
+        let groupSpace = 0.1                 // space between bar groups
+        let barSpace = 0.03                  // space between bars within a group
+
+        data.barWidth = (1.0 - groupSpace) / 2 - barSpace         // 2 = number of bars within a group
+        data.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
+        
         _chartView.data = data;
     }
     [xaxis setLabelCount:minStats force:YES];
