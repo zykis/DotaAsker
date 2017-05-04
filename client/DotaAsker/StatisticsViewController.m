@@ -75,19 +75,20 @@
     _chartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least a day after registration)", 0);
     _chartView.noDataTextColor = [UIColor whiteColor];
     
+    
     ChartXAxis* xaxis = _chartView.xAxis;
     DateAxisValueFormatter* dateFormatter = [[DateAxisValueFormatter alloc] init];
-    NSMutableArray* axisEntries = [[NSMutableArray alloc] init];
     xaxis.drawGridLinesEnabled = YES;
     xaxis.drawAxisLineEnabled = YES;
     xaxis.drawLabelsEnabled = YES;
     xaxis.labelPosition = XAxisLabelPositionBottom;
     xaxis.labelTextColor = [UIColor whiteColor];
     xaxis.valueFormatter = dateFormatter;
-    xaxis.labelFont = [UIFont systemFontOfSize:4];
+    xaxis.labelFont = [UIFont systemFontOfSize:7];
     xaxis.granularity = 60.0 * 60 * 24;
     xaxis.granularityEnabled = YES;
     xaxis.avoidFirstLastClippingEnabled = YES;
+    xaxis.forceLabelsEnabled = YES;
     
     ChartYAxis* laxis = _chartView.leftAxis;
     laxis.drawGridLinesEnabled = YES;
@@ -121,13 +122,7 @@
     for (int i = 0; i < minStats; i++) {
         BarChartDataEntry* entry = [[BarChartDataEntry alloc] init];
         
-        NSString* key = [[[weekStatistics allKeys] sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            NSString* string1 = (NSString*)obj1;
-            NSString* string2 = (NSString*)obj2;
-            long int1 = [[string1 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
-            long int2 = [[string2 stringByReplacingOccurrencesOfString:@"-" withString:@""] integerValue];
-            return int1 < int2 ? NSOrderedAscending: int1 == int2 ? NSOrderedSame: NSOrderedDescending;
-        }] objectAtIndex:i];
+        NSString* key = [[weekStatistics allKeys] objectAtIndex:i];
         
         NSDateFormatter *fromFormatter = [[NSDateFormatter alloc] init];
         [fromFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -138,9 +133,7 @@
         [entry setX:ti];
         [entry setY:[[_statistic objectForKey:key] integerValue]];
         [entries addObject:entry];
-        [axisEntries addObject:[NSNumber numberWithDouble:ti]];
     }
-    xaxis.entries = axisEntries;
     
     if (minStats >= 1) {
         BarChartDataSet* dataSet = [[BarChartDataSet alloc] initWithValues:entries];
@@ -155,8 +148,8 @@
         
         BarChartData* data = [[BarChartData alloc] initWithDataSet:dataSet];
         _chartView.data = data;
-        xaxis.labelCount = minStats;
     }
+    [xaxis setLabelCount:minStats force:YES];
     
     // Pie Chart
     _pieChartView.holeRadiusPercent = 0.25f;
