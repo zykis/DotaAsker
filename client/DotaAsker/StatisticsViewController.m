@@ -95,6 +95,8 @@
     laxis.drawAxisLineEnabled = YES;
     laxis.drawLabelsEnabled = YES;
     laxis.labelTextColor = [UIColor whiteColor];
+    laxis.granularity = 5;
+    laxis.granularityEnabled = YES;
     
     ChartYAxis* raxis = _chartView.rightAxis;
     raxis.drawGridLinesEnabled = YES;
