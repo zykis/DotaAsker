@@ -97,4 +97,4 @@
 "Won" = "Побед";
 "Lost" = "Поражений";
 "Not enough data for displaying statistic (Need at least 1 matches finished)" = "Не хватает данных для отображения статистики (Нужен как минимум 1 сыгранный матч)";
-"Not enough data for displaying statistic (Need at least 1 day after registration)" = "Не хватает данных для отображения статистики (Нужны как минимум сутки после регистрации)";
+"Not enough data for displaying statistic (Need at least a day after registration)" = "Не хватает данных для отображения статистики (Нужны как минимум сутки после регистрации)";

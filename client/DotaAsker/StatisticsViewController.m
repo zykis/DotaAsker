@@ -152,9 +152,9 @@
         
         double xMin = [dataSet xMin];
         double xMax = [dataSet xMax];
-        double w = xMax - xMin; // width of x-axis in seconds
+        double w = MAX(1, xMax - xMin); // width of x-axis in seconds
         double spacing = 0.05; // 5% of barWidth
-        double barWidth = w / [dataSet values].count - (spacing * w / [dataSet values].count - 1);
+        double barWidth = w / [dataSet values].count - (spacing * w / ([dataSet values].count + 1));
         
         data.barWidth = barWidth;
         
