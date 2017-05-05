@@ -148,11 +148,13 @@
         
         BarChartData* data = [[BarChartData alloc] initWithDataSet:dataSet];
         
-        let groupSpace = 0.1                 // space between bar groups
-        let barSpace = 0.03                  // space between bars within a group
-
-        data.barWidth = (1.0 - groupSpace) / 2 - barSpace         // 2 = number of bars within a group
-        data.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
+        double xMin = [dataSet xMin];
+        double xMax = [dataSet xMax];
+        double w = xMax - xMin; // width of x-axis in seconds
+        double spacing = 0.05; // 5% of barWidth
+        double barWidth = w / [dataSet values].count - (spacing * w / [dataSet values].count - 1);
+        
+        data.barWidth = barWidth;
         
         _chartView.data = data;
     }
