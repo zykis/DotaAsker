@@ -74,7 +74,7 @@
     _chartView.scaleYEnabled = NO;
     _chartView.noDataText = NSLocalizedString(@"Not enough data for displaying statistic (Need at least a day after registration)", 0);
     _chartView.noDataTextColor = [UIColor whiteColor];
-    
+   
     
     ChartXAxis* xaxis = _chartView.xAxis;
     DateAxisValueFormatter* dateFormatter = [[DateAxisValueFormatter alloc] init];
@@ -155,8 +155,8 @@
         double w = MAX(1, xMax - xMin); // width of x-axis in seconds
         double spacing = 0.05; // 5% of barWidth
         double barWidth = w / [dataSet values].count - (spacing * w / ([dataSet values].count + 1));
-        
         data.barWidth = barWidth;
+        [_chartView.viewporthandler setRestrainViewPortOffsetLeft:-barWidth offsetTop:0 offsetRight:barWidth offsetBottom:0];
         
         _chartView.data = data;
     }
