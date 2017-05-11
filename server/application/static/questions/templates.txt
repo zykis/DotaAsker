@@ -1,3 +1,7 @@
 # вопросы по базовым характеристикам
-EN: What is the base strength of the $$hero.name?
+
+EN: What is a base strength of the $$hero.name?
 RU: Чему равна базовая сила $$hero.name?
+
+EN: What is a base movement speed of $$hero.name?
+RU: Чему равна базовая скорость передвижения $$hero.name?

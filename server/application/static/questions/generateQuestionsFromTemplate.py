@@ -76,12 +76,24 @@ def getTemplates(templatesFile="./templates.txt"):
     questions = []
     with open(templatesFile, 'r') as file:
         lines = file.readlines()
-        lines = [q for q in lines if not q.startsWith('#')] # ignore comments
+        lines = [l for l in lines if not (l.strip().startswith('#') or l.strip() == "")] # ignore comments
         
+    for l in lines:
+        if l.startswith('EN: '):
+            q = Question()
+            q.text_en = l[len('EN: '):]
+        elif l.startswith('RU: '):
+            text_ru = l[len('RU: '):]
+            if q is None:
+                print ("English variation for question: {} IS MISSING".format(text_ru))
+                return None
+            else:
+                q.text_ru = text_ru
+                questions.append(q)
         
-        
-    print('templates count: ' % len(lines))
-    return lines
+    print('templates count: %d' % len(lines))
+    print(lines)
+    return questions
 
 def generateQuestionsFromTemplate(templateStringEN=None, templateStringRU=None, jsonFile=None, outputJson="./output.json"):
     # [1] getting heroes from json
@@ -188,7 +200,8 @@ if (__name__ == "__main__"):
     from application.models import Question
     import json
     
-    generateQuestionsFromTemplate(templateStringEN="What is the base strength of the $$hero.name?", templateStringRU="Чему равна базовая сила $$hero.name?", jsonFile="./heroes.json")
+    # generateQuestionsFromTemplate(templateStringEN="What is the base strength of the $$hero.name?", templateStringRU="Чему равна базовая сила $$hero.name?", jsonFile="./heroes.json")
+    getTemplates()
     
     
     
