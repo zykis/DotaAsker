@@ -1,7 +1,7 @@
-from app.db import Question
-import json
+# -*- coding: utf-8 -*-
 
-escape_characters = [':', '?', ' '] # characters to divide attributes from template string
+
+escape_characters = [':', '?', ' '] # characters to divide attribute_names from template string
 
 class Hero:
     name = ""
@@ -14,7 +14,7 @@ class Hero:
     
     armor = 0.0
     movementspeed = 0
-    melee = true
+    melee = True
     attack_range = 0
 
 # Generate questions, based on input data in json-file
@@ -37,6 +37,11 @@ class Hero:
 # hero.melee
 # hero.attack_range
 
+def main(self):
+    templates = self.getTemplates()
+    # for t in templates:
+        # self.generateQuestionsFromTemplate(
+
 def getHeroes(jsonFile=None):
     if jsonFile is None:
         print("No input file with heroes")
@@ -44,7 +49,7 @@ def getHeroes(jsonFile=None):
     heroes = []
     with open(jsonFile) as data_file:    
         data = json.load(data_file)
-        for d in data['heroes']:
+        for d in data:
             # d is a hero dictionary now
             h = Hero()
             
@@ -66,80 +71,124 @@ def getHeroes(jsonFile=None):
             heroes.append(h)
     return heroes
 
-def generateQuestionFromTemplate(self, templateStringEN=None, templateStringRU=None, jsonFile="./heroes.json", outputJson="./output.json"):
-    
-    # [1] getting heroes from json
-    heroes = self.getHeroes(jsonFile)
-    
-    # [2] creating questions instances
+def getTemplates(templatesFile="./templates.txt"):
+    lines = []
     questions = []
-    for h in heroes:
-        # getting attributes keys from template string
+    with open(templatesFile, 'r') as file:
+        lines = file.readlines()
+        lines = [q for q in lines if not q.startsWith('#')] # ignore comments
         
-        templateWhatever = ""
-        if templateStringEN is None:
-            if templateStringRU is None:
-                print("No template provided")
-                return
-            else:
-                templateWhatever = templateStringRU
-        else:
-            templateWhatever = templateStringEN
         
-        attributes = []
-        attr_count = templateWhatever.count("$$")
-        last_pos = 0 # last $$ position
-        for i in range(0, attr_count):
-            pos = templateWhatever.find("$$", last_pos)
-            # finding first occuarence of escape character
-            min_ch_pos = len(templateWhatever) - 1
-            for ch in escape_characters:
-                ch_pos = templateWhatever.find(ch, pos)
-                min_ch_pos = min(ch_pos, min_ch_pos)
-                
-            length = min_ch_pos - pos
-            attr_name = templateWhatever[pos + 2: length - 2]
-            attributes.append(attr_name)
         
-        # creating ENGLISH template string
-        if templateStringEN is not None:
-            template_string_en = templateStringEN
-            for i in range(0, attr_count):
-                template_string_en = template_string_en.replace("$$" + attributes[i], "{}")
-            
-            for i in range(0, attr_count):
-                variable = h.value(attributes[i]) # getting attribute by key
-                template_string_en = template_string_en.format(variable) # replacing each {} with actual value
-            
-        # creatomg RUSSIAN template string
-        if templateStringRU is not None:
-            template_string_ru = templateStringRU
-            for i in range(0, attr_count):
-                template_string_ru = template_string_ru.replace("$$" + attributes[i], "{}")
-            
-            for i in range(0, attr_count):
-                variable = h.value(attributes[i]) # getting attribute by key
-                template_string_ru = template_string_ru.format(variable) # replacing each {} with actual value
-        
-        # create question
-        q = Question()
-        q.text_en = template_string_en
-        q.text_ru = template_string_ru
-        
-        print("English: " % template_string_en)
-        print("Russian: " % template_string_ru.encode('utf8'))
-        
-        questions.append(q)
+    print('templates count: ' % len(lines))
+    return lines
+
+def generateQuestionsFromTemplate(templateStringEN=None, templateStringRU=None, jsonFile=None, outputJson="./output.json"):
+    # [1] getting heroes from json
+    heroes = getHeroes(jsonFile)
     
-    # [3] serialize questions to json
-    # [4] save to file
+    # [2.1] getting attribute_names
+    templateWhatever = ""
+    if templateStringEN is None:
+        if templateStringRU is None:
+            print("No template provided")
+            return
+        else:
+            templateWhatever = templateStringRU
+    else:
+        templateWhatever = templateStringEN
+    
+    attribute_names = []
+    attr_count = templateWhatever.count("$$")
+    last_pos = 0 # last $$ position
+    for i in range(0, attr_count):
+        pos = templateWhatever.find("$$", last_pos)
+        # finding first occuarence of escape character
+        min_ch_pos = len(templateWhatever) - 1
+        print(templateWhatever)
+        print(len(templateWhatever))
+        for ch in escape_characters:
+            ch_pos = templateWhatever.find(ch, pos)
+            if ch_pos != -1:
+                print('character {} found at position: {}'.format(ch, ch_pos))
+                min_ch_pos = min(ch_pos, min_ch_pos)
+            
+        length = min_ch_pos - pos - len('$$')
+        attr_name = templateWhatever[pos + 2: pos + 2 + length]
+        print ('pos:{} len:{} attr_name:{}'.format(pos, length, attr_name))
+        attribute_names.append(attr_name)
+        
+    # [2.2] dividing attribute_names by classes
+    hero_attribute_names = []
+    item_attribute_names_names = []
+    tournament_attribute_names = []
+    
+    for a in attribute_names:
+        first = a.split('.')[0]
+        second = a.split('.')[1]
+        if first == 'hero':
+            hero_attribute_names.append(second)
+        elif first == 'item':
+            item_attribute_names.append(second)
+        elif first == 'tournament':
+            tournament_attribute_names.append(second)
+    
+    # [3] creating questions instances
+    # [3.1] heroes
+    questions = []
+    print (hero_attribute_names)
+    
+    if len(hero_attribute_names) > 0:
+        for h in heroes:          
+            # creating ENGLISH template string
+            if templateStringEN is not None:
+                template_string_en = templateStringEN
+                for i in range(0, len(hero_attribute_names)):
+                    template_string_en = template_string_en.replace("$$" + "hero." + hero_attribute_names[i], "{}")
+                    print (template_string_en)
+                
+                for i in range(0, len(hero_attribute_names)):
+                    variable = getattr(h, hero_attribute_names[i]) # getting attribute by key
+                    template_string_en = template_string_en.format(variable) # replacing each {} with actual value
+                    print (template_string_en)
+                
+            # creating RUSSIAN template string
+            if templateStringRU is not None:
+                template_string_ru = templateStringRU
+                for i in range(0, len(hero_attribute_names)):
+                    template_string_ru = template_string_ru.replace("$$" + "hero." + hero_attribute_names[i], "{}")
+                
+                for i in range(0, len(hero_attribute_names)):
+                    variable = getattr(h, hero_attribute_names[i]) # getting attribute by key
+                    template_string_ru = template_string_ru.format(variable) # replacing each {} with actual value
+            
+            # create question
+            q = Question()
+            q.text_en = template_string_en
+            q.text_ru = template_string_ru
+            
+            print("English: %s" % template_string_en)
+            print("Russian: %s" % template_string_ru.decode('utf8'))
+            
+            questions.append(q)
+    
+    # [4] serialize questions to json
+    # [5] save to file
+    print('questions count: %d' % len(questions))
     return questions
         
-if (self == "__main__"):
+if (__name__ == "__main__"):
+    import sys
     sys.path.append('/home/zykis/DotaAsker/server/')
     sys.path.append('/home/zykis/DotaAsker/server/flask/lib/python2.7/site-packages/')
     
     sys.path.append('/home/artem/projects/DotaAsker/server/')
     sys.path.append('/home/artem/projects/DotaAsker/server/flask/lib/python2.7/site-packages/')
     
-    generateQuestionFromTemplate(templateStringEN="What is the base strength of the $$hero.name?", templateStringRU="Чему равна базовая сила $$hero.name?")
+    from application.models import Question
+    import json
+    
+    generateQuestionsFromTemplate(templateStringEN="What is the base strength of the $$hero.name?", templateStringRU="Чему равна базовая сила $$hero.name?", jsonFile="./heroes.json")
+    
+    
+    

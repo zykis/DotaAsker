@@ -1,0 +1,3 @@
+# вопросы по базовым характеристикам
+EN: What is the base strength of the $$hero.name?
+RU: Чему равна базовая сила $$hero.name?
