@@ -24,5 +24,6 @@
 @property (strong, nonatomic) ModalLoadingView* loadingView;
 @property (strong, nonatomic) SKProduct* premiumProduct;
 @property (strong, nonatomic) SKProductsRequest* productRequest;
+- (IBAction)restorePushed:(id)sender;
 
 @end

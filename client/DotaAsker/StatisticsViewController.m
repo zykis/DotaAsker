@@ -215,8 +215,8 @@
         dSet.valueFormatter = (id)[[PercentValueFormatter alloc] init];
         dSet.selectionShift = 0.0f;
         dSet.colors = [NSArray arrayWithArray:colorsArray];
-        dSet.entryLabelFont = [UIFont fontWithName:@"Trajan Pro 3" size:11.0];
-        dSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:16.0];
+        dSet.entryLabelFont = [UIFont fontWithName:@"Trajan Pro 3" size:8.0];
+        dSet.valueFont = [UIFont fontWithName:@"Trajan Pro 3" size:11.0];
         PieChartData* d = [[PieChartData alloc] initWithDataSet:dSet];
         _pieChartView.data = d;
     }
