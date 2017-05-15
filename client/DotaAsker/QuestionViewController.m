@@ -24,7 +24,7 @@
 #import <ReactiveObjC/ReactiveObjC/ReactiveObjC.h>
 #import <Realm/Realm.h>
 
-#define QUESTION_TIMEOUT_INTERVAL 10
+#define QUESTION_TIMEOUT_INTERVAL 15
 
 
 @interface QuestionViewController ()
@@ -144,6 +144,7 @@
 }
 
 - (IBAction)answerPushed:(id)sender {
+    [self blockUI];
     // Invalidate timers
     if (_timeTimer) {
         [_timeTimer invalidate];

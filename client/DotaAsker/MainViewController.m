@@ -351,6 +351,10 @@
 }
 
 - (IBAction)findMatchPressed {
+    if ([[_viewModel currentMatches] count] > 7) {
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"7 curre", 0)];
+    }
+    
     ModalLoadingView* loadingView = [[ModalLoadingView alloc] initWithMessage:NSLocalizedString(@"Finding match", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:loadingView];
     
