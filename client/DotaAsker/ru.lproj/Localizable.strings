@@ -44,7 +44,8 @@
 
 // Error messages
 "Premium account only" = "Только для премиум-аккаунта";
-"No such username or email" = "Неверный логин или пароль";
+"Wrong username or password" = "Неверный логин или пароль";
+"Unable to connect to server" = "Не удалось подключиться к серверу";
 
 // Notification messages
 "You already have premium" = "У вас уже есть премиум-аккаунт";

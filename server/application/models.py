@@ -303,6 +303,7 @@ class Match(Base):
         # winner is None, if surrending just started match
         if winner is not None:
             winner.mmr += mmr_gain
+            winner.total_matches_won += 1
             db.session.add(winner)
             
         surrender.mmr -= mmr_gain

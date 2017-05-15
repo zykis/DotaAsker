@@ -196,3 +196,6 @@
 
 /* Class = "UITextField"; placeholder = "e-mail"; ObjectID = "ysM-cH-O8j"; */
 "ysM-cH-O8j.placeholder" = "e-mail";
+
+/* Class = "UIButton"; text = "Restore"; ObjectID = "vXx-d2-di3"; */
+"vXx-d2-di3.normalTitle" = "Восстановить";

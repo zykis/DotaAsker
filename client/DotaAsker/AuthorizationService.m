@@ -94,12 +94,23 @@
     NSURLSessionDataTask *dataTask = [manager dataTaskWithRequest:request
                                                 completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
-            NSMutableDictionary* errDict = [(NSDictionary*)responseObject mutableCopy];
-            NSString* errorDescription = [errDict valueForKey:@"message"];
-            [errDict setObject:errorDescription forKey:NSLocalizedDescriptionKey];
-            
-            NSError* err = [NSError errorWithDomain:error.domain code:error.code userInfo:errDict];
-            [subject sendError:err];
+            if (responseObject != nil) {
+                NSString* errorString = NSLocalizedString([responseObject valueForKey:@"message"], 0);
+                NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:errorString, NSLocalizedDescriptionKey, nil];
+                NSError* err = [NSError errorWithDomain:NSURLErrorDomain code:error.code userInfo:dict];
+                [subject sendError:err];
+            }
+            else if (([error code] == -1004) || ([error code] == -1011)) {
+                // -1004 nginx unavailable
+                // -1011 dotaasker internal server unavailable
+                NSString* errorString = NSLocalizedString(@"Unable to connect to server", 0);
+                NSMutableDictionary* dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:errorString, NSLocalizedDescriptionKey, nil];
+                NSError* err = [NSError errorWithDomain:NSURLErrorDomain code:error.code userInfo:dict];
+                [subject sendError:err];
+            }
+            else {
+                [subject sendError:error];
+            }
         } else {
             NSDictionary* rv = (NSDictionary*)responseObject;
             NSString* token = [rv valueForKey:@"token"];
