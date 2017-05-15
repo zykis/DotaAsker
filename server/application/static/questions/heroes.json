@@ -1,10 +1,10 @@
 [
     {
     "name":"Axe", "str": 25, "str_per_level": 2.5, "agi": 20, "agi_per_level": 2.2, "int": 18, "int_per_level": 1.6,
-    "armor": 1.86, "movespeed": 290, "melee": true, "attack_range": 150
+    "armor": 1.86, "movement_speed": 290, "melee": true, "attack_range": 150
     }, 
     {
     "name":"Bristleback", "str": 22, "str_per_level": 2.2, "agi": 17, "agi_per_level": 1.8, "int": 14, "int_per_level": 2.8,
-    "armor": 3.43, "movespeed": 290, "melee": true, "attack_range": 150
+    "armor": 3.43, "movement_speed": 290, "melee": true, "attack_range": 150
     }
 ]

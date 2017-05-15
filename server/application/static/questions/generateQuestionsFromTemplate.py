@@ -13,7 +13,7 @@ class Hero:
     int_per_lvl = 0.0
     
     armor = 0.0
-    movementspeed = 0
+    movement_speed = 0
     melee = True
     attack_range = 0
 
@@ -64,7 +64,7 @@ def getHeroes(jsonFile=None):
             
             # stats
             h.armor = d.get("armor", None)
-            h.movementspeed = d.get("movementspeed", None)
+            h.movement_speed = d.get("movement_speed", None)
             h.melee = d.get("melee", None)
             h.attack_range = d.get("attack_range", None)
             

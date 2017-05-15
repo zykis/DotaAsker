@@ -8,6 +8,8 @@ def run():
 
     match_list = Match.query.all()
     for m in match_list:
+        if len(m.users) < 2:
+            return
         if m.state == MATCH_RUNNING:
             timeDiffInSec = datetime.now() - m.updated_on
             if MATCH_UPDATELIFE < timeDiffInSec.total_seconds():
