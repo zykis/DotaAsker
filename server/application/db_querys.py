@@ -153,8 +153,8 @@ class Database_queries:
         second_match.setOpponent(john_user)
         third_match = Match(initiator=peter_user)
         third_match.setOpponent(john_user)
-        fourth_match = Match(initiator=john_user)
-        fifth_match = Match(initiator=jack_user)
+        # fourth_match = Match(initiator=john_user)
+        # fifth_match = Match(initiator=jack_user)
 
 
         # [1] FINISHED
@@ -237,6 +237,6 @@ class Database_queries:
         db.session.add(first_match)
         db.session.add(second_match)
         db.session.add(third_match)
-        db.session.add(fourth_match)
-        db.session.add(fifth_match)
+        # db.session.add(fourth_match)
+        # db.session.add(fifth_match)
         db.session.commit()
