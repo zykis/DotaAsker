@@ -201,7 +201,10 @@ def create_userAnswer():
             app.logger.debug("next move user changed to {}".format(u2.username.encode('utf-8')))
 
         round.next_move_user = u2
+        round.match.updated_on = db.func.now()
+
         db.session.add(round)
+        db.session.add(round.match)
         db.session.commit()
 
     elif len(round.user_answers) == 6:
