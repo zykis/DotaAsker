@@ -177,6 +177,7 @@
 		ACC730E81E6F2ADD00A88A54 /* icon-settings-white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730E51E6F2ADD00A88A54 /* icon-settings-white@3x.png */; };
 		ACC730EB1E6F2FE700A88A54 /* icon-versus-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730E91E6F2FE700A88A54 /* icon-versus-orange.png */; };
 		ACC730EC1E6F2FE700A88A54 /* icon-versus-orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */; };
+		ACD4F8111ECA2AB40097F089 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ACD4F8101ECA2AB40097F089 /* GoogleService-Info.plist */; };
 		ACD52F871BB15C300006D50A /* Answer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD52F861BB15C300006D50A /* Answer.m */; };
 		ACDB4A5C1B45286500545CA2 /* AnswerItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5B1B45286500545CA2 /* AnswerItemView.m */; };
 		ACDB4A5F1B454C9600545CA2 /* UserAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = ACDB4A5E1B454C9600545CA2 /* UserAnswer.m */; };
@@ -438,6 +439,7 @@
 		ACC730E51E6F2ADD00A88A54 /* icon-settings-white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-settings-white@3x.png"; path = "resources/icons/icon-settings-white@3x.png"; sourceTree = "<group>"; };
 		ACC730E91E6F2FE700A88A54 /* icon-versus-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-versus-orange.png"; path = "resources/icons/icon-versus-orange.png"; sourceTree = "<group>"; };
 		ACC730EA1E6F2FE700A88A54 /* icon-versus-orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-versus-orange@2x.png"; path = "resources/icons/icon-versus-orange@2x.png"; sourceTree = "<group>"; };
+		ACD4F8101ECA2AB40097F089 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ACD52F851BB15C300006D50A /* Answer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Answer.h; sourceTree = "<group>"; };
 		ACD52F861BB15C300006D50A /* Answer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Answer.m; sourceTree = "<group>"; };
 		ACDB4A5A1B45286500545CA2 /* AnswerItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnswerItemView.h; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 		AC7352071B239A1B00FFF356 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ACD4F8101ECA2AB40097F089 /* GoogleService-Info.plist */,
 				AC6929AF1EA7DDCB00BEB661 /* Localizable.strings */,
 				AC9564151EA5359100A3A71F /* IAPHelper.h */,
 				AC9564161EA5359100A3A71F /* IAPHelper.m */,
@@ -1098,6 +1101,7 @@
 				ACA1CE771E940D940004DC70 /* Main.storyboard in Resources */,
 				ACC730DA1E6F2A5900A88A54 /* icon-back-white.png in Resources */,
 				AC6929C21EA9606600BEB661 /* pattern-7.png in Resources */,
+				ACD4F8111ECA2AB40097F089 /* GoogleService-Info.plist in Resources */,
 				AC95641B1EA5379D00A3A71F /* product_ids.plist in Resources */,
 				AC780F821DEB6D6E007E8158 /* premium_48@1x.png in Resources */,
 				AC780F8A1DEB6D6E007E8158 /* top100_48@3x.png in Resources */,

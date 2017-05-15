@@ -306,7 +306,7 @@
         [self startTimersWithExpirationInterval: QUESTION_TIMEOUT_INTERVAL andProgressUpdateInterval: 0.01];
         
         assert(q);
-        RLMArray<Answer>* answers = [q answers];
+        RLMArray<Answer*><Answer>* answers = [q answers];
         
         CGSize size = [[Helper shared] getQuestionImageViewSize];
         UIImage* defaultImage = [UIImage imageNamed:@"default-2.jpg"];
@@ -322,24 +322,19 @@
         
         [_questionText setText:[q text]];
         
-        [_answer1Button setHidden:YES];
-        [_answer2Button setHidden:YES];
-        [_answer3Button setHidden:YES];
-        [_answer4Button setHidden:YES];
-        
         switch ([answers count]) {
             case 4:
                 [_answer4Button setTitle:[[answers objectAtIndex:3] text] forState:UIControlStateNormal];
-                [_answer4Button setHidden:NO];
+                [_answer4Button setHidden:[[[answers objectAtIndex:3] text] isEqualToString:@""]];
             case 3:
                 [_answer3Button setTitle:[[answers objectAtIndex:2] text] forState:UIControlStateNormal];
-                [_answer3Button setHidden:NO];
+                [_answer3Button setHidden:[[[answers objectAtIndex:2] text] isEqualToString:@""]];
             case 2:
                 [_answer2Button setTitle:[[answers objectAtIndex:1] text] forState:UIControlStateNormal];
-                [_answer2Button setHidden:NO];
+                [_answer2Button setHidden:[[[answers objectAtIndex:1] text] isEqualToString:@""]];
             case 1:
                 [_answer1Button setTitle:[[answers objectAtIndex:0] text] forState:UIControlStateNormal];
-                [_answer1Button setHidden:NO];
+                [_answer1Button setHidden:[[[answers objectAtIndex:0] text] isEqualToString:@""]];
         }
         [self unblockUI];
     }

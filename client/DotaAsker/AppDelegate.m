@@ -15,6 +15,9 @@
 // IOS
 #import <Realm/Realm.h>
 
+// Libraries
+@import FirebaseAnalytics;
+
 @interface AppDelegate ()
 
 @end
@@ -23,6 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
+    [FIRApp configure];
     return YES;
 }
 
