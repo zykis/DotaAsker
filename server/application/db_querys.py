@@ -64,6 +64,7 @@ class Database_queries:
 
         # add self to this match
         proper_matches[0].setOpponent(user)
+        db.session.add(proper_matches[0])
         db.session.commit()
 
         # return the oldest match
