@@ -42,6 +42,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
     [super didReceiveMemoryWarning];
 }
 
@@ -125,15 +126,26 @@
     if (!_loadingView)
         _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
+    //! TODO: check somehow, if observer is setted
+    //! TODO: check if self.premiumProduct is valid
+    if (self.premiumProduct == nil)
+    {
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"premiumProduct is nil", 0)];
+        return;
+    }
+    if (![[self.premiumProduct productIdentifier] isEqualToString:@"com.dotaasker.premium"])
+    {
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"premiumProduct identifier is incorrect", 0)];
+        return;
+    }
     [IAPHelper buy:self.premiumProduct];
 }
 
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    self.premiumProduct = [response.products firstObject];
- 
     for (SKProduct* product in response.products) {
-        NSLog(@"%@", [product productIdentifier]);
+        if ([[product productIdentifier] isEqualToString:@"com.dotaasker.premium"])
+            self.premiumProduct = product;
     }
     
     for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
@@ -141,7 +153,7 @@
         [_loadingView removeFromSuperview];
         _loadingView = nil;
         [self.navigationController popViewControllerAnimated:YES];
-        [self presentAlertControllerWithMessage:NSLocalizedString(@"Product problem. Please, try again later", 0)];
+        [self presentAlertControllerWithMessage:NSLocalizedString(@"Invalid Product Identifier", 0)];
         return;
     }    
 
@@ -177,6 +189,7 @@
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
     for (SKPaymentTransaction *transaction in transactions) {
+        NSLog(@"Dealing with %@", [transaction.payment productIdentifier]);
         switch (transaction.transactionState) {
             case SKPaymentTransactionStatePurchasing:
                 break;
