@@ -16,7 +16,7 @@ class Database_queries:
         if not isinstance(user, User):
             raise TypeError
 
-        # not_started_matches = models.Match.query.join(Match.users).group_by(Match.id).join(Match.users).having(func.count(Match.users) == 1).all()
+        # not_started_matches 
         sql = "SELECT matches.id as matches_id FROM matches join users_matches on users_matches.match_id = matches.id group by matches.id having count(users_matches.match_id) = 1 and users_matches.user_id != {}".format(user.id)
         not_started_matches_sql = db.engine.execute(sql)
         not_started_matches = []
@@ -71,28 +71,8 @@ class Database_queries:
         return proper_matches[0]
 
     @classmethod
-    def questionsIDsToRemove(self, client_questions_IDs):
-        quesitons_IDs_to_remove = list()
-        for qID in client_questions_IDs:
-            subq = db.session.query(Question).filter(Question.id == qID).filter(Question.approved == True)
-            if not db.session.query(subq.exists()).scalar():
-                quesitons_IDs_to_remove.append(qID)
-        return quesitons_IDs_to_remove
-
-    @classmethod
-    def questionsToAdd(self, client_questions_IDs):
-        questions_to_add = list()
-        db_questions = db.session.query(Question).filter(Question.approved == True).all()
-        for q in db_questions:
-            need_to_add = True
-            for client_Q_ID in client_questions_IDs:
-                if q.id == client_Q_ID:
-                    need_to_add = False
-            if need_to_add == True:
-                questions_to_add.append(q)
-        return questions_to_add
-
-    @classmethod
+    # generate rating for existing users for a week, to show
+    # nice picture at client's statistic page
     def generateTestMMR(cls):
         users = User.query.all()
         today = date.today()
@@ -148,14 +128,12 @@ class Database_queries:
         ############################################## create Match
         first_match = Match(initiator=john_user)
         second_match = Match(initiator=peter_user)
+        third_match = Match(initiator=peter_user)
 
         # add users to match
         first_match.setOpponent(peter_user)
         second_match.setOpponent(john_user)
-        third_match = Match(initiator=peter_user)
         third_match.setOpponent(john_user)
-        # fourth_match = Match(initiator=john_user)
-        # fifth_match = Match(initiator=jack_user)
 
 
         # [1] FINISHED
@@ -198,8 +176,8 @@ class Database_queries:
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
-                    user2_answer.question = quest
                     user2_answer.user = second_match.users[1]
+                    user2_answer.question = quest
                     user2_answer.answer = random.choice(quest.answers)
                     user2_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user2_answer)
@@ -215,14 +193,12 @@ class Database_queries:
                     user_answer.round = r
                     user_answer.question = quest
                     user_answer.user = third_match.users[0]
-                    user_answer.question = quest
                     user_answer.answer = random.choice(quest.answers)
                     user_answer.sec_for_answer = random.uniform(5, 25)
                     db.session.add(user_answer)
 
                     user2_answer = UserAnswer()
                     user2_answer.round = r
-                    user2_answer.question = quest
                     user2_answer.user = third_match.users[1]
                     user2_answer.question = quest
                     user2_answer.answer = random.choice(quest.answers)
@@ -230,14 +206,9 @@ class Database_queries:
                     db.session.add(user2_answer)
         third_match.elapseMatch()
         # [!3]
-
-        # [4] NOT_STARTED
-
-
+        
         # add match to session
         db.session.add(first_match)
         db.session.add(second_match)
         db.session.add(third_match)
-        # db.session.add(fourth_match)
-        # db.session.add(fifth_match)
         db.session.commit()

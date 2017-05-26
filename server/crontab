@@ -1,5 +1,7 @@
+# Launching cron-tasks to manage database:
+# 1. To check matches, that are not updated for a long time (~36 hours) and finish them
+# 2. To update user's daily rating (MMR) and write it to database (~24 hours)
+
 @reboot source /home/zykis/DotaAsker/server/flask/bin/activate
-# @daily python /home/zykis/DotaAsker/server/application/management/commands/saveDayMMR.py >> /var/log/dotaasker/cronjob_save.log
-# 0 0 */12 * * python /home/zykis/DotaAsker/server/application/management/commands/checkTimeElapsedMatches.py >> /var/log/dotaasker/cronjob_elapsed.log
-* * * * * python /home/zykis/DotaAsker/server/application/management/commands/saveDayMMR.py >> /var/log/dotaasker/cronjob_save.log
-* * * * * python /home/zykis/DotaAsker/server/application/management/commands/checkTimeElapsedMatches.py >> /var/log/dotaasker/cronjob_elapsed.log
+@daily python /home/zykis/DotaAsker/server/application/management/commands/saveDayMMR.py >> /var/log/dotaasker/cronjob_save.log
+0 0 */12 * * python /home/zykis/DotaAsker/server/application/management/commands/checkTimeElapsedMatches.py >> /var/log/dotaasker/cronjob_elapsed.log

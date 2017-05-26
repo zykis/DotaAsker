@@ -1,1 +1,0 @@
-SELECT matches.id, users_matches.user_id, count(users_matches.user_id) FROM matches join users_matches on users_matches.match_id = matches.id group by matches.id having count(users_matches.match_id) = 1 and users_matches.user_id != 1
