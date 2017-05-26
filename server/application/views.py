@@ -290,11 +290,11 @@ def finish_match():
         abort(500)
 
 
-#@app.route('/generateTestData')
-#def generate_test_data():
-#    g.locale = request.headers['Accept-Language']
-#    Database_queries.createTestData()
-#    return 'ok'
+@app.route('/createTestData')
+def generate_test_data():
+    g.locale = request.headers['Accept-Language']
+    Database_queries.createTestData()
+    return 'ok'
 
 
 @app.route('/forgotPassword', methods=['POST'])
