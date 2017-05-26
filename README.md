@@ -48,3 +48,8 @@ source flask/bin/activate
 # run tests
 ./tests.py
 ```
+
+### Deploy
+```sh
+# TODO
+```
