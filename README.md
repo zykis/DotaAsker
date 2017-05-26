@@ -37,7 +37,7 @@ source flask/bin/activate
 ./runLocalTestServer.py
 ```
 
-### Run tests
+#### Run tests
 ```sh
 # start virtual environment
 cd DotaAsker/server
