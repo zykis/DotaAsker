@@ -20,6 +20,9 @@ virtualenv flask
 
 # start virtual environment
 source flask/bin/activate
+
+# install dependencies
+pip install -r requirements.txt
 ```
 #### Client
 ```sh
