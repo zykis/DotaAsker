@@ -1,29 +1,47 @@
-# DotaAsker
+# DotaQuiz
+[![N|Solid](http://i.imgur.com/PRajQSy.png)](https://ibb.co/jbi0TF)
 
-# 1. Client
-# 1.1 Getting repository
+### Description
+> Dota Quiz - an opportunity to increase your skill level in Dota-2, by collecting knowledge about internal game mechanics and stats.
+Find an opponent, answer questions, increase your fundamentials and as a result, your in-game MMR.
 
-  pod install --verbose
+### Build
+#### Server
+```sh
+# install python and python package manager
+sudo apt-get install python python-pip
 
-# 2. Server
-# 2.1 install python and pip
+# install virtual environment manager
+pip install virtualenv 
 
-  sudo apt-get install python python-pip
+# create virtual environment
+cd DotaAsker/server/ 
+virtualenv flask 
 
-# 2.2 install & activate virtual environment
+# start virtual environment
+source flask/bin/activate
+```
+#### Client
+```sh
+# install dependencies
+pod install --verbose
+```
 
-  pip install virtualenv 
-  cd DotaAsker/server/
-  virtualenv flask
-  source flask/bin/activate
-  
-# 2.3 install python depencies
+### Usage
+#### Run local server
+```sh
+# start virtual environment
+cd DotaAsker/server
+source flask/bin/activate
+# start server
+./runLocalTestServer.py
+```
 
-  pip install -r requirements.txt
-  
-# 2.4 run server
-
-  ./run.py
-  
-# 2.5 example
-  127.0.0.1:5000/users/1
+### Run tests
+```sh
+# start virtual environment
+cd DotaAsker/server
+source flask/bin/activate
+# run tests
+./tests.py
+```
