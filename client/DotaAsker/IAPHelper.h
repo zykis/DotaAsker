@@ -1,9 +1,12 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
 
-@interface IAPHelper: NSObject
+@interface IAPHelper: NSObject<SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
-+ (void)validateProductIdentifiers: (NSArray*)product_ids withDelegate: (id<SKProductsRequestDelegate>)delegate andStrongRefToRequest: (SKProductsRequest*)request;
-+ (void)buy: (SKProduct*)product;
+@property SKProduct* premiumProduct;
+@property SKProductsRequest* premiumRequest;
+- (void)validateProductIdentifiers;
+- (void)buyPremium;
+- (void)restorePremium;
 
 @end

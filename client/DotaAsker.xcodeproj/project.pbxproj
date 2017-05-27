@@ -598,6 +598,8 @@
 				AC7352071B239A1B00FFF356 /* Supporting Files */,
 				ACA1CE791E940D940004DC70 /* Main.storyboard */,
 				AC7352161B239A1B00FFF356 /* LaunchScreen.xib */,
+				AC9564151EA5359100A3A71F /* IAPHelper.h */,
+				AC9564161EA5359100A3A71F /* IAPHelper.m */,
 				AC73520B1B239A1B00FFF356 /* AppDelegate.h */,
 				AC73520C1B239A1B00FFF356 /* AppDelegate.m */,
 				AC138C0E1D948EC30023EFF3 /* Helper.h */,
@@ -615,8 +617,6 @@
 			children = (
 				ACD4F8101ECA2AB40097F089 /* GoogleService-Info.plist */,
 				AC6929AF1EA7DDCB00BEB661 /* Localizable.strings */,
-				AC9564151EA5359100A3A71F /* IAPHelper.h */,
-				AC9564161EA5359100A3A71F /* IAPHelper.m */,
 				AC7352081B239A1B00FFF356 /* Info.plist */,
 				AC7352091B239A1B00FFF356 /* main.m */,
 				AC95640F1EA2050600A3A71F /* PercentValueFormatter.h */,

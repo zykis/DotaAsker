@@ -28,22 +28,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBackgroundImage];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    self.unlockButton.enabled = NO;
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"product_ids" withExtension:@"plist"];
-    NSArray *productIDs = [NSArray arrayWithContentsOfURL:url];
-
+    self.unlockButton.enabled = NO;
     if (!_loadingView)
         _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Checking premium", 0)];
     [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
-    [IAPHelper validateProductIdentifiers:productIDs withDelegate:self andStrongRefToRequest:self.productRequest];
     
+    [self initObserver];
+    
+    self.helper = [[IAPHelper alloc] init];
+    [self.helper validateProductIdentifiers];
 }
 
-- (void)didReceiveMemoryWarning {
-    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
-    [super didReceiveMemoryWarning];
+- (void)initObserver {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleProductReady) name:@"productReady" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFail) name:@"fail" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorRestored) name:@"errorRestore" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorPurchased) name:@"errorPurchase" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePurchased) name:@"purchased" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRestored) name:@"restored" object:nil];
+}
+
+- (void)handleProductReady {
+    self.unlockButton.enabled = YES;
+    [_loadingView removeFromSuperview];
+}
+
+- (void)handleFail {
+    [self unsegueWithErrorMessage:NSLocalizedString(@"failed", 0)];
+}
+
+- (void)handleErrorRestored {
+    [self unsegueWithErrorMessage:NSLocalizedString(@"error restored", 0)];
+}
+
+- (void)handleErrorPurchased {
+    [self unsegueWithErrorMessage:NSLocalizedString(@"error purchased", 0)];
+}
+
+- (void)handlePurchased {
+    [self unsegueWithOkMessage:NSLocalizedString(@"purchased", 0)];
+}
+
+- (void)handleRestored {
+    [self unsegueWithOkMessage:NSLocalizedString(@"restored", 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -122,140 +150,25 @@
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
-- (IBAction)unlockPressed {
-    if (!_loadingView)
-        _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
-    [[[UIApplication sharedApplication] keyWindow] addSubview:_loadingView];
-    //! TODO: check somehow, if observer is setted
-    //! TODO: check if self.premiumProduct is valid
-    if (self.premiumProduct == nil)
-    {
-        [self presentAlertControllerWithMessage:NSLocalizedString(@"premiumProduct is nil", 0)];
-        return;
-    }
-    if (![[self.premiumProduct productIdentifier] isEqualToString:@"com.dotaasker.premium"])
-    {
-        [self presentAlertControllerWithMessage:NSLocalizedString(@"premiumProduct identifier is incorrect", 0)];
-        return;
-    }
-    [IAPHelper buy:self.premiumProduct];
-}
-
-- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
-{
-    for (SKProduct* product in response.products) {
-        if ([[product productIdentifier] isEqualToString:@"com.dotaasker.premium"])
-            self.premiumProduct = product;
-    }
-    
-    for (NSString *invalidIdentifier in response.invalidProductIdentifiers) {
-        NSLog(@"Invalid Product Identifier: %@", invalidIdentifier);
-        [_loadingView removeFromSuperview];
-        _loadingView = nil;
-        [self.navigationController popViewControllerAnimated:YES];
-        [self presentAlertControllerWithMessage:NSLocalizedString(@"Invalid Product Identifier", 0)];
-        return;
-    }    
-
-    self.unlockButton.enabled = YES;
+- (void)unsegueWithErrorMessage:(NSString*)errorMessage {
     [_loadingView removeFromSuperview];
-    _loadingView = nil;
-}
-
-- (void)restore {
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
-- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
-    [_loadingView removeFromSuperview];
-    
-    RLMRealm* realm = [RLMRealm defaultRealm];
-    [realm beginWriteTransaction];
-    [[Player instance] setPremium:YES];
-    [realm commitWriteTransaction];
-    
-    RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
-    [subject subscribeNext:^(id x) {
-        NSLog(@"Premium updated");
-    } error:^(NSError *error) {
-        [self presentAlertControllerWithMessage:NSLocalizedString(@"Couldn't restore. Try again, please", 0)];
-    } completed:^{
-        [_loadingView removeFromSuperview];
-        [self presentOkControllerWithMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
-    }];
+    [self presentAlertControllerWithMessage:errorMessage];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
-{
-    for (SKPaymentTransaction *transaction in transactions) {
-        NSLog(@"Dealing with %@", [transaction.payment productIdentifier]);
-        switch (transaction.transactionState) {
-            case SKPaymentTransactionStatePurchasing:
-                break;
-            case SKPaymentTransactionStateDeferred:
-                [_loadingView removeFromSuperview];
-                break;
-            case SKPaymentTransactionStateFailed:
-                [_loadingView removeFromSuperview];
-                [self presentAlertControllerWithMessage:NSLocalizedString([[transaction error] localizedDescription], 0)];
-                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-                break;
-            case SKPaymentTransactionStatePurchased:
-            {
-                [_loadingView removeFromSuperview];
-                
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [[Player instance] setPremium:YES];
-                [realm commitWriteTransaction];
+- (void)unsegueWithOkMessage:(NSString*)okMessage {
+    [_loadingView removeFromSuperview];
+    [self presentOkControllerWithMessage:okMessage];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
-                RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
-                [subject subscribeNext:^(id x) {
-                    NSLog(@"Premium updated");
-                } error:^(NSError *error) {
-                    [self presentAlertControllerWithMessage:NSLocalizedString([[transaction error] localizedDescription], 0)];
-                } completed:^{
-                    [_loadingView removeFromSuperview];
-                    [self presentOkControllerWithMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
-                }];
-                
-                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-                [self.navigationController popViewControllerAnimated:YES];
-                break;
-            }
-            case SKPaymentTransactionStateRestored:
-            {
-                [_loadingView removeFromSuperview];
-                
-                RLMRealm* realm = [RLMRealm defaultRealm];
-                [realm beginWriteTransaction];
-                [[Player instance] setPremium:YES];
-                [realm commitWriteTransaction];
-                
-                RACReplaySubject* subject = [[[ServiceLayer instance] userService] update:[Player instance]];
-                [subject subscribeNext:^(id x) {
-                    NSLog(@"Premium updated");
-                } error:^(NSError *error) {
-                    [self presentAlertControllerWithMessage:NSLocalizedString([[transaction error] localizedDescription], 0)];
-                } completed:^{
-                    [_loadingView removeFromSuperview];
-                    [self presentOkControllerWithMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
-                }];
-                
-                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
-                [self.navigationController popViewControllerAnimated:YES];
-                break;
-            }
-            default:
-                [_loadingView removeFromSuperview];
-                NSLog(@"Unexpected transaction state %@", @(transaction.transactionState));
-                break;
-        }
-    }
+- (IBAction)unlockPressed {
+    _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
+    [self.helper buyPremium];
 }
 
 - (IBAction)restorePushed:(id)sender {
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+    _loadingView = [[ModalLoadingView alloc] initWithMessage: NSLocalizedString(@"Buying premium", 0)];
+    [self.helper restorePremium];
 }
 @end

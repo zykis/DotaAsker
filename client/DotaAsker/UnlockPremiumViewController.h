@@ -11,19 +11,18 @@
 
 // iOS
 #import <UIKit/UIKit.h>
-#import <StoreKit/StoreKit.h>
 
 @class ModalLoadingView;
 @class SettingsButton;
+@class IAPHelper;
 
 
-@interface UnlockPremiumViewController : UIViewController <SKProductsRequestDelegate, SKPaymentTransactionObserver>
+@interface UnlockPremiumViewController : UIViewController
 - (IBAction)unlockPressed;
 @property (strong, nonatomic) IBOutlet SettingsButton* unlockButton;
 @property (weak, nonatomic) IBOutlet UIStackView* verticalStackView;
 @property (strong, nonatomic) ModalLoadingView* loadingView;
-@property (strong, nonatomic) SKProduct* premiumProduct;
-@property (strong, nonatomic) SKProductsRequest* productRequest;
+@property (strong, nonatomic) IAPHelper* helper;
 - (IBAction)restorePushed:(id)sender;
 
 @end
