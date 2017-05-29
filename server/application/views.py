@@ -180,7 +180,7 @@ def create_userAnswer():
     # getting created UserAnswer with proper id
     uaNew = UserAnswer.query.filter(UserAnswer.user_id == ua.user_id, UserAnswer.round_id == ua.round_id, UserAnswer.question_id == ua.question_id).one_or_none()
     if uaNew is None:
-        abort(505)
+        abort(410) # Gone
     app.logger.info("commited useranswerID: {}, questionID: {}".format(uaNew.id, uaNew.question_id))
 
     # check if round is over
@@ -235,7 +235,7 @@ def put_round():
     rNew = Round.query.get(r['id'])
     if rNew == None:
         resp = make_response(json.dumps({'reason':'no round to update with id: {} in database'.format(r['id'])}))
-        resp.status_code = 404
+        resp.status_code = 410 # Gone
         resp.mimetype = 'application/json'
         return resp
     if r.get('next_move_user', False):

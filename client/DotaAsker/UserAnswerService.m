@@ -110,7 +110,7 @@
                     "%@: %@\n",
                     question.text,
                     secondUser.name,
-                    @"???"
+                    secondUserAnswerText
                     ];
         else
             text = [NSString stringWithFormat:
@@ -138,6 +138,10 @@
                 nextBlock(x);
                 obtained = YES;
                 } error:^(NSError * _Nullable error) {
+                    if ([error code] == 410) {
+                        NSLog(@"No userAnswer %@ found in server", [ua description]);
+                        obtained = YES;
+                    }
                     dispatch_semaphore_signal(semaphore);
                 } completed:^{
                     dispatch_semaphore_signal(semaphore);

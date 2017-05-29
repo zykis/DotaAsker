@@ -45,21 +45,31 @@ static long long playerID = 0;
 + (void)synchronizeWithErrorBlock:(void(^)(NSError* error))errorBlock completionBlock:(void(^)())completionBlock {
     void (^nextBlockUserAnswers)(UserAnswer* _Nullable userAnswer) = ^void(UserAnswer* _Nullable x) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            RLMRealm* realm = [RLMRealm defaultRealm];
-            [realm beginWriteTransaction];
             UserAnswer* ua = [[UserAnswer objectsWhere:@"relatedRoundID == %lld AND relatedUserID == %lld AND relatedQuestionID == %lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID] firstObject];
-            ua.modified = NO;
-            [realm commitWriteTransaction];
+            if (ua) {
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                ua.modified = NO;
+                [realm commitWriteTransaction];
+            }
+            else {
+                NSLog(@"No userAnswer with roundID:%lld, userID:%lld, questionID:%lld", x.relatedRoundID, x.relatedUserID, x.relatedQuestionID);
+            }
         });
     };
     
     void (^nextBlockRounds)(Round* round) = ^void(Round* x) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            RLMRealm* realm = [RLMRealm defaultRealm];
-            [realm beginWriteTransaction];
             Round* r = [Round objectForPrimaryKey:@(x.ID)];
-            r.modified = NO;
-            [realm commitWriteTransaction];
+            if (r) {
+                RLMRealm* realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
+                r.modified = NO;
+                [realm commitWriteTransaction];
+            }
+            else {
+                NSLog(@"No round with primary key: %lld", x.ID);
+            }
         });
     };
 

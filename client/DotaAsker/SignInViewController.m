@@ -112,7 +112,7 @@
     
     void (^errorBlock)(NSError* _Nonnull error) = ^void(NSError* _Nonnull error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([error code] == 505) {
+            if ([error code] == 410) {
                 completeBlock();
                 NSLog(@"Error code: %ld", (long)error.code);
             }
