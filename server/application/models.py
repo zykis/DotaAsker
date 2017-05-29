@@ -493,7 +493,6 @@ class Match(Base):
         return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)
 
 
-
 users_matches_table = db.Table('users_matches', db.Model.metadata,
                             db.Column('user_id', db.Integer, db.ForeignKey('users.id', ondelete='CASCADE', onupdate='CASCADE')),
                             db.Column('match_id', db.Integer, db.ForeignKey('matches.id', ondelete='CASCADE', onupdate='cascade'))
