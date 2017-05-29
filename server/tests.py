@@ -152,6 +152,16 @@ class TestCase(unittest.TestCase):
         pprint(dumped_john.data)
         assert not dumped_john.errors
         app.logger.debug('testSerializeDeserialize - OK')
+        
+    def testMmrGain(self):
+        john = User.query.get(1)
+        peter = User.query.get(2)
+        
+        mmr_gain = Database_queries.mmrGain(winner=john, loser=peter)
+        app.logger.debug("mmr_gain: {}".format(mmr_gain))
+        
+        mmr_gain = Database_queries.mmrGain(winner=peter, loser=john)
+        app.logger.debug("mmr_gain: {}".format(mmr_gain))
 
 if __name__ == '__main__':
     unittest.main()

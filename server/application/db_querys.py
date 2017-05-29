@@ -27,6 +27,7 @@ class Database_queries:
         
         # 25 +- 25 * [-1..1]
         mmr_gain = (MMR_GAIN_MAX / 2) + (MMR_GAIN_MAX / 2) * k
+        mmr_gain = math.ceil(mmr_gain)
 
     @classmethod
     def findMatchForUser(self, user):
