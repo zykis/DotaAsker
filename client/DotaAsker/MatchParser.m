@@ -57,7 +57,7 @@
     
     // hidden
     if ([JSONDict objectForKey:@"hidden"] != nil)
-        [match setHidden:[JSONDict objectForKey:@"hidden"] boolValue];
+        [match setHidden:[[JSONDict objectForKey:@"hidden"] boolValue]];
     
     // users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];

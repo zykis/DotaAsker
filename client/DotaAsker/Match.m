@@ -38,7 +38,7 @@
 + (NSDictionary*)defaultPropertyValues {
     return @{
         @"hidden" : @NO
-    }
+    };
 }
 
 @end

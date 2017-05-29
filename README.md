@@ -1,6 +1,12 @@
 # DotaQuiz
 [![N|Solid](http://i.imgur.com/PRajQSy.png)](https://ibb.co/jbi0TF)
 
+[![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb06/BYHGuUxR7D0.jpg)](https://ibb.co/jbi0TF)
+[![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb10/U7e4eBSKY0I.jpg)](https://ibb.co/jbi0TF)
+[![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb1a/QZHBS70erMM.jpg)](https://ibb.co/jbi0TF)
+[![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb24/WN2h35hjtH4.jpg)](https://ibb.co/jbi0TF)
+
+
 ### Description
 > Dota Quiz - an opportunity to increase your skill level in Dota-2, by collecting knowledge about internal game mechanics and stats.
 Find an opponent, answer questions, increase your fundamentials and as a result, your in-game MMR.

@@ -11,6 +11,7 @@
 #import "Palette.h"
 #import "Helper.h"
 #import "ModalLoadingView.h"
+#import "Match.h"
 
 // IOS
 #import <Realm/Realm.h>
@@ -27,6 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self customizeAppearence];
     [FIRApp configure];
+    [self migrateIfNeeded];
     return YES;
 }
 

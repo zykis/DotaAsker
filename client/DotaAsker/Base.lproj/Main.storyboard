@@ -50,10 +50,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNJ-gV-vOA">
-                                <rect key="frame" x="16" y="28" width="288" height="170"/>
+                                <rect key="frame" x="16" y="28" width="288" height="184"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="gQi-nw-cn5">
-                                        <rect key="frame" x="15" y="8" width="258" height="154"/>
+                                        <rect key="frame" x="15" y="15" width="258" height="154"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="trl-7g-b7r" userLabel="Username">
                                                 <rect key="frame" x="0.0" y="0.0" width="258" height="43"/>
@@ -91,9 +91,9 @@
                                 <color key="backgroundColor" red="1" green="0.59666378129999997" blue="0.284455603" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="gQi-nw-cn5" firstAttribute="leading" secondItem="oNJ-gV-vOA" secondAttribute="leading" constant="15" id="1UT-P8-9eP"/>
-                                    <constraint firstAttribute="bottom" secondItem="gQi-nw-cn5" secondAttribute="bottom" constant="8" id="C2I-eo-ReA"/>
+                                    <constraint firstAttribute="bottom" secondItem="gQi-nw-cn5" secondAttribute="bottom" constant="15" id="C2I-eo-ReA"/>
                                     <constraint firstAttribute="trailing" secondItem="gQi-nw-cn5" secondAttribute="trailing" constant="15" id="ohw-Ez-8qJ"/>
-                                    <constraint firstItem="gQi-nw-cn5" firstAttribute="top" secondItem="oNJ-gV-vOA" secondAttribute="top" constant="8" id="tFa-bm-Krz"/>
+                                    <constraint firstItem="gQi-nw-cn5" firstAttribute="top" secondItem="oNJ-gV-vOA" secondAttribute="top" constant="15" id="tFa-bm-Krz"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l43-cJ-LDE">
@@ -577,7 +577,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No advertisements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-br-C5h">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
                                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
-                                                <color key="textColor" red="0.95686274509803915" green="0.55294117647058827" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -595,7 +595,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose an avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PoK-yn-zRF">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
                                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
-                                                <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -613,7 +613,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get your statistic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAF-LF-Z9m">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
                                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
-                                                <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -631,7 +631,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top 100 players" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6V-Hu-WKi">
                                                 <rect key="frame" x="64" y="0.0" width="256" height="50"/>
                                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="17"/>
-                                                <color key="textColor" red="0.95686274510000002" green="0.55294117649999996" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -727,7 +727,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTC-aK-xJ8">
-                                                    <rect key="frame" x="8" y="15.5" width="36" height="14"/>
+                                                    <rect key="frame" x="8" y="15" width="36" height="14"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="C7j-fd-o7h"/>
                                                     </constraints>
@@ -736,7 +736,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ui-nQ-6wH">
-                                                    <rect key="frame" x="99" y="14.5" width="122.5" height="15"/>
+                                                    <rect key="frame" x="99" y="15" width="122.5" height="15"/>
                                                     <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1627,111 +1627,111 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQX-b5-b59">
-                                                <rect key="frame" x="8" y="8" width="304" height="180"/>
+                                                <rect key="frame" x="8" y="8" width="304" height="200"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="gjh-5b-kTx">
-                                                        <rect key="frame" x="0.0" y="8" width="304" height="172"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gjh-5b-kTx">
+                                                        <rect key="frame" x="8" y="16" width="288" height="168"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sc-Xa-Fju">
-                                                                <rect key="frame" x="92.5" y="0.0" width="119.5" height="24"/>
+                                                                <rect key="frame" x="84.5" y="0.0" width="119.5" height="22"/>
                                                                 <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="22"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s2r-aM-4mC">
-                                                                <rect key="frame" x="37.5" y="32" width="229.5" height="140"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="s2r-aM-4mC">
+                                                                <rect key="frame" x="30" y="26" width="228.5" height="142"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsi-bf-CKt" customClass="PieChartView" customModule="Charts">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                                        <rect key="frame" x="0.0" y="1" width="140" height="140"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="140" id="7sq-9T-Ad3"/>
                                                                             <constraint firstAttribute="width" secondItem="Zsi-bf-CKt" secondAttribute="height" multiplier="1:1" id="yzv-ey-HQ6"/>
                                                                         </constraints>
                                                                     </view>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="j00-Jk-XY1">
-                                                                        <rect key="frame" x="148" y="0.0" width="81.5" height="140"/>
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="j00-Jk-XY1">
+                                                                        <rect key="frame" x="148" y="28" width="80.5" height="86"/>
                                                                         <subviews>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-2L-70b">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="81.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="14"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MMR:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvX-hd-tFw">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="4025" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvK-1h-pfE">
-                                                                                        <rect key="frame" x="50.5" y="0.0" width="31" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="t1e-Ti-2zf">
-                                                                                <rect key="frame" x="0.0" y="28" width="81.5" height="28"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Di8-Xs-pq9">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-Ru-ZaW">
-                                                                                        <rect key="frame" x="50.5" y="0.0" width="31" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gg7-em-rFu">
-                                                                                <rect key="frame" x="0.0" y="56" width="81.5" height="28"/>
-                                                                                <subviews>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkn-O5-UxF">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                                        <nil key="highlightedColor"/>
-                                                                                    </label>
-                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1u-Pd-Jl6">
-                                                                                        <rect key="frame" x="50.5" y="0.0" width="31" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="47" y="0.0" width="33.5" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZxV-oR-t9N">
-                                                                                <rect key="frame" x="0.0" y="84" width="81.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="18" width="80.5" height="14"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GPM:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnS-en-i6d">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.3" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buM-qf-o7s">
-                                                                                        <rect key="frame" x="50.5" y="0.0" width="31" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="47" y="0.0" width="33.5" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                 </subviews>
                                                                             </stackView>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Aj2-T1-nul">
-                                                                                <rect key="frame" x="0.0" y="112" width="81.5" height="28"/>
+                                                                                <rect key="frame" x="0.0" y="36" width="80.5" height="14"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="KDA:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NS4-G1-n2a">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="42.5" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.2" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ChA-5z-PnG">
-                                                                                        <rect key="frame" x="50.5" y="0.0" width="31" height="28"/>
-                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
+                                                                                        <rect key="frame" x="47" y="0.0" width="33.5" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="t1e-Ti-2zf">
+                                                                                <rect key="frame" x="0.0" y="54" width="80.5" height="14"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Won:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Di8-Xs-pq9">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KX-Ru-ZaW">
+                                                                                        <rect key="frame" x="47" y="0.0" width="33.5" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gg7-em-rFu">
+                                                                                <rect key="frame" x="0.0" y="72" width="80.5" height="14"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lost:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkn-O5-UxF">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="39" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="12"/>
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1u-Pd-Jl6">
+                                                                                        <rect key="frame" x="47" y="0.0" width="33.5" height="14"/>
+                                                                                        <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                                         <nil key="highlightedColor"/>
                                                                                     </label>
@@ -1748,29 +1748,26 @@
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="8Sc-Xa-Fju" firstAttribute="top" secondItem="gjh-5b-kTx" secondAttribute="top" id="sxt-DR-LyT"/>
-                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstItem="gjh-5b-kTx" firstAttribute="leading" secondItem="IQX-b5-b59" secondAttribute="leading" id="8cn-5e-2iZ"/>
-                                                    <constraint firstAttribute="height" constant="180" id="Cr5-ff-wAl"/>
-                                                    <constraint firstAttribute="bottom" secondItem="gjh-5b-kTx" secondAttribute="bottom" id="Hcd-cB-SkE"/>
-                                                    <constraint firstAttribute="trailing" secondItem="gjh-5b-kTx" secondAttribute="trailing" id="ufU-sV-WUF"/>
-                                                    <constraint firstItem="gjh-5b-kTx" firstAttribute="top" secondItem="IQX-b5-b59" secondAttribute="top" constant="8" id="wwB-Uw-Dyl"/>
+                                                    <constraint firstItem="gjh-5b-kTx" firstAttribute="leading" secondItem="IQX-b5-b59" secondAttribute="leading" constant="8" id="8cn-5e-2iZ"/>
+                                                    <constraint firstAttribute="height" constant="200" id="Cr5-ff-wAl"/>
+                                                    <constraint firstAttribute="bottom" secondItem="gjh-5b-kTx" secondAttribute="bottom" constant="16" id="Hcd-cB-SkE"/>
+                                                    <constraint firstAttribute="trailing" secondItem="gjh-5b-kTx" secondAttribute="trailing" constant="8" id="ufU-sV-WUF"/>
+                                                    <constraint firstItem="gjh-5b-kTx" firstAttribute="top" secondItem="IQX-b5-b59" secondAttribute="top" constant="16" id="wwB-Uw-Dyl"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0S9-99-29L" customClass="BarChartView" customModule="Charts">
-                                                <rect key="frame" x="8" y="196" width="304" height="156"/>
+                                                <rect key="frame" x="8" y="216" width="304" height="156"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="156" id="LbQ-J4-RfY"/>
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wNP-jM-JTv">
-                                                <rect key="frame" x="8" y="360" width="304" height="432"/>
+                                                <rect key="frame" x="8" y="380" width="304" height="412"/>
                                                 <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="match" rowHeight="25" id="RbU-aV-e2Y">
@@ -1781,13 +1778,13 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8T-eO-tbQ">
-                                                                    <rect key="frame" x="2" y="6.5" width="38.5" height="13"/>
+                                                                    <rect key="frame" x="2" y="6" width="38.5" height="13"/>
                                                                     <fontDescription key="fontDescription" name="TrajanPro3-Regular" family="Trajan Pro 3" pointSize="13"/>
                                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 - 18" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32v-bm-g6X">
-                                                                    <rect key="frame" x="163" y="6" width="42" height="13"/>
+                                                                    <rect key="frame" x="163" y="6.5" width="42" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="42" id="T9I-Jv-e7X"/>
                                                                     </constraints>
@@ -1805,7 +1802,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.11.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="809-Qt-1Sb">
-                                                                    <rect key="frame" x="240" y="6" width="62" height="13"/>
+                                                                    <rect key="frame" x="240" y="6.5" width="62" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="62.5" id="y0d-jx-M2H"/>
                                                                     </constraints>
@@ -1835,7 +1832,7 @@
                                                                 <constraint firstItem="809-Qt-1Sb" firstAttribute="leading" secondItem="qFj-y7-DOz" secondAttribute="trailing" constant="2" id="vyj-Qg-GsI"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
-                                                        <color key="backgroundColor" red="0.47058823529999999" green="0.56470588239999997" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="0.37647058820000001" green="0.49019607840000001" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
@@ -1918,10 +1915,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-My-Kix">
-                                <rect key="frame" x="16" y="28" width="288" height="228"/>
+                                <rect key="frame" x="16" y="28" width="288" height="242"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Q76-PG-5Tv">
-                                        <rect key="frame" x="15" y="8" width="258" height="212"/>
+                                        <rect key="frame" x="15" y="15" width="258" height="212"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="doM-7D-oc1" userLabel="Username">
                                                 <rect key="frame" x="0.0" y="0.0" width="258" height="43"/>
@@ -1965,10 +1962,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.59666378129999997" blue="0.284455603" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Q76-PG-5Tv" firstAttribute="top" secondItem="0CW-My-Kix" secondAttribute="top" constant="8" id="4xN-bk-xwT"/>
+                                    <constraint firstItem="Q76-PG-5Tv" firstAttribute="top" secondItem="0CW-My-Kix" secondAttribute="top" constant="15" id="4xN-bk-xwT"/>
                                     <constraint firstAttribute="trailing" secondItem="Q76-PG-5Tv" secondAttribute="trailing" constant="15" id="9kz-l0-UxA"/>
                                     <constraint firstItem="Q76-PG-5Tv" firstAttribute="leading" secondItem="0CW-My-Kix" secondAttribute="leading" constant="15" id="J9A-fA-oR3"/>
-                                    <constraint firstAttribute="bottom" secondItem="Q76-PG-5Tv" secondAttribute="bottom" constant="8" id="reM-az-56H"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q76-PG-5Tv" secondAttribute="bottom" constant="15" id="reM-az-56H"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZX-GP-yqa">

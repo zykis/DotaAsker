@@ -41,7 +41,7 @@
 }
 
 - (void)initObserver {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleProductReady) name:@"productReady" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePremiumReady) name:@"premiumReady" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleFail) name:@"fail" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorRestored) name:@"errorRestore" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorPurchased) name:@"errorPurchase" object:nil];
@@ -49,29 +49,29 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleRestored) name:@"restored" object:nil];
 }
 
-- (void)handleProductReady {
+- (void)handlePremiumReady {
     self.unlockButton.enabled = YES;
     [_loadingView removeFromSuperview];
 }
 
 - (void)handleFail {
-    [self unsegueWithErrorMessage:NSLocalizedString(@"failed", 0)];
+    [self unsegueWithErrorMessage:NSLocalizedString(@"Error, while trying to buy premium", 0)];
 }
 
 - (void)handleErrorRestored {
-    [self unsegueWithErrorMessage:NSLocalizedString(@"error restored", 0)];
+    [self unsegueWithErrorMessage:NSLocalizedString(@"Error, while trying to buy premium", 0)];
 }
 
 - (void)handleErrorPurchased {
-    [self unsegueWithErrorMessage:NSLocalizedString(@"error purchased", 0)];
+    [self unsegueWithErrorMessage:NSLocalizedString(@"Error, while trying to buy premium", 0)];
 }
 
 - (void)handlePurchased {
-    [self unsegueWithOkMessage:NSLocalizedString(@"purchased", 0)];
+    [self unsegueWithOkMessage:NSLocalizedString(@"Thank you for buying premium!", 0)];
 }
 
 - (void)handleRestored {
-    [self unsegueWithOkMessage:NSLocalizedString(@"restored", 0)];
+    [self unsegueWithOkMessage:NSLocalizedString(@"Your purchase has been restored!", 0)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

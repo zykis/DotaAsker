@@ -39,7 +39,7 @@
     }
     
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:self.premiumProduct, @"premiumProduct", nil];
-    [self deliverPurchaseNotification:@"productReady" andInfo:dict];
+    [self deliverPurchaseNotification:@"premiumReady" andInfo:dict];
 }
 
 - (void)buyPremium {
@@ -73,6 +73,14 @@
                 break;
         }
     }
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue {
+    [self restore];
+}
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error {
+    [self fail];
 }
 
 - (void)complete {
@@ -118,6 +126,5 @@
 - (void)dealloc {
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
 }
-
 
 @end
