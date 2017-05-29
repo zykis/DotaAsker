@@ -87,8 +87,8 @@
     xaxis.labelTextColor = [UIColor whiteColor];
     xaxis.valueFormatter = dateFormatter;
     xaxis.labelFont = [UIFont systemFontOfSize:7];
-    xaxis.granularity = 60.0 * 60 * 24;
-    xaxis.granularityEnabled = YES;
+    // xaxis.granularity = 60.0 * 60 * 24;
+    // xaxis.granularityEnabled = YES;
     xaxis.avoidFirstLastClippingEnabled = YES;
     xaxis.forceLabelsEnabled = YES;
     

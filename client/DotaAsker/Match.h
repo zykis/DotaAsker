@@ -40,6 +40,7 @@ RLM_ARRAY_TYPE(User)
 @property NSInteger state;
 @property NSInteger finishReason;
 @property NSInteger mmrGain;
+@property bool hidden;
 
 @end
 RLM_ARRAY_TYPE(Match)

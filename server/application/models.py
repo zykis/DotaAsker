@@ -246,6 +246,7 @@ class Match(Base):
     finish_reason = db.Column(db.Integer, default = MATCH_FINISH_REASON_NONE)
     mmr_gain = db.Column(db.Integer, default = 0)
     winner_id = db.Column(db.Integer, db.ForeignKey('users.id'), default = 0)
+    hidden = db.Column(db.Boolean, default = 0) # if recent match hidden on client side by user
     # relations
     users = db.relationship('User', secondary='users_matches')
     winner = db.relationship('User', foreign_keys=[winner_id])

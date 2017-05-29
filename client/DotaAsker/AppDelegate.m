@@ -79,6 +79,26 @@
     navBarAppearence.backgroundColor = [[Palette shared] navigationPanelColor];
 }
 
+- (void)migrateIfNeeded {
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    
+    // [1] Match.hidden property added
+    config.schemaVersion = 1;
+    
+    config.migrationBlock = ^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+    // We haven’t migrated anything yet, so oldSchemaVersion == 0
+    if (oldSchemaVersion < 1) {
+        // The enumerateObjects:block: method iterates
+        // over every 'Match' object stored in the Realm file
+        [migration enumerateObjects:Match.className
+                            block:^(RLMObject *oldObject, RLMObject *newObject) {
+        newObject[@"hidden"] = @NO;
+        }];
+    }
+    };
+    [RLMRealmConfiguration setDefaultConfiguration:config];
+}
+
 - (void)printAvailableFontNames {
     NSArray *trajanFonts = [UIFont fontNamesForFamilyName:@"Trajan Pro 3"];
     NSLog(@"Available Trajan font names: %@", trajanFonts);

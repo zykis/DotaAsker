@@ -55,6 +55,10 @@
     // mmr
     [match setMmrGain:[[JSONDict objectForKey:@"mmr_gain"] unsignedIntegerValue]];
     
+    // hidden
+    if ([JSONDict objectForKey:@"hidden"] != nil)
+        [match setHidden:[JSONDict objectForKey:@"hidden"] boolValue];
+    
     // users
     NSArray* usersDict = [JSONDict objectForKey:@"users"];
     for (NSDictionary* userDict in usersDict) {
@@ -66,6 +70,7 @@
     NSDictionary* winnerDict = [JSONDict objectForKey:@"winner"];
     User* winner = [UserParser parse:winnerDict andChildren:NO];
     [match setWinner:winner];
+    
 
     if (bParseChildren) {
         if (!([JSONDict objectForKey:@"rounds"])) {

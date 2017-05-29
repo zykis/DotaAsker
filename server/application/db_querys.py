@@ -3,12 +3,30 @@ from application.models import User, Match, Question, Theme, Answer, UserAnswer,
 from application import models
 import json
 import random
-from config import questiondir
+from config import questiondir, MMR_GAIN_MIN, MMR_GAIN_MAX, MMR_GAIN_STEP, MMR_CEIL, MMR_BOTTOM
 from sqlalchemy import func
 from synchronize_questions import uploadQuestionFromPath
 from datetime import date, datetime, timedelta
 
 class Database_queries:
+    
+    @classmethod
+    def mmrGain(winner = None, loser = None):
+        if (winner is None) or (loser is None):
+            app.logger.critical("trying to calculate mmr difference without winner or loser")
+            return 0
+        
+        mmr_diff = math.abs(winner.mmr - loser.mmr)
+        
+        # 0 - mmrs are equal
+        # 1 - mmr are totally different
+        k = min (mmr_diff / (MMR_CEIL - MMR_BOTTOM), 1) # [0..1]
+        winnerStronger = winner.mmr > loser.mmr
+        if winnerStronger: # [-1 .. 1]
+            k *= -1
+        
+        # 25 +- 25 * [-1..1]
+        mmr_gain = (MMR_GAIN_MAX / 2) + (MMR_GAIN_MAX / 2) * k
 
     @classmethod
     def findMatchForUser(self, user):

@@ -35,4 +35,10 @@
     return @"ID";
 }
 
++ (NSDictionary*)defaultPropertyValues {
+    return @{
+        @"hidden" : @NO
+    }
+}
+
 @end
