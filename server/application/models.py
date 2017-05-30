@@ -1,4 +1,5 @@
 from application import db, app
+from sqlalchemy.sql import func
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (JSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
@@ -22,8 +23,8 @@ MATCH_FINISH_REASON_SURREND = 3
 
 class Base(db.Model):
     __abstract__ = True
-    created_on = db.Column(db.DateTime, default=db.func.now())
-    updated_on = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
+    created_on = db.Column(db.DateTime, default=func.now())
+    updated_on = db.Column(db.DateTime, default=func.now(), onupdate=func.now())
 
 
 class Answer(Base):

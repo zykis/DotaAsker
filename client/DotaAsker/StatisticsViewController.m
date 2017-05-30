@@ -89,8 +89,9 @@
     xaxis.labelFont = [UIFont systemFontOfSize:7];
     // xaxis.granularity = 60.0 * 60 * 24;
     // xaxis.granularityEnabled = YES;
-    xaxis.avoidFirstLastClippingEnabled = YES;
+    // xaxis.avoidFirstLastClippingEnabled = YES;
     xaxis.forceLabelsEnabled = YES;
+    xaxis.centerAxisLabelsEnabled = YES;
     
     ChartYAxis* laxis = _chartView.leftAxis;
     laxis.drawGridLinesEnabled = YES;
