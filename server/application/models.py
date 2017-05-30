@@ -4,6 +4,8 @@ from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (JSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
 import random
+import math
+from config import MMR_GAIN_MIN, MMR_GAIN_MAX, MMR_GAIN_STEP, MMR_CEIL, MMR_BOTTOM, MMR_MAX_DIFF_GAIN
 
 
 ROLE_USER = 0
@@ -20,6 +22,29 @@ MATCH_FINISH_REASON_NONE = 0
 MATCH_FINISH_REASON_NORMAL = 1
 MATCH_FINISH_REASON_TIME_ELAPSED = 2
 MATCH_FINISH_REASON_SURREND = 3
+
+def mmrGain(winnerMMR = None, loserMMR = None):
+    if (winnerMMR is None) or (loserMMR is None):
+        app.logger.critical("trying to calculate mmr difference without winner or loser")
+        return 0
+
+    mmr_diff = winnerMMR - loserMMR
+    k = min(mmr_diff / (float)(MMR_MAX_DIFF_GAIN), 1.0) # [-1..1]
+    
+    # 25 +- 25 * [-1..1]
+    mmr_gain = (MMR_GAIN_MAX / 2) - (MMR_GAIN_MAX / 2) * k
+    if mmr_diff > 0:
+        mmr_gain = math.floor(mmr_gain)
+        mmr_gain -= mmr_gain % MMR_GAIN_STEP
+    else:
+        mmr_gain = math.ceil(mmr_gain)
+        mmr_gain += MMR_GAIN_STEP - mmr_gain % MMR_GAIN_STEP
+        
+        
+    mmr_gain = max(mmr_gain, MMR_GAIN_MIN)
+    mmr_gain = min(mmr_gain, MMR_GAIN_MAX)
+    
+    return mmr_gain
 
 class Base(db.Model):
     __abstract__ = True
@@ -296,7 +321,14 @@ class Match(Base):
         if winner is None:
             app.logger.info('user surrending to no one')
 
-        mmr_gain = 25
+        
+        loserMMR = loser.mmr
+        if winner is None:
+            winnerMMR = loserMMR
+        else:
+            winnerMMR = winner.mmr
+            
+        mmr_gain = mmrGain(winnerMMR = winnerMMR, loserMMR = loserMMR)
         self.mmr_gain = mmr_gain
         self.state = MATCH_FINISHED
         self.finish_reason = MATCH_FINISH_REASON_SURREND
@@ -314,7 +346,6 @@ class Match(Base):
         db.session.add(self)
         db.session.add(surrender)
         db.session.commit()
-
 
     def elapseMatch(self):
         if len(self.users) < 2:
@@ -347,7 +378,7 @@ class Match(Base):
             self.finish_reason = MATCH_FINISH_REASON_TIME_ELAPSED
 
             # [3] Calculate mmr gaining
-            mmr_gain = 25
+            mmr_gain = mmrGain(winnerMMR = winner.mmr, loserMMR = loser.mmr)
             self.mmr_gain = mmr_gain
 
             # [4] decrease mmr of loser
@@ -399,6 +430,8 @@ class Match(Base):
             db.session.add(self)
             db.session.commit()
             app.logger.info('Stats updated successfully')
+            
+    
 
     def finish(self):
         # [1] match state become MATCH_FINISHED
@@ -453,7 +486,7 @@ class Match(Base):
 	self.winner = winner
 
         # [4] calculate mmr gaining
-        mmr_gain = 25
+        mmr_gain = mmrGain(winnerMMR = winner.mmr, loserMMR = loser.mmr)
         self.mmr_gain = mmr_gain
 
         # [5] decrease mmr of loser
