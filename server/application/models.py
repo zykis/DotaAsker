@@ -323,7 +323,7 @@ class Match(Base):
             app.logger.info('user surrending to no one')
 
         
-        loserMMR = loser.mmr
+        loserMMR = surrender.mmr
         if winner is None:
             winnerMMR = loserMMR
         else:
