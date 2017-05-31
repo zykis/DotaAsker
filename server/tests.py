@@ -159,6 +159,8 @@ class TestCase(unittest.TestCase):
     def testMmrGain(self):
         mmr_gain = mmrGain(4060, 2500) # 10
         assert(mmr_gain == 10)
+        mmr_gain = mmrGain(4002, 3843) # 10
+        assert(mmr_gain == 25)
         mmr_gain = mmrGain(2500, 6060) # 50
         assert(mmr_gain == 50)
         mmr_gain = mmrGain(1060, 1060) # 25

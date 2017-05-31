@@ -33,18 +33,20 @@ def mmrGain(winnerMMR = None, loserMMR = None):
     k = max(mmr_diff / (float)(MMR_MAX_DIFF_GAIN), -1.0) # [-1..1]
     
     # 25 + 25 * [-1..1]
-    mmr_gain = (MMR_GAIN_MAX / 2) - (MMR_GAIN_MAX / 2) * k
+    mmr_gain = (MMR_GAIN_MAX / 2.0) - (MMR_GAIN_MAX / 2.0) * k
     d = mmr_gain % 5
     if d < (float)(MMR_GAIN_STEP / 2.0):
         mmr_gain -= d
     else:
-        mmr_gain += d
+        mmr_gain += MMR_GAIN_STEP - d
     mmr_gain = round(mmr_gain)
     mmr_gain = int(mmr_gain)
         
     mmr_gain = max(mmr_gain, MMR_GAIN_MIN)
     mmr_gain = min(mmr_gain, MMR_GAIN_MAX)
     
+    # print ('winner.mmr: {}. loser.mmr: {}. mmr_gain: {}'.format(winnerMMR, loserMMR, mmr_gain))
+    # app.logger.debug('winner.mmr: {}. loser.mmr: {}. mmr_gain: {}'.format(winnerMMR, loserMMR, mmr_gain))
     return mmr_gain
 
 class Base(db.Model):
