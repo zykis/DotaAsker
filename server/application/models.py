@@ -29,17 +29,18 @@ def mmrGain(winnerMMR = None, loserMMR = None):
         return 0
 
     mmr_diff = winnerMMR - loserMMR
-    k = min(mmr_diff / (float)(MMR_MAX_DIFF_GAIN), 1.0) # [-1..1]
+    k = min(mmr_diff / (float)(MMR_MAX_DIFF_GAIN),  1.0) # [ 0..1]
+    k = max(mmr_diff / (float)(MMR_MAX_DIFF_GAIN), -1.0) # [-1..1]
     
-    # 25 +- 25 * [-1..1]
+    # 25 + 25 * [-1..1]
     mmr_gain = (MMR_GAIN_MAX / 2) - (MMR_GAIN_MAX / 2) * k
-    if mmr_diff > 0:
-        mmr_gain = math.floor(mmr_gain)
-        mmr_gain -= mmr_gain % MMR_GAIN_STEP
+    d = mmr_gain % 5
+    if d < (float)(MMR_GAIN_STEP / 2.0):
+        mmr_gain -= d
     else:
-        mmr_gain = math.ceil(mmr_gain)
-        mmr_gain += MMR_GAIN_STEP - mmr_gain % MMR_GAIN_STEP
-        
+        mmr_gain += d
+    mmr_gain = round(mmr_gain)
+    mmr_gain = int(mmr_gain)
         
     mmr_gain = max(mmr_gain, MMR_GAIN_MIN)
     mmr_gain = min(mmr_gain, MMR_GAIN_MAX)

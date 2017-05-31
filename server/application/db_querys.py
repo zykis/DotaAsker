@@ -9,9 +9,6 @@ from synchronize_questions import uploadQuestionFromPath
 from datetime import date, datetime, timedelta
 
 class Database_queries:
-    
-    @classmethod
-    
 
     @classmethod
     def findMatchForUser(self, user):

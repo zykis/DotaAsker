@@ -28,7 +28,7 @@ class TestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
-    def _testFriendShip(self):
+    def testFriendShip(self):
         john_user = models.User.query.get(1)
         peter_user = models.User.query.get(2)
         jack_user = models.User.query.get(3)
@@ -46,7 +46,7 @@ class TestCase(unittest.TestCase):
         assert len(peter_user.friends()) == 0
         app.logger.debug('testFriendShip - OK')
 
-    def _testFindMatch(self):
+    def testFindMatch(self):
         peter_user = models.User.query.filter(User.username==u'Peter').one()
         assert isinstance(peter_user, User)
 
@@ -62,7 +62,7 @@ class TestCase(unittest.TestCase):
         print 'created new match: %s' % m1.__repr__()
         app.logger.debug('testFindMatch - OK')
 
-    def _testCascadeUserMatch(self):
+    def testCascadeUserMatch(self):
         # user -> match
         firstUser = User(username=u'FirstUser', password='123')
         db.session.add(firstUser)
@@ -105,7 +105,7 @@ class TestCase(unittest.TestCase):
         app.logger.debug('testCascadeUserMatch - OK')
 
 
-    def _testCascadeDeleteDB(self):
+    def testCascadeDeleteDB(self):
         u = User(username=u'FirstUser', password='123')
         db.session.add(u)
         db.session.commit()
@@ -119,7 +119,7 @@ class TestCase(unittest.TestCase):
         # assert models.User.query.filter(User.username==u'FirstUser').all().__len__() == 0
         app.logger.debug('testCascadeDeleteDB - OK')
 
-    def _testUsersList(self):
+    def testUsersList(self):
         user1 = models.User.query.get(1)
         user2 = models.User.query.get(2)
         user3 = models.User.query.get(3)
@@ -130,13 +130,13 @@ class TestCase(unittest.TestCase):
         assert user3 not in user_list
         app.logger.debug('testUsersList - OK')
 
-    def _testQuestionsSynchronization(self):
+    def testQuestionsSynchronization(self):
         app.logger.debug('testQuestionSynchronization - OK')
 
-    def _testFinishMatch(self):
+    def testFinishMatch(self):
         app.logger.debug('testFinishMatch - OK')
 
-    def _testSerializeDeserialize(self):
+    def testSerializeDeserialize(self):
         john = User.query.get(1) # getting John
 
         john.recent_matches = []
@@ -157,16 +157,17 @@ class TestCase(unittest.TestCase):
         app.logger.debug('testSerializeDeserialize - OK')
         
     def testMmrGain(self):
-        mmr_gain = mmrGain(4060, 2500)
-        print('mmr_gain: {}'.format(mmr_gain))
-        mmr_gain = mmrGain(2500, 6060)
-        print('mmr_gain: {}'.format(mmr_gain))
-        mmr_gain = mmrGain(1060, 1060)
-        print('mmr_gain: {}'.format(mmr_gain))
-        mmr_gain = mmrGain(-500, 2500)
-        print('mmr_gain: {}'.format(mmr_gain))
-        mmr_gain = mmrGain(45000, 2500)
-        print('mmr_gain: {}'.format(mmr_gain))
+        mmr_gain = mmrGain(4060, 2500) # 10
+        assert(mmr_gain == 10)
+        mmr_gain = mmrGain(2500, 6060) # 50
+        assert(mmr_gain == 50)
+        mmr_gain = mmrGain(1060, 1060) # 25
+        assert(mmr_gain == 25)
+        mmr_gain = mmrGain(-500, 2500) # 50
+        assert(mmr_gain == 50)
+        mmr_gain = mmrGain(45000, 2500) # 5
+        assert(mmr_gain == 5)
+        app.logger.debug('testMmrGain - OK')
 
 if __name__ == '__main__':
     unittest.main()
