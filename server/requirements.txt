@@ -4,6 +4,6 @@ passlib
 flask-httpauth
 marshmallow
 pytest
-sqlalchemy-migrate
 Flask-Mail
 cloudinary
+alembic

@@ -311,21 +311,75 @@ class Match(Base):
                 if i >= 6:
                     i -= 1
             return self.rounds[i].next_move_user
+        
+    def updatePlayersStats(self, winner, loser):
+        # update mmr, totalLost, totalWon
+        if winner is not None:
+            winner.mmr += self.mmr_gain
+            winner.total_matches_won += 1
+            
+        if loser is not None:
+            loser.mmr -= self.mmr_gain
+            loser.total_matches_lost += 1
+        
+        # counting correct / incorrect answers
+        for r in self.rounds:
+            for ua in r.user_answers:
+                if ua.user == winner:
+                    if winner is not None:
+                        winner.total_time_for_answers += ua.sec_for_answer
+                        if ua.answer.is_correct:
+                            winner.total_correct_answers += 1
+                        else:
+                            winner.total_incorrect_answers += 1
+                elif ua.user == loser:
+                    if loser is not None:
+                        loser.total_time_for_answers += ua.sec_for_answer
+                        if ua.answer.is_correct:
+                            loser.total_correct_answers += 1
+                        else:
+                            loser.total_incorrect_answers += 1
+                        
+        # gpm // - 30 GPM per second
+        if winner is not None:
+            total_w = winner.total_correct_answers + winner.total_incorrect_answers
+            if total_w != 0:
+                winner.gpm = ((winner.total_correct_answers + winner.total_incorrect_answers) * 1000 - float(winner.total_time_for_answers * 30)) / (winner.total_correct_answers + winner.total_incorrect_answers)
 
-    def surrendMatch(self, surrender = None):
-        if surrender is None:
+        if loser is not None:
+            total_l = loser.total_correct_answers + loser.total_incorrect_answers
+            if total_l != 0:
+                loser.gpm = ((loser.total_correct_answers + loser.total_incorrect_answers) * 1000 - float(loser.total_time_for_answers * 30)) / (loser.total_correct_answers + loser.total_incorrect_answers)
+
+        # [8] calculating users KDA
+        if winner is not None:
+            if winner.total_incorrect_answers != 0:
+                winner.kda = winner.total_correct_answers / float(winner.total_incorrect_answers)
+        if loser is not None:
+            if loser.total_incorrect_answers != 0:
+                loser.kda = loser.total_correct_answers / float(loser.total_incorrect_answers)
+
+        if winner is not None:
+            db.session.add(winner)
+        if loser is not None:
+            db.session.add(loser)
+        db.session.commit()
+        
+
+    def surrendMatch(self, loser = None):
+        if v is None:
             app.logger.critical('some1 trying to surrend')
             return
         winner = None
         for u in self.users:
-            if u is not surrender:
+            if u is not loser:
                 winner = u
 
         if winner is None:
             app.logger.info('user surrending to no one')
 
         
-        loserMMR = surrender.mmr
+        loserMMR = loser.mmr
         if winner is None:
             winnerMMR = loserMMR
         else:
@@ -337,17 +391,9 @@ class Match(Base):
         self.finish_reason = MATCH_FINISH_REASON_SURREND
         self.winner = winner
         
-        # winner is None, if surrending just started match
-        if winner is not None:
-            winner.mmr += mmr_gain
-            winner.total_matches_won += 1
-            db.session.add(winner)
-            
-        surrender.mmr -= mmr_gain
-        surrender.total_matches_lost += 1
-
+        self.updatePlayersStats(winner=winner, loser=loser)
+        
         db.session.add(self)
-        db.session.add(surrender)
         db.session.commit()
 
     def elapseMatch(self):
@@ -377,63 +423,16 @@ class Match(Base):
                 return
 
             # [1] MATCH STATE
-            self.state = MATCH_FINISHED
-            self.finish_reason = MATCH_FINISH_REASON_TIME_ELAPSED
-
-            # [3] Calculate mmr gaining
             mmr_gain = mmrGain(winnerMMR = winner.mmr, loserMMR = loser.mmr)
             self.mmr_gain = mmr_gain
-
-            # [4] decrease mmr of loser
-            next_move_user.mmr -= mmr_gain
-
-            # [5] increase mmr of winner
-            winner.mmr += mmr_gain
-
-            # [6] change total correct and incorrect answers
-            for r in self.rounds:
-                for ua in r.user_answers:
-                    if ua.user == winner:
-                        winner.total_time_for_answers += ua.sec_for_answer
-                        if ua.answer.is_correct:
-                            winner.total_correct_answers += 1
-                        else:
-                            winner.total_incorrect_answers += 1
-                    elif ua.user == loser:
-                        loser.total_time_for_answers += ua.sec_for_answer
-                        if ua.answer.is_correct:
-                            loser.total_correct_answers += 1
-                        else:
-                            loser.total_incorrect_answers += 1
-
-            # [7] change total matches
-            loser.total_matches_lost += 1
-            winner.total_matches_won += 1
-
-            # [7.1] gpm // - 30 GPM per second
-            total_w = winner.total_correct_answers + winner.total_incorrect_answers
-	    if total_w != 0:
-                winner.gpm = ((winner.total_correct_answers + winner.total_incorrect_answers) * 1000 - float(winner.total_time_for_answers * 30)) / (winner.total_correct_answers + winner.total_incorrect_answers)
-
-            total_l = loser.total_correct_answers + loser.total_incorrect_answers
-            if total_l != 0:
-                loser.gpm = ((loser.total_correct_answers + loser.total_incorrect_answers) * 1000 - float(loser.total_time_for_answers * 30)) / (loser.total_correct_answers + loser.total_incorrect_answers)
-
-            # [8] calculating users KDA
-            if winner.total_incorrect_answers != 0:
-                winner.kda = winner.total_correct_answers / float(winner.total_incorrect_answers)
-	    if loser.total_incorrect_answers != 0:
-                loser.kda = loser.total_correct_answers / float(loser.total_incorrect_answers)
-
-            # [9] updating it
-            app.logger.debug('Updating users and match stats')
+            self.state = MATCH_FINISHED
+            self.finish_reason = MATCH_FINISH_REASON_TIME_ELAPSED
             self.winner = winner
-            db.session.add(winner)
-            db.session.add(loser)
+
+            self.updatePlayersStats(winner=winner, loser=loser)
+            
             db.session.add(self)
             db.session.commit()
-            app.logger.info('Stats updated successfully')
-            
     
 
     def finish(self):
@@ -485,45 +484,10 @@ class Match(Base):
             db.session.commit()
             return self
 
-	# [3.1] setup winner
-	self.winner = winner
+	self.updatePlayersStats(winner=winner, loser=loser)
 
-        # [4] calculate mmr gaining
-        mmr_gain = mmrGain(winnerMMR = winner.mmr, loserMMR = loser.mmr)
-        self.mmr_gain = mmr_gain
-
-        # [5] decrease mmr of loser
-        loser.mmr -= mmr_gain
-
-        # [6] increase mmr of winner
-        winner.mmr += mmr_gain
-
-        # [7] changing total correct and incorrect answers for users
-        user1.total_correct_answers += user1CorrectAnswers
-        user1.total_incorrect_answers += 18 - user1CorrectAnswers
-        user2.total_correct_answers += user2CorrectAnswers
-        user2.total_incorrect_answers += 18 - user2CorrectAnswers
-
-        # [7.1] total matches
-        winner.total_matches_won += 1
-        loser.total_matches_lost += 1
-
-        # [7.2] gpm // - 30 GPM per second
-        user1.gpm = ((user1.total_correct_answers + user1.total_incorrect_answers) * 1000 - float(user1.total_time_for_answers * 30)) / (user1.total_correct_answers + user1.total_incorrect_answers)
-        user2.gpm = ((user2.total_correct_answers + user2.total_incorrect_answers) * 1000 - float(user2.total_time_for_answers * 30)) / (user2.total_correct_answers + user2.total_incorrect_answers)
-
-        # [8] calculating users KDA
-        user1.kda = user1.total_correct_answers / float(user1.total_incorrect_answers)
-        user2.kda = user2.total_correct_answers / float(user2.total_incorrect_answers)
-
-        # [9] updating it
-        app.logger.debug('Updating users and match stats')
-        db.session.add(user1)
-        db.session.add(user2)
         db.session.add(self)
         db.session.commit()
-        app.logger.info('Stats updated successfully')
-
         return self
 
     def __repr__(self):
