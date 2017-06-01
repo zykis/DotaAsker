@@ -367,7 +367,7 @@ class Match(Base):
         
 
     def surrendMatch(self, loser = None):
-        if v is None:
+        if loser is None:
             app.logger.critical('some1 trying to surrend')
             return
         winner = None
