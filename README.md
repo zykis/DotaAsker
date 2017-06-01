@@ -53,6 +53,7 @@ source flask/bin/activate
 ```sh
 # TODO
 ```
+https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-14-04
 
 [![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb06/BYHGuUxR7D0.jpg)]
 [![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb10/U7e4eBSKY0I.jpg)]
