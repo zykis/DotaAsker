@@ -1,5 +1,6 @@
 #!flask.bin/python
 import os
+
 basedir = os.path.abspath(os.path.dirname(__file__))
 questiondir = os.path.join(basedir, 'application/static/questions')
 
