@@ -14,4 +14,3 @@ db = SQLAlchemy(app)
 mail = Mail(app)
 
 from application import models, views
-

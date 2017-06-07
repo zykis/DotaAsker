@@ -105,9 +105,9 @@ class Database_queries:
         Database_queries.generateTestMMR()
 
         ############################################### adding friends
-        # john_user.sendRequest(peter_user)
-        # john_user.sendRequest(jack_user)
-        # jack_user.acceptRequest(john_user)
+        john_user.sendRequest(peter_user)
+        peter_user.sendRequest(jack_user)
+        jack_user.acceptRequest(peter_user)
 
         # ############################################# making themes
         heroes_items_theme = Theme(name=u'heroes / items',

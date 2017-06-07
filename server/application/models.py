@@ -188,7 +188,7 @@ class User(Base):
         return b1 or b2
 
     def acceptRequest(self, aUser):
-        if aUser.isPending(self):
+        if aUser.isPending(self):       # repeat inspection isPending() - offer remove
             f = self.in_requests.filter(Friends.from_id==aUser.id).one()
             f.confirmed = True
 

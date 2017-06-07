@@ -5,7 +5,9 @@ import unittest
 
 from config import basedir, questiondir
 from application import app, db, models
-from application.models import User, Theme, Match, Question, UserAnswer, MATCH_FINISHED, MATCH_RUNNING, mmrGain
+from application.models import User, Theme, Match, Question, UserAnswer, MATCH_FINISHED, MATCH_RUNNING, mmrGain, Friends
+from passlib.apps import custom_app_context as pwd_context
+from itsdangerous import JSONWebSignatureSerializer, BadSignature, SignatureExpired, Serializer
 
 from application.parsers.user_schema import UserSchema
 from application.db_querys import Database_queries
@@ -178,20 +180,74 @@ class TestCase(unittest.TestCase):
         assert(mmr_gain == 5)
         app.logger.debug('testMmrGain - OK')
 
-class TestView(unittest.TestCase):
-    def setUp(self):
-        app.config['TESTING'] = True
-        app.config['SERVER_NAME'] = "http://192.168.100.24:5000"
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-        self.app_context = app.app_context()
-        self.app_context.push()
-        self.app = app.test_client()
-        Database_queries.createTestData()
+    def test_verify_password(self):
+        passwd1 = "password"
+        self.assertTrue(pwd_context.verify(passwd1, pwd_context.encrypt(passwd1)))
 
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
+        passwd2 = " password"
+        self.assertFalse(pwd_context.verify(passwd1, pwd_context.encrypt(passwd2)))
+
+    def test_verify_auth_token(self):
+        s = Serializer('secret')
+        invalid_token_empty = s.dumps({})
+
+        self.assertIsNone(User.verify_auth_token(invalid_token_empty))
+
+    def test_is_pending(self):
+        send_user_john = models.User.query.get(1)
+        user_peter = models.User.query.get(2)
+        
+        self.assertTrue(User.isPending(send_user_john, user_peter))
+        self.assertFalse(User.isPending(user_peter, send_user_john))
+
+    def test_accept_request(self):
+        send_user_john = User.query.get(1)
+        accept_user_peter = User.query.get(2)
+        User.acceptRequest(accept_user_peter, send_user_john)
+        
+        self.assertTrue(Friends.query.filter(Friends.from_id==send_user_john.id, Friends.to_id==accept_user_peter.id).one().confirmed)
+
+    def test_is_friend(self):
+        user_peter = User.query.get(2)
+        user_jack = User.query.get(3)
+
+        self.assertTrue(Friends.query.filter(Friends.from_id==user_peter.id, Friends.to_id==user_jack.id).one().confirmed)
+
+        self.assertTrue(User.isFriend(user_jack, user_peter))
+        self.assertTrue(User.isFriend(user_peter, user_jack))
+        self.assertFalse(User.isFriend(user_peter, user_peter))
+
+        user_john = User.query.get(1)
+
+        self.assertFalse(User.isFriend(user_john, user_peter))
+        self.assertFalse(User.isFriend(user_jack, user_john))
+        self.assertFalse(User.isFriend(user_john, user_john))
+
+    def test_remove_friend(self):
+        user_peter = User.query.get(2)
+        user_jack = User.query.get(3)
+
+        self.assertTrue(User.isFriend(user_jack, user_peter))
+
+        user_jack.removeFriend(user_peter)
+
+        self.assertFalse(User.isFriend(user_jack, user_peter))
+        self.assertFalse(User.isFriend(user_peter, user_jack))
+
+# class TestView(unittest.TestCase):
+#     def setUp(self):
+#         app.config['TESTING'] = True
+#         app.config['SERVER_NAME'] = "http://192.168.100.24:5000"
+#         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+#         self.app_context = app.app_context()
+#         self.app_context.push()
+#         self.app = app.test_client()
+#         Database_queries.createTestData()
+
+#     def tearDown(self):
+#         db.session.remove()
+#         db.drop_all()
+#         self.app_context.pop()
 
 
 if __name__ == '__main__':
