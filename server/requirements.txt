@@ -7,3 +7,4 @@ pytest
 Flask-Mail
 cloudinary
 alembic
+sqlalchemy-migrate
