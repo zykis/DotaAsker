@@ -31,7 +31,7 @@ def mmrGain(winnerMMR = None, loserMMR = None):
     mmr_diff = winnerMMR - loserMMR
     k = min(mmr_diff / (float)(MMR_MAX_DIFF_GAIN),  1.0) # [ 0..1]
     k = max(mmr_diff / (float)(MMR_MAX_DIFF_GAIN), -1.0) # [-1..1]
-    
+
     # 25 + 25 * [-1..1]
     mmr_gain = (MMR_GAIN_MAX / 2.0) - (MMR_GAIN_MAX / 2.0) * k
     d = mmr_gain % 5
@@ -41,10 +41,10 @@ def mmrGain(winnerMMR = None, loserMMR = None):
         mmr_gain += MMR_GAIN_STEP - d
     mmr_gain = round(mmr_gain)
     mmr_gain = int(mmr_gain)
-        
+
     mmr_gain = max(mmr_gain, MMR_GAIN_MIN)
     mmr_gain = min(mmr_gain, MMR_GAIN_MAX)
-    
+
     # print ('winner.mmr: {}. loser.mmr: {}. mmr_gain: {}'.format(winnerMMR, loserMMR, mmr_gain))
     # app.logger.debug('winner.mmr: {}. loser.mmr: {}. mmr_gain: {}'.format(winnerMMR, loserMMR, mmr_gain))
     return mmr_gain
@@ -311,17 +311,17 @@ class Match(Base):
                 if i >= 6:
                     i -= 1
             return self.rounds[i].next_move_user
-        
+
     def updatePlayersStats(self, winner, loser):
         # update mmr, totalLost, totalWon
         if winner is not None:
             winner.mmr += self.mmr_gain
             winner.total_matches_won += 1
-            
+
         if loser is not None:
             loser.mmr -= self.mmr_gain
             loser.total_matches_lost += 1
-        
+
         # counting correct / incorrect answers
         for r in self.rounds:
             for ua in r.user_answers:
@@ -339,7 +339,7 @@ class Match(Base):
                             loser.total_correct_answers += 1
                         else:
                             loser.total_incorrect_answers += 1
-                        
+
         # gpm // - 30 GPM per second
         if winner is not None:
             total_w = winner.total_correct_answers + winner.total_incorrect_answers
@@ -364,7 +364,7 @@ class Match(Base):
         if loser is not None:
             db.session.add(loser)
         db.session.commit()
-        
+
 
     def surrendMatch(self, loser = None):
         if loser is None:
@@ -378,21 +378,21 @@ class Match(Base):
         if winner is None:
             app.logger.info('user surrending to no one')
 
-        
+
         loserMMR = loser.mmr
         if winner is None:
             winnerMMR = loserMMR
         else:
             winnerMMR = winner.mmr
-            
+
         mmr_gain = mmrGain(winnerMMR = winnerMMR, loserMMR = loserMMR)
         self.mmr_gain = mmr_gain
         self.state = MATCH_FINISHED
         self.finish_reason = MATCH_FINISH_REASON_SURREND
         self.winner = winner
-        
+
         self.updatePlayersStats(winner=winner, loser=loser)
-        
+
         db.session.add(self)
         db.session.commit()
 
@@ -430,10 +430,10 @@ class Match(Base):
             self.winner = winner
 
             self.updatePlayersStats(winner=winner, loser=loser)
-            
+
             db.session.add(self)
             db.session.commit()
-    
+
 
     def finish(self):
         # [1] match state become MATCH_FINISHED
@@ -473,6 +473,9 @@ class Match(Base):
                         user2CorrectAnswers += 1
         app.logger.debug('{} score: {}'.format(user1.username, user1CorrectAnswers))
         app.logger.debug('{} score: {}'.format(user2.username, user2CorrectAnswers))
+
+        winner = None
+        loser = None
         if user1CorrectAnswers > user2CorrectAnswers:
             winner = user1
             loser = user2
@@ -482,12 +485,8 @@ class Match(Base):
         else:
             # draw
             app.logger.debug('draw in match: {}'.format(self.__repr__()))
-            db.session.add(self)
-            db.session.commit()
-            return self
 
-	self.updatePlayersStats(winner=winner, loser=loser)
-
+	    self.updatePlayersStats(winner=winner, loser=loser)
         db.session.add(self)
         db.session.commit()
         return self
