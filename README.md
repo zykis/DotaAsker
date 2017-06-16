@@ -26,6 +26,9 @@ pip install -r requirements.txt
 
 # create database
 ./db_create.py
+
+# create test database
+cp app.db test.db
 ```
 #### Client
 ```sh
