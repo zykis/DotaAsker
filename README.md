@@ -23,6 +23,9 @@ source flask/bin/activate
 
 # install dependencies
 pip install -r requirements.txt
+
+# create database
+./db_create.py
 ```
 #### Client
 ```sh
