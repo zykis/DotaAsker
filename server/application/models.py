@@ -363,6 +363,10 @@ class Match(Base):
             db.session.add(winner)
         if loser is not None:
             db.session.add(loser)
+
+        self.winner = winner
+        db.session.add(self)
+
         db.session.commit()
 
 
