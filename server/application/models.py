@@ -23,9 +23,9 @@ MATCH_FINISH_REASON_NORMAL = 1
 MATCH_FINISH_REASON_TIME_ELAPSED = 2
 MATCH_FINISH_REASON_SURREND = 3
 
-def mmrGain(winnerMMR = None, loserMMR = None):
-    if (winnerMMR is None) or (loserMMR is None):
-        app.logger.critical("trying to calculate mmr difference without winner or loser")
+def mmrGain(winnerMMR = 0, loserMMR = 0):
+    if (winnerMMR is 0) or (loserMMR is 0):
+        app.logger.debug("trying to calculate mmr difference without winner or loser")
         return 0
 
     mmr_diff = winnerMMR - loserMMR
@@ -314,6 +314,10 @@ class Match(Base):
 
     def updatePlayersStats(self, winner, loser):
         # update mmr, totalLost, totalWon
+        """
+
+        :rtype: Nonetype
+        """
         if winner is not None:
             winner.mmr += self.mmr_gain
             winner.total_matches_won += 1
@@ -444,8 +448,6 @@ class Match(Base):
         if (self.state != MATCH_RUNNING):
             app.logger.critical('Trying to finish not running match')
             return
-        self.state = MATCH_FINISHED
-        self.finish_reason = MATCH_FINISH_REASON_NORMAL
 
         # [2] checking if all users post their asnwers
         userAnswersCount = 0
@@ -459,6 +461,7 @@ class Match(Base):
         if (len(self.users) < 2):
             app.logger('Trying to finish match with, that contains {} users'.format(len(self.users)))
             return
+
         user1 = self.users[0]
         user2 = self.users[1]
         user1CorrectAnswers = 0
@@ -490,10 +493,23 @@ class Match(Base):
             # draw
             app.logger.debug('draw in match: {}'.format(self.__repr__()))
 
-	    self.updatePlayersStats(winner=winner, loser=loser)
+        winnerMMR = 0
+        loserMMR = 0
+        if winner is not None:
+            winnerMMR = winner.mmr
+        if loser is not None:
+            loserMMR = loser.mmr
+
+        mmr_gain = mmrGain(winnerMMR = winnerMMR, loserMMR = loserMMR)
+        self.mmr_gain = mmr_gain
+        self.state = MATCH_FINISHED
+        self.finish_reason = MATCH_FINISH_REASON_NORMAL
+        self.winner = winner
+
+        self.updatePlayersStats(winner=winner, loser=loser)
+
         db.session.add(self)
         db.session.commit()
-        return self
 
     def __repr__(self):
         return "Match(id=%d, creation time=%s, users=%s)" % (self.id, self.created_on, self.users)
