@@ -471,6 +471,8 @@ class Match(Base):
                 elif ua.user == user2 and (ua.answer is not None):
                     if ua.answer.is_correct:
                         user2CorrectAnswers += 1
+        app.logger.debug('{} score: {}'.format(user1.username, user1CorrectAnswers))
+        app.logger.debug('{} score: {}'.format(user2.username, user2CorrectAnswers))
         if user1CorrectAnswers > user2CorrectAnswers:
             winner = user1
             loser = user2
