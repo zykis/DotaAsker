@@ -3,7 +3,7 @@ import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 questiondir = os.path.join(basedir, 'application/static/questions')
 
-HOST = 'localhost'
+HOST = '185.156.179.139'
 debug = True
 Debug = True
 DEBUG = True
