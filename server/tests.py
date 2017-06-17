@@ -15,12 +15,13 @@ from flask import g
 class TestCase(unittest.TestCase):
     def setUp(self):
         app.config['TESTING'] = True
-        app.config['SERVER_NAME'] = "http://192.168.100.24:5000"
+        # app.config['SERVER_NAME'] = "http://192.168.100.24:5000"
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
         self.app_context = app.app_context()
         self.app_context.push()
         g.locale = 'en'
         self.app = app.test_client()
+        print 'test database path: ' + app.config['SQLALCHEMY_DATABASE_URI']
         Database_queries.createTestData()
 
     def tearDown(self):
