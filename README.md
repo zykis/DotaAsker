@@ -55,6 +55,15 @@ source flask/bin/activate
 ./tests.py
 ```
 
+#### Start Jenkins
+ssh zykis@185.156.179.139
+su zykis
+cd /home/zykis
+java -jar jenkins.war --httpPort=9090
+
+#### Jenkins adress
+185.156.179.139:9090
+
 ### Deploy
 ```sh
 # TODO
