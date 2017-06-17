@@ -21,7 +21,6 @@ class TestCase(unittest.TestCase):
         # tear down
         db.session.remove()
         db.drop_all()
-        self.app_context.pop()
 
         # set up
         self.app_context = app.app_context()
@@ -32,7 +31,7 @@ class TestCase(unittest.TestCase):
         Database_queries.createTestData()
 
     def tearDown(self):
-        pass
+        self.app_context.pop()
 
     def testFriendShip(self):
         john_user = models.User.query.get(1)
