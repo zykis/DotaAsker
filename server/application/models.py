@@ -329,20 +329,22 @@ class Match(Base):
         # counting correct / incorrect answers
         for r in self.rounds:
             for ua in r.user_answers:
-                if ua.user == winner:
-                    if winner is not None:
-                        winner.total_time_for_answers += ua.sec_for_answer
-                        if ua.answer.is_correct:
-                            winner.total_correct_answers += 1
-                        else:
-                            winner.total_incorrect_answers += 1
-                elif ua.user == loser:
-                    if loser is not None:
-                        loser.total_time_for_answers += ua.sec_for_answer
-                        if ua.answer.is_correct:
-                            loser.total_correct_answers += 1
-                        else:
-                            loser.total_incorrect_answers += 1
+                if winner is not None:
+                    if ua.user == winner:
+                        if winner is not None:
+                            winner.total_time_for_answers += ua.sec_for_answer
+                            if ua.answer.is_correct:
+                                winner.total_correct_answers += 1
+                            else:
+                                winner.total_incorrect_answers += 1
+                if loser is not None:
+                    if ua.user == loser:
+                        if loser is not None:
+                            loser.total_time_for_answers += ua.sec_for_answer
+                            if ua.answer.is_correct:
+                                loser.total_correct_answers += 1
+                            else:
+                                loser.total_incorrect_answers += 1
 
         # gpm // - 30 GPM per second
         if winner is not None:

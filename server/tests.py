@@ -17,6 +17,13 @@ class TestCase(unittest.TestCase):
         app.config['TESTING'] = True
         app.config['SERVER_NAME'] = "http://185.156.179.139"
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+
+        # tear down
+        db.session.remove()
+        db.drop_all()
+        self.app_context.pop()
+
+        # set up
         self.app_context = app.app_context()
         self.app_context.push()
         g.locale = 'en'
@@ -25,9 +32,7 @@ class TestCase(unittest.TestCase):
         Database_queries.createTestData()
 
     def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-        self.app_context.pop()
+        pass
 
     def testFriendShip(self):
         john_user = models.User.query.get(1)
