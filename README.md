@@ -56,13 +56,17 @@ source flask/bin/activate
 ```
 
 #### Start Jenkins
+```sh
 ssh zykis@185.156.179.139
 su zykis
 cd /home/zykis
 java -jar jenkins.war --httpPort=9090
+'''
 
 #### Jenkins adress
+```sh
 185.156.179.139:9090
+'''
 
 ### Deploy
 ```sh
