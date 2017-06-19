@@ -27,8 +27,10 @@ class QuestionSchema(Schema):
             question.approved = data.get('approved', False)
             question.image_name = data.get('image_name', '')
             theme = data.get('theme', None)
-            themeSchema = ThemeSchema()
-            question.theme = themeSchema.get_theme(theme)
+            if isinstance(theme, Theme):
+                question.theme = theme
+            else:
+                print 'theme for question {} not setted'.format(question.__repr__())
 
             for aDict in data.get('answers'):
                 a = Answer()
