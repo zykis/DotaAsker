@@ -261,6 +261,8 @@ class Round(Base):
             theme_questions = Question.query.filter(Question.theme == t, Question.approved == True).all()
             r_questions = []
             for x in range(0, 3):
+                if len(theme_questions) < 3:
+                    app.logger.critical('Less, them 3 questions on theme: {}'.format(t.__repr__()))
                 rand_q = random.choice(theme_questions)
                 r_questions.append(rand_q)
                 theme_questions.remove(rand_q)

@@ -27,8 +27,8 @@
         "text_en": "Can fountain restore HP to hero, affected by Ice Blast's (Ancient Apparation) debuff?",
         "text_ru": "Может ли фонтан восстанавливать здоровью герою, находящемуся под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 2,
+            "name": "tournaments"
         }
     },
     {
@@ -59,8 +59,8 @@
         "text_en": "Can Terrorblade, affected by Ice Blast (Ancient Apparation) effectively apply Sunder?",
         "text_ru": "Может ли эффективно быть применена способность Sunder (Terrorblade) под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 2,
+            "name": "tournaments"
         }
     },
     {
@@ -91,8 +91,8 @@
         "text_en": "Can the destination of Ice Blast (Ancient Apparation) be spotted by an enemy, owning a Gem of True Sight?",
         "text_ru": "Может ли конечная точка способности Ice Blast (Ancient Apparation) быть замечена противником при наличии у него Gem of True Sight?",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 2,
+            "name": "tournaments"
         }
     },
     {
@@ -123,8 +123,8 @@
         "text_en": "Can Black King Bar defend you against instant death, caused by Ice Blast (Ancient Apparation)?",
         "text_ru": "Может ли Black King Bar защитить от мгновенной смерти от способности Ice Blast (Ancient Apparation)?",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 3,
+            "name": "mechanics"
         }
     },
     {
@@ -155,8 +155,8 @@
         "text_en": "Duration of Ice Blast's (Ancient Apparation) debuff on 1/2/3 level, owning an Aghanim Scepter:",
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки при наличии Aghanim Sceptre:",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 3,
+            "name": "mechanics"
         }
     },
     {
@@ -187,8 +187,8 @@
         "text_en": "Duration of Ice Blast's (Ancient Apparation) debuff on 1/2/3/ level:",
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
-            "id": 1,
-            "name": "heroes / items"
+            "id": 3,
+            "name": "mechanics"
         }
     },
     {
