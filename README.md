@@ -79,3 +79,5 @@ https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications
 [![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb1a/QZHBS70erMM.jpg)]
 [![N|Solid](https://pp.userapi.com/c637621/v637621025/3fb24/WN2h35hjtH4.jpg)]
 [![N|Solid](https://pp.userapi.com/c637621/v637621025/4068b/rmvwaM7Y3Ys.jpg)]
+[![N|Solid](https://pp.userapi.com/c639719/v639719025/26cf2/-TZ4szZYLfw.jpg)]
+
