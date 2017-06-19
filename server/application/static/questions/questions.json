@@ -3,12 +3,12 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -22,9 +22,9 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Can fountain restore HP to hero, affected by Ice Blast's (Ancient Apparation) debuff?",
         "text_ru": "Может ли фонтан восстанавливать здоровью герою, находящемуся под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 0,
@@ -35,12 +35,12 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -54,25 +54,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Can Terrorblade, affected by Ice Blast (Ancient Apparation) effectively apply Sunder?",
         "text_ru": "Может ли эффективно быть применена способность Sunder (Terrorblade) под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -86,25 +86,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Can the destination of Ice Blast (Ancient Apparation) be spotted by an enemy, owning a Gem of True Sight?",
         "text_ru": "Может ли конечная точка способности Ice Blast (Ancient Apparation) быть замечена противником при наличии у него Gem of True Sight?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -118,190 +118,190 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Can Black King Bar defend you against instant death, caused by Ice Blast (Ancient Apparation)?",
         "text_ru": "Может ли Black King Bar защитить от мгновенной смерти от способности Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "8/9/10",
                 "text_ru": "8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "10/11/12",
                 "text_ru": "10/11/12"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5/6/7",
                 "text_ru": "5/6/7"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "17",
                 "text_ru": "17"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Duration of Ice Blast's (Ancient Apparation) debuff on 1/2/3 level, owning an Aghanim Scepter:",
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки при наличии Aghanim Sceptre:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "8/9/10",
                 "text_ru": "8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "10/11/12",
                 "text_ru": "10/11/12"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5/6/7",
                 "text_ru": "5/6/7"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "8",
                 "text_ru": "8"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Duration of Ice Blast's (Ancient Apparation) debuff on 1/2/3/ level:",
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "250/350/450",
                 "text_ru": "250/350/450"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "100/150/200",
                 "text_ru": "100/150/200"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "30/60/90",
                 "text_ru": "30/60/90"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "200/220/240",
                 "text_ru": "200/220/240"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Starting damage, caused by Ice Blast (Ancient Apparation) on 1/2/3 levels:",
         "text_ru": "Начальный урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "10%/11%/12%",
                 "text_ru": "10%/11%/12%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "12%/14%/16%",
                 "text_ru": "12%/14%/16%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5%/6%/7%",
                 "text_ru": "5%/6%/7%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "9%",
                 "text_ru": "9%"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Threshhold of death from Ice Blast (Ancient Apparation) on 1/2/3 levels:",
         "text_ru": "Порог здоровья для смерти от Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "12.5/20/32",
                 "text_ru": "12.5/20/32"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5/10/15",
                 "text_ru": "5/10/15"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "4/6/8",
                 "text_ru": "4/6/8"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "25/50/75",
                 "text_ru": "25/50/75"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceBlast.png",
-        "text_en": "",
+        "text_en": "Periodic damage, caused by Ice Blast (Ancient Apparation) on 1/2/3 levels:",
         "text_ru": "Периодический урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "With help of Black King Bar",
                 "text_ru": "С помощью Black King Bar"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "By clicking on buff icon",
                 "text_ru": "Кликом по иконке бафа"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Can not be removed",
                 "text_ru": "Нельзя убрать"
             },
             {
@@ -310,57 +310,57 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ChillingTouch.png",
-        "text_en": "",
+        "text_en": "How can you remove Chilling Touch (Ancient Apparation) buff from yourself?",
         "text_ru": "Как можно убрать с себя бафф от Chilling Touch (Ancient Apparation)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "5400",
                 "text_ru": "5400"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "320",
                 "text_ru": "320"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "400",
                 "text_ru": "400"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "1200",
                 "text_ru": "1200"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ChillingTouch.png",
-        "text_en": "",
+        "text_en": "Maximum total amount of additional damage, that can be dealt with Chilling Touch (Ancient Apparation) before reductions?",
         "text_ru": "Максимальное количество дополнительного урона, которое может быть нанесено с помощью Chilling Touch (до рассчётов брони)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -374,25 +374,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ChillingTouch.png",
-        "text_en": "",
-        "text_ru": "Применяется ли модификатор атаки от Chilling Touch на самого Ancient Apparation, если он был скастован вне радиуса кастера?",
+        "text_en": "If buff from Chilling Touch applied on Ancient Apparation, if cast zone was outside him?",
+        "text_ru": "Применяется ли модификатор атаки от Chilling Touch на самого Ancient Apparation, если он находился вне зоны каста?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -406,25 +406,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ChillingTouch.png",
-        "text_en": "",
+        "text_en": "Does Chilling Touch (Ancient Apparation) applied to all Meepos?",
         "text_ru": "Применяется ли модификатор атаки от Chilling Touch (Ancient Apparation) для всех клонов Meepo?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -438,25 +438,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ChillingTouch.png",
-        "text_en": "",
+        "text_en": "Can damage by Chilling Touch's buff (Ancient Apparation) be blocked with Black King Bar?",
         "text_ru": "Может ли урон от от способности Chilling Touch (Ancient Apparation) быть заблокирован с помощью Black King Bar?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -470,121 +470,121 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
-        "text_ru": "Увеличивает ли скорость передвижения Ice Vortex (Ancient Apparation) для самого Ancient Apparation?",
+        "text_en": "Does Ice Vortex increase movement speed of Ancient Apparation, when he runs through it?",
+        "text_ru": "Увеличивает ли скорость передвижения Ice Vortex для самого Ancient Apparation, когда он проходит через него?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "15%/20%/25%/30%",
                 "text_ru": "15%/20%/25%/30%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5%/10%/15%/20%",
                 "text_ru": "5%/10%/15%/20%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "3%/6%/9%/12%",
                 "text_ru": "3%/6%/9%/12%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "12%",
                 "text_ru": "12%"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
+        "text_en": "Movement speed removal, caused by Ice Vortex (Ancient Apparation) on 1/2/3/4 levels:",
         "text_ru": "Уменьшение скорости передвижения от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "15%/20%/25%/30% ",
                 "text_ru": "15%/20%/25%/30% "
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5%/10%/15%/20%",
                 "text_ru": "5%/10%/15%/20%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "3%/6%/9%/12%",
                 "text_ru": "3%/6%/9%/12%"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "12%",
                 "text_ru": "12%"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
+        "text_en": "Reduce rating of magic armor, caused by Ice Vortex (Ancient Apparation) on 1/2/3/4 levels:",
         "text_ru": "Уменьшение магической защиты от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "1700",
                 "text_ru": "1700"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "600",
                 "text_ru": "600"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "400",
                 "text_ru": "400"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "900",
                 "text_ru": "900"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
+        "text_en": "What is a range of Ice Vortex (Ancient Apparation)?",
         "text_ru": "Чему равна дальность применения способности Ice Vortex (Ancient Apparation)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -598,25 +598,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
-        "text_ru": "Обеспечивает ли вижн Ice Vortex (Ancient Apparation) на месте каста?",
+        "text_en": "Обеспечивает ли вижн Ice Vortex (Ancient Apparation)?",
+        "text_ru": "Does Ice Vortex (Ancient Apparation) provides ground vision?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -630,185 +630,185 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_IceVortex.png",
-        "text_en": "",
-        "text_ru": "Можно ли развеять замедление и уменьшение сопротивления к магии от Ice Vortex (Ancient Apparation) с помощью Black King Bar?",
+        "text_en": "Can Ice Vortex (Ancient Apparation) be DISSPELED with a help of Black King Bar?",
+        "text_ru": "Можно ли развеять Ice Vortex (Ancient Apparation) с помощью Black King Bar?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "30/50/70/90 (un. per second)",
                 "text_ru": "30/50/70/90 (ед. в секунду)"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "50 (un. per second)",
                 "text_ru": "50 (ед. в секунду)"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "10/20/30/40 (un. per second)",
                 "text_ru": "10/20/30/40 (ед. в секунду)"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "50/80/110/140 (un. per second)",
                 "text_ru": "50/80/110/140 (ед. в секунду)"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ColdFeet.png",
-        "text_en": "",
+        "text_en": "Damagem dealt by Cold Feet (Ancient Apparation) on 1/2/3/4 levels:",
         "text_ru": "Урон, наносимый способностью Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "4",
                 "text_ru": "4"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5",
                 "text_ru": "5"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "2",
                 "text_ru": "2"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "7",
                 "text_ru": "7"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ColdFeet.png",
-        "text_en": "",
-        "text_ru": "Время в секундах, необходимое для того, чтобы избежать применения стана от Cold Feet (Ancient Apparation)?",
+        "text_en": "Time in seconds, needed to avoid Cold Feet's stun (Ancient Apparation):",
+        "text_ru": "Время в секундах, необходимое для того, чтобы избежать применения стана от Cold Feet (Ancient Apparation):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "300",
                 "text_ru": "300"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "240",
                 "text_ru": "240"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "540",
                 "text_ru": "540"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "740",
                 "text_ru": "740"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ColdFeet.png",
-        "text_en": "",
-        "text_ru": "Дистанция, на которую нужно отойти, чтобы не получить стан от способности Cold Feet (Ancient Apparation),",
+        "text_en": "Distance to avoid Cold Feet's stun (Ancient Apparation):",
+        "text_ru": "Дистанция, на которую нужно отойти, чтобы не получить стан от способности Cold Feet (Ancient Apparation):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "2/2.5/3/3.5",
                 "text_ru": "2/2.5/3/3.5"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "4/5/6/7",
                 "text_ru": "4/5/6/7"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "1/2/3/4",
                 "text_ru": "1/2/3/4"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "1.5/3/4.5/6",
                 "text_ru": "1.5/3/4.5/6"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "AA_ColdFeet.png",
-        "text_en": "",
+        "text_en": "Cold Feet's stun (Ancient Apparation) duration on 1/2/3/4 levels:",
         "text_ru": "Длительность стана от способности Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Increased duration of ultimate",
                 "text_ru": "Увеличение продолжительности ультимейта"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Increasing HP/MP regen",
                 "text_ru": "Увеличение ХП/МП регена"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Increasing attack speed",
                 "text_ru": "Увеличение скорости атаки"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Attributes of Aghanim's Sceptre",
                 "text_ru": "Аттрибуты от Aghanim Sceptre"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist.png",
-        "text_en": "",
+        "text_en": "What gains Alchemist from using Aghanim's Sceptre on himself?",
         "text_ru": "Что даёт Alchemist'у применение на себя Aghanim Sceptre?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -822,25 +822,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist.png",
-        "text_en": "",
+        "text_en": "Can Alchemist apply Aghanim's Sceptre on himself?",
         "text_ru": "Может ли Alchemist применить на себя Aghanim Scepter?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Reliable",
                 "text_ru": "Надёжным"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Unreliable",
                 "text_ru": "Ненадёжным"
             },
             {
@@ -854,57 +854,57 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_Greevil'sGreed.png",
-        "text_en": "",
+        "text_en": "Gold, gained by Greevil's Greed (Alchemist) is:",
         "text_ru": "Золото, добываемое способностью Greevil's Greed (Alchemist) является:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "30",
                 "text_ru": "30"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "40",
                 "text_ru": "40"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "60",
                 "text_ru": "60"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "10",
                 "text_ru": "10"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_Greevil'sGreed.png",
-        "text_en": "",
+        "text_en": "How much seconds should pass to drop stacks of Greevil's Greed (Alchemist)?",
         "text_ru": "Через какое количество секунд спадает стаки способности Greevil's Greed (Alchemist)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -918,57 +918,57 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_Greevil'sGreed.png",
-        "text_en": "",
+        "text_en": "Does Greevil's Greed (Alchemist) stacks?",
         "text_ru": "Стакается ли способность Greevil's Greed (Alchemist)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "16/20/24/28",
                 "text_ru": "16/20/24/28"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "40/46/52/58",
                 "text_ru": "40/46/52/58"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "4/8/12/16",
                 "text_ru": "4/8/12/16"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "5/10/20/25",
                 "text_ru": "5/10/20/25"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_Greevil'sGreed.png",
-        "text_en": "",
+        "text_en": "Maximum additional gold, gained by Greevil's Greed (Alchemist) on 1/2/3/4 levels:",
         "text_ru": "Максимальное дополнительное количество золота способности Greevil's Greed (Alchemist) на 1/2/3/4 уровне прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -982,57 +982,57 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_UnstableConcoction.png",
-        "text_en": "",
+        "text_en": "Can Alchemist deny himself with Unstable Concoction?",
         "text_ru": "Может ли Alchemist заденаиться с помощью Unstable Concoction?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "200",
                 "text_ru": "200"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "400",
                 "text_ru": "400"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "600",
                 "text_ru": "600"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "0",
                 "text_ru": "0"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_UnstableConcoction.png",
-        "text_en": "",
+        "text_en": "What is a radius of Unstable Concoction's explotion (Alchemist)?",
         "text_ru": "Какой радиус разрыва у Unstable Concoction (Alchemist)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1046,30 +1046,30 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_UnstableConcoction.png",
-        "text_en": "",
+        "text_en": "Can enemies see a timer under Alchemist, while using Unstable Concoction?",
         "text_ru": "Видят ли враги таймер над головой Alchemist во время раскручивания Unstable Concoction?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Physical",
                 "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Magical",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Pure",
                 "text_ru": "Чистый"
             },
             {
@@ -1078,62 +1078,62 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_UnstableConcoction.png",
-        "text_en": "",
+        "text_en": "Type of damage, dealt by Unstable Concoction (Alchemist):",
         "text_ru": "Тип урона, наносимый способностью Unstable Concoction (Alchemist):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "4/5/6/7",
                 "text_ru": "4/5/6/7"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "7/8/9/10",
                 "text_ru": "7/8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "2/5/8/11",
                 "text_ru": "2/5/8/11"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "8",
                 "text_ru": "8"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_AcidSpray.png",
-        "text_en": "",
+        "text_en": "Armor reduction, caused by Acid Spray (Alchemist) on 1/2/3/4 levels:",
         "text_ru": "Снижение брони от Acid Spray (Alchemist) на 1/2/3/4 уровнях прокачки равно:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Physical",
                 "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Magical",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Pure",
                 "text_ru": "Чистый"
             },
             {
@@ -1142,25 +1142,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Alchemist_AcidSpray.png",
-        "text_en": "",
+        "text_en": "Type of damage, dealt by Acid Spray (Alchemist):",
         "text_ru": "Тип урона, наносимый способностью Acid Spray (Alchemist):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1174,25 +1174,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "Can Abaddon be killed by Ice Blast's debuff (Ancient Apparation) during his ultimate?",
         "text_ru": "Может ли Abaddon быть убит от дебаффа Ice Blast (Ancient Apparation) во время действия своего ультимейта?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1206,57 +1206,57 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "Can Abaddon be killed during his ultimate by Culling Blade (Axe)?",
         "text_ru": "Будет ли Abaddon c 1 ХП убит во время действия ультимейта, если на нём применён Culling Blade (Axe)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "400",
                 "text_ru": "400"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "600",
                 "text_ru": "600"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "800",
                 "text_ru": "800"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "200",
                 "text_ru": "200"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "What is HP threshold of Abaddon's ultimate?",
         "text_ru": "Каков порог срабатывания ХП ультимейта Abaddon?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1270,25 +1270,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "Can Abaddon activate his utlimate under Axe's taunt?",
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под агром Axe?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1302,25 +1302,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "Can Abaddon activate his ultimate, while under Eul's Scepter action?",
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под действием Eul's Scepter?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1334,25 +1334,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_BorrowedTime.png",
-        "text_en": "",
+        "text_en": "Can Abaddon activate his ultimate, while in stun?",
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении в стане?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1366,25 +1366,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_CurseOfAvernus.png",
-        "text_en": "",
+        "text_en": "Does Curse of Avernus'es debuff (Abaddon) applies on Towers?",
         "text_ru": "Накладывается ли дебафф на вышки от пассивной способности Curse of Avernus (Abaddon)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1398,25 +1398,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_AphoticShield.png",
-        "text_en": "",
+        "text_en": "Can Aphotic Shield (Abaddon) be applied on an ally, while an ally is under Black King Bar?",
         "text_ru": "Может ли накладываться Aphotic Shield на союзника, находящегося под действием Black King Bar?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1430,25 +1430,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_AphoticShield.png",
-        "text_en": "",
+        "text_en": "Does Aphotic Shield (Abaddon) deal damage to invisible targets?",
         "text_ru": "Наносит ли урон способность Aphotic Shield (Abaddon) невидимым целям?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1462,30 +1462,30 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_MistCoil.png",
-        "text_en": "",
+        "text_en": "Can Abaddon deny himself with Mist Coil?",
         "text_ru": "Может ли Abaddon заденаить себя с помощью способности Mist Coil?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Physical",
                 "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Magical",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Pure",
                 "text_ru": "Чистый"
             },
             {
@@ -1494,25 +1494,25 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_MistCoil.png",
-        "text_en": "",
+        "text_en": "What type of damage Abaddon deals to himself by using Mistic Coil?",
         "text_ru": "Какой тип урона наносит способность Mist Coild самому Abaddon при касте?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Yes",
                 "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "No",
                 "text_ru": "Нет"
             },
             {
@@ -1526,9 +1526,9 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_MistCoil.png",
-        "text_en": "",
+        "text_en": "Can Mist Coil (Abaddon) be dodged with a Blink Dagger?",
         "text_ru": "Можно ли уклониться от способности Mist Coild (Abaddon) с помощью Blink Dagger?",
         "theme": {
             "id": 0,
@@ -1539,17 +1539,17 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Phisycal",
                 "text_ru": "Физический"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Magical",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Pure",
                 "text_ru": "Чистый"
             },
             {
@@ -1558,10 +1558,10 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_MistCoil.png",
-        "text_en": "Урон",
-        "text_ru": "Тип урона, наносимый способностью Mist Coil (Abaddon)?",
+        "text_en": "Type of damage dealt to an enemy by Mist Coil (Abaddon):",
+        "text_ru": "Тип урона, наносимый врагу способностью Mist Coil (Abaddon):",
         "theme": {
             "id": 0,
             "name": "heroes / items"
@@ -1571,28 +1571,28 @@
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "4.5",
                 "text_ru": "4.5"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "10/8/6/4",
                 "text_ru": "10/8/6/4"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "4.5/4/3.5/3",
                 "text_ru": "4.5/4/3.5/3"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "7/6/5/4",
                 "text_ru": "7/6/5/4"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "Abaddon_MistCoil.png",
-        "text_en": "",
+        "text_en": "Mist Coil's cooldown (Abaddon) on 1/2/3/4 levels:",
         "text_ru": "Кулдаун способности Mist Coil (Abaddon) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 0,
@@ -1622,94 +1622,94 @@
                 "text_ru": "130/180/230/280"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки равен соответственно:",
-        "text_ru": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки равен соответственно:",
+        "text_en": "Damage, dealt by Fissure (Earth Shaker) on 1/2/3/4 levels:",
+        "text_ru": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки:",
         "theme": {
             "id": 0,
-            "name": ""
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "15 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "3 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "20 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "7 сек"
-            }
-        ],
-        "approved": "false",
-        "image_name": "ES_Fissure.png",
-        "text_en": "",
-        "text_ru": "Кулдаун способности Fissure (Earth Shaker) равен:",
-        "theme": {
-            "id": 0,
-            "name": ""
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "8 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "3 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "5 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": "12 сек"
-            }
-        ],
-        "approved": "false",
-        "image_name": "ES_Fissure.png",
-        "text_en": "",
-        "text_ru": "Длительность борозды от Fissure (Earth Shaker) равна:",
-        "theme": {
-            "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "15",
+                "text_ru": "15"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "3",
+                "text_ru": "3"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "20",
+                "text_ru": "20"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "7",
+                "text_ru": "7"
+            }
+        ],
+        "approved": "true",
+        "image_name": "ES_Fissure.png",
+        "text_en": "Fissure's cooldown (Earth Shaker):",
+        "text_ru": "Кулдаун способности Fissure (Earth Shaker):",
+        "theme": {
+            "id": 0,
+            "name": "heroes / items"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "8",
+                "text_ru": "8"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "3",
+                "text_ru": "3"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "5",
+                "text_ru": "5"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "12",
+                "text_ru": "12"
+            }
+        ],
+        "approved": "true",
+        "image_name": "ES_Fissure.png",
+        "text_en": "Длительность борозды от Fissure (Earth Shaker):\nDuration of Fissure's forrow (Earth Shaker):",
+        "text_ru": "Длительность борозды от Fissure (Earth Shaker) равна:",
+        "theme": {
+            "id": 0,
+            "name": "heroes / items"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "Magical",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Pure",
                 "text_ru": "Чистый"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Physical",
                 "text_ru": "Физический"
             },
             {
@@ -1718,13 +1718,13 @@
                 "text_ru": ""
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "qwe",
-        "text_ru": "Тип урона, наносимый способностью Fissure (Earth Shaker)?",
+        "text_en": "Type of damage, dealt by Fissure (Earth Shaker) is:",
+        "text_ru": "Тип урона, наносимый способностью Fissure (Earth Shaker):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
@@ -1750,109 +1750,109 @@
                 "text_ru": "Barathrum"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "",
+        "text_en": "What of these heroes CAN'T pass fissure with their abilities?",
         "text_ru": "Какой из этих героев не сможет пройти борозду от Fissure (Earth Shaker) с помощью способностей?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "1350",
                 "text_ru": "1350"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "600",
                 "text_ru": "600"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "150",
                 "text_ru": "150"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "850",
                 "text_ru": "850"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "",
-        "text_ru": "Длина борозды Fissure (Earth Shaker) равна:",
+        "text_en": "Length of the Fissure (Earth Shaker) is:",
+        "text_ru": "Длина борозды Fissure (Earth Shaker):",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "225",
                 "text_ru": "225"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "170",
                 "text_ru": "170"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "350",
                 "text_ru": "350"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "50",
                 "text_ru": "50"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "",
+        "text_en": "Width of Fissure's stun (Eath Shaker) is:",
         "text_ru": "Ширина стана от Fissure равна:",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "They will try to find a path around",
                 "text_ru": "Будут пытаться обойти"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
-                "text_ru": "Побегут в сторону фонтана"
+                "text_en": "They will run into ally fountain's direction",
+                "text_ru": "Побегут в сторону союзного фонтана"
             },
             {
                 "is_correct": "true",
-                "text_en": "",
+                "text_en": "Will stay still",
                 "text_ru": "Будут стоят на месте"
             },
             {
                 "is_correct": "false",
-                "text_en": "",
+                "text_en": "Will be denied",
                 "text_ru": "Заденаются"
             }
         ],
-        "approved": "false",
+        "approved": "true",
         "image_name": "ES_Fissure.png",
-        "text_en": "",
-        "text_ru": "Что произойдёт с линейными крипами при столкновении с бороздой от Fissure (Earth Shaker)?",
+        "text_en": "What will happen to ally linear creeps, when they clash with Fissure (Earth Shaker)?",
+        "text_ru": "Что произойдёт с союзными линейными крипами при столкновении с бороздой от Fissure (Earth Shaker)?",
         "theme": {
             "id": 0,
-            "name": ""
+            "name": "heroes / items"
         }
     }
 ]
