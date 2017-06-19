@@ -3,681 +3,1535 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "18 000 000$",
-                "text_ru": "18 000 000$"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "6 000 000$",
-                "text_ru": "6 000 000$"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "1 000 000$",
-                "text_ru": "1 000 000$"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "3 000 000$",
-                "text_ru": "3 000 000$"
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "What was a prize pool The Boston Major 2016?",
-        "text_ru": "Каким был призовой фонд The Boston Major 2016?",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Может ли фонтан восстанавливать здоровью герою, находящемуся под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "Slow",
-                "text_ru": "Замедление"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Stun",
-                "text_ru": "Оглушение"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Root",
-                "text_ru": "Обездвиживание"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Silence",
-                "text_ru": "Молчание"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "What effect is applied by active ability of Rod of Atos?",
-        "text_ru": "Какой эффект, накладывает активная способность предмета Rod of Atos?",
-        "theme": {
-            "name": "heroes / items"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "Blight Stone",
-                "text_ru": "Blight Stone"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Satanic",
-                "text_ru": "Satanic"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Desolator",
-                "text_ru": "Desolator"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Eye of Skadi",
-                "text_ru": "Eye of Skadi"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Which artefact isn't an attack modifier?",
-        "text_ru": "Этот предмет не является модификатором атаки:",
-        "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "25%",
-                "text_ru": "25%"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "20%",
-                "text_ru": "20%"
+                "text_en": "",
+                "text_ru": "Нет"
             },
             {
                 "is_correct": "false",
-                "text_en": "50%",
-                "text_ru": "50%"
+                "text_en": "",
+                "text_ru": ""
             },
             {
                 "is_correct": "false",
-                "text_en": "10%",
-                "text_ru": "10%"
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Basic hero's magic defence is:",
-        "text_ru": "Базовая магическая защита героя равна:",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Может ли эффективно быть применена способность Sunder (Terrorblade) под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "16 commands, signle-elimination",
-                "text_ru": "16 команд, signle-elimination"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "8 commands, signle-elimination",
-                "text_ru": "8 команд, signle-elimination"
+                "text_en": "",
+                "text_ru": "Нет"
             },
             {
                 "is_correct": "false",
-                "text_en": "16 commands, double-elimination",
-                "text_ru": "16 команд, double-elimination"
+                "text_en": "",
+                "text_ru": ""
             },
             {
                 "is_correct": "false",
-                "text_en": "8 commands, double-elimination",
-                "text_ru": "8 команд, double-elimination"
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Boston Major 2016 main event's format was:",
-        "text_ru": "Формат основого события Boston Major:",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Может ли конечная точка способности Ice Blast (Ancient Apparation) быть замечена противником при наличии у него Gem of True Sight?",
         "theme": {
-            "name": "tournaments"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "OG",
-                "text_ru": "OG"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Ad Finem",
-                "text_ru": "Ad Finem"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Evil Genuses",
-                "text_ru": "Evil Genuses"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "true",
-                "text_en": "Virtus Pro",
-                "text_ru": "Virtus Pro"
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Which of following commands wasn't at Boston Major 2016 half-final?",
-        "text_ru": "Какой из этих команд не было в полуфинале Boston Major 2016?",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Может ли Black King Bar защитить от мгновенной смерти от способности Ice Blast (Ancient Apparation)?",
         "theme": {
-            "name": "tournaments"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "Thug",
-                "text_ru": "Thug"
+                "text_en": "",
+                "text_ru": "8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "Madara",
-                "text_ru": "Madara"
+                "text_en": "",
+                "text_ru": "10/11/12"
             },
             {
                 "is_correct": "false",
-                "text_en": "Maybe Next Time",
-                "text_ru": "Maybe Next Time"
+                "text_en": "",
+                "text_ru": "5/6/7"
             },
             {
                 "is_correct": "true",
-                "text_en": "SsaSpartan",
-                "text_ru": "SsaSpartan"
+                "text_en": "",
+                "text_ru": "17"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Captain of Ad Finem's at Boston Major 2016 was:",
-        "text_ru": "Капитаном команды Ad Finem на Boston Major 2016 являлся:",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки при наличии Aghanim Sceptre:",
         "theme": {
-            "name": "tournaments"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "Europe",
-                "text_ru": "Европа"
+                "text_en": "",
+                "text_ru": "8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "USA",
-                "text_ru": "США"
+                "text_en": "",
+                "text_ru": "10/11/12"
             },
             {
                 "is_correct": "false",
-                "text_en": "China",
-                "text_ru": "Китай"
+                "text_en": "",
+                "text_ru": "5/6/7"
             },
             {
                 "is_correct": "false",
-                "text_en": "Uzbekistan",
-                "text_ru": "Узбекистан"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "What region are OG from?",
-        "text_ru": "Какому региону принадлежит команда OG?",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "Miracle",
-                "text_ru": "Miracle"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Notail",
-                "text_ru": "Notail"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Fly",
-                "text_ru": "Fly"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "JerAx",
-                "text_ru": "JerAx"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Captain of OG on Boston Major 2016 was:",
-        "text_ru": "Капитаном команды OG на Boston Major 2016 являлся:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "true",
-                "text_en": "S4",
-                "text_ru": "S4"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Miracle",
-                "text_ru": "Miracle"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Dendi",
-                "text_ru": "Dendi"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "AlwaysWannaFly",
-                "text_ru": "AlwaysWannaFly"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Beside following player (NOtail, ana, JerAx, Fly, ***) in OG on Boston Major was:",
-        "text_ru": "Помимо перечисленных игроков (NOtail, ana, JerAx, Fly, ***) составе OG на Boston Major 2016 был:",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "Ad Finem",
-                "text_ru": "Ad Finem"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "OG",
-                "text_ru": "OG"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Digital Chaos",
-                "text_ru": "Digital Chaos"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Evil Geniuses",
-                "text_ru": "Evil Geniuses"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Who is a winner of Boston Major?",
-        "text_ru": "Кто является победителем Boston Major?",
-        "theme": {
-            "name": "tournaments"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "true",
-                "text_en": "12",
-                "text_ru": "12"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "20",
-                "text_ru": "20"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "24",
-                "text_ru": "24"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "8",
+                "text_en": "",
                 "text_ru": "8"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "How much mana will gave you 1 point of intelligence?",
-        "text_ru": "Сколько очков маны добавляет единица интеллекта?",
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "16",
-                "text_ru": "16"
+                "text_en": "",
+                "text_ru": "250/350/450"
             },
             {
                 "is_correct": "false",
-                "text_en": "25",
-                "text_ru": "25"
+                "text_en": "",
+                "text_ru": "100/150/200"
             },
             {
                 "is_correct": "false",
-                "text_en": "4",
+                "text_en": "",
+                "text_ru": "30/60/90"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "200/220/240"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Начальный урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "10%/11%/12%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "12%/14%/16%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "5%/6%/7%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "9%"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Порог здоровья для смерти от Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "12.5/20/32"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "5/10/15"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "4/6/8"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "25/50/75"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceBlast.png",
+        "text_en": "",
+        "text_ru": "Периодический урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "С помощью Black King Bar"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Кликом по иконке бафа"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нельзя убрать"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ChillingTouch.png",
+        "text_en": "",
+        "text_ru": "Как можно убрать с себя бафф от Chilling Touch (Ancient Apparation)?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "5400"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "320"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "400"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "1200"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ChillingTouch.png",
+        "text_en": "",
+        "text_ru": "Максимальное количество дополнительного урона, которое может быть нанесено с помощью Chilling Touch (до рассчётов брони)?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ChillingTouch.png",
+        "text_en": "",
+        "text_ru": "Применяется ли модификатор атаки от Chilling Touch на самого Ancient Apparation, если он был скастован вне радиуса кастера?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ChillingTouch.png",
+        "text_en": "",
+        "text_ru": "Применяется ли модификатор атаки от Chilling Touch (Ancient Apparation) для всех клонов Meepo?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ChillingTouch.png",
+        "text_en": "",
+        "text_ru": "Может ли урон от от способности Chilling Touch (Ancient Apparation) быть заблокирован с помощью Black King Bar?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Увеличивает ли скорость передвижения Ice Vortex (Ancient Apparation) для самого Ancient Apparation?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "15%/20%/25%/30%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "5%/10%/15%/20%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "3%/6%/9%/12%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "12%"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Уменьшение скорости передвижения от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "15%/20%/25%/30% "
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "5%/10%/15%/20%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "3%/6%/9%/12%"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "12%"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Уменьшение магической защиты от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "1700"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "600"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "400"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "900"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Чему равна дальность применения способности Ice Vortex (Ancient Apparation)?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Обеспечивает ли вижн Ice Vortex (Ancient Apparation) на месте каста?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_IceVortex.png",
+        "text_en": "",
+        "text_ru": "Можно ли развеять замедление и уменьшение сопротивления к магии от Ice Vortex (Ancient Apparation) с помощью Black King Bar?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "30/50/70/90 (ед. в секунду)"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "50 (ед. в секунду)"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "10/20/30/40 (ед. в секунду)"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "50/80/110/140 (ед. в секунду)"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ColdFeet.png",
+        "text_en": "",
+        "text_ru": "Урон, наносимый способностью Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
                 "text_ru": "4"
             },
             {
                 "is_correct": "false",
-                "text_en": "10",
-                "text_ru": "10"
+                "text_en": "",
+                "text_ru": "5"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "2"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "7"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "How many intellegence needed to increase ability damage by 1%?",
-        "text_ru": "Сколько очков интеллекта необходимо, чтобы увеличить урон от способностей на 1%?",
+        "approved": "false",
+        "image_name": "AA_ColdFeet.png",
+        "text_en": "",
+        "text_ru": "Время в секундах, необходимое для того, чтобы избежать применения стана от Cold Feet (Ancient Apparation)?",
         "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "12",
-                "text_ru": "12"
+                "text_en": "",
+                "text_ru": "300"
             },
             {
                 "is_correct": "false",
-                "text_en": "40",
+                "text_en": "",
+                "text_ru": "240"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "540"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "740"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ColdFeet.png",
+        "text_en": "",
+        "text_ru": "Дистанция, на которую нужно отойти, чтобы не получить стан от способности Cold Feet (Ancient Apparation),",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "2/2.5/3/3.5"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "4/5/6/7"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "1/2/3/4"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "1.5/3/4.5/6"
+            }
+        ],
+        "approved": "false",
+        "image_name": "AA_ColdFeet.png",
+        "text_en": "",
+        "text_ru": "Длительность стана от способности Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Увеличение продолжительности ультимейта"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Увеличение ХП/МП регена"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Увеличение скорости атаки"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Аттрибуты от Aghanim Sceptre"
+            }
+        ],
+        "approved": "false",
+        "image_name": "Alchemist.png",
+        "text_en": "",
+        "text_ru": "Что даёт Alchemist'у применение на себя Aghanim Sceptre?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Alchemist.png",
+        "text_en": "",
+        "text_ru": "Может ли Alchemist применить на себя Aghanim Scepter?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Надёжным"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Ненадёжным"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Alchemist_Greevil'sGreed.png",
+        "text_en": "",
+        "text_ru": "Золото, добываемое способностью Greevil's Greed (Alchemist) является:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "30"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
                 "text_ru": "40"
             },
             {
                 "is_correct": "false",
-                "text_en": "25",
-                "text_ru": "25"
+                "text_en": "",
+                "text_ru": "60"
             },
             {
-                "is_correct": "true",
-                "text_en": "20",
-                "text_ru": "20"
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "10"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "How many HP granted by 1 strenght?",
-        "text_ru": "Сколько очков здоровья добавляет единица силы?",
+        "approved": "false",
+        "image_name": "Alchemist_Greevil'sGreed.png",
+        "text_en": "",
+        "text_ru": "Через какое количество секунд спадает стаки способности Greevil's Greed (Alchemist)?",
         "theme": {
-            "name": "mechanics"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "5",
-                "text_ru": "5"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "7",
-                "text_ru": "7"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "8",
-                "text_ru": "8"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "12",
-                "text_ru": "12"
-            }
-        ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "How many points of agility needed to improve your armor by 1?",
-        "text_ru": "Сколько очков ловкости необходимо, чтобы повысить физическую броню на 1?",
-        "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "8",
-                "text_ru": "8"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "4",
-                "text_ru": "4"
+                "text_en": "",
+                "text_ru": "Нет"
             },
             {
                 "is_correct": "false",
-                "text_en": "5",
-                "text_ru": "5"
+                "text_en": "",
+                "text_ru": ""
             },
             {
                 "is_correct": "false",
-                "text_en": "7",
-                "text_ru": "7"
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Maximum stack's count of Quilling Spray applied to one hero:",
-        "text_ru": "Максимальное количество стаков способности Quiling Spray (Bristleback) на одном герое:",
+        "approved": "false",
+        "image_name": "Alchemist_Greevil'sGreed.png",
+        "text_en": "",
+        "text_ru": "Стакается ли способность Greevil's Greed (Alchemist)?",
         "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "1.5 sec",
-                "text_ru": "1.5 сек"
-            },
             {
                 "is_correct": "true",
-                "text_en": "2.0 sec",
-                "text_ru": "2 сек"
+                "text_en": "",
+                "text_ru": "16/20/24/28"
             },
             {
                 "is_correct": "false",
-                "text_en": "0.5 sec",
-                "text_ru": "0.5 сек"
+                "text_en": "",
+                "text_ru": "40/46/52/58"
             },
             {
                 "is_correct": "false",
-                "text_en": "1.7 sec",
-                "text_ru": "1.7 сек"
+                "text_en": "",
+                "text_ru": "4/8/12/16"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "5/10/20/25"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Stun duration of Treant's Protector's Invisible Tree on the max level?",
-        "text_ru": "Длительность стана Treant Protector при выходе из невидимости за счёт способности \"Invisible tree\" на максимальном уровне прокачки:",
+        "approved": "false",
+        "image_name": "Alchemist_Greevil'sGreed.png",
+        "text_en": "",
+        "text_ru": "Максимальное дополнительное количество золота способности Greevil's Greed (Alchemist) на 1/2/3/4 уровне прокачки:",
         "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "15%",
-                "text_ru": "15%"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "20%",
-                "text_ru": "20%"
-            },
             {
                 "is_correct": "true",
-                "text_en": "25%",
-                "text_ru": "25%"
+                "text_en": "",
+                "text_ru": "Да"
             },
             {
                 "is_correct": "false",
-                "text_en": "40%",
-                "text_ru": "40%"
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Dodge chance of Mortred's Blur on the first level of this ability?",
-        "text_ru": "Вероятность уклонения способности Blur (Mortred) на 1-ом уровне прокачки?",
+        "approved": "false",
+        "image_name": "Alchemist_UnstableConcoction.png",
+        "text_en": "",
+        "text_ru": "Может ли Alchemist заденаиться с помощью Unstable Concoction?",
         "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "Glimpse (Disruptor)",
-                "text_ru": "Glimpse (Disruptor)"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Life Drain (Pugna)",
-                "text_ru": "Life Drain (Pugna)"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Stone Gaze (Medusa)",
-                "text_ru": "Stone Gaze (Medusa)"
-            },
             {
                 "is_correct": "true",
-                "text_en": "Telekinesis (Rubic)",
-                "text_ru": "Telekinesis (Rubic)"
+                "text_en": "",
+                "text_ru": "200"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "400"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "600"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "0"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Which of these abilities CAN'T destroy an illusion?",
-        "text_ru": "Какая из этих способностей НЕ способна уничтожить иллюзию?",
+        "approved": "false",
+        "image_name": "Alchemist_UnstableConcoction.png",
+        "text_en": "",
+        "text_ru": "Какой радиус разрыва у Unstable Concoction (Alchemist)?",
         "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
                 "is_correct": "false",
-                "text_en": "Physical",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Alchemist_UnstableConcoction.png",
+        "text_en": "",
+        "text_ru": "Видят ли враги таймер над головой Alchemist во время раскручивания Unstable Concoction?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
                 "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text_en": "Pure",
-                "text_ru": "Чистый"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Magic",
+                "text_en": "",
                 "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
                 "text_en": "",
+                "text_ru": "Чистый"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
                 "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Damage type of Abbadon's Mist Coil is:",
-        "text_ru": "Тип урона, наносимый первой способностью Аббадона \"Mist Coil\":",
+        "approved": "false",
+        "image_name": "Alchemist_UnstableConcoction.png",
+        "text_en": "",
+        "text_ru": "Тип урона, наносимый способностью Unstable Concoction (Alchemist):",
         "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "310",
-                "text_ru": "310"
+                "text_en": "",
+                "text_ru": "4/5/6/7"
             },
             {
                 "is_correct": "false",
-                "text_en": "295",
-                "text_ru": "295"
+                "text_en": "",
+                "text_ru": "7/8/9/10"
             },
             {
                 "is_correct": "false",
-                "text_en": "280",
-                "text_ru": "280"
+                "text_en": "",
+                "text_ru": "2/5/8/11"
             },
             {
                 "is_correct": "false",
-                "text_en": "320",
-                "text_ru": "320"
+                "text_en": "",
+                "text_ru": "8"
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Base Abbadon's movement speed is:",
-        "text_ru": "Базовая скорость передвижения Аббадона равна:",
+        "approved": "false",
+        "image_name": "Alchemist_AcidSpray.png",
+        "text_en": "",
+        "text_ru": "Снижение брони от Acid Spray (Alchemist) на 1/2/3/4 уровнях прокачки равно:",
         "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "1.38",
-                "text_ru": "1.38"
+                "text_en": "",
+                "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
-                "text_en": "4.75",
-                "text_ru": "4.75"
+                "text_en": "",
+                "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
-                "text_en": "1.2",
-                "text_ru": "1.2"
+                "text_en": "",
+                "text_ru": "Чистый"
             },
             {
                 "is_correct": "false",
-                "text_en": "1.76",
-                "text_ru": "1.76"
+                "text_en": "",
+                "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "",
-        "text_en": "Base Abbadon's armor is:",
-        "text_ru": "Базовый показатель брони Аббадона равен:",
+        "approved": "false",
+        "image_name": "Alchemist_AcidSpray.png",
+        "text_en": "",
+        "text_ru": "Тип урона, наносимый способностью Acid Spray (Alchemist):",
         "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Может ли Abaddon быть убит от дебаффа Ice Blast (Ancient Apparation) во время действия своего ультимейта?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Будет ли Abaddon c 1 ХП убит во время действия ультимейта, если на нём применён Culling Blade (Axe)?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "400"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "600"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "800"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "200"
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Каков порог срабатывания ХП ультимейта Abaddon?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под агром Axe?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под действием Eul's Scepter?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_BorrowedTime.png",
+        "text_en": "",
+        "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении в стане?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_CurseOfAvernus.png",
+        "text_en": "",
+        "text_ru": "Накладывается ли дебафф на вышки от пассивной способности Curse of Avernus (Abaddon)?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_AphoticShield.png",
+        "text_en": "",
+        "text_ru": "Может ли накладываться Aphotic Shield на союзника, находящегося под действием Black King Bar?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_AphoticShield.png",
+        "text_en": "",
+        "text_ru": "Наносит ли урон способность Aphotic Shield (Abaddon) невидимым целям?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_MistCoil.png",
+        "text_en": "",
+        "text_ru": "Может ли Abaddon заденаить себя с помощью способности Mist Coil?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Физический"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Магический"
+            },
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Чистый"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_MistCoil.png",
+        "text_en": "",
+        "text_ru": "Какой тип урона наносит способность Mist Coild самому Abaddon при касте?",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "Да"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Нет"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_MistCoil.png",
+        "text_en": "",
+        "text_ru": "Можно ли уклониться от способности Mist Coild (Abaddon) с помощью Blink Dagger?",
+        "theme": {
+            "id": 0,
             "name": "heroes / items"
         }
     },
@@ -685,80 +1539,178 @@
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "1 sec",
-                "text_ru": "1 сек"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "3.5 sec",
-                "text_ru": "3.5 сек"
+                "text_en": "",
+                "text_ru": "Физический"
             },
             {
                 "is_correct": "true",
-                "text_en": "5 sec",
+                "text_en": "",
+                "text_ru": "Магический"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Чистый"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": ""
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_MistCoil.png",
+        "text_en": "Урон",
+        "text_ru": "Тип урона, наносимый способностью Mist Coil (Abaddon)?",
+        "theme": {
+            "id": 0,
+            "name": "heroes / items"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "4.5"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "10/8/6/4"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "4.5/4/3.5/3"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "7/6/5/4"
+            }
+        ],
+        "approved": "false",
+        "image_name": "Abaddon_MistCoil.png",
+        "text_en": "",
+        "text_ru": "Кулдаун способности Mist Coil (Abaddon) на 1/2/3/4 уровнях прокачки:",
+        "theme": {
+            "id": 0,
+            "name": "heroes / items"
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "110/160/210/260",
+                "text_ru": "110/160/210/260"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "120/170/250/310",
+                "text_ru": "120/170/250/310"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "90/110/130/150",
+                "text_ru": "90/110/130/150"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "130/180/230/280",
+                "text_ru": "130/180/230/280"
+            }
+        ],
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки равен соответственно:",
+        "text_ru": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки равен соответственно:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "15 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "3 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "20 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "7 сек"
+            }
+        ],
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Кулдаун способности Fissure (Earth Shaker) равен:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "8 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "3 сек"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
                 "text_ru": "5 сек"
             },
             {
                 "is_correct": "false",
-                "text_en": "2.2 sec",
-                "text_ru": "2.2 сек"
+                "text_en": "",
+                "text_ru": "12 сек"
             }
         ],
-        "approved": "true",
-        "image_name": "mechanics_sacred_arrow.jpg",
-        "text_en": "Max duration of Sacred Arrow's stun (Mirana)?",
-        "text_ru": "Максимальная длительность оглушения от способности Sacred Arrow (Mirana)?",
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Длительность борозды от Fissure (Earth Shaker) равна:",
         "theme": {
-            "name": "heroes / items"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "No",
-                "text_ru": "Нет"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Yes",
-                "text_ru": "Да"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            },
-            {
-                "is_correct": "false",
-                "text_en": "",
-                "text_ru": ""
-            }
-        ],
-        "approved": "true",
-        "image_name": "mechanics_bara_cogs.jpg",
-        "text_en": "Barathrum can charge through Cogs?",
-        "text_ru": "Barathrum может пробежать сквозь Cogs?",
-        "theme": {
-            "name": "heroes / items"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "Yes",
-                "text_ru": "Да"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "No",
-                "text_ru": "Нет"
+                "text_en": "",
+                "text_ru": "Магический"
             },
             {
                 "is_correct": "false",
                 "text_en": "",
-                "text_ru": ""
+                "text_ru": "Чистый"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "Физический"
             },
             {
                 "is_correct": "false",
@@ -766,105 +1718,141 @@
                 "text_ru": ""
             }
         ],
-        "approved": "true",
-        "image_name": "mechanics_storm_chronosphere.jpg",
-        "text_en": "Storm Spirit can fly through Void's chronosphere?",
-        "text_ru": "Storm Spirit может пролететь сквозь хроносферу Void'а?",
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "qwe",
+        "text_ru": "Тип урона, наносимый способностью Fissure (Earth Shaker)?",
         "theme": {
-            "name": "heroes / items"
-        }
-    },
-    {
-        "answers": [
-            {
-                "is_correct": "false",
-                "text_en": "TongFu",
-                "text_ru": "TongFu"
-            },
-            {
-                "is_correct": "true",
-                "text_en": "Natus Vincere",
-                "text_ru": "Natus Vincere"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Invictus Gaming",
-                "text_ru": "Invictus Gaming"
-            },
-            {
-                "is_correct": "false",
-                "text_en": "Evil Genuises",
-                "text_ru": "Evil Genuises"
-            }
-        ],
-        "approved": "true",
-        "image_name": "tournaments_TI1_winner.jpg",
-        "text_en": "Winner of The International - 1?",
-        "text_ru": "Кто стал победителем The International - 1?",
-        "theme": {
-            "name": "tournaments"
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "true",
-                "text_en": "6.000.000$",
-                "text_ru": "6.000.000$"
+                "text_en": "Lion",
+                "text_ru": "Lion"
             },
             {
                 "is_correct": "false",
-                "text_en": "1.500.000$",
-                "text_ru": "1.500.000$"
+                "text_en": "Broodmother",
+                "text_ru": "Broodmother"
             },
             {
                 "is_correct": "false",
-                "text_en": "16.000.000$",
-                "text_ru": "16.000.000$"
+                "text_en": "Spectre",
+                "text_ru": "Spectre"
             },
             {
                 "is_correct": "false",
-                "text_en": "1.000.000$",
-                "text_ru": "1.000.000$"
+                "text_en": "Barathrum",
+                "text_ru": "Barathrum"
             }
         ],
-        "approved": "true",
-        "image_name": "tournaments_TI2015_prizepool.jpg",
-        "text_en": "Prize for the first place at The International - 2015:",
-        "text_ru": "Награда за первое место в The International - 2015:",
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Какой из этих героев не сможет пройти борозду от Fissure (Earth Shaker) с помощью способностей?",
         "theme": {
-            "name": "tournaments"
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "1350"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "600"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "150"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "850"
+            }
+        ],
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Длина борозды Fissure (Earth Shaker) равна:",
+        "theme": {
+            "id": 0,
+            "name": ""
+        }
+    },
+    {
+        "answers": [
+            {
+                "is_correct": "true",
+                "text_en": "",
+                "text_ru": "225"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "170"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "350"
+            },
+            {
+                "is_correct": "false",
+                "text_en": "",
+                "text_ru": "50"
+            }
+        ],
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Ширина стана от Fissure равна:",
+        "theme": {
+            "id": 0,
+            "name": ""
         }
     },
     {
         "answers": [
             {
                 "is_correct": "false",
-                "text_en": "BestOf3",
-                "text_ru": "BestOf3"
+                "text_en": "",
+                "text_ru": "Будут пытаться обойти"
             },
             {
                 "is_correct": "false",
-                "text_en": "BestOf1",
-                "text_ru": "BestOf1"
+                "text_en": "",
+                "text_ru": "Побегут в сторону фонтана"
             },
             {
                 "is_correct": "true",
-                "text_en": "BestOf5",
-                "text_ru": "BestOf5"
+                "text_en": "",
+                "text_ru": "Будут стоят на месте"
             },
             {
                 "is_correct": "false",
-                "text_en": "BestOf7",
-                "text_ru": "BestOf7"
+                "text_en": "",
+                "text_ru": "Заденаются"
             }
         ],
-        "approved": "true",
-        "image_name": "tournaments_TI1_grandfinal_qualification.jpg",
-        "text_en": "Format of Grind Final The International 1:",
-        "text_ru": "Формат грандфинала The International 1:",
+        "approved": "false",
+        "image_name": "ES_Fissure.png",
+        "text_en": "",
+        "text_ru": "Что произойдёт с линейными крипами при столкновении с бороздой от Fissure (Earth Shaker)?",
         "theme": {
-            "name": "mechanics"
+            "id": 0,
+            "name": ""
         }
     }
 ]
