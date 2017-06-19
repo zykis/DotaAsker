@@ -5,14 +5,14 @@ from werkzeug.contrib.fixers import ProxyFix
 import logging
 from logging.handlers import RotatingFileHandler
 
-# logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
+logging.basicConfig(fle='dotaasker.log', level=logging.DEBUG)
 
 app = Flask(__name__)
 app.config.from_object('config')
 
-handler = RotatingFileHandler('dotaasker.log', maxBytes=10000, backupCount=1)
-handler.setLevel(logging.INFO)
-app.logger.addHandler(handler)
+#handler = RotatingFileHandler('dotaasker.log', maxBytes=10000, backupCount=1)
+#handler.setLevel(logging.INFO)
+#app.logger.addHandler(handler)
 
 app.wsgi_app = ProxyFix(app.wsgi_app)
 db = SQLAlchemy(app)
