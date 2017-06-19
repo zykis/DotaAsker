@@ -31,7 +31,7 @@ def uploadQuestionFromPath(questionsPath, updateImages=False):
         for q in questions_list.data:
             imageLocalPath = questionsPath + 'question_images/' + q.image_name
             # [3] update/insert questions into DB
-            db.session.merge(q)
+            db.session.add(q)
             # [4] for each question, update image at cloudinary.com
             if updateImages:
                 cloudinary.uploader.upload(imageLocalPath, use_filename = True, unique_filename = False)

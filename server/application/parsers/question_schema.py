@@ -2,6 +2,7 @@ from marshmallow import Schema, fields, post_load
 from application.parsers.answer_schema import AnswerSchema
 from application.parsers.theme_schema import ThemeSchema
 from application.models import Question, Theme, Answer
+from theme_schema import ThemeSchema
 from application import db
 from flask import g
 
@@ -25,7 +26,9 @@ class QuestionSchema(Schema):
             question.text_ru = data.get('text_ru', '')
             question.approved = data.get('approved', False)
             question.image_name = data.get('image_name', '')
-            question.theme = data.get('theme', None)
+            theme = data.get('theme', None)
+            themeSchema = ThemeSchema()
+            question.theme = themeSchema.get_theme(theme)
 
             for aDict in data.get('answers'):
                 a = Answer()
