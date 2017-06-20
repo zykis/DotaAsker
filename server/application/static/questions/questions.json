@@ -28,7 +28,7 @@
         "text_ru": "Может ли фонтан восстанавливать здоровью герою, находящемуся под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 2,
-            "name": "tournaments"
+            "text_en": "tournaments"
         }
     },
     {
@@ -60,7 +60,7 @@
         "text_ru": "Может ли эффективно быть применена способность Sunder (Terrorblade) под действием дебаффа от Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 2,
-            "name": "tournaments"
+            "text_en": "tournaments"
         }
     },
     {
@@ -92,7 +92,7 @@
         "text_ru": "Может ли конечная точка способности Ice Blast (Ancient Apparation) быть замечена противником при наличии у него Gem of True Sight?",
         "theme": {
             "id": 2,
-            "name": "tournaments"
+            "text_en": "tournaments"
         }
     },
     {
@@ -124,7 +124,7 @@
         "text_ru": "Может ли Black King Bar защитить от мгновенной смерти от способности Ice Blast (Ancient Apparation)?",
         "theme": {
             "id": 3,
-            "name": "mechanics"
+            "text_en": "mechanics"
         }
     },
     {
@@ -156,7 +156,7 @@
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки при наличии Aghanim Sceptre:",
         "theme": {
             "id": 3,
-            "name": "mechanics"
+            "text_en": "mechanics"
         }
     },
     {
@@ -188,7 +188,7 @@
         "text_ru": "Длительность дебаффа способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 3,
-            "name": "mechanics"
+            "text_en": "mechanics"
         }
     },
     {
@@ -220,7 +220,7 @@
         "text_ru": "Начальный урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -252,7 +252,7 @@
         "text_ru": "Порог здоровья для смерти от Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -284,7 +284,7 @@
         "text_ru": "Периодический урон от способности Ice Blast (Ancient Apparation) на 1/2/3 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -316,7 +316,7 @@
         "text_ru": "Как можно убрать с себя бафф от Chilling Touch (Ancient Apparation)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -348,7 +348,7 @@
         "text_ru": "Максимальное количество дополнительного урона, которое может быть нанесено с помощью Chilling Touch (до рассчётов брони)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -380,7 +380,7 @@
         "text_ru": "Применяется ли модификатор атаки от Chilling Touch на самого Ancient Apparation, если он находился вне зоны каста?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -412,7 +412,7 @@
         "text_ru": "Применяется ли модификатор атаки от Chilling Touch (Ancient Apparation) для всех клонов Meepo?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -444,7 +444,7 @@
         "text_ru": "Может ли урон от от способности Chilling Touch (Ancient Apparation) быть заблокирован с помощью Black King Bar?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -476,7 +476,7 @@
         "text_ru": "Увеличивает ли скорость передвижения Ice Vortex для самого Ancient Apparation, когда он проходит через него?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -508,7 +508,7 @@
         "text_ru": "Уменьшение скорости передвижения от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -540,7 +540,7 @@
         "text_ru": "Уменьшение магической защиты от Ice Vortex (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -572,7 +572,7 @@
         "text_ru": "Чему равна дальность применения способности Ice Vortex (Ancient Apparation)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -604,7 +604,7 @@
         "text_ru": "Does Ice Vortex (Ancient Apparation) provides ground vision?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -636,7 +636,7 @@
         "text_ru": "Можно ли развеять Ice Vortex (Ancient Apparation) с помощью Black King Bar?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -668,7 +668,7 @@
         "text_ru": "Урон, наносимый способностью Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -700,7 +700,7 @@
         "text_ru": "Время в секундах, необходимое для того, чтобы избежать применения стана от Cold Feet (Ancient Apparation):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -732,7 +732,7 @@
         "text_ru": "Дистанция, на которую нужно отойти, чтобы не получить стан от способности Cold Feet (Ancient Apparation):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -764,7 +764,7 @@
         "text_ru": "Длительность стана от способности Cold Feet (Ancient Apparation) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -796,7 +796,7 @@
         "text_ru": "Что даёт Alchemist'у применение на себя Aghanim Sceptre?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -828,7 +828,7 @@
         "text_ru": "Может ли Alchemist применить на себя Aghanim Scepter?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -860,7 +860,7 @@
         "text_ru": "Золото, добываемое способностью Greevil's Greed (Alchemist) является:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -892,7 +892,7 @@
         "text_ru": "Через какое количество секунд спадает стаки способности Greevil's Greed (Alchemist)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -924,7 +924,7 @@
         "text_ru": "Стакается ли способность Greevil's Greed (Alchemist)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -956,7 +956,7 @@
         "text_ru": "Максимальное дополнительное количество золота способности Greevil's Greed (Alchemist) на 1/2/3/4 уровне прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -988,7 +988,7 @@
         "text_ru": "Может ли Alchemist заденаиться с помощью Unstable Concoction?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1020,7 +1020,7 @@
         "text_ru": "Какой радиус разрыва у Unstable Concoction (Alchemist)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1052,7 +1052,7 @@
         "text_ru": "Видят ли враги таймер над головой Alchemist во время раскручивания Unstable Concoction?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1084,7 +1084,7 @@
         "text_ru": "Тип урона, наносимый способностью Unstable Concoction (Alchemist):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1116,7 +1116,7 @@
         "text_ru": "Снижение брони от Acid Spray (Alchemist) на 1/2/3/4 уровнях прокачки равно:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1148,7 +1148,7 @@
         "text_ru": "Тип урона, наносимый способностью Acid Spray (Alchemist):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1180,7 +1180,7 @@
         "text_ru": "Может ли Abaddon быть убит от дебаффа Ice Blast (Ancient Apparation) во время действия своего ультимейта?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1212,7 +1212,7 @@
         "text_ru": "Будет ли Abaddon c 1 ХП убит во время действия ультимейта, если на нём применён Culling Blade (Axe)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1244,7 +1244,7 @@
         "text_ru": "Каков порог срабатывания ХП ультимейта Abaddon?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1276,7 +1276,7 @@
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под агром Axe?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1308,7 +1308,7 @@
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении его под действием Eul's Scepter?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1340,7 +1340,7 @@
         "text_ru": "Может ли ультимейт Abaddon'a быть активирован при нахождении в стане?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1372,7 +1372,7 @@
         "text_ru": "Накладывается ли дебафф на вышки от пассивной способности Curse of Avernus (Abaddon)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1404,7 +1404,7 @@
         "text_ru": "Может ли накладываться Aphotic Shield на союзника, находящегося под действием Black King Bar?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1436,7 +1436,7 @@
         "text_ru": "Наносит ли урон способность Aphotic Shield (Abaddon) невидимым целям?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1468,7 +1468,7 @@
         "text_ru": "Может ли Abaddon заденаить себя с помощью способности Mist Coil?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1500,7 +1500,7 @@
         "text_ru": "Какой тип урона наносит способность Mist Coild самому Abaddon при касте?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1532,7 +1532,7 @@
         "text_ru": "Можно ли уклониться от способности Mist Coild (Abaddon) с помощью Blink Dagger?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1564,7 +1564,7 @@
         "text_ru": "Тип урона, наносимый врагу способностью Mist Coil (Abaddon):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1596,7 +1596,7 @@
         "text_ru": "Кулдаун способности Mist Coil (Abaddon) на 1/2/3/4 уровнях прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1628,7 +1628,7 @@
         "text_ru": "Урон способности Fissure (Earth Shaker) на 1/2/3/4 уровне прокачки:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1660,7 +1660,7 @@
         "text_ru": "Кулдаун способности Fissure (Earth Shaker):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1692,7 +1692,7 @@
         "text_ru": "Длительность борозды от Fissure (Earth Shaker) равна:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1724,7 +1724,7 @@
         "text_ru": "Тип урона, наносимый способностью Fissure (Earth Shaker):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1756,7 +1756,7 @@
         "text_ru": "Какой из этих героев не сможет пройти борозду от Fissure (Earth Shaker) с помощью способностей?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1788,7 +1788,7 @@
         "text_ru": "Длина борозды Fissure (Earth Shaker):",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1820,7 +1820,7 @@
         "text_ru": "Ширина стана от Fissure равна:",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     },
     {
@@ -1852,7 +1852,7 @@
         "text_ru": "Что произойдёт с союзными линейными крипами при столкновении с бороздой от Fissure (Earth Shaker)?",
         "theme": {
             "id": 1,
-            "name": "heroes / items"
+            "text_en": ""
         }
     }
 ]
